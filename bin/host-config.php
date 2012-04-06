@@ -17,7 +17,7 @@ $conf['url']['hostPattern'] = '%s.travis.ps-webforge.net';
 
 /* Project Paths */
 $conf['projects']['root'] = getenv('$HOME').'/builds/pscheit/';
-//$conf['projects']['psc-cms'] = getenv('$HOME').'/builds/pscheit/psc-cms/';
+$conf['projects']['psc-cms'] = getenv('$HOME').'/builds/pscheit/psc-cms/';
 
 /* Environment */
 $conf['defaults']['system']['timezone'] = 'Europe/Berlin';
