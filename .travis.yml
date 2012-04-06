@@ -8,7 +8,7 @@ env:
 before_script:
   - mysql -e 'create database IF NOT EXISTS `psc-cms_tests`;'
   
-script: ./bin/cli.sh test
+script: php -f ./bin/cli.php test
 
 notifications:
   irc: "irc.freenode.org#psc-cms"
