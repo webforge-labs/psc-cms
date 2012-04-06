@@ -3,7 +3,7 @@ php:
   - 5.3
   
 env:
-  - PSC_CMS=$HOME/bin/
+  - PSC_CMS=$HOME/builds/pscheit/psc-cms/bin
   
 before_script:
   - mysql -e 'create database IF NOT EXISTS `psc-cms_tests`;'
