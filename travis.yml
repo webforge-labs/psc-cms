@@ -1,0 +1,16 @@
+language: php
+php:
+  - 5.3
+  - 5.4
+  
+env:
+  - PSC_CMS=$HOME/bin/
+  
+before_script:
+  - mysql -e 'create database IF NOT EXISTS psc-cms_tests;'
+  
+script: bin/cli test
+
+notifications:
+  #email: "p.scheit@ps-webforge.com"
+  irc: "irc.freenode.org#psc-cms"
