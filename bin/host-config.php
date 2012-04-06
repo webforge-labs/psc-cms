@@ -1,7 +1,8 @@
 <?php
+$ds = DIRECTORY_SEPARATOR;
 /* General */
 $conf['host'] = 'travis-ci';
-$conf['root'] = __DIR__.'/../lib/';
+$conf['root'] = __DIR__.$ds.'..'.$ds.'lib'.$ds;
 $conf['production'] = TRUE;
 $conf['uagent-key'] = NULL;
 $conf['cms']['user'] = 'travis@ps-webforge.com';
@@ -16,8 +17,8 @@ $conf['system']['dbm']['host'] = 'localhost';
 $conf['url']['hostPattern'] = '%s.travis.ps-webforge.net';
 
 /* Project Paths */
-$conf['projects']['root'] = getenv('$HOME').'/builds/pscheit/';
-$conf['projects']['psc-cms']['root'] = getenv('$HOME').'/builds/pscheit/psc-cms/';
+$conf['projects']['root'] = getenv('HOME').'/builds/pscheit/';
+$conf['projects']['psc-cms']['root'] = getenv('HOME').'/builds/pscheit/psc-cms/';
 
 /* Environment */
 $conf['defaults']['system']['timezone'] = 'Europe/Berlin';
