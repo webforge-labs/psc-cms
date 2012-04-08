@@ -1,9 +1,21 @@
 <?php
 
 namespace Psc;
+use Psc\Boot\BootLoader;
 
-require __DIR__.DIRECTORY_SEPARATOR.'psc-cms.phar.gz';
-require __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR.'bootstrap.php';
+require 'package.boot.php';
+$bootLoader = new BootLoader(__DIR__);
+$bootLoader->init();
+
+$bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('symfony'));
+$bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('doctrine'));
+$bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('hitch'));
+$bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('phpword'));
+$bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('imagine'));
+$bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('swift'));
+//$bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('phpexcel'));
+
+require $bootLoader->getPath('../lib/', BootLoader::RELATIVE).'bootstrap.php';
 
 PSC::getProject()->setTests(TRUE);
 
