@@ -141,7 +141,7 @@ class BootLoader {
     }
     
     $autoLoader->init();
-    
+    PSC::setAutoLoader($autoLoader);
     PSC::setProjectsFactory($factory = $this->getProjectsFactory());
   }
   
