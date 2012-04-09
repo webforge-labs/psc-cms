@@ -1,0 +1,28 @@
+<?php
+
+use \Psc\TPL\TPL,
+    \Psc\HTML\HTML,
+    \Psc\DateTime\DateTime
+;
+
+$data = array();
+$data[] = array(
+  'version'=>'0.1-Beta',
+  'time'=>'13:57 21.10.2011',
+  'changelog'=>array(
+    'launch'
+));
+?>
+<h2>Changelog</h2>
+<div class="content-text">
+<p>Bei der Entwicklung eines CMS ändert sich mehrmals sehr viel. Hier ist eine kleine Historie, um sehen zu können, was sich wann geändert hat</p>
+<br />
+<?php foreach ($data as $v):?>
+<h3><?= HTML::esc($v['version']) ?> vom <?= DateTime::factory($v['time'])->i18n_format('d. F Y H:i') ?></h3>
+<ul class="changelog">
+  <?php foreach($v['changelog'] as $entry): ?>
+   <?= HTML::Tag('li',HTML::esc($entry).'.') ?>
+  <?php endforeach; ?>
+</ul>
+<?php endforeach; ?>
+</div>

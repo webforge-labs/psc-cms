@@ -18,6 +18,7 @@ $bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('swift'));
 $bootLoader
   ->setProjectPath('psc-cms','tests', './tests/')
   ->setProjectPath('psc-cms','src', './lib/')
+  ->setProjectPath('psc-cms','files', './files/')
 ;
 
 require $bootLoader->getPath('../lib/', BootLoader::RELATIVE).'bootstrap.php';
