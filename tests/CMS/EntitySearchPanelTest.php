@@ -9,7 +9,7 @@ class EntitySearchPanelTest extends \Psc\Code\Test\Base {
   public function setUp() {
     $this->chainClass = 'Psc\CMS\EntitySearchPanel';
     parent::setUp();
-    $this->entitySearchPanel = new EntitySearchPanel();
+    //$this->entitySearchPanel = new EntitySearchPanel();
   }
   
   public function testAcceptance() {

@@ -50,7 +50,7 @@ class AbstractEntityTest extends \Psc\Code\Test\Base {
     $tci = $this->defaultEntity->getTabsContentItem(TabsContentItem2::CONTEXT_DEFAULT);
     
     $this->assertInstanceOf('Psc\CMS\ContextTabsContentItem',$tci);
-    $this->assertEquals($this->defaultEntity->getLabel(TabsContentItem2::CONTEXT_DEFAULT), $tci->getLabel());
+    $this->assertEquals($this->defaultEntity->getTabsLabel(TabsContentItem2::CONTEXT_DEFAULT), $tci->getTabsLabel());
     $this->assertNotEmpty($tci->getTabsURL()); // hier müsste dann irgendwie autoComplete sein oder sowas
   }
 
@@ -97,6 +97,8 @@ class MyCMSEntity extends AbstractEntity implements ComponentsCreaterListener {
   
   protected $identifier;
   
+  protected $birthday;
+  
   public function onBirthdayComponentCreated($component, $creater, $event) {
     
   }
@@ -109,11 +111,24 @@ class MyCMSEntity extends AbstractEntity implements ComponentsCreaterListener {
     return $this->identifier;
   }
   
+  public function getBirthday() {
+    return $this->birthday;
+  }
+  
+  public function setBirthday(DateTime $birthday) {
+    $this->birthday = $birthday;
+    return $this;
+  }
+
   public function getTabsURL(Array $qvars = array()) {
     return NULL;
   }
   
   public static function getSetMeta() {
+    return new \Psc\Data\SetMeta(array(
+      'identifier' => new \Psc\Data\Type\IdType(),
+      'birthday' => new \Psc\Data\Type\BirthdayType()
+    ));
   }
   
   public function getEntityName() {

@@ -21,6 +21,7 @@ class DatePickerTest extends TestCase {
   }
   
   public function testHTML_DateFormat() {
+    $this->markTestSkipped('not yet ready');
     $this->component->setDateFormat('d.m.y');
     $this->assertStandardInputHTML('21.11.84');
 

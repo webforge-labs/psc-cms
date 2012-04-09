@@ -16,14 +16,14 @@ class EntityServiceTest extends \Psc\Code\Test\ServiceBase {
     parent::setUp();
     
     $this->project = clone \Psc\PSC::getProject();
-    $this->doctrine = $this->project->getModule('Doctrine');
+    $this->doctrine = new \Psc\Doctrine\DCPackage($this->project->getModule('Doctrine'));
     
-    $this->svc = $this->getMock($this->chainClass, array('getControllersNamespace'), array($this->doctrine, 'entities'));
+    $this->svc = $this->getMock($this->chainClass, array('getControllersNamespace'), array($this->doctrine, $this->project, 'entities'));
     $this->svc->expects($this->any())->method('getControllersNamespace')
               ->will($this->returnValue('Psc\Test\Controllers'));
 
-   $this->doctrine->registerEntityClassesMetadataDriver();
-   $this->doctrine->getEntityClassesMetadataDriver()->addClass('Psc\Doctrine\TestEntities\Tag');
+   $this->doctrine->getModule()->registerEntityClassesMetadataDriver();
+   $this->doctrine->getModule()->getEntityClassesMetadataDriver()->addClass('Psc\Doctrine\TestEntities\Tag');
 
   }
   
@@ -61,7 +61,6 @@ class EntityServiceTest extends \Psc\Code\Test\ServiceBase {
   
   public static function provideBadRequestType() {
     return array(
-      array(Service::PUT),
       array(Service::DELETE),
     );
   }

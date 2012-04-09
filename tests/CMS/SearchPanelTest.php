@@ -16,6 +16,7 @@ class SearchPanelTest extends \Psc\Code\Test\HTMLTestCase {
     $searchPanel = new SearchPanel((object) array('label'=>'Sprecher',
                                                   'genitiv'=>'eines Sprechers',
                                                   'fields'=>'Namen oder Identifikationsnummer',
+                                                  'url'=>'/autocomplete/go/search'
                                                   )
                                    );
     

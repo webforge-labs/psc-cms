@@ -10,15 +10,15 @@ $bootLoader->init();
 $bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('symfony'));
 $bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('doctrine'));
 $bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('hitch'));
-$bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('phpword'));
+//$bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('phpword'));
 $bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('imagine'));
 $bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('swift'));
-$bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('phpexcel'));
+//$bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('phpexcel'));
 
 require $bootLoader->getPath('../lib/', BootLoader::RELATIVE).'bootstrap.php';
 
 PSC::getProject()->setTests(TRUE);
 
 $console = new \Psc\System\Console\Console();
-$console->run();
+exit($console->run());
 ?>

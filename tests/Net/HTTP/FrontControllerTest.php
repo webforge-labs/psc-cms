@@ -26,7 +26,7 @@ class FrontControllerTest extends \Psc\Code\Test\Base {
     // Psc\CMS\Service ist der Default-Service sozusagen
     $services = $fc->getRequestHandler()->getServices();
     $this->assertCount(1,$services);
-    $this->assertInstanceOf('Psc\CMS\Service', current($services));
+    $this->assertInstanceOf('Psc\CMS\Service\CMSService', current($services));
   }
   
   public function testIfResourceHandlerFindsResponse_RequestHandlerIsNotUsed() {

@@ -9,7 +9,7 @@ class ContextTabsContentItemTest extends \Psc\Code\Test\Base {
   public function setUp() {
     $this->chainClass = 'Psc\CMS\ContextTabsContentItem';
     parent::setUp();
-    $this->contextTabsContentItem = new ContextTabsContentItem();
+    //$this->contextTabsContentItem = new ContextTabsContentItem();
   }
   
   public function testAcceptance() {

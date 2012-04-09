@@ -28,6 +28,7 @@ class EntityFormPanelTest extends \Psc\Doctrine\DatabaseTest {
         $property('firstName', $type('String')),
         $property('email', $type('Email')),
         $property('birthday', $type('Birthday')),
+        $property('yearKnown', $type('Boolean')),
       $constructor(
         $argument('name'),
         $argument('email', NULL),
