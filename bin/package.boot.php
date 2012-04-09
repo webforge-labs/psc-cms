@@ -213,6 +213,10 @@ class BootLoader {
     return $this->hostConfigFile;
   }
   
+  public function setProjectPath($name, $key, $value) {
+    $this->getProjectsFactory()->setProjectPath($name, $key, $value);
+  }
+  
   public function setPharBinaries($path, $flags = 0x000000, Array $aliases = array()) {
     $this->pharsDir = $this->getPath($path, $flags);
     

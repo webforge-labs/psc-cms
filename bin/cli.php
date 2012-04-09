@@ -15,6 +15,8 @@ $bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('imagine'));
 $bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('swift'));
 //$bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('phpexcel'));
 
+$bootLoader->setProjectPath('psc-cms','tests', './tests/');
+
 require $bootLoader->getPath('../lib/', BootLoader::RELATIVE).'bootstrap.php';
 
 PSC::getProject()->setTests(TRUE);
