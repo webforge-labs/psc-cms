@@ -215,6 +215,7 @@ class BootLoader {
   
   public function setProjectPath($name, $key, $value) {
     $this->getProjectsFactory()->setProjectPath($name, $key, $value);
+    return $this;
   }
   
   public function setPharBinaries($path, $flags = 0x000000, Array $aliases = array()) {
