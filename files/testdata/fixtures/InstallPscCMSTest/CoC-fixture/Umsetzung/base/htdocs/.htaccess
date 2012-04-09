@@ -1,0 +1,7 @@
+#Options FollowSymLinks
+
+#RewriteEngine on
+#RewriteBase /
+
+#RewriteCond  %{REQUEST_URI}    ^/(episodes|captchas)/.*
+#RewriteRule  ^(.*)   /api.php?mod_rewrite_request=$1 [L]
