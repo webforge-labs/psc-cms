@@ -10,11 +10,12 @@ class ProjectsFactoryTest extends \PHPUnit_Framework_TestCase {
     $factory = PSC::getProjectsFactory();
     
     $cms = $factory->getProject('psc-cms');
-    $tiptoi = $factory->getProject('tiptoi');
+    
     
     $this->assertInstanceOf('Psc\Project',$cms); // extends Psc\CMS\Project
     
     if (PSC::getProject()->getHost() == 'psc-laptop' || PSC::getProject()->getHost() == 'psc-desktop') {
+      $tiptoi = $factory->getProject('tiptoi');
       
       $this->assertEquals('D:\www\psc-cms\Umsetzung\\',(string) $cms->getRoot());
       $this->assertEquals('D:\www\psc-cms\Umsetzung\base\src\\',(string) $cms->getSrc());
@@ -33,7 +34,7 @@ class ProjectsFactoryTest extends \PHPUnit_Framework_TestCase {
       $this->assertEquals('D:\www\RvtiptoiCMS\Umsetzung\base\htdocs\\',(string) $tiptoi->getPath(PSC::PATH_HTDOCS));
       
     } else {
-      $this->markTestSkipped('kein Switch für Host '.PSC::getHost().' angegeben');
+      $this->markTestSkipped('kein Switch für Host '.PSC::getProject()->getHost().' angegeben');
     }
   }
   
@@ -55,15 +56,19 @@ class ProjectsFactoryTest extends \PHPUnit_Framework_TestCase {
   }
   
   public function testProjectConfigLoading() {
-    $factory = PSC::getProjectsFactory();
-    $cms = $factory->getProject('psc-cms');
-    $tiptoi = $factory->getProject('tiptoi');
+    if (PSC::getProject()->getHost() == 'psc-laptop' || PSC::getProject()->getHost() == 'psc-desktop') {
+      $factory = PSC::getProjectsFactory();
+      $cms = $factory->getProject('psc-cms');
+      $tiptoi = $factory->getProject('tiptoi');
     
-    $this->assertEquals('psc-cms',$cms->getName());
-    $this->assertEquals('tiptoi',$tiptoi->getName());
+      $this->assertEquals('psc-cms',$cms->getName());
+      $this->assertEquals('tiptoi',$tiptoi->getName());
     
-    $this->assertEquals('valueinpsc-cms',$cms->getConfiguration()->get('fixture.config.variable'));
-    $this->assertEquals('valueintiptoi',$tiptoi->getConfiguration()->get('fixture.config.variable'));
+      $this->assertEquals('valueinpsc-cms',$cms->getConfiguration()->get('fixture.config.variable'));
+      $this->assertEquals('valueintiptoi',$tiptoi->getConfiguration()->get('fixture.config.variable'));
+    } else {
+      $this->markTestSkipped('kein Switch für Host '.PSC::getProject()->getHost().' angegeben');
+    }
   }
 }
 ?>
