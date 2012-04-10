@@ -9,7 +9,7 @@ class InstallPscFrameworkTest extends TestCase {
   public function assertPreConditions() {
     parent::assertPreConditions();
     
-    $this->assertTrue($this->getTestDirectory()->sub('test/MyNewProject/Umsetzung/base/src/')->exists());
+    $this->assertTrue($this->getTestDirectory()->sub('test/MyNewProject/Umsetzung/base/src/')->exists(),'Pre-Condition: fixture wurde nach test kopiert, schlägt fehl');
   }
   
   public function testRun() { // AcceptanceTest
