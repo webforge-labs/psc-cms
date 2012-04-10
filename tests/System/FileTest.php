@@ -23,6 +23,17 @@ class FileTest extends \Psc\Code\Test\Base {
     $this->assertEquals($fileString, (string) $file);
   }
   
+  public function testWrappedConstructor() {
+    $fileString = 'phar://path/does/not/matter/my.phar.gz/i/am/wrapped/class.php';
+    
+    $file = new File($fileString);
+    $this->assertEquals('php',$file->getExtension());
+    $this->assertEquals('class.php',$file->getName());
+    $this->assertEquals('phar://path/does/not/matter/my.phar.gz/i/am/wrapped/', (string) $file->getDirectory());
+    $this->assertEquals($fileString, (string) $file);
+    
+  }
+  
   public function testAppendName() {
     $file = new File('D:\Filme\Serien\The Big Bang Theory\Season 5\The.Big.Bang.Theory.S05E07.en.IMMERSE.srt');
     $file->setName($file->getName(File::WITHOUT_EXTENSION).'-en.srt');

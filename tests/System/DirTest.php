@@ -121,6 +121,27 @@ class DirTest extends \Psc\Code\Test\Base {
     $this->assertTrue($graph->isRelative());
   }
   
+  
+  public function testWrappedPaths() {
+    $wrappedPath = 'phar://path/does/not/matter/my.phar.gz/i/am/wrapped/';
+    
+    $dir = new Dir($wrappedPath);
+    $this->assertEquals($wrappedPath, (string) $dir);
+    
+    $this->assertTrue($dir->isWrapped());
+    $this->assertEquals('phar', $dir->getWrapper());
+    
+    $dir->setWrapper('rar');
+    $this->assertEquals('rar', $dir->getWrapper());
+  }
+  
+  public function testWrappedExtract() {
+    $fileString = 'phar://path/does/not/matter/my.phar.gz/i/am/wrapped/class.php';
+    
+    $dir = Dir::extract($fileString);
+    $this->assertEquals('phar://path/does/not/matter/my.phar.gz/i/am/wrapped/', (string) $dir);
+  }
+  
   public function testIsEmpty() {
     $nonEx = $this->getTestDirectory('blablabla/non/existent/');
     $this->assertTrue($nonEx->isEmpty());
