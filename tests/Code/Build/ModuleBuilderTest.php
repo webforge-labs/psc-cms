@@ -10,6 +10,10 @@ class ModuleBuilderTest extends \Psc\Code\Test\Base {
    * @dataProvider provideBuildingModules
    */
   public function testModuleBuilding($moduleName, Array $expectedRelativeEntries) {
+    if (PSC::getProject()->getHost() != 'psc-laptop' && PSC::getProject()->getHost() != 'psc-desktop') {
+      $this->markTestSkipped('Module Sourcen existieren nicht für Host '.PSC::getProject()->getHost().'');
+    }
+    
     $module = \Psc\PSC::getProject()->getModule($moduleName);
     
     $pharFile = $this->newFile('Module'.$moduleName.'.phar.gz');
