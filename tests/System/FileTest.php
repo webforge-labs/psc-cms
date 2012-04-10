@@ -31,7 +31,15 @@ class FileTest extends \Psc\Code\Test\Base {
     $this->assertEquals('class.php',$file->getName());
     $this->assertEquals('phar://path/does/not/matter/my.phar.gz/i/am/wrapped/', (string) $file->getDirectory());
     $this->assertEquals($fileString, (string) $file);
+  }
+  
+  public function testReadableinPhar() {
+    $phar = $this->getFile('test.phar.gz');
+    $wrapped = 'phar://'.str_replace(DIRECTORY_SEPARATOR, '/', (string) $phar).'/Imagine/Exception/Exception.php';
     
+    $file = new File($wrapped);
+    $this->assertTrue($file->isReadable());
+    $this->assertTrue($file->exists());
   }
   
   public function testAppendName() {
