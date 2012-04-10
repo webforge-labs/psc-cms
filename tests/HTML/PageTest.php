@@ -14,7 +14,7 @@ class PageTest extends \Psc\Code\Test\Base {
     $this->assertSame($jsManager,$page->getJSManager());
     $this->assertSame($cssManager,$page->getCSSManager());
     
-    $this->assertNotSame($jsManager, \PSC\JS\JS::getManager());
+    $this->assertNotSame($jsManager, \Psc\JS\JS::getManager());
   }
 }
 ?>
