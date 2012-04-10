@@ -1,0 +1,24 @@
+.psc-cms-ui-form label { display: block; }
+.psc-cms-ui-form label.checkbox-label { display: inline-block; }
+.psc-cms-ui-form div.ui-buttonset label { display: inline-block; }
+
+.psc-cms-ui-form label.psc-cms-ui-label {  }
+.psc-cms-ui-form input.text { width: 90%; }
+.psc-cms-ui-form div.input-set-wrapper { margin-bottom: 20px; }
+.psc-cms-ui-group div.input-set-wrapper { margin-bottom: 20px; }
+
+/* UIGroup */
+fieldset.psc-cms-ui-group legend { background-color: #ffffff; }
+fieldset.psc-cms-ui-group { padding-left: 1em; margin-bottom: 10px; min-height: 35px; }
+fieldset.psc-cms-ui-group legend.collapsible {cursor: pointer; }
+fieldset.psc-cms-ui-group .content { padding: 1em 1em 1em 0; }
+
+fieldset.psc-cms-ui-group fieldset.psc-cms-ui-group { padding-left: .5em; border-style: dotted; }
+fieldset.psc-cms-ui-group .content fieldset.psc-cms-ui-group .content { padding: .5em .5em .5em 0; }
+
+
+/* Info-Accordion in Forms */
+.psc-cms-ui-form .right-accordion {
+  float: right;
+  width: 40%;
+}

@@ -1,0 +1,86 @@
+#content div.psc-cms-ui-tabs li .ui-icon { float: left; margin: 0.6em 0.2em 0 0; cursor: pointer; }
+#content div.psc-cms-ui-tabs ul.ui-tabs-nav li a { } /* padding rechts für den tab wegen dem close-icon verkleinern */
+#content div.psc-cms-ui-tabs li a span.unsaved {font-weight: bold; }
+#content div.psc-cms-ui-tabs li a span.load { padding-left: 0.8em; }
+#content div.psc-cms-ui-tabs div.ui-tabs-panel { min-height: 540px; }
+#content div.psc-cms-ui-tabs { top: 7px; /* damit das fieldset in #right mit der linie von den tabs auf einer höhe ist */ margin-bottom: 18px; }
+
+#content div.psc-cms-ui-buttonset button.psc-cms-ui-button,
+#content div.psc-cms-ui-buttonset button.psc-cms-ui-button {
+  margin-right: .4em;
+  cursor: pointer;
+}
+
+#content div.psc-cms-ui-buttonset,
+#content div.psc-cms-ui-buttonset {
+  margin-bottom: 10px;
+}
+
+#header div.spinner-container { padding-top: 4px; margin-left: 15px; width: 32px; float: left;  }
+
+
+#right #drop-contents ul.psc-cms-ui-drop-contents-list li { padding-bottom: 4px; }
+#right #drop-contents ul.psc-cms-ui-drop-contents-list li a { text-decoration: none; }
+#right #drop-contents ul.psc-cms-ui-drop-contents-list a.open-all { display: inline; text-decoration: none; }
+#right #drop-contents ul.psc-cms-ui-drop-contents-list li a:hover { text-decoration: underline; }
+
+/* right icon für accordion extension */
+.ui-accordion-icons .ui-accordion-header a { padding-right: 2.2em; }
+.ui-accordion .ui-state-default .psc-cms-ui-icon-secondary { display:none; }
+.ui-accordion .ui-state-active .psc-cms-ui-icon-secondary { display: block; }
+.ui-accordion .ui-accordion-header .psc-cms-ui-icon-secondary { position: absolute; left: auto; right: 0.5em; top: 50%; margin-top: -8px; }
+
+.psc-cms-ui-tabs .psc-cms-ui-right-accordion {
+  margin-top: 0.4em;
+}
+
+.ui-effects-transfer { border: 2px dotted gray; }
+
+#content .ui-autocomplete-input {
+  background-image: none; /* damit der highlight effect geht */
+}
+
+/* ComboBox */
+input.psc-cms-ui-combo-box { margin: 0; padding: 0.48em 0 0.47em 0.45em; }
+
+/* ComboBox + DropBox */
+.psc-cms-ui-combo-drop-box-wrapper div.psc-cms-ui-drop-box { margin-top: 0.5em; padding: 0.5em; }
+
+/* Container */
+div.psc-cms-ui-container {
+  padding: 1em 2.2em;
+  min-height: 400px;
+}
+
+/* GRID */
+table.psc-cms-ui-grid {
+}
+
+table.psc-cms-ui-grid { margin: 20px 0; }
+table.psc-cms-ui-grid { margin: 1em 0; border-collapse: collapse; }
+table.psc-cms-ui-grid td, table.psc-cms-ui-grid th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+
+.italic {
+  font-style: italic;
+}
+
+#content div.content-text p {
+  margin-bottom: 1.25em;
+  line-height: 1.25em;
+}
+
+#content div.content-text ul {
+  padding-left: 2em;
+  margin-bottom: 1.25em;
+}
+
+#content div.content-text ul li ul {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+
+#content div.content-text ul li {
+  list-style-position: outside;
+  list-style-type: disc;
+  padding-bottom: 0.3em;
+}
