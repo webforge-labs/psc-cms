@@ -22,7 +22,7 @@ class CompilerTest extends \Psc\Code\Test\Base {
   
   public function testCompileWithNoChanges() {
     $gClass = new GClass(new ReflectionClass('Psc\Code\Compile\Compiler'));
-    $compilerFile = $this->project->getClassFile($gClass);
+    $compilerFile = $this->getFile('class.Compiler.php');
     $compiler = new Compiler(new ClassReader($compilerFile, $gClass), new ClassWriter());
     
     $in = $this->newFile('in.php');
