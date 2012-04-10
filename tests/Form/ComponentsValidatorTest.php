@@ -29,8 +29,9 @@ class ComponentsValidatorTest extends \Psc\Code\Test\Base {
                     'birthday'=>'21.11.1984',
                     'name'=>'Scheit',
                     'firstName'=>'Philipp ',
-                    'email'=>'p.scheit@ps-webforge.com'
-                    ),
+                    'email'=>'p.scheit@ps-webforge.com',
+                    'yearKnown'=>'true'
+                   ),
               $person->getSetMeta()
             ),
       $formPanel->getEntityForm()->getComponents()

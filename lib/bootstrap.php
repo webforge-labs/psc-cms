@@ -2,8 +2,7 @@
 
 namespace Psc;
 
-// damit die module sich an den pharautoloader hängen
-PSC::getProjectsFactory()->getProject('psc-cms')->bootstrap()
+PSC::getProjectsFactory()->getProject('psc-cms')->setLoadedWithPhar(TRUE)->bootstrap()
   ->getModule('Doctrine')->bootstrap()->getProject()
   ->getModule('PHPExcel')->bootstrap()->getProject()
   ->getModule('Hitch')->bootstrap()->getProject()

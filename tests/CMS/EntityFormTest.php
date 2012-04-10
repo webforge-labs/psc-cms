@@ -4,7 +4,7 @@ namespace Psc\CMS;
 
 use Psc\CMS\EntityForm;
 
-class EntityFormTest extends \Psc\Code\Test\Base {
+class EntityFormTest extends \Psc\Code\Test\HTMLTestCase {
 
   public function setUp() {
     $this->chainClass = 'Psc\CMS\EntityForm';
@@ -20,8 +20,10 @@ class EntityFormTest extends \Psc\Code\Test\Base {
     $html = $form->open();
     $html .= $form->close();
     
+    $this->html = $html;
+    
     // entityform überhaupt da
-    $form = $this->test->css('.psc-cms-ui-form.entity-form', $html)
+    $form = $this->test->css('.psc-cms-ui-form.psc-cms-ui-entity-form', $html)
          ->count(1, 'Im HTML Output ist kein <form> Element vorhanden')
          ->getjQuery();
     

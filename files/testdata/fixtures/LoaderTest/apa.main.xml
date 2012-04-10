@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<journal title="featuretest1" key="featuretest1">
+<volumeList>
+<volume title="2011" key="2011">
+<issueList>
+<issue cover="/010_0_apaIT_2011_1/media/cover.jpg" title="1" key="1" export_date="2011-09-16">
+<categoryList>
+<category title="Rubrik 1" startPage="1" endPage="10"></category>
+</categoryList>
+<pageList>
+<page page="1" type="kRightPage" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/010_0_apaIT_2011_1/page/1.jpg" pdf="/010_0_apaIT_2011_1/pdf/1.pdf"></page>
+<page page="2" type="kLeftPage" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/010_0_apaIT_2011_1/page/2.jpg" pdf="/010_0_apaIT_2011_1/pdf/2.pdf"></page>
+<page page="3" type="kRightPage" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/010_0_apaIT_2011_1/page/3.jpg" pdf="/010_0_apaIT_2011_1/pdf/3.pdf"></page>
+<page page="4" type="kLeftPage" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/010_0_apaIT_2011_1/page/4.jpg" pdf="/010_0_apaIT_2011_1/pdf/4.pdf"></page>
+<page page="5" type="kRightPage" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/010_0_apaIT_2011_1/page/5.jpg" pdf="/010_0_apaIT_2011_1/pdf/5.pdf"></page>
+<page page="6" type="kLeftPage" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/010_0_apaIT_2011_1/page/6.jpg" pdf="/010_0_apaIT_2011_1/pdf/6.pdf"></page>
+<page page="7" type="kRightPage" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/010_0_apaIT_2011_1/page/7.jpg" pdf="/010_0_apaIT_2011_1/pdf/7.pdf"></page>
+<page page="8" type="kLeftPage" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/010_0_apaIT_2011_1/page/8.jpg" pdf="/010_0_apaIT_2011_1/pdf/8.pdf"></page>
+<page page="9" type="kRightPage" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/010_0_apaIT_2011_1/page/9.jpg" pdf="/010_0_apaIT_2011_1/pdf/9.pdf"></page>
+<page page="10" type="kLeftPage" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/010_0_apaIT_2011_1/page/10.jpg" pdf="/010_0_apaIT_2011_1/pdf/10.pdf"></page>
+</pageList>
+<articleList>
+<article key="535" page="1" category="Rubrik 1" articleKey="010_0_apaIT_2011_1">
+<assetList>
+<asset key="535" type="image" path="/010_0_apaIT_2011_1/media/535.jpg" url="" linkname="" groupId="535" topPX="755" leftPX="485" geoWidth="69" geoHeight="50" geoX="267" geoY="171"></asset>
+<asset key="453" type="story" path="/010_0_apaIT_2011_1/story/458.xml" groupId="453" geoX="264" geoY="13" geoWidth="185" geoHeight="45"></asset>
+<asset key="290" type="story" path="/010_0_apaIT_2011_1/story/292.xml" groupId="290" geoX="17" geoY="15" geoWidth="181" geoHeight="18"></asset>
+</assetList>
+</article>
+<article key="559" page="2" category="Rubrik 1" articleKey="010_0_apaIT_2011_1">
+<assetList>
+<asset key="559" type="story" path="/010_0_apaIT_2011_1/story/541.xml" groupId="559" geoX="22" geoY="20" geoWidth="171" geoHeight="18"></asset>
+<asset key="647" type="image" path="/010_0_apaIT_2011_1/media/647.jpg" url="" linkname="normal_sculpture4.jpg" groupId="647" topPX="275" leftPX="168" geoWidth="259" geoHeight="265" geoX="97" geoY="59"></asset>
+<asset key="584" type="story" path="/010_0_apaIT_2011_1/story/566.xml" groupId="584" geoX="48" geoY="20" geoWidth="171" geoHeight="204"></asset>
+</assetList>
+</article>
+<article key="685" page="3" category="Rubrik 1" articleKey="010_0_apaIT_2011_1">
+<assetList>
+<asset key="685" type="story" path="/010_0_apaIT_2011_1/story/688.xml" groupId="685" geoX="22" geoY="20" geoWidth="171" geoHeight="18"></asset>
+<asset key="685" type="image" mode="slideshow" priority="1" geoX="229" geoY="45" geoWidth="484" geoHeight="320" path="/010_0_apaIT_2011_1/media/723.jpg" url="" imageTitle=""></asset>
+<asset key="685" type="image" mode="slideshow" priority="2" geoX="229" geoY="45" geoWidth="484" geoHeight="320" path="/010_0_apaIT_2011_1/media/724.jpg" url="" imageTitle=""></asset>
+<asset key="685" type="image" mode="slideshow" priority="3" geoX="229" geoY="45" geoWidth="484" geoHeight="320" path="/010_0_apaIT_2011_1/media/725.jpg" url="" imageTitle=""></asset>
+<asset key="685" type="image" mode="slideshow" priority="4" geoX="229" geoY="45" geoWidth="484" geoHeight="320" path="/010_0_apaIT_2011_1/media/726.jpg" url="" imageTitle=""></asset>
+<asset key="685" type="image" mode="slideshow" priority="5" geoX="229" geoY="45" geoWidth="484" geoHeight="320" path="/010_0_apaIT_2011_1/media/727.jpg" url="" imageTitle=""></asset>
+<asset key="685" type="image" mode="slideshow" priority="6" geoX="229" geoY="45" geoWidth="484" geoHeight="320" path="/010_0_apaIT_2011_1/media/728.jpg" url="" imageTitle=""></asset>
+<asset key="685" type="image" mode="slideshow" priority="7" geoX="229" geoY="45" geoWidth="484" geoHeight="320" path="/010_0_apaIT_2011_1/media/729.jpg" url="" imageTitle=""></asset>
+</assetList>
+</article>
+<article key="1404" page="4" category="Rubrik 1" articleKey="010_0_apaIT_2011_1">
+<assetList>
+<asset key="1404" type="video" path="/010_0_apaIT_2011_1/media/1404.mp4" linkname="works.mp4" groupId="1404" topPX="146" leftPX="56" geoWidth="485" geoHeight="203" geoX="52" geoY="20"></asset>
+<asset key="1430" type="story" path="/010_0_apaIT_2011_1/story/1412.xml" groupId="1430" geoX="130" geoY="20" geoWidth="171" geoHeight="129"></asset>
+<asset key="1366" type="story" path="/010_0_apaIT_2011_1/story/1373.xml" groupId="1366" geoX="26" geoY="20" geoWidth="171" geoHeight="18"></asset>
+</assetList>
+</article>
+<article key="1522" page="5" category="Rubrik 1" articleKey="010_0_apaIT_2011_1">
+<assetList>
+<asset key="1522" type="image" path="/010_0_apaIT_2011_1/media/1522.jpg" url="" linkname="Harvard-400x264.jpg" groupId="1522" topPX="340" leftPX="63" geoWidth="153" geoHeight="123" geoX="120" geoY="22"></asset>
+<asset key="1528" type="image" path="/010_0_apaIT_2011_1/media/1528.jpg" url="http://www.apa-it.at" linkname="Screen shot 2010-10-01 at 2.26.33 PM-thumb-400x264-35208.png" groupId="1528" topPX="340" leftPX="228" geoWidth="153" geoHeight="123" geoX="120" geoY="81"></asset>
+<asset key="1533" type="image" path="/010_0_apaIT_2011_1/media/1533.jpg" url="" linkname="wpid-ed19fporsche-concepts-400x264.jpg" groupId="1533" topPX="340" leftPX="394" geoWidth="153" geoHeight="123" geoX="120" geoY="139"></asset>
+<asset key="1462" type="story" path="/010_0_apaIT_2011_1/story/1465.xml" groupId="1462" geoX="26" geoY="22" geoWidth="171" geoHeight="18"></asset>
+<asset key="1506" type="story" path="/010_0_apaIT_2011_1/story/1488.xml" groupId="1506" geoX="52" geoY="22" geoWidth="170" geoHeight="60"></asset>
+
+</assetList>
+</article>
+<article key="1591" page="10" category="Rubrik 1" articleKey="010_0_apaIT_2011_1">
+<assetList>
+<asset key="1591" type="story" path="/010_0_apaIT_2011_1/story/1596.xml" groupId="1591" geoX="19" geoY="16" geoWidth="177" geoHeight="45"></asset>
+<asset key="1591" type="image" mode="webview" geoX="19" geoY="16" geoWidth="177" geoHeight="45" url="" imageTitle=""></asset>
+</assetList>
+</article>
+</articleList>
+<clickPageList>
+<clickPage pageIndex="1">
+<frame pageIndex="1" geoX="13" geoY="13" geoWidth="185" geoHeight="272" storyKey="412" groupId="412" articleKey="010_0_apaIT_2011_1"></frame>
+<frame pageIndex="1" geoX="267" geoY="171" geoWidth="24" geoHeight="18" storyKey="535" groupId="535" articleKey="010_0_apaIT_2011_1"></frame>
+<frame pageIndex="1" geoX="264" geoY="13" geoWidth="185" geoHeight="45" storyKey="458" groupId="453" articleKey="010_0_apaIT_2011_1"></frame>
+<frame pageIndex="1" geoX="17" geoY="15" geoWidth="181" geoHeight="18" storyKey="292" groupId="290" articleKey="010_0_apaIT_2011_1"></frame>
+</clickPage>
+<clickPage pageIndex="2">
+<frame pageIndex="2" geoX="22" geoY="20" geoWidth="171" geoHeight="18" storyKey="541" groupId="559" articleKey="010_0_apaIT_2011_1"></frame>
+<frame pageIndex="2" geoX="97" geoY="59" geoWidth="92" geoHeight="93" storyKey="647" groupId="647" articleKey="010_0_apaIT_2011_1"></frame>
+<frame pageIndex="2" geoX="48" geoY="20" geoWidth="171" geoHeight="204" storyKey="566" groupId="584" articleKey="010_0_apaIT_2011_1"></frame>
+</clickPage>
+<clickPage pageIndex="3">
+<frame pageIndex="3" geoX="22" geoY="20" geoWidth="171" geoHeight="18" storyKey="688" groupId="685" articleKey="010_0_apaIT_2011_1"></frame>
+<frame pageIndex="3" geoX="46" geoY="19" geoWidth="171" geoHeight="113" storyKey="1141" groupId="1141" articleKey="010_0_apaIT_2011_1"></frame>
+</clickPage>
+<clickPage pageIndex="4">
+<frame pageIndex="4" geoX="52" geoY="20" geoWidth="171" geoHeight="72" storyKey="1404" groupId="1404" articleKey="010_0_apaIT_2011_1"></frame>
+<frame pageIndex="4" geoX="130" geoY="20" geoWidth="171" geoHeight="129" storyKey="1412" groupId="1430" articleKey="010_0_apaIT_2011_1"></frame>
+<frame pageIndex="4" geoX="26" geoY="20" geoWidth="171" geoHeight="18" storyKey="1373" groupId="1366" articleKey="010_0_apaIT_2011_1"></frame>
+</clickPage>
+<clickPage pageIndex="5">
+<frame pageIndex="5" geoX="120" geoY="22" geoWidth="54" geoHeight="44" storyKey="1522" groupId="1522" articleKey="010_0_apaIT_2011_1"></frame>
+<frame pageIndex="5" geoX="120" geoY="81" geoWidth="54" geoHeight="44" storyKey="1528" groupId="1528" articleKey="010_0_apaIT_2011_1"></frame>
+<frame pageIndex="5" geoX="120" geoY="139" geoWidth="54" geoHeight="44" storyKey="1533" groupId="1533" articleKey="010_0_apaIT_2011_1"></frame>
+<frame pageIndex="5" geoX="26" geoY="22" geoWidth="171" geoHeight="18" storyKey="1465" groupId="1462" articleKey="010_0_apaIT_2011_1"></frame>
+<frame pageIndex="5" geoX="52" geoY="22" geoWidth="170" geoHeight="60" storyKey="1488" groupId="1506" articleKey="010_0_apaIT_2011_1"></frame>
+</clickPage>
+<clickPage pageIndex="6">
+</clickPage>
+<clickPage pageIndex="7">
+</clickPage>
+<clickPage pageIndex="8">
+</clickPage>
+<clickPage pageIndex="9">
+</clickPage>
+<clickPage pageIndex="10">
+<frame pageIndex="10" geoX="19" geoY="16" geoWidth="177" geoHeight="45" storyKey="1596" groupId="1591" articleKey="010_0_apaIT_2011_1"></frame>
+</clickPage>
+</clickPageList>
+</issue>
+</issueList>
+</volume>
+</volumeList>
+</journal>

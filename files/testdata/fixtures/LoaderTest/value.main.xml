@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<journal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="PIF.main.v1.0.xsd">
+<volumeList>
+<volume year="2011" title="2011" key="2011">
+<issueList>
+<issue number="1" release_date="2011-11-07" cover="/040_0_value_2011_1/media/cover.jpg" title="1" key="1" export_date="2011-11-07">
+<categoryList>
+<category title="APA Value"/>
+</categoryList>
+<pageList>
+<page page="1" type="kRightPage" key="186" pagina="1" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/1.jpg" pdf="/040_0_value_2011_1/pdf/1.pdf"/>
+<page page="2" type="kLeftPage" key="2240" pagina="2" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/2.jpg" pdf="/040_0_value_2011_1/pdf/2.pdf"/>
+<page page="3" type="kRightPage" key="2241" pagina="3" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/3.jpg" pdf="/040_0_value_2011_1/pdf/3.pdf"/>
+<page page="40" type="kLeftPage" key="5047" pagina="40" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/40.jpg" pdf="/040_0_value_2011_1/pdf/40.pdf"/>
+<page page="4" type="kLeftPage" key="76212" pagina="4" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/4.jpg" pdf="/040_0_value_2011_1/pdf/4.pdf"/>
+<page page="5" type="kRightPage" key="76213" pagina="5" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/5.jpg" pdf="/040_0_value_2011_1/pdf/5.pdf"/>
+<page page="8" type="kLeftPage" key="76233" pagina="8" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/8.jpg" pdf="/040_0_value_2011_1/pdf/8.pdf"/>
+<page page="9" type="kRightPage" key="76234" pagina="9" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/9.jpg" pdf="/040_0_value_2011_1/pdf/9.pdf"/>
+<page page="6" type="kLeftPage" key="76254" pagina="6" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/6.jpg" pdf="/040_0_value_2011_1/pdf/6.pdf"/>
+<page page="7" type="kRightPage" key="76255" pagina="7" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/7.jpg" pdf="/040_0_value_2011_1/pdf/7.pdf"/>
+<page page="12" type="kLeftPage" key="76354" pagina="12" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/12.jpg" pdf="/040_0_value_2011_1/pdf/12.pdf"/>
+<page page="13" type="kRightPage" key="76355" pagina="13" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/13.jpg" pdf="/040_0_value_2011_1/pdf/13.pdf"/>
+<page page="16" type="kLeftPage" key="76645" pagina="16" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/16.jpg" pdf="/040_0_value_2011_1/pdf/16.pdf"/>
+<page page="17" type="kRightPage" key="76646" pagina="17" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/17.jpg" pdf="/040_0_value_2011_1/pdf/17.pdf"/>
+<page page="18" type="kLeftPage" key="76666" pagina="18" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/18.jpg" pdf="/040_0_value_2011_1/pdf/18.pdf"/>
+<page page="19" type="kRightPage" key="76667" pagina="19" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/19.jpg" pdf="/040_0_value_2011_1/pdf/19.pdf"/>
+<page page="22" type="kLeftPage" key="77162" pagina="22" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/22.jpg" pdf="/040_0_value_2011_1/pdf/22.pdf"/>
+<page page="23" type="kRightPage" key="77163" pagina="23" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/23.jpg" pdf="/040_0_value_2011_1/pdf/23.pdf"/>
+<page page="24" type="kLeftPage" key="77361" pagina="24" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/24.jpg" pdf="/040_0_value_2011_1/pdf/24.pdf"/>
+<page page="25" type="kRightPage" key="77362" pagina="25" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/25.jpg" pdf="/040_0_value_2011_1/pdf/25.pdf"/>
+<page page="26" type="kLeftPage" key="77433" pagina="26" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/26.jpg" pdf="/040_0_value_2011_1/pdf/26.pdf"/>
+<page page="27" type="kRightPage" key="77434" pagina="27" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/27.jpg" pdf="/040_0_value_2011_1/pdf/27.pdf"/>
+<page page="28" type="kLeftPage" key="77671" pagina="28" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/28.jpg" pdf="/040_0_value_2011_1/pdf/28.pdf"/>
+<page page="29" type="kRightPage" key="77672" pagina="29" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/29.jpg" pdf="/040_0_value_2011_1/pdf/29.pdf"/>
+<page page="30" type="kLeftPage" key="77902" pagina="30" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/30.jpg" pdf="/040_0_value_2011_1/pdf/30.pdf"/>
+<page page="31" type="kRightPage" key="77903" pagina="31" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/31.jpg" pdf="/040_0_value_2011_1/pdf/31.pdf"/>
+<page page="32" type="kLeftPage" key="78448" pagina="32" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/32.jpg" pdf="/040_0_value_2011_1/pdf/32.pdf"/>
+<page page="33" type="kRightPage" key="78449" pagina="33" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/33.jpg" pdf="/040_0_value_2011_1/pdf/33.pdf"/>
+<page page="34" type="kLeftPage" key="78999" pagina="34" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/34.jpg" pdf="/040_0_value_2011_1/pdf/34.pdf"/>
+<page page="35" type="kRightPage" key="79000" pagina="35" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/35.jpg" pdf="/040_0_value_2011_1/pdf/35.pdf"/>
+<page page="36" type="kLeftPage" key="79402" pagina="36" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/36.jpg" pdf="/040_0_value_2011_1/pdf/36.pdf"/>
+<page page="37" type="kRightPage" key="79403" pagina="37" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/37.jpg" pdf="/040_0_value_2011_1/pdf/37.pdf"/>
+<page page="20" type="kLeftPage" key="81461" pagina="20" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/20.jpg" pdf="/040_0_value_2011_1/pdf/20.pdf"/>
+<page page="21" type="kRightPage" key="81462" pagina="21" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/21.jpg" pdf="/040_0_value_2011_1/pdf/21.pdf"/>
+<page page="38" type="kLeftPage" key="81689" pagina="38" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/38.jpg" pdf="/040_0_value_2011_1/pdf/38.pdf"/>
+<page page="39" type="kRightPage" key="81690" pagina="39" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/39.jpg" pdf="/040_0_value_2011_1/pdf/39.pdf"/>
+<page page="14" type="kLeftPage" key="84719" pagina="14" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/14.jpg" pdf="/040_0_value_2011_1/pdf/14.pdf"/>
+<page page="15" type="kRightPage" key="84720" pagina="15" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/15.jpg" pdf="/040_0_value_2011_1/pdf/15.pdf"/>
+<page page="10" type="kLeftPage" key="84956" pagina="10" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/10.jpg" pdf="/040_0_value_2011_1/pdf/10.pdf"/>
+<page page="11" type="kRightPage" key="84957" pagina="11" geoX="0" geoY="0" geoHeight="842" geoWidth="595" heightMM="297" widthMM="210" path="/040_0_value_2011_1/page/11.jpg" pdf="/040_0_value_2011_1/pdf/11.pdf"/>
+</pageList>
+<articleList>
+<article key="93605" page="12" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93605" type="image" title="OBEN: Somalia 2007, Bildausschnitt <br/>FOTO: B. Bannon/UNHCR<br/>" path="/040_0_value_2011_1/media/93605.jpg" url="" linkname="2010WRDayposters_ENG-2_SW.tif" groupId="93588" pagina="12" order="2" topPX="-8" leftPX="-9" geoX="-3" geoY="-3" geoWidth="213" geoHeight="166"/>
+<asset key="93605" type="image" title="Oben: Pakistan 2009, UNHCR Inserat<br/>FOTO: A. Latif/ Reuters<br/>" path="/040_0_value_2011_1/media/93612_1.jpg" url="" linkname="2010WRDayposters_ENG-1_CMYK.tif" groupId="93609" pagina="13" order="3" topPX="121" leftPX="43" geoX="43" geoY="15" geoWidth="101" geoHeight="78"/>
+<asset key="93605" type="story" path="/040_0_value_2011_1/story/76389.xml" groupId="93604" pagina="12" order="2" geoX="202" geoY="15" geoWidth="127" geoHeight="50"/>
+<asset key="93605" type="image" title="Links: Ruth Schöffl, Pressesprecherin der UNHCR, im <br/>Interview<br/>FOTO: R. Schlager/APA<br/>" path="/040_0_value_2011_1/media/93612.jpg" url="" linkname="_UNHCR-Sch ffl_R-Schlager.tif" groupId="93610" pagina="13" order="3" topPX="121" leftPX="341" geoX="43" geoY="120" geoWidth="49" geoHeight="78"/>
+</assetList>
+</article>
+<article key="91926" page="15" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="91926" type="story" path="/040_0_value_2011_1/story/91931.xml" groupId="91926" pagina="15" order="1" geoX="202" geoY="120" geoWidth="75" geoHeight="31"/>
+</assetList>
+</article>
+<article key="93743" page="23" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93743" type="story" path="/040_0_value_2011_1/story/82975.xml" groupId="93743" pagina="23" order="1" geoX="46" geoY="68" geoWidth="101" geoHeight="117"/>
+</assetList>
+</article>
+<article key="93500" page="2" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93500" type="story" path="/040_0_value_2011_1/story/4114.xml" groupId="93500" pagina="2" order="1" geoX="58" geoY="15" geoWidth="75" geoHeight="124"/>
+</assetList>
+</article>
+<article key="93569" page="8" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93569" type="story" path="/040_0_value_2011_1/story/87493.xml" groupId="93569" pagina="8" order="1" geoX="109" geoY="41" geoWidth="101" geoHeight="39"/>
+</assetList>
+</article>
+<article key="93910" page="34" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93910" type="story" path="/040_0_value_2011_1/story/86542.xml" groupId="93909" pagina="34" order="2" geoX="163" geoY="41" geoWidth="75" geoHeight="12"/>
+<asset key="93910" type="image" title="Oben: Im Rahmen der APA-EBC am E-Day diskutierten (v.l.n.r.): Marcus Hebein (APA-MultiMedia), Meral Akin-Hecke <br/>(Digitalks), Patricio Hetfleisch (Tiroler Tageszeitung), Alexis Johann (WirtschaftsBlatt Digital), Angelika Sery-Froschauer (FV Werbung &amp; Marktkommunikation, WKÖ).<br/>Foto: Paul Landl<br/>" path="/040_0_value_2011_1/media/93910.jpg" url="" linkname="Podium_ebc-am-eday-3.3.2011_Credit-landl.tif" groupId="93896" pagina="34" order="3" topPX="77" leftPX="-9" geoX="27" geoY="-3" geoWidth="213" geoHeight="132"/>
+</assetList>
+</article>
+<article key="93546" page="5" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93546" type="image" path="/040_0_value_2011_1/media/93546.jpg" url="" linkname="IMG_5711x.tif" groupId="93544" pagina="5" order="2" topPX="223" leftPX="0" geoX="79" geoY="0" geoWidth="116" geoHeight="69"/>
+<asset key="93546" type="story" path="/040_0_value_2011_1/story/81180.xml" groupId="93544" pagina="5" order="2" geoX="138" geoY="120" geoWidth="93" geoHeight="5"/>
+<asset key="93546" type="story" path="/040_0_value_2011_1/story/80960.xml" groupId="93545" pagina="5" order="2" geoX="47" geoY="15" geoWidth="127" geoHeight="27"/>
+<asset key="93546" type="image" path="/040_0_value_2011_1/media/93550.jpg" url="" linkname="IMG_5642x.tif" groupId="93550" pagina="6" order="1" topPX="121" leftPX="117" geoX="43" geoY="41" geoWidth="101" geoHeight="78"/>
+<asset key="93546" type="image" title="FOTO: Marie Rambauske/APA<br/>" path="/040_0_value_2011_1/media/93555.jpg" url="" linkname="IMG_5760x.tif" groupId="93554" pagina="9" order="2" topPX="506" leftPX="341" geoX="179" geoY="120" geoWidth="93" geoHeight="89"/>
+</assetList>
+</article>
+<article key="93637" page="15" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93637" type="story" path="/040_0_value_2011_1/story/85035.xml" groupId="93637" pagina="15" order="1" geoX="241" geoY="15" geoWidth="101" geoHeight="35"/>
+</assetList>
+</article>
+<article key="93680" page="18" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93680" type="story" path="/040_0_value_2011_1/story/76914.xml" groupId="93679" pagina="18" order="2" geoX="89" geoY="15" geoWidth="127" geoHeight="47"/>
+<asset key="93680" type="image" path="/040_0_value_2011_1/media/93680_1.jpg" url="" linkname="20101019_PD32730HR_Veritas.tif" groupId="93679" pagina="18" order="2" topPX="-8" leftPX="-9" geoX="-3" geoY="-3" geoWidth="213" geoHeight="84"/>
+<asset key="93680" type="story" path="/040_0_value_2011_1/story/77058.xml" groupId="77086" pagina="18" order="3" geoX="248" geoY="15" geoWidth="75" geoHeight="31"/>
+<asset key="93680" type="image" title="Rechts: <br/>Manfred Meraner, Geschäftsführer Veritas Bildungsverlag<br/>Foto: Veritas<br/>" path="/040_0_value_2011_1/media/93680.jpg" url="" linkname="Foto_Veritas-Verlag-GF.tif" groupId="93678" pagina="18" order="2" topPX="400" leftPX="117" geoX="141" geoY="41" geoWidth="49" geoHeight="49"/>
+</assetList>
+</article>
+<article key="93894" page="33" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93894" type="story" path="/040_0_value_2011_1/story/83235.xml" groupId="93894" pagina="33" order="1" geoX="175" geoY="15" geoWidth="154" geoHeight="105"/>
+</assetList>
+</article>
+<article key="93586" page="11" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93586" type="image" path="/040_0_value_2011_1/media/93586.jpg" url="" linkname="Foto_Podium-Februar_CUT_3.tif" groupId="93586" pagina="11" order="1" topPX="715" leftPX="43" geoX="252" geoY="15" geoWidth="49" geoHeight="27"/>
+<asset key="93586" type="story" path="/040_0_value_2011_1/story/90090.xml" groupId="93586" pagina="11" order="1" geoX="256" geoY="68" geoWidth="101" geoHeight="19"/>
+</assetList>
+</article>
+<article key="93859" page="31" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93859" type="story" path="/040_0_value_2011_1/story/84960.xml" groupId="93859" pagina="31" order="1" geoX="186" geoY="15" geoWidth="101" geoHeight="93"/>
+</assetList>
+</article>
+<article key="93705" page="20" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93705" type="image" path="/040_0_value_2011_1/media/93705_3.jpg" url="" linkname="20110304_PD1450HR-Opernball_SW.tif" groupId="93688" pagina="20" order="2" topPX="125" leftPX="-9" geoX="44" geoY="-3" geoWidth="213" geoHeight="61"/>
+<asset key="93705" type="image" path="/040_0_value_2011_1/media/93705_2.jpg" url="" linkname="iPAD_Oper_3.tif" groupId="93688" pagina="20" order="2" topPX="143" leftPX="427" geoX="50" geoY="151" geoWidth="55" geoHeight="40"/>
+<asset key="93705" type="image" path="/040_0_value_2011_1/media/93721_1.jpg" url="" linkname="20110304_PD1450HR-Opernball_SW.tif" groupId="93720" pagina="21" order="2" topPX="125" leftPX="0" geoX="44" geoY="0" geoWidth="68" geoHeight="61"/>
+<asset key="93705" type="image" path="/040_0_value_2011_1/media/93705.jpg" url="" linkname="iPad_opernball_CMYK.psd" groupId="93688" pagina="20" order="2" topPX="77" leftPX="-9" geoX="27" geoY="-3" geoWidth="213" geoHeight="190"/>
+<asset key="93705" type="image" path="/040_0_value_2011_1/media/93705_1.jpg" url="" linkname="iPAD_Oper_2.tif" groupId="93688" pagina="20" order="2" topPX="143" leftPX="247" geoX="50" geoY="87" geoWidth="55" geoHeight="40"/>
+<asset key="93705" type="story" path="/040_0_value_2011_1/story/85704.xml" groupId="85699" pagina="21" order="4" geoX="252" geoY="120" geoWidth="49" geoHeight="27"/>
+<asset key="93705" type="story" path="/040_0_value_2011_1/story/83878.xml" groupId="93705" pagina="20" order="1" geoX="237" geoY="15" geoWidth="127" geoHeight="43"/>
+<asset key="93705" type="image" path="/040_0_value_2011_1/media/93721.jpg" url="" linkname="iPAD_Oper_4.tif" groupId="93721" pagina="21" order="1" topPX="143" leftPX="12" geoX="50" geoY="4" geoWidth="55" geoHeight="40"/>
+</assetList>
+</article>
+<article key="93632" page="14" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93632" type="image" title="Oben: Elisabeth Schaffelhofer-Garcia Marquez<br/>Foto: Marie <br/>Rambauske/APA<br/>" path="/040_0_value_2011_1/media/93639.jpg" url="" linkname="IMG_6440x.tif" groupId="93633" pagina="15" order="2" topPX="121" leftPX="341" geoX="43" geoY="120" geoWidth="75" geoHeight="109"/>
+<asset key="93632" type="image" path="/040_0_value_2011_1/media/93632.jpg" url="" linkname="20081202_PD6286HR-KINDER_SW.tif" groupId="93632" pagina="14" order="1" topPX="77" leftPX="-9" geoX="27" geoY="-3" geoWidth="213" geoHeight="101"/>
+<asset key="93632" type="story" path="/040_0_value_2011_1/story/84750.xml" groupId="93631" pagina="14" order="2" geoX="179" geoY="15" geoWidth="127" geoHeight="70"/>
+</assetList>
+</article>
+<article key="93742" page="22" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93742" type="image" title="OBEN: „Pressefreiheit!“<br/>" path="/040_0_value_2011_1/media/93742.jpg" url="" linkname="20110127_PD2164.HR.tif" groupId="93729" pagina="22" order="2" topPX="77" leftPX="-9" geoX="27" geoY="-3" geoWidth="213" geoHeight="140"/>
+<asset key="93742" type="image" path="/040_0_value_2011_1/media/93746.jpg" url="" linkname="20110127_PD2164.HR.tif" groupId="93746" pagina="23" order="1" topPX="77" leftPX="0" geoX="27" geoY="0" geoWidth="64" geoHeight="140"/>
+<asset key="93742" type="story" path="/040_0_value_2011_1/story/77167.xml" groupId="93741" pagina="22" order="2" geoX="198" geoY="15" geoWidth="127" geoHeight="54"/>
+</assetList>
+</article>
+<article key="93911" page="34" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93911" type="story" path="/040_0_value_2011_1/story/86708.xml" groupId="93911" pagina="34" order="1" geoX="241" geoY="41" geoWidth="154" geoHeight="8"/>
+</assetList>
+</article>
+<article key="93585" page="11" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93585" type="story" path="/040_0_value_2011_1/story/90066.xml" groupId="93585" pagina="11" order="1" geoX="225" geoY="15" geoWidth="101" geoHeight="19"/>
+</assetList>
+</article>
+<article key="93818" page="28" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93818" type="story" path="/040_0_value_2011_1/story/84195.xml" groupId="84190" pagina="29" order="3" geoX="260" geoY="120" geoWidth="49" geoHeight="23"/>
+<asset key="93818" type="story" path="/040_0_value_2011_1/story/77714.xml" groupId="93818" pagina="28" order="1" geoX="206" geoY="15" geoWidth="127" geoHeight="43"/>
+<asset key="93818" type="image" path="/040_0_value_2011_1/media/93818.jpg" url="" linkname="005_20100909_i_IT-Preis.tif" groupId="93818" pagina="28" order="1" topPX="77" leftPX="-9" geoX="27" geoY="-3" geoWidth="213" geoHeight="113"/>
+<asset key="93818" type="image" title="Links: v.r.n.l.: <br/>Moderatorin <br/>Andrea Radakovits mit Gerald Klima (APA-IT) und den Challenge-Gewinnern der Kategorie „Academia“ 2010<br/>Foto: Thomas Preiss/APA<br/>" path="/040_0_value_2011_1/media/93829.jpg" url="" linkname="it-challenge-2010.tif" groupId="93820" pagina="29" order="2" topPX="77" leftPX="43" geoX="27" geoY="15" geoWidth="154" geoHeight="93"/>
+</assetList>
+</article>
+<article key="93613" page="13" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93613" type="story" path="/040_0_value_2011_1/story/82285.xml" groupId="93613" pagina="13" order="1" geoX="233" geoY="15" geoWidth="101" geoHeight="43"/>
+</assetList>
+</article>
+<article key="93706" page="21" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93706" type="story" path="/040_0_value_2011_1/story/88452.xml" groupId="93706" pagina="21" order="1" geoX="47" geoY="68" geoWidth="101" geoHeight="54"/>
+</assetList>
+</article>
+<article key="93581" page="10" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93581" type="image" title="Foto: Stanislas <br/>Merlin/<br/>Picture Alliance/picturedesk.com  <br/>" path="/040_0_value_2011_1/media/93581.jpg" url="" linkname="20090314_PD2344.HR.tif" groupId="93580" pagina="10" order="2" topPX="341" leftPX="117" geoX="120" geoY="41" geoWidth="154" geoHeight="159"/>
+<asset key="93581" type="image" title="Rechts: v.l.n.r.: Josef Herget <br/>(Donau-Universität Krems), <br/>Peter Rass (A1 Telekom Austria), <br/>Silvia Hruska-Frank (Arbeiterkammer Wien), Thomas Stern (Braintrust/<br/>Moderator), Alexandra Moser <br/>(Microsoft Österreich), Robert Ludwig (NextiraOne) und Gerhard Laga <br/>(Wirtschaftskammer Österreich)<br/>foto: Thomas Preiss/APA<br/>" path="/040_0_value_2011_1/media/94355.jpg" url="" linkname="Foto_Podium-Februar.tif" groupId="93582" pagina="11" order="2" topPX="125" leftPX="192" geoX="44" geoY="68" geoWidth="145" geoHeight="103"/>
+<asset key="93581" type="story" path="/040_0_value_2011_1/story/80406.xml" groupId="93581" pagina="10" order="1" geoX="43" geoY="15" geoWidth="127" geoHeight="43"/>
+</assetList>
+</article>
+<article key="93805" page="26" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93805" type="story" path="/040_0_value_2011_1/story/77604.xml" groupId="93804" pagina="26" order="2" geoX="155" geoY="15" geoWidth="127" geoHeight="50"/>
+<asset key="93805" type="image" title="Oben: Elisabeth Görgl, Super G <br/>der Damen, Garmisch-Partenkirchen<br/>Foto: Roland Schlager/APA/<br/>picturedesk.com<br/>" path="/040_0_value_2011_1/media/93805.jpg" url="" linkname="140_20110208_PD0657.HR.tif" groupId="93783" pagina="26" order="2" topPX="77" leftPX="-9" geoX="27" geoY="-3" geoWidth="213" geoHeight="97"/>
+<asset key="93805" type="story" path="/040_0_value_2011_1/story/83912.xml" groupId="83907" pagina="27" order="2" geoX="233" geoY="120" geoWidth="75" geoHeight="47"/>
+<asset key="93805" type="image" title="Links: Benjamin Raich, Super G <br/>der Herren, <br/>Garmisch- <br/>Partenkirchen<br/>Foto: Barbara <br/>Gindl/APA/<br/>picturedesk.com<br/>" path="/040_0_value_2011_1/media/93807.jpg" url="" linkname="160_20100311_PD1098.HR.tif" groupId="93806" pagina="27" order="2" topPX="123" leftPX="43" geoX="43" geoY="15" geoWidth="154" geoHeight="81"/>
+</assetList>
+</article>
+<article key="94375" page="36" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="94375" type="story" path="/040_0_value_2011_1/story/86309.xml" groupId="93957" pagina="36" order="2" geoX="167" geoY="37" geoWidth="158" geoHeight="23"/>
+<asset key="94375" type="story" path="/040_0_value_2011_1/story/80173_86458.xml" groupId="93941" pagina="36" order="2" geoX="74" geoY="37" geoWidth="158" geoHeight="43"/>
+</assetList>
+</article>
+<article key="93486" page="1" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93486" type="image" path="/040_0_value_2011_1/media/93486.jpg" url="" linkname="value_cover_012011.ai" groupId="93486" pagina="1" order="1" topPX="-8" leftPX="-0" geoX="-3" geoY="-0" geoWidth="213" geoHeight="303"/>
+<asset key="93486" type="image" path="/040_0_value_2011_1/media/93486_1.jpg" url="" linkname="APA_Value_1_2011_Felder.ai" groupId="93486" pagina="1" order="1" topPX="-8" leftPX="0" geoX="-3" geoY="0" geoWidth="213" geoHeight="303"/>
+<asset key="93486" type="image" path="/040_0_value_2011_1/media/93486_2.jpg" url="" linkname="20040121_PD8045_Coverbild_CMYK.tif" groupId="93486" pagina="1" order="1" topPX="-8" leftPX="0" geoX="-3" geoY="0" geoWidth="213" geoHeight="303"/>
+</assetList>
+</article>
+<article key="93573" page="9" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93573" type="image" path="/040_0_value_2011_1/media/93573.jpg" url="" linkname="iPad_Zeitung.psd" groupId="93573" pagina="9" order="1" topPX="160" leftPX="192" geoX="56" geoY="68" geoWidth="40" geoHeight="61"/>
+<asset key="93573" type="story" path="/040_0_value_2011_1/story/87883.xml" groupId="93573" pagina="9" order="1" geoX="43" geoY="15" geoWidth="49" geoHeight="132"/>
+<asset key="93573" type="image" path="/040_0_value_2011_1/media/93573_3.jpg" url="" linkname="20100530_PD1859HR_Pressespiegel.psd" groupId="93573" pagina="9" order="1" topPX="84" leftPX="239" geoX="30" geoY="84" geoWidth="105" geoHeight="70"/>
+<asset key="93573" type="image" path="/040_0_value_2011_1/media/93573_1.jpg" url="" linkname="BlackberryAOMLauncherCMYK.psd" groupId="93573" pagina="9" order="1" topPX="260" leftPX="320" geoX="92" geoY="113" geoWidth="56" geoHeight="44"/>
+<asset key="93573" type="image" path="/040_0_value_2011_1/media/93573_2.jpg" url="" linkname="iphone_1.ai" groupId="90654" pagina="9" order="2" topPX="199" leftPX="399" geoX="70" geoY="141" geoWidth="54" geoHeight="81"/>
+</assetList>
+</article>
+<article key="93498" page="3" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93498" type="story" path="/040_0_value_2011_1/story/46096_2563.xml" groupId="93498" pagina="3" order="1" geoX="276" geoY="120" geoWidth="49" geoHeight="4"/>
+<asset key="93498" type="image" path="/040_0_value_2011_1/media/93498.jpg" url="" linkname="kropsch_4C.tif" groupId="93498" pagina="3" order="1" topPX="300" leftPX="341" geoX="106" geoY="120" geoWidth="49" geoHeight="76"/>
+</assetList>
+</article>
+<article key="93583" page="11" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93583" type="story" path="/040_0_value_2011_1/story/90043.xml" groupId="93583" pagina="11" order="1" geoX="155" geoY="15" geoWidth="101" geoHeight="27"/>
+<asset key="93583" type="image" path="/040_0_value_2011_1/media/93583.jpg" url="" linkname="Foto_Podium-Februar_CUT_1.tif" groupId="93583" pagina="11" order="1" topPX="429" leftPX="341" geoX="151" geoY="120" geoWidth="49" geoHeight="35"/>
+</assetList>
+</article>
+<article key="93614" page="13" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93614" type="story" path="/040_0_value_2011_1/story/80382.xml" groupId="93614" pagina="13" order="1" geoX="167" geoY="68" geoWidth="127" geoHeight="31"/>
+</assetList>
+</article>
+<article key="93886" page="33" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93886" type="story" path="/040_0_value_2011_1/story/86941_78941.xml" groupId="93886" pagina="33" order="1" geoX="147" geoY="15" geoWidth="75" geoHeight="19"/>
+<asset key="93886" type="image" path="/040_0_value_2011_1/media/93886.jpg" url="" linkname="OTSconnect.tif" groupId="93886" pagina="33" order="1" topPX="243" leftPX="266" geoX="86" geoY="94" geoWidth="119" geoHeight="81"/>
+</assetList>
+</article>
+<article key="93567" page="7" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93567" type="story" path="/040_0_value_2011_1/story/90418.xml" groupId="93567" pagina="7" order="1" geoX="245" geoY="68" geoWidth="101" geoHeight="31"/>
+</assetList>
+</article>
+<article key="94356" page="30" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="94356" type="image" path="/040_0_value_2011_1/media/93858.jpg" url="" linkname="APA-Illu_Welt-Wissen-Austausch_SW.tif" groupId="93858" pagina="31" order="1" topPX="77" leftPX="0" geoX="27" geoY="0" geoWidth="64" geoHeight="151"/>
+<asset key="94356" type="story" path="/040_0_value_2011_1/story/77936.xml" groupId="94356" pagina="30" order="1" geoX="217" geoY="15" geoWidth="127" geoHeight="62"/>
+<asset key="94356" type="image" path="/040_0_value_2011_1/media/94356.jpg" url="" linkname="APA-Illu_Welt-Wissen-Austausch_SW.tif" groupId="88735" pagina="30" order="3" topPX="77" leftPX="-9" geoX="27" geoY="-3" geoWidth="213" geoHeight="151"/>
+<asset key="94356" type="story" path="/040_0_value_2011_1/story/89743.xml" groupId="93839" pagina="30" order="2" geoX="182" geoY="146" geoWidth="49" geoHeight="4"/>
+</assetList>
+</article>
+<article key="93707" page="21" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93707" type="story" path="/040_0_value_2011_1/story/88422.xml" groupId="93707" pagina="21" order="1" geoX="237" geoY="15" geoWidth="101" geoHeight="39"/>
+</assetList>
+</article>
+<article key="93634" page="15" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93634" type="story" path="/040_0_value_2011_1/story/85012.xml" groupId="93634" pagina="15" order="1" geoX="132" geoY="15" geoWidth="101" geoHeight="16"/>
+</assetList>
+</article>
+<article key="93549" page="4" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93549" type="story" path="/040_0_value_2011_1/story/88878.xml" groupId="93566" pagina="7" order="1" geoX="233" geoY="173" geoWidth="37" geoHeight="8"/>
+<asset key="93549" type="story" path="/040_0_value_2011_1/story/87412.xml" groupId="87407" pagina="5" order="2" geoX="151" geoY="120" geoWidth="75" geoHeight="39"/>
+<asset key="93549" type="image" path="/040_0_value_2011_1/media/93566.jpg" url="" linkname="20100530_PD1876HR-Mont.tif" groupId="93558" pagina="7" order="2" topPX="429" leftPX="43" geoX="151" geoY="15" geoWidth="154" geoHeight="89"/>
+<asset key="93549" type="image" title="FOTO: Chmura Frank/picturedesk.com<br/>" path="/040_0_value_2011_1/media/93549.jpg" url="" linkname="APA_Value_1_2011_Felder.ai" groupId="93548" pagina="4" order="2" topPX="-8" leftPX="-9" geoX="-3" geoY="-3" geoWidth="213" geoHeight="189"/>
+<asset key="93549" type="story" path="/040_0_value_2011_1/story/87694.xml" groupId="87689" pagina="6" order="2" geoX="234" geoY="15" geoWidth="75" geoHeight="46"/>
+<asset key="93549" type="story" path="/040_0_value_2011_1/story/80513.xml" groupId="93549" pagina="4" order="1" geoX="210" geoY="15" geoWidth="127" geoHeight="70"/>
+<asset key="93549" type="image" title="FOTO: OJO Images/Rex Features/<br/>picturedesk.com<br/>" path="/040_0_value_2011_1/media/93571.jpg" url="" linkname="20080101_PD1069.HR.tif" groupId="93568" pagina="8" order="2" topPX="121" leftPX="117" geoX="43" geoY="41" geoWidth="154" geoHeight="62"/>
+</assetList>
+</article>
+<article key="93584" page="11" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93584" type="story" path="/040_0_value_2011_1/story/89997.xml" groupId="93584" pagina="11" order="1" geoX="194" geoY="68" geoWidth="101" geoHeight="19"/>
+<asset key="93584" type="image" path="/040_0_value_2011_1/media/93584.jpg" url="" linkname="Foto_Podium-Februar.tif" groupId="93584" pagina="11" order="1" topPX="539" leftPX="43" geoX="190" geoY="15" geoWidth="49" geoHeight="27"/>
+</assetList>
+</article>
+<article key="94023" page="38" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="94023" type="story" path="/040_0_value_2011_1/story/89296_89398_89226.xml" groupId="93991" pagina="38" order="2" geoX="171" geoY="41" geoWidth="154" geoHeight="8"/>
+<asset key="94023" type="story" path="/040_0_value_2011_1/story/89485_89547.xml" groupId="94056" pagina="39" order="2" geoX="93" geoY="15" geoWidth="154" geoHeight="8"/>
+<asset key="94023" type="image" path="/040_0_value_2011_1/media/94057.jpg" url="" linkname="PDI_20050819_AIA0234-highres.tif" groupId="94057" pagina="39" order="1" topPX="550" leftPX="0" geoX="194" geoY="0" geoWidth="169" geoHeight="103"/>
+</assetList>
+</article>
+<article key="93648" page="16" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93648" type="image" path="/040_0_value_2011_1/media/93651_2.jpg" url="" linkname="unterhuber11.tif" groupId="93650" pagina="17" order="2" topPX="125" leftPX="0" geoX="44" geoY="0" geoWidth="64" geoHeight="68"/>
+<asset key="93648" type="image" path="/040_0_value_2011_1/media/93648_1.jpg" url="" linkname="A31_0118_RED.tif" groupId="93647" pagina="16" order="2" topPX="99" leftPX="42" geoX="35" geoY="15" geoWidth="81" geoHeight="120"/>
+<asset key="93648" type="image" path="/040_0_value_2011_1/media/93648_3.jpg" url="" linkname="A23_0223_RED_neu.tif" groupId="93647" pagina="16" order="2" topPX="125" leftPX="333" geoX="44" geoY="117" geoWidth="51" geoHeight="76"/>
+<asset key="93648" type="story" path="/040_0_value_2011_1/story/76854.xml" groupId="76884" pagina="17" order="3" geoX="248" geoY="120" geoWidth="75" geoHeight="31"/>
+<asset key="93648" type="image" path="/040_0_value_2011_1/media/93648_2.jpg" url="" linkname="A23_0203_RED.tif" groupId="93647" pagina="16" order="2" topPX="110" leftPX="193" geoX="39" geoY="68" geoWidth="65" geoHeight="97"/>
+<asset key="93648" type="story" path="/040_0_value_2011_1/story/76672.xml" groupId="93648" pagina="16" order="1" geoX="215" geoY="15" geoWidth="127" geoHeight="64"/>
+<asset key="93648" type="image" path="/040_0_value_2011_1/media/93651.jpg" url="" linkname="unterhuber04.tif" groupId="93650" pagina="17" order="2" topPX="125" leftPX="341" geoX="44" geoY="120" geoWidth="93" geoHeight="68"/>
+<asset key="93648" type="image" path="/040_0_value_2011_1/media/93651_1.jpg" url="" linkname="unterhuber08.tif" groupId="93650" pagina="17" order="2" topPX="125" leftPX="192" geoX="44" geoY="68" geoWidth="49" geoHeight="68"/>
+<asset key="93648" type="image" path="/040_0_value_2011_1/media/93648.jpg" url="" linkname="unterhuber11.tif" groupId="93647" pagina="16" order="2" topPX="125" leftPX="489" geoX="44" geoY="173" geoWidth="37" geoHeight="68"/>
+<asset key="93648" type="story" path="/040_0_value_2011_1/story/82675.xml" groupId="93650" pagina="17" order="2" geoX="116" geoY="173" geoWidth="22" geoHeight="27"/>
+</assetList>
+</article>
+<article key="93885" page="32" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93885" type="image" path="/040_0_value_2011_1/media/93885_1.jpg" url="" linkname="Jaeger_journalist-des-jahres_credit-g.hochmuth.tif" groupId="93883" pagina="32" order="2" topPX="220" leftPX="340" geoX="78" geoY="120" geoWidth="90" geoHeight="93"/>
+<asset key="93885" type="story" path="/040_0_value_2011_1/story/78453.xml" groupId="93884" pagina="32" order="2" geoX="43" geoY="15" geoWidth="127" geoHeight="31"/>
+<asset key="93885" type="image" path="/040_0_value_2011_1/media/93885.jpg" url="" linkname="lang_journalist-des-jahres_credit-g.hochmuth.tif" groupId="93883" pagina="32" order="2" topPX="220" leftPX="-0" geoX="78" geoY="-0" geoWidth="116" geoHeight="93"/>
+<asset key="93885" type="story" path="/040_0_value_2011_1/story/88396.xml" groupId="93883" pagina="32" order="2" geoX="175" geoY="41" geoWidth="75" geoHeight="31"/>
+</assetList>
+</article>
+<article key="94354" page="5" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="94354" type="story" path="/040_0_value_2011_1/story/90444.xml" groupId="94354" pagina="5" order="1" geoX="237" geoY="15" geoWidth="101" geoHeight="39"/>
+</assetList>
+</article>
+<article key="93779" page="24" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93779" type="story" path="/040_0_value_2011_1/story/83433.xml" groupId="83590" pagina="25" order="2" geoX="151" geoY="120" geoWidth="75" geoHeight="31"/>
+<asset key="93779" type="story" path="/040_0_value_2011_1/story/77366.xml" groupId="93778" pagina="24" order="2" geoX="182" geoY="15" geoWidth="127" geoHeight="70"/>
+<asset key="93779" type="image" path="/040_0_value_2011_1/media/93779.jpg" url="" linkname="20110304_PD5221HR_SW.tif" groupId="93748" pagina="24" order="2" topPX="72" leftPX="-9" geoX="25" geoY="-3" geoWidth="213" geoHeight="122"/>
+<asset key="93779" type="image" path="/040_0_value_2011_1/media/93780.jpg" url="" linkname="20110304_PD5221HR_SW.tif" groupId="93752" pagina="25" order="2" topPX="72" leftPX="0" geoX="25" geoY="0" geoWidth="171" geoHeight="122"/>
+</assetList>
+</article>
+<article key="93819" page="29" category="APA Value" articleKey="040_0_value_2011_1">
+<assetList>
+<asset key="93819" type="story" path="/040_0_value_2011_1/story/77855.xml" groupId="93819" pagina="29" order="1" geoX="144" geoY="15" geoWidth="101" geoHeight="136"/>
+</assetList>
+</article>
+</articleList>
+
+<clickPageList>
+
+<clickPage pageIndex="33">
+<frame pageIndex="33" geoX="54" geoY="15" geoWidth="75" geoHeight="89" storyKey="78941" groupId="93886" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="33" geoX="175" geoY="15" geoWidth="154" geoHeight="105" storyKey="83235" groupId="93894" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="33" geoX="13" geoY="174" geoWidth="21" geoHeight="4" storyKey="92134" groupId="92131" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="33" geoX="147" geoY="15" geoWidth="75" geoHeight="19" storyKey="86941_78941" groupId="93886" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="33" geoX="54" geoY="94" geoWidth="75" geoHeight="27" storyKey="78941" groupId="93886" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="33" geoX="47" geoY="15" geoWidth="154" geoHeight="8" storyKey="78941" groupId="93886" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="33" geoX="19" geoY="15" geoWidth="127" geoHeight="4" storyKey="78756" groupId="78753" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="32">
+<frame pageIndex="32" geoX="19" geoY="15" geoWidth="127" geoHeight="4" storyKey="78727" groupId="78724" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="32" geoX="43" geoY="15" geoWidth="127" geoHeight="31" storyKey="78453" groupId="93884" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="32" geoX="78" geoY="41" geoWidth="75" geoHeight="202" storyKey="78453" groupId="93884" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="32" geoX="175" geoY="41" geoWidth="75" geoHeight="31" storyKey="88396" groupId="93883" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="32" geoX="78" geoY="120" geoWidth="75" geoHeight="202" storyKey="78453" groupId="93884" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="21">
+<frame pageIndex="21" geoX="252" geoY="120" geoWidth="49" geoHeight="27" storyKey="85704" groupId="85699" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="21" geoX="256" geoY="120" geoWidth="49" geoHeight="19" storyKey="83878" groupId="85699" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="21" geoX="43" geoY="15" geoWidth="49" geoHeight="237" storyKey="83878" groupId="93719" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="21" geoX="47" geoY="68" geoWidth="101" geoHeight="54" storyKey="88452" groupId="93706" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="21" geoX="43" geoY="68" geoWidth="49" geoHeight="237" storyKey="83878" groupId="93719" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="21" geoX="43" geoY="120" geoWidth="49" geoHeight="241" storyKey="83878" groupId="93719" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="21" geoX="237" geoY="15" geoWidth="101" geoHeight="39" storyKey="88422" groupId="93707" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="7">
+<frame pageIndex="7" geoX="47" geoY="68" geoWidth="49" geoHeight="89" storyKey="80960" groupId="93551" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="7" geoX="233" geoY="173" geoWidth="37" geoHeight="8" storyKey="88878" groupId="93566" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="7" geoX="47" geoY="15" geoWidth="49" geoHeight="89" storyKey="80960" groupId="93551" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="7" geoX="147" geoY="15" geoWidth="49" geoHeight="132" storyKey="80513" groupId="93558" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="7" geoX="245" geoY="68" geoWidth="101" geoHeight="31" storyKey="90418" groupId="93567" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="7" geoX="147" geoY="120" geoWidth="49" geoHeight="132" storyKey="80513" groupId="80723" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="7" geoX="150" geoY="68" geoWidth="49" geoHeight="129" storyKey="80513" groupId="87440" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="7" geoX="47" geoY="120" geoWidth="49" geoHeight="89" storyKey="80960" groupId="93551" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="26">
+<frame pageIndex="26" geoX="128" geoY="146" geoWidth="49" geoHeight="16" storyKey="83814" groupId="93783" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="26" geoX="210" geoY="146" geoWidth="49" geoHeight="70" storyKey="77604" groupId="93804" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="26" geoX="155" geoY="15" geoWidth="127" geoHeight="50" storyKey="77604" groupId="93804" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="26" geoX="210" geoY="94" geoWidth="49" geoHeight="70" storyKey="77604" groupId="93804" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="26" geoX="19" geoY="15" geoWidth="127" geoHeight="4" storyKey="77438" groupId="77435" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="26" geoX="210" geoY="41" geoWidth="49" geoHeight="70" storyKey="77604" groupId="93804" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="17">
+<frame pageIndex="17" geoX="43" geoY="15" geoWidth="49" geoHeight="237" storyKey="76672" groupId="93649" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="17" geoX="116" geoY="120" geoWidth="49" geoHeight="128" storyKey="76672" groupId="93649" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="17" geoX="116" geoY="68" geoWidth="49" geoHeight="163" storyKey="76672" groupId="93649" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="17" geoX="248" geoY="120" geoWidth="75" geoHeight="31" storyKey="76854" groupId="76884" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="17" geoX="116" geoY="173" geoWidth="22" geoHeight="27" storyKey="82675" groupId="93650" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="2">
+<frame pageIndex="2" geoX="78" geoY="94" geoWidth="101" geoHeight="202" storyKey="4414" groupId="4432" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="2" geoX="58" geoY="15" geoWidth="75" geoHeight="124" storyKey="4114" groupId="93500" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="1">
+</clickPage>
+
+
+<clickPage pageIndex="18">
+<frame pageIndex="18" geoX="89" geoY="15" geoWidth="127" geoHeight="47" storyKey="76914" groupId="93679" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="18" geoX="248" geoY="15" geoWidth="75" geoHeight="31" storyKey="77058" groupId="77086" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="18" geoX="143" geoY="41" geoWidth="49" geoHeight="137" storyKey="76914" groupId="93679" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="18" geoX="167" geoY="13" geoWidth="25" geoHeight="23" storyKey="76539" groupId="93678" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="18" geoX="140" geoY="146" geoWidth="49" geoHeight="140" storyKey="76914" groupId="93679" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="18" geoX="140" geoY="94" geoWidth="49" geoHeight="140" storyKey="76914" groupId="93679" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="18" geoX="19" geoY="15" geoWidth="127" geoHeight="4" storyKey="76888" groupId="76885" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="30">
+<frame pageIndex="30" geoX="217" geoY="15" geoWidth="127" geoHeight="62" storyKey="77936" groupId="94356" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="30" geoX="19" geoY="15" geoWidth="127" geoHeight="4" storyKey="77908" groupId="77904" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="30" geoX="182" geoY="146" geoWidth="49" geoHeight="4" storyKey="89743" groupId="93839" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="16">
+<frame pageIndex="16" geoX="19" geoY="15" geoWidth="127" geoHeight="4" storyKey="76699" groupId="76695" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="16" geoX="215" geoY="15" geoWidth="127" geoHeight="64" storyKey="76672" groupId="93648" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="27">
+<frame pageIndex="27" geoX="43" geoY="120" geoWidth="49" geoHeight="186" storyKey="77604" groupId="93807" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="27" geoX="43" geoY="15" geoWidth="49" geoHeight="237" storyKey="77604" groupId="77466" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="27" geoX="233" geoY="120" geoWidth="75" geoHeight="47" storyKey="83912" groupId="83907" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="27" geoX="43" geoY="68" geoWidth="49" geoHeight="237" storyKey="77604" groupId="93807" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="27" geoX="93" geoY="173" geoWidth="22" geoHeight="31" storyKey="84138" groupId="93806" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="25">
+<frame pageIndex="25" geoX="43" geoY="120" geoWidth="49" geoHeight="241" storyKey="77366" groupId="93780" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="25" geoX="43" geoY="68" geoWidth="49" geoHeight="237" storyKey="77366" groupId="93780" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="25" geoX="151" geoY="120" geoWidth="75" geoHeight="31" storyKey="83433" groupId="83590" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="25" geoX="43" geoY="15" geoWidth="49" geoHeight="237" storyKey="77366" groupId="93780" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="28">
+<frame pageIndex="28" geoX="252" geoY="41" geoWidth="49" geoHeight="27" storyKey="77714" groupId="93818" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="28" geoX="19" geoY="15" geoWidth="127" geoHeight="4" storyKey="77687" groupId="77684" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="28" geoX="206" geoY="15" geoWidth="127" geoHeight="43" storyKey="77714" groupId="93818" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="28" geoX="252" geoY="146" geoWidth="49" geoHeight="27" storyKey="77714" groupId="93818" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="28" geoX="252" geoY="94" geoWidth="49" geoHeight="31" storyKey="77714" groupId="93818" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="40">
+</clickPage>
+
+
+<clickPage pageIndex="14">
+<frame pageIndex="14" geoX="252" geoY="41" geoWidth="49" geoHeight="27" storyKey="84750" groupId="93631" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="14" geoX="179" geoY="15" geoWidth="127" geoHeight="70" storyKey="84750" groupId="93631" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="14" geoX="252" geoY="94" geoWidth="49" geoHeight="27" storyKey="84750" groupId="93631" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="14" geoX="19" geoY="15" geoWidth="127" geoHeight="4" storyKey="84725" groupId="84721" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="14" geoX="252" geoY="146" geoWidth="49" geoHeight="27" storyKey="84750" groupId="93631" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="20">
+<frame pageIndex="20" geoX="237" geoY="15" geoWidth="127" geoHeight="43" storyKey="83878" groupId="93705" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="20" geoX="19" geoY="15" geoWidth="127" geoHeight="4" storyKey="83747" groupId="83744" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="24">
+<frame pageIndex="24" geoX="19" geoY="15" geoWidth="127" geoHeight="4" storyKey="77392" groupId="77389" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="24" geoX="256" geoY="41" geoWidth="49" geoHeight="23" storyKey="77366" groupId="93778" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="24" geoX="182" geoY="15" geoWidth="127" geoHeight="70" storyKey="77366" groupId="93778" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="24" geoX="256" geoY="146" geoWidth="49" geoHeight="23" storyKey="77366" groupId="93778" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="24" geoX="256" geoY="94" geoWidth="49" geoHeight="27" storyKey="77366" groupId="93778" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="10">
+<frame pageIndex="10" geoX="89" geoY="94" geoWidth="49" geoHeight="27" storyKey="80406" groupId="93581" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="10" geoX="89" geoY="41" geoWidth="49" geoHeight="27" storyKey="80406" groupId="93581" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="10" geoX="43" geoY="15" geoWidth="127" geoHeight="43" storyKey="80406" groupId="93581" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="10" geoX="89" geoY="146" geoWidth="49" geoHeight="31" storyKey="80406" groupId="93581" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="10" geoX="19" geoY="15" geoWidth="127" geoHeight="4" storyKey="88996" groupId="88993" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="10" geoX="264" geoY="15" geoWidth="22" geoHeight="16" storyKey="91226" groupId="93580" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="31">
+<frame pageIndex="31" geoX="39" geoY="120" geoWidth="49" geoHeight="241" storyKey="77936" groupId="93857" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="31" geoX="186" geoY="15" geoWidth="101" geoHeight="93" storyKey="84960" groupId="93859" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="31" geoX="43" geoY="68" geoWidth="49" geoHeight="237" storyKey="77936" groupId="93857" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="35">
+</clickPage>
+
+
+<clickPage pageIndex="11">
+<frame pageIndex="11" geoX="43" geoY="15" geoWidth="49" geoHeight="66" storyKey="80406" groupId="94355" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="11" geoX="225" geoY="15" geoWidth="101" geoHeight="19" storyKey="90066" groupId="93585" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="11" geoX="155" geoY="15" geoWidth="101" geoHeight="27" storyKey="90043" groupId="93583" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="11" geoX="109" geoY="15" geoWidth="49" geoHeight="39" storyKey="90020" groupId="93582" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="11" geoX="194" geoY="68" geoWidth="101" geoHeight="19" storyKey="89997" groupId="93584" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="11" geoX="256" geoY="68" geoWidth="101" geoHeight="19" storyKey="90090" groupId="93586" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="22">
+<frame pageIndex="22" geoX="256" geoY="146" geoWidth="49" geoHeight="27" storyKey="77167" groupId="93741" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="22" geoX="256" geoY="41" geoWidth="49" geoHeight="27" storyKey="77167" groupId="93741" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="22" geoX="171" geoY="146" geoWidth="49" geoHeight="4" storyKey="83025" groupId="93729" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="22" geoX="256" geoY="94" geoWidth="49" geoHeight="23" storyKey="77167" groupId="93741" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="22" geoX="198" geoY="15" geoWidth="127" geoHeight="54" storyKey="77167" groupId="93741" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="22" geoX="19" geoY="15" geoWidth="127" geoHeight="4" storyKey="77193" groupId="77190" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="13">
+<frame pageIndex="13" geoX="233" geoY="15" geoWidth="101" geoHeight="43" storyKey="82285" groupId="93613" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="13" geoX="93" geoY="68" geoWidth="49" geoHeight="186" storyKey="76389" groupId="93612" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="13" geoX="93" geoY="15" geoWidth="49" geoHeight="190" storyKey="76389" groupId="93612" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="13" geoX="93" geoY="120" geoWidth="49" geoHeight="186" storyKey="76389" groupId="93612" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="13" geoX="167" geoY="68" geoWidth="127" geoHeight="31" storyKey="80382" groupId="93614" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="13" geoX="124" geoY="15" geoWidth="49" geoHeight="8" storyKey="82506" groupId="93609" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="13" geoX="97" geoY="173" geoWidth="25" geoHeight="23" storyKey="82554" groupId="93610" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="23">
+<frame pageIndex="23" geoX="46" geoY="68" geoWidth="101" geoHeight="117" storyKey="82975" groupId="93743" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="23" geoX="47" geoY="68" geoWidth="49" geoHeight="233" storyKey="77167" groupId="93746" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="23" geoX="43" geoY="120" geoWidth="49" geoHeight="237" storyKey="77167" groupId="93746" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="23" geoX="43" geoY="15" geoWidth="49" geoHeight="237" storyKey="77167" groupId="93746" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="29">
+<frame pageIndex="29" geoX="109" geoY="15" geoWidth="49" geoHeight="171" storyKey="77714" groupId="93827" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="29" geoX="109" geoY="68" geoWidth="49" geoHeight="171" storyKey="77714" groupId="93827" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="29" geoX="264" geoY="120" geoWidth="49" geoHeight="16" storyKey="77714" groupId="84190" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="29" geoX="82" geoY="173" geoWidth="24" geoHeight="39" storyKey="84626" groupId="93820" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="29" geoX="109" geoY="120" geoWidth="49" geoHeight="171" storyKey="77714" groupId="93827" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="29" geoX="260" geoY="120" geoWidth="49" geoHeight="23" storyKey="84195" groupId="84190" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="29" geoX="144" geoY="15" geoWidth="101" geoHeight="136" storyKey="77855" groupId="93819" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="6">
+<frame pageIndex="6" geoX="151" geoY="146" geoWidth="49" geoHeight="128" storyKey="80513" groupId="93557" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="6" geoX="113" geoY="94" geoWidth="49" geoHeight="23" storyKey="80960" groupId="93550" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="6" geoX="19" geoY="15" geoWidth="127" geoHeight="4" storyKey="76288" groupId="76285" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="6" geoX="151" geoY="94" geoWidth="49" geoHeight="132" storyKey="80513" groupId="93557" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="6" geoX="47" geoY="146" geoWidth="49" geoHeight="89" storyKey="80960" groupId="93550" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="6" geoX="138" geoY="-25" geoWidth="470" geoHeight="6" storyKey="81073" groupId="81070" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="6" geoX="234" geoY="15" geoWidth="75" geoHeight="46" storyKey="87694" groupId="87689" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="6" geoX="151" geoY="41" geoWidth="49" geoHeight="128" storyKey="80513" groupId="93557" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="6" geoX="50" geoY="41" geoWidth="49" geoHeight="85" storyKey="80960" groupId="81202" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="39">
+<frame pageIndex="39" geoX="144" geoY="15" geoWidth="75" geoHeight="19" storyKey="89398" groupId="94056" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="39" geoX="54" geoY="15" geoWidth="75" geoHeight="27" storyKey="89398" groupId="94056" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="39" geoX="101" geoY="94" geoWidth="75" geoHeight="23" storyKey="89398" groupId="94056" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="39" geoX="93" geoY="15" geoWidth="154" geoHeight="8" storyKey="89485_89547" groupId="94056" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="39" geoX="175" geoY="94" geoWidth="75" geoHeight="12" storyKey="89398" groupId="94056" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="39" geoX="144" geoY="94" geoWidth="75" geoHeight="23" storyKey="89398" groupId="94056" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="39" geoX="47" geoY="15" geoWidth="154" geoHeight="8" storyKey="89398" groupId="94056" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="39" geoX="136" geoY="15" geoWidth="154" geoHeight="8" storyKey="89547" groupId="94056" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="39" geoX="101" geoY="15" geoWidth="75" geoHeight="27" storyKey="89398" groupId="94056" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="39" geoX="54" geoY="94" geoWidth="75" geoHeight="27" storyKey="89398" groupId="94056" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="3">
+<frame pageIndex="3" geoX="276" geoY="120" geoWidth="49" geoHeight="4" storyKey="46096_2563" groupId="93498" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="3" geoX="74" geoY="15" geoWidth="180" geoHeight="27" storyKey="2563" groupId="93498" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="3" geoX="144" geoY="120" geoWidth="49" geoHeight="113" storyKey="2563" groupId="93498" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="3" geoX="105" geoY="15" geoWidth="49" geoHeight="175" storyKey="2563" groupId="93498" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="3" geoX="105" geoY="68" geoWidth="49" geoHeight="175" storyKey="2563" groupId="93498" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="3" geoX="287" geoY="162" geoWidth="33" geoHeight="8" storyKey="25182" groupId="25178" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="36">
+<frame pageIndex="36" geoX="171" geoY="37" geoWidth="79" geoHeight="16" storyKey="86458" groupId="93957" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="36" geoX="143" geoY="46" geoWidth="72" geoHeight="11" storyKey="86458" groupId="93957" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="36" geoX="50" geoY="41" geoWidth="75" geoHeight="19" storyKey="86458" groupId="93941" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="36" geoX="50" geoY="120" geoWidth="75" geoHeight="23" storyKey="86458" groupId="93941" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="36" geoX="260" geoY="120" geoWidth="75" geoHeight="16" storyKey="86458" groupId="93971" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="36" geoX="202" geoY="120" geoWidth="75" geoHeight="50" storyKey="86458" groupId="93971" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="36" geoX="202" geoY="41" geoWidth="75" geoHeight="50" storyKey="86458" groupId="93971" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="36" geoX="179" geoY="120" geoWidth="75" geoHeight="8" storyKey="86458" groupId="93957" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="36" geoX="167" geoY="37" geoWidth="158" geoHeight="23" storyKey="86309" groupId="93957" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="36" geoX="194" geoY="41" geoWidth="154" geoHeight="8" storyKey="86458" groupId="93971" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="36" geoX="78" geoY="37" geoWidth="79" geoHeight="23" storyKey="86458" groupId="93941" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="36" geoX="19" geoY="15" geoWidth="127" geoHeight="4" storyKey="79407" groupId="79404" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="36" geoX="66" geoY="46" geoWidth="72" geoHeight="11" storyKey="86458" groupId="93941" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="36" geoX="43" geoY="41" geoWidth="154" geoHeight="8" storyKey="86458" groupId="93941" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="36" geoX="120" geoY="41" geoWidth="154" geoHeight="8" storyKey="86458" groupId="93957" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="36" geoX="260" geoY="37" geoWidth="75" geoHeight="16" storyKey="86458" groupId="93971" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="36" geoX="74" geoY="37" geoWidth="158" geoHeight="43" storyKey="80173_86458" groupId="93941" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="36" geoX="132" geoY="41" geoWidth="75" geoHeight="31" storyKey="86458" groupId="93957" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="36" geoX="132" geoY="120" geoWidth="75" geoHeight="31" storyKey="86458" groupId="93957" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="36" geoX="215" geoY="59" geoWidth="88" geoHeight="11" storyKey="86458" groupId="93971" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="36" geoX="78" geoY="120" geoWidth="75" geoHeight="35" storyKey="86458" groupId="93941" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="9">
+<frame pageIndex="9" geoX="182" geoY="15" geoWidth="49" geoHeight="85" storyKey="80960" groupId="93553" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="9" geoX="43" geoY="15" geoWidth="49" geoHeight="132" storyKey="87883" groupId="93573" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="9" geoX="182" geoY="68" geoWidth="49" geoHeight="78" storyKey="80960" groupId="93553" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="9" geoX="140" geoY="68" geoWidth="49" geoHeight="35" storyKey="87883" groupId="93573" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="9" geoX="264" geoY="68" geoWidth="49" geoHeight="4" storyKey="87334" groupId="93554" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="9" geoX="140" geoY="120" geoWidth="49" geoHeight="35" storyKey="87883" groupId="93573" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="12">
+<frame pageIndex="12" geoX="19" geoY="15" geoWidth="127" geoHeight="4" storyKey="76359" groupId="76356" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="12" geoX="256" geoY="94" geoWidth="49" geoHeight="23" storyKey="76389" groupId="93604" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="12" geoX="256" geoY="15" geoWidth="75" geoHeight="23" storyKey="76389" groupId="76564" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="12" geoX="202" geoY="15" geoWidth="127" geoHeight="50" storyKey="76389" groupId="93604" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="12" geoX="167" geoY="146" geoWidth="49" geoHeight="12" storyKey="82456" groupId="93588" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="12" geoX="256" geoY="146" geoWidth="49" geoHeight="23" storyKey="76389" groupId="93604" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="15">
+<frame pageIndex="15" geoX="132" geoY="15" geoWidth="101" geoHeight="16" storyKey="85012" groupId="93634" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="15" geoX="241" geoY="15" geoWidth="101" geoHeight="35" storyKey="85035" groupId="93637" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="15" geoX="155" geoY="173" geoWidth="22" geoHeight="19" storyKey="84030" groupId="93633" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="15" geoX="43" geoY="68" geoWidth="49" geoHeight="237" storyKey="84750" groupId="93638" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="15" geoX="43" geoY="120" geoWidth="49" geoHeight="237" storyKey="84750" groupId="93638" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="15" geoX="43" geoY="15" geoWidth="49" geoHeight="237" storyKey="84750" groupId="93638" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="15" geoX="202" geoY="120" geoWidth="75" geoHeight="31" storyKey="91931" groupId="91926" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="38">
+<frame pageIndex="38" geoX="171" geoY="41" geoWidth="154" geoHeight="8" storyKey="89296_89398_89226" groupId="93991" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="38" geoX="40" geoY="14" geoWidth="189" geoHeight="28" storyKey="89398" groupId="93991" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="38" geoX="229" geoY="41" geoWidth="154" geoHeight="8" storyKey="89398" groupId="94023" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="38" geoX="78" geoY="41" geoWidth="154" geoHeight="8" storyKey="89398" groupId="93991" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="38" geoX="237" geoY="41" geoWidth="75" geoHeight="23" storyKey="89398" groupId="94023" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="38" geoX="124" geoY="41" geoWidth="154" geoHeight="8" storyKey="89226" groupId="93991" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="38" geoX="268" geoY="37" geoWidth="75" geoHeight="12" storyKey="89398" groupId="94023" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="38" geoX="85" geoY="41" geoWidth="75" geoHeight="19" storyKey="89398" groupId="93991" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="38" geoX="19" geoY="15" geoWidth="127" geoHeight="4" storyKey="81919" groupId="81916" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="38" geoX="85" geoY="120" geoWidth="75" geoHeight="31" storyKey="89398" groupId="93991" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="38" geoX="237" geoY="120" geoWidth="75" geoHeight="27" storyKey="89398" groupId="94023" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="38" geoX="200" geoY="37" geoWidth="75" geoHeight="17" storyKey="89398" groupId="93991" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="38" geoX="132" geoY="120" geoWidth="75" geoHeight="31" storyKey="89398" groupId="93991" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="38" geoX="132" geoY="41" geoWidth="75" geoHeight="23" storyKey="89398" groupId="93991" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="38" geoX="179" geoY="120" geoWidth="75" geoHeight="19" storyKey="89398" groupId="93991" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="38" geoX="179" geoY="41" geoWidth="75" geoHeight="19" storyKey="89398" groupId="93991" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="8">
+<frame pageIndex="8" geoX="109" geoY="41" geoWidth="101" geoHeight="39" storyKey="87493" groupId="93569" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="8" geoX="182" geoY="146" geoWidth="49" geoHeight="85" storyKey="80960" groupId="93552" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="8" geoX="270" geoY="-25" geoWidth="470" geoHeight="6" storyKey="90173" groupId="90170" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="8" geoX="19" geoY="15" geoWidth="127" geoHeight="4" storyKey="76313" groupId="76310" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="8" geoX="93" geoY="11" geoWidth="26" geoHeight="12" storyKey="88078" groupId="93568" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="8" geoX="43" geoY="146" geoWidth="49" geoHeight="136" storyKey="80513" groupId="93570" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="8" geoX="182" geoY="41" geoWidth="49" geoHeight="85" storyKey="80960" groupId="93552" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="8" geoX="182" geoY="94" geoWidth="49" geoHeight="85" storyKey="80960" groupId="93552" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="8" geoX="43" geoY="41" geoWidth="49" geoHeight="132" storyKey="80513" groupId="93570" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="8" geoX="43" geoY="94" geoWidth="49" geoHeight="132" storyKey="80513" groupId="93570" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="4">
+<frame pageIndex="4" geoX="19" geoY="15" geoWidth="127" geoHeight="4" storyKey="76259" groupId="76256" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="4" geoX="210" geoY="15" geoWidth="127" geoHeight="70" storyKey="80513" groupId="93549" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="4" geoX="19" geoY="15" geoWidth="127" geoHeight="4" storyKey="92674" groupId="92671" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="4" geoX="190" geoY="146" geoWidth="49" geoHeight="8" storyKey="88128" groupId="93548" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="34">
+<frame pageIndex="34" geoX="175" geoY="41" geoWidth="75" geoHeight="58" storyKey="86542" groupId="93909" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="34" geoX="248" geoY="120" geoWidth="75" geoHeight="31" storyKey="86708" groupId="93911" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="34" geoX="163" geoY="120" geoWidth="75" geoHeight="23" storyKey="86607" groupId="93896" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="34" geoX="163" geoY="41" geoWidth="75" geoHeight="12" storyKey="86542" groupId="93909" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="34" geoX="248" geoY="41" geoWidth="75" geoHeight="35" storyKey="86708" groupId="93911" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="34" geoX="19" geoY="15" geoWidth="127" geoHeight="4" storyKey="79347" groupId="79343" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="34" geoX="171" geoY="120" geoWidth="75" geoHeight="66" storyKey="86542" groupId="93910" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="34" geoX="241" geoY="41" geoWidth="154" geoHeight="8" storyKey="86708" groupId="93911" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+
+<clickPage pageIndex="37">
+</clickPage>
+
+
+<clickPage pageIndex="19">
+</clickPage>
+
+
+<clickPage pageIndex="5">
+<frame pageIndex="5" geoX="237" geoY="15" geoWidth="101" geoHeight="39" storyKey="90444" groupId="94354" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="5" geoX="151" geoY="68" geoWidth="49" geoHeight="132" storyKey="80513" groupId="93547" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="5" geoX="151" geoY="15" geoWidth="49" geoHeight="132" storyKey="80513" groupId="93547" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="5" geoX="151" geoY="120" geoWidth="75" geoHeight="39" storyKey="87412" groupId="87407" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="5" geoX="138" geoY="120" geoWidth="93" geoHeight="5" storyKey="81180" groupId="93544" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="5" geoX="47" geoY="15" geoWidth="127" geoHeight="27" storyKey="80960" groupId="93545" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="5" geoX="78" geoY="120" geoWidth="49" geoHeight="58" storyKey="80960" groupId="93545" articleKey="040_0_value_2011_1"/>
+<frame pageIndex="5" geoX="151" geoY="120" geoWidth="49" geoHeight="128" storyKey="80513" groupId="93547" articleKey="040_0_value_2011_1"/>
+</clickPage>
+
+</clickPageList>
+
+</issue>
+</issueList>
+</volume>
+</volumeList>
+</journal>

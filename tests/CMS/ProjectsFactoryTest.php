@@ -1,5 +1,7 @@
 <?php
 
+namespace Psc\CMS;
+
 use \Psc\PSC;
 
 class ProjectsFactoryTest extends \PHPUnit_Framework_TestCase {
@@ -12,7 +14,7 @@ class ProjectsFactoryTest extends \PHPUnit_Framework_TestCase {
     
     $this->assertInstanceOf('Psc\Project',$cms); // extends Psc\CMS\Project
     
-    if (PSC::getProject()->getHost() == 'psc-laptop') {
+    if (PSC::getProject()->getHost() == 'psc-laptop' || PSC::getProject()->getHost() == 'psc-desktop') {
       
       $this->assertEquals('D:\www\psc-cms\Umsetzung\\',(string) $cms->getRoot());
       $this->assertEquals('D:\www\psc-cms\Umsetzung\base\src\\',(string) $cms->getSrc());
@@ -33,6 +35,23 @@ class ProjectsFactoryTest extends \PHPUnit_Framework_TestCase {
     } else {
       $this->markTestSkipped('kein Switch für Host '.PSC::getHost().' angegeben');
     }
+  }
+  
+  public function testSetGetProjectsPath() {
+    $projectsFactory = new ProjectsFactory(new Configuration(array()));
+
+    $paths = $projectsFactory->getProjectPaths('accept');
+    $this->assertArrayHasKey(PSC::PATH_SRC, $paths);
+    $this->assertArrayHasKey(PSC::PATH_BIN, $paths);
+    $this->assertArrayHasKey(PSC::PATH_FILES, $paths);
+    
+    $projectsFactory->setProjectPath('accept',PSC::PATH_SRC, './my/custom/path');
+    $paths = $projectsFactory->getProjectPaths('accept');
+    $this->assertEquals('./my/custom/path',$paths[PSC::PATH_SRC]);
+    
+    $projectsFactory->setProjectPath('accept','src', './my/custom/path2');
+    $paths = $projectsFactory->getProjectPaths('accept');
+    $this->assertEquals('./my/custom/path2',$paths[PSC::PATH_SRC]);
   }
   
   public function testProjectConfigLoading() {

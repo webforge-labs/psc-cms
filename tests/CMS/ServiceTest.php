@@ -2,7 +2,7 @@
 
 namespace Psc\CMS;
 
-use Psc\CMS\Service;
+use Psc\CMS\Service\CMSService as Service;
 use Psc\PSC;
 use Psc\Net\ServiceRequest;
 use Psc\Net\ServiceResponse;

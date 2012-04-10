@@ -1,0 +1,23 @@
+<?php
+  use \Psc\TPL\TPL,
+      \Psc\HTML\HTML,
+      \Psc\CMS\Controller\AuthController;
+      
+?>
+    <div id="header" class="ui-widget-header">
+      <div class="spinner-container"></div>
+      <h1><?= $page->getTitle()->getContent() ?></h1>
+      <div class="profile-info">Profile: <?= HTML::esc($user->getIdentifier()) ?>| <a href="<?= $authController->getTodoURL(AuthController::TODO_LOGOUT) ?>">log Out</a></div>
+      <div class="clear"></div>
+    </div>
+  
+
+    <div id="body">
+      <div id="content"><?= TPL::get('CMS'.DIRECTORY_SEPARATOR.'content',compact('tabs')) ?></div>
+      <div id="left"></div>
+      <div id="right"><?= TPL::get('CMS'.DIRECTORY_SEPARATOR.'right',compact('dropContents')) ?></div>
+    </div>
+  
+    <div id="footer" class="ui-widget-header">
+      <a href="mailto: p.scheit@ps-webforge.com">p.scheit@ps-webforge.com</a>
+    </div>

@@ -12,7 +12,7 @@ class ModuleTest extends \Psc\Code\Test\Base {
   public function testLoad() {
     $this->assertInstanceOf('Psc\Hitch\Module',$module = \Psc\PSC::getProject()->getModule('Hitch'));
     
-    $this->assertEquals('\Psc',$module->getObjectsNamespace());
+    $this->assertEquals('Psc',$module->getObjectsNamespace());
     
     $module->setObjectsNamespace('\Psc\Hitch\TestObjects');
     

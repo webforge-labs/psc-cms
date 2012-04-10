@@ -15,7 +15,10 @@ class ProjectTest extends \Psc\Code\Test\Base {
     $this->classPath = $this->root->sub('base/src/MyProject/');
     $this->hostConfig = $this->getHostConfig();
     
-    $this->project = new Project('MyProject', $this->root, $this->classPath, $this->hostConfig);
+    $factory = \Psc\PSC::getProjectsFactory();
+    $factory->setProjectPath('MyProject','class', './base/src/MyProject');
+    $paths = $factory->getProjectPaths('MyProject');
+    $this->project = new Project('MyProject', $this->root, $this->hostConfig, $paths);
   }
 
   public function testInstance() {

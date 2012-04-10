@@ -1,0 +1,27 @@
+<?php
+
+use Psc\UI\Accordion AS UIAccordion,
+    Psc\UI\HTML as HTML,
+    Psc\UI\Form as Form
+;
+
+/* contents */
+$accordionContents = new UIAccordion(array('autoHeight'=>false,'active'=>false,'collapsible'=>true));
+foreach ($dropContents as $label => $content) {
+  $accordionContents->addRow('<a href="#">'.HTML::esc($label).'</a>', $content);
+}
+
+print Form::group('Inhalte',$accordionContents)->setAttribute('id','drop-contents');
+
+
+if (!isset($tips)) $tips = array();
+
+$tips['Inhalte der Tabs-Leiste hinzufügen'] = 'Man kann sich die Tabs-Leiste wie eine Übersicht über geöffnete Dateien vorstellen. <br />Um eine neue Datei zu öffnen, kann man im Akkordion für die Inhalte (rechte Seite) einfach einen Inhaltstyp anklicken. Dieser wird dann in der Tabs-Leiste geöffnet.<br />Bereits geöffnete Tabs können jederzeit wieder geschlossen werden. Nicht gespeicherte Tabs werden mit einem <b>*</b> markiert';
+
+/* Tips */
+$accordionTips = new UIAccordion(array('autoHeight'=>false,'active'=>false,'collapsible'=>true));
+foreach ($tips as $label => $text) {
+  $accordionTips->addRow('<a href="#">'.HTML::esc($label).'</a>', $text);
+}
+
+print Form::group('Tipps',$accordionTips);
