@@ -15,31 +15,6 @@ class CodeTest extends \Psc\Code\Test\Base {
   
   protected $c = '\Psc\Code\Code';
   
-  protected $classData;
-  
-
-  public function setUpClassData() {
-    if (!isset($this->classData)) {
-      $this->classData = array();
-    
-      /* das ist zufälligerweise auch auch ein guter test, ob in jeder Datei der NS + Classname richtig sind */
-      foreach (PSC::getAllClassFiles() as $c=>$f) { // $f ist schon relativ
-        if (\Psc\String::startsWith($c,'\Psc\PHPUnit_'))
-          continue;
-        
-        if (!class_exists($c) && !interface_exists($c)) {
-          throw new \Exception('Klasse: '.$c.' ist vermutlich nicht in Datei: '.$f.' zu finden');
-        }
-        $refl = new \ReflectionClass($c);
-        $this->classData[$c] = array('ns'=>'\\'.$refl->getNamespaceName(),
-                                     'name'=>$refl->getShortName(),
-                                     'file'=>$f
-                                     );
-      }
-    }
-  }
-  
-  
   public function testDeprecated() {
     $this->assertException('Psc\DeprecatedException', function () { Code::callback(NULL,NULL); });
     $this->assertException('Psc\DeprecatedException', function () { Code::eval_callback(array(),array()); });
@@ -219,14 +194,6 @@ class CodeTest extends \Psc\Code\Test\Base {
     });
   }
 
-  public function testGetClassNameAndNamespaceName() {
-    $this->setUpClassData();
-    foreach ($this->classData as $c => $info) {
-      $this->assertEquals($info['ns'],Code::getNamespace($c),'Namespace wurde falsch ermittelt. Fehlerhafte Klasse: '.$c);
-      $this->assertEquals($info['name'],Code::getClassName($c),'Klassen(short)-Name wurde falsch ermittelt. Fehlerhafte Klasse: '.$c);
-    }
-  }
-  
   public function testGetNamespace_root() {
     $this->assertEquals(NULL, Code::getNamespace('\stdClass'));
     $this->assertEquals(NULL, Code::getNamespace('stdClass'));
@@ -259,13 +226,8 @@ class CodeTest extends \Psc\Code\Test\Base {
   }
   
   public function testGetClassFile() {
-    $this->setUpClassData();
-    foreach ($this->classData as $className => $info) {
-      //print $className.' => '.PSC::getClassFile($className)."\n";
-      
-      $file = PSC::getClassFile($className);
-      $this->assertTrue($file->exists(),'Datei: '.$file.' existiert nicht');
-    }
+    $file = PSC::getClassFile('Psc\Code\Code');
+    $this->assertTrue($file->exists(), 'Datei: '.$file.' existiert nicht');
   }
   
   public function testGetMemoryUsageAcceptance() {
