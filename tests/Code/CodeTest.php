@@ -225,11 +225,6 @@ class CodeTest extends \Psc\Code\Test\Base {
     return $tests;
   }
   
-  public function testGetClassFile() {
-    $file = PSC::getClassFile('Psc\Code\Code');
-    $this->assertTrue($file->exists(), 'Datei: '.$file.' existiert nicht');
-  }
-  
   public function testGetMemoryUsageAcceptance() {
     $this->assertRegexp('/[0-9]+\.[0-9]+ MB/',Code::getMemoryUsage());
   }
