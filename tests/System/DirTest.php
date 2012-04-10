@@ -7,10 +7,10 @@ use \Psc\PSC;
 class DirTest extends \Psc\Code\Test\Base {
   
   public function testSubDir() {
-    $graph = new Dir('D:\www\psc-cms\Umsetzung\base\src\psc\class\Graph\\');
-    $psc = new Dir('D:\www\psc-cms\Umsetzung\base\src\psc\\');
+    $sub = new Dir(__DIR__.DIRECTORY_SEPARATOR);
+    $parent = new Dir(realpath(__DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..').DIRECTORY_SEPARATOR);
     
-    $this->assertTrue($graph->isSubdirectoryOf($psc));
+    $this->assertTrue($sub->isSubdirectoryOf($parent));
   }
   
   /**
@@ -34,51 +34,57 @@ class DirTest extends \Psc\Code\Test\Base {
    * @expectedException \Psc\System\Exception
    */
   public function testMakeRelativeToException() {
-    $graph = new Dir('D:\www\psc-cms\Umsetzung\base\src\psc\class\Graph\\');
-    $psc = new Dir('D:\www\psc-cms\Umsetzung\base\src\psc\\');
+    $sub = new Dir(__DIR__.DIRECTORY_SEPARATOR);
+    $parent = new Dir(realpath(__DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..').DIRECTORY_SEPARATOR);
     
-    $norel = clone $psc;
-
-    $norel->makeRelativeTo($graph);
+    $norel = clone $parent;
+    $norel->makeRelativeTo($sub);
   }
   
-  public function testSubdirectoryEqualy() {
-    $graph = new Dir('D:\www\psc-cms\Umsetzung\base\src\psc\class\Graph\\');
-    $graph2 = new Dir('D:\www\psc-cms\Umsetzung\base\src\psc\class\Graph\\');
+  public function testDirectoryIsNotSubdirectoryOfSelf() {
+    $dir = new Dir(__DIR__.DIRECTORY_SEPARATOR);
+    $self = new Dir(__DIR__.DIRECTORY_SEPARATOR);
     
-    $this->assertFalse($graph->isSubdirectoryOf($graph2));
+    $this->assertFalse($dir->isSubdirectoryOf($self));
   }
   
   public function testDirGetFile() {
-    $dir = new Dir('D:\www\psc-cms\Umsetzung\base\src\psc\\');
+    $dir = new Dir(__DIR__.DIRECTORY_SEPARATOR);
+    $file = __FILE__;
+    $fname = basename($file);
     
-    $this->assertEquals('D:\www\psc-cms\Umsetzung\base\src\psc\readme.txt',
-                        (string) $dir->getFile('readme.txt'));
-    $this->assertEquals('D:\www\psc-cms\Umsetzung\base\src\psc\readme.txt',
-                        (string) $dir->getFile(new File('readme.txt')));
-    $this->assertEquals('D:\www\psc-cms\Umsetzung\base\src\psc\readme.txt',
-                        (string) $dir->getFile(new File(new Dir('.\\'),'readme.txt'))
-                        );
+    //$this->assertEquals('D:\www\psc-cms\Umsetzung\base\src\psc\readme.txt',
+                        //(string) $dir->getFile('readme.txt'));
 
+    $this->assertEquals($file, (string) $dir->getFile($fname));
+    $this->assertEquals($file, (string) $dir->getFile(new File($fname)));
+    $this->assertEquals($file, (string) $dir->getFile(new File(new Dir('.'.DIRECTORY_SEPARATOR),$fname)));
 
-/*
-  das ist unexpected! ich will aber keinen test auf sowas machen..
-  $this->assertEquals('D:\www\psc-cms\Umsetzung\base\readme.txt',
-                      (string)  $dir->getFile('..\\..\\readme.txt'));
-*/
+  /*
+    das ist unexpected! ich will aber keinen test auf sowas machen..
+    $this->assertEquals('D:\www\psc-cms\Umsetzung\base\readme.txt',
+                        (string)  $dir->getFile('..\\..\\readme.txt'));
+  */
 
-    $this->assertEquals('D:\www\psc-cms\Umsetzung\base\src\psc\lib\docu\readme.txt',
-                        (string) $dir->getFile(new File('.\lib\docu\readme.txt')));
-    $this->assertEquals('D:\www\psc-cms\Umsetzung\base\src\psc\lib\docu\readme.txt',
-                        (string) $dir->getFile(new File(new Dir('.\\lib\docu\\'),'readme.txt'))
-                        );
+    if (DIRECTORY_SEPARATOR === '\\') {
+      $this->assertEquals(__DIR__.'\lib\docu\readme.txt',
+                          (string) $dir->getFile(new File('.\lib\docu\readme.txt')));
+      $this->assertEquals(__DIR__.'\lib\docu\readme.txt',
+                          (string) $dir->getFile(new File(new Dir('.\lib\docu\\'),'readme.txt')));
+                          
+    } else {
+      $this->assertEquals(__DIR__.'/lib/docu/readme.txt',
+                          (string) $dir->getFile(new File('./lib/docu/readme.txt')));
+      $this->assertEquals(__DIR__.'/lib/docu/readme.txt',
+                          (string) $dir->getFile(new File(new Dir('./lib/docu/'),'readme.txt')));
+      
+    }
     
 
-    $this->assertException('InvalidArgumentException', function () use ($dir) {
-        $dir->getFile(new File(new Dir('D:\www\ich\bin\absolut\\'),'readme.txt'));
+    $absoluteDir = __DIR__.DIRECTORY_SEPARATOR;
+    $this->assertException('InvalidArgumentException', function () use ($dir, $absoluteDir) {
+      $dir->getFile(new File(new Dir($absoluteDir),'readme.txt'));
     });
-
-    
   }
   
   public function testDirgetFiles() {

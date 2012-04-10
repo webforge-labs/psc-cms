@@ -4,6 +4,7 @@ namespace Psc\PHPWord;
 
 use PHPWord;
 use PHPWord_IOFactory;
+use Psc\System\File;
 
 class MainTemplateTest extends \Psc\Code\Test\Base {
   
@@ -31,7 +32,7 @@ class MainTemplateTest extends \Psc\Code\Test\Base {
     $section->addText('Hello world!');
     
     $objWriter = PHPWord_IOFactory::createWriter($PHPWord, 'Word2007');
-    $objWriter->save('D:\www\psc-cms\Dokumentationen\test.docx');
+    $objWriter->save(File::createTemporary()->setExtension('docx'));
   }
   
   public function testConstruct() {

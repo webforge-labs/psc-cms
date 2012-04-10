@@ -65,6 +65,9 @@ class CodeTest extends \Psc\Code\Test\Base {
   }
   
   public function testGetClassName() {
+    if (\Psc\PSC::getProject() !== 'psc-laptop' && \Psc\PSC::getProject() !== 'psc-desktop') {
+      $this->markTestSkipped('kein bekanntes BaseDir definiert');
+    }
     $file = new File('D:\www\psc-cms\Umsetzung\base\src\Psc\Code\Generate\GClass.php');
     $dir = new Dir('D:\www\psc-cms\Umsetzung\base\src\\');
     
@@ -79,6 +82,9 @@ class CodeTest extends \Psc\Code\Test\Base {
    * @group gn
    */
   public function testGetClassName_underscoreStyle() {
+    if (\Psc\PSC::getProject() !== 'psc-laptop' && \Psc\PSC::getProject() !== 'psc-desktop') {
+      $this->markTestSkipped('kein bekanntes BaseDir definiert');
+    }
     $file = new File('D:\www\psc-cms\Umsetzung\base\src\Psc\Code\Generate\GClass.php');
     $dir = new Dir('D:\www\psc-cms\Umsetzung\base\src\\');
     
