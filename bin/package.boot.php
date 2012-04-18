@@ -141,6 +141,7 @@ class BootLoader {
     }
     
     $autoLoader->init();
+    $autoLoader->setDebug(TRUE);
     PSC::setAutoLoader($autoLoader);
     PSC::setProjectsFactory($factory = $this->getProjectsFactory());
   }
@@ -326,6 +327,8 @@ class ClassAutoLoader {
   
   protected $paths = array();
   protected $init = FALSE;
+  
+  protected $debug = FALSE;
 
   /**
    * Wird die Klasse nicht gefunden wird FALSE zurückgegeben
@@ -349,6 +352,8 @@ class ClassAutoLoader {
       $this->requirePath($path);
       
       return TRUE;
+    } elseif ($this->debug) {
+      throw new \Exception('File for Class not Found: '.$class.' This Paths: '.print_r($this->paths,true));
     }
     
     return FALSE;
@@ -397,7 +402,7 @@ class ClassAutoLoader {
     $parentLength = mb_strlen($directory);
     $paths = array();
     foreach ($iterator as $file) {
-      if (mb_substr($file,0,-3) === 'php') {
+      if (mb_substr((string) $file,-3) === 'php') {
         $class = mb_substr(str_replace(DIRECTORY_SEPARATOR, '\\', mb_substr($file->getRealPath(),$parentLength+1)),0,-4); // mb_strlen('.php')
         $paths[$class] = (string) $file;
       }
@@ -417,7 +422,7 @@ class ClassAutoLoader {
     foreach ($iterator as $file) {
       $fInfo = $file->getFileInfo();
       
-      if (mb_substr($fInfo,0,-3) === 'php') {
+      if (mb_substr((string) $fInfo,-3) === 'php') {
         $class = mb_substr(str_replace('/', '\\', mb_substr((string) $fInfo, mb_strlen($wrapped)+1)), 0,-4);
         $paths[$class] = (string) $fInfo;
       }
@@ -466,6 +471,11 @@ class ClassAutoLoader {
    */
   public function getPaths() {
     return $this->paths;
+  }
+  
+  public function setDebug($bool = TRUE) {
+    $this->debug = $bool;
+    return $this;
   }
 }
 ?>
