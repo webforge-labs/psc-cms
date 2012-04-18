@@ -28,7 +28,7 @@ class DateValidatorRuleTest extends ValidatorRuleTestCase {
     $this->assertEquals($format, $rule->getFormat());
   }
   
-  public static function provideBadFormats() {
+  public function provideBadFormats() {
     return array(
       array('d.m.y'),
       array('d.m'),
@@ -36,14 +36,14 @@ class DateValidatorRuleTest extends ValidatorRuleTestCase {
     );
   }
 
-  public static function provideFormats() {
+  public function provideFormats() {
     return array(
       array('d.m.Y'),
       array('d.m.')
     );
   }
   
-  public static function provideValidData() {
+  public function provideValidData() {
     return Array(
       array('12.02.2012', Date::create('12.02.2012'), new DateValidatorRule('d.m.Y')),
       array('12.02.2012', Date::create('12.02.2012'), new DateValidatorRule('d.m.Y')),
@@ -54,7 +54,13 @@ class DateValidatorRuleTest extends ValidatorRuleTestCase {
     );
   }
   
-  public static function provideInvalidData() {
+  public function provideEmptyData() {
+    return Array(
+      array(NULL)
+    );
+  }
+  
+  public function provideInvalidData() {
     return Array(
       array('29.02.2011', 'Psc\DateTime\ParsingException', new DateValidatorRule('d.m.Y')) // kein schaltjahr
       

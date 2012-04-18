@@ -45,14 +45,6 @@ class AbstractEntityTest extends \Psc\Code\Test\Base {
     $this->assertAttributeEquals('Lorem Ipsum Dolor sit amet... <more>', 'content', $object);
     $this->assertAttributeEquals(array(), 'tags', $object);
   }
-  
-  public function testGetTabsContentItem() {
-    $tci = $this->defaultEntity->getTabsContentItem(TabsContentItem2::CONTEXT_DEFAULT);
-    
-    $this->assertInstanceOf('Psc\CMS\ContextTabsContentItem',$tci);
-    $this->assertEquals($this->defaultEntity->getTabsLabel(TabsContentItem2::CONTEXT_DEFAULT), $tci->getTabsLabel());
-    $this->assertNotEmpty($tci->getTabsURL()); // hier müsste dann irgendwie autoComplete sein oder sowas
-  }
 
   public function testTabsLabel() {
     $this->assertNotEmpty($this->defaultEntity->getTabsLabel());

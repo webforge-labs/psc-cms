@@ -212,10 +212,10 @@ use TestHint,
 ?>';
     
     /* extends einfügen */
-    $code = str_replace('abstract class TestClass {','abstract class TestClass extends \Psc\Object {',$code);
+    $code = str_replace('abstract class TestClass {','abstract class TestClass extends Object {',$code);
     
-    file_put_contents('D:\fixture.txt', $code);
-    file_put_contents('D:\compiled.txt',$contents);
+    //file_put_contents('D:\fixture.txt', $code);
+    //file_put_contents('D:\compiled.txt',$contents);
     $this->assertEquals($code, $contents);
     
     $writer->syntaxCheck($compiledFile);

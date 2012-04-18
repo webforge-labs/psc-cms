@@ -190,7 +190,7 @@ class ControllerServiceTest extends \Psc\Code\Test\Base {
 
   public function testGetControllerClass() {
     $project = $this->getMock('Psc\CMS\Project', array('getNamespace'), array(), '', FALSE);
-    $project->expects($this->exactly(2))->method('getNamespace')
+    $project->expects($this->any())->method('getNamespace')
             ->will($this->returnValue('My\Entities\Namespace'));
     
     $this->service->setProject($project);

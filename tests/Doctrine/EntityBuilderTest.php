@@ -158,6 +158,17 @@ class EntityBuilderTest extends \Psc\Code\Test\Base {
     $this->assertEquals($this->createType('Email'),$builder->getProperty('email')->getType());
   }
   
+  public function testCreatePropertyNullFlag() {
+    $builder = new EntityBuilder('Person', $this->module);
+    
+    $this->assertInstanceOf('Psc\Code\Generate\ClassBuilderProperty',
+                            $builder->createProperty('email', $this->createType('Email'), EntityBuilder::NULLABLE));
+    $this->assertTrue($builder->getGClass()->hasProperty('email'));
+    $property = $builder->getGClass()->getProperty('email');
+    $columnAnnotation = $this->assertHasDCAnnotation($property->getDocBlock(), 'Column');
+    $this->assertTrue($columnAnnotation->nullable, 'nullable ist nicht TRUE obwohl nullflag übergeben wurde');
+  }
+  
   public function testBuildMetaSetter() {
     $builder = new EntityBuilder('Person', $this->module);
     

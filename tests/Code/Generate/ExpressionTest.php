@@ -2,14 +2,14 @@
 
 namespace Psc\Code\Generate;
 
-class MyTestClassTest extends \Psc\Code\Test\Base {
+class ExpressionTest extends \Psc\Code\Test\Base {
   
-  protected $myTestClass;
+  protected $expression;
   
   public function setUp() {
-    $this->chainClass = 'Psc\Code\Generate\MyTestClass';
+    $this->chainClass = 'Psc\Code\Generate\Expression';
     parent::setUp();
-    //$this->myTestClass = new MyTestClass();
+    //$this->expression = new Expression();
   }
   
   public function testAcceptance() {

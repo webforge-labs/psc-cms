@@ -19,6 +19,7 @@ class Person extends \Psc\Doctrine\Object {
   protected $id;
   
   public function getEntityName() {
+    throw new \Psc\Exception('getEntityName() überschreiben. Denn hier würde nur Entities\Person stehen.');
     return 'Entities\Person';
   }
   

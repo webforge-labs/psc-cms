@@ -48,6 +48,9 @@ class AnnotationWriterTest extends \Psc\Code\Test\Base {
     // testSinglePlainValue
     $tests[] = '@Column(type="integer")';
     
+    // testBoolValue
+    $tests[] = '@Column(nullable=true)';
+    
     // single flat plain
     $tests[] = '@ChangeTrackingPolicy("NOTIFY")';
 
@@ -66,7 +69,7 @@ class AnnotationWriterTest extends \Psc\Code\Test\Base {
     // eigene Psc-Annotations
     $tests[] = '@\Psc\Code\Compile\Annotations\Compiled';
     $tests[] = '@\Psc\Code\Compile\Annotations\Property(name="prop1name")';
-    $tests[] = '@\Psc\Code\Compile\Annotations\Property(name="prop1name", getter=FALSE)';
+    $tests[] = '@\Psc\Code\Compile\Annotations\Property(name="prop1name", getter=false)';
     
     $tests = array_map(function ($arg) { return array($arg); }, $tests);
     return $tests;

@@ -26,6 +26,25 @@ class TypeTest extends \Psc\Code\Test\Base {
       $type4 = \Psc\Data\Type\Type::create();
     });
   }
+  
+  public function testAdvancedCreation_object() {
+    $objectType = Type::create('Object<Psc\Exception>');
+    $this->assertInstanceOf('Psc\Data\Type\ObjectType', $objectType);
+    $this->assertEquals('Psc\Exception', $objectType->getGClass()->getFQN());
+  }
+
+  public function testAdvancedCreation_array() {
+    $arrayType = Type::create('String[]');
+    $this->assertInstanceOf('Psc\Data\Type\ArrayType', $arrayType);
+    $this->assertEquals('String', $arrayType->getType()->getName());
+  }
+
+  public function testAdvancedCreation_objectInArray() {
+    $arrayType = Type::create('Object<Psc\Exception>[]');
+    $this->assertInstanceOf('Psc\Data\Type\ArrayType', $arrayType);
+    $this->assertInstanceOf('Psc\Data\Type\ObjectType', $objectType = $arrayType->getType());
+    $this->assertEquals('Psc\Exception', $objectType->getGClass()->getFQN());
+  }
 }
 
 class CustomStringType extends Type {

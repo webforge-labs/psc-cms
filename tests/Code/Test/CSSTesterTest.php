@@ -60,10 +60,7 @@ HTML_FORM;
 
   public function createTest(\Closure $innerTestCode) {
     $innerTestCase = $this->doublesManager->createClosureTestCase(function () use ($selector, $html) {
-      
     });
-    
-    
   }
 }
 ?>

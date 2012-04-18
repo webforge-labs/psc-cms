@@ -29,12 +29,16 @@ class UserManagerTest extends \Psc\Code\Test\Base {
     $this->assertSame($user, $this->userManager->get($id));
   }
   
+  /**
+   * @expectedException Psc\CMS\NoUserException
+   */
   public function testGetThrowsNoUserFoundException() {
     $this->entityRepository = $this->doublesManager->buildEntityRepository('Entities\User')
-      //->expectHydrates($user,$this->once())
+      ->expectDoesNotFind('p.sch@blubb.de',$this->once())
       ->build();
     
     $this->userManager = new UserManager($this->entityRepository);
+    $this->userManager->get('p.sch@blubb.de');
   }
 }
 ?>

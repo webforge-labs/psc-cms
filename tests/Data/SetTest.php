@@ -73,6 +73,35 @@ class SetTest extends \Psc\Code\Test\Base {
   }
   
   
+  public function testKeys() {
+    $meta = new SetMeta(array(
+      0=>new ArrayType(),
+      '0.label' => new StringType(),
+      '0.number' => new SmallIntegerType(),
+      1=>new ArrayType(),
+      '1.label' => new StringType(),
+      '1.number' => new SmallIntegerType()
+    ));
+
+    $set = new Set(Array(
+      '0'=>array(
+        'label'=>'C1',
+        'number'=>1
+      ),
+      1=>array( // ob integer oder string does not matter
+        'label'=>'C2',
+        'number'=>2
+      )
+    ), $meta);
+    
+    $this->assertEquals(array('0','0.label','0.number','1','1.label','1.number'),
+                        $set->getKeys()
+                       );
+    $this->assertEquals(array(0,1),
+                        $set->getRootKeys()
+                       );
+  }
+  
   /**
    * @expectedException Psc\Data\FieldNotDefinedException
    * @depends testConstruct

@@ -7,6 +7,7 @@ use Psc\Data\ArrayCollection;
 use Psc\Data\Set;
 use Psc\Data\Type\Type;
 use Psc\Data\SetMeta;
+use Psc\Doctrine\TestEntities\Tag as ArticleTag;
 use Psc\PSC;
 
 class ProcessorTest extends \Psc\Doctrine\DatabaseTest {
@@ -21,35 +22,14 @@ class ProcessorTest extends \Psc\Doctrine\DatabaseTest {
     $this->con = 'tests';
     $this->chainClass = 'Psc\Doctrine\Processor';
     parent::setUp();
-    $this->compileArticle();
+    $this->loadEntity('Psc\Doctrine\TestEntities\Article');
+    $this->loadEntity('Psc\Doctrine\TestEntities\Tag');
     $this->article = new TestEntities\Article('a1: Wahl in Russland: Wieder protestieren Zehntausende gegen Putin', 'Mit einer kilometerlangen Menschenkette haben Regierungsgegner in Moskau eine Woche vor der Präsidentenwahl gegen Kremlkandidat Wladimir Putin protestiert. "Russland ohne Putin!", forderten die Demonstranten auf dem 15,6 Kilometer langen Gartenring im Zentrum der Hauptstadt. Ziel der friedlichen Aktion war es, dass sich etwa 35.000 Menschen mit weißen Bändchen am Revers entlang des Rings als Zeichen ihrer geschlossenen Opposition an den Händen hielten. Es war die größte von mehreren landesweiten Protestaktionen "Für ehrliche Wahlen" am Wochenende.');
     
-    $this->emm = $this->doublesManager->createEntityManagerMock(PSC::getProject()->getModule('Doctrine'), 'tests');
+    $this->emm = $this->doublesManager->createEntityManagerMock($this->module, 'tests');
     $this->processor = new Processor($this->article, $this->emm);
   }
-  
-  public function compileArticle() {
-    $modelCompiler = new ModelCompiler();
-    extract($modelCompiler->getClosureHelpers());
-    $modelCompiler->setOverwriteMode(TRUE);
     
-    $entityBuilder = $modelCompiler->compile(
-      $entity(new GClass('Psc\Doctrine\TestEntities\Article')),
-        $defaultId(),
-        $property('title', $type('String')),
-        $property('content', $type('MarkupText')),
-      $constructor(
-        $argument('title'),
-        $argument('content')
-      ),
-      $manyToMany('\Psc\Doctrine\TestEntities\Tag', TRUE)
-    );
-    
-    //print $entityBuilder->getWrittenFile();
-    //$this->installEntity('Psc\Doctrine\TestEntities\Tag');
-    $this->loadEntity('Psc\Doctrine\TestEntities\Article');
-  }
-  
   public static function provideCollectionTypes() {
     return array(
                  array('ref'),
@@ -63,33 +43,33 @@ class ProcessorTest extends \Psc\Doctrine\DatabaseTest {
    */
   public function testSynchronizeCollection($type) {
     if ($type === 'ref') {
-      $this->article->addTag($u1 = new TestEntities\Tag('Russland'));
-      $this->article->addTag($u2 = new TestEntities\Tag('Demonstration'));
-      $this->article->addTag($d1 = new TestEntities\Tag('Protest'));
-      $this->article->addTag($d2 = new TestEntities\Tag('Wahl'));
-      $n1 = new TestEntities\Tag('Präsidentenwahl');
+      $this->article->addTag($u1 = new ArticleTag('Russland'));
+      $this->article->addTag($u2 = new ArticleTag('Demonstration'));
+      $this->article->addTag($d1 = new ArticleTag('Protest'));
+      $this->article->addTag($d2 = new ArticleTag('Wahl'));
+      $n1 = new ArticleTag('Präsidentenwahl');
     }
     if ($type === 'id') {
-      $this->article->addTag($u1 = new TestEntities\Tag('Russland'));
+      $this->article->addTag($u1 = new ArticleTag('Russland'));
       $u1->setId(1);
-      $this->article->addTag($u2 = new TestEntities\Tag('Demonstration'));
+      $this->article->addTag($u2 = new ArticleTag('Demonstration'));
       $u2->setId(2);
-      $this->article->addTag($d1 = new TestEntities\Tag('Protest'));
+      $this->article->addTag($d1 = new ArticleTag('Protest'));
       $d1->setId(4);
-      $this->article->addTag($d2 = new TestEntities\Tag('Wahl'));
+      $this->article->addTag($d2 = new ArticleTag('Wahl'));
       $d2->setId(5);
-      $n1 = new TestEntities\Tag('Präsidentenwahl');
+      $n1 = new ArticleTag('Präsidentenwahl');
       $n1->setId(10);
     }
     if ($type === 'mixed') {
-      $this->article->addTag($u1 = new TestEntities\Tag('Russland'));
+      $this->article->addTag($u1 = new ArticleTag('Russland'));
       $u1->setId(1);
-      $this->article->addTag($u2 = new TestEntities\Tag('Demonstration'));
-      $this->article->addTag($d1 = new TestEntities\Tag('Protest'));
+      $this->article->addTag($u2 = new ArticleTag('Demonstration'));
+      $this->article->addTag($d1 = new ArticleTag('Protest'));
       $d1->setId(4);
-      $this->article->addTag($d2 = new TestEntities\Tag('Wahl'));
+      $this->article->addTag($d2 = new ArticleTag('Wahl'));
       $d2->setId(5);
-      $n1 = new TestEntities\Tag('Präsidentenwahl');
+      $n1 = new ArticleTag('Präsidentenwahl');
     }
     $this->assertEntityCollectionSame(new ArrayCollection(array($u1,$u2,$d1,$d2)), $this->article->getTags(), 'tags-initial');
     
@@ -113,7 +93,7 @@ class ProcessorTest extends \Psc\Doctrine\DatabaseTest {
   }
   
   public function testSynchronizeCollection_fromInverse() {
-    $this->tag = new TestEntities\Tag('Wahl');
+    $this->tag = new ArticleTag('Wahl');
     $this->processor = new Processor($this->tag, $this->emm);
     
     $a1 = $this->article;

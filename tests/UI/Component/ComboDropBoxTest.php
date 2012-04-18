@@ -5,27 +5,20 @@ namespace Psc\UI\Component;
 class ComboDropBoxTest extends TestCase {
   
   public function setUp() {
-    $this->markTestIncomplete('@TODO: Hier ein Beispiel bauen');
+    $this->markTestSkipped('@TODO: Work in Progress');
 
-    $this->componentClass = $this->chainClass = 'Psc\UI\Component\FormComboDropBox';
+    $this->componentClass = $this->chainClass = 'Psc\UI\Component\ComboDropBox';
     parent::setUp();
   }
   
   public function testHTML() {
-    $html = $this->component->getHTML();
-    
-    $input = $this->test->css('textarea', $html)
-      ->count(1, 'keine textarea gefunden')
-      ->hasAttribute('name', 'testName')
-      ->hasText($this->testValue)
-      ->getJQuery();
-    
-    $this->assertLabelFor($input->attr('id'), $html);
+    // html wird dasselbe sein wie bei Psc\UI\ComboDropBox2 ;)
+    // höchstens testen ob es gewrapped ist
     
   }
   
   public function createFormComboDropBox() {
-    return new FormComboDropBox();
+    return new ComboDropBox();
   }
 }
 ?>

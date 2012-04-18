@@ -2,7 +2,7 @@
 
 namespace Psc\HTML;
 
-class WidgetBaseTest extends \Psc\Code\Test\Base {
+class WidgetBaseTest extends \Psc\Code\Test\HTMLTestCase {
   
   public function setUp() {
     $this->chainClass = 'Psc\HTML\WidgetBase';
@@ -10,11 +10,28 @@ class WidgetBaseTest extends \Psc\Code\Test\Base {
   }
   
   public function testConstruct() {
-    $this->markTestIncomplete('Stub vom Test-Creater');
+    $widgetBase = new Accordion('accordion',array('open'=>1));
+    
+    $this->assertInstanceOf('Psc\HTML\HTMLInterface', $widgetBase);
+    
+    $this->html = $widgetBase->html();
+    
+    $this->test->css('div')
+      ->count(1)
+    ;
+    
+    $this->test->css('script[type="text/javascript"]')
+        ->atLeast(1)
+        ->containsText('.accordion(')
+    ;
   }
+}
+
+class Accordion extends WidgetBase {
   
-  public function createWidgetBase() {
-    return new WidgetBase();
+  protected function doInit() {
+    $this->html = \Psc\HTML\HTML::tag('div');
+    parent::doInit();
   }
 }
 ?>

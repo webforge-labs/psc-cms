@@ -8,7 +8,6 @@ class AbstractEntityTest extends \Psc\Code\Test\Base {
 
   public function testxx() {
     $entity = $this->getInstance();
-    
   }
   
   public function testEquals() {
@@ -36,6 +35,14 @@ class AbstractEntityTest extends \Psc\Code\Test\Base {
 
     $this->assertFalse($e2->equals($otherEntity));
     $this->assertFalse($emptyEntity->equals($otherEntity));
+  }
+  
+  public function testIsNew() {
+    $entity = $this->getInstance(NULL);
+    $this->assertTrue($entity->isNew());
+    
+    $entity= $this->getInstance(7);
+    $this->assertFalse($entity->isNew());
   }
   
   public function testGetEntityLabel() {

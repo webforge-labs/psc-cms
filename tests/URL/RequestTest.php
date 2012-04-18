@@ -12,7 +12,7 @@ class RequestTest extends \Psc\Code\Test\Base {
        ich kann uwar hier nochmal curl als driver abstrahieren ode rso, aber das hilft mir auch nicht weiter
        irgendwann muss ich die curl aufrufe testen
     */
-    $this->markTestSkipped('fragile test');
+    $this->markTestSkipped('test ist nicht unabhängig von der Internet-Connection');
     
     $request = new Request('http://www.google.de/');
     $request->init()->process();
@@ -27,7 +27,6 @@ class RequestTest extends \Psc\Code\Test\Base {
   }
   
   public function testPostWithInnerArrays() {
-    $this->markTestSkipped('fragile test');
     $request = new Request('http://www.google.de');
     
     // das gibt dne error (array to string conversion) weil er versucht den inneren in einen string zu konvertieren

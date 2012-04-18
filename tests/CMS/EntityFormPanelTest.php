@@ -3,7 +3,6 @@
 namespace Psc\CMS;
 
 use Psc\CMS\EntityFormPanel;
-use Psc\Doctrine\ModelCompiler;
 use Psc\Code\Generate\GClass;
 use Psc\DateTime\DateTime;
 
@@ -13,32 +12,6 @@ class EntityFormPanelTest extends \Psc\Doctrine\DatabaseTest {
     $this->con = 'tests';
     parent::setUp();
     $this->chainClass = 'Psc\CMS\EntityFormPanel';
-    $this->compilePerson();
-  }
-  
-  public function compilePerson() {
-    $modelCompiler = new ModelCompiler();
-    extract($modelCompiler->getClosureHelpers());
-    $modelCompiler->setOverwriteMode(TRUE);
-    
-    $entityBuilder = $modelCompiler->compile(
-      $entity(new GClass('Psc\Doctrine\TestEntities\Person')),
-        $defaultId(),
-        $property('name', $type('String')),
-        $property('firstName', $type('String')),
-        $property('email', $type('Email')),
-        $property('birthday', $type('Birthday')),
-        $property('yearKnown', $type('Boolean')),
-      $constructor(
-        $argument('name'),
-        $argument('email', NULL),
-        $argument('firstName', NULL),
-        $argument('birthday', NULL)
-      )
-    );
-
-    
-    //print $entityBuilder->getWrittenFile();
     $this->installEntity('Psc\Doctrine\TestEntities\Person');
   }
   

@@ -112,6 +112,13 @@ class AnnotationTest extends \Psc\Code\Test\Base {
     // in der ersten joinColumn wird hier referencedColumnName nicht im string ausgegeben, da es der default für die annotation ist
   }
   
+  public function testNullableRegression() {
+    $column = $this->createORMAnnotation('Column');
+    $column->type = 'string';
+    $column->nullable = true;
+    
+    $this->assertEquals('@Column(nullable=true)', $column->toString());
+  }
   
   public function testCreateFactory() {
     $expected = $this->createORMAnnotation('ManyToMany');

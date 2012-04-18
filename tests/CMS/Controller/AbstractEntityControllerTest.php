@@ -5,6 +5,7 @@ namespace Psc\CMS\Controller;
 /**
  * @TODO testen ob init*() funktionen aufgerufen werden(mit korrekten parametern)
  * @TODO testen ob propertiesOrder bei getEntityFormular benutzt wird
+ * @TODO refactor: EntityRepositoryBuilder benutzen
  */
 class AbstractEntityControllerTest extends \Psc\Code\Test\Base {
   
@@ -25,6 +26,7 @@ class AbstractEntityControllerTest extends \Psc\Code\Test\Base {
     
     $this->setEntityName($entityName);
     $this->article = new \Psc\Doctrine\TestEntities\Article('Lorem Ipsum:', 'Lorem Ipsum Dolor sit amet... <more>');
+    $this->assertInstanceOf('Psc\Doctrine\Entity', $this->article);
     $this->article->setId(7);
   }
   
@@ -33,9 +35,23 @@ class AbstractEntityControllerTest extends \Psc\Code\Test\Base {
     $this->assertSame($this->article, $this->controller->getEntity($this->article->getIdentifier()));
   }
   
+  /**
+   * @expectedException Psc\Net\HTTP\HTTPException
+   */
+  public function testGetEntity_ThrowsHTTPException() {
+    $this->expectRepositoryHydratesNot(777);
+    $this->controller->getEntity(777);
+  }
+  
   public function testGetEntity_toFormular() {
     $this->expectRepositoryHydrates($this->article);
     $this->assertInstanceOf('Psc\CMS\EntityFormPanel', $this->controller->getEntity($this->article->getIdentifier(), 'form'));
+  }
+
+  public function testGetEntity_toGrid() {
+    $this->articles = $this->loadTestEntities('articles');
+    $this->expectRepositoryFinds($this->articles, array());
+    $this->assertInstanceOf('Psc\CMS\EntityGridPanel', $this->controller->getEntities(array(), 'grid'));
   }
   
   public function testSaveEntity() {
@@ -76,6 +92,20 @@ class AbstractEntityControllerTest extends \Psc\Code\Test\Base {
                      ->will($this->returnValue($entity));
   }
 
+  protected function expectRepositoryHydratesNot($identifier) {
+    $this->repository->expects($this->once())->method('hydrate')
+                     ->with($this->equalTo($identifier))
+                     ->will($this->throwException(
+                        \Psc\Doctrine\EntityNotFoundException::criteria(array('identifier'=>$identifier))
+                      ));
+  }
+
+  protected function expectRepositoryFinds($entities, Array $by) {
+    $this->repository->expects($this->once())->method('findBy')
+                     ->with($this->equalTo($by))
+                     ->will($this->returnValue($entities));
+  }
+
   protected function expectRepositorySaves($entity) {
     $this->repository->expects($this->once())->method('save')
                      ->with($this->equalTo($entity))
@@ -96,7 +126,7 @@ class AbstractEntityControllerTest extends \Psc\Code\Test\Base {
   
   protected function createRepositoryMock($em, $entityName) {
     return $this->getMock('Psc\Doctrine\EntityRepository',
-                   array('hydrate','save'),
+                   array('hydrate','save','findBy'),
                    array($em, $this->getMock('Doctrine\ORM\Mapping\ClassMetadata', array(), array($entityName)))
                   );
   }

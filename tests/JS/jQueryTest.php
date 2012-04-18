@@ -66,6 +66,18 @@ HTML_FORM;
     $this->assertTrue($input->getElement()->hasAttribute('value'));
   }
   
+  public function testSelectIndex() {
+    $firstInput = new jQuery('form.main fieldset.user-data.group input:nth-of-type(2)', $this->formHTML);
+    $this->assertEquals(array('<input type="text" name="name" value=""/>'), $firstInput->export());
+    $firstInput = new jQuery('form.main fieldset.user-data.group input:eq(1)', $this->formHTML);
+    $this->assertEquals(array('<input type="text" name="name" value=""/>'), $firstInput->export());
+
+    $firstInput = new jQuery('form.main fieldset.user-data.group input:nth-of-type(1)', $this->formHTML);
+    $this->assertEquals(array('<input type="text" name="email" value=""/>'), $firstInput->export());
+    $firstInput = new jQuery('form.main fieldset.user-data.group input:eq(0)', $this->formHTML);
+    $this->assertEquals(array('<input type="text" name="email" value=""/>'), $firstInput->export());
+  }
+  
   public function testHasClass() {
     $form = new jQuery('form.main', $this->formHTML);
     $this->assertTrue($form->hasClass('main'));
@@ -154,5 +166,4 @@ HTML_FORM;
     
   }
 }
-
 ?>
