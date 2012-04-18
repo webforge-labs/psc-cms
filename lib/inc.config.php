@@ -19,6 +19,14 @@ $GLOBALS['conf']['db']['tests']['database'] = 'psc-cms_tests';
 $GLOBALS['conf']['db']['tests']['port'] = NULL;
 $GLOBALS['conf']['db']['tests']['charset'] = 'utf8';
 
+if ($project->getHost() === 'pegasus') {
+  $GLOBALS['conf']['db']['default']['user'] = 'psc-cms';
+  $GLOBALS['conf']['db']['default']['password'] = 'L6W2vHEbKLjeUEr2';
+
+  $GLOBALS['conf']['db']['tests']['user'] = 'psc-cms';
+  $GLOBALS['conf']['db']['tests']['password'] = 'L6W2vHEbKLjeUEr2';
+}
+
 $GLOBALS['conf']['doctrine']['entities']['namespace'] = 'Entities';
 $GLOBALS['conf']['doctrine']['entities']['names'] = array();
 
