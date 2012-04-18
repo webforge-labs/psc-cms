@@ -39,6 +39,9 @@ class ProjectMainTest extends \Psc\Code\Test\Base {
   }
   
   public function testUserManagerCall() {
+    if (getenv('PEGASUS_CI')) {
+      $this->markTestSkipped('kein lokaler webserver am start');
+    }
     $this->main->init();
     $this->assertCount(2, $this->main->getFrontController()->getRequestHandler()->getServices(), 'Ist EntityService hinzugefügt worden?');
     $this->response = $this->request('GET', '/entities/users/grid');
