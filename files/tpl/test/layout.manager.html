@@ -1,0 +1,38 @@
+<?php
+
+namespace Psc\UI;
+
+use Psc\UI\Form;
+//$debugger = new \Psc\HTML\Debugger();
+
+$pane = new SplitPane(70);
+
+$pane->setLeftContent(
+  $layout = Form::group('Layout', NULL)
+);
+$layout->getContent()->div->setStyle('min-height','600px');
+
+$pane->setRightContent(
+  Accordion::create(array('autoHeight'=>true))
+    ->addSection('Text', array(
+      new Button('Paragraph'),
+      new Button('Headline'),
+      new Button('Sub-Headline'),
+      new Button('List'),
+    ))
+    ->addSection('Elements', array(
+      new Button('Image')
+    ))
+    ->html()
+      ->addClass('\Psc\right-accordion')
+);
+
+//$main = Form::group('LayoutManager', $pane->html());
+$main = HTML::tag('div', $pane->html());
+
+$main->setAttribute('id','layout-manager')->addClass('\Psc\layout-manager');
+
+print $main;
+
+//print \Psc\JS\Helper::embed("console.log($.pscUI); $.pscUI('layout','loaded', $('#layout-manager'))");
+?>

@@ -19,6 +19,7 @@ $bootLoader
   ->setProjectPath('psc-cms','tests', './tests/')
   ->setProjectPath('psc-cms','src', './lib/')
   ->setProjectPath('psc-cms','files', './files/')
+  ->setProjectPath('psc-cms',PSC::PATH_TPL, './files/tpl')
   ->setProjectPath('psc-cms',PSC::PATH_HTDOCS, './files/htdocs')
   ->setProjectPath('psc-cms',PSC::PATH_TESTDATA, './files/testdata/')
 ;

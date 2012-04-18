@@ -1,0 +1,20 @@
+<?php
+
+use \Psc\HTML\HTML,
+    \Psc\Doctrine\Helper as DoctrineHelper
+;
+?>
+<h2>Willkommen im Psc - CMS</h2>
+<div class="content-text">
+<p>Inhalte, die bearbeitet werden sollen, können dieser Tabs-Liste auf der rechten Seiten im Akkordion: "Inhalte" hinzugefügt werden.<br />
+Hilfe und Tipps gibt es auf der rechten Seite im Akkordion: "Tipps"</p>
+<br />
+<p><?= $cms->createTemplateTCI(array('CMS','changelog'), 'Changelog')->getLink() ?></p>
+<p>Bei Fragen, Schwierigkeiten oder Fehlern, bitte die Fehlermeldung kopieren (oder einen Screenshot machen) und den Entwickler kontaktieren:</p>
+
+<p>
+Philipp Scheit<br />
+p.scheit@ps-webforge.com<br />
+Telefon: +49 69 15627503<br />
+</p>
+</div>
