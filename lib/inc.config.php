@@ -19,7 +19,7 @@ $GLOBALS['conf']['db']['tests']['database'] = 'psc-cms_tests';
 $GLOBALS['conf']['db']['tests']['port'] = NULL;
 $GLOBALS['conf']['db']['tests']['charset'] = 'utf8';
 
-if ($project->getHost() === 'pegasus') {
+if (getenv('PEGASUS_CI')) {
   $GLOBALS['conf']['db']['default']['user'] = 'psc-cms';
   $GLOBALS['conf']['db']['default']['password'] = 'L6W2vHEbKLjeUEr2';
 
