@@ -141,7 +141,6 @@ class BootLoader {
     }
     
     $autoLoader->init();
-    $autoLoader->setDebug(TRUE);
     PSC::setAutoLoader($autoLoader);
     PSC::setProjectsFactory($factory = $this->getProjectsFactory());
   }
@@ -353,7 +352,7 @@ class ClassAutoLoader {
       
       return TRUE;
     } elseif ($this->debug) {
-      throw new \Exception('File for Class not Found: '.$class.' This Paths: '.print_r($this->paths,true));
+      throw new \Exception('File for Class not Found: '.$class.' This Paths '.count($this->paths).' Fles');
     }
     
     return FALSE;
