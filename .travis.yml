@@ -4,6 +4,7 @@ php:
   
 env:
   - PSC_CMS=$HOME/builds/pscheit/psc-cms/bin/
+  - PHPUNIT_TESTSUITE=true
   
 before_script:
   - mysql -e 'create database IF NOT EXISTS `psc-cms_tests`;'
