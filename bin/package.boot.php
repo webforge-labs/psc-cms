@@ -166,9 +166,6 @@ class BootLoader {
     return $this;
   }
   
-  
-  public function bootProject($name, 
-  
   /**
    * @calls init()
    */
@@ -400,7 +397,7 @@ class ClassAutoLoader {
     $parentLength = mb_strlen($directory);
     $paths = array();
     foreach ($iterator as $file) {
-      if ($file->getExtension() === 'php') {
+      if (mb_substr((string) $file,-3) === 'php') {
         $class = mb_substr(str_replace(DIRECTORY_SEPARATOR, '\\', mb_substr($file->getRealPath(),$parentLength+1)),0,-4); // mb_strlen('.php')
         $paths[$class] = (string) $file;
       }
@@ -420,7 +417,7 @@ class ClassAutoLoader {
     foreach ($iterator as $file) {
       $fInfo = $file->getFileInfo();
       
-      if ($fInfo->getExtension() === 'php') {
+      if (mb_substr((string) $fInfo,-3) === 'php') {
         $class = mb_substr(str_replace('/', '\\', mb_substr((string) $fInfo, mb_strlen($wrapped)+1)), 0,-4);
         $paths[$class] = (string) $fInfo;
       }
