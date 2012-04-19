@@ -6,7 +6,7 @@ use TestHint,
     stdClass,
     Special\classn\In\nspace\Banane;
 
-abstract class TestClass extends \Psc\Object {
+abstract class TestClass extends Object {
   
   protected $prop1 = 'banane';
   
