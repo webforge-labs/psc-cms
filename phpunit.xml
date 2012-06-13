@@ -12,6 +12,10 @@
          bootstrap="./bin/bootstrap.php"
 >
     <testsuites>
+        <testsuite name="Psc - CMS - Pre">
+          <file>tests/EnvironmentTest.php</file>
+        </testsuite>
+
         <testsuite name="Psc - CMS">
           <directory>./tests</directory>
         </testsuite>

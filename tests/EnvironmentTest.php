@@ -14,10 +14,21 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase {
   public function setUp() {
     $this->saveIncludePath = get_include_path();
   }
-  
+
   public function testPHPSettings() {
-    // mb_string enabled und internal encoding = UTF-8
-    $this->markTestIncomplete('TODO');
+    $this->assertAndTrySetINI('mbstring.internal_encoding', 'UTF-8');
+  }
+  
+  protected function assertINI($iniName, $iniValue) {
+    $this->assertEquals($iniValue, ini_get($iniName), 'php.ini value: '.$iniName.' muss korrekt gesetzt sein');
+  }
+  
+  protected function assertAndTrySetINI($iniName, $iniValue) {
+    if (ini_get($iniName) != $iniValue) {
+      ini_set($iniName, $iniValue);
+    }
+    
+    $this->assertINI($iniName, $iniValue);
   }
   
   
