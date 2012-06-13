@@ -6,6 +6,7 @@ use Psc\UI\Component\Radios;
 
 /**
  * @group component
+ * @group class:Psc\UI\Component\Radios
  */
 class RadiosTest extends TestCase {
   

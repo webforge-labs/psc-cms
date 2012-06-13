@@ -6,6 +6,9 @@ use Psc\Doctrine\CollectionSynchronizer;
 use Psc\Doctrine\TestEntities\Tag;
 use Psc\Data\ArrayCollection;
 
+/**
+ * @group class:Psc\Doctrine\CollectionSynchronizer
+ */
 class CollectionSynchronizerTest extends \Psc\Doctrine\DatabaseTest {
   
   protected $normalTags;

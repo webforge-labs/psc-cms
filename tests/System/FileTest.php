@@ -1,9 +1,14 @@
 <?php
 
+namespace Psc\System\File;
+
 use \Psc\System\File;
 use \Psc\System\Dir;
 use \Psc\PSC;
 
+/**
+ * @group class:Psc\System\File
+ */
 class FileTest extends \Psc\Code\Test\Base {
   
   public function testConstructor() {

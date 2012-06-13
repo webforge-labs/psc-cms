@@ -2,11 +2,12 @@
 
 namespace Entities;
 
+use Doctrine\ORM\Mapping AS ORM;
+
 /**
- * Entity(repositoryClass="GREG\Entities\ImageRepository")
- * @Entity
- * @Table(name="images")
- * @HasLifecycleCallbacks
+ * @ORM\Entity
+ * @ORM\Table(name="images")
+ * @ORM\HasLifecycleCallbacks
  */
 class Image extends \Psc\Doctrine\Entities\BasicImage {
 
@@ -15,12 +16,10 @@ class Image extends \Psc\Doctrine\Entities\BasicImage {
   }
 
   /**
-   * @PostRemove
+   * @ORM\PostRemove
    */
   public function triggerRemoved() {
     return parent::triggerRemoved();
   }
-  
 }
-
 ?>

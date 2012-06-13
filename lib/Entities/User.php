@@ -2,9 +2,11 @@
 
 namespace Entities;
 
+use Doctrine\ORM\Mapping AS ORM;
+
 /**
- * @Entity(repositoryClass="Entities\UserRepository")
- * @Table(name="users")
+ * @ORM\Entity(repositoryClass="Entities\UserRepository")
+ * @ORM\Table(name="users")
  */
 class User extends \Psc\CMS\User {
   

@@ -4,6 +4,9 @@ namespace Psc\Code\Compile\Annotations;
 
 use Psc\Code\Generate\GClass;
 
+/**
+ * @group class:Psc\Code\Compile\Annotations\Property
+ */
 class PropertyTest extends \Psc\Code\AnnotationTestCase {
   
   public function setUp() {

@@ -4,6 +4,9 @@ namespace Psc\Data\Type;
 
 use Psc\Data\Type\SmallIntegerType;
 
+/**
+ * @group class:Psc\Data\Type\SmallIntegerType
+ */
 class SmallIntegerTypeTest extends IntegerTypeTestCase {
 
   public function testConstruct() {

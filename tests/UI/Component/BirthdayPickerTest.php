@@ -6,6 +6,7 @@ use Psc\UI\Component\BirthdayPicker;
 use Psc\DateTime\DateTime;
 
 /**
+ * @group class:Psc\UI\Component\BirthdayPicker
  * @group component
  */
 class BirthdayPickerTest extends TestCase {

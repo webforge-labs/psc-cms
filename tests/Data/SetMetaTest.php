@@ -8,6 +8,9 @@ use Psc\Data\Type\ArrayType;
 use Psc\Data\Type\IntegerType;
 use Psc\Data\Type\SmallIntegerType;
 
+/**
+ * @group class:Psc\Data\SetMeta
+ */
 class SetMetaTest extends \Psc\Code\Test\Base {
 
   public function testConstruct() {

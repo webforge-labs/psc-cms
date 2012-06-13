@@ -5,6 +5,7 @@ namespace Psc\Data;
 use \Psc\Data\ObjectCache;
 
 /**
+ * @group class:Psc\Data\ObjectCache
  * @group cache
  */
 class ObjectCacheTest extends \Psc\Code\Test\Base {

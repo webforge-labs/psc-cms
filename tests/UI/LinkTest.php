@@ -4,6 +4,9 @@ namespace Psc\UI;
 
 use Psc\UI\Link;
 
+/**
+ * @group class:Psc\UI\Link
+ */
 class LinkTest extends \Psc\Code\Test\Base {
 
   public function testAPI() {

@@ -4,7 +4,10 @@ namespace Psc\Data\Type;
 
 use Psc\Data\Type\EmailType;
 
-class EmailTypeTest extends \Psc\Code\Test\Base {
+/**
+ * @group class:Psc\Data\Type\EmailType
+ */
+class EmailTypeTest extends TestCase {
 
   public function setUp() {
     $this->chainClass = 'Psc\Data\Type\EmailType';
@@ -13,6 +16,10 @@ class EmailTypeTest extends \Psc\Code\Test\Base {
 
   public function testConstruct() {
     $this->createEmailType();
+  }
+
+  public function testMapsComponent() {
+    $this->assertTypeMapsComponent('EmailField', new EmailType);
   }
 
   public function createEmailType() {

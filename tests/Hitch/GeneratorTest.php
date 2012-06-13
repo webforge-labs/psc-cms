@@ -6,17 +6,9 @@ use Psc\Code\Generate\ClassWriter;
 use Psc\Code\Generate\GClass;
 use Psc\System\File;
 
-class MockGenerator extends Generator {
-  
-  public $mockDir;
-  
-  public function getGenerationFile(GClass $class) {
-    return new File($this->mockDir, $class->getClassName().'.php');
-  }
-}
-
 /**
  * @group Hitch
+ * @group class:Psc\Hitch\MockGener
  */
 class GeneratorTest extends \Psc\Code\Test\Base {
   
@@ -85,4 +77,12 @@ class GeneratorTest extends \Psc\Code\Test\Base {
   }
 }
 
+class MockGenerator extends Generator {
+  
+  public $mockDir;
+  
+  public function getGenerationFile(GClass $class) {
+    return new File($this->mockDir, $class->getClassName().'.php');
+  }
+}
 ?>

@@ -2,6 +2,9 @@
 
 namespace Psc\CMS;
 
+/**
+ * @group class:Psc\CMS\EntityGridPanel
+ */
 class EntityGridPanelTest extends \Psc\Code\Test\HTMLTestCase {
   
   protected $entityGridPanel;
@@ -11,8 +14,9 @@ class EntityGridPanelTest extends \Psc\Code\Test\HTMLTestCase {
     parent::setUp();
     
     $this->entities = $this->loadTestEntities('users');
-    $this->classMetadata = $this->getMock('Doctrine\ORM\Mapping\ClassMetadata', array('getIdentifierFieldNames'), array('Psc\Doctrine\TestEntitites\User'));
-    $this->classMetadata->expects($this->any())->method('getIdentifierFieldNames')->will($this->returnValue(array('email')));
+    //$this->classMetadata = $this->getMock('Doctrine\ORM\Mapping\ClassMetadata', array('getIdentifierFieldNames'), array('Psc\Doctrine\TestEntitites\User'));
+    //$this->classMetadata->expects($this->any())->method('getIdentifierFieldNames')->will($this->returnValue(array('email')));
+    $this->classMetadata = \Psc\PSC::getProject()->getModule('Doctrine')->getEntityManager()->getClassMetadata('Entities\User');
     $this->entityMeta = new \Psc\CMS\UserEntityMeta('Entities\User', $this->classMetadata);
     $this->entityGridPanel = new EntityGridPanel($this->entityMeta, 'User Verwaltung'); 
   }
@@ -23,6 +27,8 @@ class EntityGridPanelTest extends \Psc\Code\Test\HTMLTestCase {
     $this->entityGridPanel->addEntities($this->entities);
     
     $this->html = $this->entityGridPanel->html();
+    $this->test->css('fieldset.psc-cms-ui-entity-grid-panel-container')->count(1);
+    
     $this->test->css('table.psc-cms-ui-entity-grid-panel tr th.email')
       ->count(1)
       ->hasText('E-Mail') // magic :>
@@ -55,6 +61,10 @@ class EntityGridPanelTest extends \Psc\Code\Test\HTMLTestCase {
     $this->test->css('table.psc-cms-ui-entity-grid-panel tr td.tci button.psc-cms-ui-button')
       ->count(count($this->entities))
     ;
+    
+    /* new button muss da sein */
+    $this->test->css('button.psc-cms-ui-button-new')
+      ->count(1);
   }
 }
 ?>

@@ -2,6 +2,9 @@
 
 namespace Psc\UI\Component;
 
+/**
+ * @group class:Psc\UI\Component\PasswordField
+ */
 class PasswordFieldTest extends TestCase {
   
   public function setUp() {

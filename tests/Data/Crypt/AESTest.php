@@ -4,6 +4,9 @@ namespace Psc\Data\Crypt;
 
 use \Psc\Data\Crypt\AES;
 
+/**
+ * @group class:Psc\Data\Crypt\AES
+ */
 class AESTest extends \Psc\Code\Test\Base {
 
   public function testIntegrity() {      

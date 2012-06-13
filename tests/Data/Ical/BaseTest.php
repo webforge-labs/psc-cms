@@ -7,6 +7,9 @@ use Psc\DateTime\DateTime;
 use Psc\DateTime\Date;
 use Psc\DateTime\DateInterval;
 
+/**
+ * @group class:Psc\Data\Ical\Base
+ */
 class BaseTest extends \Psc\Code\Test\Base {
 
   public function setUp() {

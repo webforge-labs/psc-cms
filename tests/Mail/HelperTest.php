@@ -4,6 +4,9 @@ namespace Psc\tests\Mail;
 
 use \Psc\Mail\Helper as email;
 
+/**
+ * @group class:Psc\tests\Mail\Helper
+ */
 class HelperTest extends \PHPUnit_Framework_TestCase {
   
   

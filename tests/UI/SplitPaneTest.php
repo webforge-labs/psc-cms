@@ -2,6 +2,9 @@
 
 namespace Psc\UI;
 
+/**
+ * @group class:Psc\UI\SplitPane
+ */
 class SplitPaneTest extends \Psc\Code\Test\HTMLTestCase {
   
   public function setUp() {

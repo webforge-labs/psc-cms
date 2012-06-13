@@ -2,6 +2,9 @@
 
 namespace Psc\Code;
 
+/**
+ * @group class:Psc\Code\Annotation
+ */
 class AnnotationTest extends \Psc\Code\Test\Base {
   
   public function setUp() {

@@ -1,6 +1,11 @@
 <?php
 
-class ConfigurationTest extends \PHPUnit_Framework_TestCase {
+namespace Psc;
+
+/**
+ * @group class:Psc\Configuration
+ */
+class ConfigurationTest extends \Psc\Code\Test\Base {
   
   protected $configuration;
   

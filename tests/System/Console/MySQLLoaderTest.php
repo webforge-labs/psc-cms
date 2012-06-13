@@ -6,6 +6,9 @@ use Psc\System\Console\MySQLLoader;
 use Psc\CMS\Configuration;
 use Psc\System\FIle;
 
+/**
+ * @group class:Psc\System\Console\MySQLLoader
+ */
 class MySQLLoaderTest extends \Psc\Code\Test\Base {
 
   public function testCommandGeneration() {

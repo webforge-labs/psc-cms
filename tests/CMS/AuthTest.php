@@ -6,6 +6,9 @@ use Entities\User;
 use Psc\Code\Test\Mock\SessionMock;
 use Psc\Code\Test\Mock\CookieManagerMock;
 
+/**
+ * @group class:Psc\CMS\Auth
+ */
 class AuthTest extends \Psc\Code\Test\Base {
   
   protected $userManager;

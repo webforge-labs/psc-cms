@@ -5,6 +5,7 @@ namespace Psc\Data;
 use \Psc\Data\APC;
 
 /**
+ * @group class:Psc\Data\APC
  * @group cache
  */
 class APCTest extends \Psc\Data\CacheTestCase {

@@ -1,8 +1,13 @@
 <?php
 
+namespace Psc\DateTime;
+
 use \Psc\DateTime\Time;
 
-class TimeTest extends PHPUnit_Framework_TestCase {
+/**
+ * @group class:Psc\DateTime\Time
+ */
+class TimeTest extends \Psc\Code\Test\Base {
 
     /**
      * @dataProvider provideFormatSpan

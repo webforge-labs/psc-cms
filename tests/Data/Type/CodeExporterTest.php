@@ -4,6 +4,9 @@ namespace Psc\Data\Type;
 
 use Psc\Data\Type\CodeExporter;
 
+/**
+ * @group class:Psc\Data\Type\CodeExporter
+ */
 class CodeExporterTest extends \Psc\Code\Test\Base {
 
   public function setUp() {

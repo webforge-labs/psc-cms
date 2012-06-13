@@ -5,6 +5,9 @@ namespace Psc\CMS;
 use Psc\Environment;
 use Psc\PSC;
 
+/**
+ * @group class:Psc\CMS\CMS
+ */
 class CMSTest extends \Psc\Code\Test\Base {
   
   public function setUp() {

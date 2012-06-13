@@ -5,6 +5,9 @@ namespace Psc\URL\Service;
 use \Psc\Code\Test\Base,
     \Psc\URL\Service\Handler;
 
+/**
+ * @group class:Psc\URL\Service\Handler
+ */
 class HandlerTest extends \Psc\Code\Test\Base {
 
   public function testServiceHandling() {

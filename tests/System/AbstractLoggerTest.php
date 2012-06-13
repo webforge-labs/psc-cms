@@ -6,6 +6,7 @@ use Psc\System\AbstractLogger;
 
 /**
  * @group logger
+ * @group class:Psc\System\AbstractLogger
  */
 class AbstractLoggerTest extends \Psc\Code\Test\Base {
 

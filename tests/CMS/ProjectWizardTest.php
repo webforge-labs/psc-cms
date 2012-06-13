@@ -5,6 +5,9 @@ namespace Psc\CMS;
 use Psc\CMS\ProjectWizard;
 use Psc\PSC;
 
+/**
+ * @group class:Psc\CMS\ProjectWizard
+ */
 class ProjectWizardTest extends \Psc\Code\Test\Base {
   
   protected $factory;

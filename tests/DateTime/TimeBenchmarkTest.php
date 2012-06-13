@@ -1,8 +1,13 @@
 <?php
 
+namespace Psc\DateTime;
+
 use \Psc\DateTime\TimeBenchmark;
 
-class TimeBenchmarkTest extends PHPUnit_Framework_TestCase {
+/**
+ * @group class:Psc\DateTime\TimeBenchmark
+ */
+class TimeBenchmarkTest extends \Psc\Code\Test\Base {
 
     public function testFactorOutput() {
       $bench = new TimeBenchmark();

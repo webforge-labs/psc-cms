@@ -4,6 +4,9 @@ namespace Psc\Data\Type;
 
 use Psc\Data\Type\Type;
 
+/**
+ * @group class:Psc\Data\Type\Type
+ */
 class TypeTest extends \Psc\Code\Test\Base {
 
   public function testAPI() {
@@ -25,6 +28,13 @@ class TypeTest extends \Psc\Code\Test\Base {
     $this->assertException('Psc\Data\Type\Exception', function () {
       $type4 = \Psc\Data\Type\Type::create();
     });
+  }
+  
+  public function testArgsCreation_withEmptyArgs() {
+    $arrayType = Type::createArgs('Array', array());
+    
+    $arrayType = Type::createArgs('Array', array($innerType = Type::create('String')));
+    $this->assertSame($arrayType->getType(), $innerType);
   }
   
   public function testAdvancedCreation_object() {

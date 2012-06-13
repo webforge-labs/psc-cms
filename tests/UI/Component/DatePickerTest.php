@@ -6,6 +6,7 @@ use Psc\UI\Component\DatePicker;
 use Psc\DateTime\DateTime;
 
 /**
+ * @group class:Psc\UI\Component\DatePicker
  * @group component
  */
 class DatePickerTest extends TestCase {
@@ -21,7 +22,7 @@ class DatePickerTest extends TestCase {
   }
   
   public function testHTML_DateFormat() {
-    $this->markTestSkipped('not yet ready');
+    $this->markTestSkipped('not yet ready: setDateFormat blocked weil ich das parsen nicht hinbekomme (in der rule)');
     $this->component->setDateFormat('d.m.y');
     $this->assertStandardInputHTML('21.11.84');
 

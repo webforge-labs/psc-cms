@@ -2,6 +2,9 @@
 
 namespace Psc\HTML;
 
+/**
+ * @group class:Psc\HTML\WidgetBase
+ */
 class WidgetBaseTest extends \Psc\Code\Test\HTMLTestCase {
   
   public function setUp() {

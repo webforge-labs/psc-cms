@@ -7,6 +7,7 @@ use \Psc\Doctrine\DatabaseTest;
 /* die stubs siehe in psc-cms classes, da hier sonst php unit die tests einfach ausführt */
 
 /**
+ * @group class:Psc\Doctrine\DatabaseTest
  * Kein Schreibfehler dass ist der Test für den Database Test!
  */
 class DatabaseTestTest extends \Psc\Code\Test\Base {

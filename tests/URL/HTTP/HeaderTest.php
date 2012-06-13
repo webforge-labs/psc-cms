@@ -4,6 +4,9 @@ namespace Psc\URL\HTTP;
 
 use \Psc\URL\HTTP\Header;
 
+/**
+ * @group class:Psc\URL\HTTP\Header
+ */
 class HeaderTest extends \Psc\Code\Test\Base {
   
   public function testParsing() {

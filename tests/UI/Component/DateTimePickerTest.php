@@ -6,6 +6,7 @@ use Psc\UI\Component\DateTimePicker;
 use Psc\DateTime\DateTime;
 
 /**
+ * @group class:Psc\UI\Component\DateTimePicker
  * @group component
  */
 class DateTimePickerTest extends TestCase {

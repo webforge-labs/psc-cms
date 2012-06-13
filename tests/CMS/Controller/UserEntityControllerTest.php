@@ -2,6 +2,9 @@
 
 namespace Psc\CMS\Controller;
 
+/**
+ * @group class:Psc\CMS\Controller\UserEntityController
+ */
 class UserEntityControllerTest extends \Psc\Code\Test\Base {
   
   protected $ctrl;

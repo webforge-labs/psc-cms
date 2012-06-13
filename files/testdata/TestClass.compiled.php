@@ -2,7 +2,7 @@
 
 namespace Psc;
 
-use TestHint,
+use Psc\Code\Generate\SomeClassForAHint,
     stdClass,
     Special\classn\In\nspace\Banane;
 
@@ -18,7 +18,7 @@ abstract class TestClass extends Object {
     $oderDoch = true;
   }
   
-  public static function factory(TestHint $dunno) {
+  public static function factory(SomeClassForAHint $dunno) {
   }
   
   abstract public function banane();

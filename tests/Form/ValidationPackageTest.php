@@ -2,6 +2,9 @@
 
 namespace Psc\Form;
 
+/**
+ * @group class:Psc\Form\ValidationPackage
+ */
 class ValidationPackageTest extends \Psc\Code\Test\Base {
   
   protected $package;

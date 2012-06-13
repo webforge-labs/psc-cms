@@ -6,6 +6,7 @@ use Psc\UI\Component\IntegerField;
 
 /**
  * @group component
+ * @group class:Psc\UI\Component\IntegerField
  */
 class IntegerFieldTest extends TestCase {
 

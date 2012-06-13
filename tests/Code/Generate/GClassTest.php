@@ -6,10 +6,46 @@ use Psc\Code\Generate\GClass;
 use ReflectionClass;
 
 /**
+ * @group class:Psc\Code\Generate\GClass
  * @group generate
  * @group entity-building
  */
 class GClassTest extends \Psc\Code\Test\Base {
+  
+  public function testMethodOrdering() {
+    $gClass = new GClass(__NAMESPACE__.'\\OrderedMethods');
+    $gClass->setParentClass(new GClass(__NAMESPACE__.'\\MyDocTestClass'));
+    
+    $gClass->createMethod('getIdentifier');
+    $gClass->createMethod('getObjectName');
+    
+    $gClass->createMethod('setLabel',array(new GParameter('label')));
+    $gClass->createMethod('getLabel');
+    
+    $gClass->addMethod(new GMethod('__construct'), GClass::PREPEND);
+    
+    $classWriter = new ClassWriter($gClass);
+    
+    $classWriter->write($out = $this->newFile('class.OrderedMethods.php'), array(), ClassWriter::OVERWRITE);
+    
+    require $out;
+    $gClass = GClass::factory(__NAMESPACE__.'\\OrderedMethods');
+    
+    $getMethodNames = function (Array $methods) {
+      $methodNames = array();
+      foreach ($methods as $method) {
+        $methodNames[] = $method->getName();
+      }
+      return $methodNames;
+    };
+    
+    $this->assertEquals(array('__construct','getIdentifier','getObjectName','setLabel','getLabel'), $getMethodNames($gClass->getMethods()));
+    $this->assertEquals(array('__construct','getIdentifier','getObjectName','setLabel','getLabel','getName'), $getMethodNames($gClass->getAllMethods())); // parent methods behind
+    
+    $gClass->setMethodOrder($gClass->getMethod('getLabel'), 1);
+    
+    $this->assertEquals(array('__construct','getLabel','getIdentifier','getObjectName','setLabel'), $getMethodNames($gClass->getMethods()));
+  }
   
   public function testNamespaceAppend() {
     $gClass = new GClass('XML\Object');
@@ -172,6 +208,73 @@ CLASS_END;
     $this->assertTrue($gClass->hasInterface(new GClass('Doctrine\Common\Collections\Collection')));
     
   }
+  
+  public function testIsAbstract() {
+    // class is not elevated, so that is wrong!
+    $gClass = new GClass(__NAMESPACE__.'\\MyAbstractClass');
+    $this->assertFalse($gClass->isAbstract());
+
+    // its right this way
+    $gClass = GClass::factory(__NAMESPACE__.'\\MyAbstractClass');
+    $this->assertTrue($gClass->isAbstract());
+  }
+  
+  public function testWithGClassConstruction() {
+    $gClass = new GClass('MyAbstractClass');
+    $gClass->setNameSpace(__NAMESPACE__);
+    
+    $otherGClass = new GClass($gClass);
+    $this->assertTrue($gClass->equals($otherGClass)); // don't rely on that $otherGClas === $gClass and don't rely on that $otherGClass !== $gClass
+  }
+  
+  public function testNewInstance() {
+    $gClass = new GClass('Psc\Exception');
+    $exception = $gClass->newInstance(array('just a test error'));
+    
+    $this->assertInstanceOf('Psc\Exception', $exception);
+    $this->assertEquals('just a test error', $exception->getMessage());
+  }
+  
+  public function testNewInstanceWithoutConstructor() {
+    $gClass = new GClass('MyConstructorThrowsExceptionClass');
+    $gClass->setNamespace(__NAMESPACE__);
+    $instance = $gClass->newInstance(array(), GClass::WITHOUT_CONSTRUCTOR);
+    
+    $this->assertInstanceOf($gClass->getFQN(), $instance);
+    $this->assertTrue($instance->checkProperty);
+  }
+
+  public function testNewClassInstance() {
+    $exception = GClass::newClassInstance('Psc\Exception', array('just a test error'));
+    $this->assertInstanceOf('Psc\Exception', $exception);
+    $this->assertEquals('just a test error', $exception->getMessage());
+
+    $exception = GClass::newClassInstance($gClass = new GClass('Psc\Exception'), array('just a test error'));
+    $this->assertInstanceOf('Psc\Exception', $exception);
+    $this->assertEquals('just a test error', $exception->getMessage());
+
+    $exception = GClass::newClassInstance($gClass->getReflection(), array('just a test error'));
+    $this->assertInstanceOf('Psc\Exception', $exception);
+    $this->assertEquals('just a test error', $exception->getMessage());
+  }
+  
+  public function testInterfacesPHPGenerationAcceptance() {
+    $gClass = GClass::factory(__NAMESPACE__.'\\MyTestClass');
+    $gClass->addInterface(new GClass('\AnInterface'));
+    
+    $this->assertContains('class MyTestClass implements \AnInterface', $gClass->php());
+  }
+  
+  public function testGetAllInterfaces() {
+    $gClass = GClass::factory('Psc\CMS\Item\SelectComboBoxable');
+    
+    $interfaces = array();
+    foreach ($gClass->getAllInterfaces() as $interface) {
+      $interfaces[] = $interface->getClassName();
+    }
+    
+    $this->assertArrayEquals(array('AutoCompletable', 'Identifyable'), $interfaces);
+  }
 }
 
 class MyTestClass {
@@ -204,6 +307,20 @@ class MyDocTestClass {
    * @return name
    */
   public function getName() {
+  }
+}
+
+abstract class MyAbstractClass {
+  
+  abstract public function thisIsIt();
+}
+
+class MyConstructorThrowsExceptionClass {
+  
+  public $checkProperty = TRUE;
+  
+  public function __construct() {
+    throw new \Psc\Exception('this should not be called');
   }
 }
 ?>

@@ -4,6 +4,9 @@ namespace Psc\Code\Test;
 
 use Psc\Code\Test\FormTesterFrontend;
 
+/**
+ * @group class:Psc\Code\Test\FormTesterFrontend
+ */
 class FormTesterFrontendTest extends \Psc\Code\Test\Base {
 
   protected $formHTML = <<< 'HTML_FORM'

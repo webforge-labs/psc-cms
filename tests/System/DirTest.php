@@ -1,9 +1,14 @@
 <?php
 
+namespace Psc\System\Test;
+
 use \Psc\System\Dir;
 use \Psc\System\File;
 use \Psc\PSC;
 
+/**
+ * @group class:Psc\System\Dir
+ */
 class DirTest extends \Psc\Code\Test\Base {
   
   public function testSubDir() {

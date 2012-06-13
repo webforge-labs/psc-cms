@@ -2,6 +2,9 @@
 
 namespace Psc\CMS;
 
+/**
+ * @group class:Psc\CMS\Project
+ */
 class ProjectTest extends \Psc\Code\Test\Base {
   
   protected $project;

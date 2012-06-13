@@ -3,12 +3,17 @@
 namespace Psc\Data;
 
 use Psc\Code\Generate\GClass;
+use Psc\Data\Type\CollectionType;
 
+/**
+ * @group class:Psc\Data\ObjectExporter
+ */
 class ObjectExporterTest extends \Psc\Code\Test\Base {
   
   public function setUp() {
     $this->chainClass = 'Psc\Data\ObjectExporter';
     parent::setUp();
+    $this->objectExporter = new ObjectExporter();
   }
   
   public function testConstruct() {
@@ -39,5 +44,25 @@ class ObjectExporterTest extends \Psc\Code\Test\Base {
     $this->assertInstanceOf('stdClass', $object->inverseJoinColumns[0]);
   }
   
+  public function testCollectionWalking() {
+    $collection = new \Doctrine\Common\Collections\ArrayCollection(array('some','inner','items'));
+    $this->assertInternalType('array', $collectionExport = $this->objectExporter->walk($collection, $this->objectExporter->inferType($collection)));
+    $this->assertEquals($collectionExport, array('some','inner','items'));
+  }
+  
+  public function testCollectionWalkingType() {
+    $collection = new \Doctrine\Common\Collections\ArrayCollection(array('some','inner','items'));
+    $this->assertInternalType('array',
+                              $collectionExport = $this->objectExporter->walk($collection,
+                                                                              new CollectionType(CollectionType::DOCTRINE_ARRAY_COLLECTION)));
+    $this->assertEquals($collectionExport, array('some','inner','items'));
+  }
+
+  public function testEmptyCollectionExportAsArray() {
+    $objectExporter = new ObjectExporter();
+    
+    $collection = new \Psc\Data\ArrayCollection(array());
+    $this->assertEquals(array(), $objectExporter->walk($collection, $this->createType('Collection<String>')));
+  }
 }
 ?>

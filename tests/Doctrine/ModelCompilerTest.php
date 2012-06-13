@@ -8,6 +8,7 @@ use Psc\PSC;
 use Psc\Code\Generate\GClass;
 
 /**
+ * @group class:Psc\Doctrine\ModelCompiler
  * @group entity-building
  */
 class ModelCompilerTest extends \Psc\Code\Test\Base {
@@ -74,6 +75,34 @@ class ModelCompilerTest extends \Psc\Code\Test\Base {
     $this->assertEquals($type('String'), $this->createType('String'));
     $this->assertEquals($type('Integer'), $this->createType('Integer'));
   }
+
+  public function testCCs_defaultSettingsSetsDefaults() {
+    extract($this->mc->getClosureHelpers());
+    
+    $settings = $defaultSettings(array());
+    
+    $this->assertAttributeEquals(TRUE, 'updateOtherSide', $settings);
+    $this->assertAttributeEquals(TRUE, 'bidirectional', $settings);
+  }
+  
+  public function testCCs_defaultSettingsRespectsSettings() {
+    extract($this->mc->getClosureHelpers());
+    
+    $settings = $defaultSettings(array('updateOtherSide'=>FALSE,
+                                       'bidirectional'=>FALSE)
+                                 );
+    
+    $this->assertAttributeEquals(FALSE, 'updateOtherSide', $settings);
+    $this->assertAttributeEquals(FALSE, 'bidirectional', $settings);
+  }
+  
+  public function testCCs_defaultSettingsFindsWrongKeys() {
+    extract($this->mc->getClosureHelpers());
+    
+    $this->setExpectedException('InvalidArgumentException');
+    $defaultSettings(array('updateOtherside')); // look closely
+  }
+
 
   public function testClosureCompilers_entityClass() {
     extract($this->mc->getClosureHelpers());
@@ -197,6 +226,17 @@ class ModelCompilerTest extends \Psc\Code\Test\Base {
       ->with($this->anything(), $this->anything(), $this->equalTo(NULL));
     
     $this->mc->compilePerson();
+  }
+  
+  public function testFlagSetting() {
+    extract($this->mc->getClosureHelpers());
+    
+    $this->mc->compile(
+      $entity('Person'),
+      $flag('NO_SET_META_GETTER')
+    );
+    
+    $this->assertTrue(($this->mc->getFlags() & ModelCompiler::NO_SET_META_GETTER) === ModelCompiler::NO_SET_META_GETTER);
   }
 }
 

@@ -4,6 +4,9 @@ namespace Psc\Form;
 
 use Psc\DateTime\Date;
 
+/**
+ * @group class:Psc\Form\DateValidatorRule
+ */
 class DateValidatorRuleTest extends ValidatorRuleTestCase {
   
   public function setUp() {

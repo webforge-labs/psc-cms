@@ -5,6 +5,9 @@ namespace Psc\System;
 use Psc\System\ExecutableFinder;
 use Psc\CMS\Configuration;
 
+/**
+ * @group class:Psc\System\ExecutableFinder
+ */
 class ExecutableFinderTest extends \Psc\Code\Test\Base {
   
   public function testBlankConstruct() {

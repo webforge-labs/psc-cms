@@ -4,6 +4,9 @@ namespace Psc\Data\Type;
 
 use Psc\Code\Generate\GClass;
 
+/**
+ * @group class:Psc\Data\Type\TypeMatcher
+ */
 class TypeMatcherTest extends \Psc\Code\Test\Base {
   
   protected $matcher;

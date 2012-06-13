@@ -4,6 +4,9 @@ namespace Psc\PHPWord;
 
 use Psc\PSC;
 
+/**
+ * @group class:Psc\PHPWord\Module
+ */
 class ModuleTest extends \Psc\Code\Test\Base {
   
   public function setUp() {

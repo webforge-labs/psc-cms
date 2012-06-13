@@ -6,6 +6,9 @@ use Psc\Code\Test\EntityAsserter;
 use Psc\Data\ArrayCollection;
 use Psc\Doctrine\EntityDataRow;
 
+/**
+ * @group class:Psc\Code\Test\SoundEn
+ */
 class SoundEntity extends \Psc\Doctrine\Object {
   
   protected $id;

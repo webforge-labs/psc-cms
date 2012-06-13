@@ -6,6 +6,7 @@ use Psc\UI\Component\SmallIntegerField;
 
 /**
  * @group component
+ * @group class:Psc\UI\Component\SmallIntegerField
  */
 class SmallIntegerFieldTest extends TestCase {
 

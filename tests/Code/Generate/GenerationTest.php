@@ -1,5 +1,7 @@
 <?php
 
+namespace Psc\Code\Generate;
+
 use Psc\Code\Generate\GParameter,
     Psc\Code\Generate\GMethod,
     Psc\Code\Generate\GFunction,
@@ -12,10 +14,18 @@ use Psc\Code\Generate\GParameter,
     \Psc\String AS S,
     \Psc\System\File
 ;
+use ReflectionClass;
+use stdClass;
+
 /**
  * @group generate
+ * @group class:Psc\Code\Generate\GClass
+ * @group class:Psc\Code\Generate\GMethod
+ * @group class:Psc\Code\Generate\GFunction
+ * @group class:Psc\Code\Generate\ClassWriter
+ * @group class:Psc\Code\Generate\GParameter
  */
-class GenerationTest extends \PHPUnit_Framework_TestCase {
+class GenerationTest extends \Psc\Code\Test\Base {
   
   static $testClassCode;
   
@@ -23,7 +33,7 @@ class GenerationTest extends \PHPUnit_Framework_TestCase {
   static $endLine = 0;
   
   public static function setUpBeforeClass() {
-    $reflection = new ReflectionClass('TestClass');
+    $reflection = new ReflectionClass(__NAMESPACE__.'\\TestClass');
     self::$startLine = $reflection->getStartLine();
     self::$endLine = $reflection->getEndLine();
     self::$testClassCode = NULL;
@@ -61,7 +71,7 @@ return $this;
 '                                       )
                       );
     
-    $class->addMethod(
+    $class->setMethod(
                       GMethod::factory('removeOID', array(
                                                GParameter::factory(
                                                                    '$oid',
@@ -113,7 +123,7 @@ CLASS_CODE;
   public function testClass() {
     
     $cr = "\n";
-    $class = GClass::factory('TestClass');
+    $class = GClass::factory(__NAMESPACE__.'\\TestClass');
     
     $this->assertInstanceOf('Psc\Code\Generate\GMethod',$class->getMethod('method2'));
     $this->assertInstanceOf('Psc\Code\Generate\GProperty',$class->getProperty('prop1'));
@@ -139,14 +149,14 @@ CLASS_CODE;
     $this->assertFalse($gClass->isFinal());
     
     /* testClass (denn da wissen wir die line-nummern besser und die ist auch abstract */
-    $testClass = new GClass(new ReflectionClass('TestClass'));
+    $testClass = new GClass(new ReflectionClass(__NAMESPACE__.'\\TestClass'));
     $this->assertTrue($testClass->isAbstract());
     $this->assertFalse($testClass->isFinal());
     $this->assertEquals(self::$startLine, $testClass->getStartLine());
     $this->assertEquals(self::$endLine, $testClass->getEndLine());
     
-    $testHint = new GClass('TestHint');
-    $this->assertEquals('class TestHint {'.$cr.'}', $testHint->php(), sprintf("output: '%s'", $testHint->php()));
+    $testHint = new GClass('SomeClassForAHint');
+    $this->assertEquals('class SomeClassForAHint {'.$cr.'}', $testHint->php(), sprintf("output: '%s'", $testHint->php()));
     
     
     //file_put_contents('D:\fixture.txt', self::$testClassCode);
@@ -158,7 +168,7 @@ CLASS_CODE;
   
   
   public function testProperty() {
-    $class = new ReflectionClass('TestClass');
+    $class = new ReflectionClass(__NAMESPACE__.'\\TestClass');
     $gClass = GClass::reflectorFactory($class);
     
     $prop1 = GProperty::reflectorFactory($class->getProperty('prop1'),$gClass);
@@ -184,7 +194,7 @@ CLASS_CODE;
    */
   public function testClassWriter() {
     $writer = new ClassWriter();
-    $class = GClass::factory('TestClass');
+    $class = GClass::factory(__NAMESPACE__.'\\TestClass');
     $class->setNamespace('Psc');
     $class->setParentClass(new GClass('\Psc\Object')); // dsa fügen wir unten mit str_replace hinzu
     $writer->setClass($class);
@@ -204,7 +214,7 @@ $code =
 
 namespace Psc;
 
-use TestHint,
+use Psc\Code\Generate\SomeClassForAHint,
     stdClass,
     Special\classn\In\nspace\Banane;
 
@@ -251,7 +261,7 @@ abstract class TestClass {
     $oderDoch = true;
   }
   
-  public static function factory(TestHint $dunno) {
+  public static function factory(SomeClassForAHint $dunno) {
   }
   
   abstract public function banane();
@@ -263,6 +273,6 @@ abstract class TestClass {
   }
 }
 
-class TestHint {
+class SomeClassForAHint {
 }
 ?>

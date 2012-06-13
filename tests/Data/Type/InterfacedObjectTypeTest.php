@@ -4,6 +4,9 @@ namespace Psc\Data\Type;
 
 use Psc\Data\Type\InterfacedObjectType;
 
+/**
+ * @group class:Psc\Data\Type\InterfacedObjectType
+ */
 class InterfacedObjectTypeTest extends \Psc\Code\Test\Base {
   
   protected $type;

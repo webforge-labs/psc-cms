@@ -5,6 +5,7 @@ namespace Psc\Net;
 use Psc\Net\ServiceRequest;
 
 /**
+ * @group class:Psc\Net\ServiceRequest
  * @group net-service
  */
 class ServiceRequestTest extends \Psc\Code\Test\Base {

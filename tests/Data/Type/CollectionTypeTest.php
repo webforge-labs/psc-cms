@@ -4,6 +4,9 @@ namespace Psc\Data\Type;
 
 use Psc\Code\Generate\GClass;
 
+/**
+ * @group class:Psc\Data\Type\CollectionType
+ */
 class CollectionTypeTest extends \Psc\Code\Test\Base {
 
   public function setUp() {

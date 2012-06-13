@@ -4,6 +4,9 @@ namespace Psc\System\Console;
 
 use Psc\System\Console\ProjectHelper;
 
+/**
+ * @group class:Psc\System\Console\ProjectHelper
+ */
 class ProjectHelperTest extends \Psc\Code\Test\Base {
 
   public function testHelper() {

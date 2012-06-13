@@ -2,6 +2,9 @@
 
 namespace Psc\Form;
 
+/**
+ * @group class:Psc\Form\PasswordValidatorRule
+ */
 class PasswordValidatorRuleTest extends ValidatorRuleTestCase {
   
   protected $passwordValidatorRule;

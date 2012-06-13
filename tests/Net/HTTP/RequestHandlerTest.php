@@ -8,6 +8,7 @@ use Psc\Net\ServiceResponse;
 use Psc\Net\Service;
 
 /**
+ * @group class:Psc\Net\HTTP\RequestHandler
  * @group net-service
  */
 class RequestHandlerTest extends \Psc\Code\Test\Base {
@@ -97,6 +98,11 @@ class RequestHandlerTest extends \Psc\Code\Test\Base {
     $this->assertInstanceof('Psc\Net\HTTP\Response',
                             $res = $this->handler->handle($this->doublesManager->createHTTPRequest('GET', '/episodes/8/form')));
     $this->assertEquals(400, $res->getCode());
+    $this->assertNotEmpty('validation', $res->getHeader()->getField('X-Psc-Cms-Meta'));
+  }
+  
+  public function testFatalErrorsAndExceptionGetConvertedTo500_andHaveXPscCMSErrorHeaders() {
+    $this->markTestIncomplete('@TODO');
   }
   
   public function testServiceCollection() {

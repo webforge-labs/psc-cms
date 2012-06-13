@@ -4,6 +4,9 @@ namespace Psc\Net\HTTP;
 
 use Psc\Net\HTTP\RequestHeader;
 
+/**
+ * @group class:Psc\Net\HTTP\RequestHeader
+ */
 class RequestHeaderTest extends \Psc\Code\Test\Base {
 
   public function setUp() {

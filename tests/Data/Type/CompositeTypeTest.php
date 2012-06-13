@@ -4,6 +4,9 @@ namespace Psc\Data\Type;
 
 use Psc\Data\Type\CompositeType;
 
+/**
+ * @group class:Psc\Data\Type\CompositeType
+ */
 class CompositeTypeTest extends CompositeTypeTestCase {
   
   public function setUp() {

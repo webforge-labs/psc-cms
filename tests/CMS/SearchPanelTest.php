@@ -2,6 +2,9 @@
 
 namespace Psc\CMS;
 
+/**
+ * @group class:Psc\CMS\SearchPanel
+ */
 class SearchPanelTest extends \Psc\Code\Test\HTMLTestCase {
   
   protected $searchPanel;

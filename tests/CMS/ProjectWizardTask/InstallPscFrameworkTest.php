@@ -4,6 +4,9 @@ namespace Psc\CMS\ProjectWizardTask;
 
 use Psc\CMS\ProjectWizardTask\InstallPscFramework;
 
+/**
+ * @group class:Psc\CMS\ProjectWizardTask\InstallPscFramework
+ */
 class InstallPscFrameworkTest extends TestCase {
   
   public function assertPreConditions() {

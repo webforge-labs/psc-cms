@@ -2,6 +2,9 @@
 
 namespace Psc\CMS\Service\Response;
 
+/**
+ * @group class:Psc\CMS\Service\Response\ExceptionResponse
+ */
 class ExceptionResponseTest extends \Psc\Code\Test\Base {
   
   public function setUp() {

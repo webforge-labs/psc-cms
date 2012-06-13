@@ -4,6 +4,9 @@ namespace Psc\Data\Type;
 
 use Psc\Data\Type\LinkType;
 
+/**
+ * @group class:Psc\Data\Type\LinkType
+ */
 class LinkTypeTest extends CompositeTypeTestCase {
   
   public function setUp() {

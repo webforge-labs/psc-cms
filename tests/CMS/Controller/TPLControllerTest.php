@@ -2,6 +2,9 @@
 
 namespace Psc\CMS\Controller;
 
+/**
+ * @group class:Psc\CMS\Controller\TPLController
+ */
 class TPLControllerTest extends \Psc\Code\Test\Base {
   
   public function setUp() {

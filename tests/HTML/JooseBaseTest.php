@@ -2,6 +2,9 @@
 
 namespace Psc\HTML;
 
+/**
+ * @group class:Psc\HTML\JooseBase
+ */
 class JooseBaseTest extends \Psc\Code\Test\Base {
   
   protected $jooseBase;
@@ -9,11 +12,13 @@ class JooseBaseTest extends \Psc\Code\Test\Base {
   public function setUp() {
     $this->chainClass = 'Psc\HTML\JooseBase';
     parent::setUp();
-    //$this->jooseBase = new JooseBase();
+    $this->jooseBase = $this->getMockForAbstractClass($this->chainClass, array('Psc.UI.TestObject'));
   }
   
   public function testAcceptance() {
-    $this->markTestIncomplete('Stub vom Test-Creater');
+    $this->assertInstanceOf('Psc\HTML\HTMLInterface',$this->jooseBase);
+    
+    // @TODO javascript-writer bauen und dann hier das autoload und constructCode testen
   }
 }
 ?>

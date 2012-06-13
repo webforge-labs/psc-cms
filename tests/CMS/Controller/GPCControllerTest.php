@@ -1,9 +1,11 @@
 <?php
 
-use \Psc\CMS\Controller\GPCController
-;
+namespace Psc\CMS\Controller;
 
-class GPCControllerTest extends PHPUnit_Framework_TestCase {
+/**
+ * @group class:Psc\CMS\Controller\GPCController
+ */
+class GPCControllerTest extends \Psc\Code\Test\Base {
   
   protected $ctrl;
   

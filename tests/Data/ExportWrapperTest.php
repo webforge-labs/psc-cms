@@ -2,6 +2,9 @@
 
 namespace Psc\Data;
 
+/**
+ * @group class:Psc\Data\ExportWrapper
+ */
 class ExportWrapperTest extends \Psc\Code\Test\Base {
   
   protected $exportWrapper;

@@ -4,6 +4,9 @@ namespace Psc\Data;
 
 use Psc\Data\Code;
 
+/**
+ * @group class:Psc\Data\ArrayExportCollection
+ */
 class ArrayExportCollectionTest extends \Psc\Code\Test\Base {
   
   protected $arrayExportCollection;

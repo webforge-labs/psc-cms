@@ -27,7 +27,7 @@ use Psc\System\Directory;
  * @TODO imports aus der OriginalKlasse müssen geparsed werden und beibehalten werden
  *       done: aber: Alias wird nicht case-sensitiv importiert
  */
-class Compiler extends \Psc\Object {
+class CompilerTestFixture extends \Psc\Object {
   
   /**
    * @var Psc\Code\Generate\ClassWriter

@@ -4,6 +4,9 @@ namespace Psc\CMS;
 
 use Psc\CMS\ComponentMapper;
 
+/**
+ * @group class:Psc\CMS\ComponentMapper
+ */
 class ComponentMapperTest extends \Psc\Code\Test\Base {
   
   protected $mapper;

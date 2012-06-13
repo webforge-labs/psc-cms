@@ -4,6 +4,9 @@ namespace Psc\Data\Ical;
 
 use Psc\Data\Ical\Calendar;
 
+/**
+ * @group class:Psc\Data\Ical\Calendar
+ */
 class CalendarTest extends \Psc\Code\Test\Base {
   
   protected $eventClass;

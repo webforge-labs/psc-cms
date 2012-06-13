@@ -4,6 +4,9 @@ namespace Psc\DateTime;
 
 use Psc\DateTime\Date;
 
+/**
+ * @group class:Psc\DateTime\Date
+ */
 class DateTest extends \Psc\Code\Test\Base {
 
   public function setUp() {

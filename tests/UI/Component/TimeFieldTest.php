@@ -4,6 +4,9 @@ namespace Psc\UI\Component;
 
 use Psc\DateTime\DateTime;
 
+/**
+ * @group class:Psc\UI\Component\TimeField
+ */
 class TimeFieldTest extends TestCase {
   
   public function setUp() {

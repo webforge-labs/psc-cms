@@ -4,6 +4,9 @@ namespace Psc\Code\Event;
 
 use Psc\Code\Event\CallbackSubscriber;
 
+/**
+ * @group class:Psc\Code\Event\CallbackSubscriber
+ */
 class CallbackSubscriberTest extends \Psc\Code\Test\Base implements Dispatcher{
   
   protected $manager;

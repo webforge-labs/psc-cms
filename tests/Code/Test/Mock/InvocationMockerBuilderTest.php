@@ -2,6 +2,9 @@
 
 namespace Psc\Code\Test\Mock;
 
+/**
+ * @group class:Psc\Code\Test\Mock\InvocationMockerBuilder
+ */
 class InvocationMockerBuilderTest extends \Psc\Code\Test\Base {
   
   protected $invocationMocker;

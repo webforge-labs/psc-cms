@@ -7,6 +7,7 @@ use Psc\Data\Type\StringType;
 use Psc\Data\Type\ArrayType;
 
 /**
+ * @group class:Psc\Net\ServiceResponse
  * @group net-service
  */
 class ServiceResponseTest extends \Psc\Code\Test\Base {

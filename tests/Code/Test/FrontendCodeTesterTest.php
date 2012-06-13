@@ -4,6 +4,9 @@ namespace Psc\Code\Test;
 
 use Psc\Code\Test\FrontendCodeTester;
 
+/**
+ * @group class:Psc\Code\Test\FrontendCodeTester
+ */
 class FrontendCodeTesterTest extends \Psc\Code\Test\Base {
   
   protected $fct;

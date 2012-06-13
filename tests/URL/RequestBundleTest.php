@@ -7,6 +7,9 @@ use \Psc\URL\RequestBundle;
 use Psc\System\File;
 use Psc\Data\PHPFileCache;
 
+/**
+ * @group class:Psc\URL\RequestBundle
+ */
 class RequestBundleTest extends \Psc\Code\Test\Base {
   
   public function testCaching() {
@@ -29,7 +32,7 @@ class RequestBundleTest extends \Psc\Code\Test\Base {
   }
   
   public function testPHPFileCaching() {
-    $this->markTestIncomplete('Feature noch nicht implementiert');
+    $this->markTestSkipped('Feature noch nicht implementiert');
     /* Schön wäre hier, das RequestBundle mit einem Cache zu füttern, der direkt
       Objekte abspeichern kann. Quasi der PermanentObjectCache
       

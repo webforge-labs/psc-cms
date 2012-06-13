@@ -7,6 +7,7 @@ use Psc\Doctrine\Annotation;
 
 /**
  * @group generate
+ * @group class:Psc\Code\Generate\DocBlock
  */
 class DocBlockTest extends \Psc\Code\Test\Base {
   

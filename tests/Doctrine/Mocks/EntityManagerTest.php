@@ -4,6 +4,9 @@ namespace Psc\Doctrine\Mocks;
 
 use Psc\Data\ArrayCollection;
 
+/**
+ * @group class:Psc\Doctrine\Mocks\EntityManager
+ */
 class EntityManagerTest extends \Psc\Doctrine\DatabaseTest {
   
   protected $emm; // EntityManagerMock

@@ -1,10 +1,14 @@
 <?php
 
-use \Psc\CMS\ContactFormMailer,
-    \Psc\CMS\ContactFormData
-;
+namespace Psc\CMS;
 
-class ContactFormMailerTest extends PHPUnit_Framework_TestCase {
+use Psc\CMS\ContactFormMailer;
+use Psc\CMS\ContactFormData;
+
+/**
+ * @group class:Psc\CMS\ContactFormMailer
+ */
+class ContactFormMailerTest extends \Psc\Code\Test\Base {
   
   protected $c = '\Psc\CMS\ContactFormMailer';
   

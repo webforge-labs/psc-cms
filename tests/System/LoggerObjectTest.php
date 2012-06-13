@@ -2,6 +2,9 @@
 
 namespace Psc\System;
 
+/**
+ * @group class:Psc\System\LoggerObject
+ */
 class LoggerObjectTest extends \Psc\Code\Test\Base {
   
   public function setUp() {

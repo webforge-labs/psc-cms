@@ -4,6 +4,9 @@ namespace Psc\Code\Build;
 
 use \Psc\Code\Build\Snippets;
 
+/**
+ * @group class:Psc\Code\Build\Snippets
+ */
 class SnippetsTest extends \Psc\Code\Test\Base {
   
   public function testSnippet() {

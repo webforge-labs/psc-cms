@@ -4,8 +4,11 @@ namespace Psc;
 
 use Psc\A;
 
+/**
+ * @group class:Psc\A
+ */
 class ATest extends \Psc\Code\Test\Base {
-  
+
   public function testPeek() {
     $array = array('s1','s2');
     
@@ -40,6 +43,16 @@ class ATest extends \Psc\Code\Test\Base {
 
     A::insert($array, 'f4', 4);
     $this->assertEquals(array('f0','f1','f2','f3','f4'), $array);
+
+    A::insert($array, 'fl', -1); // last position
+    $this->assertEquals(array('f0','f1','f2','f3','f4','fl'), $array);
+  }
+  
+  public function testInsert0PrependsToArray() {
+    $array = array('two');
+    
+    A::insert($array, 'one', 0);
+    $this->assertEquals(array('one','two'), $array);
   }
   
   
@@ -81,7 +94,7 @@ class ATest extends \Psc\Code\Test\Base {
     };
     
     $test(array(0,1,2), 4);
-    $test(array(1,2,3), -1);
+    $test(array(1,2,3), -2);
     
     return $tests;
   }

@@ -6,6 +6,7 @@ use Psc\Code\Generate\ClassBuilderProperty;
 
 /**
  * @group generate
+ * @group class:Psc\Code\Generate\ClassBuilderProperty
  */
 class ClassBuilderPropertyTest extends \Psc\Code\Test\Base {
   
@@ -37,7 +38,8 @@ class ClassBuilderPropertyTest extends \Psc\Code\Test\Base {
    */
   public function testGetType($property) {
     $this->assertInstanceOf('Psc\Data\Type\Type', $property->getType());
-    $this->assertEquals('string',$property->getPHPType());
+    
+    $this->assertEquals('string',$property->getDocType());
   }
   
   /**

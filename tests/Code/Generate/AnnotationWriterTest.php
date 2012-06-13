@@ -7,6 +7,7 @@ use ReflectionClass;
 use Doctrine\Common\Annotations\DocParser;
 
 /**
+ * @group class:Psc\Code\Generate\AnnotationWriter
  * @group generate
  */
 class AnnotationWriterTest extends \Psc\Code\Test\Base {
@@ -22,6 +23,10 @@ class AnnotationWriterTest extends \Psc\Code\Test\Base {
     
     $this->parser = new DocParser;
     $this->parser->addNamespace('Doctrine\ORM\Mapping');
+    
+    // autoloading:
+    class_exists('Psc\Code\Compile\Annotations\Compiled', true);
+    class_exists('Psc\Code\Compile\Annotations\Property', true);
   }
   
   protected function parse($docText) {
@@ -63,13 +68,17 @@ class AnnotationWriterTest extends \Psc\Code\Test\Base {
     // nach beberlei, soll das hier falsch sein (nach grammatik aus den Parser-Comments irgendwie nicht
     //$tests[] = '@\Psc\Code\Generate\ComplexAnnotation("pv1", "pv2", "pv3", "rootValue1")';
     
+    // orderBy hier für brauchen wirs dann (mit value)
+    $tests[] = '@OrderBy({"someField"="ASC"})';
+    
     // selbst von doctrine abgeleitete annotation (siehe unten)
     $tests[] = '@\Psc\Code\Generate\ComplexAnnotation(rootKey1="rootValue2", rootKey2="rootValue1")';
-
+    
     // eigene Psc-Annotations
     $tests[] = '@\Psc\Code\Compile\Annotations\Compiled';
     $tests[] = '@\Psc\Code\Compile\Annotations\Property(name="prop1name")';
     $tests[] = '@\Psc\Code\Compile\Annotations\Property(name="prop1name", getter=false)';
+    
     
     $tests = array_map(function ($arg) { return array($arg); }, $tests);
     return $tests;
@@ -94,12 +103,26 @@ class AnnotationWriterTest extends \Psc\Code\Test\Base {
     $this->assertEquals(array('name'=>'testcolumn'), $writer->extractValues($annotation));
   }
   
+  
+  public function testAliasWriting() {
+    $this->assertEquals('@ORM\Entity', $this->createAliasWriter()
+                                          ->writeAnnotation(
+                                            \Psc\Doctrine\Annotation::createDC('Entity')
+                                          )
+                        );
+  }
+  
   public function createWriter() {
     return new AnnotationWriter();    
   }
   
   public function createDefaultWriter() {
     return $this->createWriter()->setDefaultAnnotationNamespace('Doctrine\ORM\Mapping');
+  }
+  
+  public function createAliasWriter() {
+    return $this->createWriter()->setAnnotationNamespaceAlias('Doctrine\ORM\Mapping', 'ORM')
+                                ->setAnnotationNamespaceAlias('Gedmo\Mapping\Annotation', 'Gedmo');
   }
 }
 

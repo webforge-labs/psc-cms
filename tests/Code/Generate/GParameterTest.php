@@ -8,13 +8,14 @@ use Psc\A;
 
 
 /**
+ * @group class:Psc\Code\Generate\GParameter
  * @group generate
  */
 class GParameterTest extends \Psc\Code\Test\Base {
 
   public function testParameter() {
     
-    $class = new ReflectionClass('Psc\Code\Generate\TestClass');
+    $class = new ReflectionClass('Psc\Code\Generate\ParameterTestClass');
     $method = $class->getMethod('comboBox');
     
     $params = $method->getParameters();
@@ -53,7 +54,7 @@ class GParameterTest extends \Psc\Code\Test\Base {
   }
 }
 
-abstract class TestClass {
+abstract class ParameterTestClass {
 
   protected $prop1 = 'banane';
 

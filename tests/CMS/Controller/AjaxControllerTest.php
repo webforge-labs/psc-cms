@@ -1,9 +1,13 @@
 <?php
 
-use \Psc\CMS\Controller\AjaxController
-;
+namespace Psc\CMS\Controller;
 
-class AjaxControllerTest extends PHPUnit_Framework_TestCase {
+use \Psc\CMS\Controller\AjaxController;
+
+/**
+ * @group class:Psc\CMS\AjaxController
+ */
+class AjaxControllerTest extends \Psc\Code\Test\Base {
   
   protected $ctrl;
   

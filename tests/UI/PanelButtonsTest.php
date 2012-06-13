@@ -2,6 +2,9 @@
 
 namespace Psc\UI;
 
+/**
+ * @group class:Psc\UI\PanelButtons
+ */
 class PanelButtonsTest extends \Psc\Code\Test\HTMLTestCase {
   
   protected $panelButtons;
@@ -26,6 +29,14 @@ class PanelButtonsTest extends \Psc\Code\Test\HTMLTestCase {
       
     $this->test->css('div.psc-cms-ui-buttonset.psc-cms-ui-buttonset-right + div.clear')
       ->count(1);
+  }
+  
+  public function testAddNewButtonWithOwnButtonInstance() {
+    $this->panelButtons = new PanelButtons(array('reload'));
+    $newButton = $this->panelButtons->addNewButton(new Button('My Nice New Button'));
+    $this->assertInstanceof('Psc\UI\ButtonInterface', $newButton);
+    
+    $this->assertNotEmpty($newButton->getLeftIcon());
   }
   
   /**

@@ -2,6 +2,9 @@
 
 namespace Psc\Code\Event;
 
+/**
+ * @group class:Psc\Code\Event\Manager
+ */
 class ManagerTest extends \Psc\Code\Test\Base {
   
   

@@ -4,6 +4,9 @@ namespace Psc\Data\Type;
 
 use Psc\Form\IdValidatorRule;
 
+/**
+ * @group class:Psc\Data\Type\TypeRuleMapper
+ */
 class TypeRuleMapperTest extends \Psc\Code\Test\Base {
   
   public function setUp() {

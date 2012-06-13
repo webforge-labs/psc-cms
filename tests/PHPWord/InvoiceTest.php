@@ -8,6 +8,9 @@ use Psc\Data\Accounting\InvoiceItems;
 use Psc\Data\Accounting\SimpleInvoiceItem;
 use Psc\Data\Accounting\Price;
 
+/**
+ * @group class:Psc\PHPWord\Invoice
+ */
 class InvoiceTest extends \Psc\Code\Test\Base {
   
   public function setUp() {

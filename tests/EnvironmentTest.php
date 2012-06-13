@@ -1,7 +1,12 @@
 <?php
 
+namespace Psc;
+
 use \Psc\PSC;
 
+/**
+ * @group class:Psc\Environment
+ */
 class EnvironmentTest extends \PHPUnit_Framework_TestCase {
   
   protected $saveIncludePath;
@@ -9,6 +14,12 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase {
   public function setUp() {
     $this->saveIncludePath = get_include_path();
   }
+  
+  public function testPHPSettings() {
+    // mb_string enabled und internal encoding = UTF-8
+    $this->markTestIncomplete('TODO');
+  }
+  
   
   public function testAdd() {
     /* jetzt wo er leer ist, können wir ja hinzufügen */

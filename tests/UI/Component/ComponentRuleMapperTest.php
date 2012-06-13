@@ -5,6 +5,9 @@ namespace Psc\UI\Component;
 use Psc\Data\Type\Type;
 use Psc\CMS\ComponentMapper;
 
+/**
+ * @group class:Psc\UI\Component\ComponentRuleMapper
+ */
 class ComponentRuleMapperTest extends \Psc\Code\Test\Base {
   
   public function setUp() {

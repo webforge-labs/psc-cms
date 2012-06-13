@@ -2,16 +2,37 @@
 
 namespace Psc\UI;
 
+/**
+ * @group class:Psc\UI\Tabs2
+ */
 class Tabs2Test extends \Psc\Code\Test\HTMLTestCase {
+  
+  protected $tabs;
   
   public function setUp() {
     $this->chainClass = 'Psc\UI\Tabs2';
     parent::setUp();
+
+    $welcome = $this->doublesManager->createTemplateMock('willkommen im psc-cms', $this->once());
+    $this->tabs = new Tabs2(array(), $welcome);
+  }
+  
+  public function testAddsOpenable() {
+    $this->tabs->addTabOpenable($this->getEntityMeta('Entities\User')->getAdapter('grid')->getTabOpenable());
+    $this->tabs->init();
+    
+    $this->html = $this->tabs->html();
+    
+    // damit das css für das ui close icon direkt beim laden matched und nicht wenn js geladen ist
+    // sonst werden tabs umgebrochen angezeigt in browsern wie chrome
+    $this->test->css('div.psc-cms-ui-tabs ul.ui-tabs-nav')->count(1);
+    
+    $this->test->css('div.psc-cms-ui-tabs ul li')
+      ->count(2, 'zwei tabslinks müssen vorhanden sein. (einer wurde hinzugefügt)');
   }
   
   public function testAcceptance() {
-    $welcome = $this->doublesManager->createTemplateMock('willkommen im psc-cms', $this->once());
-    $tabs = new Tabs2(array(), $welcome);
+    $tabs = $this->tabs;
     $tabs->init();
     
     $tabs->select($selected = 1); // eigentlich unnütz

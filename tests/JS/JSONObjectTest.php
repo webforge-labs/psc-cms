@@ -4,6 +4,9 @@ namespace Psc\JS;
 
 use \Psc\JS\JSONObject;
 
+/**
+ * @group class:Psc\JS\TestOb
+ */
 class TestObject extends JSONObject {
   
   protected $title = 'titleval';

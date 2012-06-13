@@ -7,6 +7,9 @@ use Symfony\Component\CssSelector\Parser;
 use Symfony\Component\CssSelector\Node\OrNode;
 use Symfony\Component\CssSelector\Node\ElementNode;
 
+/**
+ * @group class:Psc\XML\Helper
+ */
 class HelperTest extends \Psc\Code\Test\Base {
 
   public function testQuery() {
@@ -31,6 +34,13 @@ class HelperTest extends \Psc\Code\Test\Base {
 
         $this->assertEquals("descendant-or-self::h1 | descendant-or-self::h2 | descendant-or-self::h3", (string) $xPath);
 
+  }
+  
+  public function testUTF8DocumentSnipped() {
+    $dom = Helper::docPart('<span>Game Templates für Testprodukt</span>');
+    
+    $q = Helper::query($dom, 'span');
+    $this->assertEquals('Game Templates für Testprodukt', $q[0]->nodeValue);
   }
 
 }

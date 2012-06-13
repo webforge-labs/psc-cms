@@ -10,6 +10,7 @@ use Psc\Code\Code,
 
 /**
  * @covers Psc\Code\Code
+ * @group class:Psc\Code\Code
  */
 class CodeTest extends \Psc\Code\Test\Base {
   

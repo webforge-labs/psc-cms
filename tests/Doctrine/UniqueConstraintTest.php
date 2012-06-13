@@ -2,6 +2,9 @@
 
 namespace Psc\Doctrine;
 
+/**
+ * @group class:Psc\Doctrine\UniqueConstraint
+ */
 class UniqueConstraintTest extends \Psc\Code\Test\Base {
   
   public function setUp() {

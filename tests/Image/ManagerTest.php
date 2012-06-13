@@ -10,6 +10,7 @@ use Psc\PSC,
 
 /**
  * @group Imagine
+ * @group class:Psc\Image\Manager
  */
 class ManagerTest extends \Psc\Doctrine\DatabaseTest {
 
@@ -39,11 +40,11 @@ class ManagerTest extends \Psc\Doctrine\DatabaseTest {
     $this->assertEquals($dir, $manager->getDirectory());
     
     $dir->wipe();
-    $this->assertEquals(0, count($dir->getContents()), 'Verzeichnis ist nicht leer');
+    $this->assertEquals(0, count($dir->getContents()), 'Verzeichnis ist nicht leer, obwohl gerade geleert');
   }
   
   public function testConstruct() {
-    $manager = new Manager('\Entities\Image');
+    $manager = new Manager('\Entities\Image', $this->em);
     
     // da wir den Manager mit keinem Parameter aufrufen, ist base/files/images unser originalDir
     $originals = PSC::get(PSC::PATH_FILES)->sub('images/');
@@ -87,9 +88,7 @@ class ManagerTest extends \Psc\Doctrine\DatabaseTest {
     
     /* thumbnailing */
     $iiThumb4 = $image4->getThumbnail(104, 97);
-    
     $iiThumb4 = $image4->getThumbnail(104, 97);
-    
   }
   
   public function testOtherOSPathinDB() {

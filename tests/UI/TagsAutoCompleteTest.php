@@ -1,8 +1,13 @@
 <?php
 
+namespace Psc\UI;
+
 use \Psc\UI\TagsAutoComplete;
 
-class TagsAutoCompleteTest extends PHPUnit_Framework_TestCase {
+/**
+ * @group class:Psc\UI\TagsAutoComplete
+ */
+class TagsAutoCompleteTest extends \Psc\Code\Test\Base {
   
   protected $c = '\Psc\UI\TagsAutoComplete';
   

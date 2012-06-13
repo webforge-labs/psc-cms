@@ -6,6 +6,7 @@ use \Psc\Net\HTTP\Request;
 
 /**
  * @group net-service
+ * @group class:Psc\Net\HTTP\Request
  */
 class RequestTest extends \Psc\Code\Test\Base {
 
@@ -91,10 +92,12 @@ class RequestTest extends \Psc\Code\Test\Base {
     $requests[] = $request;
     
     // don't infer query string into resource, and parse separately
-    $GET = array('mod_rewrite_request' => 'episodes/8/status?filter=true&order=asc',
+    $GET = array(//'mod_rewrite_request' => 'episodes/8/status?filter=true&order=asc',
                  'filter'=>'false', // isignored
                  'order'=>'false' // isignored
                 );
+    $SERVER['REQUEST_URI'] = 'episodes/8/status?filter=true&order=asc';
+
     $request = Request::infer($GET, $POST, $COOKIE, $SERVER);
     $this->assertEquals('episodes',$request->part(1));
     $this->assertEquals('8',$request->part(2));

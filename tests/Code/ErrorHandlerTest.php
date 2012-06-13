@@ -1,12 +1,16 @@
 <?php
 
+namespace Psc\Code;
+
 use Psc\Code\ErrorHandler;
 use Psc\Code\Code;
 use Psc\PSC;
 use Psc\Code\Callback;
 
-
-class ErrorHandlerTest extends PHPUnit_Framework_TestCase {
+/**
+ * @group class:Psc\Code\ErrorHandler
+ */
+class ErrorHandlerTest extends \Psc\Code\Test\Base {
   
   protected $c = '\Psc\Code\ErrorHandler';
   

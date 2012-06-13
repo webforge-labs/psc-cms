@@ -4,6 +4,9 @@ namespace Psc\Code;
 
 use Psc\Code\ExceptionBuilder;
 
+/**
+ * @group class:Psc\Code\ExceptionBuilder
+ */
 class ExceptionBuilderTest extends \Psc\Code\Test\Base {
 
   public function setUp() {

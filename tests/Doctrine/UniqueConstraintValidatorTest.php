@@ -4,6 +4,9 @@ namespace Psc\Doctrine;
 
 use Psc\Data\Type\Type;
 
+/**
+ * @group class:Psc\Doctrine\UniqueConstraintValidator
+ */
 class UniqueConstraintValidatorTest extends \Psc\Code\Test\Base {
   
   protected $validator;

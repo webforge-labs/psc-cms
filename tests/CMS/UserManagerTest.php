@@ -6,6 +6,7 @@ namespace Psc\CMS;
  * Dependency Package für Klassen die Users aus der Datenbank laden müssen
  *
  * (siehe z.B. \Psc\CMS\Auth)
+ * @group class:Psc\CMS\UserManager
  */
 class UserManagerTest extends \Psc\Code\Test\Base {
   

@@ -6,6 +6,9 @@ use PHPWord;
 use PHPWord_IOFactory;
 use Psc\System\File;
 
+/**
+ * @group class:Psc\PHPWord\MainTemplate
+ */
 class MainTemplateTest extends \Psc\Code\Test\Base {
   
   public static function setUpBeforeClass() {

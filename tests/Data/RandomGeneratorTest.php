@@ -14,6 +14,7 @@ use Psc\Data\Type\Type;
  *
  * die "eigenlichen" Daten muss man hier tatsächlich per "sichttest" testen
  * weil wie soll da eine assertion aussehen: assertEquals ungefähr nicht gleich? ;)
+ * @group class:Psc\Data\RandomGenerator
  */ 
 class RandomGeneratorTest extends \Psc\Code\Test\Base {
   

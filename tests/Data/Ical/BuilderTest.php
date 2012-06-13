@@ -7,6 +7,9 @@ use Psc\DateTime\Date;
 use Psc\DateTime\DateTime;
 use Psc\DateTime\DateInterval;
 
+/**
+ * @group class:Psc\Data\Ical\Builder
+ */
 class BuilderTest extends \Psc\Code\Test\Base {
   
   protected $calendarClass;

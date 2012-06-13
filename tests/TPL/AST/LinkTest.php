@@ -4,6 +4,9 @@ namespace Psc\TPL\AST;
 
 use Psc\TPL\AST\Link;
 
+/**
+ * @group class:Psc\TPL\AST\Link
+ */
 class LinkTest extends \Psc\Code\Test\Base {
 
   public function testInterface() {

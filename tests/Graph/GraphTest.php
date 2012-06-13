@@ -1,5 +1,7 @@
 <?php
 
+namespace Psc\Graph;
+
 use \Psc\Graph\Graph,
     \Psc\Graph\Vertice as GraphVertice,
     \Psc\Graph\Edges as GraphEdges,
@@ -9,7 +11,10 @@ use \Psc\Graph\Graph,
     \Psc\Graph\Alg as GraphAlg
 ;
 
-class GraphTest extends PHPUnit_Framework_TestCase {
+/**
+ * @group class:Psc\Graph\Graph
+ */
+class GraphTest extends \Psc\Code\Test\Base {
   
   public function testConstruct() {
     $graph = new Graph();

@@ -8,7 +8,29 @@ use Psc\Data\Type\ArrayType;
 use Psc\Data\Type\SmallIntegerType;
 use Psc\Data\Type\IntegerType;
 
+/**
+ * @group class:Psc\Data\Set
+ */
 class SetTest extends \Psc\Code\Test\Base {
+  
+  protected $defaultSet;
+  protected $meta;
+  
+  public function setUp() {
+    $this->meta = new SetMeta(array(
+      'label' => new StringType(),
+      'numbers' => new ArrayType(new IntegerType()),
+      'second.tiny' => new SmallIntegerType()
+    ));
+
+    $this->defaultSet = new Set(
+                   array('label'=>'Das Eichhörnchen',
+                         'numbers'=>array(1,5,8),
+                         'second.tiny'=>12
+                         ),
+                   $this->meta
+                   );
+  }
   
   public function testEmptyConstruct() {
     $set = new Set();
@@ -17,19 +39,7 @@ class SetTest extends \Psc\Code\Test\Base {
   }
 
   public function testConstruct() {
-    $meta = new SetMeta(array(
-      'label' => new StringType(),
-      'numbers' => new ArrayType(new IntegerType()),
-      'second.tiny' => new SmallIntegerType()
-    ));
-
-    $set = new Set(
-                   array('label'=>'Das Eichhörnchen',
-                         'numbers'=>array(1,5,8),
-                         'second.tiny'=>12
-                         ),
-                   $meta
-                   );
+    $set = $this->defaultSet;
     
     $this->assertEquals('Das Eichhörnchen', $set->get('label'));
     $this->assertEquals(array(1,5,8), $set->get('numbers'));
@@ -134,6 +144,24 @@ class SetTest extends \Psc\Code\Test\Base {
     $set->getMeta()->setFieldType('withMetaButEmptyLabel',new StringType());
     
     $this->assertSame(NULL,$set->get('withMetaButEmptyLabel'));
+  }
+
+
+  public function testSetIsTraversable() {
+
+    $keys = array();
+    $fields = array();
+    foreach ($this->defaultSet as $key=>$field) {
+      $keys[] = $key;
+      $fields[] = $field;
+    }
+    
+    $this->assertEquals(array('label','numbers','second'),$keys);
+    $this->assertEquals(array('Das Eichhörnchen',
+                              array(1,5,8),
+                              array('tiny'=>12)
+                              ),
+                        $fields);
   }
 }
 ?>

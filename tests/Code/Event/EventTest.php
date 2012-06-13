@@ -4,6 +4,9 @@ namespace Psc\Code\Event;
 
 use stdClass;
 
+/**
+ * @group class:Psc\Code\Event\Event
+ */
 class EventTest extends \Psc\Code\Test\Base {
   
   public function setUp() {

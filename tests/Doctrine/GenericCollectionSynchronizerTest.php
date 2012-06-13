@@ -4,6 +4,11 @@ namespace Psc\Doctrine;
 
 use Psc\Data\ArrayCollection;
 
+/**
+ * @group class:Psc\Doctrine\GenericCollectionSynchronizer
+ *
+ * @TODO test ob alle callbacks gecalled werden
+ */
 class GenericCollectionSynchronizerTest extends \Psc\Code\Test\Base {
   
   protected $synchronizer;
@@ -22,7 +27,7 @@ class GenericCollectionSynchronizerTest extends \Psc\Code\Test\Base {
     $this->objectClass = __NAMESPACE__.'\CollectionObject';
     parent::setUp();
     $this->evm = new \Psc\Code\Event\Manager();
-    $this->synchronizer = new GenericCollectionSynchronizer($this->evm);
+    $this->synchronizer = new GenericCollectionSynchronizer(array(),$this->evm);
     $this->initCollections();
   }
   
@@ -38,7 +43,7 @@ class GenericCollectionSynchronizerTest extends \Psc\Code\Test\Base {
   }
   
   public function testFiresAllEventsOnListeners() {
-    $listener = $this->getMock('Psc\Doctrine\GenericCollectionSynchronizerListener', array('onCollectionUpdate',
+    $listener = $this->getMock('Psc\Doctrine\EventCollectionSynchronizerListener', array('onCollectionUpdate',
                                                                                    'onCollectionDelete',
                                                                                    'onCollectionInsert'
                                                                                    ));

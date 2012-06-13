@@ -2,6 +2,9 @@
 
 namespace Psc\Code\Generate;
 
+/**
+ * @group class:Psc\Code\Generate\MyTestClass
+ */
 class MyTestClassTest extends \Psc\Code\Test\Base {
   
   protected $myTestClass;

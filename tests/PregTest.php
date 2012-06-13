@@ -1,7 +1,10 @@
 <?php
 
-use \Psc\Preg;
+namespace Psc;
 
+/**
+ * @group class:Psc\Preg
+ */
 class PregTest extends \PHPUnit_Framework_TestCase {
   
   
@@ -22,7 +25,7 @@ class PregTest extends \PHPUnit_Framework_TestCase {
     
 
     $value = 'How.I.Met.Your.Mother.S06E13.Schlechte.Nachrichten.German.Dubbed.WEB-DL.XViD';
-    $this->assertEquals('WEB-DL',Psc\Preg::matchArray(Array(
+    $this->assertEquals('WEB-DL',Preg::matchArray(Array(
             '/dvdrip/i' => 'DVDRip',
             '/WEB-DL/i' => 'WEB-DL'
     ),$value));

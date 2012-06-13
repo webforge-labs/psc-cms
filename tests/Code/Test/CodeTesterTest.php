@@ -10,6 +10,9 @@ use Psc\Data\Type\Type;
 use Psc\Code\Code;
 use Closure;
 
+/**
+ * @group class:Psc\Code\Test\CodeTester
+ */
 class CodeTesterTest extends \Psc\Code\Test\Base {
   
   protected $it = 40;

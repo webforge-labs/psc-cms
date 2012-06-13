@@ -4,6 +4,9 @@ namespace Psc\PHPExcel;
 
 use Psc\Data\PHPFileCache;
 
+/**
+ * @group class:Psc\PHPExcel\CachedUniversalImporter
+ */
 class CachedUniversalImporterTest extends \Psc\Code\Test\Base {
   
   public function setUp() {

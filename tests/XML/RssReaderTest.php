@@ -6,6 +6,9 @@ use \Psc\XML\RssReader,
     \Psc\XML\RssItem
 ;
 
+/**
+ * @group class:Psc\XML\RssReader
+ */
 class RssReaderTest extends \Psc\Code\Test\Base {
   
   protected $c = '\Psc\XML\RssReader';

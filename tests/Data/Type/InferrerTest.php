@@ -5,6 +5,9 @@ namespace Psc\Data\Type;
 use Psc\Data\Type\Inferrer;
 use Psc\Code\Generate\GClass;
 
+/**
+ * @group class:Psc\Data\Type\Inferrer
+ */
 class InferrerTest extends \Psc\Code\Test\Base {
 
   /**
@@ -26,6 +29,9 @@ class InferrerTest extends \Psc\Code\Test\Base {
     $tests[] = array(true, new BooleanType);
     $tests[] = array(array('eins','zwei',12,'schwierig'), new ArrayType);
     $tests[] = array(new \stdClass, new ObjectType(new GClass('stdClass')));
+    $tests[] = array($collection = new \Doctrine\Common\Collections\ArrayCollection(array('some','inner','items')),
+                     new CollectionType(CollectionType::DOCTRINE_ARRAY_COLLECTION)
+                     );
     
     return $tests;
   }

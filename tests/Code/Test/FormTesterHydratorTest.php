@@ -5,6 +5,9 @@ namespace Psc\Code\Test;
 use Psc\Code\Test\FormTesterHydrator;
 use \Psc\Doctrine\EntityDataRow;
 
+/**
+ * @group class:Psc\Code\Test\FormTesterHydrator
+ */
 class FormTesterHydratorTest extends \Psc\Code\Test\Base {
 
   public function testCollectionHydration() {

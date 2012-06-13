@@ -5,6 +5,7 @@ namespace Psc\Doctrine;
 use Psc\Doctrine\Annotation;
 
 /**
+ * @group class:Psc\Doctrine\Annotation
  * @group entity-building
  */
 class AnnotationTest extends \Psc\Code\Test\Base {
@@ -106,7 +107,7 @@ class AnnotationTest extends \Psc\Code\Test\Base {
    * @depends testTableAcceptance
    */
   public function testToStringAcceptance($table) {
-    $this->assertEquals('@JoinTable(name="users_products", joinColumns={@JoinColumn(name="product_id", onDelete="cascade")}, inverseJoinColumns={@JoinColumn(name="user_email", referencedColumnName="email", onDelete="cascade")})',
+    $this->assertEquals('@ORM\JoinTable(name="users_products", joinColumns={@ORM\JoinColumn(name="product_id", onDelete="cascade")}, inverseJoinColumns={@ORM\JoinColumn(name="user_email", referencedColumnName="email", onDelete="cascade")})',
           $table->toString()
         );
     // in der ersten joinColumn wird hier referencedColumnName nicht im string ausgegeben, da es der default für die annotation ist
@@ -117,7 +118,7 @@ class AnnotationTest extends \Psc\Code\Test\Base {
     $column->type = 'string';
     $column->nullable = true;
     
-    $this->assertEquals('@Column(nullable=true)', $column->toString());
+    $this->assertEquals('@ORM\Column(nullable=true)', $column->toString());
   }
   
   public function testCreateFactory() {
@@ -143,6 +144,14 @@ class AnnotationTest extends \Psc\Code\Test\Base {
     $this->assertEquals($m2m->unwrap(), $m2mp->unwrap());
   }
   
+  
+  public function testGetGettingAndSettingMagic() {
+    $manyToMany = $this->createORMAnnotation('ManyToMany');
+    $manyToMany->setTargetEntity('Psc\Doctrine\TestEntities\Tag');
+    
+    $this->assertEquals('Psc\Doctrine\TestEntities\Tag', $manyToMany->getTargetEntity());
+  }
+  
   /**
    * @expectedException Psc\MissingPropertyException
    */
@@ -161,7 +170,7 @@ class AnnotationTest extends \Psc\Code\Test\Base {
      'blubb'=>'fail'
     ));
   }
-
+  
   /**
    * @expectedException Psc\MissingPropertyException
    */

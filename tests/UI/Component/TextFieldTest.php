@@ -6,6 +6,7 @@ use Psc\UI\Component\TextField;
 
 /**
  * @group component
+ * @group class:Psc\UI\Component\TextField
  */
 class TextFieldTest extends TestCase {
 

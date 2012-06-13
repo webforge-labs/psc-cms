@@ -4,6 +4,9 @@ namespace Psc\Mail;
 
 use Psc\Mail\Module;
 
+/**
+ * @group class:Psc\Mail\Module
+ */
 class ModuleTest extends \Psc\Code\Test\Base {
 
   public function testLoad() {

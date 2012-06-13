@@ -2,6 +2,9 @@
 
 namespace Psc\HTML;
 
+/**
+ * @group class:Psc\HTML\Debugger
+ */
 class DebuggerTest extends \Psc\Code\Test\Base {
   
   public function setUp() {

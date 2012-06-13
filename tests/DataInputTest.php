@@ -1,10 +1,13 @@
 <?php
 
+namespace Psc;
+
 use \Psc\DataInput AS DataInput;
 
 /**
  * @group cache
  * weil so viele Cache-Klassen hiervon abhängen
+ * @group class:Psc\DataInput
  */
 class DataInputTest extends \Psc\Code\Test\Base {
   

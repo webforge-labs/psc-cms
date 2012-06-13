@@ -4,6 +4,9 @@ namespace Psc\Data\Type;
 
 use Psc\Data\Type\ArrayType;
 
+/**
+ * @group class:Psc\Data\Type\ArrayType
+ */
 class ArrayTypeTest extends \Psc\Code\Test\Base {
 
   public function testConstruct() {

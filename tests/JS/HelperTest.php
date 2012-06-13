@@ -2,6 +2,9 @@
 
 namespace Psc\JS;
 
+/**
+ * @group class:Psc\JS\Helper
+ */
 class HelperTest extends \Psc\Code\Test\Base {
   
   protected $helper;

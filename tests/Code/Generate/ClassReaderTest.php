@@ -5,6 +5,9 @@ namespace Psc\Code\Generate;
 use Psc\Code\Generate\ClassReader;
 use Psc\PSC;
 
+/**
+ * @group class:Psc\Code\Generate\ClassReader
+ */
 class ClassReaderTest extends \Psc\Code\Test\Base {
   
   public function setUp() {
@@ -31,9 +34,9 @@ class ClassReaderTest extends \Psc\Code\Test\Base {
   public function testReadUseStatements() {
     $this->assertEquals(array('GClass'=>new GClass('Psc\Code\Generate\GClass'),
                               'Code'=>new GClass('Psc\Code\Code'),
-                              's'=>new GClass('Psc\String'),
+                              'S'=>new GClass('Psc\String'),
                               'DataInput'=>new GClass('Psc\DataInput'),
-                              'doctrinehelper'=>new GClass('Psc\Doctrine\Helper')
+                              'DoctrineHelper'=>new GClass('Psc\Doctrine\Helper')
                               ),
                         $this->classReader->readUseStatements()
                        );

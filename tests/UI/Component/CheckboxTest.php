@@ -2,6 +2,9 @@
 
 namespace Psc\UI\Component;
 
+/**
+ * @group class:Psc\UI\Component\Checkbox
+ */
 class CheckboxTest extends TestCase {
   
   public function setUp() {

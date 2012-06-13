@@ -1,8 +1,13 @@
 <?php
 
+namespace Psc\System;
+
 use \Psc\System\System;
 
-class SystemTest extends PHPUnit_Framework_TestCase {
+/**
+ * @group class:Psc\System\System
+ */
+class SystemTest extends \Psc\Code\Test\Base {
   
   public function testWhich() {
     
@@ -45,8 +50,6 @@ class SystemTest extends PHPUnit_Framework_TestCase {
     } catch (PscException $e) {
        $this->fail('Hier darf keine Exception geworfen werden');
     }
-  }
-  
+  }  
 }
-
 ?>

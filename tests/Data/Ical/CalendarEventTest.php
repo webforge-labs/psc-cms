@@ -7,6 +7,9 @@ use Psc\DateTime\Date;
 use Psc\DateTime\DateTime;
 use Psc\DateTime\DateInterval;
 
+/**
+ * @group class:Psc\Data\Ical\CalendarEvent
+ */
 class CalendarEventTest extends \Psc\Code\Test\Base {
 
   public function setUp() {

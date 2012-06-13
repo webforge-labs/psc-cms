@@ -4,26 +4,32 @@ namespace Psc\CMS;
 
 use Psc\CMS\EntityFormPanel;
 use Psc\Code\Generate\GClass;
-use Psc\DateTime\DateTime;
+use Psc\DateTime\Date;
 
+/**
+ * @group class:Psc\CMS\EntityFormPanel
+ */
 class EntityFormPanelTest extends \Psc\Doctrine\DatabaseTest {
 
   public function setUp() {
     $this->con = 'tests';
     parent::setUp();
     $this->chainClass = 'Psc\CMS\EntityFormPanel';
-    $this->installEntity('Psc\Doctrine\TestEntities\Person');
   }
   
   protected function createPanel($entity = NULL) {
     if (!isset($entity)) {
       $entity = new \Psc\Doctrine\TestEntities\Person('Scheit');
       $entity->setFirstName('Philipp');
-      $entity->setBirthday(new \Psc\DateTime\DateTime('21.11.1984'));
+      $entity->setBirthday(new \Psc\DateTime\Date('21.11.1984'));
       $entity->setEmail('p.scheit@ps-webforge.com');
     }
     
-    $panel = new EntityFormPanel('Person bearbeiten', new EntityForm($entity));
+    $panel = new EntityFormPanel('Person bearbeiten',
+                                 new EntityForm(
+                                    $entity,
+                                    $this->getEntityMeta('Psc\Doctrine\TestEntities\Person')->getSaveRequestMeta($entity)
+                                 ));
     return $panel;
   }
 
@@ -39,7 +45,6 @@ class EntityFormPanelTest extends \Psc\Doctrine\DatabaseTest {
     ;
     
     $panel->createComponents();
-    
     $form = $panel->getForm();
     
     $this->assertCount(4, $form->getComponents());
@@ -48,7 +53,7 @@ class EntityFormPanelTest extends \Psc\Doctrine\DatabaseTest {
     // BirthdayPicker
     // EmailField
     
-    $html = $panel->layout();
+    $html = $panel->html();
     $this->test->formInput($html, 'Name', 'name', 'Scheit', 'text');
     $this->test->formInput($html, 'Vorname', 'firstName', 'Philipp', 'text');
     $this->test->formInput($html, 'E-Mail', 'email', 'p.scheit@ps-webforge.com', 'text');
@@ -61,31 +66,11 @@ class EntityFormPanelTest extends \Psc\Doctrine\DatabaseTest {
     
     $this->assertInstanceOfComponent('BirthdayPicker', $component);
     $this->assertEquals('birthday',$component->getFormName());
-    $this->assertEquals(new DateTime('21.11.1984'),$component->getValue());
+    $this->assertEquals(new Date('21.11.1984'),$component->getValue());
     $this->assertEquals('21.11.1984',$component->getFormValue()->format('d.m.Y'));
     $this->assertEquals('Birthday',$component->getFormLabel()); // auto-label vom labeler
   }
   
-  public function testConstruct_RegistersAndCallsEntityListener_onComponentCreated() {
-    /* alle details zu testen macht hier keinen sinn. deshalb testen wir ob das Event im Endeffekt beim AbstractEntity ankommt
-      von da an deckt der test vom AbstractEntity weiter ab */
-    
-    $entity = $this->getMock('Psc\Doctrine\TestEntities\Person', array('onComponentCreated'), array('Scheit'));
-    $entity->setFirstName('Philipp');
-    $entity->setBirthday(new \Psc\DateTime\DateTime('21.11.1984'));
-    $entity->setEmail('p.scheit@ps-webforge.com');
-    
-    $panel = $this->createPanel($entity);
-    
-    $entity->expects($this->atLeastOnce())->method('onComponentCreated')
-           ->with($this->isInstanceOf('Psc\CMS\Component'),
-                  $this->equalTo($panel),
-                  $this->isInstanceOf('Psc\Code\Event\Event')
-                 );
-           
-    $panel->createComponents();
-  }
-
   public function testSortComponents() {
     $panel = $this->createPanel();
     $panel->setWhitelistProperties(array('name','firstName','birthday','email'));
@@ -112,6 +97,6 @@ class EntityFormPanelTest extends \Psc\Doctrine\DatabaseTest {
       ),
       $form->getComponents()->toArray()
     );
-  }
+  }  
 }
 ?>

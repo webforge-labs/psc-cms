@@ -8,6 +8,7 @@ use Psc\Code\Generate\GClass;
 
 /**
  * @group service
+ * @group class:Psc\CMS\Service\ControllerService
  */
 class ControllerServiceTest extends \Psc\Code\Test\Base {
   

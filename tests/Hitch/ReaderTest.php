@@ -5,6 +5,9 @@ namespace Psc\Hitch;
 use \Psc\Hitch\Reader;
 use \Psc\PSC;
 
+/**
+ * @group class:Psc\Hitch\Reader
+ */
 class ReaderTest extends \Psc\Code\Test\Base {
   
   public function setUp() {

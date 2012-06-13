@@ -4,6 +4,9 @@ namespace Psc;
 
 use Psc\Exception;
 
+/**
+ * @group class:Psc\Exception
+ */
 class ExceptionTest extends \Psc\Code\Test\Base {
 
   public function setUp() {

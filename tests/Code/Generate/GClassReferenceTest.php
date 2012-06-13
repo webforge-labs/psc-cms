@@ -6,6 +6,7 @@ use Psc\Code\Generate\GClassReference;
 
 /**
  * @group generate
+ * @group class:Psc\Code\Generate\GClassReference
  */
 class GClassReferenceTest extends \Psc\Code\Test\Base {
 

@@ -1,47 +1,16 @@
 <?php
 
-use \Psc\Doctrine\Helper as DoctrineHelper,
-    \Doctrine\Common\Collections\ArrayCollection,
-    \Psc\PSC
-;
+namespace Psc\Doctrine;
 
-class CollectionObject {
-  
-  protected $id;
-  
-  public function __construct($id) {
-    $this->id = $id;
-  }
-  
-  public function getId() {
-    return $this->id;
-  }
-
-  public function getIdentifier() {
-    return $this->id;
-  }
-  
-  public function setId($id) {
-    $this->id = $id;
-    return $this;
-  }
-  
-  public function equals($otherObject = NULL) {
-    if ($otherObject == NULL) return FALSE;
-    return $otherObject->getId() === $this->getId();
-  }
-  
-  public function __toString() {
-    return 'Object:'.$this->id;
-  }
-}
-
-require_once 'inc.config.php';
+use Psc\Doctrine\Helper as DoctrineHelper;
+use Doctrine\Common\Collections\ArrayCollection;
+use Psc\PSC;
 
 /**
  * @backupGlobals disabled
+ * @group class:Psc\Doctrine\Helper
  */
-class HelperTest extends PHPUnit_Framework_TestCase {
+class HelperTest extends \Psc\Code\Test\Base {
   
   protected $c = '\Psc\Doctrine\Helper';
   
@@ -57,25 +26,25 @@ class HelperTest extends PHPUnit_Framework_TestCase {
   
   public function setUp() {
     $this->collection = array();
-    $this->collection[] = new CollectionObject(10);
-    $this->collection[] = new CollectionObject(20);
-    $this->collection[] = new CollectionObject(30);
-    $this->collection[] = new CollectionObject(40);
-    $this->collection[] = new CollectionObject(50);
-    $this->collection[] = new CollectionObject(2);
-    $this->collection[] = new CollectionObject(1);
-    $this->collection[] = new CollectionObject(3); 
+    $this->collection[] = new HelperCollectionObject(10);
+    $this->collection[] = new HelperCollectionObject(20);
+    $this->collection[] = new HelperCollectionObject(30);
+    $this->collection[] = new HelperCollectionObject(40);
+    $this->collection[] = new HelperCollectionObject(50);
+    $this->collection[] = new HelperCollectionObject(2);
+    $this->collection[] = new HelperCollectionObject(1);
+    $this->collection[] = new HelperCollectionObject(3); 
 
 
     $this->actualItems = new ArrayCollection();
-    $this->actualItems[] = new CollectionObject(10); //20,30 fehlen
-    $this->actualItems[] = new CollectionObject(40);
-    $this->actualItems[] = new CollectionObject(50);
-    $this->actualItems[] = new CollectionObject(2);
-    $this->actualItems[] = new CollectionObject(1);
-    $this->actualItems[] = new CollectionObject(3);
-    $this->actualItems[] = new CollectionObject(99); // 99, 4 sind neu
-    $this->actualItems[] = new CollectionObject(4); 
+    $this->actualItems[] = new HelperCollectionObject(10); //20,30 fehlen
+    $this->actualItems[] = new HelperCollectionObject(40);
+    $this->actualItems[] = new HelperCollectionObject(50);
+    $this->actualItems[] = new HelperCollectionObject(2);
+    $this->actualItems[] = new HelperCollectionObject(1);
+    $this->actualItems[] = new HelperCollectionObject(3);
+    $this->actualItems[] = new HelperCollectionObject(99); // 99, 4 sind neu
+    $this->actualItems[] = new HelperCollectionObject(4); 
   }
   
   /**
@@ -102,16 +71,16 @@ class HelperTest extends PHPUnit_Framework_TestCase {
   
   public function testMergeUnique() {
     $expectedMerge = new ArrayCollection(array(
-      new CollectionObject(10),
-      new CollectionObject(20),
-      new CollectionObject(30),
-      new CollectionObject(40),
-      new CollectionObject(50),
-      new CollectionObject(2),
-      new CollectionObject(1),
-      new CollectionObject(3),
-      new CollectionObject(99),
-      new CollectionObject(4)
+      new HelperCollectionObject(10),
+      new HelperCollectionObject(20),
+      new HelperCollectionObject(30),
+      new HelperCollectionObject(40),
+      new HelperCollectionObject(50),
+      new HelperCollectionObject(2),
+      new HelperCollectionObject(1),
+      new HelperCollectionObject(3),
+      new HelperCollectionObject(99),
+      new HelperCollectionObject(4)
     ));
                                          
     $mergeItems = DoctrineHelper::mergeUnique($this->collection, $this->actualItems->toArray(), 'Id');
@@ -132,8 +101,8 @@ class HelperTest extends PHPUnit_Framework_TestCase {
   
   public function testDeleteDiff() {
     $expectedDelete = new ArrayCollection(array(
-      new CollectionObject(20),
-      new CollectionObject(30)
+      new HelperCollectionObject(20),
+      new HelperCollectionObject(30)
     ));
     
     $deleteItems = DoctrineHelper::deleteDiff(new ArrayCollection($this->collection), $this->actualItems);
@@ -143,8 +112,8 @@ class HelperTest extends PHPUnit_Framework_TestCase {
 
   public function testInsertDiff() {
     $expectedInsert = new ArrayCollection(array(
-      new CollectionObject(99),
-      new CollectionObject(4)
+      new HelperCollectionObject(99),
+      new HelperCollectionObject(4)
     ));
     
     $this->assertEquals(array_values($expectedInsert->toArray()),
@@ -181,4 +150,34 @@ class HelperTest extends PHPUnit_Framework_TestCase {
   }
 }
 
+class HelperCollectionObject {
+  
+  protected $id;
+  
+  public function __construct($id) {
+    $this->id = $id;
+  }
+  
+  public function getId() {
+    return $this->id;
+  }
+
+  public function getIdentifier() {
+    return $this->id;
+  }
+  
+  public function setId($id) {
+    $this->id = $id;
+    return $this;
+  }
+  
+  public function equals($otherObject = NULL) {
+    if ($otherObject == NULL) return FALSE;
+    return $otherObject->getId() === $this->getId();
+  }
+  
+  public function __toString() {
+    return 'Object:'.$this->id;
+  }
+}
 ?>

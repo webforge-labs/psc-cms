@@ -4,6 +4,9 @@ namespace Psc\URL;
 
 use \Psc\URL\CachedRequest;
 
+/**
+ * @group class:Psc\URL\CachedRequest
+ */
 class CachedRequestTest extends \Psc\Code\Test\Base {
   
   public function testCached() {

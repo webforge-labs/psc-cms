@@ -2,6 +2,9 @@
 
 namespace Psc\Doctrine;
 
+/**
+ * @group class:Psc\Doctrine\Package
+ */
 class PackageTest extends \Psc\Code\Test\Base {
   
   public function setUp() {

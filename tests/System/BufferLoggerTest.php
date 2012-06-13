@@ -6,6 +6,7 @@ use \Psc\System\BufferLogger;
 
 /**
  * @group logger
+ * @group class:Psc\System\BufferLogger
  */
 class BufferLoggerTest extends \Psc\Code\Test\LoggerTest {
   

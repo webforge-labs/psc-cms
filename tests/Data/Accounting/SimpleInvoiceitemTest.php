@@ -2,6 +2,9 @@
 
 namespace Psc\Data\Accounting;
 
+/**
+ * @group class:Psc\Data\Accounting\SimpleInvoiceitem
+ */
 class SimpleInvoiceitemTest extends \Psc\Code\Test\Base {
   
   public function setUp() {

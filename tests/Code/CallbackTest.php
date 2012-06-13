@@ -4,6 +4,9 @@ namespace Psc\Code;
 
 use Psc\Code\Callback;
 
+/**
+ * @group class:Psc\Code\Callback
+ */
 class CallbackTest extends \Psc\Code\Test\Base {
   
   public function testCallWithStatics() {
@@ -52,6 +55,23 @@ class CallbackTest extends \Psc\Code\Test\Base {
     $callback = new Callback(NULL,$closure);
     $this->assertEquals($callback->getType(),Callback::TYPE_CLOSURE);
     $this->assertEquals('closure:hello', $callback->call());
+  }
+  
+  public function testCalledChangesState() {
+    $callback = new Callback(function () {
+      // empty
+    });
+    
+    $this->assertFalse($callback->wasCalled());
+    $this->assertEquals(0, $callback->getCalled());
+    
+    $callback->call();
+    
+    $this->assertTrue($callback->wasCalled());
+    $this->assertEquals(1, $callback->getCalled());
+    
+    $callback->call();
+    $this->assertEquals(2, $callback->getCalled());
   }
 }
 

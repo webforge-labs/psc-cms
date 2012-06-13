@@ -4,10 +4,12 @@ namespace Psc\UI;
 
 use Psc\Doctrine\TestEntities\Tag;
 use Psc\Doctrine\TestEntities\Article;
-use Psc\Doctrine\TestEntities\TagEntityMeta;
-use Psc\Doctrine\TestEntities\ArticleEntityMeta;
-use Psc\CMS\AjaxMeta;
 
+/**
+ * @group class:Psc\UI\ComboDropBox2
+ *
+ * http://wiki.ps-webforge.com/psc-cms:dokumentation:ui:combodropbox
+ */
 class ComboDropBox2Test extends \Psc\Code\Test\HTMLTestCase {
   
   protected $comboDropBox;
@@ -16,20 +18,25 @@ class ComboDropBox2Test extends \Psc\Code\Test\HTMLTestCase {
     //$this->chainClass = 'Psc\UI\ComboDropBox2';
     parent::setUp();
     
-    $classMetadata = $this->getMock('Doctrine\ORM\Mapping\ClassMetadata', array(), array('Psc\Doctrine\TestEntitites\Article'));
-    $this->entityMeta = new TagEntityMeta($classMetadata);
-    $this->avaibleItems = new AjaxMeta(AjaxMeta::GET, '/entities/tags/');
+    $this->relationEntityMeta = $this->getEntityMeta('Psc\Doctrine\TestEntities\Tag');
+    $this->avaibleItems = $this->relationEntityMeta->getAutoCompleteRequestMeta();
     
-    $this->marktestIncomplete('not yet ready');
+    //$this->entityMeta = $this->getEntityMeta('Psc\Doctrine\TestEntities\Article');
     
-    $this->comboBox = new ComboBox2($this->entityMeta, $this->avaibleItems);
-    $this->dropBox = new ComboBox2($this->entityMeta);
-    $this->comboDropBox = new ComboDropBox2($this->comboBox, $this->dropBox, 'Tags Pflegen', 'tags');
+    $this->comboBox = new ComboBox2('tags', $this->avaibleItems, $this->relationEntityMeta);
+    $this->dropBox = new DropBox2('tags', $this->relationEntityMeta, array());
+    
+    $this->comboDropBox = new ComboDropBox2($this->comboBox, $this->dropBox, 'Tags Pflegen');
   }
   
   
+  /**
+   * Wir müssen hier eigentlich nur die Verbindungen der beiden Testen
+   *
+   * ob dann die Items korrekt gesetzt werden usw wird durch andere Tests geprüft
+   */
   public function testAcceptance() {
-    extract($this->loadTestEntities('articles'));
+    $article = current($this->loadTestEntities('articles'));
     $tags = $this->loadTestEntities('tags');
 
     $this->html = $this->comboDropBox->html();
@@ -37,28 +44,34 @@ class ComboDropBox2Test extends \Psc\Code\Test\HTMLTestCase {
     // fieldset mit richtigem laben aussen rum
     $this->test->css('fieldset.psc-cms-ui-group', $this->html)
       ->count(1)
-      ->test('legend')->count(1)->hasText('Tags Pflegen')-end()
+      ->hasClass('psc-cms-ui-combo-drop-box-wrapper') // macht abstand zwischen combo + dropbox
+      ->test('legend')->count(1)->hasText('Tags Pflegen')->end()
       ->test('div.content')
         ->count(1)
         // combo box
         ->test('input.psc-cms-ui-combo-box')
           ->count(1)
           ->hasAttribute('type','text')
+          ->attribute('name',$this->logicalNot($this->equalTo('tags')))
           ->end()
         
         // button neben der combo-box zum öffnen (kommt aus js)
-        //->test('button.psc-cms-ui-button')
-        //  ->count(1)
-        //  ->test('span.ui-icon-triangle-1-s')->count(1)->end()
-        //  ->end()
-       
+
         // dropbox
         ->test('div.psc-cms-ui-drop-box')
           ->count(1)
+          ->end()
     ;
-  }
-  
-  public function testAssignedItemsShowAsButtonsInDropBox() {
+    
+    $this->test->js($this->comboDropBox)
+      ->constructsJoose('Psc.UI.ComboDropBox')
+        ->hasParam('dropBoxWidget')
+        ->hasParam('comboBoxWidget')
+      ;
+      
+    $this->test->js($this->comboDropBox->getComboBox())
+      ->constructsJoose('Psc.UI.ComboBox')
+        ->hasParam('selectMode',$this->equalTo(false));
   }
 }
 ?>

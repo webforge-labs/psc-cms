@@ -9,6 +9,7 @@ use Psc\Net\ServiceResponse;
 
 /**
  * @group net-service
+ * @group class:Psc\CMS\Service
  */
 class ServiceTest extends \Psc\Code\Test\Base {
 

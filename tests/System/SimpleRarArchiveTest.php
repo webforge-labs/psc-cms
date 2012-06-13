@@ -6,6 +6,9 @@ use Psc\System\SimpleRarArchive;
 use Psc\CMS\Configuration;
 use Psc\PSC;
 
+/**
+ * @group class:Psc\System\SimpleRarArchive
+ */
 class SimpleRarArchiveTest extends \Psc\Code\Test\Base {
   
   protected $finder;

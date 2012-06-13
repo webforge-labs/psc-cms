@@ -6,6 +6,7 @@ use Psc\Hitch\Property;
 use Psc\Code\Generate\GClass;
 
 /**
+ * @group class:Psc\Hitch\Property
  * @group Hitch
  */
 class PropertyTest extends \Psc\Code\Test\Base {

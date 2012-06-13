@@ -2,6 +2,9 @@
 
 namespace Psc\Net;
 
+/**
+ * @group class:Psc\Net\RequestMatcher
+ */
 class RequestMatcherTest extends \Psc\Code\Test\Base {
   
   public function setUp() {

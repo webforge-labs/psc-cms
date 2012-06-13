@@ -6,6 +6,7 @@ use Psc\Data\Ical\CalendarWriter;
 
 /**
  * Akzeptanztest siehe in BuilderTest
+ * @group class:Psc\Data\Ical\CalendarWriter
  */
 class CalendarWriterTest extends \Psc\Code\Test\Base {
 

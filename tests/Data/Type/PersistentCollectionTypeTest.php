@@ -2,6 +2,9 @@
 
 namespace Psc\Data\Type;
 
+/**
+ * @group class:Psc\Data\Type\PersistentCollectionType
+ */
 class PersistentCollectionTypeTest extends \Psc\Code\Test\Base {
   
   public function setUp() {

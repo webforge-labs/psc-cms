@@ -5,6 +5,9 @@ namespace Psc\CMS\ProjectWizardTask;
 use Psc\CMS\ProjectWizardTask\CreateDirectoryStructure;
 use Psc\PSC;
 
+/**
+ * @group class:Psc\CMS\ProjectWizardTask\CreateDirectoryStructure
+ */
 class CreateDirectoryStructureTest extends TestCase {
   
   public function assertPreConditions() {

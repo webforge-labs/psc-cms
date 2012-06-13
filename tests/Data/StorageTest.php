@@ -6,6 +6,7 @@ use Psc\System\Dir;
 use Psc\System\File;
 
 /**
+ * @group class:Psc\Data\Storage
  * @group cache
  */
 class StorageTest extends \Psc\Code\Test\Base {

@@ -4,6 +4,9 @@ namespace Psc\CMS\Service\Response;
 
 use Psc\Form\ValidatorException;
 
+/**
+ * @group class:Psc\CMS\Service\Response\ValidationResponse
+ */
 class ValidationResponseTest extends \Psc\Code\Test\Base {
   
   protected $response;

@@ -2,6 +2,9 @@
 
 namespace Psc\Code\Compile\Annotations;
 
+/**
+ * @group class:Psc\Code\Compile\Annotations\Compiled
+ */
 class CompiledTest extends \Psc\Code\AnnotationTestCase {
   
   public function setUp() {

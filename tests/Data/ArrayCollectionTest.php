@@ -4,6 +4,9 @@ namespace Psc\Data;
 
 use \Psc\Data\ArrayCollection;
 
+/**
+ * @group class:Psc\Data\ArrayCollection
+ */
 class ArrayCollectionTest extends \Psc\Code\Test\Base {
   
   protected $collection;
@@ -28,6 +31,9 @@ class ArrayCollectionTest extends \Psc\Code\Test\Base {
   }
   
   
+
+
+
   public function testEntityCollectionSameandEquals() {
     $collection1 = new ArrayCollection();
     $collection1[] = new CollectionObject(10);
@@ -203,6 +209,19 @@ class CollectionObject {
   
   public function __toString() {
     return 'Object:'.$this->id;
+  }
+  
+  private function __clone() {
+  }
+}
+
+class Stub {
+  
+  protected function __clone() {
+  }
+  
+  public function isClonable() {
+    return FALSE;
   }
 }
 ?>

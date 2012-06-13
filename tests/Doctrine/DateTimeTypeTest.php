@@ -5,6 +5,9 @@ namespace Psc\Doctrine;
 use Psc\Doctrine\DateTimeType;
 use Psc\Doctrine\TestEntities\Tag;
 
+/**
+ * @group class:Psc\Doctrine\DateTimeType
+ */
 class DateTimeTypeTest extends \Psc\Doctrine\DatabaseTest {
   
   public function configure() {

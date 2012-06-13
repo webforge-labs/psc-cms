@@ -2,6 +2,9 @@
 
 namespace Psc\Data\Accounting;
 
+/**
+ * @group class:Psc\Data\Accounting\Price
+ */
 class PriceTest extends \Psc\Code\Test\Base {
   
   public function setUp() {

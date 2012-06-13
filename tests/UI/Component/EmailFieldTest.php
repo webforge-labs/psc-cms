@@ -5,6 +5,7 @@ namespace Psc\UI\Component;
 use Psc\UI\Component\EmailField;
 
 /**
+ * @group class:Psc\UI\Component\EmailField
  * @group component
  */
 class EmailFieldTest extends TestCase {

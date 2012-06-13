@@ -5,6 +5,9 @@ namespace Psc\Code\Build;
 use \Psc\Code\Build\ModuleBuilder;
 use \Psc\PSC;
 
+/**
+ * @group class:Psc\Code\Build\ModuleBuilder
+ */
 class ModuleBuilderTest extends \Psc\Code\Test\Base {
   
   /**

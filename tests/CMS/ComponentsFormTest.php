@@ -4,6 +4,9 @@ namespace Psc\CMS;
 
 use Psc\CMS\ComponentsForm;
 
+/**
+ * @group class:Psc\CMS\ComponentsForm
+ */
 class ComponentsFormTest extends \Psc\Code\Test\Base {
   
   protected $form;

@@ -4,6 +4,9 @@ namespace Psc\CMS;
 
 use Psc\CMS\Labeler;
 
+/**
+ * @group class:Psc\CMS\Labeler
+ */
 class LabelerTest extends \Psc\Code\Test\Base {
 
   public function setUp() {

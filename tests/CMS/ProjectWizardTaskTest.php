@@ -4,6 +4,9 @@ namespace Psc\CMS;
 
 use Psc\CMS\ProjectWizzardTask;
 
+/**
+ * @group class:Psc\CMS\ProjectWizardTask
+ */
 class ProjectWizardTaskTest extends \Psc\Code\Test\Base {
 
   public function testConstruction() {

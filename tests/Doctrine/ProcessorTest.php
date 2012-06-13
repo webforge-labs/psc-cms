@@ -10,6 +10,9 @@ use Psc\Data\SetMeta;
 use Psc\Doctrine\TestEntities\Tag as ArticleTag;
 use Psc\PSC;
 
+/**
+ * @group class:Psc\Doctrine\Processor
+ */
 class ProcessorTest extends \Psc\Doctrine\DatabaseTest {
   
   protected $article;

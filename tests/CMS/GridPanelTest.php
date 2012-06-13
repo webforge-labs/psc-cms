@@ -4,6 +4,9 @@ namespace Psc\CMS;
 
 use Psc\JS\jQuery;
 
+/**
+ * @group class:Psc\CMS\GridPanel
+ */
 class GridPanelTest extends \Psc\Code\Test\HTMLTestCase {
   
   protected $gridPanel;

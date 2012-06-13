@@ -1,8 +1,13 @@
 <?php
 
+namespace Psc\TPL;
+
 use \Psc\TPL\TPL;
 
-class TPLTest extends PHPUnit_Framework_TestCase {
+/**
+ * @group class:Psc\TPL\TPL
+ */
+class TPLTest extends \Psc\Code\Test\Base {
   
   protected $c = '\Psc\TPL\TPL';
   

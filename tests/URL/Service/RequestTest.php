@@ -5,6 +5,9 @@ namespace Psc\URL\Service;
 use \Psc\Code\Test\Base,
     \Psc\URL\Service\Request;
 
+/**
+ * @group class:Psc\URL\Service\Request
+ */
 class RequestTest extends \Psc\Code\Test\Base {
   
   public function testApi() {

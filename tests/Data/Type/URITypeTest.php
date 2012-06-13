@@ -4,6 +4,9 @@ namespace Psc\Data\Type;
 
 use Psc\Data\Type\URIType;
 
+/**
+ * @group class:Psc\Data\Type\URIType
+ */
 class URITypeTest extends TestCase {
 
   public function testMapsSomeComponent() {

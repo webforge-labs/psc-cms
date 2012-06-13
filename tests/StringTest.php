@@ -4,6 +4,9 @@ namespace Psc;
 
 use \Psc\String AS S;
 
+/**
+ * @group class:Psc\String
+ */
 class StringTest extends \Psc\Code\Test\Base {
 
   public function testIndent() {

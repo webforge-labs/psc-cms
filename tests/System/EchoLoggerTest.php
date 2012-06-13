@@ -6,6 +6,7 @@ use \Psc\System\EchoLogger;
 
 /**
  * @group logger
+ * @group class:Psc\System\EchoLogger
  */
 class EchoLoggerTest extends \Psc\Code\Test\Base {
 

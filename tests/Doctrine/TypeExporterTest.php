@@ -5,6 +5,9 @@ namespace Psc\Doctrine;
 use Psc\Doctrine\TypeExporter;
 use Psc\Data\Type\Type;
 
+/**
+ * @group class:Psc\Doctrine\TypeExporter
+ */
 class TypeExporterTest extends \Psc\Code\Test\Base {
   
   protected $exporter;
@@ -38,8 +41,10 @@ class TypeExporterTest extends \Psc\Code\Test\Base {
     $test('String','string');
     $test('Integer','integer');
     $test('Boolean','boolean');
-    $test('DateTime','Psc.DateTime');
+    $test('DateTime','PscDateTime');
     $test('Email','string');
+    
+    // @TODO Regression: 2 mal DCEnumType darf nicht gecached werden
 
     return $tests;
   }
@@ -64,6 +69,14 @@ class TypeExporterTest extends \Psc\Code\Test\Base {
 
     return $tests;
   }
+
+  /**
+   * @expectedException Psc\Data\Type\TypeConversionException
+   */
+  public function testGetPscTypeException() {
+    $this->exporter->getPscType('notKnown');
+  }
+
 
   public function createTypeExporter() {
     return new TypeExporter();

@@ -6,6 +6,7 @@ use \Psc\Hitch\Manager;
 use \Psc\PSC;
 
 /**
+ * @group class:Psc\Hitch\Manager
  * @group Hitch
  */
 class ManagerTest extends \Psc\Code\Test\Base {

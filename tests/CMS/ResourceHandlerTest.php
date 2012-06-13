@@ -7,6 +7,7 @@ use Psc\Net\HTTP\Request;
 
 /**
  * @group net-service
+ * @group class:Psc\CMS\ResourceHandler
  */
 class ResourceHandlerTest extends \Psc\Code\Test\Base {
   

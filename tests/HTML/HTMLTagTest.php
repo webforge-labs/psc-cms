@@ -1,11 +1,16 @@
 <?php
 
+namespace Psc\HTML;
+
 use \Psc\HTML\Tag AS HTMLTag,
     \Psc\Form\HTML as fHTML,
     \Psc\HTML\HTML
 ;
 
-class HTMLTagTest extends PHPUnit_Framework_TestCase {
+/**
+ * @group class:Psc\HTML\Tag
+ */
+class TagTest extends \Psc\Code\Test\Base {
 
     public function testEmptyConstructor() {
       $this->setExpectedException('InvalidArgumentException');

@@ -5,7 +5,12 @@ namespace Psc\Net\HTTP;
 use Psc\Net\ServiceResponse;
 use Psc\Net\Service;
 use Psc\Data\ArrayCollection;
+use Psc\CMS\RequestMeta;
+use Psc\CMS\Service\MetadataGenerator;
 
+/**
+ * @group class:Psc\Net\HTTP\ResponseConverter
+ */
 class ResponseConverterTest extends \Psc\Code\Test\Base {
   
   public function setUp() {
@@ -59,6 +64,22 @@ class ResponseConverterTest extends \Psc\Code\Test\Base {
               );
     
     return $tests;
+  }
+  
+  public function testMetadataConversion() {
+    $tabOpenable = $this->doublesManager->createTabOpenable('/url/des/tabs', 'label des Tabs');
+    
+    $request = $this->doublesManager->createHTTPRequest('POST', '/entities/persons');
+    $response = new ServiceResponse(Service::OK, (object) array('ok'=>'true'), 'json');
+    $response->setMetadata(
+      MetadataGenerator::create()
+        ->openTab($tabOpenable)
+    );
+    
+    $httpResponse = $this->converter->fromService($response, $request);
+    $this->assertInstanceof('Psc\Net\HTTP\Response', $httpResponse);
+    
+    $this->assertTrue($httpResponse->hasHeaderField('X-Psc-Cms-Meta'));
   }
 }
 ?>

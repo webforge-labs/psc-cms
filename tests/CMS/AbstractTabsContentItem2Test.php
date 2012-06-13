@@ -2,6 +2,9 @@
 
 namespace Psc\CMS;
 
+/**
+ * @group class:Psc\CMS\AbstractTabsContentItem2
+ */
 class AbstractTabsContentItem2Test extends \Psc\Code\Test\Base {
   
   public function setUp() {

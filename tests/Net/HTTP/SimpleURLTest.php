@@ -4,6 +4,9 @@ namespace Psc\Net\HTTP;
 
 use Psc\Net\HTTP\SimpleURL;
 
+/**
+ * @group class:Psc\Net\HTTP\SimpleURL
+ */
 class SimpleURLTest extends \Psc\Code\Test\Base {
 
   /**

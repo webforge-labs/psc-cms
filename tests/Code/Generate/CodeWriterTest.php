@@ -4,9 +4,11 @@ namespace Psc\Code\Generate;
 
 use Psc\Code\Generate\CodeWriter;
 use Psc\PSC;
+use Psc\Code\AST;
 
 /**
  * @group generate
+ * @group class:Psc\Code\Generate\CodeWriter
  */
 class CodeWriterTest extends \Psc\Code\Test\Base {
   
@@ -183,6 +185,14 @@ class CodeWriterTest extends \Psc\Code\Test\Base {
     );
     
     return $tests;
+  }
+  
+  public function testCallGetter() {
+    $this->assertEquals('$this->getIdentifier()', $this->codeWriter->callGetter(new AST\Variable('this'),'identifier'));
+  }
+
+  public function testCallSetter() {
+    $this->assertEquals('$this->setIdentifier($id)', $this->codeWriter->callSetter(new AST\Variable('this'),'identifier',new AST\Variable('id')));
   }
 }
 

@@ -4,6 +4,9 @@ namespace Psc\Data\Accounting;
 
 use Psc\DateTime\DateTime;
 
+/**
+ * @group class:Psc\Data\Accounting\Invoice
+ */
 class InvoiceTest extends \Psc\Code\Test\Base {
   
   public function setUp() {

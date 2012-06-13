@@ -1,8 +1,13 @@
 <?php
 
+namespace Psc\Form;
+
 use \Psc\Form\DataInput AS FormDataInput;
 
-class FormDataInputTest extends PHPUnit_Framework_TestCase {
+/**
+ * @group class:Psc\Form\DataInput
+ */
+class DataInputTest extends \Psc\Code\Test\Base {
   
   public function cons($_POST, $expected, $line = NULL) {
     $input = new \Psc\Form\DataInput($_POST);

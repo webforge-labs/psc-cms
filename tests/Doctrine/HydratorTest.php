@@ -4,6 +4,9 @@ namespace Psc\Doctrine;
 
 use Psc\Doctrine\Hydrator;
 
+/**
+ * @group class:Psc\Doctrine\Hydrator
+ */
 class HydratorTest extends \Psc\Doctrine\DatabaseTest {
   
   protected $hydrator;

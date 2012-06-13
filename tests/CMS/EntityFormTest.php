@@ -4,44 +4,39 @@ namespace Psc\CMS;
 
 use Psc\CMS\EntityForm;
 
+/**
+ * @group class:Psc\CMS\EntityForm
+ */
 class EntityFormTest extends \Psc\Code\Test\HTMLTestCase {
 
   public function setUp() {
     $this->chainClass = 'Psc\CMS\EntityForm';
     parent::setUp();
+
+    $this->entity = new \Psc\Doctrine\TestEntities\Person('Mr Roboto');
+    $this->entity->setIdentifier($id = 17);
+    $this->form = new EntityForm($this->entity, new RequestMeta('PUT', '/entities/persons/mr-roboto'));
   }
 
   public function testHTML() {
-    $entity = new \Psc\Doctrine\TestEntities\Person('Mr Roboto');
-    $entity->setIdentifier($id = 17);
-    
-    $form = new EntityForm($entity);
-    
-    $html = $form->open();
-    $html .= $form->close();
-    
-    $this->html = $html;
+    $this->html = $this->form;
     
     // entityform überhaupt da
-    $form = $this->test->css('.psc-cms-ui-form.psc-cms-ui-entity-form', $html)
-         ->count(1, 'Im HTML Output ist kein <form> Element vorhanden')
-         ->getjQuery();
+    $this->test->css('.psc-cms-ui-form.psc-cms-ui-entity-form')
+         ->count(1, 'Im HTML Output ist kein <form> Element vorhanden');
     
-    // submitted
-    $this->test->css('input[type="hidden"][name="submitted"][value="true"]', $form)
-         ->count(1, 'input type hidden submitted value true ist nicht da');
-
-    $input = $this->test->css('input[name="identifier"][type="hidden"]', $form->html())
-         ->count(1, 'identifier ist nicht im formular')
-         ->hasAttribute('value', $id)
-         ->getjQuery()
-      ;
+    $this->test->css('form[action="/entities/persons/mr-roboto"]')
+      ->count(1)
+      ->hasAttribute('method','post') // das ist nicht die aus requestMeta, aber gewollt (browser kompatibel)
+      ->test('input[name="X-Psc-Cms-Request-Method"]')
+        ->count(1)
+        ->hasAttribute('value','PUT');
     
-    // @TODO noch die Buttons?
+    $this->assertContains('X-Psc-Cms-Request-Method', $this->form->getControlFields());
   }
-
-  public function createEntityForm() {
-    return new EntityForm();
+  
+  public function testGetEntity() {
+    $this->assertSame($this->entity, $this->form->getEntity());
   }
 }
 ?>

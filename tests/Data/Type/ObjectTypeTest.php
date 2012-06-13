@@ -5,6 +5,9 @@ namespace Psc\Data\Type;
 use Psc\Data\Type\ObjectType;
 use Psc\Code\Generate\GClass;
 
+/**
+ * @group class:Psc\Data\Type\ObjectType
+ */
 class ObjectTypeTest extends \Psc\Code\Test\Base {
   
   public function setUp() {

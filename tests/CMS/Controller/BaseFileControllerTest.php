@@ -1,19 +1,14 @@
 <?php
 
-use \Psc\CMS\Controller\BaseFileController,
-    \Psc\CMS\Controller\Controller
-;
+namespace Psc\CMS\Controller;
 
-/* wenn man das hier allerdings schafft, könnte man getDirectory() auch hacken, sodass
-   es eben doch geht. Aber wir gehen davon aus, dass wir uns eher gegen _GET - Sachen schützen müssen */
-class HackyExtend extends BaseFileController {
-  
-  public function getFileName() {
-    return '../../../etc/passwd';
-  }
-}
+use Psc\CMS\Controller\BaseFileController;
+use Psc\CMS\Controller\Controller;
 
-class BaseFileControllerTest extends PHPUnit_Framework_TestCase {
+/**
+ * @group class:Psc\CMS\Controller\BaseFileController
+ */
+class BaseFileControllerTest extends \Psc\Code\Test\Base {
   
   protected $c = '\Psc\CMS\Controller\BaseFileController';
   
@@ -65,4 +60,12 @@ class BaseFileControllerTest extends PHPUnit_Framework_TestCase {
   }
 }
 
+/* wenn man das hier allerdings schafft, könnte man getDirectory() auch hacken, sodass
+   es eben doch geht. Aber wir gehen davon aus, dass wir uns eher gegen _GET - Sachen schützen müssen */
+class HackyExtend extends BaseFileController {
+  
+  public function getFileName() {
+    return '../../../etc/passwd';
+  }
+}
 ?>

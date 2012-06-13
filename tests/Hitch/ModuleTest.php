@@ -5,6 +5,7 @@ namespace Psc\Hitch;
 use \Psc\Hitch\Module;
 
 /**
+ * @group class:Psc\Hitch\Module
  * @group Hitch
  */
 class ModuleTest extends \Psc\Code\Test\Base {

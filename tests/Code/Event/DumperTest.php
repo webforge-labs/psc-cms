@@ -4,6 +4,9 @@ namespace Psc\Code\Event;
 
 use \Psc\Code\Event\Dumper;
 
+/**
+ * @group class:Psc\Code\Event\Dumper
+ */
 class DumperTest extends \Psc\Code\Test\Base {
   
   public function testAcceptance() {

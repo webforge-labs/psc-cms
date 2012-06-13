@@ -4,10 +4,16 @@ namespace Psc\Data\Type;
 
 use Psc\Data\Type\StringType;
 
-class StringTypeTest extends \Psc\Code\Test\Base {
+/**
+ * @group class:Psc\Data\Type\StringType
+ */
+class StringTypeTest extends TestCase {
 
   public function testConstruct() {
-    return new StringType();
+    $stringType = new StringType();
+    
+    $this->assertDocType('string', $stringType);
+    $this->assertTypeMapsComponent('TextField', $stringType);
   }
 }
 ?>

@@ -1,8 +1,13 @@
 <?php
 
+namespace Psc;
+
 use Psc\DependencyManager;
 
-class DependencyManagerTest extends PHPUnit_Framework_TestCase {
+/**
+ * @group class:Psc\DependencyManager
+ */
+class DependencyManagerTest extends \Psc\Code\Test\Base {
 
   /**
    * @var Psc\DependencyManager

@@ -4,6 +4,9 @@ namespace Psc\Code\Test;
 
 use Psc\Code\Test\CSSTester;
 
+/**
+ * @group class:Psc\Code\Test\CSSTester
+ */
 class CSSTesterTest extends \Psc\Code\Test\Base {
 
   protected $formHTML = <<< 'HTML_FORM'
@@ -40,21 +43,22 @@ HTML_FORM;
     };
     
     $counter = 0;
-    $ok = function ($selector, $html, $expected) use ($that, $assertCountTest, $counter) {
-      $assertCountTest(TRUE, 'CountTestFailure'.($counter++), $selector, $html, $expected);
+    $ok = function ($selector, $html, $expected) use ($that, $assertCountTest, &$counter) {
+      $assertCountTest(TRUE, 'CountTestOK '.($counter++), $selector, $html, $expected);
     };
-    $fail = function ($selector, $html, $expected, $num) use ($that, $assertCountTest, $counter) {
-      $assertCountTest(FALSE, 'CountTestFailure'.($counter++), $selector, $html, $expected);
+    $fail = function ($selector, $html, $expected) use ($that, $assertCountTest, &$counter) {
+      $assertCountTest(FALSE, 'CountTestFailure '.($counter++), $selector, $html, $expected);
     };
     
-    $ok('form.main',$this->formHTML, 1, 1);
-    $ok('fieldset',$this->formHTML, 2, 2);
-    $ok('input',$this->formHTML, 6, 3);
-    $ok('form', '', 0, 4);
+    $ok('form.main',$this->formHTML, 1);
+    $ok('fieldset',$this->formHTML, 2);
+    $ok('input',$this->formHTML, 6);
+    $ok('form', 'empty', 0, 4); // '' als html ist nicht (mehr) erlaubt
     
-    $fail('form.blubb', $this->formHTML, 1, 1);
-    $fail('form', $this->formHTML, 2, 2);
-    $fail('form', '', 2, 2);
+    $counter = 0;
+    $fail('form.blubb', $this->formHTML, 1);
+    $fail('form', $this->formHTML, 2);
+    $fail('form', '', 2);
     //$ex('', '', 2, 2);
   }
 

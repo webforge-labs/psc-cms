@@ -4,6 +4,9 @@ namespace Psc\JS;
 
 use Psc\JS\ProxyManager;
 
+/**
+ * @group class:Psc\JS\ProxyManager
+ */
 class ProxyManagerTest extends \Psc\Code\Test\HTMLTestCase {
 
   public function testAcceptance() {

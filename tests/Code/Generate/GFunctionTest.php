@@ -6,6 +6,7 @@ use \Psc\Code\Generate\GFunction;
 
 /**
  * @group generate
+ * @group class:Psc\Code\Generate\GFunction
  */
 class GFunctionTest extends \Psc\Code\Test\Base {
 

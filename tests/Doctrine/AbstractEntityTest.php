@@ -4,6 +4,9 @@ namespace Psc\Doctrine;
 
 use Psc\Doctrine\AbstractEntity;
 
+/**
+ * @group class:Psc\Doctrine\AbstractEntity
+ */
 class AbstractEntityTest extends \Psc\Code\Test\Base {
 
   public function testxx() {
@@ -70,6 +73,11 @@ class MyEntity extends AbstractEntity {
   
   public function getIdentifier() {
     return $this->identifier;
+  }
+
+  public function setIdentifier($id) {
+    $this->identifier = $id;
+    return $this;
   }
   
   public function getEntityName() {

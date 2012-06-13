@@ -7,6 +7,9 @@ use Psc\Doctrine\EntityDataRow;
 use stdClass;
 use Psc\PSC;
 
+/**
+ * @group class:Psc\Code\Test\FormTester
+ */
 class FormTesterTest extends \Psc\Code\Test\Base {
 
   public function testProcess() {

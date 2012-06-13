@@ -1,34 +1,14 @@
 <?php
 
-use \Psc\CMS\Controller\BaseController,
-    \Psc\CMS\Controller\Controller
-;
+namespace Psc\CMS\Controller;
 
-class BaseControllerDummy extends BaseController {
-  
-  public $info = array('initTodo'=>FALSE,
-                       ''
-                       );
-  
-  public function __construct() {
-    parent::__construct();
-  }
-  
-  public function construct() {
-    parent::construct();
-    $this->info['construct'] = TRUE;
-  }
-  
-  public function init($mode = Controller::MODE_NORMAL) {
-    return $this;
-  }
-  
-  public function run() {
-    return $this;
-  }
-}
+use Psc\CMS\Controller\BaseController;
+use Psc\CMS\Controller\Controller;
 
-class BaseControllerTest extends PHPUnit_Framework_TestCase {
+/**
+ * @group class:Psc\CMS\Controller\BaseController
+ */
+class BaseControllerTest extends \Psc\Code\Test\Base {
   
   /**
    * @var \Psc\CMS\Controller\BaseController
@@ -98,4 +78,27 @@ class BaseControllerTest extends PHPUnit_Framework_TestCase {
   }
 }
 
+class BaseControllerDummy extends BaseController {
+  
+  public $info = array('initTodo'=>FALSE,
+                       ''
+                       );
+  
+  public function __construct() {
+    parent::__construct();
+  }
+  
+  public function construct() {
+    parent::construct();
+    $this->info['construct'] = TRUE;
+  }
+  
+  public function init($mode = Controller::MODE_NORMAL) {
+    return $this;
+  }
+  
+  public function run() {
+    return $this;
+  }
+}
 ?>

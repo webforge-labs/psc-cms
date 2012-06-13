@@ -1,11 +1,16 @@
 <?php
 
+namespace Psc\JS;
+
 use \Psc\JS\jQuery,
     \Psc\JS\Manager,
     Psc\XML\Helper as xml,
     Psc\HTML\HTML
 ;
 
+/**
+ * @group class:Psc\JS\jQuery
+ */
 class jQueryTest extends \Psc\Code\Test\Base {
   
   protected $formHTML = <<< 'HTML_FORM'
@@ -68,14 +73,14 @@ HTML_FORM;
   
   public function testSelectIndex() {
     $firstInput = new jQuery('form.main fieldset.user-data.group input:nth-of-type(2)', $this->formHTML);
-    $this->assertEquals(array('<input type="text" name="name" value=""/>'), $firstInput->export());
+    $this->assertEquals(array('<input type="text" name="name" value="" />'), $firstInput->export());
     $firstInput = new jQuery('form.main fieldset.user-data.group input:eq(1)', $this->formHTML);
-    $this->assertEquals(array('<input type="text" name="name" value=""/>'), $firstInput->export());
+    $this->assertEquals(array('<input type="text" name="name" value="" />'), $firstInput->export());
 
     $firstInput = new jQuery('form.main fieldset.user-data.group input:nth-of-type(1)', $this->formHTML);
-    $this->assertEquals(array('<input type="text" name="email" value=""/>'), $firstInput->export());
+    $this->assertEquals(array('<input type="text" name="email" value="" />'), $firstInput->export());
     $firstInput = new jQuery('form.main fieldset.user-data.group input:eq(0)', $this->formHTML);
-    $this->assertEquals(array('<input type="text" name="email" value=""/>'), $firstInput->export());
+    $this->assertEquals(array('<input type="text" name="email" value="" />'), $firstInput->export());
   }
   
   public function testHasClass() {
@@ -104,12 +109,12 @@ HTML_FORM;
     // schöner wäre hier auch assertTag zu nehmen
     // wir testen hier aber eh teilweise funktionen aus xml helper, deshalb hier nur akzeptanz
     $ex = array (
-       0 => '<input type="text" name="email" value=""/>',
-       1 => '<input type="text" name="name" value=""/>',
-       2 => '<input type="password" name="pw1" value=""/>',
-       3 => '<input type="password" name="pw2" value=""/>',
-       4 => '<input type="hidden" name="submitted" value="true"/>',
-       5 => '<input type="submit"/>'
+       0 => '<input type="text" name="email" value="" />',
+       1 => '<input type="text" name="name" value="" />',
+       2 => '<input type="password" name="pw1" value="" />',
+       3 => '<input type="password" name="pw2" value="" />',
+       4 => '<input type="hidden" name="submitted" value="true" />',
+       5 => '<input type="submit" />'
     );
     foreach ($inputs as $key =>$input) {
       $this->assertEquals($ex[$key], xml::export($input), 'Input mit Schlüssel: '.$key);

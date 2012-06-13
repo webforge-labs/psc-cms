@@ -4,6 +4,9 @@ namespace Psc\Doctrine;
 
 use Psc\Doctrine\BaseEntity;
 
+/**
+ * @group class:Psc\Doctrine\BaseEntity
+ */
 class BaseEntityTest extends \Psc\Code\Test\Base {
 
   public function testToString_isExceptionSafe() {

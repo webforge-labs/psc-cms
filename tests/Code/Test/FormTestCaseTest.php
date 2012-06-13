@@ -4,6 +4,9 @@ namespace Psc\Code\Test;
 
 use Psc\Code\Test\FormTestCase;
 
+/**
+ * @group class:Psc\Code\Test\FormTestCase
+ */
 class FormTestCaseTest extends \Psc\Code\Test\Base {
   
   public function setUp() {

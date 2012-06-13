@@ -2,6 +2,9 @@
 
 namespace Psc\Net;
 
+/**
+ * @group class:Psc\Net\ServiceErrorPackage
+ */
 class ServiceErrorPackageTest extends \Psc\Code\Test\Base {
   
   protected $package;

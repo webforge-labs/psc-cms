@@ -2,6 +2,10 @@
 
 namespace Psc\UI;
 
+/**
+ * @group class:Psc\UI\ComboBox2
+ * @TODO avaible Items test (auch in JS)
+ */
 class ComboBox2Test extends \Psc\Code\Test\HTMLTestCase {
   
   protected $comboBox;
@@ -11,46 +15,60 @@ class ComboBox2Test extends \Psc\Code\Test\HTMLTestCase {
   public function setUp() {
     $this->chainClass = 'Psc\UI\ComboBox2';
     parent::setUp();
+    $this->entityMeta = $this->getEntityMeta('Psc\Doctrine\TestEntities\Tag');
   }
   
-  public function testAcceptance() {
+  public function testAcceptanceWithAutoCompleteRequestMeta() {
+    $this->avaibleItems = $this->entityMeta->getAutoCompleteRequestMeta();
+    $this->comboBox = new ComboBox2('tags', $this->avaibleItems, $this->entityMeta);
+
+    $this->html = $this->comboBox->html();
+    
+    $this->test->css('input.psc-cms-ui-combo-box',$this->html)
+      ->count(1)
+      ->attribute('name', $this->logicalNot($this->equalTo('tags')))
+      ->hasAttribute('type','text')
+    ;
+    
+    $this->test->js($this->comboBox)
+               ->constructsJoose('Psc.UI.ComboBox')
+               ->hasParam('name',$this->equalTo('tags')) // hier ist der richtige name
+               ->hasParam('autoComplete')
+              ;
+  }
+  
+  public function testAcceptanceWithAvaibleItems() {
     $this->avaibleItems = $this->loadTestEntities('tags');
-    $this->comboBox = new ComboBox2('tags', $this->avaibleItems);
+    $this->comboBox = new ComboBox2('tags', $this->avaibleItems, $this->getEntityMeta('Psc\Doctrine\TestEntities\Tag'));
     
     $this->html = $this->comboBox->html();
     
     $this->test->css('input.psc-cms-ui-combo-box',$this->html)
       ->count(1)
-      ->hasAttribute('name', 'tags')
+      ->attribute('name', $this->logicalNot($this->equalTo('tags'))) // weil das disabled sein muss. die value wird vom formcontroller serializiert
       ->hasAttribute('type','text')
     ;
+
+    $autoComplete = $this->test->js($this->comboBox)
+               ->constructsJoose('Psc.UI.ComboBox')
+               ->hasParam('name',$this->equalTo('tags')) // hier ist der richtige name
+               ->hasParam('autoComplete', $this->isType('object')) // sub
+               ->getParam('autoComplete')
+              ;
+
+    $this->assertInstanceOf('Psc\JS\Code',$autoComplete);
+    $this->assertContains('widget:',$autoComplete->js());
+  }
+  
+  public function testSelectedItemIsSet() {
+    $tag = current($this->loadTestEntities('tags'));
+    $this->comboBox = new ComboBox2('tags', $this->entityMeta->getAutoCompleteRequestMeta(), $this->entityMeta);
+    $this->comboBox->setSelected($tag);
+    $this->html = $this->comboBox->html();
     
-    //file_put_contents('D:\out.txt', (string) $this->html);// copy that to Psc.UI.ComboBoxTest.js
-    
-    // @TODO how to test the javascript call?
-    
-    //require_once 'jparser.php';
-    //
-    //// kann nicht mehrere script tags
-    //
-    //$start = mb_strpos($this->html, $s = '<script type="text/javascript">')+mb_strlen($s)+1; // +1 wegen lineending
-    //$end = mb_strrpos($this->html, '</script>');
-    //$source = \Psc\String::substring($this->html, $start,$end);
-    //
-    ///**
-    // * Get the full parse tree
-    // */
-    //try {
-    //  $Prog = \JParser::parse_string( $source );
-    //  //$Prog->dump( new \JLex );
-    //  var_dump($Prog);
-    //}
-    //catch( \ParseError $Ex ){
-    //    $error = $Ex->getMessage()."\n----\n".$Ex->snip( $source );
-    //}
-    //catch( \Exception $Ex ){
-    //    $error = $Ex->getMessage();
-    //}
+    $this->test->js($this->comboBox)
+      ->constructsJoose('Psc.UI.ComboBox')
+      ->hasParam('selected');
   }
 }
 ?>

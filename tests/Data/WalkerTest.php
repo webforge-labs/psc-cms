@@ -6,6 +6,9 @@ use Psc\Data\Walker;
 use Psc\Code\Generate\GClass;
 use Psc\Code\Code;
 
+/**
+ * @group class:Psc\Data\Walker
+ */
 class WalkerTest extends \Psc\Code\Test\Base {
 
   public function testWalkerAcceptance() {
@@ -28,6 +31,16 @@ class WalkerTest extends \Psc\Code\Test\Base {
   public function testWalkerInteger() {
     $walker = new DocWalker();
     $this->assertEquals('7', $walker->walk(7, $this->getType('Integer')));
+  }
+  
+  public function testWalkableHintType() {
+    $this->markTestIncomplete('Type Mock');
+    $walker = new DocWalker();
+    // gaga muss auch hint sein
+    $walkableHintType = $this->getMock('Psc\Data\Type\WalkableHintType', array('getWalkableHint'));
+    $walkableHintType->expects($this->once())->method('getWalkableHint')->will($this->returnValue('String'));
+    
+    $this->assertEquals('someString', $walker->walk('someString', $walkableHintType));
   }
   
   public function createWalkable() {

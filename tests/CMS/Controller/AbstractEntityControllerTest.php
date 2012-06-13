@@ -2,34 +2,19 @@
 
 namespace Psc\CMS\Controller;
 
+use Psc\Doctrine\TestEntities\Article;
+
+require_once __DIR__.DIRECTORY_SEPARATOR.'AbstractEntityControllerBaseTest.php';
+
 /**
  * @TODO testen ob init*() funktionen aufgerufen werden(mit korrekten parametern)
  * @TODO testen ob propertiesOrder bei getEntityFormular benutzt wird
  * @TODO refactor: EntityRepositoryBuilder benutzen
+ * @group class:Psc\CMS\Controller\AbstractEntityController
  */
-class AbstractEntityControllerTest extends \Psc\Code\Test\Base {
+class AbstractEntityControllerTest extends AbstractEntityControllerBaseTest {
   
-  protected $repository;
-  protected $emm;
-  protected $controller;
-  
-  public function setUp() {
-    $this->chainClass = 'Psc\CMS\Controller\AbstractEntityController';
-    parent::setUp();
-    $entityName = 'Psc\Doctrine\TestEntities\Article';
-    
-    $this->emm = $this->doublesManager->createEntityManagerMock();
-    $this->loadEntity($entityName);
-    
-    $this->repository = $this->createRepositoryMock($this->emm, $entityName);
-    $this->controller = $this->createEntityController();
-    
-    $this->setEntityName($entityName);
-    $this->article = new \Psc\Doctrine\TestEntities\Article('Lorem Ipsum:', 'Lorem Ipsum Dolor sit amet... <more>');
-    $this->assertInstanceOf('Psc\Doctrine\Entity', $this->article);
-    $this->article->setId(7);
-  }
-  
+ 
   public function testGetEntity() {
     $this->expectRepositoryHydrates($this->article);
     $this->assertSame($this->article, $this->controller->getEntity($this->article->getIdentifier()));
@@ -43,31 +28,37 @@ class AbstractEntityControllerTest extends \Psc\Code\Test\Base {
     $this->controller->getEntity(777);
   }
   
-  public function testGetEntity_toFormular() {
-    $this->expectRepositoryHydrates($this->article);
-    $this->assertInstanceOf('Psc\CMS\EntityFormPanel', $this->controller->getEntity($this->article->getIdentifier(), 'form'));
-  }
-
   public function testGetEntity_toGrid() {
     $this->articles = $this->loadTestEntities('articles');
     $this->expectRepositoryFinds($this->articles, array());
     $this->assertInstanceOf('Psc\CMS\EntityGridPanel', $this->controller->getEntities(array(), 'grid'));
+  }
+
+  public function testGetSearchPanel() {
+    $this->assertInstanceOf('Psc\CMS\EntitySearchPanel', $this->controller->getEntities(array(), 'search'));
+  }
+  
+  public function testGetEntity_ToCustomAction() {
+    $this->expectRepositoryHydrates($this->article);
+    $this->controller->expects($this->once())->method('myCustomAction')->with($this->article);
+    
+    $this->controller->addCustomAction('custom-resource', 'myCustomAction');
+    $this->controller->getEntity(7,'custom-resource');
   }
   
   public function testSaveEntity() {
     $this->expectRepositoryHydrates($this->article);
     $this->expectRepositorySaves($this->article);
     
-    $this->controller->setOptionalProperties(array('tags'));
+    $this->controller->setOptionalProperties(array('tags','category'));
     $return = $this->controller->saveEntity(7,
                                   (object) array(
-                                                 'action'=>'1',
+                                                 /*'action'=>'1',
                                                  'submitted'=>'true',
                                                  'identifier'=>'7',
                                                  'dataJSON'=>'[]',
                                                  'type'=>$this->article->getEntityName(),
-                                                 
-                                                 
+                                                 */
                                                  'title'=>'blubb',
                                                  'content'=>'content',
                                                  'tags'=>NULL
@@ -81,62 +72,52 @@ class AbstractEntityControllerTest extends \Psc\Code\Test\Base {
     $this->assertSame($this->article, $return);
   }
   
+  public function testInsertEntity() {
+    $newArticle = new Article('the title', 'the content');
+    $this->expectRepositorySaves($newArticle);
+    
+    $this->controller->setOptionalProperties(array('tags','category'));
+    $this->controller->insertEntity((object) array(
+                                      'title'=>'the title',
+                                      'content'=>'the content',
+                                      'tags'=>NULL
+                                     )
+                                   );
+    
+    $this->assertInstanceOf('Psc\CMS\Service\MetadataGenerator', $this->controller->getResponseMetadata(), 'insert Entity muss Metadata haben für open Tab');
+  }
+
+
+  public function testDeleteEntity() {
+    $this->expectRepositoryHydrates($this->article);
+    $this->expectRepositoryDeletes($this->article); // nicht removes weil removes würde nicht flushen
+    
+    $return = $this->controller->deleteEntity(7);
+    $this->assertSame($this->article, $return);
+    // der test ist blöd, weil das nur doctrine beim flush macht
+    // acceptance tests failen aber
+    $this->assertNotNull($return->getIdentifier(), 'identifier des alten entities darf nicht auf null gesetzt werden');
+  }
+  
   public function testSetRepository() {
     $this->controller->setRepository($otherRep = $this->getMock('Psc\Doctrine\EntityRepository', array(), array(), '', FALSE));
     $this->assertAttributeSame($otherRep, 'repository', $this->controller);
   }
   
-  protected function expectRepositoryHydrates($entity) {
-    $this->repository->expects($this->once())->method('hydrate')
-                     ->with($this->equalTo($entity->getIdentifier()))
-                     ->will($this->returnValue($entity));
-  }
-
-  protected function expectRepositoryHydratesNot($identifier) {
-    $this->repository->expects($this->once())->method('hydrate')
-                     ->with($this->equalTo($identifier))
-                     ->will($this->throwException(
-                        \Psc\Doctrine\EntityNotFoundException::criteria(array('identifier'=>$identifier))
-                      ));
-  }
-
-  protected function expectRepositoryFinds($entities, Array $by) {
-    $this->repository->expects($this->once())->method('findBy')
-                     ->with($this->equalTo($by))
-                     ->will($this->returnValue($entities));
-  }
-
-  protected function expectRepositorySaves($entity) {
-    $this->repository->expects($this->once())->method('save')
-                     ->with($this->equalTo($entity))
-                     ->will($this->returnSelf());
-  }
-  
-  protected function setEntityName($entityName) {
-    $this->controller->expects($this->any())->method('getEntityName')
-        ->will($this->returnValue($entityName));
-  }
-  
-  protected function createEntityController() {
-    $controller = $this->getMock($this->chainClass, array('setUp','getEntityName')); // wir übersschreiben hier setup, weil wir das repository selbst setzen wollen
-    $controller->setRepository($this->repository); // some kind of ungeil: schöner: repository in init-Funktion
+  public function testGetEntitiesForAutoComplete() {
+    $this->expectRepositoryAutoCompletes($this->articles);
     
-    return $controller;
-  }
-  
-  protected function createRepositoryMock($em, $entityName) {
-    return $this->getMock('Psc\Doctrine\EntityRepository',
-                   array('hydrate','save','findBy'),
-                   array($em, $this->getMock('Doctrine\ORM\Mapping\ClassMetadata', array(), array($entityName)))
-                  );
-  }
-  
-  protected function onNotSuccessfulTest(\Exception $e) {
-    if ($e instanceof \Psc\Code\ExceptionExportable) {
-      $e->setMessage($e->exportExceptionText());
+    $exported = $this->controller->getEntities(array('search'=>NULL,'autocomplete'=>'true'));
+    
+    $this->assertInternalType('array', $exported);
+    $this->assertCount(count($this->articles), $exported, 'Anzahl der Exportierten Items ist nicht die der vom Repository autocompleteten');
+    
+    foreach ($exported as $key=>$item) {
+      $info = sprintf('Item %d', $key);
+      $this->assertArrayHasKey('tab', $item, $info);
+      $this->assertArrayHasKey('ac', $item, $info);
+      $this->assertArrayHasKey('identifier', $item, $info);
     }
-      
-    throw $e;
   }
 }
 ?>

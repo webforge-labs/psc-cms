@@ -4,6 +4,9 @@ namespace Psc\Code\Compile;
 
 use Psc\Code\Generate\GClass;
 
+/**
+ * @group class:Psc\Code\Compile\MarkCompiledExtension
+ */
 class MarkCompiledExtensionTest extends \Psc\Code\Test\Base {
   
   public function setUp() {
@@ -12,24 +15,24 @@ class MarkCompiledExtensionTest extends \Psc\Code\Test\Base {
   }
   
   public function testAcceptance() {
-    $inClass = new GClass('NotMarkedClass');
-    $outClass = new GClass('MarkedClass');
+    $gClass = new GClass('NotMarkedClass');
     
-    $ext = $this->createMarkCompiledExtension();
+    $ext = new MarkCompiledExtension();
     $this->assertInstanceof('Psc\Code\Compile\ClassCompiler', $ext);
-    $ext->compile($inClass, $outClass);
+    $ext->compile($gClass);
     
     // jaja
-    $this->assertTrue($outClass->getDocBlock()->hasAnnotation('Psc\Code\Compile\Annotations\Compiled'));
-    
-    // erstellen hier darf jetzt keine neue annotation in out erstellen
-    $inClass->createDocBlock()->addAnnotation(\Psc\Code\Compile\Annotations\Compiled::create());
-    $ext->compile($inClass, $outClass);
-    $this->assertCount(1, $outClass->getDocBlock()->getAnnotations('Psc\Code\Compile\Annotations\Compiled'), 'Anzahl der @Compiled Annotations ist falsch!');
+    $this->assertTrue($gClass->getDocBlock()->hasAnnotation('Psc\Code\Compile\Annotations\Compiled'));
   }
   
-  public function createMarkCompiledExtension() {
-    return new MarkCompiledExtension();
+  public function testAlreadyMarkedClassGetsNotMarked() {
+    $gClass = new GClass('MarkedClass');
+    $gClass->createDocBlock()->addAnnotation(\Psc\Code\Compile\Annotations\Compiled::create());
+    
+    // erstellen hier darf jetzt keine neue annotation in out erstellen
+    $ext = new MarkCompiledExtension();
+    $ext->compile($gClass);
+    $this->assertCount(1, $gClass->getDocBlock()->getAnnotations('Psc\Code\Compile\Annotations\Compiled'), 'Anzahl der @Compiled Annotations ist falsch!');
   }
 }
 ?>

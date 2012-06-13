@@ -5,6 +5,9 @@ namespace Psc\Doctrine;
 use Psc\Doctrine\Module;
 use Psc\PSC;
 
+/**
+ * @group class:Psc\Doctrine\Module
+ */
 class ModuleTest extends \Psc\Code\Test\Base {
 
   public function testEnityManagersInstances() {
@@ -45,6 +48,43 @@ class ModuleTest extends \Psc\Code\Test\Base {
     
     $this->assertNotSame($em, $newEM);
     $this->assertSame($em->getConnection(), $newEM->getConnection(), 'Module benutzt die alte Connection nicht wieder!');
+  }
+  
+  /**
+   * @covers Psc\Doctrine\MetadataDriver::getAllClassNames
+   * @covers Psc\Doctrine\MetadataDriver::addClass
+   */
+  public function testEntityMetadataDriver_getAllClassNames() {
+    $module = PSC::getProject()->getModule('Doctrine');
+    $driver = clone $module->getEntityClassesMetadataDriver();
+    
+    $driver->addClass('Some\Entities\Test');
+    $this->assertTrue(in_array('Some\Entities\Test',$driver->getAllClassNames()), 'Some\Entities\Test ist nicht in '.print_r($driver->getAllClassNames(),true));
+    return $driver;
+  }
+  
+  /**
+   * @depends testEntityMetadataDriver_getAllClassNames
+   * @covers Psc\Doctrine\MetadataDriver::removeClass
+   * @covers Psc\Doctrine\MetadataDriver::getAllClassNames
+   */
+  public function testEntityMetadataDriver_removeClassName($driver) {
+    $driver->removeClass('\Some\Entities\Test');
+    
+    $this->assertFalse(in_array('Some\Entities\Test',$driver->getAllClassNames()), 'Some\Entities\Test ist immer noch in getAllClassNames()');
+  }
+  
+  public function testEntityLoadingAcceptance() {
+    $module = PSC::getProject()->getModule('Doctrine');
+    $em = $module->getEntityManager('default');
+    
+    // das sind künstliche Entities die Entities aus der Library ableiten
+    // BasicImage
+    // BasicPerson
+    // User etc
+    $this->assertInstanceOf('Doctrine\ORM\EntityRepository', $em->getRepository('Entities\Image'));
+    $this->assertInstanceOf('Doctrine\ORM\EntityRepository', $em->getRepository('Entities\User'));
+    $this->assertInstanceOf('Doctrine\ORM\EntityRepository', $em->getRepository('Entities\Person'));
   }
 }
 ?>

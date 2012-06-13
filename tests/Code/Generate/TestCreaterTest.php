@@ -6,6 +6,7 @@ use Psc\Code\Generate\TestCreater;
 
 /**
  * @group generate
+ * @group class:Psc\Code\Generate\TestCreater
  */
 class TestCreaterTest extends \Psc\Code\Test\Base {
 
@@ -23,10 +24,17 @@ class TestCreaterTest extends \Psc\Code\Test\Base {
     $outTc = $tc->create();
     $this->assertSame($out, $outTc); // checkt ob unser mock geklappt hat
     
-    // blöder test, weil er genau genau genau gleich sein muss
-    // besser wäre, ob er base ableitet usw, 
-    //$this->assertFileEquals($this->getFile('fixture.MyTestClassTest.php'), $out);
-    // @TODO z.B. syntax check!
+    require $out;
+    
+    $this->assertTrue(class_exists('Psc\Code\Generate\MyTestClassTest', FALSE));
+    $test = GClass::factory('Psc\Code\Generate\MyTestClassTest');
+    
+    $db = $test->getDocBlock();
+    $this->assertContains('@group class:Psc\Code\Generate\MyTestClass', $db->toString());
+    $this->assertTrue($test->hasMethod('setUp'),'methode setUp existiert nicht im Test');
+    $this->assertTrue($test->hasMethod('testAcceptance'),'methode testAcceptance existiert nicht im Test');
+
+    $this->assertEquals('Psc\Code\Test\Base', $test->getParentClass()->getFQN());// achtung das hier ist kein instanceof
   }
 }
 ?>

@@ -5,6 +5,7 @@ namespace Psc\Net\HTTP;
 use Psc\Net\HTTP\FrontController;
 
 /**
+ * @group class:Psc\Net\HTTP\FrontController
  * @group net-service
  */
 class FrontControllerTest extends \Psc\Code\Test\Base {

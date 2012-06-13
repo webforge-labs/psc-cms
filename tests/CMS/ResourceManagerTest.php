@@ -5,6 +5,9 @@ namespace Psc\CMS;
 use Psc\CMS\ResourceManager;
 use Psc\PSC;
 
+/**
+ * @group class:Psc\CMS\ResourceManager
+ */
 class ResourceManagerTest extends \Psc\Code\Test\Base {
   
   public function testDependencyInjection() {

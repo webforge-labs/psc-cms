@@ -2,6 +2,9 @@
 
 namespace Psc\CMS;
 
+/**
+ * @group class:Psc\CMS\Configuration
+ */
 class ConfigurationTest extends \Psc\Code\Test\Base {
   
   protected $hostConfig;

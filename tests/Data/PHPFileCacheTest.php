@@ -6,6 +6,7 @@ use \Psc\Data\PHPFileCache;
 
 /**
  * @group cache
+ * @group class:Psc\Data\PHPFileCache
  */
 class PHPFileCacheTest extends \Psc\Data\CacheTestCase {
 

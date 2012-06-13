@@ -4,6 +4,9 @@ namespace Psc\Code;
 
 use \Psc\Code\Extracter;
 
+/**
+ * @group class:Psc\Code\Extracter
+ */
 class ExtracterTest extends \Psc\Code\Test\Base {
 
   public function testExtractFunctionBody() {
@@ -30,6 +33,17 @@ FBODY;
       array(4,'return $this;')
     ), $actual);
   }
+  
+  public function testExtract_InterfaceFunction() {
+    $extracter = new Extracter();
+
+  $snippet = <<< 'FBODY'
+  public function implementIt();
+FBODY;
+
+    $this->assertEquals(array(), $extracter->extractFunctionBody($snippet));
+  }
+    
   
   public function testExtract_InlineComment() {
     $extracter = new Extracter();

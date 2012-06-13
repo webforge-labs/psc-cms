@@ -4,6 +4,9 @@ namespace Psc\DateTime;
 
 use Psc\DateTime\DateInterval;
 
+/**
+ * @group class:Psc\DateTime\DateInterval
+ */
 class DateIntervalTest extends \Psc\Code\Test\Base {
 
   public function setUp() {

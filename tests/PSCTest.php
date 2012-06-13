@@ -5,6 +5,9 @@ use \Psc\PSC,
     \Psc\System\Dir
 ;
 
+/**
+ * @group class:PSC
+ */
 class PSCTest extends PHPUnit_Framework_TestCase {
   
   protected $srcPath;

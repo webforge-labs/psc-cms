@@ -4,6 +4,9 @@ namespace Psc\Net\HTTP;
 
 use \Psc\Net\HTTP\Header;
 
+/**
+ * @group class:Psc\Net\HTTP\Header
+ */
 class HeaderTest extends \Psc\Code\Test\Base {
   
   protected $headerRaw;

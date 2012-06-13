@@ -2,6 +2,9 @@
 
 namespace Psc\URL;
 
+/**
+ * @group class:Psc\URL\Helper
+ */
 class HelperTest extends \Psc\Code\Test\Base {
   
   public function testIsHTTPS() {

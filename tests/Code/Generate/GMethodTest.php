@@ -9,6 +9,7 @@ use Psc\String AS S;
 
 /**
  * @group generate
+ * @group class:Psc\Code\Generate\GMethod
  */
 class GMethodTest extends \Psc\Code\Test\Base {
   
@@ -25,7 +26,7 @@ class GMethodTest extends \Psc\Code\Test\Base {
     }
     
     $cr = "\n";
-    $factoryCode  = 'public static function factory(TestHint $dunno) {'.$cr;
+    $factoryCode  = 'public static function factory(TestHintMethod $dunno) {'.$cr;
     $factoryCode .= '}';
     
     $this->assertEquals(0, count($factory->getBodyCode()));
@@ -70,7 +71,7 @@ abstract class TestClass2 {
     $oderDoch = true;
   }
   
-  public static function factory(TestHint $dunno) {
+  public static function factory(TestHintMethod $dunno) {
   }
   
   abstract public function banane();
@@ -83,6 +84,6 @@ abstract class TestClass2 {
   }
 }
 
-class TestHint {
+class TestHintMethod {
 }
 ?>

@@ -2,6 +2,9 @@
 
 namespace Psc\CMS;
 
+/**
+ * @group class:Psc\CMS\AjaxMeta
+ */
 class AjaxMetaTest extends \Psc\Code\Test\Base {
   
   protected $ajaxMeta;

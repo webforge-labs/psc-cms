@@ -1,5 +1,7 @@
 <?php
 
+namespace Psc\CMS;
+
 use \Psc\CMS\Controller\AuthController,
     \Psc\CMS\Auth,
     \Psc\Session\Session,
@@ -10,7 +12,10 @@ use \Psc\CMS\Controller\AuthController,
 use Psc\Code\Test\Mock\SessionMock;
 use Psc\Code\Test\Mock\CookieManagerMock;
 
-class AuthControllerTest extends PHPUnit_Framework_TestCase {
+/**
+ * @group class:Psc\CMS\AuthController
+ */
+class AuthControllerTest extends \Psc\Code\Test\Base {
   
   protected $ctrl;
   
@@ -19,8 +24,8 @@ class AuthControllerTest extends PHPUnit_Framework_TestCase {
   public function setUp() {
     /* hier müssen wir jetzt leider etwas viel basteln, aber okay */
     /* sowas hier kann mit Code::dumpEnv() erstellt werden */
-    Psc\CMS\Auth::resetInstance(); // damit die session neu initialisiert wird, weil php unit die wohl killt
-    Psc\Session\Session::resetInstance(); // damit die session neu initialisiert wird, weil php unit die wohl killt
+    \Psc\CMS\Auth::resetInstance(); // damit die session neu initialisiert wird, weil php unit die wohl killt
+    \Psc\Session\Session::resetInstance(); // damit die session neu initialisiert wird, weil php unit die wohl killt
 
 $_SERVER = array ( 'host' => 'psc', 'PSC_CMS_LOCAL_SRC_PATH' => 'D:\\stuff\\Webseiten\\psc-cms\\Umsetzung\\base\\src\\', 'PSC_CMS_AUTOLOADER' => 'D:\\stuff\\Webseiten\\psc-cms\\Umsetzung\\base\\src\\psc\\class\\Autoloader.php', 'tiptoi_host' => 'psc', 'HTTP_HOST' => 'tiptoi.techno', 'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 5.1; rv:5.0) Gecko/20100101 Firefox/5.0', 'HTTP_ACCEPT' => 'text/html, */*; q=0.01', 'HTTP_ACCEPT_LANGUAGE' => 'de-de,en-us;q=0.7,en;q=0.3', 'HTTP_ACCEPT_ENCODING' => 'gzip, deflate', 'HTTP_ACCEPT_CHARSET' => 'ISO-8859-1,utf-8;q=0.7,*;q=0.7', 'HTTP_CONNECTION' => 'keep-alive', 'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest', 'HTTP_REFERER' => 'http://tiptoi.techno/', 'HTTP_COOKIE' => 'login=YToyOntzOjU6ImlkZW50IjtzOjI0OiJwLnNjaGVpdEBwcy13ZWJmb3JnZS5jb20iO3M6ODoicGFzc3dvcmQiO3M6MzI6IjU4M2NkZDAwOGYyZWEyMzdiZmU0ZDM5YTJkODI3ZjQyIjt9; SID=lu2qsm82cj7j5nlk42003av552', 'PATH' => 'C:\\Programme\\NVIDIA Corporation\\PhysX\\Common;C:\\Programme\\PHP\\;C:\\Programme\\ActiveState Komodo Edit 6\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\Programme\\Subversion\\bin;C:\\Programme\\ATI Technologies\\ATI.ACE\\Core-Static;;D:\\stuff\\cygwin\\root\\bin;C:\\Programme\\QuickTime\\QTSystem\\;C:\\Programme\\TortoiseSVN\\bin;C:\\Programme\\TortoiseGit\\bin;C:\\Programme\\Java\\jdk1.6.0_23\\bin;C:\\Programme\\MinGW\\bin;C:\\Programme\\MySQL\\MySQL Server 5.5\\bin;D:\\stuff\\apache\\bin;C:\\Programme\\OpenVPN\\bin;C:\\Programme\\Gtk+\\bin', 'SystemRoot' => 'C:\\WINDOWS', 'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe', 'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH', 'WINDIR' => 'C:\\WINDOWS', 'SERVER_SIGNATURE' => '
 Apache/2.2.17 (Win32) PHP/5.3.3 Server at tiptoi.techno Port 80
@@ -56,5 +61,4 @@ Apache/2.2.17 (Win32) PHP/5.3.3 Server at tiptoi.techno Port 80
   public function tearDown() {
   }
 }
-
 ?>

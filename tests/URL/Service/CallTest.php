@@ -5,6 +5,9 @@ namespace Psc\URL\Service;
 use \Psc\Code\Test\Base,
     \Psc\URL\Service\Call;
 
+/**
+ * @group class:Psc\URL\Service\Call
+ */
 class CallTest extends \Psc\Code\Test\Base {
   
   public function testUndefined() {

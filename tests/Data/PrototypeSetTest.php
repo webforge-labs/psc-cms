@@ -2,6 +2,9 @@
 
 namespace Psc\Data;
 
+/**
+ * @group class:Psc\Data\PrototypeSet
+ */
 class PrototypeSetTest extends \Psc\Code\Test\Base {
   
   public function setUp() {
@@ -9,12 +12,16 @@ class PrototypeSetTest extends \Psc\Code\Test\Base {
     parent::setUp();
   }
   
-  public function testConstruct() {
-    $this->markTestIncomplete('Stub vom Test-Creater');
-  }
-  
-  public function createPrototypeSet() {
-    return new PrototypeSet();
+  public function testAcceptance() {
+    $set = new PrototypeSet();
+    $set->set('fieldOne','v1',$this->getType('String'));
+    $set->set('fieldTwo',2,$this->getType('Integer'));
+    
+    $this->assertEquals('v1', $set->getFieldOne());
+    $this->assertEquals(2, $set->getFieldTwo());
+    
+    $this->assertChainable($set->setFieldOne('banane'));
+    $this->assertEquals('banane', $set->get('fieldOne'));
   }
 }
 ?>

@@ -4,6 +4,9 @@ namespace Psc\CMS;
 
 use \Psc\PSC;
 
+/**
+ * @group class:Psc\CMS\ProjectsFactory
+ */
 class ProjectsFactoryTest extends \PHPUnit_Framework_TestCase {
   
   public function testFactory() {

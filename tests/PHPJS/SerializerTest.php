@@ -1,10 +1,65 @@
 <?php
 
+namespace Psc\PHPJS;
+
 use Psc\Object,
     \Psc\PHPJS\Object AS PHPJSObject,
     \Psc\PHPJS\Serializer,
     \Psc\Code\Code
 ;
+
+/**
+ * @group class:Psc\PHPJS\Serializer
+ */
+class SerializerTest extends \Psc\Code\Test\Base {
+  
+  public function testWholeShitElviria() {
+    $headline = new ElviriaHeadline();
+    $headline->setDescription(array('en'=>'Hauptgerichte','es'=>'Los Hauptgerichtos'));
+    $headline->index = 1;
+
+    $entry1 = new ElviriaEntry();
+    $entry1->setDescription(array('en'=>'Fried Chips','es'=>'Los frittos hottos'));
+    $entry1->index = 2;
+
+    $entry2 = new ElviriaEntry();
+    $entry2->setDescription(array('en'=>'Fried Krabbenballs','es'=>'Los frittos Crabbos (Ballos)'));
+    $entry2->index = 3;
+
+    $menu = new ElviriaMenu($headline,$entry1,$entry2);
+    $data = $menu;
+
+    $s = new Serializer();
+    $this->assertEquals(array(), $s->getMetadata());
+    
+    $json = $s->serialize($data);
+    $this->assertInternalType('string',$json);
+    $this->assertNotEmpty($json,'Json String leer');
+    
+    
+    $metaJson = $s->getMetadataJSON();
+    $this->assertInternalType('string',$metaJson);
+    $this->assertNotEmpty($metaJson,'meta Json String leer');
+    $this->assertNotEquals('[]',$metaJson,'keine Metadaten für das Objekt gespeichert (Fehler beim serializieren)');
+    
+    /* zwischentest */
+    $ex = false;
+    try {
+      $s = new Serializer(); // keine Metadaten
+      
+      $s->unserialize($json,'Psc\PHPJS\ElviriaMenu');
+    } catch (\Psc\PHPJS\Exception $e) {
+      $ex = TRUE;
+    }
+    $this->assertTrue($ex,'Keine Exception beim Aufruf ohne Metadaten mit richtigem Objekt');
+
+    $s = new Serializer($metaJson);
+    $this->assertNotEmpty($s->getMetadata());
+    $sdata = $s->unserialize($json,'Psc\PHPJS\ElviriaMenu');
+    
+    $this->assertEquals($data, $sdata, 'Der gesamte Test ging schief, weil die objekte unterschiedlich sind');
+  }
+}
 
 class ElviriaMenuItem extends Object implements PHPJSObject {
   
@@ -86,55 +141,4 @@ class ElviriaMenu extends Object implements PHPJSObject {
     return Object::factory($c,$data['items'],Object::REPLACE_ARGS);
   }
 }
-
-class PHPJSSerializerTest extends PHPUnit_Framework_TestCase {
-  
-  public function testWholeShitElviria() {
-    $headline = new ElviriaHeadline();
-    $headline->setDescription(array('en'=>'Hauptgerichte','es'=>'Los Hauptgerichtos'));
-    $headline->index = 1;
-
-    $entry1 = new ElviriaEntry();
-    $entry1->setDescription(array('en'=>'Fried Chips','es'=>'Los frittos hottos'));
-    $entry1->index = 2;
-
-    $entry2 = new ElviriaEntry();
-    $entry2->setDescription(array('en'=>'Fried Krabbenballs','es'=>'Los frittos Crabbos (Ballos)'));
-    $entry2->index = 3;
-
-    $menu = new ElviriaMenu($headline,$entry1,$entry2);
-    $data = $menu;
-
-    $s = new Serializer();
-    $this->assertEquals(array(), $s->getMetadata());
-    
-    $json = $s->serialize($data);
-    $this->assertInternalType('string',$json);
-    $this->assertNotEmpty($json,'Json String leer');
-    
-    
-    $metaJson = $s->getMetadataJSON();
-    $this->assertInternalType('string',$metaJson);
-    $this->assertNotEmpty($metaJson,'meta Json String leer');
-    $this->assertNotEquals('[]',$metaJson,'keine Metadaten für das Objekt gespeichert (Fehler beim serializieren)');
-    
-    /* zwischentest */
-    $ex = false;
-    try {
-      $s = new Serializer(); // keine Metadaten
-      
-      $s->unserialize($json,'ElviriaMenu');
-    } catch (\Psc\PHPJS\Exception $e) {
-      $ex = TRUE;
-    }
-    $this->assertTrue($ex,'Keine Exception beim Aufruf ohne Metadaten mit richtigem Objekt');
-
-    $s = new Serializer($metaJson);
-    $this->assertNotEmpty($s->getMetadata());
-    $sdata = $s->unserialize($json,'ElviriaMenu');
-    
-    $this->assertEquals($data, $sdata, 'Der gesamte Test ging schief, weil die objekte unterschiedlich sind');
-  }
-}
-
 ?>

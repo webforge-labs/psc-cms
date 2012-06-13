@@ -4,6 +4,9 @@ namespace Psc\Data\Type;
 
 use Psc\Data\Type\CompositeTypeTestCase;
 
+/**
+ * @group class:Psc\Data\Type\CompositeTypeTestCase
+ */
 class CompositeTypeTestCaseTest extends \Psc\Code\Test\Base {
 
   public function testDetectsNoComponentsDefined() {

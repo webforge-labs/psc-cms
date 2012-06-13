@@ -2,6 +2,11 @@
 
 namespace Psc\CMS;
 
+use Psc\Code\Generate\GClass;
+
+/**
+ * @group class:Psc\CMS\EntityPropertyMeta
+ */
 class EntityPropertyMetaTest extends \Psc\Code\Test\Base {
   
   protected $entityPropertyMeta;
@@ -9,11 +14,29 @@ class EntityPropertyMetaTest extends \Psc\Code\Test\Base {
   public function setUp() {
     $this->chainClass = 'Psc\CMS\EntityPropertyMeta';
     parent::setUp();
-    //$this->entityPropertyMeta = new EntityPropertyMeta();
+    $this->entityPropertyMeta = new EntityPropertyMeta('translations',
+                                                       new \Psc\Data\Type\PersistentCollectionType(new GClass('Entities\User')),
+                                                       'Übersetzungen'
+                                                       );
+
+    $this->singleEntityPropertyMeta = new EntityPropertyMeta('person',
+                                  new \Psc\Data\Type\EntityType(new GClass('Entities\Person')),
+                                  'zuständige Person'
+                                 );
   }
   
   public function testAcceptance() {
-    $this->markTestIncomplete('Stub vom Test-Creater');
+    $this->assertTrue($this->entityPropertyMeta->isRelation());
+    $this->assertEquals('Entities\User',$this->entityPropertyMeta->getRelationEntityClass()->getFQN());
+  }
+  
+  public function testEntityTypeIsRelation() {
+    $this->assertTrue($this->singleEntityPropertyMeta->isRelation());
+  }
+  
+  public function testGetEntityClass() {
+    $this->assertEquals('Entities\User', $this->entityPropertyMeta->getRelationEntityClass()->getFQN());
+    $this->assertEquals('Entities\Person', $this->singleEntityPropertyMeta->getRelationEntityClass()->getFQN());
   }
 }
 ?>

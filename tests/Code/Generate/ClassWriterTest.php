@@ -6,6 +6,7 @@ use \Psc\Code\Generate\ClassWriter;
 
 /**
  * @group generate
+ * @group class:Psc\Code\Generate\ClassWriter
  */
 class ClassWriterTest extends \Psc\Code\Test\Base {
   

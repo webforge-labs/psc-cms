@@ -2,20 +2,12 @@
 
 namespace Psc\URL\Service;
 
-use \Psc\Code\Test\Base,
-    \Psc\URL\Service\Service;
-    
-class MockServiceController implements \Psc\URL\Service\Controller {
-  
-  public function get($arg1) {
-    return 'get arg1:'.$arg1;
-  }
+use Psc\Code\Test\Base;
+use Psc\URL\Service\Service;
 
-  public function edit($arg1) {
-    return 'edit arg1:'.$arg1;
-  }
-}
-
+/**
+ * @group class:Psc\URL\ServiceTest
+ */
 class ServiceTest extends \Psc\Code\Test\Base {
 
   public function testAPI() {
@@ -34,4 +26,14 @@ class ServiceTest extends \Psc\Code\Test\Base {
   }
 }
 
+class MockServiceController implements \Psc\URL\Service\Controller {
+  
+  public function get($arg1) {
+    return 'get arg1:'.$arg1;
+  }
+
+  public function edit($arg1) {
+    return 'edit arg1:'.$arg1;
+  }
+}
 ?>

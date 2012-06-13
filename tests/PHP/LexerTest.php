@@ -4,6 +4,9 @@ namespace Psc\PHP;
 
 use \Psc\PHP\Lexer;
 
+/**
+ * @group class:Psc\PHP\Lexer
+ */
 class LexerTest extends \Psc\Code\Test\Base {
 
   public function testLexer() {

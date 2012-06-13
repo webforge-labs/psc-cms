@@ -4,6 +4,9 @@ namespace Psc\UI;
 
 use \Psc\UI\Group;
 
+/**
+ * @group class:Psc\UI\Group
+ */
 class GroupTest extends \Psc\Code\Test\Base {
 
   public function testHTMLOut() {

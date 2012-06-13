@@ -2,6 +2,9 @@
 
 namespace Psc\PHPExcel;
 
+/**
+ * @group class:Psc\PHPExcel\RangeReadFilter
+ */
 class RangeReadFilterTest extends \Psc\Code\Test\Base {
   
   protected $filter;

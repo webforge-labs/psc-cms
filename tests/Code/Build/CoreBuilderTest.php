@@ -4,6 +4,9 @@ namespace Psc\Code\Build;
 
 use Psc\PSC as nativePSC;
 
+/**
+ * @group class:Psc\Code\Build\CoreBuilder
+ */
 class CoreBuilderTest extends \Psc\Code\Test\Base {
   
   public function setUp() {
