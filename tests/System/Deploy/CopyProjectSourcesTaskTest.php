@@ -19,7 +19,7 @@ class CopyProjectSourcesTaskTest extends \Psc\Code\Test\Base {
     $this->sourceProject = $this->doublesManager->Project('test-project', $this->sourceDir)->build();
     $this->targetProject = $this->doublesManager->Project('test-project', $this->testDir)->build();
     
-    $this->task = new CopyProjectSources($this->sourceProject, $this->targetProject);
+    $this->task = new CopyProjectSourcesTask($this->sourceProject, $this->targetProject);
   }
   
   public function testAcceptance() {
