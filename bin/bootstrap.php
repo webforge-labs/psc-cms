@@ -10,10 +10,11 @@ $bootLoader->init();
 $bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('symfony'));
 $bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('doctrine'));
 $bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('hitch'));
-//$bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('phpword'));
+$bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('phpword'));
 $bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('imagine'));
 $bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('swift'));
-//$bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('phpexcel'));
+$bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('phpexcel'));
+$bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('gedmo'));
 
 $bootLoader
   ->setProjectPath('psc-cms','tests', './tests/')
@@ -26,7 +27,9 @@ $bootLoader
 
 PSC::getProjectsFactory()->getProject('psc-cms')->setLoadedWithPhar(TRUE)->bootstrap()
   ->getModule('Doctrine')->bootstrap()->getProject()
+  ->getModule('Gedmo')->bootstrap()->getProject()
   ->getModule('PHPExcel')->bootstrap()->getProject()
+  ->getModule('PHPWord')->bootstrap()->getProject()
   ->getModule('Hitch')->bootstrap()->getProject()
   ->getModule('Imagine')->bootstrap()->getProject()
 ;
