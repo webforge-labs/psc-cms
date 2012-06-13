@@ -9,7 +9,7 @@ use Psc\Code\Test\CSSTester;
  */
 class CSSTesterTest extends \Psc\Code\Test\Base {
 
-  protected $formHTML = <<< 'HTML_FORM'
+  protected static $formHTML = <<< 'HTML_FORM'
 <form class="main" action="" method="POST">
   <fieldset class="user-data group">
     <input type="text" name="email" value="" /><br />
@@ -32,39 +32,42 @@ HTML_FORM;
     parent::setUp();
   }
 
-  // schade ich komme nicht auf die Idee wie man hier den TestCase so mockt, dass man mehr als acceptance testen kann
-  public function testCountAcceptance() {
-    $that = $this;
-    $assertCountTest = function ($expectedSuccess, $testLabel, $selector, $html, $expected) use ($that) {
-      $that->assertClosureTest(function ($innerTest) use ($expected, $selector, $html) {
-        $tester = new CSSTester($innerTest, $selector, $html);
-        $tester->count($expected);
-      }, $expectedSuccess, $testLabel);
+  /**
+   * @dataProvider provideCountAcceptance
+   */
+  public function testCountAcceptance($selector, $html, $expected, $success = TRUE) {
+    if (!$success)
+      $this->expectAssertionFail();
+    
+    $tester = new CSSTester($this, $selector, $html);
+    $tester->count($expected);
+  }
+  
+  public static function provideCountAcceptance() {
+    $tests = array();
+    
+    $ok = function ($selector, $html, $expected) use (&$tests) {
+      $tests[] = array($selector, $html, $expected, TRUE);
     };
     
-    $counter = 0;
-    $ok = function ($selector, $html, $expected) use ($that, $assertCountTest, &$counter) {
-      $assertCountTest(TRUE, 'CountTestOK '.($counter++), $selector, $html, $expected);
-    };
-    $fail = function ($selector, $html, $expected) use ($that, $assertCountTest, &$counter) {
-      $assertCountTest(FALSE, 'CountTestFailure '.($counter++), $selector, $html, $expected);
+    $fail = function ($selector, $html, $expected) use ($tests) {
+      $tests[] = array($selector, $html, $expected, FALSE);
     };
     
-    $ok('form.main',$this->formHTML, 1);
-    $ok('fieldset',$this->formHTML, 2);
-    $ok('input',$this->formHTML, 6);
+    $ok('form.main',self::$formHTML, 1);
+    $ok('fieldset',self::$formHTML, 2);
+    $ok('input',self::$formHTML, 6);
     $ok('form', 'empty', 0, 4); // '' als html ist nicht (mehr) erlaubt
     
-    $counter = 0;
-    $fail('form.blubb', $this->formHTML, 1);
-    $fail('form', $this->formHTML, 2);
+    $fail('form.blubb', self::$formHTML, 1);
+    $fail('form', self::$formHTML, 2);
     $fail('form', '', 2);
-    //$ex('', '', 2, 2);
+    
+    return $tests;
   }
-
-  public function createTest(\Closure $innerTestCode) {
-    $innerTestCase = $this->doublesManager->createClosureTestCase(function () use ($selector, $html) {
-    });
+  
+  public function testWholeDocumentIsParsedAsDomDocumentToJquery() {
+    $this->markTestIncomplete('TODO');
   }
 }
 ?>
