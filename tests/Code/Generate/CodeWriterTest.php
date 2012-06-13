@@ -137,7 +137,7 @@ class CodeWriterTest extends \Psc\Code\Test\Base {
     };
     $badType = 'Psc\Code\Generate\BadExportTypeException';
     
-    $complexObject = \Psc\PSC::getProject();
+    $complexObject = new \Psc\Exception('this is to complex to export');
 
     $ex($badType,
          array($complexObject)
