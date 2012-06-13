@@ -68,7 +68,8 @@ class DeployerTest extends \Psc\Code\Test\Base {
   }
   
   protected function onNotSuccessfulTest(\Exception $e) {
-    print $this->deployer->getLog();
+    if (isset($this->deployer))
+      print $this->deployer->getLog();
     throw $e;
   }
 }

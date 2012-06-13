@@ -7,7 +7,7 @@
          convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="false"
-         stopOnError="false"
+         stopOnError="true"
          syntaxCheck="false"
          bootstrap="./bin/bootstrap.php"
 >
