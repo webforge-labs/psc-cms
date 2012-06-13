@@ -89,7 +89,7 @@ class ExceptionTest extends \Psc\Code\Test\Base {
   public function testExceptionText_replacesPathsWithProject() {
     $text = Exception::getExceptionText($this->createFullException(),'text', PSC::getProject());
     
-    $this->assertContains('{SRC_PATH}',$text);
+    $this->assertContains('{SRC_PATH}',$text,'Project Path Src ist: '.PSC::getProject()->getSrc());
   }
 
   public function testExceptionText_containsExceptionName() {
