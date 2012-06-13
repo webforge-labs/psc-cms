@@ -1,6 +1,6 @@
 <?php
 
-require '..'.DIRECTORY_SEPARATOR.'bin'.DIRECTORY_SEPARATOR.'bootstrap.php';
+require __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'bin'.DIRECTORY_SEPARATOR.'bootstrap.php';
 
 $em = \Psc\PSC::getProject()->getModule('Doctrine')->getEntityManager('tests');
 
