@@ -6,9 +6,6 @@ use Psc\Code\Test\EntityAsserter;
 use Psc\Data\ArrayCollection;
 use Psc\Doctrine\EntityDataRow;
 
-/**
- * @group class:Psc\Code\Test\SoundEn
- */
 class SoundEntity extends \Psc\Doctrine\Object {
   
   protected $id;
@@ -57,6 +54,11 @@ class SoundTag extends \Psc\Doctrine\Object {
   }
 }
 
+/**
+ * @group class:Psc\Code\Test\EntityAsserter
+ * 
+ * @TODO entweder mal löschen oder den test fixen
+ */
 class EntityAsserterTest extends \Psc\Code\Test\Base {
   
   protected $ea;

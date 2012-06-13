@@ -20,6 +20,7 @@ class CodeTesterTest extends \Psc\Code\Test\Base {
   public function setUp() {
     $this->chainClass = 'Psc\Code\Test\CodeTester';
     parent::setUp();
+    $this->markTestSkipped('Code Tester Test benutzt Closure Testcase und das ist doof');
   }
   
   // leider nur acceptance-tests aber immerhin
