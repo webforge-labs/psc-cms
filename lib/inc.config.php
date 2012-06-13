@@ -12,20 +12,18 @@ $GLOBALS['conf']['db']['default']['database'] = 'psc-cms';
 $GLOBALS['conf']['db']['default']['port'] = NULL;
 $GLOBALS['conf']['db']['default']['charset'] = 'utf8';
 
-$GLOBALS['conf']['db']['tests']['host'] = 'localhost';
-$GLOBALS['conf']['db']['tests']['user'] = 'root';
-$GLOBALS['conf']['db']['tests']['password'] = '';
-$GLOBALS['conf']['db']['tests']['database'] = 'psc-cms_tests';
-$GLOBALS['conf']['db']['tests']['port'] = NULL;
-$GLOBALS['conf']['db']['tests']['charset'] = 'utf8';
-
 if (getenv('PEGASUS_CI')) {
   $GLOBALS['conf']['db']['default']['user'] = 'psc-cms';
   $GLOBALS['conf']['db']['default']['password'] = 'L6W2vHEbKLjeUEr2';
-
-  $GLOBALS['conf']['db']['tests']['user'] = 'psc-cms';
-  $GLOBALS['conf']['db']['tests']['password'] = 'L6W2vHEbKLjeUEr2';
 }
+
+if (getenv('TRAVIS_CI') === 'true') {
+  $GLOBALS['conf']['db']['default']['user'] = 'root';
+  $GLOBALS['conf']['db']['default']['password'] = '';
+}
+
+$GLOBALS['conf']['db']['tests'] = $GLOBALS['conf']['db']['default'];
+$GLOBALS['conf']['db']['tests']['database'] = 'psc-cms_tests';
 
 $GLOBALS['conf']['doctrine']['entities']['namespace'] = 'Entities';
 $GLOBALS['conf']['doctrine']['entities']['names'] = array();

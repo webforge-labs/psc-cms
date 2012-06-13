@@ -3,10 +3,11 @@ php:
   - 5.3
   
 env:
-  - PSC_CMS=$HOME/builds/pscheit/psc-cms/bin/ PHPUNIT_TESTSUITE=true PEGASUS_CI=true TRAVIS_CI=true
+  - PSC_CMS=$HOME/builds/pscheit/psc-cms/bin/ PHPUNIT_TESTSUITE=true TRAVIS_CI=true
   
 before_script:
   - mysql -e 'create database IF NOT EXISTS `psc-cms_tests`;'
+  - php -f tests/update.schema.php
   
 script: phpunit
 
