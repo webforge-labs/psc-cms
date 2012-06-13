@@ -22,9 +22,7 @@ class ArticleTest extends \Psc\Doctrine\DatabaseTest {
     
     //var_dump($this->updateSchema());
     $this->markTestSkipped('Das hier ist kein echter Test und das ist gewollt. Dies ist experimental code um synchronizer zu verstehen');
-    $this->startDebug();
     $this->loadArticleFixture();
-    
   }
   
   protected function loadArticleFixture() {
@@ -263,7 +261,6 @@ class ArticleTest extends \Psc\Doctrine\DatabaseTest {
   }
   
   public function tearDown() {
-    $this->stopDebug();
     parent::tearDown();
   }
 }
