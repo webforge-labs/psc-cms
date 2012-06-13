@@ -5,8 +5,6 @@ namespace Psc\JS;
 use Psc\Code\Code;
 use Psc\Code\AST;
 
-require_once __DIR__.DIRECTORY_SEPARATOR.'ParserBaseTest.php';
-
 /**
  * @group class:Psc\JS\Parser
  * @experiment
