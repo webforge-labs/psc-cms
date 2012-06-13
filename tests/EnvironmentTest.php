@@ -34,6 +34,9 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase {
   
   public function testAdd() {
     /* jetzt wo er leer ist, können wir ja hinzufügen */
+    if (PSC::isTravis()) {
+      $this->markTestSkipped('include path kann in travis nicht geändert werden');
+    }
     
     $src = (string) PSC::get(PSC::PATH_SRC)->append('/nichtiminc/');
     $htdocs = (string) PSC::get(PSC::PATH_HTDOCS);
