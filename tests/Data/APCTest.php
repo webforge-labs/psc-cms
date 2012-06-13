@@ -14,6 +14,14 @@ class APCTest extends \Psc\Data\CacheTestCase {
     return new APC();
   }
   
+  public function setUp() {
+    if (!extension_loaded('apc')) {
+      $this->markTestSkipped('kein apc geladen');
+    }
+      
+    parent::setUp();
+  }
+  
   public function testStoreAndLoadPrefix() {
     $this->cache = new APC('beliebigerPrefix');
     $this->cache->remove(array('eins'));

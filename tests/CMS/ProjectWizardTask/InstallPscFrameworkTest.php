@@ -16,6 +16,10 @@ class InstallPscFrameworkTest extends TestCase {
   }
   
   public function testRun() { // AcceptanceTest
+    if (\Psc\PSC::isTravis()) {
+      $this->marktestskipped('travis hat keine sourcen von psc und kann deshalb das phar nicht builden');
+    }
+    
     parent::testRun();
     
     $this->assertFileExists((string) ($phar = $this->getFile('psc-cms.phar.gz', 'test/MyNewProject/Umsetzung/base/src/')),

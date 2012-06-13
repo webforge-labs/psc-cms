@@ -11,11 +11,25 @@ use \Psc\PSC;
  */
 class FileTest extends \Psc\Code\Test\Base {
   
+  protected static $absPathPrefix;
+  
+  public static function setUpBeforeClass() {
+    self::$absPathPrefix = \Psc\PSC::getEnvironment()->isWindows() ? 'D:\\' : '/';
+  }
+  
+  // erstellt einen Pfad mit trailing slash
+  public static function path() {
+    return implode(DIRECTORY_SEPARATOR, func_get_args()).DIRECTORY_SEPARATOR;
+  }
+  
+  public static function absPath() {
+    return self::$absPathPrefix.implode(DIRECTORY_SEPARATOR, func_get_args()).DIRECTORY_SEPARATOR;
+  }
+  
   public function testConstructor() {
+    $fileString = self::path('www', 'test', 'base', 'ka', 'auch').'banane.php';
     
-    $fileString = 'D:\www\test\base\ka\auch\banane.php';
-    
-    $dir = new Dir('D:\www\test\base\ka\auch\\');
+    $dir = new Dir(self::path('www', 'test', 'base', 'ka', 'auch'));
     $filename = 'banane.php';
     
     $file = new File($dir, $filename);
@@ -48,9 +62,12 @@ class FileTest extends \Psc\Code\Test\Base {
   }
   
   public function testAppendName() {
-    $file = new File('D:\Filme\Serien\The Big Bang Theory\Season 5\The.Big.Bang.Theory.S05E07.en.IMMERSE.srt');
+    $path = self::absPath('Filme', 'Serien', 'The Big Bang Theory', 'Season 5');
+    
+    $file = new File($path.'The.Big.Bang.Theory.S05E07.en.IMMERSE.srt');
     $file->setName($file->getName(File::WITHOUT_EXTENSION).'-en.srt');
-    $this->assertEquals('D:\Filme\Serien\The Big Bang Theory\Season 5\The.Big.Bang.Theory.S05E07.en.IMMERSE-en.srt',(string) $file);
+    
+    $this->assertEquals($path.'The.Big.Bang.Theory.S05E07.en.IMMERSE-en.srt',(string) $file);
   }
   
   /**
@@ -83,31 +100,34 @@ class FileTest extends \Psc\Code\Test\Base {
       $tests[] = array($url, $file, $dir);
     };
     
-    $test('D:\www\test\base\ka\auch\banane.php', 'D:\www\test\base\ka\\',
+    $test(self::absPath('www', 'test', 'base', 'ka', 'auch').'banane.php',
+          self::absPath(array('www', 'test', 'base', 'ka')),
           '/auch/banane.php');
-    $test('D:\www\psc-cms\Umsetzung\base\src\tpl\throwsException.html', 'D:\www\psc-cms\Umsetzung\base\src\tpl\\',
+    $test(self::absPath('www', 'psc-cms', 'Umsetzung', 'base', 'src', 'tpl').'throwsException.html',
+          self::absPath('www'. 'psc-cms', 'Umsetzung', 'base', 'src', 'tpl'),
           '/throwsException.html'
-          );
+         );
     
     return $tests;
   }
   
   public function testGetURL_noSubdir() {
-    $fileString = 'D:\www\test\base\ka\auch\banane.php';
+    $fileString = self::absPath('www', 'test', 'base', 'ka', 'auch').'banane.php';
     $file = new File($fileString);
   }
 
-  public function testGetCreateFromURL() {
-    $dir = new Dir('D:\www\ePaper42\Umsetzung\base\files\testdata\fixtures\ResourceManagerTest\xml\\');
+  public function testStaticCreateFromURL() {
+    $dir = new Dir($path = self::absPath('www', 'ePaper42', 'Umsetzung', 'base', 'files', 'testdata', 'fixtures', 'ResourceManagerTest', 'xml'));
     $url = "/in2days/2011_newyork/main.xml";
     
-    $this->assertEquals('D:\www\ePaper42\Umsetzung\base\files\testdata\fixtures\ResourceManagerTest\xml\in2days\2011_newyork\main.xml', (string) File::createFromURL($url, new Dir($dir)));
-    $this->assertEquals('.\in2days\2011_newyork\main.xml', (string) File::createFromURL($url));
+    $this->assertEquals($path.'in2days'.DIRECTORY_SEPARATOR.'2011_newyork'.DIRECTORY_SEPARATOR.'main.xml',
+                        (string) File::createFromURL($url, $dir));
+    $this->assertEquals(self::path('.', 'in2days', '2011_newyork'). 'main.xml', (string) File::createFromURL($url));
   }
     
   public function testGetFromURL_relativeFile() {
     // wird als Datei interpretiert die in in2days/ liegt !
     $url = "/in2days/2011_newyork";
-    $this->assertEquals('.\in2days\2011_newyork', (string) File::createFromURL($url));
+    $this->assertEquals('.'.DIRECTORY_SEPARATOR.'in2days'.DIRECTORY_SEPARATOR.'2011_newyork', (string) File::createFromURL($url));
   }
 }

@@ -7,9 +7,10 @@ env:
   
 before_script:
   - mysql -e 'create database IF NOT EXISTS `psc-cms_tests`;'
+  - mysql -e 'create database IF NOT EXISTS `psc-cms`;'
   - php -f tests/update.schema.php
   
-script: phpunit --debug
+script: phpunit
 
 notifications:
   irc: "irc.freenode.org#psc-cms"
