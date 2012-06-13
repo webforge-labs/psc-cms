@@ -113,7 +113,7 @@ class DirTest extends \Psc\Code\Test\Base {
         $this->assertTrue($file->isRelative());
       }
     } else {
-      $this->markTestSkipped();
+      $this->markTestSkipped('ui dev für test nicht da');
     }
   }
   
