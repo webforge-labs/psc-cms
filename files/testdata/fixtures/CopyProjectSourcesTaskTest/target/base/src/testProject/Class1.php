@@ -1,0 +1,1 @@
+<?php class Class1 {} ?>

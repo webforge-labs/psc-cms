@@ -1,0 +1,1 @@
+Class('Psc.UI.Main'{});
