@@ -27,7 +27,7 @@ $bootLoader
 
 PSC::getProjectsFactory()->getProject('psc-cms')->setLoadedWithPhar(TRUE)->bootstrap()
   ->getModule('Doctrine')->bootstrap()->getProject()
-  ->getModule('Gedmo')->bootstrap()->getProject()
+  ->getModule('Gedmo')->bootstrap(\Psc\Gedmo\Module::BOOT_NAVIGATION)->getProject()
   ->getModule('PHPExcel')->bootstrap()->getProject()
   ->getModule('PHPWord')->bootstrap()->getProject()
   ->getModule('Hitch')->bootstrap()->getProject()
