@@ -186,15 +186,7 @@ class AnnotationTest extends \Psc\Code\Test\Base {
     $this->assertEquals('Entities\Setted', $m2m->targetEntity);
   }
 
-  /**
-   * @expectedException Psc\Exception
-   * // irgendeine, nicht sehr schön, aber okay
-   */
-  public function testClassHasToExist() {
-    $m2m = $this->createORMAnnotation('nonExistantClassInDoctrine');
-  }
-
-  
+ 
   protected function createORMAnnotation($name) {
     return new Annotation('Doctrine\ORM\Mapping\\'.$name);
   }
