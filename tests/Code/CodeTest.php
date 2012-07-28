@@ -142,16 +142,6 @@ class CodeTest extends \Psc\Code\Test\Base {
     $this->assertEquals('setv2',$object->getProp2());
   }
   
-  /**
-   * @group varinfo
-   */
-  public function testVarInfo() {
-    $var = (object) array('limm'=>'bimm');
-    
-    $this->assertEquals("(object) ( [limm] => bimm)", Code::varInfo($var));
-  }
-
-
   public function testDValue() {
     $value = 'eins';
     $this->assertEquals('eins', Code::dvalue($value,

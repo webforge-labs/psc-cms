@@ -14,6 +14,20 @@ class ValidationPackageTest extends \Psc\Code\Test\Base {
     parent::setUp();
     $this->package = new ValidationPackage;
   }
+
+  public function testCheckingCapturesExceptions() {
+    $id = $hash = NULL;
+    $idOrHash = 7;
+    
+    $this->assertTrue($this->package->check(function ($v) use ($idOrHash, &$id) {
+      $id = $v->validateId($idOrHash);
+    }));
+
+    $idOrHash = 'blubb';
+    $this->assertFalse($this->package->check(function ($v) use ($idOrHash, &$id) {
+      $id = $v->validateId($idOrHash);
+    }));
+  }
   
   /**
    * @dataProvider provideIdentifiers

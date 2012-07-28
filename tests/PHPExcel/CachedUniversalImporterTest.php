@@ -52,8 +52,6 @@ class CachedUniversalImporterTest extends \Psc\Code\Test\Base {
     $importer->addColumnMapping('G', array('number'));
     $importer->setOption('maxColumn','CM');
     $importer->init();
-    
-    var_dump($importer->getRows());
   }
   
   public function createCachedUniversalImporter() {

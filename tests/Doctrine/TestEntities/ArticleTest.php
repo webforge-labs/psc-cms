@@ -20,7 +20,6 @@ class ArticleTest extends \Psc\Doctrine\DatabaseTest {
     $this->repository = $this->em->getRepository($this->chainClass);
     $this->tagRepository = $this->em->getRepository('Psc\Doctrine\TestEntities\Article');
     
-    //var_dump($this->updateSchema());
     $this->markTestSkipped('Das hier ist kein echter Test und das ist gewollt. Dies ist experimental code um synchronizer zu verstehen');
     $this->loadArticleFixture();
   }

@@ -15,6 +15,14 @@ class HelperTest extends \Psc\Code\Test\Base {
     //$this->helper = new Helper();} 
   }
   
+  public function testDocPartDoesNotConvertHTMLPartsWithDoctype() {
+    $this->markTestIncomplete('todo');
+  }
+
+  public function testDocPartDoesNotConvertHTMLPartsWithHTMLBeginning() {
+    $this->markTestIncomplete('todo');
+  }
+  
   public function testAcceptance() {
     
     $export =     

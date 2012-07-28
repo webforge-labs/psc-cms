@@ -34,7 +34,7 @@ class ManagerTest extends \Psc\Doctrine\DatabaseTest {
   public function assertPreConditions() {
     $this->assertRowsNum('Image',0);
     
-    $manager = new Manager('\Entities\Image');
+    $manager = new Manager('\Entities\Image', $this->em);
     
     $dir = PSC::get(PSC::PATH_FILES)->append('images');
     $this->assertEquals($dir, $manager->getDirectory());
@@ -92,7 +92,7 @@ class ManagerTest extends \Psc\Doctrine\DatabaseTest {
   }
   
   public function testOtherOSPathinDB() {
-    $manager = new Manager('\Entities\Image');
+    $manager = new Manager('\Entities\Image', $this->em);
     
     $imagine = new \Imagine\GD\Imagine();
     $image = $manager->store($imagine->load(base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAAbCAIAAAAyOnIjAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAEBJREFUeNo8w9sNwCAIBdC7/3T82g0Q5GEXMJDWkxwQEZi5zzlvEfkqVP8La1WDWXW41+gRNXvmvvd+MZ5xBBgAnedKkCs1gtkAAAAASUVORK5CYII=')));

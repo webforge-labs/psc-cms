@@ -31,8 +31,6 @@ class ConfigureApacheTaskTest extends \Psc\Code\Test\Base {
     
     $cfg = $conf->getContents();
     
-    print $cfg;
-    
     $this->assertContains('ServerName tiptoi.ps-webforge.com', $cfg);
     $this->assertContains('ServerAlias test.tiptoi.ps-webforge.com tiptoi.ps-webforge.net', $cfg);
   }

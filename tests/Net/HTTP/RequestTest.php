@@ -22,6 +22,7 @@ class RequestTest extends \Psc\Code\Test\Base {
   }
   
   public function testFactory() {
+    $this->markTestSkipped('nicht so schön');
     $requests = array();
     
     $GET = array('mod_rewrite_request' => 'episodes/8/status');

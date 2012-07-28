@@ -20,6 +20,19 @@ class ObjectTypeTest extends \Psc\Code\Test\Base {
     $type = new ObjectType($gc = new GClass('stdClass'));
     $this->assertSame($gc, $type->getClass());
   }
+  
+  public function testExpandNamespaceWithNoFQN() {
+    $type = new ObjectType(new GClass('LParameter'));
+    $type->expandNamespace('Psc\Code\AST');
+    
+    $this->assertEquals('Psc\Code\AST\LParameter', $type->getClassFQN());
+  }
+  
+  public function testExpandNamespaceWithFQN() {
+    $type = new ObjectType($gc = new GClass('\LParameter'));
+    $type->expandNamespace('Psc\Code\AST');
+    $this->assertEquals('LParameter', $type->getClassFQN());
+  }
 
   public function testSetAndGetClass() {
     $type = new ObjectType();

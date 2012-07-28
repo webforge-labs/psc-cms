@@ -47,5 +47,10 @@ class CopyProjectSourcesTaskTest extends \Psc\Code\Test\Base {
     $this->assertFileExists((string) $this->testDir->sub('base/htdocs/js/')->getFile('Main.js'));
     $this->assertFileExists((string) $this->testDir->sub('base/htdocs/css/')->getFile('default.css'));
   }
+  
+  public function tearDown() {
+    $this->testDir->wipe();
+    parent::tearDown();
+  }
 }
 ?>

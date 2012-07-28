@@ -32,5 +32,17 @@ class ComboDropBoxTest extends TestCase {
     $comboDropBox->dpi($this->getEntityMeta('Psc\Doctrine\TestEntities\Tag'), new \Psc\Doctrine\DCPackage());
     return $comboDropBox;
   }
+  
+  public function testSetGetMaxResults() {
+    $this->component->setMaxResults(15);
+    
+    $this->assertEquals(15, $this->component->getMaxResults());
+    
+    $this->html = $this->component->getHTML();
+    
+    // the mother of all acceptance and fragile
+    $js = $this->test->css('script:eq(0)')->html();
+    $this->assertContains("'maxResults': 15", $js);
+  }
 }
 ?>

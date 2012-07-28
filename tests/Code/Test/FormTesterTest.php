@@ -109,7 +109,7 @@ HTML_FORM;
     $ff->tags = NULL;
     $ff->content = 'Das Eichhörnchen (Sciurus vulgaris), regional auch Eichkätzchen, Eichkater oder niederdeutsch Katteker, ist ein Nagetier aus der Familie der Hörnchen (Sciuridae). Es ist der einzige natürlich in Mitteleuropa vorkommende Vertreter aus der Gattung der Eichhörnchen und wird zur Unterscheidung von anderen Arten wie dem Kaukasischen Eichhörnchen und dem in Europa eingebürgerten Grauhörnchen auch als Europäisches Eichhörnchen bezeichnet.';
     
-    $this->assertEquals($ff, $request->getData());
+    $this->assertEquals($ff, (object)$request->getData());
     
     /* hier würde dann der Request abgesendet und danach die Datarow mit der Datenbank verglichen */
   }

@@ -15,10 +15,6 @@ class RangeReadFilterTest extends \Psc\Code\Test\Base {
     $this->filter = new RangeReadFilter(array('AA','CA'), array(6,66));
   }
   
-//  public function testRangeDebug() {
-//    var_dump($this->filter->getRange());
-//  }
-  
   /**
    * @dataProvider provideRange
    */

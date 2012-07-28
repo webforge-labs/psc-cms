@@ -11,7 +11,7 @@ use \Psc\Doctrine\EntityDataRow;
 class FormTesterHydratorTest extends \Psc\Code\Test\Base {
 
   public function testCollectionHydration() {
-    $doctrineHydratorMock = $this->getMock('Psc\Doctrine\Hydrator', array(), array('MyTestEntity'));
+    $doctrineHydratorMock = $this->getMock('Psc\Doctrine\Hydrator', array(), array('MyTestEntity', $this->doublesManager->createEntityManagerMock()));
     $doctrineHydratorMock->expects($this->once())
          ->method('byList')
          ->will($this->returnValue(array()));
@@ -34,7 +34,7 @@ class FormTesterHydratorTest extends \Psc\Code\Test\Base {
       $hydrator->getDoctrineHydratorFor('tags');
     });
     
-    $dcHydrator = new \Psc\Doctrine\Hydrator('Entities\SoundTag');
+    $dcHydrator = new \Psc\Doctrine\Hydrator('Entities\SoundTag', $this->doublesManager->createEntityManagerMock());
     $hydrator->setDoctrineHydratorFor('tags', $dcHydrator);
     
     $this->assertInstanceOf('Psc\Doctrine\Hydrator',$hydrator->getDoctrineHydratorFor('tags'));
@@ -45,7 +45,7 @@ class FormTesterHydratorTest extends \Psc\Code\Test\Base {
                                   new FormTesterData(new EntityDataRow($entity),
                                                      new EntityDataRow($entity)
                                                      ),
-                                  \Psc\Doctrine\Helper::em() // wird eh nicht benutzt, da wird den doctrineHydrator ja mocken
+                                  $this->doublesManager->createEntityManagerMock()// wird eh nicht benutzt, da wird den doctrineHydrator ja mocken
                                   );
   }
 }

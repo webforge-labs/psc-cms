@@ -1,0 +1,35 @@
+<?php
+
+namespace Psc\CMS\Controller;
+
+use Psc\Image\Manager;
+
+/**
+ * @group class:Psc\CMS\Controller\ImageController
+ */
+class ImageControllerTest extends \Psc\Doctrine\DatabaseTest {
+  
+  protected $imageCtrl;
+  
+  public function setUp() {
+    $this->chainClass = 'Psc\CMS\Controller\ImageController';
+    $this->con = 'tests';
+    parent::setUp();
+    $manager = new Manager('\Entities\Image', $this->em);
+    $this->imageCtrl = new ImageController($manager);      
+    
+    $this->bud = $manager->store($manager->createImagineImage($this->getFile('img1.jpg'), 'bud', Manager::IF_NOT_EXISTS));
+    $this->terence = $manager->store($manager->createImagineImage($this->getFile('img2.jpg'), 'terence', Manager::IF_NOT_EXISTS));
+  }
+  
+  public function testGetImageReturnsTheImageEntityQueriedById() {
+    $this->assertSame($this->bud, $this->imageCtrl->getImage($this->bud->getIdentifier()));
+  }
+  
+  public function testGetImageReturnsTheImageEntityQueriedByHash() {
+    $this->assertSame($this->terence, $this->imageCtrl->getImage($this->terence->getHash()));
+  }
+  
+  
+}
+?>

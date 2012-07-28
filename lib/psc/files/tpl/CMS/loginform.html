@@ -41,7 +41,7 @@ $tpl->setI18n($i18n);
   <div id="dialog-form" class="ui-dialog-content ui-widget-content">
     <div class="ui-widget error <?= $errors->hasErrors() ? 'error-active' : 'error-inactive' ?>">
 	  <div class="ui-state-error ui-corner-all"> 
-		<p><span class="ui-icon ui-icon-alert"></span><strong><?= $tpl->_e('error') ?></strong>: <?= $tpl->_e('wrong_credentials') ?></strong></p>
+		<p><span class="ui-icon ui-icon-alert"></span><strong><?= $tpl->_e('error') ?>: <?= $tpl->_e('wrong_credentials') ?></strong></p>
 	  </div>
 	</div>
 	<form method="post" action="<?= $formAction ?>">

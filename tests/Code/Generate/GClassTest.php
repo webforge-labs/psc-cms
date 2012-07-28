@@ -71,6 +71,17 @@ class GClassTest extends \Psc\Code\Test\Base {
     $this->assertEquals('\Psc\Hitch\XML', $gClass->getNamespace());
   }
   
+  public function testFQNAndNotFQNClassesNamespaces() {
+    $noFQN = new GClass('LParameter');
+    $this->assertEquals(NULL, $noFQN->getNamespace());
+    $this->assertEquals('\LParameter', $noFQN->getName()); // invariant: getName IMMER mit \\ davor, egal was passiert
+    $this->assertEquals('LParameter', $noFQN->getFQN());
+    
+    $fqn = new GClass('\LParameter');
+    $this->assertEquals('\\', $fqn->getNamespace());
+    //$this->assertEquals('\LParameter', $fqn->getName());
+  }
+  
   public function testPropertyCreation() {
     $gClass = new GClass('TestClass');
     

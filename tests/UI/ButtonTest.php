@@ -40,5 +40,9 @@ class ButtonTest extends \Psc\Code\Test\HTMLTestCase {
   public function testDisabledWithMessageParameterSetsHint() {
     $this->markTestIncomplete('@TODO');
   }
+  
+  public function testLabelSynchronizesAfterHTMLIsCalled() {
+    $this->markTestIncomplete('@TODO');
+  }
 }
 ?>

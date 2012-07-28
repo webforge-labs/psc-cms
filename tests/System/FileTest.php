@@ -101,10 +101,10 @@ class FileTest extends \Psc\Code\Test\Base {
     };
     
     $test(self::absPath('www', 'test', 'base', 'ka', 'auch').'banane.php',
-          self::absPath(array('www', 'test', 'base', 'ka')),
+          self::absPath('www', 'test', 'base', 'ka'),
           '/auch/banane.php');
     $test(self::absPath('www', 'psc-cms', 'Umsetzung', 'base', 'src', 'tpl').'throwsException.html',
-          self::absPath('www'. 'psc-cms', 'Umsetzung', 'base', 'src', 'tpl'),
+          self::absPath('www', 'psc-cms', 'Umsetzung', 'base', 'src', 'tpl'),
           '/throwsException.html'
          );
     
