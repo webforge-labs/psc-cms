@@ -7,7 +7,7 @@ use Psc\Data\Column;
 /**
  * 
  */
-class Tabletable501c21ea512f3 {
+class Tabletable501c3757ec93e {
   
   /**
    * @var array
