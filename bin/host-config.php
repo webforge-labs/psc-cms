@@ -32,6 +32,7 @@ $conf['defaults']['i18n']['language'] = 'de';
 $conf['defaults']['mail']['smtp']['user'] = NULL;
 $conf['defaults']['mail']['smtp']['password'] = NULL;
 $conf['defaults']['debug']['errorRecipient']['mail'] = NULL;
+$conf['mailchimp']['test']['apiKey'] = 'schwachsinn-cs5';
 
 /* CMS / HTTP */
 $conf['defaults']['js']['url'] = '/js/';

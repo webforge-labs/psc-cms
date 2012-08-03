@@ -36,6 +36,10 @@ class RequestAcceptanceTest extends \Psc\Code\Test\HTMLTestCase {
         'remove'=>'remove it',
       )
     );
+    
+    if (\Psc\PSC::isTravis()) {
+      $this->markTestSkipped('Kein Webserver bei Travis');
+    }
 
     parent::setUp();
   }

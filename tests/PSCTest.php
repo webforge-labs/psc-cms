@@ -17,8 +17,9 @@ class PSCTest extends PHPUnit_Framework_TestCase {
   }
   
   public function testClassName() {
-    $this->assertEquals('\Psc\HTML\Tag',PSC::getFullClassName(new File($this->srcPath.'psc\class\Psc\HTML\Tag\\')));
-    $this->assertEquals('\Psc\PHPJSC\Object',PSC::getFullClassName(new File($this->srcPath.'psc\class\Psc\PHPJSC\Object')));
+    $ds = DIRECTORY_SEPARATOR;
+    $this->assertEquals('\Psc\HTML\Tag', PSC::getFullClassName(new File($this->srcPath.'psc'.$ds.'class'.$ds.'Psc'.$ds.'HTML'.$ds.'Tag'.$ds)));
+    $this->assertEquals('\Psc\PHPJSC\Object', PSC::getFullClassName(new File($this->srcPath.'psc'.$ds.'class'.$ds.'Psc'.$ds.'PHPJSC'.$ds.'Object')));
   }
   
   /**
