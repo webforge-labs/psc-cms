@@ -49,7 +49,7 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase {
     $this->assertFalse($env->hasIncludePath($src),'hasIncludePath');
     $this->assertInstanceOf('\Psc\Environment',$env->addIncludePath($src,'append'));
     $this->assertTrue($env->hasIncludePath($src),'hasIncludePath');
-    $this->assertEquals(get_include_path(), $this->saveIncludePath.PATH_SEPARATOR.$src);
+    $this->assertEquals($this->saveIncludePath.PATH_SEPARATOR.$src, get_include_path());
 
     $this->assertFalse($env->hasIncludePath($htdocs),'hasIncludePath');
     $this->assertInstanceOf('\Psc\Environment',$env->addIncludePath($htdocs,'append'));
