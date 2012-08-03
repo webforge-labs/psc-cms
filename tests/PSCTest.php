@@ -13,7 +13,11 @@ class PSCTest extends PHPUnit_Framework_TestCase {
   protected $srcPath;
   
   public function setUp() {
-    $this->srcPath = realpath(dirname(__FILE__).DIRECTORY_SEPARATOR.str_repeat('..'.DIRECTORY_SEPARATOR,2)).DIRECTORY_SEPARATOR;
+    if (Psc\PSC::isTravis()) {
+      $this->srcPath = realpath(__DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR;
+    } else {
+      $this->srcPath = realpath(dirname(__FILE__).DIRECTORY_SEPARATOR.str_repeat('..'.DIRECTORY_SEPARATOR,2)).DIRECTORY_SEPARATOR;
+    }
   }
   
   public function testClassName() {
@@ -45,7 +49,7 @@ class PSCTest extends PHPUnit_Framework_TestCase {
     $this->assertTrue(PSC::inTests());
     
     $this->assertEquals('psc-cms', PSC::getProject()->getName());
-    $dc = DIRECTORY_SEPARATOR;
+    $ds = DIRECTORY_SEPARATOR;
     $this->assertEquals($this->srcPath.'psc'.$ds.'tests'.$ds, (string) PSC::getProject()->getTestsPath());
   }
   
