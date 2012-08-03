@@ -24,7 +24,7 @@ $bootLoader
   ->setProjectPath('psc-cms',PSC::PATH_HTDOCS, './files/htdocs')
   ->setProjectPath('psc-cms',PSC::PATH_TESTDATA, './files/testdata/')
 ;
-$lib = clone $bootLoader->getPhar('psc-cms');
+$lib = new \Psc\System\Dir($bootLoader->getPhar('psc-cms'));
 $lib->setWrapper('phar');
 print $lib->sub('Psc/Entities/');
 
