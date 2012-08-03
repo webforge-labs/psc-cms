@@ -12,6 +12,7 @@ class TranslationRepositoryTest extends \Psc\Code\Test\Base {
   public function setUp() {
     $this->chainClass = 'Psc\Gedmo\TranslationRepository';
     parent::setUp();
+    $this->markTestSkipped('Wir brauchen erst die NodeTranslation Entity wieder');
     
     $this->em = \Psc\PSC::getProject()->getModule('Doctrine')->getEntityManager();
     $this->inputField = (object)  array(

@@ -45,6 +45,7 @@ class PSCTest extends PHPUnit_Framework_TestCase {
     $this->assertTrue(PSC::inTests());
     
     $this->assertEquals('psc-cms', PSC::getProject()->getName());
+    $dc = DIRECTORY_SEPARATOR;
     $this->assertEquals($this->srcPath.'psc'.$ds.'tests'.$ds, (string) PSC::getProject()->getTestsPath());
   }
   
