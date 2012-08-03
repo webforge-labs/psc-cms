@@ -1,18 +1,19 @@
 <?php
 
-namespace Entities;
+namespace Psc\Entities;
 
 use Psc\Data\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
+use Gedmo\Mapping\Annotation AS Gedmo;
 
 /**
- * @ORM\Entity(repositoryClass="Entities\PersonRepository")
+ * @ORM\Entity(repositoryClass="Psc\Entities\PersonRepository")
  * @ORM\Table(name="persons")
  */
-class Person extends CompiledPerson {
+abstract class Person extends CompiledPerson {
   
   public function getEntityName() {
-    return 'Entities\Person';
+    return 'Psc\Entities\Person';
   }
 }
 ?>

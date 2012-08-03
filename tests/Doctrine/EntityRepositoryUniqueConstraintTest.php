@@ -8,6 +8,7 @@ namespace Psc\Doctrine;
 class EntityRepositoryUniqueConstraintTest extends \Psc\Doctrine\RepositoryTest {
   
   public function setUp() {
+    $this->fixtures = array(new \Psc\Doctrine\TestEntities\TechnicalTagsFixture);
     $this->entityClass = 'Psc\Doctrine\TestEntities\Tag';
     parent::setUp();
   }
@@ -76,8 +77,6 @@ class EntityRepositoryUniqueConstraintTest extends \Psc\Doctrine\RepositoryTest 
   
   
   public function testGetUniqueIndex() {
-    $this->loadFixture('test_tags');
-    
     // wir checken auch mit reihenfolge (dunno)
     $this->assertEquals($this->createUQDataRows($constraint = $this->createTagUniqueConstraint()),
                         $r = $this->repository->getUniqueIndex($constraint, function ($qb) {

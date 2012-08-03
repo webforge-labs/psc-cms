@@ -19,10 +19,10 @@ class UserManagerTest extends \Psc\Code\Test\Base {
   }
   
   public function testAcceptance() {
-    $user = new \Entities\User();
+    $user = new \Psc\Entities\User();
     $user->setEmail($id = 'p.scheit@ps-webforge.com');
     
-    $this->entityRepository = $this->doublesManager->buildEntityRepository('Entities\User')
+    $this->entityRepository = $this->doublesManager->buildEntityRepository('Psc\Entities\User')
       ->expectHydrates($user,$this->once())
       ->build();
     
@@ -34,7 +34,7 @@ class UserManagerTest extends \Psc\Code\Test\Base {
    * @expectedException Psc\CMS\NoUserException
    */
   public function testGetThrowsNoUserFoundException() {
-    $this->entityRepository = $this->doublesManager->buildEntityRepository('Entities\User')
+    $this->entityRepository = $this->doublesManager->buildEntityRepository('Psc\Entities\User')
       ->expectDoesNotFind('p.sch@blubb.de',$this->once())
       ->build();
     

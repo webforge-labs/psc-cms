@@ -3,6 +3,7 @@
 namespace Psc\Code\Generate;
 
 use \Psc\Code\Generate\ClassWriter;
+use Psc\System\File;
 
 /**
  * @group generate
@@ -135,6 +136,34 @@ FILE_CODE
     $writer->addImport(new GClass('Psc\System\File'));
     $writer->addImport(new GClass('Psc\Another\File'));
   }
-}
+  
+  public function testSyntaxCheckFailure() {
+    $file = File::createTemporary();
+    $file->writeContents(<<< 'PHP'
+<?php
 
+namespace psc-cms;
+
+?>
+PHP
+);
+    
+    $writer = new ClassWriter();
+    $this->assertFalse($writer->syntaxCheck($file, 'return'));
+    
+    try {
+      $writer->syntaxCheck($file);
+    } catch (\Psc\Code\Generate\SyntaxErrorException $e) {
+      $this->assertContains(" unexpected '-', expecting T_NS_SEPARATOR or ';' or '{'", $e->getMessage(), 'syntax error ist nicht ausgezeichnet');
+      return;
+    }
+    
+    $this->fail('Exception erwartet für failure');
+  }
+  
+  public function testSyntaxCheckSuccess() {
+    $writer = new ClassWriter();
+    $this->assertTrue($writer->syntaxCheck(new File(__FILE__), 'return'));
+  }
+}
 ?>

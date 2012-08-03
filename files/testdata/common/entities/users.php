@@ -1,6 +1,6 @@
 <?php
 
-namespace Entities;
+namespace Psc\Entities;
 
 $users = array();
 $users['u1'] = new User('p.scheit@ps-webforge.com');

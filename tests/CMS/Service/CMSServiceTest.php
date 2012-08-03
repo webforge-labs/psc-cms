@@ -18,6 +18,26 @@ class CMSServiceTest extends \Psc\Doctrine\DatabaseTest {
     $this->service = new CMSService(\Psc\PSC::getProject(), 'cms', $this->getDoctrinePackage());
   }
   
+  public function testNavigationControllerRoutingFormular() {
+    list($controller, $method, $params) = $this->assertNavigationRouting(
+      'getFormular',
+      array(),
+      $this->service->routeController($this->request('GET', '/cms/navigation/default'))
+    );
+    
+    $this->assertEquals('default', $controller->getIdent());
+  }
+
+  public function testNavigationControllerRoutingSave() {
+    list($controller, $method, $params) = $this->assertNavigationRouting(
+      'saveFormular',
+      array(array('serialized','stuff')),
+      $this->service->routeController($this->request('POST', '/cms/navigation/default', array('serialized','stuff')))
+    );
+    
+    $this->assertEquals('default', $controller->getIdent());
+  }
+  
   public function testImageControllerRouting() {
     $hash = 's098sdfl324l3j45lkewj5r';
     $id = 7;
@@ -96,11 +116,19 @@ class CMSServiceTest extends \Psc\Doctrine\DatabaseTest {
   }
   
   protected function assertImageRouting($expectedMethod, Array $expectedParams, Array $list) {
+    return $this->assertRouting('Psc\CMS\Controller\ImageController', $expectedMethod, $expectedParams, $list);
+  }
+
+  protected function assertNavigationRouting($expectedMethod, Array $expectedParams, Array $list) {
+    return $this->assertRouting('Psc\CMS\Controller\NavigationController', $expectedMethod, $expectedParams, $list);
+  }
+
+  protected function assertRouting($controllerClass, $expectedMethod, Array $expectedParams, Array $list) {
     list($ctrl, $method, $params) = $list;
     
-    $this->assertInstanceOf('Psc\CMS\Controller\ImageController', $ctrl);
-    $this->assertEquals($expectedMethod, $method, 'Die Methode für den Image Controller ist falsch');
-    $this->assertEquals($expectedParams, $params, 'Die Paramter für den Image Controller sind falsch');
+    $this->assertInstanceOf($controllerClass, $ctrl);
+    $this->assertEquals($expectedMethod, $method, 'Die Methode für den Controller ist falsch');
+    $this->assertEquals($expectedParams, $params, 'Die Parameter für den Controller sind falsch');
     return $list;
   }
   

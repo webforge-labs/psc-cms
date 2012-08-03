@@ -24,7 +24,7 @@ class EntityBuilderTest extends \Psc\Code\Test\Base {
   }
   
   public function assertPreConditions() {
-    $this->assertEquals('Entities',$this->module->getEntitiesNamespace());
+    $this->assertEquals('Psc\Entities',$this->module->getEntitiesNamespace());
   }
 
   public function testEntityCreateAcceptance() {

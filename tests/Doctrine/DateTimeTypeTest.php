@@ -8,17 +8,11 @@ use Psc\Doctrine\TestEntities\Tag;
 /**
  * @group class:Psc\Doctrine\DateTimeType
  */
-class DateTimeTypeTest extends \Psc\Doctrine\DatabaseTest {
+class DateTimeTypeTest extends \Psc\Doctrine\DatabaseTestCase {
   
-  public function configure() {
-    $this->con = 'tests';
-    parent::configure();
-  }
-  
-  public function setUpFixtures() {
-    $this->loadEntity('Psc\Doctrine\TestEntities\Tag');
-    $this->loadFixtures(array('test_tags'));
-    $this->updateEntitySchema('Psc\Doctrine\TestEntities\Tag');
+  public function setUp() {
+    $this->fixtures = new \Psc\Doctrine\TestEntities\TagsFixture;
+    parent::setUp();
   }
   
   public function assertPreConditions() {

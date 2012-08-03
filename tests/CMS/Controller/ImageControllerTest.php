@@ -15,11 +15,12 @@ class ImageControllerTest extends \Psc\Doctrine\DatabaseTest {
     $this->chainClass = 'Psc\CMS\Controller\ImageController';
     $this->con = 'tests';
     parent::setUp();
-    $manager = new Manager('\Entities\Image', $this->em);
+    $manager = new Manager('Psc\Entities\Image', $this->em);
     $this->imageCtrl = new ImageController($manager);      
     
-    $this->bud = $manager->store($manager->createImagineImage($this->getFile('img1.jpg'), 'bud', Manager::IF_NOT_EXISTS));
-    $this->terence = $manager->store($manager->createImagineImage($this->getFile('img2.jpg'), 'terence', Manager::IF_NOT_EXISTS));
+    $this->bud = $manager->store($manager->createImagineImage($this->getFile('img1.jpg')), 'bud', Manager::IF_NOT_EXISTS);
+    $this->terence = $manager->store($manager->createImagineImage($this->getFile('img2.jpg')), 'terence', Manager::IF_NOT_EXISTS);
+    $manager->flush();
   }
   
   public function testGetImageReturnsTheImageEntityQueriedById() {
@@ -27,9 +28,8 @@ class ImageControllerTest extends \Psc\Doctrine\DatabaseTest {
   }
   
   public function testGetImageReturnsTheImageEntityQueriedByHash() {
-    $this->assertSame($this->terence, $this->imageCtrl->getImage($this->terence->getHash()));
+    $hashImage = $this->imageCtrl->getImage($this->terence->getHash());
+    $this->assertSame($this->terence, $hashImage);
   }
-  
-  
 }
 ?>

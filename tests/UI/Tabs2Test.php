@@ -18,7 +18,7 @@ class Tabs2Test extends \Psc\Code\Test\HTMLTestCase {
   }
   
   public function testAddsOpenable() {
-    $this->tabs->addTabOpenable($this->getEntityMeta('Entities\User')->getAdapter('grid')->getTabOpenable());
+    $this->tabs->addTabOpenable($this->getEntityMeta('Psc\Entities\User')->getAdapter('grid')->getTabOpenable());
     $this->tabs->init();
     
     $this->html = $this->tabs->html();

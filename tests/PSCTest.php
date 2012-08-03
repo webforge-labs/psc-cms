@@ -39,7 +39,6 @@ class PSCTest extends PHPUnit_Framework_TestCase {
   public function testMethods() {
     $this->assertInstanceOf('Psc\CMS\ProjectsFactory', PSC::getProjectsFactory());
     $this->assertInstanceOf('Psc\CMS\Project', PSC::getProject());
-    $this->assertInstanceOf('Psc\CMS\CMS', PSC::getCMS());
     $this->assertInstanceOf('Psc\Code\ErrorHandler', PSC::getErrorHandler());
     $this->assertInstanceOf('Psc\Environment', PSC::getEnvironment());
     $this->assertTrue(PSC::inTests());
@@ -63,9 +62,7 @@ class PSCTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals($em,\Psc\Doctrine\Helper::em());
     
     $this->assertEquals(TRUE,PSC::getProject()->getTests());
-    $this->assertEquals('psc-cms',PSC::getCMS()->getProjectAbbrev());
-    $this->assertEquals(PSC::getCMS()->getProjectAbbrev().'_tests',$em->getConnection()->getDatabase());
-    
+    $this->assertEquals(PSC::getProject()->getLowerName().'_tests',$em->getConnection()->getDatabase());
   }
   
   public function testEventManager() {

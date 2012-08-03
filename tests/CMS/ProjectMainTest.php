@@ -20,7 +20,7 @@ class ProjectMainTest extends \Psc\Code\Test\Base {
   public function testDependenciesClasses() {
     $this->main->init($this->request);
     
-    $this->assertInstanceOf('Psc\CMS\CMS', $this->main);
+    $this->assertInstanceOf('Psc\CMS\ProjectMain', $this->main);
     $this->assertInstanceof('Psc\Environment', $this->main->getEnvironment());
     $this->assertInstanceof('Psc\CMS\Project', $project = $this->main->getProject());
     

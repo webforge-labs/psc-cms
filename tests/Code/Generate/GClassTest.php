@@ -286,6 +286,13 @@ CLASS_END;
     
     $this->assertArrayEquals(array('AutoCompletable', 'Identifyable'), $interfaces);
   }
+  
+  public function testOwnMethodForAbstractClassImplementingAnInterface() {
+    $gClass = GClass::factory(__NAMESPACE__.'\\MyAbstractInterfacedClass');
+    
+    $this->assertFalse($gClass->hasOwnMethod('interfaceMethod1'));
+    $this->assertTrue($gClass->hasMethod('interfaceMethod1'));
+  }
 }
 
 class MyTestClass {
@@ -333,5 +340,16 @@ class MyConstructorThrowsExceptionClass {
   public function __construct() {
     throw new \Psc\Exception('this should not be called');
   }
+}
+
+abstract class MyAbstractInterfacedClass implements MyInterface {
+  
+  abstract public function thisIsIt();
+}
+
+interface MyInterface {
+  
+  public function interfaceMethod1();
+  
 }
 ?>

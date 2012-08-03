@@ -6,12 +6,14 @@ use Psc\Environment;
 use Psc\PSC;
 
 /**
- * @group class:Psc\CMS\CMS
+ * @group class:Psc\CMS\ProjectMain
+ *
+ * dieser test war mal der alte CMS test
  */
-class CMSTest extends \Psc\Code\Test\Base {
+class CMSProjectMainTest extends \Psc\Code\Test\Base {
   
   public function setUp() {
-    $this->chainClass = 'Psc\CMS\CMS';
+    $this->chainClass = 'Psc\CMS\Projectmain';
     parent::setUp();
     
     $this->jsManager = $this->getMock('Psc\JS\ProxyManager', array(), array(), '', FALSE);
@@ -22,7 +24,7 @@ class CMSTest extends \Psc\Code\Test\Base {
     $this->project = PSC::getProject();
     
     // inject a lot
-    $this->cms = new CMS($this->environment, $this->project);
+    $this->cms = new ProjectMain($this->project, NULL, NULL, NULL, 10, NULL, $this->environment);
     $this->cms->setJSManager($this->jsManager);
     $this->cms->setCSSManager($this->cssManager);
     $this->cms->setAuthController($this->authController);
@@ -73,7 +75,7 @@ class CMSTest extends \Psc\Code\Test\Base {
   }
   
   protected function createUser() {
-    $user = new \Entities\User();
+    $user = new \Psc\Entities\User();
     $user->setEmail('p.scheit@ps-webforge.com');
     $user->setPassword('blubb');
     return $user;

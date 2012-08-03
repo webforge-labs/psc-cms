@@ -2,7 +2,7 @@
 
 namespace Psc\CMS;
 
-use Entities\User;
+use Psc\Entities\User;
 use Psc\Code\Test\Mock\SessionMock;
 use Psc\Code\Test\Mock\CookieManagerMock;
 

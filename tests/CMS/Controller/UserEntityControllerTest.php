@@ -16,7 +16,7 @@ class UserEntityControllerTest extends \Psc\Code\Test\Base {
   }
   
   public function testAcceptance() {
-    $this->assertEquals('Entities\User', $this->ctrl->getEntityName());
+    $this->assertEquals('Psc\Entities\User', $this->ctrl->getEntityName());
   }
 }
 ?>
