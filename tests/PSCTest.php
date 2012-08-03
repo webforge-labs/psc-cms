@@ -13,7 +13,7 @@ class PSCTest extends PHPUnit_Framework_TestCase {
   protected $srcPath;
   
   public function setUp() {
-    if (Psc\PSC::isTravis()) {
+    if (\Psc\PSC::isTravis()) {
       $this->srcPath = realpath(__DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR;
     } else {
       $this->srcPath = realpath(dirname(__FILE__).DIRECTORY_SEPARATOR.str_repeat('..'.DIRECTORY_SEPARATOR,2)).DIRECTORY_SEPARATOR;
