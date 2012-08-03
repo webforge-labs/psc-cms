@@ -27,6 +27,19 @@ $bootLoader
 $lib = new \Psc\System\Dir($bootLoader->getPhar('psc-cms').'/');
 $lib->setWrapper('phar');
 
+            $iterator = new \RegexIterator(
+                new \RecursiveIteratorIterator(
+                    new \RecursiveDirectoryIterator((string) $lib, \FilesystemIterator::SKIP_DOTS),
+                    \RecursiveIteratorIterator::LEAVES_ONLY
+                ),
+                '/^.+' . str_replace('.', '\.', 'php') . '$/i',
+                \RecursiveRegexIterator::GET_MATCH
+            );
+
+foreach ($iterator as $file) {
+  print realpath($file[0])."\n";
+}
+
 PSC::getProjectsFactory()->getProject('psc-cms')->setLoadedWithPhar(TRUE)->bootstrap()
   ->getModule('Doctrine')
     ->setEntitiesPath($lib->sub('Psc/Entities/'))
