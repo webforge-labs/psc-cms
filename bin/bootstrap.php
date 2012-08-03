@@ -32,7 +32,7 @@ $lib->setWrapper('phar');
                     new \RecursiveDirectoryIterator((string) $lib, \FilesystemIterator::SKIP_DOTS),
                     \RecursiveIteratorIterator::LEAVES_ONLY
                 ),
-                '/^.+' . str_replace('.', '\.', 'php') . '$/i',
+                '/^.+' . str_replace('.', '\.', '.php') . '$/i',
                 \RecursiveRegexIterator::GET_MATCH
             );
 
