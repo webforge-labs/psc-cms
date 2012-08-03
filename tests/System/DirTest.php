@@ -28,7 +28,8 @@ class DirTest extends \Psc\Code\Test\Base {
     
     $rel = clone $graph;
     
-    $this->assertEquals('.\class\Graph\\',(string) $rel->makeRelativeTo($psc));
+    $this->assertEquals('.'.DIRECTORY_SEPARATOR.'class'.DIRECTORY_SEPARATOR.'Graph'.DIRECTORY_SEPARATOR,
+                        (string) $rel->makeRelativeTo($psc));
     
     $eq = clone $graph;
     
