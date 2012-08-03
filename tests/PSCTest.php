@@ -20,12 +20,6 @@ class PSCTest extends PHPUnit_Framework_TestCase {
     }
   }
   
-  public function testClassName() {
-    $ds = DIRECTORY_SEPARATOR;
-    $this->assertEquals('\Psc\HTML\Tag', PSC::getFullClassName(new File($this->srcPath.'psc'.$ds.'class'.$ds.'Psc'.$ds.'HTML'.$ds.'Tag'.$ds)));
-    $this->assertEquals('\Psc\PHPJSC\Object', PSC::getFullClassName(new File($this->srcPath.'psc'.$ds.'class'.$ds.'Psc'.$ds.'PHPJSC'.$ds.'Object')));
-  }
-  
   /**
    * @expectedException \Psc\ProjectNotFoundException
    */
@@ -49,8 +43,6 @@ class PSCTest extends PHPUnit_Framework_TestCase {
     $this->assertTrue(PSC::inTests());
     
     $this->assertEquals('psc-cms', PSC::getProject()->getName());
-    $ds = DIRECTORY_SEPARATOR;
-    $this->assertEquals($this->srcPath.'psc'.$ds.'tests'.$ds, (string) PSC::getProject()->getTestsPath());
   }
   
   public function testModuleBootstraps() {
