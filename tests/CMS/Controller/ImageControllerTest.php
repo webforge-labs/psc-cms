@@ -31,5 +31,23 @@ class ImageControllerTest extends \Psc\Doctrine\DatabaseTest {
     $hashImage = $this->imageCtrl->getImage($this->terence->getHash());
     $this->assertSame($this->terence, $hashImage);
   }
+  
+  public function testInsertImageFileReturnsImageEntity() {
+    $file = \Psc\System\File::createTemporary();
+    $file->writeContents($this->getFile('img1.jpg')->getContents());
+    
+    $image = $this->imageCtrl->insertImageFile(
+      $file,
+      (object) array('specification','not','yet','specified') // yagni
+    );
+    
+    $this->assertSame($this->bud, $image);
+  }
+  
+  public function testImageConversionToResponseHasUsableURLInIt() {
+    $export = $this->bud->export();
+    $this->assertObjectHasAttribute('url', $export);
+    $this->assertNotEmpty($export->url);
+  }
 }
 ?>

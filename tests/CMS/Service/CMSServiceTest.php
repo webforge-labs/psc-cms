@@ -102,7 +102,28 @@ class CMSServiceTest extends \Psc\Doctrine\DatabaseTest {
       $this->service->routeController($this->request('GET', $idRQ.'/thumbnail/page'))
     );
 
+    // POST /cms/images/
+    // hardcoded in: UploadedImage.js
+    // content-Type: multipart/form-data
+    // body: bodyAsJSON parameter für das bild (to be defined)
+    // uploadFile: die uploaded file des bildes mit binary data
+    $file = \Psc\System\File::createTemporary();
+    $file->writeContents('ÿØÿà�JFIF��H�H��ÿáËExif��MM�*������������������¦��������������º�������Â');
+    
+    list ($controller, $method, $params) = $this->assertImageRouting(
+      'insertImageFile',
+      array($file, (object) array('types'=>array('jpg','png','gif'))),
+      $this->service->routeController($this->request('POST', '/cms/images')
+                                        ->setBody((object) array('types'=>array('jpg','png','gif')))
+                                        ->setFiles(array('uploadFile'=>$file))
+                                      )
+    );
+    
+    list($imageFile, $body) = $params;
+    $this->assertTrue($imageFile->exists());
+  }
 
+  public function testImageRoutingPutAndPost() {
     // PUT /cms/images/($hash|$id)
     // content-Type: image/png
     // body: binary data des bildes
@@ -115,22 +136,24 @@ class CMSServiceTest extends \Psc\Doctrine\DatabaseTest {
     // (geht das überhaupt?)
     // => füge Bild mit diesen Binärdaten ein
     $this->markTestIncomplete('implement this');
+
   }
   
-  protected function assertImageRouting($expectedMethod, Array $expectedParams, Array $list) {
+  protected function assertImageRouting($expectedMethod, Array $expectedParams = NULL, Array $list) {
     return $this->assertRouting('Psc\CMS\Controller\ImageController', $expectedMethod, $expectedParams, $list);
   }
 
-  protected function assertNavigationRouting($expectedMethod, Array $expectedParams, Array $list) {
+  protected function assertNavigationRouting($expectedMethod, Array $expectedParams = NULL, Array $list) {
     return $this->assertRouting('Psc\CMS\Controller\NavigationController', $expectedMethod, $expectedParams, $list);
   }
 
-  protected function assertRouting($controllerClass, $expectedMethod, Array $expectedParams, Array $list) {
+  protected function assertRouting($controllerClass, $expectedMethod, Array $expectedParams = NULL, Array $list) {
     list($ctrl, $method, $params) = $list;
     
     $this->assertInstanceOf($controllerClass, $ctrl);
     $this->assertEquals($expectedMethod, $method, 'Die Methode für den Controller ist falsch');
-    $this->assertEquals($expectedParams, $params, 'Die Parameter für den Controller sind falsch');
+    if (is_array($expectedParams))
+      $this->assertEquals($expectedParams, $params, 'Die Parameter für den Controller sind falsch');
     return $list;
   }
   

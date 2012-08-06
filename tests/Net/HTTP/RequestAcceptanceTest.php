@@ -141,9 +141,12 @@ class RequestAcceptanceTest extends \Psc\Code\Test\HTMLTestCase {
                                      // das ist der "senden" Content-Type                                     
                                )
                               );
-    
-    // @TODO hier ginge sogar files auszulesen
     $this->assertEquals(array('apostfield'=>'a value'), (array) $request->getBody());
+    $this->assertArrayHasKey('excelFile', $files = $request->getFiles());
+    $this->assertInstanceOf('Psc\System\File', $files['excelFile']);
+    
+    // das geht leider nicht, weil der acceptance test ja in einem anderen thread läuft und deshalb die temporary datei gelöscht wird
+    //$this->assertEquals($this->getFile('small.excel.xlsx')->getContents(), $files['excelFile']->getContents());
   }
   
   public function testgetPartsWithModRewrite() {
