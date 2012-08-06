@@ -6,5 +6,7 @@ Unfortunately the wiki is only avaible in german.
 
 http://wiki.ps-webforge.com/psc-cms:start
 
+[![Build Status](https://secure.travis-ci.org/pscheit/psc-cms.png?branch=master)](http://travis-ci.org/pscheit/psc-cms)
+
 ## Future
 As well as I am ready to release and TortoiseGit does his job well, I will move these sources to Github.
