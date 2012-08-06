@@ -15,9 +15,9 @@ class GridPanelTest extends \Psc\Code\Test\HTMLTestCase {
     $this->chainClass = 'Psc\CMS\GridPanel';
     parent::setUp();
     $this->gridPanel = new GridPanel('A nice Looking Panel for items in a Table');
-    $this->gridPanel->addColumn('spalte1', $this->getType('String'));
-    $this->gridPanel->addColumn('spalte2', $this->getType('Integer'));
-    $this->gridPanel->addColumn('spalte3', $this->getType('Integer'), 'Spalte 3');
+    $this->gridPanel->createColumn('spalte1', $this->getType('String'));
+    $this->gridPanel->createColumn('spalte2', $this->getType('Integer'));
+    $this->gridPanel->createColumn('spalte3', $this->getType('Integer'), 'Spalte 3');
   }
   
   public function testInterface() {

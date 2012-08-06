@@ -9,6 +9,13 @@ class TestingTest extends \Psc\Code\Test\Base {
   
   protected $wrapperClosure;
   
+  public function testObjectCount() {
+    $o = new \stdClass;
+
+
+    $this->assertEquals(0, count(get_object_vars($o)));
+  }
+  
   public function testClosureScoping() {
     
     $data = array();

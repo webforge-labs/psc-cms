@@ -20,6 +20,8 @@ class RepositoryTest extends \Psc\Doctrine\DatabaseTest {
     $this->repository = $this->em->getRepository('Psc\CMS\Navigation\Node');
     
     $this->initData();
+    
+    $this->markTestSkipped('wir brauchen ein neues Konzept für die Tests, die ein Entity brauchen. Hier ist Navigation Node auch outdated. Siehe comun für tests');
   }
   
   protected function loadNaviFixture() {

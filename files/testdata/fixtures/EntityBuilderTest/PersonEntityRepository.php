@@ -1,6 +1,6 @@
 <?php
 
-namespace Entities;
+namespace Psc\Entities;
 
 class PersonRepository extends \Psc\Doctrine\EntityRepository {
 }

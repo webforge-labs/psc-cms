@@ -30,8 +30,8 @@ class FormPanelTest extends \Psc\Code\Test\HTMLTestCase {
     $this->html = $formPanel = new FormPanel('Episoden verwalten', $form = new \Psc\CMS\Form(NULL, '/episodes/manager'));
     
     $accordion = new \Psc\UI\Accordion(array('autoHeight'=>true, 'active'=>0));
-    $accordion->addSection('Optionen', '');
-    $accordion->addSection('Meta', '');
+    $accordion->addSection('Optionen', array());
+    $accordion->addSection('Meta', array());
     
     $formPanel->addAccordion($accordion);
     

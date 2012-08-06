@@ -20,9 +20,10 @@ class MySQLLoaderTest extends \Psc\Code\Test\Base {
     
     $mysql = \Psc\System\System::which('mysql');
     $loader = new MySQLLoader('importdatenbank',$config);
-    $cmd = $loader->loadFromFile(new File('D:\www\test.sql'), MySQLLoader::JUST_RETURN);
     
-    $this->assertEquals($mysql.' --host=localhorst --user=root --password=ichbingeheim importdatenbank < D:\www\test.sql', $cmd);
+    $cmd = $loader->loadFromFile(new File('test.sql'), MySQLLoader::JUST_RETURN);
+    
+    $this->assertEquals($mysql.' --host=localhorst --user=root --password=ichbingeheim importdatenbank < .'.DIRECTORY_SEPARATOR.'test.sql', $cmd);
   }
 }
 ?>

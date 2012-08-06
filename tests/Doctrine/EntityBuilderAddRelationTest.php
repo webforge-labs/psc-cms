@@ -24,7 +24,7 @@ class EntityBuilderAddRelationTest extends \Psc\Code\Test\Base {
   }
   
   public function assertPreConditions() {
-    $this->assertEquals('Entities',$this->module->getEntitiesNamespace());
+    $this->assertEquals('Psc\Entities',$this->module->getEntitiesNamespace());
   }
   
   public function testManyToMany_Owning() {
@@ -47,10 +47,10 @@ class EntityBuilderAddRelationTest extends \Psc\Code\Test\Base {
     
     $builder->createRelation(EntityBuilder::RELATION_MANY_TO_MANY,
                           $entityBuilder->getEntityRelationMeta(),
-                          new EntityRelationMeta(new GClass('Entities\Address'), 'target'),
+                          new EntityRelationMeta(new GClass('Psc\Entities\Address'), 'target'),
                           $side
                          );
-    $m2m = $this->assertCommonRelation($builder, 'addresses', 'ManyToMany', 'Entities\Address');
+    $m2m = $this->assertCommonRelation($builder, 'addresses', 'ManyToMany', 'Psc\Entities\Address');
 
     /* interface
        wir haben eine verbindung von person <-> address
@@ -75,12 +75,12 @@ class EntityBuilderAddRelationTest extends \Psc\Code\Test\Base {
 
     $builder->createRelation(EntityBuilder::RELATION_ONE_TO_MANY,
                           $builder->getEntityRelationMeta(),
-                          new EntityRelationMeta(new GClass('Entities\Address'),'target'),
+                          new EntityRelationMeta(new GClass('Psc\Entities\Address'),'target'),
                           EntityBuilder::SIDE_INVERSE
                          );
 
 
-    $o2m = $this->assertCommonRelation($builder, 'addresses', 'OneToMany', 'Entities\Address');
+    $o2m = $this->assertCommonRelation($builder, 'addresses', 'OneToMany', 'Psc\Entities\Address');
     
     $this->assertEquals('person',$o2m->mappedBy, 'mapped by');
     
@@ -95,11 +95,11 @@ class EntityBuilderAddRelationTest extends \Psc\Code\Test\Base {
     $builder->createDefaultId();
     $builder->createRelation(EntityBuilder::RELATION_MANY_TO_ONE,
                           $builder->getEntityRelationMeta(),
-                          new EntityRelationMeta(new GClass('Entities\Person'),'target'),
+                          new EntityRelationMeta(new GClass('Psc\Entities\Person'),'target'),
                           EntityBuilder::SIDE_OWNING
                          );
 
-    $m2o = $this->assertCommonRelation($builder, 'person', 'ManyToOne', 'Entities\Person');
+    $m2o = $this->assertCommonRelation($builder, 'person', 'ManyToOne', 'Psc\Entities\Person');
     $this->assertEquals('addresses',$m2o->inversedBy);
   }
   

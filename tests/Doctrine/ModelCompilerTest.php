@@ -57,16 +57,19 @@ class ModelCompilerTest extends \Psc\Code\Test\Base {
     );
     
     $eb = $this->mc->getEntityBuilder();
-    $this->assertEquals('Entities\CompiledPerson',$eb->getEntityClass());
-    $this->assertEquals('Entities\Person', $this->mc->getOriginalEntityClass()->getFQN());
+    $this->assertEquals('Psc\Entities\CompiledPerson',$eb->getEntityClass());
+    $this->assertEquals('Psc\Entities\Person', $this->mc->getOriginalEntityClass()->getFQN());
     $this->assertEquals('Psc\CMS\AbstractEntity', $eb->getBaseEntity()->getFQN());
     $this->assertHasDCAnnotation($eb->getClassDocBlock(),'MappedSuperclass');
-    $this->assertHasDCAnnotation($eb->getClassDocBlock(),'Table');
+    
+    // Table nicht mehr, weil der vom orm:create-entity eh immer wieder überschrieben wird und mappedSuperClasses eh kein table haben können
+    //$this->assertHasDCAnnotation($eb->getClassDocBlock(),'Table');
+    
   }
 
   public function testClosureCompilers_extends() {
     extract($this->mc->getClosureHelpers());
-    $this->assertEquals($extends('ExtendedEntity'), new GClass('Entities\ExtendedEntity'));
+    $this->assertEquals($extends('ExtendedEntity'), new GClass('Psc\Entities\ExtendedEntity'));
     $this->assertEquals($extends('Some\Other\ExtendedClass'), new GClass('Some\Other\ExtendedClass'));
   }
 
@@ -106,7 +109,7 @@ class ModelCompilerTest extends \Psc\Code\Test\Base {
 
   public function testClosureCompilers_entityClass() {
     extract($this->mc->getClosureHelpers());
-    $this->assertEquals($entityClass('ExtendedEntity'), new GClass('Entities\ExtendedEntity'));
+    $this->assertEquals($entityClass('ExtendedEntity'), new GClass('Psc\Entities\ExtendedEntity'));
     $this->assertEquals($entityClass('Some\Other\ExtendedEntity'), new GClass('Some\Other\ExtendedEntity')); // konsistent mit oben oder gar nicht irgendwie
   }
 
@@ -118,9 +121,9 @@ class ModelCompilerTest extends \Psc\Code\Test\Base {
     );
     
     $eb = $this->mc->getEntityBuilder();
-    $this->assertEquals('Entities\CompiledPerson', $eb->getEntityClass());
-    $this->assertEquals('Entities\Person', $this->mc->getOriginalEntityClass()->getFQN());
-    $this->assertEquals('Entities\BasicPerson', $eb->getGClass()->getParentClass()->getFQN());
+    $this->assertEquals('Psc\Entities\CompiledPerson', $eb->getEntityClass());
+    $this->assertEquals('Psc\Entities\Person', $this->mc->getOriginalEntityClass()->getFQN());
+    $this->assertEquals('Psc\Entities\BasicPerson', $eb->getGClass()->getParentClass()->getFQN());
   }
   
   public function testClosureCompilers_defaultId() {

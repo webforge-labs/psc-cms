@@ -17,6 +17,7 @@ class EntitySearchPanelTest extends \Psc\Code\Test\Base {
   }
   
   public function testAcceptance() {
+    $this->assertEquals(15, $this->entitySearchPanel->getMaxResults());
     $this->html = $this->entitySearchPanel->html();
     
     $this->test->css('fieldset.psc-cms-ui-group',$this->html)->count(1);

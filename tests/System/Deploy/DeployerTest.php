@@ -14,12 +14,16 @@ class DeployerTest extends \Psc\Code\Test\Base {
   public function setUp() {
     $this->chainClass = 'Psc\System\Deploy\Deployer';
     parent::setUp();
+
+    if (\Psc\PSC::isTravis()) {
+      $this->markTestSkipped('zu Env abhängig');
+    }
     
     $this->deployments = new \Psc\System\Dir('D:\www\deployments\\');
     
     
     $this->deployer = clone $this->emptyDeployer = new Deployer($this->deployments,
-                                        \Psc\PSC::getProjectsFactory()->getProject('tiptoi'),
+                                        \Psc\PSC::getProjectsFactory()->getProject('psc-cms'),
                                         new \Psc\System\BufferLogger()
                                        );
     $this->deployer->init();

@@ -27,9 +27,9 @@ class FileTest extends \Psc\Code\Test\Base {
   }
   
   public function testConstructor() {
-    $fileString = self::path('www', 'test', 'base', 'ka', 'auch').'banane.php';
+    $fileString = self::absPath('www', 'test', 'base', 'ka', 'auch').'banane.php';
     
-    $dir = new Dir(self::path('www', 'test', 'base', 'ka', 'auch'));
+    $dir = new Dir(self::absPath('www', 'test', 'base', 'ka', 'auch'));
     $filename = 'banane.php';
     
     $file = new File($dir, $filename);
@@ -43,12 +43,12 @@ class FileTest extends \Psc\Code\Test\Base {
   }
   
   public function testWrappedConstructor() {
-    $fileString = 'phar://path/does/not/matter/my.phar.gz/i/am/wrapped/class.php';
+    $fileString = 'phar:///path/does/not/matter/my.phar.gz/i/am/wrapped/class.php';
     
     $file = new File($fileString);
     $this->assertEquals('php',$file->getExtension());
     $this->assertEquals('class.php',$file->getName());
-    $this->assertEquals('phar://path/does/not/matter/my.phar.gz/i/am/wrapped/', (string) $file->getDirectory());
+    $this->assertEquals('phar:///path/does/not/matter/my.phar.gz/i/am/wrapped/', (string) $file->getDirectory());
     $this->assertEquals($fileString, (string) $file);
   }
   
@@ -101,10 +101,10 @@ class FileTest extends \Psc\Code\Test\Base {
     };
     
     $test(self::absPath('www', 'test', 'base', 'ka', 'auch').'banane.php',
-          self::absPath(array('www', 'test', 'base', 'ka')),
+          self::absPath('www', 'test', 'base', 'ka'),
           '/auch/banane.php');
     $test(self::absPath('www', 'psc-cms', 'Umsetzung', 'base', 'src', 'tpl').'throwsException.html',
-          self::absPath('www'. 'psc-cms', 'Umsetzung', 'base', 'src', 'tpl'),
+          self::absPath('www', 'psc-cms', 'Umsetzung', 'base', 'src', 'tpl'),
           '/throwsException.html'
          );
     

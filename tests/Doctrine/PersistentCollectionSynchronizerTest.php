@@ -47,8 +47,23 @@ class PersistentCollectionSynchronizerTest extends ActionsCollectionSynchronizer
     $synchronizer->process($article->getTags(), $this->getToCollection($o));
     
     $this->em->flush();
+    $this->em->clear();
     
     $this->assertSyncResult();
+  }
+  
+  
+  public function testCreateFor() {
+    $synchronizer = new PersistentCollectionSynchronizer(
+      $this->getEntityMeta('Psc\Doctrine\TestEntities\Article'),
+      'tags',
+      new UniqueEntityHydrator($this->em->getRepository('Psc\Doctrine\TestEntities\Tag')),
+      new EntityFactory($this->getEntityMeta('Psc\Doctrine\TestEntities\Tag'))
+    );
+    
+    $createdSynchronizer = PersistentCollectionSynchronizer::createFor('Psc\Doctrine\TestEntities\Article', 'tags', $this->getDoctrinePackage());
+    
+    $this->assertEquals($createdSynchronizer, $synchronizer);
   }
 }
 ?>

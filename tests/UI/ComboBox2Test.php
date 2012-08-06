@@ -57,7 +57,7 @@ class ComboBox2Test extends \Psc\Code\Test\HTMLTestCase {
               ;
 
     $this->assertInstanceOf('Psc\JS\Code',$autoComplete);
-    $this->assertContains('widget:',$autoComplete->js());
+    $this->assertContains("'widget':",$autoComplete->js());
   }
   
   public function testSelectedItemIsSet() {
@@ -69,6 +69,15 @@ class ComboBox2Test extends \Psc\Code\Test\HTMLTestCase {
     $this->test->js($this->comboBox)
       ->constructsJoose('Psc.UI.ComboBox')
       ->hasParam('selected');
+  }
+  
+  public function testSetUndGetMaxResults() {
+    $this->avaibleItems = $this->entityMeta->getAutoCompleteRequestMeta();
+    $this->comboBox = new ComboBox2('tags', $this->avaibleItems, $this->entityMeta);
+    
+    $this->assertNull(NULL, $this->comboBox->getMaxResults());
+    $this->comboBox->setMaxResults(15);
+    $this->assertEquals(15, $this->comboBox->getMaxResults());
   }
 }
 ?>

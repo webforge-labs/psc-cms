@@ -90,8 +90,6 @@ class RandomGeneratorTest extends \Psc\Code\Test\Base {
       foreach ($data as $randomEntry) {
         $this->assertInternalType('int',$randomEntry);
       }
-      //var_dump($data);
-      //print "\n";
     }
 
     for ($i = 1; $i<=$this->it; $i++) {
@@ -101,8 +99,6 @@ class RandomGeneratorTest extends \Psc\Code\Test\Base {
       foreach ($data as $randomEntry) {
         $this->assertInternalType('bool',$randomEntry);
       }
-      //var_dump($data);
-      //print "\n";
     }
 
     for ($i = 1; $i<=$this->it; $i++) {
@@ -112,8 +108,6 @@ class RandomGeneratorTest extends \Psc\Code\Test\Base {
       foreach ($data as $randomEntry) {
         $this->assertInternalType('string',$randomEntry);
       }
-      //var_dump($data);
-      //print "\n";
     }
   }
   

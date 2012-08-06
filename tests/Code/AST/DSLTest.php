@@ -23,6 +23,24 @@ class DSLTest extends \Psc\Code\Test\Base {
     $this->assertArrayHasKey('type',$closures);
   }
   
+  public function testInParametersCannotAInnerParameterBeWrongException() {
+    $this->setExpectedException('InvalidArgumentException');
+    $this->dsl->parameters('thisisokay', 7, 'but the 7 not');
+  }
+  
+  public function testFunction() {
+    $this->assertInstanceOf('Psc\Code\AST\LFunction',
+                            $function = $this->dsl->function_(
+                              'doSomething',
+                              $this->dsl->parameters(
+                                $this->dsl->parameter('param1'),
+                                $this->dsl->parameter('param2')
+                              )
+                            )
+                           );
+  }
+  
+  
   public function testParameterWithoutTypeDefaultsToMixed() {
     $this->assertInstanceOf('Psc\Code\AST\LParameter', $sounds = $this->dsl->parameter('sounds'));
     $this->assertEquals('Mixed', $sounds->getType()->getName());

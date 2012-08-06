@@ -82,9 +82,9 @@ class ModuleTest extends \Psc\Code\Test\Base {
     // BasicImage
     // BasicPerson
     // User etc
-    $this->assertInstanceOf('Doctrine\ORM\EntityRepository', $em->getRepository('Entities\Image'));
-    $this->assertInstanceOf('Doctrine\ORM\EntityRepository', $em->getRepository('Entities\User'));
-    $this->assertInstanceOf('Doctrine\ORM\EntityRepository', $em->getRepository('Entities\Person'));
+    $this->assertInstanceOf('Doctrine\ORM\EntityRepository', $em->getRepository('Psc\Entities\Image'));
+    $this->assertInstanceOf('Doctrine\ORM\EntityRepository', $em->getRepository('Psc\Entities\User'));
+    $this->assertInstanceOf('Doctrine\ORM\EntityRepository', $em->getRepository('Psc\Entities\Person'));
   }
 }
 ?>

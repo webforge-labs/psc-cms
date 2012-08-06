@@ -142,16 +142,6 @@ class CodeTest extends \Psc\Code\Test\Base {
     $this->assertEquals('setv2',$object->getProp2());
   }
   
-  /**
-   * @group varinfo
-   */
-  public function testVarInfo() {
-    $var = (object) array('limm'=>'bimm');
-    
-    $this->assertEquals("(object) ( [limm] => bimm)", Code::varInfo($var));
-  }
-
-
   public function testDValue() {
     $value = 'eins';
     $this->assertEquals('eins', Code::dvalue($value,
@@ -228,6 +218,12 @@ class CodeTest extends \Psc\Code\Test\Base {
   
   public function testGetMemoryUsageAcceptance() {
     $this->assertRegexp('/[0-9]+\.[0-9]+ MB/',Code::getMemoryUsage());
+  }
+  
+  public function testTraversableTrues() {
+    $this->assertTrue(Code::isTraversable(array('blubb')));
+    $this->assertTrue(Code::isTraversable((object) array('blubb')));
+    $this->assertTrue(Code::isTraversable(new \Psc\Data\ArrayCollection(array('blubb'))));
   }
 }
 

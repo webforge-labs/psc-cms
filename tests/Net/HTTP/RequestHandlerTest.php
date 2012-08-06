@@ -35,6 +35,10 @@ class RequestHandlerTest extends \Psc\Code\Test\Base {
     $this->assertTrue($this->svc->isResponsibleFor($this->createServiceRequest()));
   }
   
+  public function testHandlerMailsErrorsWhenRequestGreaterThan400() {
+    $this->markTestIncomplete('todo');
+  }
+  
   /**
    * @expectedException \Psc\Net\HTTP\NoServiceFoundException
    */

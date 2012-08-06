@@ -23,6 +23,26 @@ class CompositeTypeTest extends CompositeTypeTestCase {
     
     return $composite;
   }
+  
+  public function testDebugReturnsAStringWithAllComponentsAsName() {
+    $composite = new CompositeType();
+    $composite->setComponents(Type::create('String'), Type::create('Object', new \Psc\Code\Generate\GClass('Psc\Code\AST\LParameter')));
+    
+    $this->assertEquals('String|Psc\Code\AST\LParameter', $composite->getName(Type::CONTEXT_DEBUG));
+  }
+  
+  public function testAddComponent() {
+    $composite1 = new CompositeType();
+    $composite1->setComponents($t1 = Type::create('String'),
+                               $t2 = Type::create('Object', new \Psc\Code\Generate\GClass('Psc\Code\AST\LParameter'))
+                              );
+    
+    $composite2 = new CompositeType();
+    $composite2->addComponent($t1);
+    $composite2->addComponent($t2);
+    
+    $this->assertEquals($composite1, $composite2);
+  }
 
   /**
    * @depends testMyConstruct

@@ -71,6 +71,17 @@ class GClassTest extends \Psc\Code\Test\Base {
     $this->assertEquals('\Psc\Hitch\XML', $gClass->getNamespace());
   }
   
+  public function testFQNAndNotFQNClassesNamespaces() {
+    $noFQN = new GClass('LParameter');
+    $this->assertEquals(NULL, $noFQN->getNamespace());
+    $this->assertEquals('\LParameter', $noFQN->getName()); // invariant: getName IMMER mit \\ davor, egal was passiert
+    $this->assertEquals('LParameter', $noFQN->getFQN());
+    
+    $fqn = new GClass('\LParameter');
+    $this->assertEquals('\\', $fqn->getNamespace());
+    //$this->assertEquals('\LParameter', $fqn->getName());
+  }
+  
   public function testPropertyCreation() {
     $gClass = new GClass('TestClass');
     
@@ -275,6 +286,13 @@ CLASS_END;
     
     $this->assertArrayEquals(array('AutoCompletable', 'Identifyable'), $interfaces);
   }
+  
+  public function testOwnMethodForAbstractClassImplementingAnInterface() {
+    $gClass = GClass::factory(__NAMESPACE__.'\\MyAbstractInterfacedClass');
+    
+    $this->assertFalse($gClass->hasOwnMethod('interfaceMethod1'));
+    $this->assertTrue($gClass->hasMethod('interfaceMethod1'));
+  }
 }
 
 class MyTestClass {
@@ -322,5 +340,16 @@ class MyConstructorThrowsExceptionClass {
   public function __construct() {
     throw new \Psc\Exception('this should not be called');
   }
+}
+
+abstract class MyAbstractInterfacedClass implements MyInterface {
+  
+  abstract public function thisIsIt();
+}
+
+interface MyInterface {
+  
+  public function interfaceMethod1();
+  
 }
 ?>

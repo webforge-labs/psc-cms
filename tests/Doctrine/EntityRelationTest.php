@@ -56,6 +56,12 @@ class EntityRelationTest extends EntityRelationBaseTest {
    * ManyToMany self-referencing:
    *  game<->game  in unlockGames
    *
+   * OneToMany self-referencing:
+   *  parent<->child
+   * 
+   * ManyToOne self-referencing:
+   *  children<->parent
+   *
    * ein paar Custom assertions:
    *
    * assertSides($source, $target)
@@ -76,6 +82,10 @@ class EntityRelationTest extends EntityRelationBaseTest {
     $this->tag = new EntityRelationMeta(new GClass('Psc\Doctrine\TestEntities\Tag'), 'target');
     $this->sound = new EntityRelationMeta(new GClass('tiptoi\Entities\Sound'), 'target');
     $this->game = new EntityRelationMeta(new GClass('tiptoi\Entities\Game'), 'source');
+    $this->parent = new EntityRelationMeta(new GClass('CoMun\Entities\NavigationNode'), 'source');
+    $this->parent->setAlias('Parent');
+    $this->child = new EntityRelationMeta(new GClass('CoMun\Entities\NavigationNode'), 'source');
+    $this->child->setAlias('Child');
     $this->unlockGame = new EntityRelationMeta(new GClass('tiptoi\Entities\Game'), 'source');
     $this->unlockGame->setAlias('UnlockGame');
     
@@ -332,6 +342,54 @@ class EntityRelationTest extends EntityRelationBaseTest {
     
     $this->assertEquals($joinTable, $this->assertHasDCAnnotation($docBlock,'JoinTable'));
   }
+  
+  
+  /**
+   * ManyToOne self-referencing:
+   *  child(ren)<->parent
+   *
+   * @Gedmo\TreeParent
+   * @ORM\ManyToOne(targetEntity="CoMun\Entities\NavigationNode", inversedBy="children")
+   * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="SET NULL")
+   * protected $parent;
+   */
+  public function testOneToManySelfReferencing() {
+    $relation = new EntityRelation($this->child, $this->parent, EntityRelation::MANY_TO_ONE, EntityRelation::SELF_REFERENCING, 'source');
+    $relation->setJoinColumnNullable(true);
+    //$relation->getJoinTable()->setName('game_unlocks');
+    $relation->addAnnotationsForSource($docBlock = new DocBlock());
+
+    $this->assertHasRelationAnnotation('ManyToOne', array('targetEntity'=>'CoMun\Entities\NavigationNode', 'inversedBy'=>'children'),
+                                       $docBlock
+                                      );
+    
+
+    $joinColumn = Annotation::createDC('JoinColumn', array('name'=>null, // das müsste implizit parent_id sein und kann somit weggelassen werden
+                                                           'referencedColumnName'=>'id',
+                                                           'onDelete'=>'SET NULL'
+                                                           )
+                                      );
+    
+    $this->assertEquals($joinColumn, $this->assertHasDCAnnotation($docBlock,'JoinColumn'));
+  }
+
+  /**
+   * OneToMany self-referencing:
+   * parent<->child(ren)
+   *
+   * @ORM\OneToMany(targetEntity="CoMun\Entities\NavigationNode", mappedBy="parent")
+   * protected $children;
+   */
+  public function testManyToOneSelfReferencing() {
+    $relation = new EntityRelation($this->parent, $this->child, EntityRelation::ONE_TO_MANY, EntityRelation::SELF_REFERENCING,'target');
+    //$relation->getJoinTable()->setName('game_unlocks');
+    $relation->addAnnotationsForSource($docBlock = new DocBlock());
+    
+    $this->assertHasRelationAnnotation('OneToMany', array('targetEntity'=>'CoMun\Entities\NavigationNode', 'mappedBy'=>'parent'),
+                                       $docBlock
+                                      );
+  }
+  
 
   public function testStaticCreateHelpsBuilding() {
     $relation = EntityRelation::create('Psc\Doctrine\TestEntities\Article', 'Psc\Doctrine\TestEntities\Tag', EntityRelation::MANY_TO_MANY);

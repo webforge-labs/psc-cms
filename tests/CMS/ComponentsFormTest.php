@@ -7,7 +7,7 @@ use Psc\CMS\ComponentsForm;
 /**
  * @group class:Psc\CMS\ComponentsForm
  */
-class ComponentsFormTest extends \Psc\Code\Test\Base {
+class ComponentsFormTest extends \Psc\Code\Test\HTMLTestCase {
   
   protected $form;
 
@@ -102,7 +102,7 @@ class ComponentsFormTest extends \Psc\Code\Test\Base {
     $c = 'Psc\CMS\TestStatus';
     \Psc\PSC::getProject()->getModule('Doctrine')->registerType($c);
     
-    $html = $this->form->createTypeSelect($c, 'mailed');
+    $this->html = $this->form->createTypeSelect($c, 'mailed');
     
     $options = array(
       'discovered'=>'Discovered',
@@ -113,7 +113,7 @@ class ComponentsFormTest extends \Psc\Code\Test\Base {
       'finished'=>'Finished'
     );
     
-    $this->test->formSelect($html, 'TestStatus', 'testStatus', 'mailed', $options);
+    $this->test->formSelect($this->html, 'TestStatus', 'testStatus', 'mailed', $options);
   }
   
   public function testPropertySorting() {

@@ -13,12 +13,11 @@ class PSCTest extends PHPUnit_Framework_TestCase {
   protected $srcPath;
   
   public function setUp() {
-    $this->srcPath = realpath(dirname(__FILE__).DIRECTORY_SEPARATOR.str_repeat('..'.DIRECTORY_SEPARATOR,2)).DIRECTORY_SEPARATOR;
-  }
-  
-  public function testClassName() {
-    $this->assertEquals('\Psc\HTML\Tag',PSC::getFullClassName(new File($this->srcPath.'psc\class\Psc\HTML\Tag\\')));
-    $this->assertEquals('\Psc\PHPJSC\Object',PSC::getFullClassName(new File($this->srcPath.'psc\class\Psc\PHPJSC\Object')));
+    if (\Psc\PSC::isTravis()) {
+      $this->srcPath = realpath(__DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR;
+    } else {
+      $this->srcPath = realpath(dirname(__FILE__).DIRECTORY_SEPARATOR.str_repeat('..'.DIRECTORY_SEPARATOR,2)).DIRECTORY_SEPARATOR;
+    }
   }
   
   /**
@@ -39,19 +38,11 @@ class PSCTest extends PHPUnit_Framework_TestCase {
   public function testMethods() {
     $this->assertInstanceOf('Psc\CMS\ProjectsFactory', PSC::getProjectsFactory());
     $this->assertInstanceOf('Psc\CMS\Project', PSC::getProject());
-    $this->assertInstanceOf('Psc\CMS\CMS', PSC::getCMS());
     $this->assertInstanceOf('Psc\Code\ErrorHandler', PSC::getErrorHandler());
     $this->assertInstanceOf('Psc\Environment', PSC::getEnvironment());
     $this->assertTrue(PSC::inTests());
     
-    
-    $ds = DIRECTORY_SEPARATOR;
-    $this->assertEquals($this->srcPath.'psc'.$ds.'class'.$ds.'Psc'.$ds.'CMS'.$ds.'Project.php',
-                        (string) PSC::getClassFile('\Psc\CMS\Project')
-                      );
-    
     $this->assertEquals('psc-cms', PSC::getProject()->getName());
-    $this->assertEquals($this->srcPath.'psc'.$ds.'tests'.$ds, (string) PSC::getProject()->getTestsPath());
   }
   
   public function testModuleBootstraps() {
@@ -63,9 +54,7 @@ class PSCTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals($em,\Psc\Doctrine\Helper::em());
     
     $this->assertEquals(TRUE,PSC::getProject()->getTests());
-    $this->assertEquals('psc-cms',PSC::getCMS()->getProjectAbbrev());
-    $this->assertEquals(PSC::getCMS()->getProjectAbbrev().'_tests',$em->getConnection()->getDatabase());
-    
+    $this->assertEquals(PSC::getProject()->getLowerName().'_tests',$em->getConnection()->getDatabase());
   }
   
   public function testEventManager() {

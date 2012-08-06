@@ -87,9 +87,9 @@ class EntityMetaTest extends \Psc\Code\Test\Base {
                         $this->entityMeta->getSearchPanelRequestMeta()->getMethod().' '.
                         $this->entityMeta->getSearchPanelRequestMeta()->getUrl(array('tag'=>'wahlen','sort'=>'desc')));
 
-    $this->assertEquals('GET /entities/articles/?term=gir',
+    $this->assertEquals('GET /entities/articles',
                         $this->entityMeta->getAutoCompleteRequestMeta()->getMethod().' '.
-                        $this->entityMeta->getAutoCompleteRequestMeta()->getUrl(array('term'=>'gir'))
+                        $this->entityMeta->getAutoCompleteRequestMeta()->getUrl()
                        );
     $this->assertInstanceOf('Psc\CMS\AutoCompleteRequestMeta',$this->entityMeta->getAutoCompleteRequestMeta());
   }

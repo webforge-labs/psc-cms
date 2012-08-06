@@ -21,8 +21,6 @@ class HelperTest extends \Psc\Code\Test\Base {
     Bitte best├ñtigen sie das Passwort:<br/><input type="password" name="pw2" value=""/><br/></fieldset>
     <input type="hidden" name="submitted" value="true"/><input type="submit"/></form>';
 
-    //var_dump(Helper::query(Helper::doc($html),$selector));
-    
         // h1, h2, h3
         $element1 = new ElementNode('*', 'h1');
         $element2 = new ElementNode('*', 'h2');

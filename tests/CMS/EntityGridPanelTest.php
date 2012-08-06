@@ -14,10 +14,7 @@ class EntityGridPanelTest extends \Psc\Code\Test\HTMLTestCase {
     parent::setUp();
     
     $this->entities = $this->loadTestEntities('users');
-    //$this->classMetadata = $this->getMock('Doctrine\ORM\Mapping\ClassMetadata', array('getIdentifierFieldNames'), array('Psc\Doctrine\TestEntitites\User'));
-    //$this->classMetadata->expects($this->any())->method('getIdentifierFieldNames')->will($this->returnValue(array('email')));
-    $this->classMetadata = \Psc\PSC::getProject()->getModule('Doctrine')->getEntityManager()->getClassMetadata('Entities\User');
-    $this->entityMeta = new \Psc\CMS\UserEntityMeta('Entities\User', $this->classMetadata);
+    $this->entityMeta = \Psc\PSC::getProject()->getModule('Doctrine')->getEntityMeta('User');
     $this->entityGridPanel = new EntityGridPanel($this->entityMeta, 'User Verwaltung'); 
   }
   

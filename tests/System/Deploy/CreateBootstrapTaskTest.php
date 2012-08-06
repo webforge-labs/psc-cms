@@ -17,6 +17,7 @@ class CreateBootstrapTaskTest extends \Psc\Code\Test\Base {
     $this->targetProject = $this->doublesManager->Project('test-project', $this->testDir)->build();
     
     $this->task = new CreateBootstrapTask($this->targetProject,
+                                          'testproject.ps-webforge.com',
                                           $modules = array('Doctrine','PHPExcel', 'Imagine')
                                          );
   }

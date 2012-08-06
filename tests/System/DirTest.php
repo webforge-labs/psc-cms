@@ -28,7 +28,8 @@ class DirTest extends \Psc\Code\Test\Base {
     
     $rel = clone $graph;
     
-    $this->assertEquals('.\class\Graph\\',(string) $rel->makeRelativeTo($psc));
+    $this->assertEquals('.'.DIRECTORY_SEPARATOR.'class'.DIRECTORY_SEPARATOR.'Graph'.DIRECTORY_SEPARATOR,
+                        (string) $rel->makeRelativeTo($psc));
     
     $eq = clone $graph;
     
@@ -128,7 +129,7 @@ class DirTest extends \Psc\Code\Test\Base {
   
   
   public function testWrappedPaths() {
-    $wrappedPath = 'phar://path/does/not/matter/my.phar.gz/i/am/wrapped/';
+    $wrappedPath = 'phar:///path/does/not/matter/my.phar.gz/i/am/wrapped/';
     
     $dir = new Dir($wrappedPath);
     $this->assertEquals($wrappedPath, (string) $dir);
@@ -141,10 +142,10 @@ class DirTest extends \Psc\Code\Test\Base {
   }
   
   public function testWrappedExtract() {
-    $fileString = 'phar://path/does/not/matter/my.phar.gz/i/am/wrapped/class.php';
+    $fileString = 'phar:///path/does/not/matter/my.phar.gz/i/am/wrapped/class.php';
     
     $dir = Dir::extract($fileString);
-    $this->assertEquals('phar://path/does/not/matter/my.phar.gz/i/am/wrapped/', (string) $dir);
+    $this->assertEquals('phar:///path/does/not/matter/my.phar.gz/i/am/wrapped/', (string) $dir);
   }
   
   public function testIsEmpty() {
