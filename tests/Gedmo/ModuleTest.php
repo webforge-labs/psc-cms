@@ -17,6 +17,7 @@ class ModuleTest extends \Psc\Doctrine\DatabaseTest {
     $this->chainClass = 'Psc\Gedmo\Module';
     parent::setUp();
     $this->gedmo = new Module(\Psc\PSC::getProject()); //->getModule('Gedmo');
+    $this->gedmo->setName('gedmo');
     $this->gedmo->setDoctrineModule($this->module);
     $this->gedmo->bootstrap();
   }
