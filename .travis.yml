@@ -10,7 +10,8 @@ before_script:
   - mysql -e 'create database IF NOT EXISTS `psc-cms`;'
   - php -f tests/update.schema.php
   
-script: phpunit
+script: phpunit --filter TestingTest
 
 notifications:
   irc: "irc.freenode.org#psc-cms"
+  mail: p.scheit@ps-webforge.com
