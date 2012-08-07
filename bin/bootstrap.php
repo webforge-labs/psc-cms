@@ -24,9 +24,14 @@ $bootLoader
   ->setProjectPath('psc-cms',PSC::PATH_HTDOCS, './files/htdocs')
   ->setProjectPath('psc-cms',PSC::PATH_TESTDATA, './files/testdata/')
 ;
+$lib = new \Psc\System\Dir($bootLoader->getPhar('psc-cms').'/');
+$lib->setWrapper('phar');
 
 PSC::getProjectsFactory()->getProject('psc-cms')->setLoadedWithPhar(TRUE)->bootstrap()
-  ->getModule('Doctrine')->bootstrap()->getProject()
+  ->getModule('Doctrine')
+    ->setEntitiesPath($lib->sub('Psc/Entities/'))
+    ->bootstrap()
+  ->getProject()
   ->getModule('Gedmo')->bootstrap(\Psc\Gedmo\Module::BOOT_NAVIGATION)->getProject()
   ->getModule('PHPExcel')->bootstrap()->getProject()
   ->getModule('PHPWord')->bootstrap()->getProject()
