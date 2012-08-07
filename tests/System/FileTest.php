@@ -43,12 +43,12 @@ class FileTest extends \Psc\Code\Test\Base {
   }
   
   public function testWrappedConstructor() {
-    $fileString = 'phar:///path/does/not/matter/my.phar.gz/i/am/wrapped/class.php';
+    $fileString = 'phar://'.($pf = \Psc\PSC::getEnvironment()->isWindows() ? 'D:/' : '/').'does/not/matter/my.phar.gz/i/am/wrapped/class.php';
     
     $file = new File($fileString);
     $this->assertEquals('php',$file->getExtension());
     $this->assertEquals('class.php',$file->getName());
-    $this->assertEquals('phar:///path/does/not/matter/my.phar.gz/i/am/wrapped/', (string) $file->getDirectory());
+    $this->assertEquals('phar://'.$pf.'does/not/matter/my.phar.gz/i/am/wrapped/', (string) $file->getDirectory());
     $this->assertEquals($fileString, (string) $file);
   }
   
