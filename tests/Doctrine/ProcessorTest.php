@@ -129,6 +129,10 @@ class ProcessorTest extends \Psc\Doctrine\DatabaseTest {
     $this->assertEntityCollectionEquals(new ArrayCollection(array($a2,$n1,$n2)), $this->emm->getPersisted(), 'articles-persisted');
   }
   
+  public function testNormalCollectionSynchroniziing() {
+    $this->markTestIncomplete('TODO');
+  }
+  
   public function testProcessSet() {
     $expectedContent = 'das ist der neue Content';
     $expectedTitle = 'das ist der neue Title';
