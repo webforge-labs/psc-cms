@@ -14,3 +14,4 @@ script: phpunit
 
 notifications:
   irc: "irc.freenode.org#psc-cms"
+  mail: p.scheit@ps-webforge.com
