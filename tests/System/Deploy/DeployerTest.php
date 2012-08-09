@@ -31,35 +31,33 @@ class DeployerTest extends \Psc\Code\Test\Base {
     $this->emptyDeployer->addTask(
       $this->emptyDeployer->createTask('CreateAndWipeTarget')
     );
-    
-    
   }
   
   public function testEmptyDeployerDeploysIntoEmptySubDir() {
     $this->deployer = $this->emptyDeployer;
     $this->deployer->deploy();
     
-    $tiptoi = $this->deployments->sub('tiptoi/');
+    $pr = $this->deployments->sub('psc-cms/');
     
-    $this->assertTrue($tiptoi->exists(), 'Verzeichnis tiptoi existiert nicht in deployments');
-    $this->assertTrue($tiptoi->isEmpty(), 'Verzeichnis ist nicht leer');
+    $this->assertTrue($pr->exists(), 'Verzeichnis psc-cms existiert nicht in deployments');
+    $this->assertTrue($pr->isEmpty(), 'Verzeichnis '.$pr.' ist nicht leer');
   }
 
   public function testEmptyDeployerDeploysIntoEmptySubDirAllthoughNotEmpty() {
     $this->deployer = $this->emptyDeployer;
-    $tiptoi = $this->deployments->sub('tiptoi/');
+    $pr = $this->deployments->sub('psc-cms/');
     
     // create some trash
-    $tiptoi->getFile('someNotEmptyFile')->writeContents('sdlfjsldfj');
-    $tiptoi->sub('some/sub/dir')->create();
-    $this->assertFalse($tiptoi->isEmpty());
+    $pr->getFile('someNotEmptyFile')->writeContents('sdlfjsldfj');
+    $pr->sub('some/sub/dir')->create();
+    $this->assertFalse($pr->isEmpty());
     
     // deploy
     $this->deployer->deploy();
     
     // assert empty
-    $this->assertTrue($tiptoi->exists(), 'Verzeichnis tiptoi existiert nicht in deployments');
-    $this->assertTrue($tiptoi->isEmpty(), 'Verzeichnis ist  nicht leer');
+    $this->assertTrue($pr->exists(), 'Verzeichnis tiptoi existiert nicht in deployments');
+    $this->assertTrue($pr->isEmpty(), 'Verzeichnis ist  nicht leer');
   }
   
   public function testCustomAddedTaskWillBeDeployed() {

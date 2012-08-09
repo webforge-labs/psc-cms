@@ -18,10 +18,14 @@ $bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('phpexcel'));
 $bootLoader->getAutoLoader()->addPhar($bootLoader->getPhar('imagine'));
 
 
-PSC::getProjectsFactory()->getProject('test-project')->bootstrap()
-  ->getModule('Doctrine')->bootstrap()->getProject()
-  ->getModule('PHPExcel')->bootstrap()->getProject()
-  ->getModule('Imagine')->bootstrap()->getProject()
+PSC::getProjectsFactory()
+  ->getProject('test-project')
+    
+    ->setLibsPath($bootLoader->getPharBinaries())
+    ->bootstrap()
+    ->getModule('Doctrine')->bootstrap()->getProject()
+    ->getModule('PHPExcel')->bootstrap()->getProject()
+    ->getModule('Imagine')->bootstrap()->getProject()
 
   ->getConfiguration()->set(array('url','base'), 'testproject.ps-webforge.com')
 ;
