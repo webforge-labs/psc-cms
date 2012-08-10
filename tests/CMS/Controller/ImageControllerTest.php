@@ -24,12 +24,19 @@ class ImageControllerTest extends \Psc\Doctrine\DatabaseTest {
   }
   
   public function testGetImageReturnsTheImageEntityQueriedById() {
-    $this->assertSame($this->bud, $this->imageCtrl->getImage($this->bud->getIdentifier()));
+    $this->assertSame($this->bud,
+                      $this->getResponseData(
+                        $this->imageCtrl->getImage($this->bud->getIdentifier())
+                      )
+                    );
   }
   
   public function testGetImageReturnsTheImageEntityQueriedByHash() {
     $hashImage = $this->imageCtrl->getImage($this->terence->getHash());
-    $this->assertSame($this->terence, $hashImage);
+    $this->assertSame($this->terence,
+                      $this->getResponseData(
+                        $hashImage
+                      ));
   }
   
   public function testInsertImageFileReturnsImageEntity() {
@@ -41,13 +48,21 @@ class ImageControllerTest extends \Psc\Doctrine\DatabaseTest {
       (object) array('specification','not','yet','specified') // yagni
     );
     
-    $this->assertSame($this->bud, $image);
+    $this->assertSame($this->bud, $this->getResponseData($image));
   }
   
   public function testImageConversionToResponseHasUsableURLInIt() {
     $export = $this->bud->export();
     $this->assertObjectHasAttribute('url', $export);
     $this->assertNotEmpty($export->url);
+  }
+  
+  protected function getResponseData($response) {
+    if ($response instanceof \Psc\Net\ServiceResponse) {
+      return $response->getBody();
+    } else {
+      return $response;
+    }
   }
 }
 ?>

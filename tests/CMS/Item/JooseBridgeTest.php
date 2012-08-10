@@ -25,20 +25,22 @@ class JooseBridgeTest extends \Psc\Code\Test\Base {
     
     // schwierig zu testen, weil eigentlich wollen wir wissen ob das $tag das beim html() angehängt hat (acceptance)
     // somit machen wir hier nur den joosebridge unit test
-    $traits = $this->test->js($this->jooseBridge)
-      ->constructsJoose('Psc.CMS.Item')
-      ->hasParam('traits')
+    $this->test->js($this->jooseBridge)
+      ->constructsJoose('Psc.CMS.FastItem')
+      //->hasParam('traits')
       ->hasParam('widget')
-      ->getParam('traits');
+      //->getParam('traits')
+    ;
       
-    $traits = array_map(function ($code) {
-      return $code->js();
-    },$traits); // cast to string
-      
-    $this->assertContains('Psc.CMS.ComboDropBoxable', $traits, print_r($traits, true));
-    // diese beiden nicht weil diese schon in ComboDropBoxable drin sind
-    $this->assertNotContains('Psc.CMS.DropBoxable', $traits, print_r($traits, true));
-    $this->assertNotContains('Psc.CMS.SelectComboBoxable', $traits, print_r($traits, true));
+    // keine Traits mehr
+    //$traits = array_map(function ($code) {
+    //  return $code->js();
+    //},$traits); // cast to string
+    //  
+    //$this->assertContains('Psc.CMS.ComboDropBoxable', $traits, print_r($traits, true));
+    //// diese beiden nicht weil diese schon in ComboDropBoxable drin sind
+    //$this->assertNotContains('Psc.CMS.DropBoxable', $traits, print_r($traits, true));
+    //$this->assertNotContains('Psc.CMS.SelectComboBoxable', $traits, print_r($traits, true));
   }
   
   public function testConstructInterfaceHierarchy() {
