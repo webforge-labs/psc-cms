@@ -31,7 +31,7 @@ class AdapterTest extends \Psc\Code\Test\HTMLTestCase {
                ->hasText('My Custom Label');
     
     $this->test->js($button)
-               ->constructsJoose('Psc.CMS.Item')
+               ->constructsJoose('Psc.CMS.FastItem')
                ->hasParam('tab', $this->isType('object'))
                ->hasParam('button', $this->isType('object'))
                ;

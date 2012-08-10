@@ -26,7 +26,7 @@ class MetaAdapterTest extends \Psc\Code\Test\HTMLTestCase {
     
     $this->test->css('button.psc-cms-ui-button')->count(1);
     $this->test->js($button)
-      ->constructsJoose('Psc.CMS.Item')
+      ->constructsJoose('Psc.CMS.FastItem')
       ->hasParam('tab')
       ->hasParam('button')
     ;
