@@ -15,7 +15,11 @@ class ImageControllerTest extends \Psc\Doctrine\DatabaseTest {
     $this->chainClass = 'Psc\CMS\Controller\ImageController';
     $this->con = 'tests';
     parent::setUp();
-    $manager = new Manager('Psc\Entities\Image', $this->em);
+    $manager = new Manager('Psc\Entities\Image',
+                            $this->em,
+                            $this->getTestDirectory('images/')->create(),
+                            new \Psc\Data\FileCache($this->getTestDirectory('imagesCache/')->create())
+                           );
     $this->imageCtrl = new ImageController($manager);      
     
     $this->bud = $manager->store($manager->createImagineImage($this->getFile('img1.jpg')), 'bud', Manager::IF_NOT_EXISTS);
