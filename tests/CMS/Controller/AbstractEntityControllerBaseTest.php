@@ -12,7 +12,7 @@ abstract class AbstractEntityControllerBaseTest extends \Psc\Code\Test\Base {
   protected $controller;
   
   protected $tags;
-  protected $articles;
+  protected $articles, $articleMeta;
   
   public function setUp() {
     $this->chainClass = 'Psc\CMS\Controller\AbstractEntityController';
@@ -31,14 +31,28 @@ abstract class AbstractEntityControllerBaseTest extends \Psc\Code\Test\Base {
     $this->assertInstanceOf('Psc\Doctrine\Entity', $this->article);
     $this->article->setId(7);
     
+    $this->articleMeta = $this->getEntityMeta($entityName);
     $this->articles = $this->loadTestEntities('articles');
   }
   
   
+  /**
+   * @param entity[]|entity
+   */
   protected function expectRepositoryHydrates($entity) {
-    $this->repository->expects($this->once())->method('hydrate')
+    if (is_array($entity)) {
+      $entities = \Psc\Doctrine\Helper::reindex($entity);
+      $this->repository->expects($this->exactly(count($entities)))->method('hydrate')
+                     ->with($this->greaterThan(0))
+                     ->will($this->returnCallback(function ($identifier) use ($entities) {
+                        return $entities[$identifier];
+                     }));
+      
+    } else {
+      $this->repository->expects($this->once())->method('hydrate')
                      ->with($this->equalTo($entity->getIdentifier()))
                      ->will($this->returnValue($entity));
+    }
   }
 
   protected function expectRepositoryHydratesNot($identifier) {
@@ -66,6 +80,20 @@ abstract class AbstractEntityControllerBaseTest extends \Psc\Code\Test\Base {
                      ->will($this->returnSelf());
   }
 
+  protected function expectRepositoryPersists($entity) {
+    if (is_array($entity)) {
+      $entities = \Psc\Doctrine\Helper::reindex($entity);
+      $this->repository->expects($this->exactly(count($entities)))->method('persist')
+                       ->will($this->returnCallback(function (\Psc\CMS\Entity $entity) use ($entities) {
+                          return $entities[$entity->getIdentifier()];
+                       }));
+    } else {
+      $this->repository->expects($this->once())->method('persist')
+                     ->with($this->equalTo($entity))
+                     ->will($this->returnSelf());
+    }
+  }
+
   protected function expectRepositoryRemoves($entity) {
     $this->repository->expects($this->once())->method('remove')
                      ->with($this->equalTo($entity))
@@ -90,14 +118,13 @@ abstract class AbstractEntityControllerBaseTest extends \Psc\Code\Test\Base {
                                                           'myCustomAction' // custom action test
                                                       )); 
     $controller->setRepository($this->repository); // some kind of ungeil: schöner: repository in init-Funktion
-    
-    
+        
     return $controller;
   }
   
   protected function createRepositoryMock($em, $entityName) {
     return $this->getMock('Psc\Doctrine\EntityRepository',
-                   array('hydrate','save','findBy','autoCompleteTerm','remove','delete'),
+                   array('hydrate','save','persist','findBy','autoCompleteTerm','remove','delete'),
                    array($em, $this->getMock('Doctrine\ORM\Mapping\ClassMetadata', array(), array($entityName)))
                   );
   }

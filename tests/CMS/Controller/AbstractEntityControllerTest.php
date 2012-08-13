@@ -31,7 +31,44 @@ class AbstractEntityControllerTest extends AbstractEntityControllerBaseTest {
   public function testGetEntity_toGrid() {
     $this->articles = $this->loadTestEntities('articles');
     $this->expectRepositoryFinds($this->articles, array());
-    $this->assertInstanceOf('Psc\CMS\EntityGridPanel', $this->controller->getEntities(array(), 'grid'));
+    $this->assertInstanceOf('Psc\CMS\EntityGridPanel', $gridPanel = $this->controller->getEntities(array(), 'grid'));
+  }
+  
+  public function testSortableControllerInterfaceSetsSortedGridPanelToTrue() {
+    $controller = new \Psc\Test\ArticleSortingController();
+    $this->assertInstanceof('Psc\CMS\Controller\SortingController', $controller);
+    
+    $this->articles = $this->loadTestEntities('articles');
+    $gridPanel = $controller->getEntityGrid($this->articleMeta, $this->articles);
+    
+    $this->assertTrue($gridPanel->getSortable(), 'sortable muss true sein für controllers mit SortableEntity Interface');
+  }
+  
+  public function testSortSave() {
+    $sortMap = array();
+    
+    $this->articles = $this->loadTestEntities('articles');
+    foreach ($this->articles as $article) {
+      $article->setId(rand(1,20));
+      $sortMap[] = $article->getIdentifier();
+    }
+
+    $this->expectRepositoryHydrates($this->articles);
+    $this->expectRepositoryPersists($this->articles);
+    
+    shuffle($sortMap);
+    
+    $controller = new \Psc\Test\ArticleSortingController();
+    $controller->setRepository($this->repository); // inject
+
+    $controller->saveSort($sortMap);
+    
+    $sortedMap = array();
+    foreach ($this->articles as $article) {
+      $sortedMap[$article->getSort()-1] = $article->getIdentifier();
+    }
+    
+    $this->assertEquals($sortMap, $sortedMap);
   }
 
   public function testGetSearchPanel() {
@@ -50,7 +87,7 @@ class AbstractEntityControllerTest extends AbstractEntityControllerBaseTest {
     $this->expectRepositoryHydrates($this->article);
     $this->expectRepositorySaves($this->article);
     
-    $this->controller->setOptionalProperties(array('tags','category'));
+    $this->controller->setOptionalProperties(array('tags','category','sort'));
     $return = $this->controller->saveEntity(7,
                                   (object) array(
                                                  /*'action'=>'1',
@@ -76,7 +113,7 @@ class AbstractEntityControllerTest extends AbstractEntityControllerBaseTest {
     $newArticle = new Article('the title', 'the content');
     $this->expectRepositorySaves($newArticle);
     
-    $this->controller->setOptionalProperties(array('tags','category'));
+    $this->controller->setOptionalProperties(array('tags','category','sort'));
     $this->controller->insertEntity((object) array(
                                       'title'=>'the title',
                                       'content'=>'the content',
