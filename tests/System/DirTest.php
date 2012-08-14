@@ -129,7 +129,12 @@ class DirTest extends \Psc\Code\Test\Base {
   
   
   public function testWrappedPaths() {
-    $wrappedPath = 'phar:///path/does/not/matter/my.phar.gz/i/am/wrapped/';
+    if (DIRECTORY_SEPARATOR === '\\') {
+      $abs = 'D:/path/does/not';
+    } else {
+      $abs = '/path/does/not';
+    }
+    $wrappedPath = 'phar://'.$abs.'/matter/my.phar.gz/i/am/wrapped/';
     
     $dir = new Dir($wrappedPath);
     $this->assertEquals($wrappedPath, (string) $dir);
@@ -142,10 +147,15 @@ class DirTest extends \Psc\Code\Test\Base {
   }
   
   public function testWrappedExtract() {
-    $fileString = 'phar:///path/does/not/matter/my.phar.gz/i/am/wrapped/class.php';
+    if (DIRECTORY_SEPARATOR === '\\') {
+      $abs = 'D:/path/does/not';
+    } else {
+      $abs = '/path/does/not';
+    }
+    $fileString = 'phar://'.$abs.'/matter/my.phar.gz/i/am/wrapped/class.php';
     
     $dir = Dir::extract($fileString);
-    $this->assertEquals('phar:///path/does/not/matter/my.phar.gz/i/am/wrapped/', (string) $dir);
+    $this->assertEquals('phar://'.$abs.'/matter/my.phar.gz/i/am/wrapped/', (string) $dir);
   }
   
   public function testIsEmpty() {

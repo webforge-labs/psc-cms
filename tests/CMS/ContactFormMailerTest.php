@@ -67,7 +67,7 @@ Mobil
   
   public function testConstructInitSend() {
     
-    $mailer = new $this->c($this->data);
+    $mailer = new $this->c($this->data, ContactFormMailer::MODE_NULL);
     $mailer->setProduction(TRUE);
     $mailer->setDebugRecipient('p.scheit@ps-webforge.com');
     $mailer->setTemplate($this->template);
@@ -82,7 +82,6 @@ Mobil
     $mailer->send();
     
     $logger = $mailer->getLogger();
-    
     $logger->dump();
   }
 }
