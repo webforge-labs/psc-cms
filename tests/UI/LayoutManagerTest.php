@@ -12,7 +12,7 @@ class LayoutManagerTest extends \Psc\Code\Test\HTMLTestCase {
   public function setUp() {
     $this->chainClass = 'Psc\UI\LayoutManager';
     parent::setUp();
-    $this->layoutManager = new LayoutManager('the label');
+    $this->layoutManager = new LayoutManager('the label', new \Psc\UI\UploadService('/', '/'));
   }
   
   public function testHTML() {

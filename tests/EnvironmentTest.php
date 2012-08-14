@@ -12,7 +12,7 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase {
   protected $saveIncludePath;
   
   public function setUp() {
-    $this->saveIncludePath = get_include_path();
+    $this->saveIncludePath = rtrim(get_include_path(),PATH_SEPARATOR);
   }
 
   public function testPHPSettings() {
@@ -35,7 +35,7 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase {
   }
   
   
-  public function testAdd() {
+  public function testAddIncludePath() {
     /* jetzt wo er leer ist, können wir ja hinzufügen */
     if (PSC::isTravis()) {
       $this->markTestSkipped('include path kann in travis nicht geändert werden');
