@@ -13,6 +13,7 @@ class FileUploadControllerTest extends \Psc\Doctrine\DatabaseTestCase {
     $this->chainClass = 'Psc\CMS\Controller\FileUploadController';
     parent::setUp();
     $this->controller = new FileUploadController($this->dc); // geht ohne parameter zu wuppen
+    $this->cFile = $this->getCommonFile('Businessplan.docx');;
   }
   
   public function testAcceptance() {
@@ -20,13 +21,22 @@ class FileUploadControllerTest extends \Psc\Doctrine\DatabaseTestCase {
   }
   
   public function testInsertFile() {
-    $cFile = $this->getCommonFile('Businessplan.docx');
     $uplFile = $this->getResponseData(
-      $this->controller->insertFile($cFile, (object) array('description'=>'bp short'), FileUploadController::IF_NOT_EXISTS)
+      $this->controller->insertFile($this->cFile, (object) array('description'=>'bp short'), FileUploadController::IF_NOT_EXISTS)
     );
     $this->assertInstanceOf('Psc\Entities\File', $uplFile);
     
     // reicht: rest im UploadManager
+  }
+  
+  public function testGetFile() {
+    $newUplFile = $this->getResponseData(
+      $this->controller->insertFile($this->cFile, (object) array('description'=>'bp short'), FileUploadController::IF_NOT_EXISTS)
+    );
+    $this->dc->getEntityManager()->clear();
+    
+    $uplFile = $this->getResponseData($this->controller->getFile($this->cFile->getSha1()));
+    $this->assertEquals($newUplFile->getIdentifier(), $uplFile->getIdentifier());
   }
 
   protected function getResponseData($response) {
