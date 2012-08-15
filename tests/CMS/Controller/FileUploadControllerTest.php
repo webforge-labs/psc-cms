@@ -22,21 +22,41 @@ class FileUploadControllerTest extends \Psc\Doctrine\DatabaseTestCase {
   
   public function testInsertFile() {
     $uplFile = $this->getResponseData(
-      $this->controller->insertFile($this->cFile, (object) array('description'=>'bp short'), FileUploadController::IF_NOT_EXISTS)
+      $this->controller->insertFile($this->cFile, (object) array('description'=>'bp short'))
     );
     $this->assertInstanceOf('Psc\Entities\File', $uplFile);
     
     // reicht: rest im UploadManager
   }
   
+  public function testInsertFileStoresPublicFilenameFromUploadedFile() {
+    $uploadedBinFile = new \Psc\System\UploadedFile((string) $this->cFile);
+    $uploadedBinFile->setOriginalName('schnipp.pdf');
+    
+    $uplFile = $this->getResponseData(
+      $this->controller->insertFile($uploadedBinFile, (object) array('description'=>NULL))
+    );
+    
+    $this->assertEquals('schnipp.pdf',$uplFile->getOriginalName());
+  }
+  
   public function testGetFile() {
     $newUplFile = $this->getResponseData(
-      $this->controller->insertFile($this->cFile, (object) array('description'=>'bp short'), FileUploadController::IF_NOT_EXISTS)
+      $this->controller->insertFile($this->cFile, (object) array('description'=>'bp short'))
     );
     $this->dc->getEntityManager()->clear();
     
     $uplFile = $this->getResponseData($this->controller->getFile($this->cFile->getSha1()));
     $this->assertEquals($newUplFile->getIdentifier(), $uplFile->getIdentifier());
+  }
+  
+  public function testGettedFile_canExportUrlAndFile() {
+    $uplFile = $this->getResponseData(
+      $this->controller->insertFile($this->cFile, (object) array('description'=>'bp short'), FileUploadController::IF_NOT_EXISTS)
+    );
+    
+    $this->assertNotEmpty($uplFile->getURL());
+    $this->assertInstanceOf('Psc\System\File', $uplFile->getFile());
   }
 
   protected function getResponseData($response) {

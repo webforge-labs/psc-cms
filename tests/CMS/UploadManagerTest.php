@@ -32,10 +32,17 @@ class UploadManagerTest extends \Psc\Doctrine\DatabaseTestCase {
     $this->assertNotEmpty($fileEntity->getHash(),'hash muss gesetzt sein');
   }
   
+  public function testEntityHasURLWithFakeEnding() {
+    $this->resetDatabaseOnNextTest();
+    $bp = $this->storeBusinessPlan();
+    
+    $this->assertStringEndsWith('/fake.pdf', $url = $bp->getUrl('fake.pdf'));
+  }
+  
   public function testFlushSavesEntityInDB() {
     $this->resetDatabaseOnNextTest();
     $newFileEntity = $this->storeBusinessPlan();
-    
+
     // reload
     $fileEntity = $this->hydrate('File', $newFileEntity->getIdentifier());
     $this->assertNotSame($newFileEntity, $fileEntity);

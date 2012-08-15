@@ -143,7 +143,8 @@ class RequestAcceptanceTest extends \Psc\Code\Test\HTMLTestCase {
                               );
     $this->assertEquals(array('apostfield'=>'a value'), (array) $request->getBody());
     $this->assertArrayHasKey('excelFile', $files = $request->getFiles());
-    $this->assertInstanceOf('Psc\System\File', $files['excelFile']);
+    $this->assertInstanceOf('Psc\System\UploadedFile', $f = $files['excelFile']);
+    $this->assertEquals('small.excel.xlsx', $f->getOriginalName());
     
     // das geht leider nicht, weil der acceptance test ja in einem anderen thread läuft und deshalb die temporary datei gelöscht wird
     //$this->assertEquals($this->getFile('small.excel.xlsx')->getContents(), $files['excelFile']->getContents());
@@ -198,7 +199,8 @@ class RequestAcceptanceTest extends \Psc\Code\Test\HTMLTestCase {
       "\n".
       'a value'."\n".
       '-----------------------------41184676334'."\n".
-      'Content-Disposition: form-data; name="excelFile"; filename="small.excel.xlsx" Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'."\n".
+      'Content-Disposition: form-data; name="excelFile"; filename="small.excel.xlsx'."\n".
+      'Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'."\n".
       "\n".
       $this->getFile('small.excel.xlsx')->getContents()."\n".
       '-----------------------------41184676334--'."\n"
