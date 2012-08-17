@@ -34,6 +34,24 @@ class NumbersTest extends \Psc\Code\Test\Base {
     return $tests;
   }
   
+    /**
+   * @dataProvider getTestFormatBytes
+   */
+  public function testFormatBytes($bytes, $expected) {
+    $this->assertEquals($expected, Numbers::formatBytes($bytes));
+  }
+    
+  public static function getTestFormatBytes() {
+    $tests = array();
+      
+    $tests[] = array(1025, '1.00 KB');
+    $tests[] = array(0, '0.00 KB');
+    $tests[] = array(1024*1024*2, '2.00 MB');
+    $tests[] = array(1024*1024*1024*3.5, '3.50 GB');
+ 
+    return $tests;
+  }
+  
   /**
    * @dataProvider getTestRomans()
    */

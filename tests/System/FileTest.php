@@ -130,4 +130,17 @@ class FileTest extends \Psc\Code\Test\Base {
     $url = "/in2days/2011_newyork";
     $this->assertEquals('.'.DIRECTORY_SEPARATOR.'in2days'.DIRECTORY_SEPARATOR.'2011_newyork', (string) File::createFromURL($url));
   }
+  
+  public function testSha1Hashing() {
+    $content = 'sldfjsldfj';
+    $otherContent = 's00000000';
+    $file = File::createTemporary();
+    $file->writeContents($content);
+    $this->assertEquals(sha1($content), $file->getSha1());
+    
+    // test caching
+    $file->writeContents($otherContent);
+    //$this->assertNotEquals(sha1($content), $file->getSha1());
+    $this->assertEquals(sha1($otherContent), $file->getSha1());
+  }
 }
