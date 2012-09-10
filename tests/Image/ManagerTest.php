@@ -96,7 +96,10 @@ class ManagerTest extends \Psc\Doctrine\DatabaseTestCase {
     $image->setSourcePath('./q/'.$iname);
     
     $originals = PSC::get(PSC::PATH_FILES)->sub('images/');
-    $this->assertEquals((string) new File($originals->sub('q'),$iname), (string) $this->manager->getSourceFile($image));
+    $this->assertEquals(
+      (string) new File($originals->sub('q'),$iname),
+      (string) $this->manager->getSourceFile($image)->resolvePath()
+    );
   }
 
   public function testManagerCanStoreAnImage() {
