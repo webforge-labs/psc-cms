@@ -26,7 +26,8 @@ class DateTimeValidatorRuleTest extends ValidatorRuleTestCase {
       array($data('12.02.2012', '12:12'), DateTime::create('12.02.2012 12:12')),
       array($data('12.02.2012', '12:12'), DateTime::create('12.02.2012 12:12')),
       array($data('29.02.2012', '12:12'), DateTime::create('29.02.2012 12:12')), // schaltjahr
-      array($data('28.02.1970', '00:01'), DateTime::create('28.02.1970 00:01')) // 1970 war kein schaltjahr
+      array($data('28.02.1970', '00:01'), DateTime::create('28.02.1970 00:01')), // 1970 war kein schaltjahr
+      array(time(), DateTime::now())
     );
   }
 
