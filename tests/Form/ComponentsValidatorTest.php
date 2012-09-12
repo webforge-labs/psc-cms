@@ -15,10 +15,16 @@ use Psc\CMS\EntityForm;
  */
 class ComponentsValidatorTest extends \Psc\Code\Test\Base {
   
+  protected $validator, $failingValidator;
+  
   public function setUp() {
     $this->chainClass = 'Psc\Form\SetValidator';
     parent::setUp();
     $this->validator = $this->createFixture();
+    $this->failingValidator = $this->createFixture(array('birthday'=>'blubb',
+                                                      'email'=>'wrong'
+                                                     )
+                                                );
   }
   
   public function testAcceptance() {
@@ -32,19 +38,33 @@ class ComponentsValidatorTest extends \Psc\Code\Test\Base {
     $this->assertEquals('p.scheit@ps-webforge.com', $set->get('email'));
   }
   
-  protected function createFixture() {
+  public function testExceptionListThrowing() {
+    $this->setExpectedException('Psc\Form\ValidatorExceptionList');
+    $this->failingValidator->setExceptionList(TRUE);
+    $this->failingValidator->validateSet();
+  }
+
+  public function testNormalValidatorExceptionThrowing() {
+    $this->setExpectedException('Psc\Form\ValidatorException');
+    $this->failingValidator->validateSet();
+  }
+  
+  protected function createFixture(Array $data = array()) {
     $person = new Person('Scheit', 'p.scheit@ps-webforge.com', 'Philipp', Date::create('21.11.1984'));
     $formPanel = new EntityFormPanel('Person bearbeiten',new EntityForm($person, $this->getEntityMeta('Psc\Doctrine\TestEntities\Person')->getSaveRequestMeta($person)));
     $formPanel->createComponents();
     
     $validator = new ComponentsValidator(
-      new Set(array('id'=>'17',
-                    'birthday'=>'21.11.1984',
-                    'name'=>'Scheit',
-                    'firstName'=>'Philipp ',
-                    'email'=>'p.scheit@ps-webforge.com',
-                    'yearKnown'=>'true'
-                   ),
+      new Set(array_merge(
+                array('id'=>'17',
+                      'birthday'=>'21.11.1984',
+                      'name'=>'Scheit',
+                      'firstName'=>'Philipp ',
+                      'email'=>'p.scheit@ps-webforge.com',
+                      'yearKnown'=>'true'
+                      ),
+                $data
+              ),
               $person->getSetMeta()
             ),
       $formPanel->getEntityForm()->getComponents()
