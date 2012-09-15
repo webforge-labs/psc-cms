@@ -18,7 +18,7 @@ class CalendarTest extends \Psc\Code\Test\HTMLTestCase {
   public function testAcceptance() {
     $this->html = $this->calendar->html();
     
-    $this->test->css('div.psc-cms-ui-calender')->count(1);
+    $this->test->css('div.psc-cms-ui-calendar')->count(1);
   }
 }
 ?>
