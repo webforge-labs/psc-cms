@@ -31,6 +31,7 @@ class ArrayCollectionInterfaceExtensionTest extends \Psc\Code\Test\Base {
       ->hasMethod('setColumns', array('columns'))
       
       ->hasMethod('removeColumn', array('column'))
+      ->hasMethod('getColumn', array('key'))
       ->hasMethod('addColumn', array('column'))
       ->hasMethod('hasColumn', array('column'))
     ;

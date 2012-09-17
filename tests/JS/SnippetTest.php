@@ -49,7 +49,6 @@ class SnippetTest extends \Psc\Code\Test\Base {
     ));
 
     $this->assertEquals($expectedCode, $snippet->JS());
-    $this->assertEquals($expectedCode, (string) $snippet);
   }
 
   // diese tests sind natürlich überhaupt nicht schön, aber besser als gar keine (vorsicht mit weißzeichen)
@@ -60,11 +59,11 @@ class SnippetTest extends \Psc\Code\Test\Base {
 
   public function testCodeWithEmbed() {
     $this->assertContains('<script type="text/javascript"',
-                          $this->createSnippet('no code', array())->setEmbed()->JS());
+                          (string) $this->createSnippet('no code', array())->html());
   }
   public function testCodeWithEmbedOnPsc() {
     $this->assertContains("jQuery.when( jQuery.psc.",
-                          $code = $this->createSnippet('no code', array())->setEmbedOnPsc()->JS());
+                          $code = (string) $this->createSnippet('no code', array())->loadOnPscReady(TRUE)->html());
     
     $this->assertContains('<script type="text/javascript"', $code);
     

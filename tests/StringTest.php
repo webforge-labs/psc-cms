@@ -62,5 +62,35 @@ class StringTest extends \Psc\Code\Test\Base {
     $expect .= "[prefix]cccc\r\n";
     $this->assertEquals($expect,S::prefixLines($string,'[prefix]'));
   }
+  
+  public function testLineNumbers() {
+    $string = <<<'JAVASCRIPT'
+jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+  main.getLoader().onReady(['Psc.UI.Main', 'Psc.UI.Tabs'], function () {
+    var j = new Psc.UI.Main({
+      'tabs': new Psc.UI.Tabs({
+        'widget': $('#psc-ui-tabs')
+      })
+    });
+  });
+ });
+});
+JAVASCRIPT;
+
+    $expect = <<<'JAVASCRIPT'
+1  jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+2    main.getLoader().onReady(['Psc.UI.Main', 'Psc.UI.Tabs'], function () {
+3      var j = new Psc.UI.Main({
+4        'tabs': new Psc.UI.Tabs({
+5          'widget': $('#psc-ui-tabs')
+6        })
+7      });
+8    });
+9   });
+10 });
+JAVASCRIPT;
+
+    $this->assertEquals($expect, S::lineNumbers($string));
+  }
 }
 ?>

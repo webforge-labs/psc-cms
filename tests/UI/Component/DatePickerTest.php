@@ -29,5 +29,22 @@ class DatePickerTest extends TestCase {
     $this->component->setDateFormat('d.m:Y');
     $this->assertStandardInputHTML('21.11:1984');
   }
+  
+  public function testJavascriptJooseCall() {
+    $this->markTestSkipped('geht nicht weil: hier waere es schöner den AST vom JooseSnippet laden zu können, denn so haben wir probleme mit dem %selector% z.B.');
+    list($html, $input) = $this->assertStandardInputHTML('21.11.1984');
+    
+    $actualJs = $this->test->css('script')->getJQuery()->html();
+    $expectedJs = <<<'JAVASCRIPT'
+use('Psc.UI.DatePicker', function() {
+  var j = new Psc.UI.DatePicker({
+    'dateFormat': "d.m.y",
+    'widget': %selector%.find('input.datepicker-date')
+  })
+});
+JAVASCRIPT;
+    
+    $this->assertJavaScriptEquals($expectedJs, $actualJs);
+  }
 }
 ?>

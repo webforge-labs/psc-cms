@@ -13,7 +13,7 @@ class LProgramTest extends \Psc\Code\Test\Base {
     $this->chainClass = 'Psc\Code\AST\LProgram';
     parent::setUp();
     
-    $this->lProgram = new LProgram();
+    //$this->lProgram = new LProgram();
   }
   
   public function testAcceptance() {

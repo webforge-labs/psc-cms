@@ -38,7 +38,7 @@ class ClosureCompilerTest extends \Psc\Code\Test\Base {
     $this->assertInstanceOf('Closure', $method2);
     $this->assertEquals(array('m2p1'=>false,'m2p2'=>true), $method2(false,true));
     
-    $this->assertEquals(array('method1','method2','var'), $methodNames);
+    $this->assertEquals(array('method1','method2','funcArgsMethod','var'), $methodNames);
   }
   
   public function testCCAlias() {
@@ -51,9 +51,32 @@ class ClosureCompilerTest extends \Psc\Code\Test\Base {
     $this->assertInstanceOf('Closure', $var, 'PHP Code war: '.$code);
     $this->assertTrue(!isset($varCannotBeUsedInPHP));
   }
+  
+  public function testCCIgnore() {
+    list($code, $methodNames) = $this->closureCompiler->compile($this->gClass);
+    
+    $this->assertArrayNotHasKey('ignoredMethod', $methodNames);
+  }
+
+  public function testFuncArgsChainingAcceptance() {
+    list($code, $methodNames) = $this->closureCompiler->compile($this->gClass);
+    
+    $this->assertArrayNotHasKey('ignoredMethod', $methodNames);
+
+    $that = new MyClosureClass();
+    eval($code);
+    $this->assertEquals(array('passedArg1','passedArg2'), $funcArgsMethod('passedArg1','passedArg2'), 'arguments müssen zur classMethod durchgepasst werden');
+  }
 }
 
 class MyClosureClass {
+  
+  /**
+   * @cc-ignore
+   */
+  public function ignoredMethod() {
+    
+  }
   
   public function method1($m1p1, $m1p2) {
     return compact('m1p1', 'm1p2');
@@ -61,6 +84,10 @@ class MyClosureClass {
   
   public function method2($m2p1, $m2p2) {
     return compact('m2p1', 'm2p2');
+  }
+  
+  public function funcArgsMethod() {
+    return func_get_args();
   }
   
   /**

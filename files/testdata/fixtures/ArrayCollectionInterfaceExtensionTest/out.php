@@ -7,7 +7,7 @@ use Psc\Data\Column;
 /**
  * 
  */
-class Tabletable504c8a37edb8a {
+class Tabletable50570b3e3344b {
   
   /**
    * @var array
@@ -27,6 +27,14 @@ class Tabletable504c8a37edb8a {
   public function setColumns(Array $columns) {
     $this->columns = $columns;
     return $this;
+  }
+  
+  /**
+   * @param integer $key 0-based
+   * @return Psc\Data\Column|NULL
+   */
+  public function getColumn($key) {
+    return array_key_exists($key, $this->columns) ? $this->columns[$key] : NULL;
   }
   
   /**

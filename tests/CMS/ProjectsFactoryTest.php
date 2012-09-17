@@ -25,16 +25,16 @@ class ProjectsFactoryTest extends \PHPUnit_Framework_TestCase {
       $this->assertEquals('D:\www\psc-cms\Umsetzung\base\src\psc\class\Psc\\',(string) $cms->getClassPath());
       $this->assertEquals(TRUE,$cms->getProduction(),'Production');
       
-      $this->assertEquals('D:\www\RvtiptoiCMS\Umsetzung\\',(string) $tiptoi->getRoot());
-      $this->assertEquals('D:\www\RvtiptoiCMS\Umsetzung\base\src\tiptoi\\',(string) $tiptoi->getClassPath());
-      $this->assertEquals('D:\www\RvtiptoiCMS\Umsetzung\base\\',(string) $tiptoi->getPath(PSC::PATH_BASE));
-      $this->assertEquals('D:\www\RvtiptoiCMS\Umsetzung\base\src\\',(string) $tiptoi->getPath(PSC::PATH_SRC));
-      $this->assertEquals('D:\www\RvtiptoiCMS\Umsetzung\base\files\testdata\\',(string) $tiptoi->getPath(PSC::PATH_TESTDATA));
-      $this->assertEquals('D:\www\RvtiptoiCMS\Umsetzung\base\files\\',(string) $tiptoi->getPath(PSC::PATH_FILES));
-      $this->assertEquals('D:\www\RvtiptoiCMS\Umsetzung\base\cache\\',(string) $tiptoi->getPath(PSC::PATH_CACHE));
-      $this->assertEquals('D:\www\RvtiptoiCMS\Umsetzung\base\src\tpl\\',(string) $tiptoi->getPath(PSC::PATH_TPL));
-      $this->assertEquals('D:\www\RvtiptoiCMS\Umsetzung\base\bin\\',(string) $tiptoi->getPath(PSC::PATH_BIN));
-      $this->assertEquals('D:\www\RvtiptoiCMS\Umsetzung\base\htdocs\\',(string) $tiptoi->getPath(PSC::PATH_HTDOCS));
+      $this->assertEquals('D:\www\tiptoi\Umsetzung\\',(string) $tiptoi->getRoot());
+      $this->assertEquals('D:\www\tiptoi\Umsetzung\base\src\tiptoi\\',(string) $tiptoi->getClassPath());
+      $this->assertEquals('D:\www\tiptoi\Umsetzung\base\\',(string) $tiptoi->getPath(PSC::PATH_BASE));
+      $this->assertEquals('D:\www\tiptoi\Umsetzung\base\src\\',(string) $tiptoi->getPath(PSC::PATH_SRC));
+      $this->assertEquals('D:\www\tiptoi\Umsetzung\base\files\testdata\\',(string) $tiptoi->getPath(PSC::PATH_TESTDATA));
+      $this->assertEquals('D:\www\tiptoi\Umsetzung\base\files\\',(string) $tiptoi->getPath(PSC::PATH_FILES));
+      $this->assertEquals('D:\www\tiptoi\Umsetzung\base\cache\\',(string) $tiptoi->getPath(PSC::PATH_CACHE));
+      $this->assertEquals('D:\www\tiptoi\Umsetzung\base\src\tpl\\',(string) $tiptoi->getPath(PSC::PATH_TPL));
+      $this->assertEquals('D:\www\tiptoi\Umsetzung\base\bin\\',(string) $tiptoi->getPath(PSC::PATH_BIN));
+      $this->assertEquals('D:\www\tiptoi\Umsetzung\base\htdocs\\',(string) $tiptoi->getPath(PSC::PATH_HTDOCS));
       
     } else {
       $this->markTestSkipped('kein Switch für Host '.PSC::getProject()->getHost().' angegeben');
