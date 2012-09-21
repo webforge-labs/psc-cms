@@ -21,6 +21,12 @@ class ArrayTypeTest extends \Psc\Code\Test\Base {
     return $typedArray;
   }
   
+  public function testThatIsListIsNotSetAfterConstruct() {
+    $type = new ArrayType();
+    $this->assertSame(NULL, $type->isList()); // means: no decision was met!
+    $this->assertSame(NULL, $type->setIsList(NULL)->isList());
+  }
+  
   /**
    * @depends testConstruct
    */

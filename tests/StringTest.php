@@ -92,5 +92,15 @@ JAVASCRIPT;
 
     $this->assertEquals($expect, S::lineNumbers($string));
   }
+  
+  public function testExpandEnd() {
+    $this->assertEquals('StringType', S::expand('String', 'Type', S::END));
+    $this->assertEquals('StringType', S::expand('StringType', 'Type', S::END));
+  }
+
+  public function testExpandStart() {
+    $this->assertEquals('@return', S::expand('return', '@', S::START));
+    $this->assertEquals('@return', S::expand('@return', '@', S::START));
+  }
 }
 ?>
