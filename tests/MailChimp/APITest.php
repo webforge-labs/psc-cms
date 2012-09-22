@@ -18,7 +18,7 @@ class APITest extends \Psc\Code\Test\Base {
     
     $apiKey = \Psc\PSC::getProjectsFactory()->getHostConfig()->req('mailchimp.test.apiKey');
     $this->api = new API($apiKey);
-    $this->service = $this->getMock('Psc\URL\SimpleService', array('dispatch'));
+    $this->service = $this->getMock('Psc\URL\RequestDispatcher', array('dispatch'));
     $this->mockedApi = new API($apiKey, $this->service);
   }
   

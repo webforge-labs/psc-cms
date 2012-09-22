@@ -3,20 +3,20 @@
 namespace Psc\URL;
 
 /**
- * @group class:Psc\URL\SimpleService
+ * @group class:Psc\URL\RequestDispatcher
  */
-class SimpleServiceTest extends \Psc\Code\Test\Base {
+class RequestDispatcherTest extends \Psc\Code\Test\Base {
   
-  protected $service;
+  protected $dispatcher;
   
   public function setUp() {
-    $this->chainClass = 'Psc\URL\SimpleService';
+    $this->chainClass = 'Psc\URL\RequestDispatcher';
     parent::setUp();
-    $this->service = new SimpleService();
+    $this->dispatcher = new RequestDispatcher();
   }
   
   public function testCanCreateARequest() {
-    $request = $this->service->createRequest('POST', '/my/url', 'mybody', array('Content-Type'=>'text/plain'));
+    $request = $this->dispatcher->createRequest('POST', '/my/url', 'mybody', array('Content-Type'=>'text/plain'));
     
     $this->assertInstanceOf('Psc\URL\Request', $request);
     $this->assertEquals('/my/url', $request->getUrl());
@@ -31,7 +31,7 @@ class SimpleServiceTest extends \Psc\Code\Test\Base {
     $request->expects($this->once())->method('process')->will($this->returnValue('blubb'));
     $request->expects($this->atLeastOnce())->method('getResponse')->will($this->returnValue($response));
     
-    $response = $this->service->dispatch(
+    $response = $this->dispatcher->dispatch(
       $request
     );
     
