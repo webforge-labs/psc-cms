@@ -7,12 +7,13 @@ namespace Psc\Setup;
  */
 class ConfigurationTesterTest extends \Psc\Code\Test\Base {
   
-  protected $t;
+  protected $t, $retriever;
   
   public function setUp() {
     $this->chainClass = 'Psc\Setup\ConfigurationTester';
     parent::setUp();
-    $this->t = $this->getMock('Psc\Setup\ConfigurationTester', array('retrieveIni'));
+    $this->retriever = $this->getMock('Psc\Setup\ConfigurationRetriever', array('retrieveIni'));
+    $this->t = new ConfigurationTester(NULL, $this->retriever);
     
     $fakeIni = array(
       'mbstring.internal_encoding'=>'jp18',
@@ -21,9 +22,17 @@ class ConfigurationTesterTest extends \Psc\Code\Test\Base {
       'register_globals'=>'0'
     );
     
-    $this->t->expects($this->any())->method('retrieveIni')->will($this->returnCallback(function ($name) use ($fakeIni) {
+    $this->retriever->expects($this->any())->method('retrieveIni')->will($this->returnCallback(function ($name) use ($fakeIni) {
       return $fakeIni[$name];
     }));
+  }
+  
+  // tested ob der configurationTester lokal inis holen kann (sein Default)
+  public function testAcceptance_ConfigurationTesterRetrievesLokalIniValues() {
+    $t = new ConfigurationTester();
+    $t->INI('post_max_size', ini_get('post_max_size'));
+    
+    $this->assertZeroDefects();
   }
   
   public function testWrongIniValuesAreGatheredWithinDefects() {
