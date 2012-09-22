@@ -226,7 +226,10 @@ class BootLoader {
     $this->getProjectsFactory()->setProjectPath($name, $key, $value);
     return $this;
   }
-  
+
+  /**
+   * Setzt das Verzeichnis für die Phars, auf die der Bootloader Zugriff hat
+   */
   public function setPharBinaries($path, $flags = 0x000000, Array $aliases = array()) {
     $this->pharsDir = $this->getPath($path, $flags);
     
@@ -234,6 +237,16 @@ class BootLoader {
       throw new Exception('YAGNI');
     }
     return $this;
+  }
+  
+  /**
+   * Gibt das Verzeichnis für die Phars zurück, auf die der Bootloader Zugriff hat
+   *
+   * 
+   * @return path
+   */
+  public function getPharBinaries() {
+    return $this->pharsDir;
   }
 
   /**
