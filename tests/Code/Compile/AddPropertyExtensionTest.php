@@ -16,7 +16,7 @@ class AddPropertyExtensionTest extends \Psc\Code\Test\Base {
     $this->chainClass = 'Psc\Code\Compile\AddPropertyExtension';
     parent::setUp();
     $this->type = $this->createType('PositiveInteger');
-    $this->extension = new AddPropertyExtension('oid', $this->type, 'OID');
+    $this->extension = new AddPropertyExtension('oid', $this->type, AddPropertyExtension::DEPENDENCY_INJECTION_NONE, 'OID');
   }
   
   public function testAddPropertyToEmptyClass() {

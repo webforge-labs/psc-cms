@@ -10,7 +10,15 @@ use Gedmo\Mapping\Annotation AS Gedmo;
  * @ORM\Entity(repositoryClass="Psc\Entities\PersonRepository")
  * @ORM\Table(name="persons")
  */
-abstract class Person extends CompiledPerson {
+class Person extends CompiledPerson {
+  
+  public function getContextLabel($context = 'default') {
+    if ($context === self::CONTEXT_DEFAULT) {
+      return parent::getContextLabel();
+    }
+    
+    return parent::getContextLabel();
+  }
   
   public function getEntityName() {
     return 'Psc\Entities\Person';
