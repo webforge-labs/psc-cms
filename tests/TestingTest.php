@@ -16,6 +16,25 @@ class TestingTest extends \Psc\Code\Test\Base {
     $this->assertEquals(0, count(get_object_vars($o)));
   }
   
+  public function testFlagsMasking() {
+    $nullable = 0x000001;
+    $unique   = 0x000002;
+    $noDoc    = 0x000004;
+    
+    $originalFlags = $nullable | $unique | $noDoc;
+    
+    // thats usual
+    $this->assertEquals($nullable, $originalFlags & $nullable);
+    $this->assertEquals($unique, $originalFlags & $unique);
+    $this->assertEquals($noDoc, $originalFlags & $noDoc);
+    
+    $maskedFlags = $originalFlags & ($nullable | $unique);
+    
+    $this->assertEquals($nullable, $maskedFlags & $nullable);
+    $this->assertEquals($unique, $maskedFlags & $unique);
+    $this->assertEquals(0, $maskedFlags & $noDoc);
+  }
+  
   public function testClosureScoping() {
     
     $data = array();

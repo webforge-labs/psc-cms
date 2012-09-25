@@ -32,6 +32,14 @@ class SetMetaTest extends \Psc\Code\Test\Base {
       'numbers'=> 'ichbinkeinobjekt', // das ist nicht okay
     ));
   }
+
+  /**
+   * @depends testConstruct
+   */
+  public function testHasFieldReturnsBool(SetMeta $meta) {
+    $this->assertTrue($meta->hasField('label'));
+    $this->assertFalse($meta->hasField('blabel'));
+  }
   
   /**
    * @depends testConstruct

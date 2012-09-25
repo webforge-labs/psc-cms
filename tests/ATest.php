@@ -8,7 +8,7 @@ use Psc\A;
  * @group class:Psc\A
  */
 class ATest extends \Psc\Code\Test\Base {
-
+  
   public function testPeek() {
     $array = array('s1','s2');
     
@@ -44,8 +44,14 @@ class ATest extends \Psc\Code\Test\Base {
     A::insert($array, 'f4', 4);
     $this->assertEquals(array('f0','f1','f2','f3','f4'), $array);
 
-    A::insert($array, 'fl', -1); // last position
-    $this->assertEquals(array('f0','f1','f2','f3','f4','fl'), $array);
+    A::insert($array, 'fbL', -1); // before last position
+    $this->assertEquals(array('f0','f1','f2','f3','fbL','f4'), $array);
+
+    A::insert($array, 'fL', A::END); // at the end
+    $this->assertEquals(array('f0','f1','f2','f3','fbL','f4','fL'), $array);
+
+    A::insert($array, 'f-2', -2); // before position -2
+    $this->assertEquals(array('f0','f1','f2','f3','fbL','f-2','f4','fL'), $array);
   }
   
   public function testInsert0PrependsToArray() {
@@ -55,6 +61,12 @@ class ATest extends \Psc\Code\Test\Base {
     $this->assertEquals(array('one','two'), $array);
   }
   
+  public function testInsertWithEndConstant() {
+    $array = array(0,2,3);
+    A::insert($array, 1, A::END-2);
+    
+    $this->assertEquals(array(0,1,2,3), $array);
+  }
   
   public function testSet() {
     $php = array();
@@ -77,7 +89,7 @@ class ATest extends \Psc\Code\Test\Base {
     A::set($my, 0, '0');
     $this->assertEquals($php, $my);
   }
-  
+
   /**
    * @expectedException OutOfBoundsException
    * @dataProvider provideInsert_OOB
@@ -85,6 +97,7 @@ class ATest extends \Psc\Code\Test\Base {
   public function testInsert_OOB($array, $offset) {
     A::insert($array, NULL, $offset);
   }
+  
   
   public static function provideInsert_OOB() {
     $tests = array();
@@ -94,7 +107,7 @@ class ATest extends \Psc\Code\Test\Base {
     };
     
     $test(array(0,1,2), 4);
-    $test(array(1,2,3), -2);
+    $test(array(1,2,3), -5);
     
     return $tests;
   }

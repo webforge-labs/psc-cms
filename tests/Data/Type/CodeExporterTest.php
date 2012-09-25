@@ -36,6 +36,12 @@ class CodeExporterTest extends \Psc\Code\Test\Base {
                        );
   }
   
+  public function testSpecialCaseEnclosingType_i18nType() {
+    $this->expectExport("new \Psc\Data\Type\I18nType(new \Psc\Data\Type\StringType(), array('de','fr'))",
+                         new \Psc\Data\Type\I18nType(new \Psc\Data\Type\StringType(), array('de','fr'))
+                      );
+  }
+  
   public function testExportEnclosingType() {
     $this->expectExport('new \Psc\Data\Type\ArrayType(new \Psc\Data\Type\IntegerType())',
                          new \Psc\Data\Type\ArrayType(new IntegerType())
