@@ -67,6 +67,36 @@ class ATest extends \Psc\Code\Test\Base {
     
     $this->assertEquals(array(0,1,2,3), $array);
   }
+
+
+  public function testInsertArrayPositiveIndexInsertsBeforeIndex() {
+    $array = array(0,1,4,5);
+    
+    A::insertArray($array, array(2,3), 2);
+    $this->assertEquals(array(0,1,2,3,4,5), $array);
+  }
+
+  public function testInsertArrayNegativeIndexInsertsBeforeIndexCountedFromEndOfarray() {
+    $array = array(0,1,4,5);
+    
+    A::insertArray($array, array(2,3), -2);
+    $this->assertEquals(array(0,1,2,3,4,5), $array);
+  }
+  
+  public function testInsertArrayWithENDConstantAppends() {
+    $array = array(0,1,2,3);
+    
+    A::insertArray($array, array(4,5), A::END);
+    $this->assertEquals(array(0,1,2,3,4,5), $array);
+  }
+
+  public function testInsertArrayWith0Prepends() {
+    $array = array(2,3,4,5);
+    
+    A::insertArray($array, array(0,1), 0);
+    $this->assertEquals(array(0,1,2,3,4,5), $array);
+  }
+
   
   public function testSet() {
     $php = array();

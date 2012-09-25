@@ -63,6 +63,28 @@ class EntityBuilderTest extends \Psc\Code\Test\Base {
     $this->assertEquals($this->createType('Email'),$builder->getProperty('email')->getType());
   }
   
+  public function testCreateI18nProperty() {
+    $builder = new EntityBuilder('Person', $this->module);
+    $builder->setLanguages(array('en','de'));
+    
+    $this->assertInstanceOf('Psc\Code\Generate\ClassBuilderProperty',
+                            $property = $builder->createProperty('text', $this->createType('Text'), EntityBuilder::I18N)
+                          );
+    
+    $this->assertTrue($builder->getGClass()->hasProperty('i18nText'));
+    $this->assertTrue($builder->getGClass()->hasProperty('textDe'));
+    $this->assertTrue($builder->getGClass()->hasProperty('textEn'));
+    $this->assertTrue($builder->getGClass()->hasMethod('getI18nText'));
+    $this->assertTrue($builder->getGClass()->hasMethod('setI18nText'));
+    $this->assertTrue($builder->getGClass()->hasMethod('getText'));
+    $this->assertTrue($builder->getGClass()->hasMethod('setText'));
+    
+    $this->assertFalse($builder->getGClass()->hasMethod('setTextDe'));
+    $this->assertFalse($builder->getGClass()->hasMethod('getTextDe'));
+    $this->assertFalse($builder->getGClass()->hasMethod('setTextEn'));
+    $this->assertFalse($builder->getGClass()->hasMethod('getTextEn'));
+  }
+  
   public function testCreatePropertyNullFlag() {
     $builder = new EntityBuilder('Person', $this->module);
     
