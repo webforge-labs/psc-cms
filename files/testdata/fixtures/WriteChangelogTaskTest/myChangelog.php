@@ -3,7 +3,7 @@
 $data = array();
 $data[] = array(
   'version'=>'2.0.10-Beta',
-  'time'=>'13:34 17.09.2012',
+  'time'=>'11:06 25.09.2012',
   'changelog'=>array(
     'neu: automatisches deploy',
     'geändert: alles ist cooler'
