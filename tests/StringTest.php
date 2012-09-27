@@ -102,5 +102,26 @@ JAVASCRIPT;
     $this->assertEquals('@return', S::expand('return', '@', S::START));
     $this->assertEquals('@return', S::expand('@return', '@', S::START));
   }
+  
+  public function testCutAtLast() {
+    $sentence = "this is a sentence";
+    //           0123456789a1234567
+    $ender = '...';
+    
+    // no cutting-test
+    $this->assertEquals($sentence, S::cutAtLast($sentence, 18, ' ', $ender));
+    
+    // cutting at whitespace not inbetween "sentence"
+    $this->assertEquals('this is a'.$ender, S::cutAtLast($sentence, 12, ' ', $ender));
+
+    // cutting at whitespace not inbetween "sentence"
+    $this->assertEquals('this is a'.$ender, S::cutAtLast($sentence, 17, ' ', $ender));
+
+    // cutting at whitespace not inbetween "is"
+    $this->assertEquals('this'.$ender, S::cutAtLast($sentence, 5, ' ', $ender));
+    
+    // non defined
+    $this->assertEquals(''.$ender, S::cutAtLast($sentence, 17, 'b', $ender));
+  }
 }
 ?>
