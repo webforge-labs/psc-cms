@@ -6,6 +6,8 @@ env:
   - PSC_CMS=$HOME/builds/pscheit/psc-cms/bin/ PHPUNIT_TESTSUITE=true TRAVIS_CI=true
   
 before_script:
+  - wget http://getcomposer.org/composer.phar
+  - php composer.phar install
   - mysql -e 'create database IF NOT EXISTS `psc-cms_tests`;'
   - mysql -e 'create database IF NOT EXISTS `psc-cms`;'
   - php -f tests/update.schema.php
