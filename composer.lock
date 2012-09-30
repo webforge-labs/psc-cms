@@ -7,18 +7,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pscheit/webforge-testdata-repository.git",
-                "reference": "0.1.1-alpha"
+                "reference": "0.1.2-alpha"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/pscheit/webforge-testdata-repository/zipball/0.1.1-alpha",
-                "reference": "0.1.1-alpha",
+                "url": "https://github.com/pscheit/webforge-testdata-repository/zipball/0.1.2-alpha",
+                "reference": "0.1.2-alpha",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2"
             },
-            "time": "1348842580",
+            "time": "1348843056",
             "type": "library",
             "installation-source": "source",
             "autoload": {
