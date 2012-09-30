@@ -41,4 +41,6 @@ PSC::getProjectsFactory()->getProject('psc-cms')->setLoadedWithPhar(TRUE)->boots
 
 PSC::getProject()->setTests(TRUE);
 ini_set('memory_limit', '-1');
+
+require_once $bootLoader->getPath('../lib/vendor/autoload.php', BootLoader::RELATIVE);
 ?>
