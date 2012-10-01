@@ -63,7 +63,7 @@ class EntityMetaTest extends \Psc\Code\Test\Base {
                         $this->entityMeta->getActionRequestMeta('generic')->getMethod().' '.
                         $this->entityMeta->getActionRequestMeta('generic')->getUrl(17));
     
-    $this->assertEquals('POST /entities/articles/',
+    $this->assertEquals('POST /entities/articles',
                         $this->entityMeta->getNewRequestMeta()->getMethod().' '.
                         $this->entityMeta->getNewRequestMeta()->getUrl());
 
