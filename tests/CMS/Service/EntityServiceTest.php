@@ -70,7 +70,7 @@ class EntityServiceTest extends \Psc\Code\Test\ServiceBase {
       $this->rq(array('entities','tag','1'), 'PUT'),
       'Psc\Test\Controllers\TagController',
       'saveEntity',
-      array('1', null)
+      array('1', new \stdClass)
     );
   }
 
