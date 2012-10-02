@@ -1,4 +1,3 @@
-bin/ export-ignore
-files/ export-ignore
-lib/ export-ignore
-tests/ export-ignore
+* export-ignore
+bin !export-ignore
+bin/psc-cms.phar.gz !export-ignore
