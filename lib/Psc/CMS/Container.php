@@ -4,6 +4,7 @@ namespace Psc\CMS;
 
 use Webforge\Framework\Container as WebforgeContainer;
 use Webforge\Common\System\Dir;
+use Psc\PSC;
 
 class Container {
   
@@ -31,6 +32,10 @@ class Container {
     if (!isset($this->project)) {
       $this->webforge->initLocalPackageFromDirectory($this->rootDirectory);
       $this->project = $this->webforge->getLocalProject();
+      
+      if (PSC::isTravis()) {
+        $this->setInTests();
+      }
     }
     
     return $this->project;
