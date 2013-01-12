@@ -1,0 +1,74 @@
+<?php
+
+namespace Psc\UI;
+
+$layoutManager = new LayoutManager('Layout Test');
+
+print $layoutManager->html();
+//
+//use Psc\UI\Form;
+//use Psc\UI\jQuery;
+//
+//$pane = new SplitPane(70);
+//
+//$pane->setLeftContent(
+//  $layout = Form::group('Layout', NULL)
+//);
+//$layout->getContent()->div->setStyle('min-height','600px');
+//
+//$pane->setRightContent(
+//  Array(
+//    Accordion::create(array('autoHeight'=>true))
+//    ->addSection('Text', array(
+//      new Button('Paragraph'),
+//      new Button('Headline'),
+//      new Button('Sub-Headline'),
+//      new Button('List'),
+//    ))
+//    ->addSection('Elements', array(
+//      new Button('Image')
+//    ))
+//    ->html()
+//      ->addClass('\Psc\right-accordion')
+//    ,
+//    //
+//    //Group::create(
+//    //  'Optionen',
+//    //  Form::attachLabel(
+//    //    Form::radios(NULL, 'mode', array('sort'=>'Sortieren/Einfügen','edit'=>'Bearbeiten'), 'edit'),
+//    //    'Modus'
+//    //  )
+//    //)->addClass('options')
+//    //,
+//    
+//    Group::create(
+//      'Magic Box',
+//      array(
+//        Form::textarea(NULL, 'magic')->setStyle('width', '100%')->addClass('magic-box'),
+//        new Button('umwandeln'),
+//        Form::hint('in die Magic Box kann ein gesamter Text eingefügt werden. Der Text wird dann analysiert und automatisch in Abschnitte und Elemente unterteilt')
+//      )
+//    )->addClass('magic-helper')
+//  )
+//);
+//
+////$main = Form::group('LayoutManager', $pane->html());
+//$main = HTML::tag('div', $pane->html());
+//
+//$main->setAttribute('id','layout-manager')->addClass('\Psc\layout-manager');
+//
+//print $main;
+//
+////print \Psc\JS\Helper::embed("console.log($.pscUI); $.pscUI('layout','loaded', $('#layout-manager'))");
+//
+
+?>
+<!--<script type="text/javascript">
+jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+  main.getLoader().onReady(['Psc.UI.LayoutManager'], function () {
+    var layoutManager = new Psc.UI.LayoutManager({
+      
+    });
+  });
+});
+</script>-->

@@ -1,0 +1,3939 @@
+<div class="psc-cms-ui-buttonset psc-cms-ui-buttonset-right" style="float: right"><button class="psc-cms-ui-button psc-cms-ui-button-left psc-cms-ui-button-reload psc-guid-5023aa0c18e9c" style="float: left">neu laden</button>
+<script type="text/javascript">
+jQuery('button.psc-guid-5023aa0c18e9c')
+  .button({"icons": {"primary": "ui-icon-refresh"}})
+</script>
+
+<button class="psc-cms-ui-button psc-guid-5023aa0ae86f6 psc-cms-ui-button-left psc-cms-ui-button-new" style="float: left">Neue Seite erstellen</button>
+<script type="text/javascript">
+jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+ main.getLoader().onReady(['Psc.CMS.FastItem'], function () {
+    var j = new Psc.CMS.FastItem({
+      'tab': {"id": "entities-pages-form","label": "Neue Seite erstellen","url": "\/entities\/pages\/form"},
+      'link': {},
+      'identifier': null,
+      'entityName': null,
+      'button': {"label": "Neue Seite erstellen","fullLabel": null,"mode": 1,"leftIcon": "circle-plus","rightIcon": null},
+      'widget': jQuery('button.psc-guid-5023aa0ae86f6')
+    });
+  });
+});
+</script>
+
+<script type="text/javascript">
+jQuery('button.psc-guid-5023aa0ae86f6')
+  .button({"icons": {"primary": "ui-icon-circle-plus"}})
+</script>
+
+</div>
+<div class="clear"></div><fieldset class="ui-corner-all ui-widget-content psc-cms-ui-group psc-guid-5023aa0ae8e9f psc-cms-ui-entity-grid-panel-container"><legend>Seiten verwalten</legend>
+  <div class="content"><table class="psc-cms-ui-table psc-cms-ui-grid ui-widget ui-widget-content psc-cms-ui-entity-grid-panel">
+  <tr class="first ui-widget-header">
+    <th class="first ctrl"></th>
+    <th class="slug tci">Kurzname</th>
+    <th class="content-streams">Layouts</th>
+    <th class="navigation-nodes last">verknüpfte Navigations-Punkte</th>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="1" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bc1d8d">home</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "home",
+          'value': 1,
+          'ac': {"label": "home"},
+          'button': {"label": "home","fullLabel": "home","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-1-form","label": "home","url": "\/entities\/page\/1\/form"},
+          'identifier': 1,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/1","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bc1d8d')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bc1d8d')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0ad6d77">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #1 de",
+          'value': 1,
+          'ac': {"label": "Layout #1 de"},
+          'button': {"label": "Layout #1 de","fullLabel": "Layout #1 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-1-form","label": "Content f\u00fcr Seite: home (DE)","url": "\/entities\/contentstream\/1\/form"},
+          'identifier': 1,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/1","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0ad6d77')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0ad6d77')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0ad90ac">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #2 fr",
+          'value': 2,
+          'ac': {"label": "Layout #2 fr"},
+          'button': {"label": "Layout #2 fr","fullLabel": "Layout #2 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-2-form","label": "Content f\u00fcr Seite: home (FR)","url": "\/entities\/contentstream\/2\/form"},
+          'identifier': 2,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/2","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0ad90ac')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0ad90ac')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wer<br />/wer/das-vorhaben-comun</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="2" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bc6c05">programmtext</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "programmtext",
+          'value': 2,
+          'ac': {"label": "programmtext"},
+          'button': {"label": "programmtext","fullLabel": "programmtext","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-2-form","label": "programmtext","url": "\/entities\/page\/2\/form"},
+          'identifier': 2,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/2","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bc6c05')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bc6c05')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0aea629" title="Das Layout ist noch leer.">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #3 de",
+          'value': 3,
+          'ac': {"label": "Layout #3 de"},
+          'button': {"label": "Layout #3 de","fullLabel": "Layout #3 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-3-form","label": "Content f\u00fcr Seite: programmtext (DE)","url": "\/entities\/contentstream\/3\/form"},
+          'identifier': 3,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/3","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0aea629')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0aea629')
+      .button({"icons": {"primary": "ui-icon-close"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0aeb5f9" title="Das Layout ist noch leer.">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #4 fr",
+          'value': 4,
+          'ac': {"label": "Layout #4 fr"},
+          'button': {"label": "Layout #4 fr","fullLabel": "Layout #4 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-4-form","label": "Content f\u00fcr Seite: programmtext (FR)","url": "\/entities\/contentstream\/4\/form"},
+          'identifier': 4,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/4","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0aeb5f9')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0aeb5f9')
+      .button({"icons": {"primary": "ui-icon-close"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last"></td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="3" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bc7f54">partner</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "partner",
+          'value': 3,
+          'ac': {"label": "partner"},
+          'button': {"label": "partner","fullLabel": "partner","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-3-form","label": "partner","url": "\/entities\/page\/3\/form"},
+          'identifier': 3,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/3","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bc7f54')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bc7f54')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0aed530">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #5 de",
+          'value': 5,
+          'ac': {"label": "Layout #5 de"},
+          'button': {"label": "Layout #5 de","fullLabel": "Layout #5 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-5-form","label": "Content f\u00fcr Seite: partner (DE)","url": "\/entities\/contentstream\/5\/form"},
+          'identifier': 5,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/5","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0aed530')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0aed530')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0aeecc7">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #6 fr",
+          'value': 6,
+          'ac': {"label": "Layout #6 fr"},
+          'button': {"label": "Layout #6 fr","fullLabel": "Layout #6 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-6-form","label": "Content f\u00fcr Seite: partner (FR)","url": "\/entities\/contentstream\/6\/form"},
+          'identifier': 6,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/6","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0aeecc7')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0aeecc7')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wer/unsere-partner</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="6" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bc92bc">Maghreb - Hintergrund unserer Arbeit, Urbanisierung</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Maghreb - Hintergrund unserer Arbeit, Urbanisierung",
+          'value': 6,
+          'ac': {"label": "Maghreb - Hintergrund unserer Arbeit, Urbanisierung"},
+          'button': {"label": "Maghreb - Hintergrund unserer Arbeit, Urbanisierung","fullLabel": "Maghreb - Hintergrund unserer Arbeit, Urbanisierung","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-6-form","label": "Maghreb - Hintergrund unserer Arbeit, Urbanisierung","url": "\/entities\/page\/6\/form"},
+          'identifier': 6,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/6","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bc92bc')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bc92bc')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0af1f81">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #11 de",
+          'value': 11,
+          'ac': {"label": "Layout #11 de"},
+          'button': {"label": "Layout #11 de","fullLabel": "Layout #11 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-11-form","label": "Content f\u00fcr Seite: Maghreb - Hintergrund unserer Arbeit, Urbanisierung (DE)","url": "\/entities\/contentstream\/11\/form"},
+          'identifier': 11,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/11","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0af1f81')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0af1f81')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0af3688">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #12 fr",
+          'value': 12,
+          'ac': {"label": "Layout #12 fr"},
+          'button': {"label": "Layout #12 fr","fullLabel": "Layout #12 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-12-form","label": "Content f\u00fcr Seite: Maghreb - Hintergrund unserer Arbeit, Urbanisierung (FR)","url": "\/entities\/contentstream\/12\/form"},
+          'identifier': 12,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/12","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0af3688')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0af3688')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/was/hintergrund-unserer-arbeit</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="7" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bca2a3">marokko - handlungsrahmen</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "marokko - handlungsrahmen",
+          'value': 7,
+          'ac': {"label": "marokko - handlungsrahmen"},
+          'button': {"label": "marokko - handlungsrahmen","fullLabel": "marokko - handlungsrahmen","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-7-form","label": "marokko - handlungsrahmen","url": "\/entities\/page\/7\/form"},
+          'identifier': 7,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/7","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bca2a3')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bca2a3')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b03a91">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #13 de",
+          'value': 13,
+          'ac': {"label": "Layout #13 de"},
+          'button': {"label": "Layout #13 de","fullLabel": "Layout #13 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-13-form","label": "Content f\u00fcr Seite: marokko - handlungsrahmen (DE)","url": "\/entities\/contentstream\/13\/form"},
+          'identifier': 13,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/13","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b03a91')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b03a91')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b05221">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #14 fr",
+          'value': 14,
+          'ac': {"label": "Layout #14 fr"},
+          'button': {"label": "Layout #14 fr","fullLabel": "Layout #14 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-14-form","label": "Content f\u00fcr Seite: marokko - handlungsrahmen (FR)","url": "\/entities\/contentstream\/14\/form"},
+          'identifier': 14,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/14","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b05221')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b05221')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last"></td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="8" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bcb5fa">marokko - startseite</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "marokko - startseite",
+          'value': 8,
+          'ac': {"label": "marokko - startseite"},
+          'button': {"label": "marokko - startseite","fullLabel": "marokko - startseite","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-8-form","label": "marokko - startseite","url": "\/entities\/page\/8\/form"},
+          'identifier': 8,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/8","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bcb5fa')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bcb5fa')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b06d82">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #15 de",
+          'value': 15,
+          'ac': {"label": "Layout #15 de"},
+          'button': {"label": "Layout #15 de","fullLabel": "Layout #15 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-15-form","label": "Content f\u00fcr Seite: marokko - startseite (DE)","url": "\/entities\/contentstream\/15\/form"},
+          'identifier': 15,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/15","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b06d82')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b06d82')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b08150">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #16 fr",
+          'value': 16,
+          'ac': {"label": "Layout #16 fr"},
+          'button': {"label": "Layout #16 fr","fullLabel": "Layout #16 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-16-form","label": "Content f\u00fcr Seite: marokko - startseite (FR)","url": "\/entities\/contentstream\/16\/form"},
+          'identifier': 16,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/16","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b08150')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b08150')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wo<br />/wo/marokko</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="9" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bcc588">marokko - was bisher passierte...</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "marokko - was bisher passierte...",
+          'value': 9,
+          'ac': {"label": "marokko - was bisher passierte..."},
+          'button': {"label": "marokko - was bisher passierte...","fullLabel": "marokko - was bisher passierte...","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-9-form","label": "marokko - was bisher passierte...","url": "\/entities\/page\/9\/form"},
+          'identifier': 9,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/9","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bcc588')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bcc588')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b0cb44">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #17 de",
+          'value': 17,
+          'ac': {"label": "Layout #17 de"},
+          'button': {"label": "Layout #17 de","fullLabel": "Layout #17 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-17-form","label": "Content f\u00fcr Seite: marokko - was bisher passierte... (DE)","url": "\/entities\/contentstream\/17\/form"},
+          'identifier': 17,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/17","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b0cb44')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b0cb44')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b0e28d">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #18 fr",
+          'value': 18,
+          'ac': {"label": "Layout #18 fr"},
+          'button': {"label": "Layout #18 fr","fullLabel": "Layout #18 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-18-form","label": "Content f\u00fcr Seite: marokko - was bisher passierte... (FR)","url": "\/entities\/contentstream\/18\/form"},
+          'identifier': 18,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/18","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b0e28d')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b0e28d')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last"></td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="10" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bcd527">tunesien - handlungsrahmen</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "tunesien - handlungsrahmen",
+          'value': 10,
+          'ac': {"label": "tunesien - handlungsrahmen"},
+          'button': {"label": "tunesien - handlungsrahmen","fullLabel": "tunesien - handlungsrahmen","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-10-form","label": "tunesien - handlungsrahmen","url": "\/entities\/page\/10\/form"},
+          'identifier': 10,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/10","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bcd527')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bcd527')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b0fddc">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #19 de",
+          'value': 19,
+          'ac': {"label": "Layout #19 de"},
+          'button': {"label": "Layout #19 de","fullLabel": "Layout #19 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-19-form","label": "Content f\u00fcr Seite: tunesien - handlungsrahmen (DE)","url": "\/entities\/contentstream\/19\/form"},
+          'identifier': 19,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/19","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b0fddc')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b0fddc')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b11165">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #20 fr",
+          'value': 20,
+          'ac': {"label": "Layout #20 fr"},
+          'button': {"label": "Layout #20 fr","fullLabel": "Layout #20 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-20-form","label": "Content f\u00fcr Seite: tunesien - handlungsrahmen (FR)","url": "\/entities\/contentstream\/20\/form"},
+          'identifier': 20,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/20","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b11165')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b11165')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wo/tunesien/handlungsrahmen-1</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="11" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bce4c3">tunesien - was bisher passierte...</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "tunesien - was bisher passierte...",
+          'value': 11,
+          'ac': {"label": "tunesien - was bisher passierte..."},
+          'button': {"label": "tunesien - was bisher passierte...","fullLabel": "tunesien - was bisher passierte...","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-11-form","label": "tunesien - was bisher passierte...","url": "\/entities\/page\/11\/form"},
+          'identifier': 11,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/11","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bce4c3')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bce4c3')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b1442b">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #21 de",
+          'value': 21,
+          'ac': {"label": "Layout #21 de"},
+          'button': {"label": "Layout #21 de","fullLabel": "Layout #21 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-21-form","label": "Content f\u00fcr Seite: tunesien - was bisher passierte... (DE)","url": "\/entities\/contentstream\/21\/form"},
+          'identifier': 21,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/21","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b1442b')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b1442b')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b157b5">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #22 fr",
+          'value': 22,
+          'ac': {"label": "Layout #22 fr"},
+          'button': {"label": "Layout #22 fr","fullLabel": "Layout #22 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-22-form","label": "Content f\u00fcr Seite: tunesien - was bisher passierte... (FR)","url": "\/entities\/contentstream\/22\/form"},
+          'identifier': 22,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/22","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b157b5')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b157b5')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wo/tunesien/was-bisher-passierte-1</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="12" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bcf463">tunesien - stadtportraits</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "tunesien - stadtportraits",
+          'value': 12,
+          'ac': {"label": "tunesien - stadtportraits"},
+          'button': {"label": "tunesien - stadtportraits","fullLabel": "tunesien - stadtportraits","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-12-form","label": "tunesien - stadtportraits","url": "\/entities\/page\/12\/form"},
+          'identifier': 12,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/12","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bcf463')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bcf463')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b182aa" title="Das Layout ist noch leer.">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #23 de",
+          'value': 23,
+          'ac': {"label": "Layout #23 de"},
+          'button': {"label": "Layout #23 de","fullLabel": "Layout #23 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-23-form","label": "Content f\u00fcr Seite: tunesien - stadtportraits (DE)","url": "\/entities\/contentstream\/23\/form"},
+          'identifier': 23,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/23","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b182aa')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b182aa')
+      .button({"icons": {"primary": "ui-icon-close"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b1924f" title="Das Layout ist noch leer.">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #24 fr",
+          'value': 24,
+          'ac': {"label": "Layout #24 fr"},
+          'button': {"label": "Layout #24 fr","fullLabel": "Layout #24 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-24-form","label": "Content f\u00fcr Seite: tunesien - stadtportraits (FR)","url": "\/entities\/contentstream\/24\/form"},
+          'identifier': 24,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/24","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b1924f')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b1924f')
+      .button({"icons": {"primary": "ui-icon-close"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last"></td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="13" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bd07f5">marokko - stadtportraits</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "marokko - stadtportraits",
+          'value': 13,
+          'ac': {"label": "marokko - stadtportraits"},
+          'button': {"label": "marokko - stadtportraits","fullLabel": "marokko - stadtportraits","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-13-form","label": "marokko - stadtportraits","url": "\/entities\/page\/13\/form"},
+          'identifier': 13,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/13","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bd07f5')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bd07f5')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b1aa0c" title="Das Layout ist noch leer.">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #25 de",
+          'value': 25,
+          'ac': {"label": "Layout #25 de"},
+          'button': {"label": "Layout #25 de","fullLabel": "Layout #25 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-25-form","label": "Content f\u00fcr Seite: marokko - stadtportraits (DE)","url": "\/entities\/contentstream\/25\/form"},
+          'identifier': 25,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/25","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b1aa0c')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b1aa0c')
+      .button({"icons": {"primary": "ui-icon-close"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b1bdb0">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #26 fr",
+          'value': 26,
+          'ac': {"label": "Layout #26 fr"},
+          'button': {"label": "Layout #26 fr","fullLabel": "Layout #26 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-26-form","label": "Content f\u00fcr Seite: marokko - stadtportraits (FR)","url": "\/entities\/contentstream\/26\/form"},
+          'identifier': 26,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/26","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b1bdb0')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b1bdb0')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last"></td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="14" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bd1792">tunesien - startseite</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "tunesien - startseite",
+          'value': 14,
+          'ac': {"label": "tunesien - startseite"},
+          'button': {"label": "tunesien - startseite","fullLabel": "tunesien - startseite","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-14-form","label": "tunesien - startseite","url": "\/entities\/page\/14\/form"},
+          'identifier': 14,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/14","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bd1792')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bd1792')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b1d8c5">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #27 de",
+          'value': 27,
+          'ac': {"label": "Layout #27 de"},
+          'button': {"label": "Layout #27 de","fullLabel": "Layout #27 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-27-form","label": "Content f\u00fcr Seite: tunesien - startseite (DE)","url": "\/entities\/contentstream\/27\/form"},
+          'identifier': 27,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/27","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b1d8c5')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b1d8c5')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b1ec6a">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #28 fr",
+          'value': 28,
+          'ac': {"label": "Layout #28 fr"},
+          'button': {"label": "Layout #28 fr","fullLabel": "Layout #28 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-28-form","label": "Content f\u00fcr Seite: tunesien - startseite (FR)","url": "\/entities\/contentstream\/28\/form"},
+          'identifier': 28,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/28","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b1ec6a')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b1ec6a')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wo/tunesien</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="15" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bd274d">algerien - startseite</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "algerien - startseite",
+          'value': 15,
+          'ac': {"label": "algerien - startseite"},
+          'button': {"label": "algerien - startseite","fullLabel": "algerien - startseite","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-15-form","label": "algerien - startseite","url": "\/entities\/page\/15\/form"},
+          'identifier': 15,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/15","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bd274d')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bd274d')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b21b29">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #29 fr",
+          'value': 29,
+          'ac': {"label": "Layout #29 fr"},
+          'button': {"label": "Layout #29 fr","fullLabel": "Layout #29 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-29-form","label": "Content f\u00fcr Seite: algerien - startseite (FR)","url": "\/entities\/contentstream\/29\/form"},
+          'identifier': 29,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/29","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b21b29')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b21b29')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b22e9a">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #30 de",
+          'value': 30,
+          'ac': {"label": "Layout #30 de"},
+          'button': {"label": "Layout #30 de","fullLabel": "Layout #30 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-30-form","label": "Content f\u00fcr Seite: algerien - startseite (DE)","url": "\/entities\/contentstream\/30\/form"},
+          'identifier': 30,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/30","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b22e9a')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b22e9a')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last"></td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="16" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bd36ca">algerien - handlungsrahmen</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "algerien - handlungsrahmen",
+          'value': 16,
+          'ac': {"label": "algerien - handlungsrahmen"},
+          'button': {"label": "algerien - handlungsrahmen","fullLabel": "algerien - handlungsrahmen","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-16-form","label": "algerien - handlungsrahmen","url": "\/entities\/page\/16\/form"},
+          'identifier': 16,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/16","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bd36ca')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bd36ca')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b24dd4">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #31 fr",
+          'value': 31,
+          'ac': {"label": "Layout #31 fr"},
+          'button': {"label": "Layout #31 fr","fullLabel": "Layout #31 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-31-form","label": "Content f\u00fcr Seite: algerien - handlungsrahmen (FR)","url": "\/entities\/contentstream\/31\/form"},
+          'identifier': 31,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/31","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b24dd4')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b24dd4')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b26541">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #32 de",
+          'value': 32,
+          'ac': {"label": "Layout #32 de"},
+          'button': {"label": "Layout #32 de","fullLabel": "Layout #32 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-32-form","label": "Content f\u00fcr Seite: algerien - handlungsrahmen (DE)","url": "\/entities\/contentstream\/32\/form"},
+          'identifier': 32,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/32","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b26541')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b26541')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wo/algerien/handlungsrahmen-2</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="17" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bd46da">algerien - was bisher passierte</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "algerien - was bisher passierte",
+          'value': 17,
+          'ac': {"label": "algerien - was bisher passierte"},
+          'button': {"label": "algerien - was bisher passierte","fullLabel": "algerien - was bisher passierte","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-17-form","label": "algerien - was bisher passierte","url": "\/entities\/page\/17\/form"},
+          'identifier': 17,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/17","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bd46da')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bd46da')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b29831">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #33 fr",
+          'value': 33,
+          'ac': {"label": "Layout #33 fr"},
+          'button': {"label": "Layout #33 fr","fullLabel": "Layout #33 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-33-form","label": "Content f\u00fcr Seite: algerien - was bisher passierte (FR)","url": "\/entities\/contentstream\/33\/form"},
+          'identifier': 33,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/33","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b29831')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b29831')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b2abd0">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #34 de",
+          'value': 34,
+          'ac': {"label": "Layout #34 de"},
+          'button': {"label": "Layout #34 de","fullLabel": "Layout #34 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-34-form","label": "Content f\u00fcr Seite: algerien - was bisher passierte (DE)","url": "\/entities\/contentstream\/34\/form"},
+          'identifier': 34,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/34","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b2abd0')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b2abd0')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wo/algerien/was-bisher-passierte-2</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="18" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bd59f6">deutschland - kooperation mit deutschen städten</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "deutschland - kooperation mit deutschen st\u00e4dten",
+          'value': 18,
+          'ac': {"label": "deutschland - kooperation mit deutschen st\u00e4dten"},
+          'button': {"label": "deutschland - kooperation mit deutschen st\u00e4dten","fullLabel": "deutschland - kooperation mit deutschen st\u00e4dten","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-18-form","label": "deutschland - kooperation mit deutschen st\u00e4dten","url": "\/entities\/page\/18\/form"},
+          'identifier': 18,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/18","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bd59f6')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bd59f6')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b2e281">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #35 fr",
+          'value': 35,
+          'ac': {"label": "Layout #35 fr"},
+          'button': {"label": "Layout #35 fr","fullLabel": "Layout #35 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-35-form","label": "Content f\u00fcr Seite: deutschland - kooperation mit deutschen st\u00e4dten (FR)","url": "\/entities\/contentstream\/35\/form"},
+          'identifier': 35,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/35","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b2e281')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b2e281')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b2f9bf">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #36 de",
+          'value': 36,
+          'ac': {"label": "Layout #36 de"},
+          'button': {"label": "Layout #36 de","fullLabel": "Layout #36 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-36-form","label": "Content f\u00fcr Seite: deutschland - kooperation mit deutschen st\u00e4dten (DE)","url": "\/entities\/contentstream\/36\/form"},
+          'identifier': 36,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/36","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b2f9bf')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b2f9bf')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wo/deutschland<br />/wo/deutschland/kooperation-mit-deutschen-staedten</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="19" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bd6d95">deutschland - kommunale selbstverwaltung</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "deutschland - kommunale selbstverwaltung",
+          'value': 19,
+          'ac': {"label": "deutschland - kommunale selbstverwaltung"},
+          'button': {"label": "deutschland - kommunale selbstverwaltung","fullLabel": "deutschland - kommunale selbstverwaltung","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-19-form","label": "deutschland - kommunale selbstverwaltung","url": "\/entities\/page\/19\/form"},
+          'identifier': 19,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/19","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bd6d95')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bd6d95')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b33c44" title="Das Layout ist noch leer.">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #37 fr",
+          'value': 37,
+          'ac': {"label": "Layout #37 fr"},
+          'button': {"label": "Layout #37 fr","fullLabel": "Layout #37 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-37-form","label": "Content f\u00fcr Seite: deutschland - kommunale selbstverwaltung (FR)","url": "\/entities\/contentstream\/37\/form"},
+          'identifier': 37,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/37","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b33c44')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b33c44')
+      .button({"icons": {"primary": "ui-icon-close"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b35386">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #38 de",
+          'value': 38,
+          'ac': {"label": "Layout #38 de"},
+          'button': {"label": "Layout #38 de","fullLabel": "Layout #38 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-38-form","label": "Content f\u00fcr Seite: deutschland - kommunale selbstverwaltung (DE)","url": "\/entities\/contentstream\/38\/form"},
+          'identifier': 38,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/38","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b35386')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b35386')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wo/deutschland/kommunale-selbstverwaltung-in-deutschland</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="20" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bd8122">regionale kooperation - startseite</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "regionale kooperation - startseite",
+          'value': 20,
+          'ac': {"label": "regionale kooperation - startseite"},
+          'button': {"label": "regionale kooperation - startseite","fullLabel": "regionale kooperation - startseite","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-20-form","label": "regionale kooperation - startseite","url": "\/entities\/page\/20\/form"},
+          'identifier': 20,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/20","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bd8122')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bd8122')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b3864b">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #39 fr",
+          'value': 39,
+          'ac': {"label": "Layout #39 fr"},
+          'button': {"label": "Layout #39 fr","fullLabel": "Layout #39 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-39-form","label": "Content f\u00fcr Seite: regionale kooperation - startseite (FR)","url": "\/entities\/contentstream\/39\/form"},
+          'identifier': 39,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/39","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b3864b')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b3864b')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b399d4">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #40 de",
+          'value': 40,
+          'ac': {"label": "Layout #40 de"},
+          'button': {"label": "Layout #40 de","fullLabel": "Layout #40 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-40-form","label": "Content f\u00fcr Seite: regionale kooperation - startseite (DE)","url": "\/entities\/contentstream\/40\/form"},
+          'identifier': 40,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/40","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b399d4')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b399d4')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/was<br />/was/regionale-kooperation</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="21" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bd9491">regionale kooperation - energieeffizienz</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "regionale kooperation - energieeffizienz",
+          'value': 21,
+          'ac': {"label": "regionale kooperation - energieeffizienz"},
+          'button': {"label": "regionale kooperation - energieeffizienz","fullLabel": "regionale kooperation - energieeffizienz","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-21-form","label": "regionale kooperation - energieeffizienz","url": "\/entities\/page\/21\/form"},
+          'identifier': 21,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/21","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bd9491')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bd9491')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b3d854">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #41 fr",
+          'value': 41,
+          'ac': {"label": "Layout #41 fr"},
+          'button': {"label": "Layout #41 fr","fullLabel": "Layout #41 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-41-form","label": "Content f\u00fcr Seite: regionale kooperation - energieeffizienz (FR)","url": "\/entities\/contentstream\/41\/form"},
+          'identifier': 41,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/41","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b3d854')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b3d854')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b3ebda">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #42 de",
+          'value': 42,
+          'ac': {"label": "Layout #42 de"},
+          'button': {"label": "Layout #42 de","fullLabel": "Layout #42 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-42-form","label": "Content f\u00fcr Seite: regionale kooperation - energieeffizienz (DE)","url": "\/entities\/contentstream\/42\/form"},
+          'identifier': 42,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/42","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b3ebda')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b3ebda')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/was/regionale-kooperation/energieeffizienz</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="22" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bda84a">regionale kooperation - abfall</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "regionale kooperation - abfall",
+          'value': 22,
+          'ac': {"label": "regionale kooperation - abfall"},
+          'button': {"label": "regionale kooperation - abfall","fullLabel": "regionale kooperation - abfall","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-22-form","label": "regionale kooperation - abfall","url": "\/entities\/page\/22\/form"},
+          'identifier': 22,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/22","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bda84a')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bda84a')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b41ea9">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #43 fr",
+          'value': 43,
+          'ac': {"label": "Layout #43 fr"},
+          'button': {"label": "Layout #43 fr","fullLabel": "Layout #43 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-43-form","label": "Content f\u00fcr Seite: regionale kooperation - abfall (FR)","url": "\/entities\/contentstream\/43\/form"},
+          'identifier': 43,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/43","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b41ea9')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b41ea9')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b4369c">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #44 de",
+          'value': 44,
+          'ac': {"label": "Layout #44 de"},
+          'button': {"label": "Layout #44 de","fullLabel": "Layout #44 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-44-form","label": "Content f\u00fcr Seite: regionale kooperation - abfall (DE)","url": "\/entities\/contentstream\/44\/form"},
+          'identifier': 44,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/44","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b4369c')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b4369c')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/was/regionale-kooperation/abfallwirtschaft</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="23" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bdbbba">regionale kooperation - medina</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "regionale kooperation - medina",
+          'value': 23,
+          'ac': {"label": "regionale kooperation - medina"},
+          'button': {"label": "regionale kooperation - medina","fullLabel": "regionale kooperation - medina","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-23-form","label": "regionale kooperation - medina","url": "\/entities\/page\/23\/form"},
+          'identifier': 23,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/23","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bdbbba')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bdbbba')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b468dd">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #45 fr",
+          'value': 45,
+          'ac': {"label": "Layout #45 fr"},
+          'button': {"label": "Layout #45 fr","fullLabel": "Layout #45 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-45-form","label": "Content f\u00fcr Seite: regionale kooperation - medina (FR)","url": "\/entities\/contentstream\/45\/form"},
+          'identifier': 45,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/45","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b468dd')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b468dd')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b47c65">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #46 de",
+          'value': 46,
+          'ac': {"label": "Layout #46 de"},
+          'button': {"label": "Layout #46 de","fullLabel": "Layout #46 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-46-form","label": "Content f\u00fcr Seite: regionale kooperation - medina (DE)","url": "\/entities\/contentstream\/46\/form"},
+          'identifier': 46,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/46","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b47c65')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b47c65')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/was/regionale-kooperation/altstadtsanierung</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="24" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bdcf4a">regionale kooperation - transport, verkehr, mobilität</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "regionale kooperation - transport, verkehr, mobilit\u00e4t",
+          'value': 24,
+          'ac': {"label": "regionale kooperation - transport, verkehr, mobilit\u00e4t"},
+          'button': {"label": "regionale kooperation - transport, verkehr, mobilit\u00e4t","fullLabel": "regionale kooperation - transport, verkehr, mobilit\u00e4t","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-24-form","label": "regionale kooperation - transport, verkehr, mobilit\u00e4t","url": "\/entities\/page\/24\/form"},
+          'identifier': 24,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/24","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bdcf4a')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bdcf4a')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b4af6d">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #47 fr",
+          'value': 47,
+          'ac': {"label": "Layout #47 fr"},
+          'button': {"label": "Layout #47 fr","fullLabel": "Layout #47 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-47-form","label": "Content f\u00fcr Seite: regionale kooperation - transport, verkehr, mobilit\u00e4t (FR)","url": "\/entities\/contentstream\/47\/form"},
+          'identifier': 47,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/47","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b4af6d')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b4af6d')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b4c321">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #48 de",
+          'value': 48,
+          'ac': {"label": "Layout #48 de"},
+          'button': {"label": "Layout #48 de","fullLabel": "Layout #48 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-48-form","label": "Content f\u00fcr Seite: regionale kooperation - transport, verkehr, mobilit\u00e4t (DE)","url": "\/entities\/contentstream\/48\/form"},
+          'identifier': 48,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/48","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b4c321')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b4c321')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/was/regionale-kooperation/mobilitaet-und-verkehr</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="25" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bde2af">regionale kooperation - kommunale demokratie</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "regionale kooperation - kommunale demokratie",
+          'value': 25,
+          'ac': {"label": "regionale kooperation - kommunale demokratie"},
+          'button': {"label": "regionale kooperation - kommunale demokratie","fullLabel": "regionale kooperation - kommunale demokratie","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-25-form","label": "regionale kooperation - kommunale demokratie","url": "\/entities\/page\/25\/form"},
+          'identifier': 25,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/25","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bde2af')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bde2af')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b4f98c">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #49 fr",
+          'value': 49,
+          'ac': {"label": "Layout #49 fr"},
+          'button': {"label": "Layout #49 fr","fullLabel": "Layout #49 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-49-form","label": "Content f\u00fcr Seite: regionale kooperation - kommunale demokratie (FR)","url": "\/entities\/contentstream\/49\/form"},
+          'identifier': 49,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/49","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b4f98c')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b4f98c')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b5110f">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #50 de",
+          'value': 50,
+          'ac': {"label": "Layout #50 de"},
+          'button': {"label": "Layout #50 de","fullLabel": "Layout #50 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-50-form","label": "Content f\u00fcr Seite: regionale kooperation - kommunale demokratie (DE)","url": "\/entities\/contentstream\/50\/form"},
+          'identifier': 50,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/50","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b5110f')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b5110f')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/was/regionale-kooperation/kommunale-demokratie</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="26" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bdf2a3">Studienreise/Events... - Startseite</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Studienreise\/Events... - Startseite",
+          'value': 26,
+          'ac': {"label": "Studienreise\/Events... - Startseite"},
+          'button': {"label": "Studienreise\/Events... - Startseite","fullLabel": "Studienreise\/Events... - Startseite","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-26-form","label": "Studienreise\/Events... - Startseite","url": "\/entities\/page\/26\/form"},
+          'identifier': 26,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/26","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bdf2a3')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bdf2a3')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b54004">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #51 fr",
+          'value': 51,
+          'ac': {"label": "Layout #51 fr"},
+          'button': {"label": "Layout #51 fr","fullLabel": "Layout #51 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-51-form","label": "Content f\u00fcr Seite: Studienreise\/Events... - Startseite (FR)","url": "\/entities\/contentstream\/51\/form"},
+          'identifier': 51,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/51","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b54004')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b54004')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b5539a">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #52 de",
+          'value': 52,
+          'ac': {"label": "Layout #52 de"},
+          'button': {"label": "Layout #52 de","fullLabel": "Layout #52 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-52-form","label": "Content f\u00fcr Seite: Studienreise\/Events... - Startseite (DE)","url": "\/entities\/contentstream\/52\/form"},
+          'identifier': 52,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/52","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b5539a')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b5539a')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wie</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="28" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0be0604">team</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "team",
+          'value': 28,
+          'ac': {"label": "team"},
+          'button': {"label": "team","fullLabel": "team","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-28-form","label": "team","url": "\/entities\/page\/28\/form"},
+          'identifier': 28,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/28","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0be0604')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0be0604')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b57e34">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #55 fr",
+          'value': 55,
+          'ac': {"label": "Layout #55 fr"},
+          'button': {"label": "Layout #55 fr","fullLabel": "Layout #55 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-55-form","label": "Content f\u00fcr Seite: team (FR)","url": "\/entities\/contentstream\/55\/form"},
+          'identifier': 55,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/55","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b57e34')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b57e34')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b59219">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #56 de",
+          'value': 56,
+          'ac': {"label": "Layout #56 de"},
+          'button': {"label": "Layout #56 de","fullLabel": "Layout #56 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-56-form","label": "Content f\u00fcr Seite: team (DE)","url": "\/entities\/contentstream\/56\/form"},
+          'identifier': 56,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/56","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b59219')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b59219')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wer/unser-team</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="29" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0be1957">lernetzwerk - karte</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "lernetzwerk - karte",
+          'value': 29,
+          'ac': {"label": "lernetzwerk - karte"},
+          'button': {"label": "lernetzwerk - karte","fullLabel": "lernetzwerk - karte","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-29-form","label": "lernetzwerk - karte","url": "\/entities\/page\/29\/form"},
+          'identifier': 29,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/29","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0be1957')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0be1957')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b5bcb3" title="Das Layout ist noch leer.">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #57 fr",
+          'value': 57,
+          'ac': {"label": "Layout #57 fr"},
+          'button': {"label": "Layout #57 fr","fullLabel": "Layout #57 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-57-form","label": "Content f\u00fcr Seite: lernetzwerk - karte (FR)","url": "\/entities\/contentstream\/57\/form"},
+          'identifier': 57,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/57","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b5bcb3')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b5bcb3')
+      .button({"icons": {"primary": "ui-icon-close"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b5cc52" title="Das Layout ist noch leer.">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #58 de",
+          'value': 58,
+          'ac': {"label": "Layout #58 de"},
+          'button': {"label": "Layout #58 de","fullLabel": "Layout #58 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-58-form","label": "Content f\u00fcr Seite: lernetzwerk - karte (DE)","url": "\/entities\/contentstream\/58\/form"},
+          'identifier': 58,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/58","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b5cc52')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b5cc52')
+      .button({"icons": {"primary": "ui-icon-close"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/unser-lernnetzwerk</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="30" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0be2cdf">Ben Guerdane</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Ben Guerdane",
+          'value': 30,
+          'ac': {"label": "Ben Guerdane"},
+          'button': {"label": "Ben Guerdane","fullLabel": "Ben Guerdane","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-30-form","label": "Ben Guerdane","url": "\/entities\/page\/30\/form"},
+          'identifier': 30,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/30","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0be2cdf')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0be2cdf')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b5fb35">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #59 fr",
+          'value': 59,
+          'ac': {"label": "Layout #59 fr"},
+          'button': {"label": "Layout #59 fr","fullLabel": "Layout #59 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-59-form","label": "Content f\u00fcr Seite: Ben Guerdane (FR)","url": "\/entities\/contentstream\/59\/form"},
+          'identifier': 59,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/59","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b5fb35')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b5fb35')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b60aff" title="Das Layout ist noch leer.">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #60 de",
+          'value': 60,
+          'ac': {"label": "Layout #60 de"},
+          'button': {"label": "Layout #60 de","fullLabel": "Layout #60 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-60-form","label": "Content f\u00fcr Seite: Ben Guerdane (DE)","url": "\/entities\/contentstream\/60\/form"},
+          'identifier': 60,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/60","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b60aff')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b60aff')
+      .button({"icons": {"primary": "ui-icon-close"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wo/tunesien/stadtportraits-1/ben-guerdane</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="31" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0be4066">Djerba-Midoun</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Djerba-Midoun",
+          'value': 31,
+          'ac': {"label": "Djerba-Midoun"},
+          'button': {"label": "Djerba-Midoun","fullLabel": "Djerba-Midoun","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-31-form","label": "Djerba-Midoun","url": "\/entities\/page\/31\/form"},
+          'identifier': 31,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/31","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0be4066')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0be4066')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b64574">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #61 fr",
+          'value': 61,
+          'ac': {"label": "Layout #61 fr"},
+          'button': {"label": "Layout #61 fr","fullLabel": "Layout #61 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-61-form","label": "Content f\u00fcr Seite: Djerba-Midoun (FR)","url": "\/entities\/contentstream\/61\/form"},
+          'identifier': 61,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/61","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b64574')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b64574')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b65513" title="Das Layout ist noch leer.">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #62 de",
+          'value': 62,
+          'ac': {"label": "Layout #62 de"},
+          'button': {"label": "Layout #62 de","fullLabel": "Layout #62 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-62-form","label": "Content f\u00fcr Seite: Djerba-Midoun (DE)","url": "\/entities\/contentstream\/62\/form"},
+          'identifier': 62,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/62","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b65513')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b65513')
+      .button({"icons": {"primary": "ui-icon-close"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wo/tunesien/stadtportraits-1/djerba-midoun</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="32" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0be53fa">Gabès</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Gab\u00e8s",
+          'value': 32,
+          'ac': {"label": "Gab\u00e8s"},
+          'button': {"label": "Gab\u00e8s","fullLabel": "Gab\u00e8s","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-32-form","label": "Gab\u00e8s","url": "\/entities\/page\/32\/form"},
+          'identifier': 32,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/32","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0be53fa')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0be53fa')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b68c03">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #63 fr",
+          'value': 63,
+          'ac': {"label": "Layout #63 fr"},
+          'button': {"label": "Layout #63 fr","fullLabel": "Layout #63 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-63-form","label": "Content f\u00fcr Seite: Gab\u00e8s (FR)","url": "\/entities\/contentstream\/63\/form"},
+          'identifier': 63,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/63","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b68c03')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b68c03')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b69b82" title="Das Layout ist noch leer.">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #64 de",
+          'value': 64,
+          'ac': {"label": "Layout #64 de"},
+          'button': {"label": "Layout #64 de","fullLabel": "Layout #64 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-64-form","label": "Content f\u00fcr Seite: Gab\u00e8s (DE)","url": "\/entities\/contentstream\/64\/form"},
+          'identifier': 64,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/64","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b69b82')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b69b82')
+      .button({"icons": {"primary": "ui-icon-close"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wo/tunesien/stadtportraits-1/gabes</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="33" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0be6777">tunis</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "tunis",
+          'value': 33,
+          'ac': {"label": "tunis"},
+          'button': {"label": "tunis","fullLabel": "tunis","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-33-form","label": "tunis","url": "\/entities\/page\/33\/form"},
+          'identifier': 33,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/33","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0be6777')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0be6777')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b6ceb7">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #65 fr",
+          'value': 65,
+          'ac': {"label": "Layout #65 fr"},
+          'button': {"label": "Layout #65 fr","fullLabel": "Layout #65 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-65-form","label": "Content f\u00fcr Seite: tunis (FR)","url": "\/entities\/contentstream\/65\/form"},
+          'identifier': 65,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/65","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b6ceb7')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b6ceb7')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b6de1c" title="Das Layout ist noch leer.">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #66 de",
+          'value': 66,
+          'ac': {"label": "Layout #66 de"},
+          'button': {"label": "Layout #66 de","fullLabel": "Layout #66 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-66-form","label": "Content f\u00fcr Seite: tunis (DE)","url": "\/entities\/contentstream\/66\/form"},
+          'identifier': 66,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/66","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b6de1c')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b6de1c')
+      .button({"icons": {"primary": "ui-icon-close"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wo/tunesien/stadtportraits-1<br />/wo/tunesien/stadtportraits-1/tunis</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="34" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0be7b23">Gafsa</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Gafsa",
+          'value': 34,
+          'ac': {"label": "Gafsa"},
+          'button': {"label": "Gafsa","fullLabel": "Gafsa","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-34-form","label": "Gafsa","url": "\/entities\/page\/34\/form"},
+          'identifier': 34,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/34","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0be7b23')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0be7b23')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b7284d">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #67 fr",
+          'value': 67,
+          'ac': {"label": "Layout #67 fr"},
+          'button': {"label": "Layout #67 fr","fullLabel": "Layout #67 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-67-form","label": "Content f\u00fcr Seite: Gafsa (FR)","url": "\/entities\/contentstream\/67\/form"},
+          'identifier': 67,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/67","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b7284d')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b7284d')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b73816" title="Das Layout ist noch leer.">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #68 de",
+          'value': 68,
+          'ac': {"label": "Layout #68 de"},
+          'button': {"label": "Layout #68 de","fullLabel": "Layout #68 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-68-form","label": "Content f\u00fcr Seite: Gafsa (DE)","url": "\/entities\/contentstream\/68\/form"},
+          'identifier': 68,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/68","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b73816')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b73816')
+      .button({"icons": {"primary": "ui-icon-close"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wo/tunesien/stadtportraits-1/gafsa</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="35" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0be8ee6">Jendouba</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Jendouba",
+          'value': 35,
+          'ac': {"label": "Jendouba"},
+          'button': {"label": "Jendouba","fullLabel": "Jendouba","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-35-form","label": "Jendouba","url": "\/entities\/page\/35\/form"},
+          'identifier': 35,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/35","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0be8ee6')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0be8ee6')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b76e50">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #69 fr",
+          'value': 69,
+          'ac': {"label": "Layout #69 fr"},
+          'button': {"label": "Layout #69 fr","fullLabel": "Layout #69 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-69-form","label": "Content f\u00fcr Seite: Jendouba (FR)","url": "\/entities\/contentstream\/69\/form"},
+          'identifier': 69,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/69","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b76e50')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b76e50')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b77df0" title="Das Layout ist noch leer.">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #70 de",
+          'value': 70,
+          'ac': {"label": "Layout #70 de"},
+          'button': {"label": "Layout #70 de","fullLabel": "Layout #70 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-70-form","label": "Content f\u00fcr Seite: Jendouba (DE)","url": "\/entities\/contentstream\/70\/form"},
+          'identifier': 70,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/70","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b77df0')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b77df0')
+      .button({"icons": {"primary": "ui-icon-close"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wo/tunesien/stadtportraits-1/jendouba</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="36" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bea237">Kasserine</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Kasserine",
+          'value': 36,
+          'ac': {"label": "Kasserine"},
+          'button': {"label": "Kasserine","fullLabel": "Kasserine","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-36-form","label": "Kasserine","url": "\/entities\/page\/36\/form"},
+          'identifier': 36,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/36","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bea237')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bea237')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b7b4c5">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #71 fr",
+          'value': 71,
+          'ac': {"label": "Layout #71 fr"},
+          'button': {"label": "Layout #71 fr","fullLabel": "Layout #71 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-71-form","label": "Content f\u00fcr Seite: Kasserine (FR)","url": "\/entities\/contentstream\/71\/form"},
+          'identifier': 71,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/71","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b7b4c5')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b7b4c5')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b7cc0e">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #72 de",
+          'value': 72,
+          'ac': {"label": "Layout #72 de"},
+          'button': {"label": "Layout #72 de","fullLabel": "Layout #72 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-72-form","label": "Content f\u00fcr Seite: Kasserine (DE)","url": "\/entities\/contentstream\/72\/form"},
+          'identifier': 72,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/72","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b7cc0e')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b7cc0e')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wo/tunesien/stadtportraits-1/kasserine</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="37" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0beb5bd">Menzel Bourguiba</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Menzel Bourguiba",
+          'value': 37,
+          'ac': {"label": "Menzel Bourguiba"},
+          'button': {"label": "Menzel Bourguiba","fullLabel": "Menzel Bourguiba","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-37-form","label": "Menzel Bourguiba","url": "\/entities\/page\/37\/form"},
+          'identifier': 37,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/37","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0beb5bd')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0beb5bd')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b7ff43">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #73 fr",
+          'value': 73,
+          'ac': {"label": "Layout #73 fr"},
+          'button': {"label": "Layout #73 fr","fullLabel": "Layout #73 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-73-form","label": "Content f\u00fcr Seite: Menzel Bourguiba (FR)","url": "\/entities\/contentstream\/73\/form"},
+          'identifier': 73,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/73","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b7ff43')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b7ff43')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b80e73" title="Das Layout ist noch leer.">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #74 de",
+          'value': 74,
+          'ac': {"label": "Layout #74 de"},
+          'button': {"label": "Layout #74 de","fullLabel": "Layout #74 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-74-form","label": "Content f\u00fcr Seite: Menzel Bourguiba (DE)","url": "\/entities\/contentstream\/74\/form"},
+          'identifier': 74,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/74","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b80e73')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b80e73')
+      .button({"icons": {"primary": "ui-icon-close"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wo/tunesien/stadtportraits-1/menzel-bourguiba</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="38" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bec925">Monastir</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Monastir",
+          'value': 38,
+          'ac': {"label": "Monastir"},
+          'button': {"label": "Monastir","fullLabel": "Monastir","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-38-form","label": "Monastir","url": "\/entities\/page\/38\/form"},
+          'identifier': 38,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/38","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bec925')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bec925')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b84525">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #75 fr",
+          'value': 75,
+          'ac': {"label": "Layout #75 fr"},
+          'button': {"label": "Layout #75 fr","fullLabel": "Layout #75 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-75-form","label": "Content f\u00fcr Seite: Monastir (FR)","url": "\/entities\/contentstream\/75\/form"},
+          'identifier': 75,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/75","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b84525')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b84525')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b854c5" title="Das Layout ist noch leer.">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #76 de",
+          'value': 76,
+          'ac': {"label": "Layout #76 de"},
+          'button': {"label": "Layout #76 de","fullLabel": "Layout #76 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-76-form","label": "Content f\u00fcr Seite: Monastir (DE)","url": "\/entities\/contentstream\/76\/form"},
+          'identifier': 76,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/76","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b854c5')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b854c5')
+      .button({"icons": {"primary": "ui-icon-close"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wo/tunesien/stadtportraits-1/monastir</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="39" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bed91e">Sfax</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Sfax",
+          'value': 39,
+          'ac': {"label": "Sfax"},
+          'button': {"label": "Sfax","fullLabel": "Sfax","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-39-form","label": "Sfax","url": "\/entities\/page\/39\/form"},
+          'identifier': 39,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/39","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bed91e')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bed91e')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b88ba5">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #77 fr",
+          'value': 77,
+          'ac': {"label": "Layout #77 fr"},
+          'button': {"label": "Layout #77 fr","fullLabel": "Layout #77 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-77-form","label": "Content f\u00fcr Seite: Sfax (FR)","url": "\/entities\/contentstream\/77\/form"},
+          'identifier': 77,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/77","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b88ba5')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b88ba5')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b89b1d" title="Das Layout ist noch leer.">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #78 de",
+          'value': 78,
+          'ac': {"label": "Layout #78 de"},
+          'button': {"label": "Layout #78 de","fullLabel": "Layout #78 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-78-form","label": "Content f\u00fcr Seite: Sfax (DE)","url": "\/entities\/contentstream\/78\/form"},
+          'identifier': 78,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/78","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b89b1d')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b89b1d')
+      .button({"icons": {"primary": "ui-icon-close"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wo/tunesien/stadtportraits-1/sfax</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="40" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0beec62">Siliana</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Siliana",
+          'value': 40,
+          'ac': {"label": "Siliana"},
+          'button': {"label": "Siliana","fullLabel": "Siliana","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-40-form","label": "Siliana","url": "\/entities\/page\/40\/form"},
+          'identifier': 40,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/40","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0beec62')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0beec62')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b8d1de">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #79 fr",
+          'value': 79,
+          'ac': {"label": "Layout #79 fr"},
+          'button': {"label": "Layout #79 fr","fullLabel": "Layout #79 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-79-form","label": "Content f\u00fcr Seite: Siliana (FR)","url": "\/entities\/contentstream\/79\/form"},
+          'identifier': 79,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/79","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b8d1de')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b8d1de')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b8e192" title="Das Layout ist noch leer.">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #80 de",
+          'value': 80,
+          'ac': {"label": "Layout #80 de"},
+          'button': {"label": "Layout #80 de","fullLabel": "Layout #80 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-80-form","label": "Content f\u00fcr Seite: Siliana (DE)","url": "\/entities\/contentstream\/80\/form"},
+          'identifier': 80,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/80","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b8e192')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b8e192')
+      .button({"icons": {"primary": "ui-icon-close"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wo/tunesien/stadtportraits-1/siliana</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="41" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0befff6">Sousse</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Sousse",
+          'value': 41,
+          'ac': {"label": "Sousse"},
+          'button': {"label": "Sousse","fullLabel": "Sousse","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-41-form","label": "Sousse","url": "\/entities\/page\/41\/form"},
+          'identifier': 41,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/41","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0befff6')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0befff6')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b9181c">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #81 fr",
+          'value': 81,
+          'ac': {"label": "Layout #81 fr"},
+          'button': {"label": "Layout #81 fr","fullLabel": "Layout #81 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-81-form","label": "Content f\u00fcr Seite: Sousse (FR)","url": "\/entities\/contentstream\/81\/form"},
+          'identifier': 81,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/81","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b9181c')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b9181c')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b927be" title="Das Layout ist noch leer.">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #82 de",
+          'value': 82,
+          'ac': {"label": "Layout #82 de"},
+          'button': {"label": "Layout #82 de","fullLabel": "Layout #82 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-82-form","label": "Content f\u00fcr Seite: Sousse (DE)","url": "\/entities\/contentstream\/82\/form"},
+          'identifier': 82,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/82","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b927be')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b927be')
+      .button({"icons": {"primary": "ui-icon-close"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wo/tunesien/stadtportraits-1/sousse</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="42" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bf13a8">agadir</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "agadir",
+          'value': 42,
+          'ac': {"label": "agadir"},
+          'button': {"label": "agadir","fullLabel": "agadir","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-42-form","label": "agadir","url": "\/entities\/page\/42\/form"},
+          'identifier': 42,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/42","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bf13a8')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bf13a8')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b95a7c">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #83 fr",
+          'value': 83,
+          'ac': {"label": "Layout #83 fr"},
+          'button': {"label": "Layout #83 fr","fullLabel": "Layout #83 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-83-form","label": "Content f\u00fcr Seite: agadir (FR)","url": "\/entities\/contentstream\/83\/form"},
+          'identifier': 83,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/83","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b95a7c')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b95a7c')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b96e03">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #84 de",
+          'value': 84,
+          'ac': {"label": "Layout #84 de"},
+          'button': {"label": "Layout #84 de","fullLabel": "Layout #84 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-84-form","label": "Content f\u00fcr Seite: agadir (DE)","url": "\/entities\/contentstream\/84\/form"},
+          'identifier': 84,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/84","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b96e03')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b96e03')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wo/marokko/stadtportraits/agadir</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="43" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bf26e2">Beni-Mellal</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Beni-Mellal",
+          'value': 43,
+          'ac': {"label": "Beni-Mellal"},
+          'button': {"label": "Beni-Mellal","fullLabel": "Beni-Mellal","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-43-form","label": "Beni-Mellal","url": "\/entities\/page\/43\/form"},
+          'identifier': 43,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/43","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bf26e2')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bf26e2')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b9a0cc">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #85 fr",
+          'value': 85,
+          'ac': {"label": "Layout #85 fr"},
+          'button': {"label": "Layout #85 fr","fullLabel": "Layout #85 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-85-form","label": "Content f\u00fcr Seite: Beni-Mellal (FR)","url": "\/entities\/contentstream\/85\/form"},
+          'identifier': 85,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/85","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b9a0cc')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b9a0cc')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b9b453">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #86 de",
+          'value': 86,
+          'ac': {"label": "Layout #86 de"},
+          'button': {"label": "Layout #86 de","fullLabel": "Layout #86 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-86-form","label": "Content f\u00fcr Seite: Beni-Mellal (DE)","url": "\/entities\/contentstream\/86\/form"},
+          'identifier': 86,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/86","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b9b453')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b9b453')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wo/marokko/stadtportraits/beni-mellal</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="44" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0bf36f3">fès</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "f\u00e8s",
+          'value': 44,
+          'ac': {"label": "f\u00e8s"},
+          'button': {"label": "f\u00e8s","fullLabel": "f\u00e8s","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-44-form","label": "f\u00e8s","url": "\/entities\/page\/44\/form"},
+          'identifier': 44,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/44","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bf36f3')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bf36f3')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0b9e71a">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #87 fr",
+          'value': 87,
+          'ac': {"label": "Layout #87 fr"},
+          'button': {"label": "Layout #87 fr","fullLabel": "Layout #87 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-87-form","label": "Content f\u00fcr Seite: f\u00e8s (FR)","url": "\/entities\/contentstream\/87\/form"},
+          'identifier': 87,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/87","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b9e71a')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b9e71a')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0b9faa9">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #88 de",
+          'value': 88,
+          'ac': {"label": "Layout #88 de"},
+          'button': {"label": "Layout #88 de","fullLabel": "Layout #88 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-88-form","label": "Content f\u00fcr Seite: f\u00e8s (DE)","url": "\/entities\/contentstream\/88\/form"},
+          'identifier': 88,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/88","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0b9faa9')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0b9faa9')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wo/marokko/stadtportraits/fes</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="45" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0c007cb">Kenitra</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Kenitra",
+          'value': 45,
+          'ac': {"label": "Kenitra"},
+          'button': {"label": "Kenitra","fullLabel": "Kenitra","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-45-form","label": "Kenitra","url": "\/entities\/page\/45\/form"},
+          'identifier': 45,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/45","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0c007cb')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0c007cb')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0ba2d70">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #89 fr",
+          'value': 89,
+          'ac': {"label": "Layout #89 fr"},
+          'button': {"label": "Layout #89 fr","fullLabel": "Layout #89 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-89-form","label": "Content f\u00fcr Seite: Kenitra (FR)","url": "\/entities\/contentstream\/89\/form"},
+          'identifier': 89,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/89","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0ba2d70')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0ba2d70')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0ba40f9">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #90 de",
+          'value': 90,
+          'ac': {"label": "Layout #90 de"},
+          'button': {"label": "Layout #90 de","fullLabel": "Layout #90 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-90-form","label": "Content f\u00fcr Seite: Kenitra (DE)","url": "\/entities\/contentstream\/90\/form"},
+          'identifier': 90,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/90","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0ba40f9')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0ba40f9')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wo/marokko/stadtportraits/kenitra</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="46" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0c0176b">Meknès</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Mekn\u00e8s",
+          'value': 46,
+          'ac': {"label": "Mekn\u00e8s"},
+          'button': {"label": "Mekn\u00e8s","fullLabel": "Mekn\u00e8s","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-46-form","label": "Mekn\u00e8s","url": "\/entities\/page\/46\/form"},
+          'identifier': 46,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/46","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0c0176b')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0c0176b')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0ba77ce">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #91 fr",
+          'value': 91,
+          'ac': {"label": "Layout #91 fr"},
+          'button': {"label": "Layout #91 fr","fullLabel": "Layout #91 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-91-form","label": "Content f\u00fcr Seite: Mekn\u00e8s (FR)","url": "\/entities\/contentstream\/91\/form"},
+          'identifier': 91,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/91","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0ba77ce')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0ba77ce')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0ba8b86">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #92 de",
+          'value': 92,
+          'ac': {"label": "Layout #92 de"},
+          'button': {"label": "Layout #92 de","fullLabel": "Layout #92 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-92-form","label": "Content f\u00fcr Seite: Mekn\u00e8s (DE)","url": "\/entities\/contentstream\/92\/form"},
+          'identifier': 92,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/92","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0ba8b86')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0ba8b86')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wo/marokko/stadtportraits/meknes</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="47" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0c02af6">rabat</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "rabat",
+          'value': 47,
+          'ac': {"label": "rabat"},
+          'button': {"label": "rabat","fullLabel": "rabat","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-47-form","label": "rabat","url": "\/entities\/page\/47\/form"},
+          'identifier': 47,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/47","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0c02af6')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0c02af6')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0bac207">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #93 fr",
+          'value': 93,
+          'ac': {"label": "Layout #93 fr"},
+          'button': {"label": "Layout #93 fr","fullLabel": "Layout #93 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-93-form","label": "Content f\u00fcr Seite: rabat (FR)","url": "\/entities\/contentstream\/93\/form"},
+          'identifier': 93,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/93","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bac207')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bac207')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0bad597">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #94 de",
+          'value': 94,
+          'ac': {"label": "Layout #94 de"},
+          'button': {"label": "Layout #94 de","fullLabel": "Layout #94 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-94-form","label": "Content f\u00fcr Seite: rabat (DE)","url": "\/entities\/contentstream\/94\/form"},
+          'identifier': 94,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/94","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bad597')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bad597')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wo/marokko/stadtportraits<br />/wo/marokko/stadtportraits/rabat</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="48" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0c03e7e">salé</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "sal\u00e9",
+          'value': 48,
+          'ac': {"label": "sal\u00e9"},
+          'button': {"label": "sal\u00e9","fullLabel": "sal\u00e9","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-48-form","label": "sal\u00e9","url": "\/entities\/page\/48\/form"},
+          'identifier': 48,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/48","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0c03e7e')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0c03e7e')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0bb279c">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #95 fr",
+          'value': 95,
+          'ac': {"label": "Layout #95 fr"},
+          'button': {"label": "Layout #95 fr","fullLabel": "Layout #95 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-95-form","label": "Content f\u00fcr Seite: sal\u00e9 (FR)","url": "\/entities\/contentstream\/95\/form"},
+          'identifier': 95,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/95","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bb279c')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bb279c')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0bb3b5a">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #96 de",
+          'value': 96,
+          'ac': {"label": "Layout #96 de"},
+          'button': {"label": "Layout #96 de","fullLabel": "Layout #96 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-96-form","label": "Content f\u00fcr Seite: sal\u00e9 (DE)","url": "\/entities\/contentstream\/96\/form"},
+          'identifier': 96,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/96","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bb3b5a')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bb3b5a')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last">/wo/marokko/stadtportraits/sale</td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="49" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0c04e1d">impressum</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "impressum",
+          'value': 49,
+          'ac': {"label": "impressum"},
+          'button': {"label": "impressum","fullLabel": "impressum","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-49-form","label": "impressum","url": "\/entities\/page\/49\/form"},
+          'identifier': 49,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/49","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0c04e1d')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0c04e1d')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0bb720c">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #97 fr",
+          'value': 97,
+          'ac': {"label": "Layout #97 fr"},
+          'button': {"label": "Layout #97 fr","fullLabel": "Layout #97 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-97-form","label": "Content f\u00fcr Seite: impressum (FR)","url": "\/entities\/contentstream\/97\/form"},
+          'identifier': 97,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/97","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bb720c')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bb720c')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0bb8535">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #98 de",
+          'value': 98,
+          'ac': {"label": "Layout #98 de"},
+          'button': {"label": "Layout #98 de","fullLabel": "Layout #98 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-98-form","label": "Content f\u00fcr Seite: impressum (DE)","url": "\/entities\/contentstream\/98\/form"},
+          'identifier': 98,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/98","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bb8535')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bb8535')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last"></td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="50" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0c05dbe">rechtliche hinweise</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "rechtliche hinweise",
+          'value': 50,
+          'ac': {"label": "rechtliche hinweise"},
+          'button': {"label": "rechtliche hinweise","fullLabel": "rechtliche hinweise","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-50-form","label": "rechtliche hinweise","url": "\/entities\/page\/50\/form"},
+          'identifier': 50,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/50","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0c05dbe')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0c05dbe')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0bba8f2">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #99 fr",
+          'value': 99,
+          'ac': {"label": "Layout #99 fr"},
+          'button': {"label": "Layout #99 fr","fullLabel": "Layout #99 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-99-form","label": "Content f\u00fcr Seite: rechtliche hinweise (FR)","url": "\/entities\/contentstream\/99\/form"},
+          'identifier': 99,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/99","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bba8f2')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bba8f2')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0bbc450">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #100 de",
+          'value': 100,
+          'ac': {"label": "Layout #100 de"},
+          'button': {"label": "Layout #100 de","fullLabel": "Layout #100 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-100-form","label": "Content f\u00fcr Seite: rechtliche hinweise (DE)","url": "\/entities\/contentstream\/100\/form"},
+          'identifier': 100,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/100","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bbc450')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bbc450')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last"></td>
+  </tr>
+  <tr>
+    <td class="first ctrl"><input type="checkbox" name="egp-ctrl[]" value="51" class="psc-cms-ui-identifier-checkbox" /></td>
+    <td class="slug tci"><button class="psc-cms-ui-button psc-guid-5023aa0c06d60">datenschutz</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "datenschutz",
+          'value': 51,
+          'ac': {"label": "datenschutz"},
+          'button': {"label": "datenschutz","fullLabel": "datenschutz","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-page-51-form","label": "datenschutz","url": "\/entities\/page\/51\/form"},
+          'identifier': 51,
+          'entityName': "page",
+          'link': {},
+          'delete': {"url": "\/entities\/page\/51","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0c06d60')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0c06d60')
+      .button({})
+    </script>
+    </td>
+    <td class="content-streams"><button class="psc-cms-ui-button psc-guid-5023aa0bbe32c">Content FR</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #101 fr",
+          'value': 101,
+          'ac': {"label": "Layout #101 fr"},
+          'button': {"label": "Layout #101 fr","fullLabel": "Layout #101 fr","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-101-form","label": "Content f\u00fcr Seite: datenschutz (FR)","url": "\/entities\/contentstream\/101\/form"},
+          'identifier': 101,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/101","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bbe32c')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bbe32c')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     <button class="psc-cms-ui-button psc-guid-5023aa0bbfe9d">Content DE</button>
+    <script type="text/javascript">
+    jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+     main.getLoader().onReady(['Psc.CMS.FastItem' ], function () {
+        var j = new Psc.CMS.FastItem({
+        
+          'label': "Layout #102 de",
+          'value': 102,
+          'ac': {"label": "Layout #102 de"},
+          'button': {"label": "Layout #102 de","fullLabel": "Layout #102 de","mode": 3,"leftIcon": null,"rightIcon": null},
+          'tab': {"id": "entities-contentstream-102-form","label": "Content f\u00fcr Seite: datenschutz (DE)","url": "\/entities\/contentstream\/102\/form"},
+          'identifier': 102,
+          'entityName': "contentstream",
+          'link': {},
+          'delete': {"url": "\/entities\/contentstream\/102","method": "DELETE"},
+          'widget': jQuery('button.psc-guid-5023aa0bbfe9d')
+        });
+      });
+    });
+    </script>
+    
+    <script type="text/javascript">
+    jQuery('button.psc-guid-5023aa0bbfe9d')
+      .button({"icons": {"primary": "ui-icon-check"}})
+    </script>
+     </td>
+    <td class="navigation-nodes last"></td>
+  </tr>
+</table></div></fieldset>
+<script type="text/javascript">
+jQuery.when( jQuery.psc.loaded() ).then( function(main) {
+ main.getLoader().onReady(['Psc.UI.GridPanel'], function () {
+    var j = new Psc.UI.GridPanel({
+      'buttons': {"open": true},
+      'grid': jQuery('fieldset.psc-guid-5023aa0ae8e9f'),
+      'columns': ["ctrl","slug","contentStreams","navigationNodes"],
+      'eventManager': main.getEventManager()
+    });
+    main.register(j, "GridPanel");
+  });
+});
+</script>
+

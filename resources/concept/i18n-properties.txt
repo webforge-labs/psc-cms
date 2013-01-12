@@ -1,0 +1,50 @@
+
+1. Variante Der Typ (z.B. String) bekommt ein Flag, welcher mehrere Properties dann erstellt
+2. oder: es ist ein neuer typ mit einem Inner Type (das finde ich eigentlich besser) mit nur einem property
+
+Componenten / EntityFormPanel / Validator rufen alle pro Property:
+callGetter + callSetter auf
+
+also
+$entity->getTitle()
+$entity->setTitle('neuer titel');
+
+
+in dem Fall, dass wir die Properties alle mit _de, _en in den Table schreiben haben wir physikalische Properties als:
+
+$entity::$titleDe;
+$entity::$titleEn;
+
+dann müssten die Componenten (obwohl vll im Frontend anders dargestellt) als
+$entity->getTitleDe() aufgerufen werden.
+Der ComponentsBuilder würde dann trotzdem x componenten automatisch erstellen
+
+aber eigentlich haben wir hier ja ein virtuelles Property:
+
+sagen wri wir nennen es i18nTitle
+dann macht die eine Componente die es gibt:
+getI18nTitle()
+setI18nTitle() und wir könnten Array/LanguageCollection hinten
+
+sie wäre auch fürs validieren verantwortlich (was bei der ersten Variante nicht ginge)
+Vorteil:
+  - i18nTitle wollen wir im Meta set haben, weil das das interface ist welches das property lesen + setzen soll (beim validieren, component erstellen etc)
+die 18n component wäre dann ein wrapper um eine normale (inner type-component) die man dann mit anderen form-namen aufrufen könnte. Das würde auch das composite-component pattern nicht verletzten
+=> so muss es sein
+  - zwar ist es ein nachteil, dass wir die anderen Properties ertellen müssen. aber wir müssen die anderen Properties auch nur erstellen, weil dies zu unser Strategie gehört, das property i18n in der Datenbank zu speichern. Eine Quick&Dirty lösung wäre z.B. einfach @column(type="Array") zu nehmen.
+    somit fallen die virt. Properties hinterher (bei i18n-tabelle) oder bei qnd-lösung weg. Die i18n Component hätte dann aber immer noch das Interface der i18n
+    Properties (getI18nTitle -> Array)
+    
+  
+  
+der Nachteil:
+  wir müssen die virtuellen Properties erstellen, die dann auch nicht im MetaSet sind, die aber trotzdem von Doctrine gespeichert werden sollen
+  wie erstellen wir diese?
+    => Wenn der Type ein i18n Type ist fügen wir einfach weitere Felder hinzu (im EntityBuilder), die Logik für das i18n-Property (buildgetter buildsetter) müssen wir dann nicht hacken. Die setTitle($value, $lang) oder getTitle($lang)-Funktion können wir als API hinzufügen => API getrennt von Persistenz
+
+
+Outlook:
+wenn wir ein translatable oder sowas haben, dann wollen wir eh das property nicht im objekt haben, sondern in einer i18n-tabelle
+
+Fazit:
+Lösung 2

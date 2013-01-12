@@ -1,0 +1,32 @@
+<?php
+use Psc\TPL\TPL;
+use Psc\HTML\HTML;
+use Psc\CMS\Controller\AuthController;
+
+use Psc\UI\Group;
+?>
+    <div id="header" class="ui-widget-header">
+      <div class="spinner-container"></div>
+      <h1><?= $page->getTitle()->getContent() ?></h1>
+      <div class="profile-info">Profile: <?= HTML::esc($user->getIdentifier()) ?>| <a href="<?= $authController->getTodoURL(AuthController::TODO_LOGOUT) ?>">log Out</a></div>
+      <div class="clear"></div>
+    </div>
+  
+
+    <div id="body">
+      <?php
+        $pane = new \Psc\UI\SplitPane(
+          80,
+          $tabs->html(),
+          Group::create('Inhalte',$main->getRightAccordion())->setAttribute('id','drop-contents')
+        );
+      
+        $pane->init();
+        
+        print $pane->html()->setAttribute('id','content');
+      ?>
+    </div>
+  
+    <div id="footer" class="ui-widget-header">
+      <a href="mailto: p.scheit@ps-webforge.com">p.scheit@ps-webforge.com</a>
+    </div>

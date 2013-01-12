@@ -1,0 +1,39 @@
+{
+  "name": "pscheit/psc-cms",
+  "type": "library",
+  "description": "a content management system ontop of webforge.",
+  "keywords": ["cms", "framework"],
+  "homepage": "http://wiki.ps-webforge.com/psc-cms:start",
+  "license": "LGPL-3.0",
+  "authors": [
+    {"name": "Philipp Scheit", "email": "p.scheit@ps-webforge.com"}
+  ],
+  "autoload": {
+    "psr-0": {
+      "Psc": ["lib/"],
+      "Hitch": ["application/src/hitch/lib/"],
+      "PHPWord": ["application/src/PHPWord/"]
+    }
+  },
+  "require": {
+    "php": ">=5.3.2",
+    "ext-mbstring": "*",
+    "ext-curl": "*",
+    
+    "symfony/console": "2.1.*@stable",
+    "symfony/process": "2.1.*@stable",
+    "symfony/css-selector": "2.1.*@stable",
+    "symfony/http-foundation": "2.1.*@stable",
+    "doctrine/orm": "2.3.*@stable",
+    "imagine/Imagine": "0.3.*@stable",
+    "swiftmailer/swiftmailer": "4.1.*@stable",
+    "CodePlex/PHPExcel": "1.7.8@stable",
+    "webforge/common": "dev-master",
+    "webforge/webforge": "dev-master"
+  },
+  "require-dev": {
+    "webforge/testdata-repository": "dev-master",
+    "doctrine/data-fixtures": "1.0.*@alpha"
+  },
+  "minimum-stability": "dev"
+}

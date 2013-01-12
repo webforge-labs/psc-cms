@@ -1,0 +1,85 @@
+/* calendar */
+.psc-cms-ui-calendar {
+  width: 100%;
+}
+
+.psc-cms-ui-calendar div.month-header {
+  padding: 0.2em 0;
+  position: relative;
+}
+
+.psc-cms-ui-calendar div.month-header .prev,
+.psc-cms-ui-calendar div.month-header .next {
+  height: 1.8em;
+  position: absolute;
+  top: 2px;
+  width: 1.8em;
+}
+.psc-cms-ui-calendar div.month-header .prev span,
+.psc-cms-ui-calendar div.month-header .next span {
+    display: block;
+    left: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
+    position: absolute;
+    top: 50%;
+}
+.psc-cms-ui-calendar div.month-header .prev { left: 2px; }
+.psc-cms-ui-calendar div.month-header .next { right: 2px; }
+
+.psc-cms-ui-calendar div.month-header div.month-title { line-height: 1.8em;  margin: 0 2.3em; text-align: center; }
+
+.psc-cms-ui-calendar .calendar-container {
+  position: relative;
+  height: 800px;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.psc-cms-ui-calendar table.weekdays-table { table-layout: fixed;  width: 100%; }
+.psc-cms-ui-calendar table.weekdays-table tr th { text-align: left; padding: 1.2em 0.3em 0.2em 0.3em; font-weight: bold;}
+
+.psc-cms-ui-calendar div.month-rows-container {
+  width: 100%;
+  position: absolute; left: 0; bottom: 0; top: 44px; /* höhe der weekdays tabelle */
+  border-right: 1px solid #DDDDDD;
+  border-bottom: 1px solid #DDDDDD;
+}
+
+.psc-cms-ui-calendar div.month-row {
+  position: absolute; left:0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.psc-cms-ui-calendar table.bg-table {
+  height: 100%;
+  width: 100%;
+  position: absolute; top: 0; left:0;
+  table-layout: fixed;
+  border-collapse:collapse; /* ie7 fix */
+}
+.psc-cms-ui-calendar table.bg-table tr td { border-left: 1px solid #dddddd; }
+
+.psc-cms-ui-calendar table.grid-table {
+  position: relative;
+  table-layout: fixed;
+  width: 100%;
+}
+.psc-cms-ui-calendar table.grid-table td {  padding: 0 4px;  }
+.psc-cms-ui-calendar table.grid-table td.day {  border-top: 1px solid #dddddd; }
+
+/* events */
+.psc-cms-ui-calendar table.grid-table .event { padding: 0.1em 0.4em; cursor: pointer; }
+.psc-cms-ui-calendar table.grid-table .event-time  { padding-left: 0.4em; }
+
+.psc-cms-ui-calendar table.grid-table .event-begin,
+.psc-cms-ui-calendar table.grid-table .event-complete {
+  -moz-border-radius-topleft: 6px; -webkit-border-top-left-radius: 6px; -khtml-border-top-left-radius: 6px; border-top-left-radius: 6px;
+  -moz-border-radius-bottomleft: 6px; -webkit-border-bottom-left-radius: 6px; -khtml-border-bottom-left-radius: 6px; border-bottom-left-radius: 6px;
+}
+.psc-cms-ui-calendar table.grid-table .event-end,
+.psc-cms-ui-calendar table.grid-table .event-complete {
+  -moz-border-radius-topright: 6px; -webkit-border-top-right-radius: 6px; -khtml-border-top-right-radius: 6px; border-top-right-radius: 6px;
+  -moz-border-radius-bottomright: 6px; -webkit-border-bottom-right-radius: 6px; -khtml-border-bottom-right-radius: 6px; border-bottom-right-radius: 6px;
+}

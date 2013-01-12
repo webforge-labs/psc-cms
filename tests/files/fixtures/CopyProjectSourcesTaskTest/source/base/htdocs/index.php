@@ -1,0 +1,1 @@
+<html><body><!-- index.php bootstrapping --></body></html>

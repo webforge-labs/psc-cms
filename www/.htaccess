@@ -1,0 +1,20 @@
+Options FollowSymLinks
+
+RewriteEngine on
+RewriteBase /
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond  %{REQUEST_URI}    ^/(invoice/.*)
+RewriteRule  . invoice/index.php [L]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond  %{REQUEST_URI}    ^/(cms|entities)
+RewriteRule  .  /api.php [L]
+
+# siehe auch tests/Psc/Net/HTTP/RequestAcceptanceTest
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond  %{REQUEST_URI}    ^/(request-acceptance)
+RewriteRule . /request.helper.php [L]

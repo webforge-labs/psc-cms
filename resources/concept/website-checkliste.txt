@@ -1,0 +1,10 @@
+ * Inhaltsseiten, die man immer vergisst
+  - Impressum?
+  - Disclaimer
+  - 404 Seite
+  
+* fav-Icon?
+
+* Seiten-Titel
+
+* Footer Navigation direkt einplanen

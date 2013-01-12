@@ -1,0 +1,81 @@
+*:focus { outline: none; }
+
+/* FONTS */
+i { font-style: italic; }
+b { font-weight: bold; }
+strong { font-weight: bold; }
+
+small, .small-font { font-size: 80%; }
+small.hint { font-style: italic; }
+
+
+/* END FONTS */
+
+.clear {
+  clear: both;
+}
+
+html,body {
+  height: 100%;
+}
+
+body {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+/* Links */
+a:hover {
+  text-decoration: none;
+}
+
+/* END Links */
+
+/* Headlines */
+h1 {
+  font-size: 25px;
+  line-height: 28px;
+  margin-bottom: 14px;
+  margin-top: 8px;
+}
+
+h2 {
+  font-size: 20px;
+  line-height: 24px;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+
+label, input { display:block; }
+input.text { margin-bottom:12px; width: 355px; padding: .4em; margin-right: 0.8em; }
+fieldset { padding:0; border:0; margin-top:15px; }
+h1 { font-size: 1.2em; margin: .6em 0; }
+.ui-dialog .ui-state-error { padding: .3em; }
+
+#dialog-form { overflow: hidden; }
+#dialog-form .ui-dialog-buttonpane .permanent { float: left; }
+#dialog-form .ui-dialog-buttonpane .permanent input { display: inline-block; margin-top: 15px; }
+.dialog-wrapper { text-align: center; }
+.dialog-wrapper .ui-dialog {
+  position: relative;
+  top: 200px;
+  display: block;
+  text-align: left;
+  box-shadow: 0 4px 18px #C8C8C8;
+  margin-left: auto;
+  margin-right: auto;
+  outline: 0px none;
+  height: auto;
+  width: 400px;
+}
+
+#dialog-form div.error { width: 368px; }
+#dialog-form div.error div.ui-state-error p { margin: 8px 0.4em; line-height: 1.3em; }
+#dialog-form div.error div.ui-state-error p span { float: left; margin-right: .3em;  }
+#dialog-form div.error-inactive div.ui-state-error { display:none; }
+#dialog-form div.error-active div.ui-state-error { display:block; }

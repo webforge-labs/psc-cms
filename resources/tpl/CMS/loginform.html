@@ -1,0 +1,71 @@
+<?php
+
+namespace Psc\TPL;
+
+use Psc\Form\HTML as fHTML,
+    Psc\HTML\HTML,
+    Psc\HTML\Tag AS HTMLTag
+;
+
+$html->getCSSManager()
+      ->register('loginform.css', 'loginform', array('default'))->enqueue('loginform')
+      ->enqueue('jquery-ui')
+      ;
+      
+$html->setMeta('robots','noindex,nofollow');
+
+$i18n = array();
+$i18n['en']['email'] = 'Email';
+$i18n['en']['password'] = 'Password';
+$i18n['en']['remember_me'] = 'Remember Me';
+$i18n['en']['login'] = 'Login';
+$i18n['en']['wrong_credentials'] = 'You supplied the wrong credentials.';
+$i18n['de']['error'] = 'Error';
+
+$i18n['de']['email'] = 'E-Mail-Adresse';
+$i18n['de']['password'] = 'Passwort';
+$i18n['de']['remember_me'] = 'Erinnere dich an mich';
+$i18n['de']['login'] = 'Login';
+$i18n['de']['wrong_credentials'] = 'Die eingegebene E-Mail-Adresse oder das Passwort ist falsch.';
+$i18n['de']['error'] = 'Fehler';
+
+
+$tpl->setI18n($i18n);
+?>
+<div class="dialog-wrapper">
+<div class="ui-dialog ui-widget ui-widget-content ui-corner-all  ui-draggable ui-resizable" >
+  <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
+    <span class="ui-dialog-title" id="ui-dialog-title-dialog-form">Login Required</span>
+    <!--<a href="#" class="ui-dialog-titlebar-close ui-corner-all"><span class="ui-icon ui-icon-closethick">close</span></a>-->
+  </div>
+  <div id="dialog-form" class="ui-dialog-content ui-widget-content">
+    <div class="ui-widget error <?= $errors->hasErrors() ? 'error-active' : 'error-inactive' ?>">
+	  <div class="ui-state-error ui-corner-all"> 
+		<p><span class="ui-icon ui-icon-alert"></span><strong><?= $tpl->_e('error') ?>: <?= $tpl->_e('wrong_credentials') ?></strong></p>
+	  </div>
+	</div>
+	<form method="post" action="<?= $formAction ?>">
+	<fieldset>
+		<label for="email"><?php $tpl->_e('email') ?></label>
+		<input tabindex="1" type="text" name="ident" id="email" value="<?= $ident ?>" class="text ui-widget-content ui-corner-all" />
+		<label for="password"><?php $tpl->_e('password'); ?></label>
+		<input tabindex="2" type="password" name="password" id="password" value="" class="text ui-widget-content ui-corner-all" />
+	</fieldset>
+    <? //fHTML::hidden('redirect',$redirect)
+    ?>
+	
+    
+    <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+      <div class="permanent">
+        <label><input type="checkbox" <?php print $permanent ? 'checked="checked" ' : NULL?>tabindex="3" value="true" id="rememberme" name="permanent" /><?php $tpl->_e('remember_me'); ?></label>
+      </div>
+      <div class="ui-dialog-buttonset">
+        <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"><span class="ui-button-text"><?php $tpl->_e('login'); ?></span></button>
+        
+        
+      </div>
+    </div>
+    </form>
+  </div>
+</div>
+</div>

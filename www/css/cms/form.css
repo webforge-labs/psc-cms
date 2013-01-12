@@ -1,0 +1,34 @@
+.psc-cms-ui-form label { display: block; }
+.psc-cms-ui-form label.checkbox-label { display: inline-block; }
+.psc-cms-ui-form div.ui-buttonset label { display: inline-block; }
+
+.psc-cms-ui-form label.psc-cms-ui-label { margin-bottom: 2px; }
+.psc-cms-ui-form input.text { width: 90%; }
+.psc-cms-ui-form div.component-wrapper { margin-bottom: 20px; }
+
+.psc-cms-ui-form-panel div.input-set-wrapper { margin-bottom: 20px; }
+.psc-cms-ui-group div.input-set-wrapper { margin-bottom: 20px; }
+
+
+/* UIGroup */
+fieldset.psc-cms-ui-group legend { background-color: #ffffff; }
+fieldset.psc-cms-ui-group { padding-left: 1em; margin-bottom: 10px; min-height: 35px; }
+fieldset.psc-cms-ui-group legend.collapsible {cursor: pointer; }
+fieldset.psc-cms-ui-group > .content { padding: 1em 1em 1em 0; }
+
+fieldset.psc-cms-ui-group.containing-block { padding-left: 0em }
+fieldset.psc-cms-ui-group.containing-block legend { margin-left: 0.5em }
+fieldset.psc-cms-ui-group.containing-block .content { padding: 0.3em 0 0 0; }
+
+fieldset.psc-cms-ui-group fieldset.psc-cms-ui-group { padding-left: .5em; border-style: dotted; }
+fieldset.psc-cms-ui-group .content fieldset.psc-cms-ui-group .content { padding: .5em .5em .5em 0; }
+
+/* UIGroup für Code Editor (Ace)
+  padding des contents unten und rechts wegmachen, damit die scrollers von ace drankleben
+*/
+fieldset.psc-cms-ui-group .content fieldset.psc-cms-ui-ace-group div.content {
+  padding-right: 0px;  padding-bottom: 0px; padding-top: .7em
+}
+
+/* UIAccordion */
+.psc-cms-ui-accordion { margin-bottom: 10px; }
