@@ -32,15 +32,6 @@ class PSC {
   const ENV_HOST = 'env_host';
 
   /**
-   * Geladene Module
-   * 
-   * psc ist immer geladen
-   * @TODO move into project!
-   * @var array
-   */
-  public static $modules = array('psc');
-  
-  /**
    * @var Psc\Environment
    */
   protected static $environment = NULL;
@@ -97,49 +88,6 @@ class PSC {
    */
   public static $eventManager;
   
-  /**
-   * @TODO move into Project!
-   */
-  public static function require_module($moduleName) {
-    
-    if (mb_strpos($moduleName,'PEAR::') === 0) {
-      if (self::inProduction()) {
-        require_once mb_substr($moduleName,mb_strlen('PEAR::')).DIRECTORY_SEPARATOR.'Autoload.php';
-      } else {
-          // fake
-        self::$modules[] = strtolower($moduleName);
-        return;
-      }
-    } else {
-      if (self::inProduction())
-        throw new \Psc\Exception('deprecated Call');
-        
-      $moduleBootstrap = $moduleName.DIRECTORY_SEPARATOR.'bootstrap.php';
-
-      require_once $moduleBootstrap;
-    }
-    
-    self::$modules[] = strtolower($moduleName);
-  }
-
-  
-  /**
-   * @TODO move into Project!
-   */
-  public static function getLoadedModules() {
-    if (self::inProduction()) throw new Exception('deprecated call');
-    return self::$modules;
-  }
-  
-  /**
-   * @TODO move into Project!
-   */
-  public static function isLoadedModule($module) {
-    if (self::inProduction()) throw new Exception('deprecated call');
-    return in_array(mb_strtolower($module),self::$modules);
-  }
-  
-   
   /**
    * @return Psc\Environment
    */
@@ -513,7 +461,7 @@ class PSC {
    * wenn schon exit dann wenigstens diese Funktion nehmen
    */
   public static function terminate() {
-    if (!self::inProduction()) {
+    if (!self::inProduction() && !self::inTests()) {
       exit;
     }
   }
