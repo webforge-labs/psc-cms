@@ -460,9 +460,9 @@ class PSC {
    *
    * wenn schon exit dann wenigstens diese Funktion nehmen
    */
-  public static function terminate() {
+  public static function terminate($returnCode = 1) {
     if (!self::inProduction() && !self::inTests()) {
-      exit;
+      exit($returnCode);
     }
   }
   
