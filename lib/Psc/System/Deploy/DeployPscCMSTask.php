@@ -5,6 +5,7 @@ namespace Psc\System\Deploy;
 use Webforge\Common\System\Dir;
 use Psc\CMS\Project;
 use Psc\Code\Build\LibraryBuilder;
+use Webforge\Framework\Container AS WebforgeContainer;
 
 class DeployPscCMSTask extends \Psc\SimpleObject implements Task {
 
@@ -34,7 +35,7 @@ PHP_CLI;
   protected $psc;
   
   public function __construct(WebforgeContainer $webforgeContainer, Project $targetProject, LibraryBuilder $libraryBuilder = NULL) {
-    $packageRegistry = $webforgeContainer->getRegistry();
+    $packageRegistry = $webforgeContainer->getPackageRegistry();
     $bridge = $webforgeContainer->getCMSBridge();
     
     $this->psc = $bridge->createProjectFromPackage($packageRegistry->findByIdentifier('pscheit/psc-cms'));
