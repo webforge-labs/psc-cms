@@ -46,7 +46,7 @@ class ProjectMainTest extends \Psc\Code\Test\Base {
   
   
   public function testUserManagerCall() {
-    if (PSC::isTravis()) {
+    if (\Psc\PSC::isTravis()) {
       $this->markTestSkipped('kein lokaler webserver am start');
     }
     $this->main->init($this->request);
