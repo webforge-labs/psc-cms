@@ -52,7 +52,7 @@ PHP_CLI;
   
   public function run() {
     $this->targetProject->getBin()->create();
-    $this->buildPscCMS();
+    //$this->buildPscCMS();
     $this->buildCLI();
     $this->jsHintPscCMSJS();
     $this->copyPscCMSJSAndPscCSS();

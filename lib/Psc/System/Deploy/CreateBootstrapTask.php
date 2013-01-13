@@ -56,21 +56,22 @@ namespace Psc;
 use Psc\Boot\BootLoader;
 
 require 'package.boot.php';
-$bootLoader = BootLoader::createRelative('../bin/');
+$bootLoader = new BootLoader(__DIR__);
 $bootLoader->setHostConfigFile(getenv('PSC_CMS'));
-$bootLoader->init();
+$bootLoader->init(BootLoader::COMPOSER);
 
 // hack host-config
-$bootLoader->getHostConfig()->set(array('projects', '%projectName%', 'root'),
+$bootLoader->getHostConfig()->set(
+  array('projects', '%projectName%', 'root'),
   $bootLoader->getPath('../../', BootLoader::RELATIVE | BootLoader::VALIDATE)
 );
 
-%composer%%phars%
+PSC::setProjectsFactory($bootLoader->getCMSContainer()->webforge->getCMSBridge()->getProjectsFactory());
 
-PSC::getProjectsFactory()
-  ->getProject('%projectName%', %projectMode%, %staging%)
-    ->setLibsPath($bootLoader->getPharBinaries())
-    ->bootstrap()
+%phars%
+
+$project = PSC::setProject(PSC::getProjectsFactory()->getProject('%projectName%', '%projectMode%', %staging%))
+  ->bootstrap()
 %modules%
   ->getConfiguration()->set(array('url','base'), '%baseUrl%')
 ;
