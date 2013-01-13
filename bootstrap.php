@@ -16,6 +16,7 @@ if (!file_exists($vendor.'autoload.php')) {
 require $vendor.'autoload.php';
 
 $container = new Container(__DIR__);
+$container->init();
   
 PSC::setProject($container->getProject())->bootstrap()
   ->getModule('Doctrine')->bootstrap()->getProject()

@@ -32,10 +32,12 @@ class RandomGeneratorTest extends \Psc\Code\Test\Base {
    */
   public function testRandomDataGeneration_String() {
     if ($this->verbose) print "randomData: String";
+
     for ($i = 1; $i<=$this->it; $i++) {
       $data = $this->getRandomData('String');
       $this->assertInternalType('string',$data);
-      $this->assertGreaterThan(0,mb_strlen($data));
+      $this->assertGreaterThan(0, mb_strlen($data));
+
       if ($this->verbose) print $data."\n";
     }
   }
@@ -43,11 +45,13 @@ class RandomGeneratorTest extends \Psc\Code\Test\Base {
   /**
    * @group string
    */
-  public function testGenerateString_length() {
+  public function testGeneratedStringHasGivenStringLength() {
     $generator = $this->createRandomGenerator();
+    
     for ($i = 1; $i<= 20; $i++) {
       $this->assertEquals($i, mb_strlen($generator->generateString($i)));
     }
+    
   }
 
   /**

@@ -16,8 +16,11 @@ class Container {
   
   public function __construct($rootDirectory) {
     $this->webforge = new WebforgeContainer();
-    
     $this->initRootDirectory($rootDirectory);
+  }
+  
+  public function init() {
+    ini_set('mbstring.internal_encoding', 'UTF-8');
   }
   
   protected function initRootDirectory($rootDirectory) {

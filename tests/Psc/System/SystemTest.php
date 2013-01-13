@@ -9,6 +9,10 @@ use \Psc\System\System;
  */
 class SystemTest extends \Psc\Code\Test\Base {
   
+  public function setUp() {
+    $this->notAvaibleCmd = 'banananenbaumdiesenbefehlkannesjawohlaufkeinenfallaufirgendeinemsystemgeben';
+  }
+  
   public function testWhich() {
     
     /* na wie das mal hier portabel sein soll?
@@ -41,11 +45,11 @@ class SystemTest extends \Psc\Code\Test\Base {
    * @expectedException \Psc\Exception
    */
   public function testWhichException() {
-    System::which('banananenbaumdiesenbefehlkannesjawohlaufkeinenfallaufirgendeinemsystemgeben',System::REQUIRED);
+    System::which($this->notAvaibleCmd,System::REQUIRED);
   }
 
   public function testWhichNoException() {
-    $this->assertNull(System::which('banananenbaumdiesenbefehlkannesjawohlaufkeinenfallaufirgendeinemsystemgeben'));
+    $this->assertEquals($this->notAvaibleCmd, System::which($this->notAvaibleCmd));
   }
 }
 ?>
