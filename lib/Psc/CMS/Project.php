@@ -201,8 +201,13 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber {
         if ($cfg->exists()) // kein bock mehr auf ständiges requiren und fehlermeldungen. wenn nicht da, dann nicht da
           require $cfg;
       }
-      if (!isset($GLOBALS['conf'])) $GLOBALS['conf'] = array();
-      $projectConfig = new Configuration($GLOBALS['conf']);
+      if (is_array($conf)) {
+        $projectConfig = new Configuration($conf);
+      } elseif (is_array($GLOBALS['conf'])) {
+        $projectConfig = new Configuration($GLOBALS['conf']);
+      } else {
+        $projectConfig = new Configuration(array());
+      }
       
       $GLOBALS['conf'] = $roll;
       
