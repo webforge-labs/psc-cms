@@ -467,7 +467,7 @@ class PSC {
   }
   
   public static function isTravis() {
-    return getenv('TRAVIS_CI') === 'true';
+    return getenv('TRAVIS') === 'true';
   }
 }
 ?>
