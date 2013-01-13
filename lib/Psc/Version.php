@@ -24,8 +24,7 @@ class Version {
    */
   public function is($operator,$version) {
     return version_compare($this->release, $version, $operator);
-  }
-  
+  }  
   
   /**
    * Scannt ein Verzeichnis nach einem Dateipattern und
@@ -75,8 +74,6 @@ class Version {
     }
     
     return array($maxFile,$maxVersion);
-  }
-  
+  } 
 }
-
 ?>

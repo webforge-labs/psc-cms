@@ -7,16 +7,21 @@ namespace Psc\Graph;
  */
 class DependencyVerticeTest extends \Psc\Code\Test\Base {
   
-  protected $dependencyVertice;
+  protected $vertice;
   
   public function setUp() {
     $this->chainClass = 'Psc\Graph\DependencyVertice';
     parent::setUp();
-    //$this->dependencyVertice = new DependencyVertice();
+    $this->vertice = new DependencyVertice('defaultVerticeLabel');
   }
   
-  public function testAcceptance() {
-    $this->markTestIncomplete('Stub vom Test-Creater');
+  public function testIsVisitedIsFalsePerDefault() {
+    $this->assertFalse($this->vertice->isVisited());
+  }
+  
+  public function testIsVisitedReturnsVisited() {    
+    $this->vertice->setVisited();
+    $this->assertTrue($this->vertice->isVisited());
   }
 }
 ?>

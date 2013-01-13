@@ -12,11 +12,11 @@ class ResponseReaderTest extends \Psc\Code\Test\Base {
   public function setUp() {
     $this->chainClass = 'Psc\URL\ResponseReader';
     parent::setUp();
-    //$this->responseReader = new ResponseReader();
+    $this->responseReader = new ResponseReader();
   }
   
   public function testAcceptance() {
-    $this->markTestIncomplete('Stub vom Test-Creater');
+    $this->markTestIncomplete('TODO');
   }
 }
 ?>

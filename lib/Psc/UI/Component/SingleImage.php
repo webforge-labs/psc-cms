@@ -8,6 +8,7 @@ use Psc\UI\Group;
 use Psc\Doctrine\DCPackage;
 use Psc\CMS\EntityMeta;
 use Psc\Form\SelectComboBoxValidatorRule;
+use Psc\Image\Image;
 
 class SingleImage extends JavaScriptBase implements JavaScriptComponent {
 
@@ -70,7 +71,7 @@ class SingleImage extends JavaScriptBase implements JavaScriptComponent {
   }
   
   protected function getUrl() {
-    if (($image = $this->getFormValue()) instanceof \Psc\Image\Image) {
+    if (($image = $this->getFormValue()) instanceof Image) {
       $this->imageManager->attach($image);
       return $image->getUrl();
     }
@@ -78,7 +79,7 @@ class SingleImage extends JavaScriptBase implements JavaScriptComponent {
   }
 
   protected function getId() {
-    return ($image = $this->getFormValue()) instanceof \Psc\Image\Image ? $image->getIdentifier() : NULL;
+    return ($image = $this->getFormValue()) instanceof Image ? $image->getIdentifier() : NULL;
   }
   
   /**

@@ -2,9 +2,6 @@
 
 namespace Psc\Code\Test;
 
-/**
- * @see EntityAsserterTest für ein Beispiel
- */
 class ClosureTestCase extends \Psc\Code\Test\Base {
 
   protected $closure;

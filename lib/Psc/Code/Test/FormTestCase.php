@@ -87,7 +87,7 @@ abstract class FormTestCase extends \Psc\Doctrine\DatabaseTest {
    * Alle Assertions für das Form Entity
    * 
    */
-  abstract protected function assertFormEntity($actualEntity, \Psc\Code\Test\FormTesterData $data, \Psc\Code\Test\EntityAsserter $assert);
+  abstract protected function assertFormEntity($actualEntity, \Psc\Code\Test\FormTesterData $data);
   
 
   /* INTERFACE */
@@ -128,8 +128,7 @@ abstract class FormTestCase extends \Psc\Doctrine\DatabaseTest {
     // assert
     $this->formTester->assert($hydrator->getData()); // ka was der hier machen kann? dynamisch?
     
-    $asserter = new EntityAsserter($entityObject, $this);
-    $this->assertFormEntity($entityObject, $hydrator->getData(), $asserter);
+    $this->assertFormEntity($entityObject, $hydrator->getData());
   }
   
   /**

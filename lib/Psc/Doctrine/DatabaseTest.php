@@ -4,17 +4,12 @@ namespace Psc\Doctrine;
 
 use Psc\PSC;
 use Psc\Doctrine\Helper as DoctrineHelper;
-use Psc\Code\Test\EntityAsserter;
 
 /**
  * @backupStaticAttributes disabled
  */
 class DatabaseTest extends \Psc\Code\Test\NativeDatabaseTest {
 
-  const TYPE_SAME = EntityAsserter::TYPE_SAME;
-  const TYPE_EQUALS = EntityAsserter::TYPE_EQUALS;
-  const TYPE_COLLECTION = EntityAsserter::TYPE_COLLECTION;
-  
   /**
    * @var string
    */
@@ -106,26 +101,6 @@ class DatabaseTest extends \Psc\Code\Test\NativeDatabaseTest {
   }
   
   /* HELPERS */
-  /**
-   * Gibt den Asserter für ein Entity zurück
-   *
-   */
-  public function getEntityAsserter(\Psc\Doctrine\Object $entity) {
-    return new EntityAsserter($entity, $this);
-  }
-  
-  /**
-   * Lädt ein Entity aus dem Manager und gibt den passenden Asserter zurück
-   *
-   * 
-   * @return EntityAsserter
-   */
-  public function getAsserterFor($entityName, $identifier) {
-    $asserter = new EntityAsserter($this->hydrate($entityName, $identifier), $this);
-    
-    return $asserter;
-  }
-  
   
   /**
    * @return int

@@ -16,7 +16,7 @@ class ScraperTest extends \Psc\Code\Test\Base {
   }
   
   public function testAcceptance() {
-    $this->markTestIncomplete('Stub vom Test-Creater');
+    $this->markTestIncomplete('TODO: dev for serienloader');
   }
 }
 ?>

@@ -16,7 +16,7 @@ class SingleImageTest extends \Psc\Code\Test\Base {
   }
   
   public function testAcceptance() {
-    $this->markTestIncomplete('Stub vom Test-Creater');
+    $this->markTestIncomplete('TODO better components tests');
   }
 }
 ?>

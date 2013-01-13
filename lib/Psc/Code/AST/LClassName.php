@@ -16,6 +16,9 @@ class LClassName {
     $this->setValue(new LValue($className, new LType('String')));
   }
   
+  /**
+   * @return string
+   */
   public function toString() {
     return $this->value->unwrap();
   }

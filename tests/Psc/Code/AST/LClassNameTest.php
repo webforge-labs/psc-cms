@@ -12,11 +12,11 @@ class LClassNameTest extends \Psc\Code\Test\Base {
   public function setUp() {
     $this->chainClass = 'Psc\Code\AST\LClassName';
     parent::setUp();
-    //$this->lClassName = new LClassName();
+    $this->lClassName = new LClassName('Psc\Code\AST\Something');
   }
   
-  public function testAcceptance() {
-    $this->markTestIncomplete('Stub vom Test-Creater');
+  public function testToString() {
+    $this->assertEquals('Psc\Code\AST\Something', $this->lClassName->toString());
   }
 }
 ?>

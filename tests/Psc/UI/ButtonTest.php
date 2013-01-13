@@ -28,24 +28,38 @@ class ButtonTest extends \Psc\Code\Test\HTMLTestCase {
         ->count(1)
         ->hasAttribute('data-widget','button')
         ->hasAttribute('data-widget-options', '{"icons":{"primary":"ui-icon-gear"}}'); // @TODO contribute matchesJson() to PHPUnit
-    
-    //$this->assertContains('.button({', (string) $this->html);
   }
   
   public function testSetHintIsAppendedToButtonWhenNotinit() {
-    $this->markTestIncomplete('@tODO');
+    $this->button->setHint($desc = 'description for button');
+    
+    $this->html = $this->button->html();
+    
+    $this->test->css('.hint')->count(1)->containsText($desc);
   }
 
   public function testSetHintIsAppendedToButtonWhenAlreadyInit() {
-    $this->markTestIncomplete('@TODO');
+    $this->button->html();
+    $this->button->setHint($desc = 'description for button');
+    
+    $this->html = $this->button->html();
+    $this->test->css('.hint')->count(1)->containsText($desc);
   }
   
   public function testDisabledWithMessageParameterSetsHint() {
-    $this->markTestIncomplete('@TODO');
+    $this->button->disable($reason = 'this is the reason why the button is disabled');
+    
+    $this->html = $this->button->html();
+    $this->test->css('.hint')->count(1)->containsText($reason);
   }
   
   public function testLabelSynchronizesAfterHTMLIsCalled() {
-    $this->markTestIncomplete('@TODO');
+    
+    $this->button->html();
+    $this->button->setLabel($label = 'changed label after html');
+    
+    $this->html = $this->button->html();
+    $this->test->css('button.psc-cms-ui-button')->count(1)->containsText($label);
   }
 }
 ?>
