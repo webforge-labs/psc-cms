@@ -34,7 +34,7 @@ class ParserValuesTest extends ParserBaseTest {
     $variableDefinition = $variableDefinitions[0];
     $this->assertInstanceOfL('VariableDefinition', $variableDefinition);
     
-    $this->assertEquals($expectedValue, $variableDefinition->getValue()->unwrap());
+    $this->assertEquals($expectedValue, $variableDefinition->getInitializer()->unwrap());
   }
 
   public static function provideBaseValues() {

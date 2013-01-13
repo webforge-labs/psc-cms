@@ -15,8 +15,8 @@ $conf['db']['tests'] = $conf['db']['default'];
 $conf['db']['tests']['database'] = 'psc-cms_tests';
 
 if (\Psc\PSC::isTravis()) {
-  $conf['db']['tests']['user'] = 'root';
-  $conf['db']['tests']['password'] = '';
+  $conf['db']['default']['user'] = $conf['db']['tests']['user'] = 'root';
+  $conf['db']['default']['password'] = $conf['db']['tests']['password'] = '';
 }
 
 $conf['doctrine']['entities']['names'] = array();

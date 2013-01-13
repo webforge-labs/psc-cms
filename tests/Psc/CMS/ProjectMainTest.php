@@ -46,7 +46,7 @@ class ProjectMainTest extends \Psc\Code\Test\Base {
   
   
   public function testUserManagerCall() {
-    if (getenv('PEGASUS_CI')) {
+    if (PSC::isTravis()) {
       $this->markTestSkipped('kein lokaler webserver am start');
     }
     $this->main->init($this->request);
