@@ -12,7 +12,7 @@ before_script:
   - vendor/bin/webforge register-package .
   - mysql -e 'create database IF NOT EXISTS `psc-cms_tests`;'
   - mysql -e 'create database IF NOT EXISTS `psc-cms`;'
-  - php -f tests/update.schema.php
+  - php -f tests/inc.update-schema.php
 
 script: phpunit
 
