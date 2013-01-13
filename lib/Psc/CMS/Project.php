@@ -202,7 +202,7 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber {
           require $cfg;
       }
       if (is_array($conf)) {
-        $projectConfig = new Configuration($GLOBALS['conf']);
+        $projectConfig = new Configuration($conf);
       } elseif (is_array($GLOBALS['conf'])) {
         $projectConfig = new Configuration($GLOBALS['conf']);
       } else {
