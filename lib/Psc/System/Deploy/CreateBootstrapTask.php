@@ -60,17 +60,19 @@ $bootLoader = new BootLoader(__DIR__);
 $bootLoader->setHostConfigFile(getenv('PSC_CMS'));
 $bootLoader->init(BootLoader::COMPOSER);
 
+$bridge = $bootLoader->getCMSContainer()->webforge->getCMSBridge();
+
 // hack host-config
-$bootLoader->getHostConfig()->set(
+$bridge->getHostConfig()->set(
   array('projects', '%projectName%', 'root'),
   $bootLoader->getPath('../../', BootLoader::RELATIVE | BootLoader::VALIDATE)
 );
 
-PSC::setProjectsFactory($bootLoader->getCMSContainer()->webforge->getCMSBridge()->getProjectsFactory());
+PSC::setProjectsFactory($bridge->getProjectsFactory());
 
 %phars%
 
-$project = PSC::setProject(PSC::getProjectsFactory()->getProject('%projectName%', '%projectMode%', %staging%))
+$project = PSC::setProject(PSC::getProjectsFactory()->getProject('%projectName%', %projectMode%, %staging%))
   ->bootstrap()
 %modules%
   ->getConfiguration()->set(array('url','base'), '%baseUrl%')
