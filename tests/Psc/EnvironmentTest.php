@@ -19,7 +19,6 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase {
     $this->assertAndTrySetINI('mbstring.internal_encoding', 'UTF-8');
     $dir = new \Webforge\Common\System\Dir(getenv('PSC_CMS'));
     $this->assertTrue($dir->exists(), $dir.' existiert nicht');
-    $this->assertFileExists((string) ($file = $dir->getFile('bootstrap.php')));
   }
   
   protected function assertINI($iniName, $iniValue) {

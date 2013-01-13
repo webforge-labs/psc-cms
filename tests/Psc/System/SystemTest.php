@@ -45,11 +45,7 @@ class SystemTest extends \Psc\Code\Test\Base {
   }
 
   public function testWhichNoException() {
-    try {
-      System::which('banananenbaumdiesenbefehlkannesjawohlaufkeinenfallaufirgendeinemsystemgeben');
-    } catch (PscException $e) {
-       $this->fail('Hier darf keine Exception geworfen werden');
-    }
-  }  
+    $this->assertNull(System::which('banananenbaumdiesenbefehlkannesjawohlaufkeinenfallaufirgendeinemsystemgeben'));
+  }
 }
 ?>
