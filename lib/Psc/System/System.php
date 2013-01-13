@@ -59,7 +59,7 @@ class System extends \Psc\Object {
       
       try {
         return $locate($cmd);
-      } catch (\Webforge\Common\System\Exception $e) {
+      } catch (\Psc\System\Exception $e) {
       }
     }
     
