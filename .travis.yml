@@ -10,6 +10,9 @@ before_script:
   - composer self-update
   - COMPOSER_ROOT_VERSION=dev-master composer install --dev
   - vendor/bin/webforge register-package .
+  - mysql -e 'create database IF NOT EXISTS `psc-cms_tests`;'
+  - mysql -e 'create database IF NOT EXISTS `psc-cms`;'
+  - php -f tests/update.schema.php
 
 script: phpunit
 
