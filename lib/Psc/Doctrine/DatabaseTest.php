@@ -6,6 +6,8 @@ use Psc\PSC;
 use Psc\Doctrine\Helper as DoctrineHelper;
 
 /**
+ * Use DatabaseTestCase instead of this class
+ *
  * @backupStaticAttributes disabled
  */
 class DatabaseTest extends \Psc\Code\Test\NativeDatabaseTest {

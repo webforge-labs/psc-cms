@@ -73,9 +73,9 @@ class ParserStatementsTest extends ParserBaseTest {
                           $actual->getVariable()->getType()->unwrap(),
                           'type von '.$actual->getVariable()->getName()
                        );
-    $this->assertEquals($expected->getValue()->unwrap(),
-                          $actual->getValue()->unwrap(),
-                          'value von '.$actual->getVariable()->getName()
+    $this->assertEquals($expected->getInitializer()->unwrap(),
+                          $actual->getInitializer()->unwrap(),
+                          'initializer von '.$actual->getVariable()->getName()
                        );
   }
 
