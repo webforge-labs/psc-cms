@@ -488,12 +488,12 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber {
         return $this->production = TRUE;
       }
       
-      if (Config::get('developer') === TRUE) {
+      if ($this->getConfiguration()->get('developer') === TRUE) {
         return $this->production = TRUE;
       }
       
       if (PSC::isTravis()) {
-        return TRUE;
+        return $this->production = TRUE;
       }
     }
 

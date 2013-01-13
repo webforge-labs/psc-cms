@@ -12,7 +12,7 @@ class BaseEntityTest extends \Psc\Code\Test\Base {
   public function testToString_isExceptionSafe() {
     $base = $this->getMock('Psc\Doctrine\BaseEntity', array('getEntityLabel'));
     $base->expects($this->once())->method('getEntityLabel')
-         ->will($this->throwException(new \Psc\Code\NotImplementedException('an error')));
+         ->will($this->throwException(new \Psc\Exception('an error')));
     
     $this->expectOutputRegex('/an error/');
     $this->assertEmpty((string) $base);
