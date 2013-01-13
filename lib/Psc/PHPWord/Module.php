@@ -6,9 +6,7 @@ class Module extends \Psc\CMS\Module {
   
   public function bootstrap($bootFlags = 0x000000) {
     if (!defined('PHPWORD_BASE_PATH')) {
-      require_once $this->getPharFile();
-    
-      define('PHPWORD_BASE_PATH',(string) $this->getPharResource());
+      define('PHPWORD_BASE_PATH',(string) $this->getClassPath());
 
       $this->dispatchBootstrapped();
     }
