@@ -40,6 +40,13 @@ class Project extends \Psc\CMS\Project implements \Psc\Code\Event\Subscriber {
   }
   
   /**
+   * @return Dir
+   */
+  public function getVendor() {
+    return $this->getRoot()->sub('vendor/');
+  }
+  
+  /**
    *
    * ich kann mich einfach nicht enscheiden ob das hier die aufgabe vom doctrine modul ist oder von mir
    */

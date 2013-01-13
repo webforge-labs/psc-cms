@@ -220,6 +220,13 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber {
   }
 
   /**
+   * @return Dir
+   */
+  public function getVendor() {
+    return $this->getSrc()->sub('vendor/');
+  }
+
+  /**
    *
    */
   public function runTools() {  

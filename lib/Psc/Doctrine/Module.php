@@ -221,7 +221,10 @@ class Module extends \Psc\CMS\Module implements \Psc\Code\Event\Dispatcher {
     /* Annotations */
     // Register the ORM Annotations in the AnnotationRegistry
     // new: we always do treat doctrine loaded with composer, now
-    AnnotationRegistry::registerFile($this->project->getRoot()->getFile('vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/DoctrineAnnotations.php'));
+    AnnotationRegistry::registerFile(
+      $this->project->getVendor()
+        ->getFile('doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/DoctrineAnnotations.php')
+    );
     //@TODO psc annotations laden AnnotationRegistry::registerAutoloadNamespace('Psc\Code\Compile\Annotations\\');
 
     if (!isset($this->driverChain))

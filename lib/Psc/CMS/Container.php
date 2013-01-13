@@ -21,6 +21,7 @@ class Container {
   
   public function init() {
     ini_set('mbstring.internal_encoding', 'UTF-8');
+    $GLOBALS['env']['root'] = $this->rootDirectory;
   }
   
   protected function initRootDirectory($rootDirectory) {
