@@ -464,10 +464,10 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
     /* Frontend CSS Files */
     $cssManager->register('reset.css');
     $cssManager->register('colors.css');
-    $cssManager->register('jqwidgets/jqx.base.css', 'jqx');
-    $cssManager->register('jqwidgets/jqx.ui-'.$uiTheme.'.css', 'jqx-theme', array('jqx'));
     $cssManager->register('default.css','default',array('reset','colors'));
-    $cssManager->register('jquery-ui/'.$uiTheme.'/jquery-ui-'.$jqUIVersion.'.custom.css', 'jquery-ui');
+    $cssManager->register('/psc-cms-js/vendor/jqwidgets/styles/jqx.base.css', 'jqx');
+    $cssManager->register('/psc-cms-js/vendor/jqwidgets/styles/jqx.ui-'.$uiTheme.'.css', 'jqx-theme', array('jqx'));
+    $cssManager->register('/psc-cms-js/vendor/jquery-ui/css/'.$uiTheme.'/jquery-ui-'.$jqUIVersion.'.custom.css', 'jquery-ui');
     $cssManager->register('cms/form.css','cms.form',array('jquery-ui'));
     $cssManager->register('/psc-cms-js/css/ui.css','cms.ui',array('jquery-ui', 'jqx-theme'));
   }
