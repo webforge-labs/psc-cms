@@ -2,9 +2,11 @@
 
 namespace Psc\System;
 
+use Webforge\Common\System\Dir;
+
 class SVNMiniClient extends \Psc\SimpleObject {
   
-  public function commitSinglePath(Dir $repositoryDir, $path, $contents, $commitMessage = NULL) {
+  public function commitSinglePath(WebforgeDir $repositoryDir, $path, $contents, $commitMessage = NULL) {
     // wir müssen das repository auschecken (geht leider nicht anders)
     // wir checken das rep leer aus und machen update für den path
     $repoFile = $repositoryDir->getFile($path);
@@ -33,4 +35,4 @@ class SVNMiniClient extends \Psc\SimpleObject {
     return exec($cmd);
   }
 }
-?>
+?>n
