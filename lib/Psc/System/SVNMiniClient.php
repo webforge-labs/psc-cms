@@ -2,7 +2,7 @@
 
 namespace Psc\System;
 
-use Webforge\Common\System\Dir;
+use Webforge\Common\System\Dir AS WebforgeDir;
 
 class SVNMiniClient extends \Psc\SimpleObject {
   
