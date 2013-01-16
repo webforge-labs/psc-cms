@@ -82,6 +82,10 @@ class ResponseConverter extends \Psc\SimpleObject {
       if (($json = $this->createJSONResponse($body)) != NULL) {
         return $json;
       }
+
+    /* ICAL */
+    } elseif ($format === ServiceResponse::ICAL) {
+      return $this->createResponse($body);
     
     /* HTML */
     } elseif ($format === ServiceResponse::HTML) {
@@ -134,18 +138,22 @@ class ResponseConverter extends \Psc\SimpleObject {
       }
     }
     
-    throw new ResponseConverterException(sprintf("Der Inhalt der Service-Response konnte nicht in eine HTTP-Response umgewandelt werden. Der Body der ServiceResponse ist: %s. Format wurde ermittelt als: '%s' ('%s').",
-                                                 Code::varInfo($body),
-                                                 $format,
-                                                 $mimeContentType
-                                                 ));
+    throw new ResponseConverterException(
+      sprintf(
+        "Der Inhalt der Service-Response konnte nicht in eine HTTP-Response umgewandelt werden. Der Body der ServiceResponse ist: %s. Format wurde ermittelt als: '%s' ('%s').",
+        Code::varInfo($body),
+        $format,
+        $mimeContentType
+      )
+    );
   }
 
   protected function createResponse($body) {
-    return Response::create(200,
-                            $body,
-                            $this->headers
-                           );
+    return Response::create(
+      200,
+      $body,
+      $this->headers
+    );
   }
   
   
