@@ -39,7 +39,6 @@ class ResponseConverter extends \Psc\SimpleObject {
     if ($response->getStatus() === Service::OK) {
       list($format,$contentType) = $this->decideFormat($response, $request);
       
-      
       $this->headers = array('Content-Type'=>$contentType.'; charset=utf-8');
       
       // Response Meta
@@ -168,8 +167,6 @@ class ResponseConverter extends \Psc\SimpleObject {
    * @return list($format, $mimeContentType)
    */
   public function decideFormat(ServiceResponse $response, Request $request) {
-    // @TODO decide Format anhand von Accept
-    
     if ($response->getFormat() !== NULL)
       $format = $response->getFormat();
     elseif ($request->accepts('application/json'))
@@ -185,6 +182,8 @@ class ResponseConverter extends \Psc\SimpleObject {
       $contentType = Response::CONTENT_TYPE_JSON;
     } elseif($format === ServiceResponse::HTML) {
       $contentType = Response::CONTENT_TYPE_HTML;
+    } elseif($format === ServiceResponse::ICAL) {
+      $contentType = Response::CONTENT_TYPE_ICAL;
     } else { // fallback
       $contentType = Response::CONTENT_TYPE_HTML;
     }

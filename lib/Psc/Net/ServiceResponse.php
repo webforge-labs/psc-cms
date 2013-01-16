@@ -15,6 +15,7 @@ class ServiceResponse extends \Psc\SimpleObject {
   const XLSX = 'xlsx';
   const XLS = 'xls';
   const SOME_FILE = 'some_file';
+  const ICAL = 'ical';
   
   /**
    * \Psc\Net\Service::OK

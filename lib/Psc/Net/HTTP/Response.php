@@ -10,6 +10,7 @@ class Response extends \Psc\Object {
   const CONTENT_TYPE_HTML = 'text/html';
   const CONTENT_TYPE_PLAIN = 'text/plain';
   const CONTENT_TYPE_IMAGE_PNG = 'image/png';
+  const CONTENT_TYPE_ICAL = 'text/calendar';
   
   const OUTPUT_HEADER           = 0x000001;
   const OUTPUT_BODY             = 0x000002;
@@ -215,7 +216,5 @@ class Response extends \Psc\Object {
   public function getOutputClosure() {
     return $this->outputClosure;
   }
-
-
 }
 ?>
