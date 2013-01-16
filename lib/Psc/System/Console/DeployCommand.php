@@ -50,7 +50,7 @@ abstract class DeployCommand extends Command {
     $this->addArgument('mode',self::OPTIONAL | self::IS_ARRAY, 'staging oder normal', array('normal'));
     $this->addOption('deploymentsDir',self::VALUE_REQUIRED);
     //$this->addArgument('class',self::REQUIRED);
-    //$this->addOption('out','o',self::VALUE_REQUIRED);
+    $this->addOption('without-test','',self::VALUE_NONE);
     $this->setDescription('Exportiert das Projekt mit allen Binaries und Sourcen in den Deployments Ordner');
     $this->addOption('changes',null, self::VALUE_REQUIRED | self::VALUE_IS_ARRAY);
   }
