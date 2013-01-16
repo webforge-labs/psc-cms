@@ -26,6 +26,8 @@ namespace Psc\Code\Test;
 */
 abstract class Acceptance extends \Psc\Doctrine\DatabaseTestCase {
   
+  protected static $htdocsIsHtaccessProtected = FALSE;
+  
   protected $tester;
   
   public function initAcceptanceTester($tester) {
