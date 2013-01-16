@@ -98,7 +98,13 @@ class Deployer extends \Psc\System\LoggerObject {
   public function deploy() {
     $this->init();
     
-    $this->logf('Starting Deployment [%s%s]', $this->project->getName(), ($this->variant ? '.'.$this->variant : NULL));
+    $this->logf(
+      'Starting Deployment [%s%s] to %s',
+      $this->project->getName(),
+      $this->variant ? '.'.$this->variant : NULL,
+      $this->target
+    );
+    
     foreach ($this->tasks as $task) {
       $this->logf('** Task: '.Code::getClassName(Code::getClass($task)));
       $task->run();
