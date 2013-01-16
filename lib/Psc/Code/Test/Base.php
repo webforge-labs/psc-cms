@@ -40,7 +40,8 @@ class Base extends AssertionsBase {
   
   public function getProject() {
     if (!isset($this->project)) {
-      $this->project = $GLOBALS['env']['container']->getProject();
+      $this->project = PSC::getProject();
+      //$this->project = $GLOBALS['env']['container']->getProject();
     }
     return $this->project;
   }
