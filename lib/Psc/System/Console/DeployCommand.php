@@ -34,6 +34,8 @@ abstract class DeployCommand extends Command {
   
   protected $mode;
   
+  protected $withoutTest = FALSE;
+  
   /* properties */
   protected $hostName;
   protected $baseUrl;
@@ -82,6 +84,7 @@ abstract class DeployCommand extends Command {
   }
   
   protected function doExecute($input, $output) {
+    $this->withoutTest = $input->getOption('without-test');
     $cliProject = $this->getHelper('project')->getProject();
     $modes = $input->getArgument('mode');
 
