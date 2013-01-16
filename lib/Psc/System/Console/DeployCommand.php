@@ -7,11 +7,41 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Webforge\Common\System\File;
 use Webforge\Common\System\Dir;
 use Psc\System\Deploy\Deployer;
+use Psc\CMS\Project;
+use Webforge\Framework\Container as WebforgeContainer;
 
-class DeployCommand extends Command {
+/**
+ * 
+  protected function initProperties($mode) {
+    if ($mode === 'staging') {
+      $this->hostName = 'pegasus';
+      $this->baseUrl = 'tiptoi.pegasus.ps-webforge.net';
+      $this->vhostName = 'tiptoi.pegasus.ps-webforge.net';
+      $this->staging = TRUE;
+      $this->variant = 'staging';
+    } else {
+      $this->hostName = 'andromeda';
+      $this->baseUrl = 'tiptoi.ps-webforge.com';
+      $this->vhostName = 'tiptoi.andromeda.ps-webforge.net';
+      $this->staging = FALSE;
+    }
+  }
+*/
+abstract class DeployCommand extends Command {
   
   protected $file;
   protected $outFile;
+  
+  protected $mode;
+  
+  /* properties */
+  protected $hostName;
+  protected $baseUrl;
+  protected $vhostName;
+  protected $staging = FALSE;
+  
+  protected $variant = NULL;
+  /* /properties */
   
   protected function configure() {
     $this->setName('project:deploy');
@@ -23,103 +53,67 @@ class DeployCommand extends Command {
     $this->addOption('changes',null, self::VALUE_REQUIRED | self::VALUE_IS_ARRAY);
   }
   
+  abstract protected function initProperties($mode);
+  
+  protected function initProject(Project $project) {
+    $project->setVhostName($this->vhostName); // das ist nicht die url sondern unser target verzeichnis auf pegasus
+    $project->setStaging($this->staging);
+  }
+  
+  abstract protected function initTasks(Deployer $deployer, Project $project, $mode, WebforgeContainer $container);
+
+  protected function createDeployer(Dir $deployments, Project $project, $mode, WebforgeContainer $container) {
+    $deployer = new Deployer(
+      $deployments,
+      $container,
+      $project,
+      $this->variant,
+      $logger = new \Psc\System\EchoLogger()
+    );
+    
+    $deployer->init();
+    $deployer->setHostName($this->hostName);
+    
+    return $deployer;
+  }
+  
+  protected function updateComposer($project) {
+    system('cd '.$project->getVendor()->up().' && composer update --dev');
+  }
+  
   protected function doExecute($input, $output) {
     $cliProject = $this->getHelper('project')->getProject();
     $modes = $input->getArgument('mode');
+
+    $container = new WebforgeContainer();
+    $container->initLocalPackageFromDirectory(new Dir(__DIR__.DIRECTORY_SEPARATOR));
     
     foreach ($modes as $mode) {
       $project = clone $cliProject;
-    
-      if ($mode === 'staging') {
-        $project->setVhostName('tiptoi.staging.ps-webforge.com'); // das ist nicht die url sondern unser target verzeichnis auf pegasus
-        $project->setStaging(TRUE);
-      } else {
-        $project->setVhostName('tiptoi.ps-webforge.com'); // das ist nicht die url sondern unser target verzeichnis auf pegasus
-      }
       
-      $changes = $input->getOption('changes');
+      $this->initProperties($mode, $project);
+      $this->initProject($project);
       
-      $deployer = new Deployer(
+      $deployer = $this->createDeployer(
         new Dir($input->getOption('deploymentsDir') ?: 'D:\www\deployments\\'),
         $project,
         $mode,
-        $logger = new \Psc\System\EchoLogger()
+        $container
       );
       
-      $deployer->init();
-      $deployer->setHostName('pegasus');
+      $deployer->setBaseUrl($this->baseUrl);
       
-      if ($mode === 'staging') {
-        $deployer->setBaseUrl('tiptoi.staging.ps-webforge.com');
-      } else {
-        $deployer->setBaseUrl('tiptoi.ps-webforge.com');
-      }
+      $this->updateComposer($project);
       
-      $deployer->addTask($deployer->createTask('CreateAndWipeTarget'));
-  
-      // wir schreiben in das SOURCE changelog
-      // fixme: probleme mit utf8
-      //if (is_array($changes)) {
-      //  $deployer->addTask(
-      //    $deployer->createTask('WriteChangelog')
-      //      ->setChanges($changes)
-      //  );
-      //}
-      
-      $deployer->addTask($deployer->createTask('CopyProjectSources')
-                          ->addAdditionalPath('htdocs/upload-manager/')
-                          ->addAdditionalPath('htdocs/files/')
-                         );
-      $deployer->addTask($deployer->createTask('CreateBootstrap')
-                          ->addModule('Symfony')
-                          ->addModule('Doctrine')
-                          ->addModule('PHPExcel')
-                          ->addModule('PHPWord')
-                          ->addModule('Imagine')
-                        ); // bootstrap nach copy project sources damit auto.prepend.php überschrieben wird
-      
-      $deployer->addTask($deployer->createTask('DeployPscCMS')); // installiert phars und so 
-      $deployer->addTask($deployer->createTask('DeployDoctrine'));
-      
-      $configureApache =
-         $mode === 'staging'
-         ?
-         $deployer->createTask('ConfigureApache')
-            ->setServerName('tiptoi.staging.ps-webforge.com')
-         :
-         $deployer->createTask('ConfigureApache')
-            ->setServerName('tiptoi.ps-webforge.com')
-            ->setServerAlias(array('tiptoi.ps-webforge.de',
-                                   'tiptoi.ps-webforge.net',
-                                 )
-                          )
-        ;
-  
-      $deployer->addTask($configureApache
-                          ->setHtaccess($project->getBuildPath()->getFile('.deploy.htaccess')->getContents())
-                        );
-  
-      //$deployer->addTask(
-      //  $deployer->createTask('CommitGitDeployment')
-      //    //->setGitDir(new \Webforge\Common\System\Dir('D:\www\deployments.git\tiptoi\\'))
-      //    ->setRemote('origin') // $mode === 'staging' ? 'staging' : 'origin'
-      //    ->setMessage(count($changes) > 0 ? implode("\n", $changes) : NULL)
-      //);
-  
-      // lokaler build ? (vorher muss dann ins lokale verzeichnis commited werden)
-      //$deployer->addTask(
-      //  $deployer->createTask('SismoBuild')
-      //);
-      
-      if ($mode === 'staging') {
-        $deployer->addTask(
-          $deployer->createTask('UnisonSync')
-            ->setProfile('automatic.tiptoi.staging.ps-webforge.com@pegasus.ps-webforge.com')
-        );
-      }
+      $this->initTasks($deployer, $project, $mode, $container);
       
       $deployer->deploy();
+      
+      $this->afterDeploy($deployer, $project, $mode, $container);
     }
+  }
+  
+  protected function afterDeploy(Deployer $deployer, Project $project, $mode, WebforgeContainer $container) {
   }
 }
 ?>
