@@ -114,6 +114,10 @@ class CMSRequestDispatcher extends \Psc\SimpleObject {
     return $this;
   }
   
+  public function getRequestDebug() {
+    return $this->getRequest()->debug(TRUE, FALSE);
+  }
+  
   public function removeAuthentication() {
     $this->getRequest()->removeAuthentication();
     return $this;
