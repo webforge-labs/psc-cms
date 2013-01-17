@@ -21,8 +21,14 @@ class CMSAcceptanceTester extends \Psc\System\LoggerObject {
    */
   protected $entityMeta;
   
+  /**
+   * @var string
+   */
   protected $urlPrefix = '/entities';
 
+  /**
+   * @var bool
+   */
   protected $debug = FALSE;
   
   public function __construct(Base $testCase, $entityName, $debug = FALSE) {
@@ -39,7 +45,7 @@ class CMSAcceptanceTester extends \Psc\System\LoggerObject {
     $post = $this->parsePost($post);
     
     $dispatcher = $this->dispatcher('PUT', $this->urlPrefix.'/'.$this->entityMeta->getEntityName().'/'.$id.($subResource ? '/'.$subResource : NULL), 'json');
-    $dispatcher->getRequest()->setData($post);
+    $dispatcher->setRequestData($post);
     
     return $this->result($dispatcher, 'json');
   }
@@ -48,7 +54,7 @@ class CMSAcceptanceTester extends \Psc\System\LoggerObject {
     $post = $this->parsePost($post);
     
     $dispatcher = $this->dispatcher('POST', $this->urlPrefix.'/'.$this->entityMeta->getEntityNamePlural(), 'json');
-    $dispatcher->getRequest()->setPost($post);
+    $dispatcher->setRequestData($post);
     
     return $this->result($dispatcher, $response);
   }
@@ -117,7 +123,7 @@ class CMSAcceptanceTester extends \Psc\System\LoggerObject {
     $url = $url ?: $acRequestMeta->getUrl(array());
     
     $dispatcher = $this->dispatcher($acRequestMeta->getMethod(), $url, 'json');
-    $dispatcher->getRequest()->setData(array('autocomplete'=>'true', 'search'=>$term, 'maxResults'=>$maxResults));
+    $dispatcher->setRequestData(array('autocomplete'=>'true', 'search'=>$term, 'maxResults'=>$maxResults));
     
     $result = $this->result($dispatcher, 'json');
     
@@ -166,7 +172,7 @@ class CMSAcceptanceTester extends \Psc\System\LoggerObject {
     
     $dispatcher = $this->dispatcher($method, $url);
     if ($data) {
-      $dispatcher->getRequest()->setData($this->parsePost($data));
+      $dispatcher->setRequestData($this->parsePost($data));
     }
     
     return $this->result($dispatcher, $format);
@@ -230,7 +236,7 @@ class CMSAcceptanceTester extends \Psc\System\LoggerObject {
   public function dispatch($method, $url, $data, $type, $code = 200) {
     $dispatcher = $this->dispatcher($method, $url, $type);
     if ($data) {
-      $dispatcher->getRequest()->setData($this->parsePost($data));
+      $dispatcher->setRequestData($this->parsePost($data));
     }
     
     return $this->result($dispatcher, $type, $code);
@@ -320,7 +326,5 @@ class CMSAcceptanceTester extends \Psc\System\LoggerObject {
   public function getDebug() {
     return $this->debug;
   }
-
-
 }
 ?>

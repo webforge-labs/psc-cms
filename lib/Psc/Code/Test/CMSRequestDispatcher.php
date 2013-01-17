@@ -85,7 +85,7 @@ class CMSRequestDispatcher extends \Psc\SimpleObject {
   /**
    * @return Psc\URL\Request
    */
-  public function getRequest() {
+  protected function getRequest() {
     if (!isset($this->request)) {
       $this->request = new \Psc\URL\Request($this->expandUrl($this->url));
       $this->request->setAuthentication($this->hostConfig->req('cms.user'),$this->hostConfig->req('cms.password'),CURLAUTH_BASIC);
@@ -107,6 +107,11 @@ class CMSRequestDispatcher extends \Psc\SimpleObject {
       }
     }
     return $this->request;
+  }
+  
+  public function setRequestData($data) {
+    $this->getRequest()->setData($data);
+    return $this;
   }
   
   public function removeAuthentication() {
