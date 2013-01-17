@@ -138,6 +138,22 @@ class DoublesManager extends \Psc\Object {
     return $this->testCase->getMockBuilder('Psc\Doctrine\Module')->disableOriginalConstructor()->getMock();
   }
   
+  public function createDoctrinePackageMock(\Psc\Doctrine\Module $module = NULL, \Doctrine\ORM\EntityManager $entityManager = NULL) {
+    $dc = $this->testCase->getMock(
+            'Psc\Doctrine\DCPackage',
+            array(),
+            array(
+              $module = $module ?: $this->createDoctrineModuleMock(),
+              $entityManager = $entityManager ?: $this->createEntityManagerMock() // nicht module übergeben, da wir wirklich wirklich einen mock wollen
+            )
+          );
+    
+    $dc->expects($this->any())->method('getEntityManager')->will($this->returnValue($entityManager));
+    $dc->expects($this->any())->method('getModule')->will($this->returnValue($module));
+    
+    return $dc;
+  }
+  
   /**
    * Wird der 2te Parameter weggelassen (enittyManager) wird das Repository EntityManagerMock constructed
    *
@@ -220,6 +236,18 @@ class DoublesManager extends \Psc\Object {
               ),
               $constraint
            );
+  }
+  
+  protected function returnValue($value) {
+    return $this->testCase->returnValue($value);
+  }
+  
+  protected function any() {
+    return $this->testCase->any();
+  }
+  
+  protected function once() {
+    return $this->testCase->once();
   }
 }
 ?>

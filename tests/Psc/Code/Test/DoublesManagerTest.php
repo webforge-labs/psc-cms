@@ -9,9 +9,15 @@ use Psc\Net\HTTP\Request;
  * @group class:Psc\Code\Test\DoublesManager
  */
 class DoublesManagerTest extends \Psc\Code\Test\Base {
+  
+  protected $manager;
+  
+  public function setUp() {
+    $this->manager = new DoublesManager($this);
+  }
 
   public function testCreateHTTPRequest() {
-    $manager = $this->createManager();
+    $manager = $this->manager;
     
     $request = $manager->createHTTPRequest('GET', '/js/cms/ui.comboBox.js');
     $this->assertInstanceof('Psc\Net\HTTP\Request', $request);
@@ -26,33 +32,28 @@ class DoublesManagerTest extends \Psc\Code\Test\Base {
     // not yet ready (so geht noch nicht)
   }
   
-  //public function testCreateTestCaseMock() {
-  //  $testCase = $this->createManager()->createTestCaseMock();
-  //  $this->assertInstanceOf('PHPUnit_Framework_TestCase', $testCase);
-  //  $testCase->assertEquals('nein','ja');
-  //}
-  
   public function testCreateTestCase() {
-    $this->assertInstanceOf('Psc\Code\Test\ClosureTestCase',$testCase = $this->createManager()->createClosureTestCase(function () {
-    }));
+    $this->assertInstanceOf('Psc\Code\Test\ClosureTestCase',$testCase = $this->manager->createClosureTestCase(function () {}));
   }
   
   public function testCreateEntityManagerMock() {
-    $this->assertInstanceOf('Doctrine\ORM\EntityManager', $this->createManager()->createEntityManagerMock());
+    $this->assertInstanceOf('Doctrine\ORM\EntityManager', $this->manager->createEntityManagerMock());
   }
   
-  public function testGetFileMock() {
-    $this->assertInstanceOf('Webforge\Common\System\File',$this->createManager()->createFileMock());
+  public function testCreateDoctrinePackageMock() {
+    $this->assertInstanceOf('Psc\Doctrine\DCPackage', $dc = $this->manager->createDoctrinePackageMock());
+    $this->assertInstanceOf('Doctrine\ORM\EntityManager', $dc->getEntityManager());
+    $this->assertInstanceOf('Psc\Doctrine\Module', $dc->getModule());
+  }
+  
+  public function testCreateFileMock() {
+    $this->assertInstanceOf('Webforge\Common\System\File',$this->manager->createFileMock());
   }
   
   public function testCreatePDOUniqueConstraintException() {
-    $this->assertInstanceOf('PDOException', $e = $this->createManager()->createPDOUniqueConstraintException('my_unique_constraint'));
+    $this->assertInstanceOf('PDOException', $e = $this->manager->createPDOUniqueConstraintException('my_unique_constraint'));
     $this->assertInstanceOf('Psc\Doctrine\UniqueConstraintException', $dce = \Psc\Doctrine\Exception::convertPDOException($e));
     $this->assertEquals('my_unique_constraint',$dce->uniqueConstraint);
-  }
-  
-  protected function createManager() {
-    return new DoublesManager($this);
   }
 }
 ?>
