@@ -155,7 +155,7 @@ class DoublesManager extends \Psc\Object {
   }
   
   /**
-   * Wird der 2te Parameter weggelassen (enittyManager) wird das Repository EntityManagerMock constructed
+   * Wird der 2te Parameter weggelassen (EntityManager) wird das Repository mit einem EntityManagerMock constructed
    *
    *
    * $this->entityRepository = $this->doublesManager->buildEntityRepository('Entities\User')
