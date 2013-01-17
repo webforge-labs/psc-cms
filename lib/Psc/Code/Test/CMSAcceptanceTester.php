@@ -213,7 +213,7 @@ class CMSAcceptanceTester extends \Psc\System\LoggerObject {
    */
   public function result(CMSRequestDispatcher $dispatcher, $type = 'html', $code = 200) {
     $this->lastResponse = $response = $dispatcher->dispatch();
-    $this->logf("Dispatched CMS Request:\n%s", $dispatcher->getRequest()->debug(TRUE, FALSE));
+    $this->logf("Dispatched CMS Request:\n%s", $dispatcher->getRequestDebug());
     
     $this->testCase->setHTML($response->getDecodedRaw());
     
