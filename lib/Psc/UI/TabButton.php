@@ -8,7 +8,7 @@ use Psc\CMS\Item\JooseBridge;
 /**
  * Ein TabButton wird als ui-button dargestellt und öffnet einen Tab (jay)
  */
-class TabButton extends \Psc\UI\Button implements \Psc\JS\JooseWidget, \Psc\JS\JooseSnippetWidget {
+class TabButton extends \Psc\UI\Button implements TabButtonable, \Psc\JS\JooseWidget, \Psc\JS\JooseSnippetWidget {
   
   /**
    * @var Psc\CMS\Item\TabButtonable
@@ -17,7 +17,7 @@ class TabButton extends \Psc\UI\Button implements \Psc\JS\JooseWidget, \Psc\JS\J
   
   public function __construct(TabButtonable $item, JooseBridge $jooseBridge = NULL) {
     $this->item = $item;
-    $this->jooseBridge = $jooseBridge ?: new JooseBridge($item);
+    $this->jooseBridge = $jooseBridge ?: new JooseBridge($this);
     parent::__construct(NULL); // kein label für button
     $this->setUp();
   }
@@ -25,15 +25,8 @@ class TabButton extends \Psc\UI\Button implements \Psc\JS\JooseWidget, \Psc\JS\J
   protected function doInit() {
     parent::doInit();
     
-    // Psc.CMS.Item - construct hinzufügen
-    $this->html = $this->jooseBridge->link($this->html)->html();
-  }
-  
-  /**
-   * @return string
-   */
-  public function getLabel() {
-    return $this->label ?: $this->item->getButtonLabel();
+    $bridgedTag = $this->jooseBridge->link($this->html);
+    $this->html = $bridgedTag->html();
   }
 
   protected function setUp() {
@@ -44,6 +37,13 @@ class TabButton extends \Psc\UI\Button implements \Psc\JS\JooseWidget, \Psc\JS\J
     if (($rightIcon = $this->item->getButtonRightIcon()) !== NULL) {
       $this->setRightIcon($rightIcon);
     }
+  }
+  
+  /**
+   * @return string
+   */
+  public function getLabel() {
+    return $this->label ?: $this->item->getButtonLabel();
   }
   
   public function getJoose() {
@@ -60,6 +60,59 @@ class TabButton extends \Psc\UI\Button implements \Psc\JS\JooseWidget, \Psc\JS\J
    */
   public function getJooseSnippet() {
     return $this->jooseBridge->getJooseSnippet();
+  }
+
+  /**
+   * @return string
+   */
+  public function getButtonLabel() {
+    return $this->item->getButtonLabel();
+  }
+  
+  /**
+   * @return string
+   */
+  public function getFullButtonLabel() {
+    return $this->item->getFullButtonLabel();
+  }
+  
+  /**
+   * Gibt entweder einen Icon namen (ui-icon-$name) oder NULL zurück
+   *
+   * @return string
+   */
+  public function getButtonLeftIcon() {
+    return $this->item->getButtonLeftIcon();
+  }
+  
+  /**
+   * Gibt entweder einen Icon namen (ui-icon-$name) oder NULL zurück
+   *
+   * @return string
+   */
+  public function getButtonRightIcon() {
+    return $this->item->getButtonRightIcon();
+  }
+
+  /**
+   * @return bitmap self::CLICK|self::DRAG
+   */
+  public function getButtonMode() {
+    return $this->item->getButtonMode();
+  }
+  
+  /**
+   * @return string
+   */
+  public function getTabLabel() {
+    return $this->item->getTabLabel();
+  }
+  
+  /**
+   * @return Psc\CMS\RequestMeta
+   */
+  public function getTabRequestMeta() {
+    return $this->item->getTabRequestMeta();
   }
 }
 ?>

@@ -3,6 +3,7 @@
 namespace Psc\CMS;
 
 use Psc\Doctrine\DCPackage;
+use Psc\UI\TabButton;
 
 /**
  * The Design Package helps for common tasks doing in the frontend for example in a controller
@@ -23,7 +24,10 @@ class DesignPackage {
     $this->dc = $dc;
   }
   
-  public function createAction($entityOrMeta, $verb, $subResource = NULL) {
+  /**
+   * @return Psc\CMS\Action|Psc\CMS\ActionMeta
+   */
+  public function action($entityOrMeta, $verb, $subResource = NULL) {
     if (is_string($entityOrMeta)) {
       $entityOrMeta = $this->dc->getEntityMeta($this->dc->expandEntityName($entityOrMeta));
     }
@@ -34,24 +38,13 @@ class DesignPackage {
   /**
    * @return Psc\UI\ButtonInterface
    */
-  public function createTabButton($label, $action) {
-    
+  public function tabButton($label, Action $action, $buttonMode = Buttonable::CLICK, $tabLabel = NULL) {
+    $entityMeta = $action->getEntityMeta($this->dc);
+    $button = $entityMeta->getAdapter();
   }
   
-  
-  /**
-   * @param Psc\Doctrine\DCPackage $dc
-   */
-  public function setDoctrinePackage(DCPackage $dc) {
-    $this->dc = $dc;
-    return $this;
-  }
-  
-  /**
-   * @return Psc\Doctrine\DCPackage
-   */
-  public function getDoctrinePackage() {
-    return $this->dc;
+  protected function getEntityMetaForAction(ActionInterface $action) {
+    if ($action->getType()
   }
 }
 ?>

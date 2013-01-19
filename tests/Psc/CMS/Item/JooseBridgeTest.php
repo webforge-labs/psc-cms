@@ -23,24 +23,13 @@ class JooseBridgeTest extends \Psc\Code\Test\Base {
     
     $this->html = $this->jooseBridge->link($tag)->html();
     
-    // schwierig zu testen, weil eigentlich wollen wir wissen ob das $tag das beim html() angehängt hat (acceptance)
+    // schwierig zu testen, eigentlich wollen wir wissen, ob das $tag das beim html() angehängt hat (acceptance)
+    // es reicht aber, dass wir das JooseSnippet testen, denn das JooseSnippet ist mit dem JParser getestet
     // somit machen wir hier nur den joosebridge unit test
     $this->test->js($this->jooseBridge)
       ->constructsJoose('Psc.CMS.FastItem')
-      //->hasParam('traits')
       ->hasParam('widget')
-      //->getParam('traits')
     ;
-      
-    // keine Traits mehr
-    //$traits = array_map(function ($code) {
-    //  return $code->js();
-    //},$traits); // cast to string
-    //  
-    //$this->assertContains('Psc.CMS.ComboDropBoxable', $traits, print_r($traits, true));
-    //// diese beiden nicht weil diese schon in ComboDropBoxable drin sind
-    //$this->assertNotContains('Psc.CMS.DropBoxable', $traits, print_r($traits, true));
-    //$this->assertNotContains('Psc.CMS.SelectComboBoxable', $traits, print_r($traits, true));
   }
   
   public function testConstructInterfaceHierarchy() {

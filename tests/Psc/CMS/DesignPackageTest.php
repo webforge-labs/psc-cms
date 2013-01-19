@@ -33,23 +33,25 @@ class DesignPackageTest extends \Psc\Doctrine\DatabaseTestCase {
      */
   }
   
-  public function testCreateActionGenericGetAction() {
-    $this->assertInstanceOf('Psc\CMS\Action', $action = $this->dp->createAction('person', 'GET', 'episodes'));
+  public function testActionCreatesGenericGetAction() {
+    $this->assertInstanceOf('Psc\CMS\Action', $action = $this->dp->action('person', 'GET', 'episodes'));
     $this->assertInstanceOf('Psc\CMS\EntityMeta', $action->getEntityMeta());
+    $this->assertEquals('person', $action->getEntityMeta()->getEntityName());
   }
 
-  public function testCreateActionPersonSpecificEditAction() {
+  public function testActionCreatesPersonSpecificEditAction() {
     $person = new Person('its me!');
-    $this->assertInstanceOf('Psc\CMS\Action', $action = $this->dp->createAction($person, 'GET', 'form'));
+    $this->assertInstanceOf('Psc\CMS\Action', $action = $this->dp->action($person, 'GET', 'form'));
     $this->assertSame($person, $action->getEntity());
   }
   
-  public function testCreateButton() {
-    return;
-    $button = $this->dp->tabButton('person', 'GET', 'related')
-      ->setLabel('verknüpfte Personen anzeigen');
+  public function testTabButtonCreatesAButtonInterfaceButton() {
+    $button = $this->dp->tabButton(
+      'verknüpfte Personen anzeigen',
+      $this->dp->action('person', 'GET', 'related')
+    );
 
-    $this->assertInstanceOf('Psc\UI\Button', $button);
+    $this->assertInstanceOf('Psc\UI\ButtonInterface', $button);
     $this->assertEquals('verknüpfte Personen anzeigen', $button->getLabel());
   }
   
