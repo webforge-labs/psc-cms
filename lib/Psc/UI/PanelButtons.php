@@ -200,6 +200,12 @@ class PanelButtons extends \Psc\HTML\Base {
     return $button;
   }
   
+  public function unshiftButton($button, $flags = 0x000000, $iconLeft = NULL, $iconRight = NULL) {
+    $flags |= self::PREPEND;
+    $flags |= self::ALIGN_LEFT;
+    return $this->addButton($button, $flags, $iconLeft, $iconRight);
+  }
+  
   public function getButton($index) {
     return $this->buttons[$index];
   }
