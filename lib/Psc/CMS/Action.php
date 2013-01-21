@@ -79,6 +79,9 @@ class Action extends \Psc\SimpleObject {
    */
   protected $subResource;
   
+  /**
+   * @param Entity|EntityMeta $entityOrMete if entity the type will be specific, if entitymeta the type will be general
+   */
   public function __construct($entityOrMeta, $verb, $subResource = NULL) {
     if ($entityOrMeta instanceof EntityMeta) {
       $this->entityMeta = $entityOrMeta;

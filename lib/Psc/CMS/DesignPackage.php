@@ -30,7 +30,10 @@ class DesignPackage {
     
     return new Action($entityOrMeta, $verb, $subResource);
   }
-  
+
+  /**
+   * @return Psc\UI\ButtonInterface
+   */
   public function createTabButton($label, $action) {
     
   }
