@@ -38,6 +38,13 @@ class Base extends AssertionsBase {
     $this->doublesManager = new DoublesManager($this);
   }
   
+  protected function dataToString($data) {
+    return parent::dataToString($data);
+    // use this if phpunit segfaults
+    return 'data cannot be converted to string';
+    //return \Psc\Doctrine\Helper::getDump($data);
+  }
+  
   public function getProject() {
     if (!isset($this->project)) {
       $this->project = PSC::getProject();
