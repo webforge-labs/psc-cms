@@ -100,6 +100,20 @@ class ActionMeta extends \Psc\SimpleObject {
   }
   
   /**
+   * @return bool
+   */
+  public function isSpecific() {
+    return $this->type === self::SPECIFIC;
+  }
+  
+  /**
+   * @return bool
+   */
+  public function isGeneral() {
+    return $this->type === self::GENERAL;
+  }
+  
+  /**
    * @chainable
    */
   protected function setVerb($verb) {

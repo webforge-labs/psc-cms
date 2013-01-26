@@ -10,7 +10,7 @@
   ],
   "autoload": {
     "psr-0": {
-      "Psc": ["lib/"],
+      "Psc": ["lib/", "tests/"],
       "Hitch": ["application/src/hitch/lib/"],
       "PHPWord": ["application/src/PHPWord/"]
     }

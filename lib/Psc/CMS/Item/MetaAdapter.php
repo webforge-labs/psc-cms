@@ -54,6 +54,8 @@ class MetaAdapter extends \Psc\SimpleObject implements TabButtonable, RightConte
   /* Caches */
   protected $newTabButton;
   
+  protected $buttonLabel;
+  
   public function __construct(EntityMeta $entityMeta, $context = 'default') {
     $this->setEntityMeta($entityMeta);
     $this->context = $context;
@@ -171,10 +173,12 @@ class MetaAdapter extends \Psc\SimpleObject implements TabButtonable, RightConte
    * Gibt das Label für den normalo Button zurück
    */
   public function getButtonLabel() {
-    if ($this->context === 'new') {
+    if (isset($this->buttonLabel)) {
+      return $this->buttonLabel;
+    } elseif ($this->context === 'new') {
       return $this->entityMeta->getNewLabel();
     } else {
-      throw new \InvalidArgumentException(sprintf("Context '%s' ist unbekannt",$this->context));
+      throw new \InvalidArgumentException(sprintf("Context '%s' ist unbekannt für getButtonLabel",$this->context));
     }
   }
 
@@ -239,6 +243,14 @@ class MetaAdapter extends \Psc\SimpleObject implements TabButtonable, RightConte
    */
   public function setButtonMode($bitmap) {
     $this->buttonMode = $bitmap;
+    return $this;
+  }
+  
+  /**
+   * @chainable
+   */
+  public function setButtonLabel($label) {
+    $this->buttonLabel = $label;
     return $this;
   }
 }

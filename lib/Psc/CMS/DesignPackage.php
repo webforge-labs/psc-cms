@@ -4,6 +4,7 @@ namespace Psc\CMS;
 
 use Psc\Doctrine\DCPackage;
 use Psc\UI\TabButton;
+use Psc\CMS\Item\Buttonable;
 
 /**
  * The Design Package helps for common tasks doing in the frontend for example in a controller
@@ -36,15 +37,26 @@ class DesignPackage {
   }
 
   /**
-   * @return Psc\UI\ButtonInterface
+   * @return Psc\UI\TabButtonInterface
    */
-  public function tabButton($label, Action $action, $buttonMode = Buttonable::CLICK, $tabLabel = NULL) {
-    $entityMeta = $action->getEntityMeta($this->dc);
-    $button = $entityMeta->getAdapter();
+  public function tabButton($label, Action $action) {
+    $adapter = $this->getEntityAdapterForAction($action);
+    $adapter->setButtonLabel($label);
+    
+    $tabButton = new TabButton($adapter);
+    
+    return $tabButton;
   }
   
-  protected function getEntityMetaForAction(ActionInterface $action) {
-    if ($action->getType()
+  protected function getEntityAdapterForAction(Action $action, $context = Item\MetaAdapter::CONTEXT_DEFAULT) {
+    $entityMeta = $action->getEntityMeta($this->dc);
+    if ($action->isSpecific()) {
+      return $entityMeta->getAdapter($action->getEntity(), $context);
+    }
+    
+    if ($action->isGeneral()) {
+      return $entityMeta->getAdapter($context);
+    }
   }
 }
 ?>

@@ -8,8 +8,17 @@ class ActionMetaTest extends \Webforge\Code\Test\Base {
     $this->chainClass = 'Psc\\CMS\\ActionMeta';
     parent::setUp();
     
-    $this->actionMeta = new ActionMeta(ActionMeta::SPECIFIC, ActionMeta::GET, 'infos');
+    $this->specificMeta = $this->actionMeta = new ActionMeta(ActionMeta::SPECIFIC, ActionMeta::GET, 'infos');
+    $this->generalMeta = new ActionMeta(ActionMeta::GENERAL, ActionMeta::GET, 'list');
     $this->actionMetaWithoutSubresource = new ActionMeta(ActionMeta::SPECIFIC, ActionMeta::POST);
+  }
+  
+  public function testIsGeneralReturnsTrueIfTypeIsGeneral() {
+    $this->assertTrue($this->generalMeta->isGeneral());
+  }
+
+  public function testIsSpecificReturnsTrueIfTypeIsSpecific() {
+    $this->assertTrue($this->specificMeta->isSpecific());
   }
   
   public function testMetaActionCanBeConstructedWithOutAnEntityOrEntityMeta() {
@@ -28,6 +37,6 @@ class ActionMetaTest extends \Webforge\Code\Test\Base {
     $this->setExpectedException('Psc\Code\WrongValueException');
     
     new ActionMeta(ActionMeta::GENERAL, 'notValidVerb');
-  } 
+  }
 }
 ?>

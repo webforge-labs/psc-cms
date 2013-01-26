@@ -45,14 +45,17 @@ class DesignPackageTest extends \Psc\Doctrine\DatabaseTestCase {
     $this->assertSame($person, $action->getEntity());
   }
   
-  public function testTabButtonCreatesAButtonInterfaceButton() {
+  public function testTabButtonCreatesATabButtonInterfaceButton() {
     $button = $this->dp->tabButton(
       'verknüpfte Personen anzeigen',
       $this->dp->action('person', 'GET', 'related')
     );
 
     $this->assertInstanceOf('Psc\UI\ButtonInterface', $button);
+    $this->assertInstanceOf('Psc\UI\TabButtonInterface', $button);
     $this->assertEquals('verknüpfte Personen anzeigen', $button->getLabel());
+    
+    $this->markTestIncomplete('How to test that action is converted to the correct requestmeta?');
   }
   
   public function testFullOIDSiteSyntax() {
