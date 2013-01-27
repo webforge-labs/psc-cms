@@ -18,5 +18,10 @@ interface TabButtonInterface extends ButtonInterface {
    * @chainable
    */
   public function onlyClickable();
+  
+  /**
+   * @return Psc\CMS\RequestMeta
+   */
+  public function getTabRequestMeta();
 }
 ?>

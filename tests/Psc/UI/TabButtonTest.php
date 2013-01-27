@@ -114,6 +114,15 @@ class TabButtonTest extends \Psc\Code\Test\HTMLTestCase {
     );
   }
   
+  public function testTabRequestMetaIsTheSameAsForItemButtonable() {
+    $this->tabButton = new TabButton($this->item, $this->jooseBridge);
+    
+    $this->assertSame(
+      $this->item->getTabRequestMeta(),
+      $this->tabButton->getTabRequestMeta()
+    );
+  }
+  
   /**
    * @return Psc\CMS\Item\TabButtonable
    */

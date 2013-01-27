@@ -86,6 +86,13 @@ class TabButton extends \Psc\UI\Button implements \Psc\UI\TabButtonInterface, \P
     return $this;
   }
   
+  /**
+   * @return Psc\CMS\RequestMeta
+   */
+  public function getTabRequestMeta() {
+    return $this->item->getTabRequestMeta();
+  }
+  
   // joose interfaces
   public function getJoose() {
     return $this->jooseBridge;

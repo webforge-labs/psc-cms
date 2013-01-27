@@ -1,17 +1,18 @@
 <?php
 
-namespace Psc\CMS;
+namespace Psc\UI;
 
 use Psc\Doctrine\DCPackage;
 use Psc\UI\TabButton;
 use Psc\CMS\Item\Buttonable;
+use Psc\CMS\Action;
+use Psc\CMS\Item\MetaAdapter;
 
 /**
- * The Design Package helps for common tasks doing in the frontend for example in a controller
+ * The UI Package helps for common tasks doing in the frontend for example in a controller
  *
- * 
  */
-class DesignPackage {
+class UIPackage {
   
   /**
    * @var Psc\Doctrine\DCPackage
@@ -48,7 +49,7 @@ class DesignPackage {
     return $tabButton;
   }
   
-  protected function getEntityAdapterForAction(Action $action, $context = Item\MetaAdapter::CONTEXT_DEFAULT) {
+  protected function getEntityAdapterForAction(Action $action, $context = MetaAdapter::CONTEXT_DEFAULT) {
     $entityMeta = $action->getEntityMeta($this->dc);
     if ($action->isSpecific()) {
       return $entityMeta->getAdapter($action->getEntity(), $context);
