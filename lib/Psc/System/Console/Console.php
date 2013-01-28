@@ -90,7 +90,7 @@ class Console extends \Psc\Object {
   }
   
   protected function includeCommands() {
-    $inc = new CommandsIncluder($this->project->getRoot()->getFile('lib/inc.commands.php'));
+    $inc = new CommandsIncluder($this->project->getCommandsFile());
     return $inc->getCommands();
   }
 }
