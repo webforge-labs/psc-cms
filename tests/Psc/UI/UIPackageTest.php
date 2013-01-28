@@ -15,18 +15,6 @@ class UIPackageTest extends \Psc\Doctrine\DatabaseTestCase {
     $this->ui = new UIPackage(
       $this->dc
     );
-    
-    /* actionMapper
-     * name => action
-     *
-     * Router
-     * action => requestmeta aka REST
-     * REST => action
-     *
-     * Service
-     * action => controller-method
-     * 
-     */
   }
   
   public function testActionCreatesGenericGetAction() {
@@ -50,8 +38,27 @@ class UIPackageTest extends \Psc\Doctrine\DatabaseTestCase {
     $this->assertInstanceOf('Psc\UI\ButtonInterface', $button);
     $this->assertInstanceOf('Psc\UI\TabButtonInterface', $button);
     $this->assertEquals('verknüpfte Personen anzeigen', $button->getLabel());
+  }
+  
+  public function testCreatedTabButtonHasTheMatchingRequestMetaForGivenAction() {
+    $button = $this->ui->tabButton(
+      'verknüpfte Personen anzeigen',
+      $this->ui->action('person', 'GET', 'related')
+    );
     
+    $requestMeta = $button->getTabRequestMeta();
     
+    $this->assertEquals(
+      '/entities/persons/related',
+      $requestMeta->getUrl()
+    );
+    
+    $this->assertEquals(
+      RequestMeta::GET,
+      $requestMeta->getMethod()
+    );
+    
+    $this->assertNull($requestMeta->getBody(), 'body should be empty');
   }
   
   public function testFullOIDSiteSyntax() {
