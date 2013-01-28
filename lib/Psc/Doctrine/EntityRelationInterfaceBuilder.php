@@ -24,6 +24,10 @@ class EntityRelationInterfaceBuilder extends \Psc\SimpleObject {
    * Erstellt alle Methoden des RelationInterfaces in der Angegebenen Klasse für die Source Seite
    */
   public function buildSource(GClass $gClass) {
+    if ($this->relation->isWithoutInterface()) {
+      return FALSE;
+    }
+    
     if ($this->relation->getType() === EntityRelation::ONE_TO_MANY || $this->relation->getType() === EntityRelation::MANY_TO_MANY) {
       $this->createCollectionAdder($gClass);
       $this->createCollectionRemover($gClass);

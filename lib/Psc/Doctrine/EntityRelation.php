@@ -130,6 +130,11 @@ class EntityRelation extends \Psc\SimpleObject {
   protected $otherAnnotations = array();
   
   /**
+   * @var bool
+   */
+  protected $withoutInterface = FALSE;
+  
+  /**
    * @param const type self::MANY_TO_MANY|self::MANY_TO_ONE|self::ONE_TO_MANY|self::ONE_TO_ONE
    */
   public function __construct(EntityRelationMeta $source, EntityRelationMeta $target, $type, $direction = 'bidirectional', $whoIsOwningSide = 'source') {
@@ -634,6 +639,18 @@ class EntityRelation extends \Psc\SimpleObject {
 
   public function addAnnotation(\Psc\Code\Annotation $annotation) {
     $this->otherAnnotations[] = $annotation;
+    return $this;
+  }
+  
+  /**
+   * @return bool
+   */
+  public function isWithoutInterface() {
+    return $this->withoutInterface;
+  }
+  
+  public function buildWithoutInterface() {
+    $this->withoutInterface = TRUE;
     return $this;
   }
 }

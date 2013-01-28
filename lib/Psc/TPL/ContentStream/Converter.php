@@ -2,6 +2,8 @@
 
 namespace Psc\TPL\ContentStream;
 
+use Psc\Doctrine\EntityFactory;
+
 abstract class Converter extends \Psc\SimpleObject {
 
   public function convertHTML(ContentStream $cs, Array $entries = NULL) {
