@@ -99,7 +99,7 @@ abstract class BasicUploadedFile extends \Psc\CMS\AbstractEntity implements \Psc
    */
   public function getDownloadFilename() {
     if (!isset($this->downloadFilename) && $this->getOriginalName() != NULL) {
-      return $this->getOriginalFilename();
+      return $this->getOriginalName();
     }
     
     return $this->downloadFilename;
