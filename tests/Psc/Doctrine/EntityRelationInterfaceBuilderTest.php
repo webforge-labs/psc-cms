@@ -208,6 +208,18 @@ class EntityRelationInterfaceBuilderTest extends \Psc\Code\Test\Base {
     $this->assertTrue($soundParam->isOptional(), 'headlineSound ist nicht optional');
     $this->assertSame(NULL, $soundParam->getDefault());
   }
+
+  /**
+   *
+   */
+  public function testRelationWithoutInterfaceGetsNoAddedMethods() {
+    $this->product2oid->buildWithoutInterface();
+    $productClass = $this->buildRelation($this->product2oid);
+    
+    $this->assertNotHasMethod('addOID', $productClass);
+    $this->assertNotHasMethod('removeOID', $productClass);
+    $this->assertNotHasMethod('hasOID', $productClass);
+  }
   
   protected function buildRelation(EntityRelation $relation) {
     //$builder = new EntityRelationInterfaceBuilder($relation);
