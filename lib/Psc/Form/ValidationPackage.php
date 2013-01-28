@@ -13,6 +13,7 @@ use Psc\Data\Type\TypeRuleMapper;
 use Psc\UI\Component\ComponentRuleMapper;
 use Psc\Form\Validator;
 use Closure;
+use Webforge\Common\String AS S;
 
 class ValidationPackage extends \Psc\SimpleObject {
   
@@ -139,6 +140,17 @@ class ValidationPackage extends \Psc\SimpleObject {
     }
 
     return $set;
+  }
+  
+  public function filterjqxWidgetsFromRequestData(FormData $requestData) {
+    $filteredData = $requestData;
+    foreach ($requestData as $key => $value) {
+      if (S::startsWith($key, 'jqxWidget')) {
+        unset($filteredData->$key);
+      }
+    }
+    
+    return $filteredData;
   }
   
   /**

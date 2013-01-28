@@ -287,6 +287,8 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
     */
     $panel = $this->getEntityFormPanel($entity);
     $panel->html(); // damit open gemacht wird und alle controlFields gesetzt werden, sowie die componenten erzeugt werden
+    
+    $requestData = $this->filterRequestData($requestData);
 
     $validator = $this->v->createComponentsValidator($requestData, $panel, $this->dc);
     $this->init(array('v.componentsValidator'));
@@ -302,6 +304,11 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
     $processor->processSet($validator->getSet());
 
     return $this;
+  }
+  
+  
+  protected function filterRequestData(FormData $requestData) {
+    return $this->v->filterjqxWidgetsFromRequestData($requestData);
   }
 
     /**
