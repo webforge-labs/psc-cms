@@ -187,12 +187,23 @@ class RequestAcceptanceTest extends \Psc\Code\Test\HTMLTestCase {
     //$this->assertEquals($this->getFile('small.excel.xlsx')->getContents(), $files['excelFile']->getContents());
   }
   
+  /**
+   * @group parts
+   */
   public function testgetPartsWithModRewrite() {
     $request = $this->dispatch('GET', '/request-acceptance/js/cms/tests/Psc.AjaxHandler');
     $this->assertEquals(array('request-acceptance','js','cms','tests','Psc.AjaxHandler'), $request->getParts());
     
     $request = $this->dispatch('GET', '/request-acceptance/');
     $this->assertEquals(array('request-acceptance'), $request->getParts());
+  }
+  
+  /**
+   * @group parts
+   */
+  public function testGetPartsWithWhitespaceAreNotURLEncoded() {
+    $request = $this->dispatch('GET', '/request-acceptance/99488409004994/Some%20File%20With%20Whitespace.pdf');
+    $this->assertEquals(array('request-acceptance','99488409004994','Some File With Whitespace.pdf'), $request->getParts());
   }
 
   protected function dispatch($method, $relativeUrl, $body = NULL, Array $headers = array()) {
@@ -201,7 +212,7 @@ class RequestAcceptanceTest extends \Psc\Code\Test\HTMLTestCase {
     $dispatcher = $this->tester->dispatcher($method, $relativeUrl, 'text/plain');
 
     if (isset($body)) {
-      $dispatcher->getRequest()->setData($body);
+      $dispatcher->setRequestData($body);
     }
 
     $dispatcher->setHeaderFields($headers);
