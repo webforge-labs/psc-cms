@@ -123,14 +123,14 @@ class Request extends \Psc\Object {
     }
     
     
-    $request = new Request($method, $sfRequest->getPathInfo());
+    $request = new Request($method, rawurldecode($sfRequest->getPathInfo()));
     $request->setQuery($sfRequest->query->all());
     $request->setReferer($sfRequest->server->get('HTTP_REFERER'));
-    $request->setPreferredLanguages($sfRequest->getLanguages()); //$sfRequest->server->get('HTTP_ACCEPT_LANGUAGE')
+    $request->setPreferredLanguages($sfRequest->getLanguages());
     
     $header = $request->getHeader();
     foreach ($sfRequest->headers->all() as $key => $value) {
-      // wir verschönern hier X_REQUESTED_WITH zu X-Requested-With
+      // wir verschönern hier z.B. X_REQUESTED_WITH zu X-Requested-With
       $key = mb_strtolower($key);
       $key = \Psc\Preg::replace_callback($key, '/(^|-)([a-z]{1})/', function ($m) {
           return ($m[1] === '' ? NULL : '-').mb_strtoupper($m[2]);
@@ -144,7 +144,6 @@ class Request extends \Psc\Object {
       
       $header->setField($key, $value);
     }
-    
     
     /* Body */
     if (mb_strpos($request->getHeaderField('Content-Type'), 'application/x-www-form-urlencoded') === 0) {
