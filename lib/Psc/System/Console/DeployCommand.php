@@ -112,11 +112,11 @@ abstract class DeployCommand extends Command {
       
       $deployer->deploy();
       
-      $this->afterDeploy($deployer, $project, $mode, $container);
+      $this->afterDeploy($deployer, $project, $mode, $container, $input, $output);
     }
   }
   
-  protected function afterDeploy(Deployer $deployer, Project $project, $mode, WebforgeContainer $container) {
+  protected function afterDeploy(Deployer $deployer, Project $project, $mode, WebforgeContainer $container, $input, $output) {
   }
 }
 ?>
