@@ -113,7 +113,7 @@ abstract class DeployCommand extends Command {
       $deployer->deploy();
       
       $this->afterDeploy($deployer, $project, $mode, $container, $input, $output);
-      $this->notice('deployment finished.');
+      $this->info('deployment finished.');
       
       return 0;
     }
