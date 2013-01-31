@@ -80,7 +80,7 @@ abstract class DeployCommand extends Command {
   }
   
   protected function updateComposer($project) {
-    system('cd '.$project->getVendor()->up().' && composer update --dev');
+    system('SET COMPOSER_ROOT_VERSION=dev-master && cd '.$project->getVendor()->up().' && composer update --dev');
   }
   
   protected function doExecute($input, $output) {
