@@ -14,6 +14,7 @@ use Symfony\Component\Console\Input\InputOption;
  * 
  * $arg = function ($name, $description = NULL, $required = TRUE, $multiple = FALSE) // default: required
  * $opt = function($name, $short = NULL, $withValue = TRUE, $description = NULL) // default: mit value required
+ * $defOpt = function($name, $short = NULL, $default = NULL, $description = NULL) // with value and a default value
  * $flag = function($name, $short = NULL, $description) // ohne value
  */
 class CommandsIncluder extends \Psc\SimpleObject {
@@ -59,8 +60,12 @@ class CommandsIncluder extends \Psc\SimpleObject {
           return $arg($name, $description, $required, TRUE);
         };
   
-        $opt = function ($name, $short = NULL, $withValue = TRUE, $description = NULL) {
-          return new InputOption($name, $short, $withValue ? InputOption::VALUE_REQUIRED : InputOption::VALUE_OPTIONAL, $description);
+        $opt = function ($name, $short = NULL, $withValue = TRUE, $description = NULL, $default = NULL) {
+          return new InputOption($name, $short, $withValue ? InputOption::VALUE_REQUIRED : InputOption::VALUE_OPTIONAL, $description, $default);
+        };
+
+        $defOpt = function ($name, $short = NULL, $default = NULL, $description = NULL) {
+          return new InputOption($name, $short, InputOption::VALUE_REQUIRED, $description, $default);
         };
   
         $flag = function ($name, $short = NULL, $description = NULL) {
