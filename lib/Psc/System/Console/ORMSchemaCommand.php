@@ -50,7 +50,11 @@ class ORMSchemaCommand extends DoctrineCommand {
     
     $em = PSC::getProject()->getModule('Doctrine')->getEntityManager($con);
     
-    $output->writeln(DoctrineHelper::updateSchema($force, "\n", $em));
+    $output->writeln($log = DoctrineHelper::updateSchema($force, "\n", $em));
+    
+    if ($force != DoctrineHelper::FORCE && empty($log)) {
+      $output->writeln('nothing to do');
+    }
     
     return 0;
   }
