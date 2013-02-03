@@ -102,6 +102,13 @@ class ActionMeta extends \Psc\SimpleObject {
   }
   
   /**
+   * @return string
+   */
+  public function hasSubResource() {
+    return $this->subResource !== NULL;
+  }
+  
+  /**
    * @return const
    */
   public function getVerb() {

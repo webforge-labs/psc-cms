@@ -10,7 +10,7 @@ class ActionMetaTest extends \Webforge\Code\Test\Base {
     
     $this->specificMeta = $this->actionMeta = new ActionMeta(ActionMeta::SPECIFIC, ActionMeta::GET, 'infos');
     $this->generalMeta = new ActionMeta(ActionMeta::GENERAL, ActionMeta::GET, 'list');
-    $this->actionMetaWithoutSubresource = new ActionMeta(ActionMeta::SPECIFIC, ActionMeta::POST);
+    $this->actionMetaWithoutsubResource = new ActionMeta(ActionMeta::SPECIFIC, ActionMeta::POST);
   }
   
   public function testIsGeneralReturnsTrueIfTypeIsGeneral() {
@@ -37,6 +37,14 @@ class ActionMetaTest extends \Webforge\Code\Test\Base {
     $this->setExpectedException('Psc\Code\WrongValueException');
     
     new ActionMeta(ActionMeta::GENERAL, 'notValidVerb');
+  }
+  
+  public function testHassubResourceReturnsFalseIfMetaHasNosubResource() {
+    $this->assertFalse($this->actionMetaWithoutsubResource->hasSubResource());
+  }
+
+  public function testHassubResourceReturnsTrueIfMetaHassubResource() {
+    $this->assertTrue($this->specificMeta->hasSubResource());
   }
 }
 ?>

@@ -45,11 +45,11 @@ class Action extends ActionMeta {
    * Attention: When type is specific $dc is not optional!
    * @return Psc\CMS\EntityMeta
    */
-  public function getEntityMeta(DCPackage $dc = NULL) {
+  public function getEntityMeta(EntityMetaProvider $entityMetaProvider = NULL) {
     if (!isset($this->entityMeta) && $this->type === self::SPECIFIC) {
-      if (!isset($dc)) throw new \LogicException('Missing Parameter 1 (DCPackage $dc) for '.__FUNCTION__);
+      if (!isset($entityMetaProvider)) throw new \LogicException('Missing Parameter 1 (EntityMetaProvider) for '.__FUNCTION__);
       
-      $this->entityMeta = $dc->getEntityMeta($this->entity->getEntityName());
+      $this->entityMeta = $entityMetaProvider->getEntityMeta($this->entity->getEntityName());
     }
     
     return $this->entityMeta;

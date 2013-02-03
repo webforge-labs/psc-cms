@@ -154,6 +154,25 @@ class DoublesManager extends \Psc\Object {
     return $dc;
   }
   
+  public function createEntityMetaProvider(Array $entityMetas = array()) {
+    $mock = $this->testCase->getMockForAbstractClass('Psc\CMS\EntityMetaProvider');
+    
+    foreach ($entityMetas as $entityMeta) {
+      $mock->expects($this->any())
+        ->method('getEntityMeta')
+        ->with(
+          $this->testCase->logicalOr(
+            $this->testCase->equalTo($entityMeta->getEntityName()),
+            $this->testCase->equalTo($entityMeta->getClass())
+          )
+        )
+        ->will($this->testCase->returnValue($entityMeta))
+      ;
+    }
+    
+    return $mock;
+  }
+  
   /**
    * Wird der 2te Parameter weggelassen (EntityManager) wird das Repository mit einem EntityManagerMock constructed
    *

@@ -4,8 +4,9 @@ namespace Psc\Doctrine;
 
 use Doctrine\ORM\EntityManager;
 use Psc\PSC;
+use Psc\CMS\EntityMetaProvider;
 
-class DCPackage extends \Psc\SimpleObject {
+class DCPackage extends \Psc\SimpleObject implements EntityMetaProvider {
 
   /**
    * @var Doctrine\ORM\EntiyManager
