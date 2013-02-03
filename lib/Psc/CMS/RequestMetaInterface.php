@@ -16,5 +16,7 @@ interface RequestMetaInterface extends Exportable {
   public function getMethod();
   
   //public function getBody();
+  
+  public function __toString();
 }
 ?>

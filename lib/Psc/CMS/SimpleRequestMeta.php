@@ -55,5 +55,9 @@ class SimpleRequestMeta implements RequestMetaInterface {
   public function getMethod() {
     return $this->method;
   }
+  
+  public function __toString() {
+    return sprintf('[RequestMeta] %s %s', $this->method, $this->url);
+  }
 }
 ?>

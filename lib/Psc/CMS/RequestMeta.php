@@ -173,5 +173,10 @@ class RequestMeta implements RequestMetaInterface {
    */
   public function getBody() {
     return $this->body;
-  }}
+  }
+
+  public function __toString() {
+    return sprintf('[RequestMeta] %s %s', $this->method, $this->url);
+  }
+}
 ?>
