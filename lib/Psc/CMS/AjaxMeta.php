@@ -12,11 +12,8 @@ use stdClass;
 class AjaxMeta extends \Psc\SimpleObject {
   
   const GET = 'GET';
-  
   const POST = 'POST';
-  
   const DELETE = 'DELETE';
-  
   const PUT = 'PUT';
   
   protected $method;

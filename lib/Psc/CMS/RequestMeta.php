@@ -2,14 +2,28 @@
 
 namespace Psc\CMS;
 
+use Psc\Net\HTTP\Request;
+use Psc\Code\Code;
+use stdClass;
+
 /**
  * RequestMeta
  *
  * überall wo definiert wird, wie ein Entity mit einem Service fungiert sollte dieses Meta-Objekt genutzt werden
  * ist ein alias von AjaxMeta weil ich AjaxMeta in den meisten Contexten etwas zu verwirrend fand (gesetzt den Fall wird machen irgendwann mal Requests auch ohne JS)
  */
-class RequestMeta extends AjaxMeta implements \Psc\Data\Exportable {
+class RequestMeta implements RequestMetaInterface {
   
+  protected $method;
+  
+  protected $url;
+  
+  /**
+   * @var object
+   */
+  protected $body;
+
+
   const QUERY = 'query';
   
   /**
@@ -42,7 +56,9 @@ class RequestMeta extends AjaxMeta implements \Psc\Data\Exportable {
   public function __construct($method, $url, Array $inputMeta = array(), Array $concreteInput = NULL) {
     $this->inputMeta = $inputMeta;
     $this->concreteInput = $concreteInput;
-    parent::__construct($method,$url);
+    $this->setMethod($method);
+    $this->url = $url;
+    $this->body = NULL;
   }
   
   public function export() {
@@ -113,5 +129,49 @@ class RequestMeta extends AjaxMeta implements \Psc\Data\Exportable {
     $this->concreteInput[] = $item;
     return $this;
   }
-}
+  
+  /**
+   * @param string $url
+   */
+  public function setUrl($url) {
+    $this->url = $url;
+    return $this;
+  }
+  
+  public function appendUrl($part) {
+    $this->url .= $part;
+    return $this;
+  }
+  
+  /**
+   * @param const $method
+   * @chainable
+   */
+  protected function setMethod($method) {
+    Code::value($method, self::GET, self::POST, self::PUT, self::DELETE);
+    $this->method = $method;
+    return $this;
+  }
+  
+  /**
+   * @return const
+   */
+  public function getMethod() {
+    return $this->method;
+  }
+  
+  /**
+   * @param object $body
+   */
+  public function setBody($body = NULL) {
+    $this->body = $body;
+    return $this;
+  }
+  
+  /**
+   * @return object
+   */
+  public function getBody() {
+    return $this->body;
+  }}
 ?>
