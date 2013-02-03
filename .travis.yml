@@ -10,7 +10,7 @@ env:
   
 before_script:
   - composer self-update
-  - COMPOSER_ROOT_VERSION=dev-master composer install --non-interactive --dev
+  - COMPOSER_ROOT_VERSION=dev-master composer install --no-interaction --dev
   - vendor/bin/webforge register-package .
   - mysql -e 'create database IF NOT EXISTS `psc-cms_tests`;'
   - mysql -e 'create database IF NOT EXISTS `psc-cms`;'
