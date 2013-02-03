@@ -81,7 +81,6 @@ Mobil
     $this->assertEquals(0, $mailer->send());
     
     $logger = $mailer->getLogger();
-    $this->assertNotEmpty($logger->dump());
   }
 }
 
