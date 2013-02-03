@@ -4,6 +4,8 @@ namespace Psc\UI;
 
 use Psc\Doctrine\TestEntities\Person;
 use Psc\CMS\Action;
+use Psc\CMS\ActionRouter;
+use Psc\CMS\RequestMetaInterface;
 
 class UIPackageTest extends \Psc\Doctrine\DatabaseTestCase {
   
@@ -13,6 +15,7 @@ class UIPackageTest extends \Psc\Doctrine\DatabaseTestCase {
     $this->chainClass = 'Psc\CMS\UIPackageTest';
     parent::setUp();
     $this->ui = new UIPackage(
+      new ActionRouter($this->dc),
       $this->dc
     );
   }
@@ -54,11 +57,9 @@ class UIPackageTest extends \Psc\Doctrine\DatabaseTestCase {
     );
     
     $this->assertEquals(
-      RequestMeta::GET,
+      RequestMetaInterface::GET,
       $requestMeta->getMethod()
     );
-    
-    $this->assertNull($requestMeta->getBody(), 'body should be empty');
   }
   
   public function testFullOIDSiteSyntax() {

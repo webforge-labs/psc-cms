@@ -6,7 +6,9 @@ use Psc\Doctrine\DCPackage;
 use Psc\UI\TabButton;
 use Psc\CMS\Item\Buttonable;
 use Psc\CMS\Action;
+use Psc\CMS\ActionRouter;
 use Psc\CMS\Item\MetaAdapter;
+use Psc\CMS\EntityMetaProvider;
 
 /**
  * The UI Package helps for common tasks doing in the frontend for example in a controller
@@ -15,15 +17,21 @@ use Psc\CMS\Item\MetaAdapter;
 class UIPackage {
   
   /**
-   * @var Psc\Doctrine\DCPackage
+   * @var Psc\CMS\EntityMetaProvider
    */
-  protected $dc;
+  protected $entityMetaProvider;
+  
+  /**
+   * @var Psc\CMS\ActionRouter
+   */
+  protected $actionRouter;
   
   /**
    *
    */
-  public function __construct(DCPackage $dc) {
-    $this->dc = $dc;
+  public function __construct(ActionRouter $router, EntityMetaProvider $entityMetaProvider) {
+    $this->actionRouter = $router;
+    $this->entityMetaProvider = $entityMetaProvider;
   }
   
   /**
@@ -31,7 +39,7 @@ class UIPackage {
    */
   public function action($entityOrMeta, $verb, $subResource = NULL) {
     if (is_string($entityOrMeta)) {
-      $entityOrMeta = $this->dc->getEntityMeta($this->dc->expandEntityName($entityOrMeta));
+      $entityOrMeta = $this->entityMetaProvider->getEntityMeta($entityOrMeta);
     }
     
     return new Action($entityOrMeta, $verb, $subResource);
@@ -45,12 +53,13 @@ class UIPackage {
     $adapter->setButtonLabel($label);
     
     $tabButton = new TabButton($adapter);
+    $tabButton->setTabRequestMeta($this->actionRouter->route($action));
     
     return $tabButton;
   }
   
   protected function getEntityAdapterForAction(Action $action, $context = MetaAdapter::CONTEXT_DEFAULT) {
-    $entityMeta = $action->getEntityMeta($this->dc);
+    $entityMeta = $action->getEntityMeta($this->entityMetaProvider);
     if ($action->isSpecific()) {
       return $entityMeta->getAdapter($action->getEntity(), $context);
     }
