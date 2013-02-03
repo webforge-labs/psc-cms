@@ -7,6 +7,7 @@ use Psc\CMS\EntityMeta;
 use Psc\UI\TabButton;
 use Psc\UI\DeleteTabButton;
 use Psc\CMS\RequestMeta;
+use Psc\CMS\RequestMetaInterface;
 
 /**
  * Der Adapter verbindet die UI* Klassen mit EntityMeta + Entity
@@ -134,7 +135,7 @@ class Adapter extends MetaAdapter implements ComboDropBoxable, TabButtonable, De
     return $this->tabRequestMeta;
   }
 
-  public function setTabRequestMeta(RequestMeta $meta) {
+  public function setTabRequestMeta(RequestMetaInterface $meta) {
     $this->tabRequestMeta = $meta;
     return $this;
   }
