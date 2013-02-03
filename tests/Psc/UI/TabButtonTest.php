@@ -123,6 +123,18 @@ class TabButtonTest extends \Psc\Code\Test\HTMLTestCase {
     );
   }
   
+  public function testTabRequestMetaCanBeOverriden() {
+    $this->tabButton = new TabButton($this->item, $this->jooseBridge);
+    $this->tabButton->setTabRequestMeta(
+      $rm = $this->getMockForAbstractClass('Psc\CMS\RequestMetaInterface')
+    );
+    
+    $this->assertSame(
+      $this->tabButton->getTabRequestMeta(),
+      $rm
+    );
+  }
+  
   /**
    * @return Psc\CMS\Item\TabButtonable
    */

@@ -5,6 +5,7 @@ namespace Psc\UI;
 use Psc\CMS\Item\TabButtonable;
 use Psc\CMS\Item\TabButtonableValueObject;
 use Psc\CMS\Item\JooseBridge;
+use Psc\CMS\RequestMetaInterface;
 
 /**
  * Ein TabButton wird als ui-button dargestellt und öffnet einen Tab (jay)
@@ -87,10 +88,18 @@ class TabButton extends \Psc\UI\Button implements \Psc\UI\TabButtonInterface, \P
   }
   
   /**
-   * @return Psc\CMS\RequestMeta
+   * @return Psc\CMS\RequestMetaInterface
    */
   public function getTabRequestMeta() {
     return $this->item->getTabRequestMeta();
+  }
+  
+  /**
+   * @chainable
+   */
+  public function setTabRequestMeta(RequestMetaInterface $rm) {
+    $this->item->setTabRequestMeta($rm);
+    return $this;
   }
   
   // joose interfaces

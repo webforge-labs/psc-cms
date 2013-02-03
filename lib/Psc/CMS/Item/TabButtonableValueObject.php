@@ -2,7 +2,7 @@
 
 namespace Psc\CMS\Item;
 
-use Psc\CMS\RequestMeta;
+use Psc\CMS\RequestMetaInterface;
 
 class TabButtonableValueObject implements TabButtonable {
   
@@ -111,7 +111,7 @@ class TabButtonableValueObject implements TabButtonable {
   /**
    * @chainable
    */
-  public function setTabRequestMeta(RequestMeta $rm) {
+  public function setTabRequestMeta(RequestMetaInterface $rm) {
     $this->tabRequestMeta = $rm;
     return $this;
   }
