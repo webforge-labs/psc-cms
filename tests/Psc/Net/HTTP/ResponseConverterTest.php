@@ -7,6 +7,7 @@ use Psc\Net\Service;
 use Psc\Data\ArrayCollection;
 use Psc\CMS\RequestMeta;
 use Psc\CMS\Service\MetadataGenerator;
+use Psc\Entities\File AS UplFile;
 
 /**
  * @group class:Psc\Net\HTTP\ResponseConverter
@@ -17,12 +18,18 @@ class ResponseConverterTest extends \Psc\Code\Test\Base {
     $this->chainClass = 'Psc\Net\HTTP\ResponseConverter';
     parent::setUp();
     $this->converter = new ResponseConverter();
+    
+    $this->fileWithWhitespace = $this->getCommonFile('whitespace file.txt');
   }
   
   /**
    * @dataProvider provideNormalConversions
    */
   public function testOKConversion($expectedBody, $serviceResponseBody, $format, Request $request = NULL) {
+    return $this->assertOKConversion($expectedBody, $serviceResponseBody, $format, $request);
+  }
+  
+  protected function assertOKConversion($expectedBody, $serviceResponseBody, $format, Request $request = NULL) {
     $request = $request ?: $this->doublesManager->createHTTPRequest('GET', '/entities/person/2/form');
     
     $httpResponse = $this->converter->fromService(new ServiceResponse(Service::OK, $serviceResponseBody, $format), $request);
@@ -36,6 +43,8 @@ class ResponseConverterTest extends \Psc\Code\Test\Base {
     } else {
       $this->assertEquals($expectedBody, $httpResponse->getBody());
     }
+    
+    return $httpResponse;
   }
   
   public static function provideNormalConversions() {
@@ -64,6 +73,24 @@ class ResponseConverterTest extends \Psc\Code\Test\Base {
               );
     
     return $tests;
+  }
+    
+  public function testFileWithWhitespaceIsNotURLEncoded() {
+    $uplFile = new UplFile($this->fileWithWhitespace);
+    $uplFile->setOriginalName($this->fileWithWhitespace->getName());
+    
+    $response = $this->assertOKConversion(
+      NULL,
+      $uplFile,
+      ServiceResponse::SOME_FILE
+    );
+    
+    $contentDisposition = $response->getHeaderField('Content-Disposition');
+    
+    $this->assertRegExp(
+      '/filename=("|\')?whitespace file.txt("|\')?/',
+      $contentDisposition
+    );
   }
   
   public function testMetadataConversion() {

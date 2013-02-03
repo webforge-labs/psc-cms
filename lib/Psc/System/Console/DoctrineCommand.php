@@ -23,6 +23,10 @@ class DoctrineCommand extends \Psc\System\Console\Command {
       'Name der Connection',
       'tests'
     );
+    
+    $this->addOption(
+      'dry-run'
+    );
   }
   
   protected function execute(InputInterface $input, OutputInterface $output) {
@@ -42,7 +46,13 @@ class DoctrineCommand extends \Psc\System\Console\Command {
       
       if ($ret <= 0) {
         DoctrineHelper::enableSQLLogging('echo', $this->em);
-        $this->em->flush();
+        
+        if ($input->getOption('dry-run')) {
+          $this->warn('DryRun: nothing is flushed');
+        } else {
+          $this->em->flush();
+        }
+        
         if ($this->transactional) $this->em->getConnection()->commit();
       } else {
         if ($this->transactional) $this->em->getConnection()->rollback();

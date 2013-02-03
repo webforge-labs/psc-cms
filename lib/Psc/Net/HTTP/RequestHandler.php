@@ -22,6 +22,9 @@ class RequestHandler extends \Psc\System\LoggerObject {
   
   protected $services = array();
   
+  /**
+   * @var Psc\Net\Service
+   */
   protected $service;
   
   /**
@@ -59,6 +62,8 @@ class RequestHandler extends \Psc\System\LoggerObject {
    * @var Psc\Net\ServiceErrorPackage
    */
   protected $err;
+  
+  protected $ignoredErrors = array(404);
   
   /**
    * Einen Service muss es mindestens geben
@@ -161,15 +166,21 @@ class RequestHandler extends \Psc\System\LoggerObject {
     }
     
     if (isset($e)) { // oder halt code >= 400
-      $contextInfo = 'im RequestHandler. '.$request->getMethod().' /'.implode('/',$request->getParts())."\n";
-      $contextInfo .= '  Referrer: '.$request->getReferrer();
-      if (isset($this->contextInfo)) {
-        $contextInfo = "\n".$this->contextInfo;
+      if (!$this->isIgnoredError($e)) {
+        $contextInfo = 'im RequestHandler. '.$request->getMethod().' /'.implode('/',$request->getParts())."\n";
+        $contextInfo .= '  Referrer: '.$request->getReferrer();
+        if (isset($this->contextInfo)) {
+          $contextInfo = "\n".$this->contextInfo;
+        }
+        \Psc\PSC::getEnvironment()->getErrorHandler()->handleCaughtException($e, $contextInfo);
       }
-      \Psc\PSC::getEnvironment()->getErrorHandler()->handleCaughtException($e, $contextInfo);
     }
     
     return $this->response;
+  }
+  
+  protected function isIgnoredError(\Exception $e) {
+    return in_array($e->getCode(), $this->ignoredErrors);
   }
   
   protected function getErrorMessageHeaders(\Exception $e) {

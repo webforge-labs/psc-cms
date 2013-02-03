@@ -25,9 +25,12 @@ use Webforge\Framework\Container as WebforgeContainer;
       $this->vhostName = 'tiptoi.andromeda.ps-webforge.net';
       $this->staging = FALSE;
     }
+    $this->server = 'www-data@pegasus.ps-webforge.com';
   }
 */
 abstract class DeployCommand extends Command {
+  
+  const OK = 0;
   
   protected $file;
   protected $outFile;
@@ -43,6 +46,13 @@ abstract class DeployCommand extends Command {
   protected $staging = FALSE;
   
   protected $variant = NULL;
+  
+  /**
+   * @var string server fqn
+   */
+  protected $server;
+  
+  protected $remoteVhostsDir = '/var/local/www/';
   /* /properties */
   
   protected function configure() {
@@ -80,7 +90,7 @@ abstract class DeployCommand extends Command {
   }
   
   protected function updateComposer($project) {
-    system('cd '.$project->getVendor()->up().' && composer update --dev');
+    system('SET COMPOSER_ROOT_VERSION=dev-master && cd '.$project->getVendor()->up().' && composer update --dev');
   }
   
   protected function doExecute($input, $output) {
@@ -112,11 +122,72 @@ abstract class DeployCommand extends Command {
       
       $deployer->deploy();
       
-      $this->afterDeploy($deployer, $project, $mode, $container);
+      $this->remoteSync($mode);
+      $this->remoteUpdateComposer($mode);
+      $this->remoteUpdateDB($mode);
+      $this->remoteRunTests($mode);
+      
+      $this->afterDeploy($deployer, $project, $mode, $container, $input, $output);
+      $this->info('deployment finished.');
+      
+      return 0;
     }
   }
   
-  protected function afterDeploy(Deployer $deployer, Project $project, $mode, WebforgeContainer $container) {
+  protected function remoteSync($mode) {
+    if ($mode === 'normal') {
+      $this->info('I will wait for you to sync now....');
+      
+      if (!$this->confirm('Did you synced and should I progress now?')) {
+        throw $this->exitException('You have to sync, composer update and update db by yourself', 10);
+      }
+    }
+  }
+  
+  protected function remoteUpdateComposer($mode) {
+    if ($mode === 'staging' || $this->confirm('Do you want to install with composer?')) {
+      $install = $this->remoteExec(
+        'export COMPOSER_ROOT_VERSION=dev-master; /usr/local/sbin/composer.phar --dev install',
+        'base/src'
+      );
+    }
+  }
+  
+  protected function getRemoteDBCon($mode) {
+    return $mode === 'staging' ? 'tests' : 'default';
+  }
+  
+  protected function remoteUpdateDB($mode) {
+    $con = $this->getRemoteDBCon($mode);
+    $this->remoteExec(sprintf('./cli.sh orm:update-schema --con="%s"', $con), 'base/bin/');
+    
+    if ($this->confirm('Do you want to force update the schema? (see above for changes if any)')) {
+      $this->remoteExec(sprintf('./cli.sh orm:update-schema --force --con="%s"', $con), 'base/bin/');
+    }
+  }
+  
+  protected function remoteRunTests($mode) {
+    if ($mode === 'staging' && !$this->withoutTest) {
+      $this->comment('run test');
+      
+      $this->remoteExec('phpunit', 'base/bin/');
+    }
+  }
+
+  protected function getRemoteVhostPath($vhostName, $sub) {
+    return $this->remoteVhostsDir.$vhostName.'/'.trim($sub, '/').'/';
+  }
+  
+  protected function remoteExec($cmd, $in) {
+    $cmd = sprintf('ssh %s "cd %s && export PSC_CMS=/var/local/www/psc-cms-bin/; %s"', $this->server, $this->getRemoteVhostPath($this->vhostName, $in), $cmd);
+    $this->comment($cmd);
+    $ret = NULL;
+    system($cmd, $ret);
+    
+    return $ret;
+  }
+  
+  protected function afterDeploy(Deployer $deployer, Project $project, $mode, WebforgeContainer $container, $input, $output) {
   }
 }
 ?>

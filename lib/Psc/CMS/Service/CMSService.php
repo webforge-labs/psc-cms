@@ -122,7 +122,7 @@ class CMSService extends ControllerService {
 
         // filename immer am ende und optional
         $filename = NULL;
-        if (\Psc\Preg::match($r->getLastPart(), '/[a-z0-9]+\.[a-z0-9]+/i')) {
+        if (\Psc\Preg::match($r->getLastPart(), '/^(.+)\.(.+)$/')) {
           $filename = $r->pop();
         }
       

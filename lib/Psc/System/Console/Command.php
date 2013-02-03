@@ -77,7 +77,7 @@ class Command extends \Symfony\Component\Console\Command\Command {
   public function confirm($question, $default = TRUE) {
     $dialog = $this->getHelper('dialog');
     return $dialog->askConfirmation($this->execOutput,
-                                    $question,
+                                    $question.' ',
                                     $default
                                    );
   }
