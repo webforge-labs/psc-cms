@@ -78,7 +78,7 @@ Mobil
        ->setPassword('laSUeeEYiHDwfdDHPUSd')
       );
     
-    $this->assertEquals(1, $mailer->send());
+    $this->assertEquals(0, $mailer->send());
     
     $logger = $mailer->getLogger();
     $this->assertNotEmpty($logger->dump());
