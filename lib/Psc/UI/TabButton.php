@@ -18,17 +18,26 @@ class TabButton extends \Psc\UI\Button implements \Psc\UI\TabButtonInterface, \P
   protected $item;
 
   public function __construct(TabButtonable $item, JooseBridge $jooseBridge = NULL) {
+    $this->setUpItem($item);
+    
+    parent::__construct($this->item->getButtonLabel());
+    
+    $this->setUpJooseBridge($jooseBridge);
+    
+    $this->setUp();
+  }
+  
+  protected function setUpItem($item) {
     $this->item = TabButtonableValueObject::copyFrom($item);
-    
-    parent::__construct($this->item->getButtonLabel()); // kein label für button
-    
+  }
+  
+  protected function setUpJooseBridge(JooseBridge $jooseBridge = NULL) {
     if ($jooseBridge) {
       $this->jooseBridge = $jooseBridge;
       $this->jooseBridge->setItem($this->item);
     } else {
       $this->jooseBridge = new JooseBridge($this->item);
     }
-    $this->setUp();
   }
   
   protected function doInit() {

@@ -40,6 +40,10 @@ class TabButtonableValueObject implements TabButtonable {
     return $valueObject;
   }
   
+  public static function copyFromTabButtonable(TabButtonable $tabButtonable) {
+    return self::copyFrom($tabButtonable);
+  }
+  
   public function getButtonLabel() {
     return $this->buttonLabel;
   }

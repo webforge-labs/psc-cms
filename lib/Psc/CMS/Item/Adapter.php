@@ -36,7 +36,7 @@ class Adapter extends MetaAdapter implements ComboDropBoxable, TabButtonable, De
   protected $entity;
   
   /* caches / vars */
-  protected $tabButton, $tabRequestMeta, $tabLabel, $linkLabel;
+  protected $tabButton, $tabRequestMeta, $tabLabel, $linkLabel, $deleteRequestMeta;
   
   /**
    * Wird übergeben wenn der Context: action ist
@@ -141,7 +141,11 @@ class Adapter extends MetaAdapter implements ComboDropBoxable, TabButtonable, De
   }
 
   public function getDeleteRequestMeta() {
-    return $this->entityMeta->getDeleteRequestMeta($this->entity);
+    if (!isset($this->deleteRequestMeta)) {
+      $this->deleteRequestMeta = $this->entityMeta->getDeleteRequestMeta($this->entity);
+    }
+    
+    return $this->deleteRequestMeta;
   }
   
   /**
