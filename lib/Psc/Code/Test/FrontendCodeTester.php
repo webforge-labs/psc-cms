@@ -41,6 +41,12 @@ class FrontendCodeTester extends CodeTester {
     return new JSTester($this->testCase, $html->getJoose());
   }
   
+  public function joose(\Psc\JS\JooseSnippet $snippet) {
+    $jsTester = new JSTester($this->testCase);
+    $jsTester->setJooseSnippet($snippet);
+    return $jsTester;
+  }
+  
   /**
    * @return Psc\Code\Test\CMSAcceptanceTester
    */

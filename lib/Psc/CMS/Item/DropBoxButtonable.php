@@ -11,6 +11,6 @@ namespace Psc\CMS\Item;
  * JS-Bridge:
  * Psc.CMS.DropBoxButtonable
  */
-interface DropBoxButtonable extends TabOpenable, Buttonable, Identifyable {
+interface DropBoxButtonable extends TabButtonable, Identifyable {
 }
 ?>
