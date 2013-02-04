@@ -5,6 +5,7 @@ namespace Psc\CMS\Item;
 use Psc\CMS\Entity;
 use Psc\CMS\EntityMeta;
 use Psc\UI\TabButton;
+use Psc\UI\DropBoxButton;
 use Psc\UI\DeleteTabButton;
 use Psc\CMS\RequestMeta;
 use Psc\CMS\RequestMetaInterface;
@@ -68,7 +69,15 @@ class Adapter extends MetaAdapter implements ComboDropBoxable, TabButtonable, De
     return $this->getDeleteButtonable()->getTabButton();
   }
   
+  public function getDropBoxButton() {
+    return new DropBoxButton($this);
+  }
+  
   public function getSelectComboBoxable() {
+    return $this;
+  }
+  
+  public function getDropBoxButtonable() {
     return $this;
   }
 

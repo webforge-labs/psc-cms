@@ -6,6 +6,7 @@ use Psc\JS\jQuery;
 use Psc\Code\Code;
 use Psc\HTML\JooseBase;
 use Psc\JS\JooseSnippetWidget;
+use Psc\JS\JooseSnippet;
 
 class JSTester extends \Psc\SimpleObject {
   
@@ -67,6 +68,11 @@ class JSTester extends \Psc\SimpleObject {
     } else {
       return $this->joose->getConstructParams();
     }
+  }
+  
+  public function setJooseSnippet(JooseSnippet $snip) {
+    $this->jooseSnippet = $snip;
+    return $this;
   }
 }
   

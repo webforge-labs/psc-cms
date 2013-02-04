@@ -15,15 +15,12 @@ class DeleteButtonableValueObject extends ButtonableValueObject implements Delet
   protected $deleteRequestMeta;
   
   public static function copyFromDeleteButtonable(DeleteButtonable $buttonable) {
-    $valueObject = new static();
+    $valueObject = self::copyFromButtonable($buttonable);
     
     // ugly, but fast
-    $valueObject->setButtonLabel($buttonable->getButtonLabel());
-    $valueObject->setFullButtonLabel($buttonable->getFullButtonLabel());
-    $valueObject->setButtonLeftIcon($buttonable->getButtonLeftIcon());
-    $valueObject->setButtonRightIcon($buttonable->getButtonRightIcon());
-    $valueObject->setButtonMode($buttonable->getButtonMode());
     $valueObject->setDeleteRequestMeta($buttonable->getDeleteRequestMeta());
+    $valueObject->setIdentifier($buttonable->getIdentifier());
+    $valueObject->setEntityName($buttonable->getEntityName());
     
     return $valueObject;
   }
@@ -42,6 +39,16 @@ class DeleteButtonableValueObject extends ButtonableValueObject implements Delet
   
   public function getIdentifier() {
     return $this->identifier;
+  }
+  
+  public function setIdentifier($id) {
+    $this->identifier = $id;
+    return $this;
+  }
+  
+  public function setEntityName($fqn) {
+    $this->entityName = $fqn;
+    return $this;
   }
   
   public function getEntityName() {

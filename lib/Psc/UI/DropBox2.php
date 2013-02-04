@@ -116,7 +116,7 @@ class DropBox2 extends \Psc\HTML\JooseBase implements \Psc\JS\JooseSnippetWidget
         } elseif ($item instanceof \Psc\CMS\Entity) {
           $button = $this->entityMeta->getAdapter($item)
             ->setButtonMode(Buttonable::CLICK | Buttonable::DRAG) 
-            ->getTabButton();
+            ->getDropBoxButton();
         } else {
           throw new \InvalidArgumentException(Code::varInfo($item).' kann nicht in einen Button umgewandelt werden');
         }

@@ -32,17 +32,49 @@ class DropBox2Test extends \Psc\Code\Test\HTMLTestCase {
     
     $this->test->js($this->dropBox)
       ->constructsJoose('Psc.UI.DropBox')
-        ->hasParam('name')
+        ->hasParam('name', $this->equalTo('tags'))
         ->hasParam('widget')
+        ->hasParam('button0')
+        ->hasParam('button1')
       ;
   }
   
+  public function testDropBoxButtonsAreBridgedToJSWithFastItem() {
+    $this->html = $this->dropBox->html();
+    
+    $button = $this->test->js($this->dropBox)
+      ->constructsJoose('Psc.UI.DropBox')
+        ->hasParam('button0')
+        ->getParam('button0')
+      ;
+    
+    $this->test->joose($button)
+      ->constructsJoose('Psc.CMS.FastItem')
+        ->hasParam('identifier', $this->equalTo($this->tags['t1']->getIdentifier()))
+        ->hasParam('entityName', $this->equalTo('tag'))
+    ;
+  }
+  
   public function testMultipleIsBrigedToJS() {
-    $this->markTestIncomplete('TODO');
+    $this->dropBox->setMultiple(TRUE);
+    
+    $this->html = $this->dropBox->html();
+    
+    $this->test->js($this->dropBox)
+      ->constructsJoose('Psc.UI.DropBox')
+        ->hasParam('multiple', $this->equalTo(true))
+      ;
   }
 
   public function testConnectWithIsBrigedToJS() {
-    $this->markTestIncomplete('TODO');
+    $this->dropBox->setConnectWith('.other-dropboxes-on-page');
+    
+    $this->html = $this->dropBox->html();
+    
+    $this->test->js($this->dropBox)
+      ->constructsJoose('Psc.UI.DropBox')
+        ->hasParam('connectWith', $this->equalTo('.other-dropboxes-on-page'))
+      ;
   }
 }
 ?>
