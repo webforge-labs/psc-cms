@@ -28,7 +28,7 @@ class TabButton extends \Psc\UI\Button implements \Psc\UI\TabButtonInterface, \P
   }
   
   protected function setUpItem($item) {
-    $this->item = TabButtonableValueObject::copyFrom($item);
+    $this->item = TabButtonableValueObject::copyFromTabButtonable($item);
   }
   
   protected function setUpJooseBridge(JooseBridge $jooseBridge = NULL) {

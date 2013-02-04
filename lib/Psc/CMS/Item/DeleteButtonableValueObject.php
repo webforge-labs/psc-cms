@@ -4,7 +4,7 @@ namespace Psc\CMS\Item;
 
 use Psc\CMS\RequestMetaInterface;
 
-class DeleteButtonableValueObject extends TabButtonableValueObject implements DeleteButtonable {
+class DeleteButtonableValueObject extends ButtonableValueObject implements DeleteButtonable {
   
   protected $identifier;
   protected $entityName;

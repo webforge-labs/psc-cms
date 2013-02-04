@@ -59,6 +59,12 @@ class AdapterTest extends \Psc\Code\Test\HTMLTestCase {
     $this->assertInstanceOf('Psc\UI\Button', $this->adapter->getDeleteTabButton());
   }
 
+  public function testGetDeleteButtonHTMLAcceptance() {
+    $this->assertInstanceOf('Psc\UI\Button', $button = $this->adapter->getDeleteTabButton());
+    
+    $html = $button->html();
+  }
+
   public function testGetComboDropBoxable() {
     $this->assertInstanceOf('Psc\CMS\Item\ComboDropBoxable', $this->adapter->getComboDropBoxable());
   }

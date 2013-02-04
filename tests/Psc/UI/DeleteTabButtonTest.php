@@ -15,9 +15,11 @@ class DeleteTabButtonTest extends \Psc\Code\Test\HTMLTestCase {
   protected $bridgedItem;
   protected $jooseBridge;
   protected $item;
+  protected $bridgedClass;
   
   public function setUp() {
     $this->chainClass = 'Psc\UI\DeleteTabButton';
+    $this->bridgedClass = 'Psc\CMS\Item\DeleteButtonable';
     parent::setUp();
     $this->item = $this->getEntityMeta('Psc\Doctrine\TestEntities\Article')
                       ->getAdapter(current($this->loadTestEntities('articles')))
@@ -106,13 +108,13 @@ class DeleteTabButtonTest extends \Psc\Code\Test\HTMLTestCase {
   
   protected function bridgeItem() {
     $this->html = $this->tabButton->html();
-    $this->assertInstanceOf('Psc\CMS\Item\TabButtonable', $this->bridgedItem, 'Button ruft nicht jooseBridge->setItem() auf');
+    $this->assertInstanceOf($this->bridgedClass, $this->bridgedItem, 'Button ruft nicht jooseBridge->setItem() auf');
     return $this->bridgedItem;
   }
   
   protected function expectBridgeGetsItem() {
     $this->jooseBridge->expects($this->once())->method('setItem')
-                      ->with($this->isInstanceOf('Psc\CMS\Item\TabButtonable'))
+                      ->with($this->isInstanceOf($this->bridgedClass))
                       ->will($this->returnCallback(array($this, 'jooseBridge_setItemMock')));
   }
   

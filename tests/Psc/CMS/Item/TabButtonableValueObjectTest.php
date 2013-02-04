@@ -21,14 +21,14 @@ class TabButtonableValueObjectTest extends \Webforge\Code\Test\Base {
   }
   
   public function testValueObjectCanBeCreatedFromOtherTabButtonable() {
-    $this->assertInstanceOf($this->chainClass, TabButtonableValueObject::copyFrom($this->item));
+    $this->assertInstanceOf($this->chainClass, TabButtonableValueObject::copyFromTabButtonable($this->item));
   }
 
   /**
    * @dataProvider provideDefaultMethods
    */
   public function testValueObjectCanBeCreatedFromTabButtonable_whichCopiesAllValues($method) {
-    $object = TabButtonableValueObject::copyFrom($this->item);
+    $object = TabButtonableValueObject::copyFromTabButtonable($this->item);
     
     $this->assertSame(
       $this->item->$method(),

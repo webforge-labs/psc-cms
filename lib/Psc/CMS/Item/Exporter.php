@@ -42,7 +42,7 @@ class Exporter extends \Psc\SimpleObject {
     return $this->merge($item, array('Buttonable','TabOpenable'));
   }
 
-  public function DeleteButtonable(TabButtonable $item) {
+  public function DeleteButtonable(DeleteButtonable $item) {
     return $this->merge($item, array('Buttonable','Deleteable'));
   }
 
