@@ -8,6 +8,7 @@ use Webforge\Common\System\File;
 use Webforge\Common\System\Dir;
 use Psc\System\Deploy\Deployer;
 use Psc\CMS\Project;
+use Webforge\Common\Preg;
 use Webforge\Framework\Container as WebforgeContainer;
 
 /**
@@ -90,7 +91,9 @@ abstract class DeployCommand extends Command {
   }
   
   protected function updateComposer($project) {
+    $this->out('[DeployCommand] ** local update Composer');
     system('SET COMPOSER_ROOT_VERSION=dev-master && cd '.$project->getVendor()->up().' && composer update --dev');
+    $this->br();
   }
   
   protected function doExecute($input, $output) {
@@ -142,15 +145,20 @@ abstract class DeployCommand extends Command {
         throw $this->exitException('You have to sync, composer update and update db by yourself', 10);
       }
     }
+    $this->br();
   }
   
   protected function remoteUpdateComposer($mode) {
+    $this->out('[DeployCommand] ** remote Install Composer');
     if ($mode === 'staging' || $this->confirm('Do you want to install with composer?')) {
       $install = $this->remoteExec(
-        'export COMPOSER_ROOT_VERSION=dev-master; /usr/local/sbin/composer.phar --dev install',
+        'export COMPOSER_ROOT_VERSION=dev-master; /usr/local/sbin/composer.phar --optimize-autoloader --dev install',
         'base/src'
       );
+      
+      
     }
+    $this->br();
   }
   
   protected function getRemoteDBCon($mode) {
@@ -158,31 +166,38 @@ abstract class DeployCommand extends Command {
   }
   
   protected function remoteUpdateDB($mode) {
-    $con = $this->getRemoteDBCon($mode);
-    $this->remoteExec(sprintf('./cli.sh orm:update-schema --con="%s"', $con), 'base/bin/');
+    $this->out('[DeployCommand] ** remote Update DB');
     
-    if ($this->confirm('Do you want to force update the schema? (see above for changes if any)')) {
-      $this->remoteExec(sprintf('./cli.sh orm:update-schema --force --con="%s"', $con), 'base/bin/');
+    $con = $this->getRemoteDBCon($mode);
+    $out = '';
+    $this->remoteExec(sprintf('./cli.sh orm:update-schema --con="%s"', $con), 'base/bin/', $out);
+    if (!Preg::match($out, '/nothing to do/')) {
+      if ($this->confirm('Do you want to force update the schema? (see above for changes)')) {
+        $this->remoteExec(sprintf('./cli.sh orm:update-schema --force --con="%s"', $con), 'base/bin/');
+      }
     }
+    
+    $this->br();
   }
   
   protected function remoteRunTests($mode) {
+    $this->out('[DeployCommand] ** remote Run Tests');
     if ($mode === 'staging' && !$this->withoutTest) {
-      $this->comment('run test');
-      
       $this->remoteExec('phpunit', 'base/bin/');
     }
+    $this->br();
   }
 
   protected function getRemoteVhostPath($vhostName, $sub) {
     return $this->remoteVhostsDir.$vhostName.'/'.trim($sub, '/').'/';
   }
   
-  protected function remoteExec($cmd, $in) {
+  protected function remoteExec($cmd, $in, &$output = NULL) {
     $cmd = sprintf('ssh %s "cd %s && export PSC_CMS=/var/local/www/psc-cms-bin/; %s"', $this->server, $this->getRemoteVhostPath($this->vhostName, $in), $cmd);
     $this->comment($cmd);
     $ret = NULL;
-    system($cmd, $ret);
+    
+    $output = system($cmd, $ret);
     
     return $ret;
   }
