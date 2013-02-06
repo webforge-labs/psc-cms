@@ -6,6 +6,7 @@ use Psc\PSC;
 use Webforge\Common\System\Dir;
 use Webforge\Common\System\File;
 use Closure;
+use Psc\PHPUnit\InvokedAtMethodIndexMatcher;
 
 /**
  * Der Base-TestCase
@@ -38,17 +39,9 @@ class Base extends AssertionsBase {
     $this->doublesManager = new DoublesManager($this);
   }
   
-  protected function dataToString($data) {
-    return parent::dataToString($data);
-    // use this if phpunit segfaults
-    return 'data cannot be converted to string';
-    //return \Psc\Doctrine\Helper::getDump($data);
-  }
-  
   public function getProject() {
     if (!isset($this->project)) {
-      $this->project = PSC::getProject();
-      //$this->project = $GLOBALS['env']['container']->getProject();
+      $this->project = $GLOBALS['env']['container']->getProject();
     }
     return $this->project;
   }
@@ -226,5 +219,18 @@ class Base extends AssertionsBase {
 //    print \Psc\A::join($this->sjg->log, "\n  %s");
 //    throw $e;
 //  }
+
+  
+    /**
+     * Returns a matcher that matches when *the method* it is evaluated for is invoked at the given $index.
+     *
+     * @param  integer $index
+     * @param  string  $method
+     * @return Psc\PHPUnit\InvokedAtMethodIndexMatcher;
+     */
+    public static function atMethod($method, $index)
+    {
+        return new InvokedAtMethodIndexMatcher($index, $method);
+    }
 }
 ?>

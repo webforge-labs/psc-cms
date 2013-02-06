@@ -54,7 +54,6 @@ class TabButtonableValueObjectTest extends \Webforge\Code\Test\Base {
       array('getTabRequestMeta'),
       array('getTabLabel')
     );
-  }
-  
+  }  
 }
 ?>
