@@ -11,6 +11,7 @@ use PHPExcel_Cell AS ExcelCell;
 use PHPExcel_Cell_DataType AS ExcelDataType;
 use Psc\PHPExcel\Helper AS h;
 use Psc\Exception AS DefaultException;
+use RuntimeException;
 
 class SimpleImporter {
   
@@ -193,10 +194,10 @@ class SimpleImporter {
     $sheets = array();
     $excel = $this->getExcel();
     foreach ($this->sheets as $select) {
-      if (is_integer($select)) {
-        $sheets[$select] = $excel->getSheet($select);
+      if ($excelSheet = is_integer($select) ? $excel->getSheet($select) : $excel->getSheetByName((string) $select)) {
+        $sheets[$select] = $excelSheet;
       } else {
-        $sheets[$select] = $excel->getSheetByName((string) $select);
+        throw new RuntimeException(sprintf("The sheet to be selected '%s' was not found.", $select));
       }
     }
     return $sheets;
