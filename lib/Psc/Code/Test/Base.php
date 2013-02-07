@@ -7,6 +7,7 @@ use Webforge\Common\System\Dir;
 use Webforge\Common\System\File;
 use Closure;
 use Psc\PHPUnit\InvokedAtMethodIndexMatcher;
+use Psc\PHPUnit\InvokedAtMethodGroupIndexMatcher;
 
 /**
  * Der Base-TestCase
@@ -231,6 +232,19 @@ class Base extends AssertionsBase {
     public static function atMethod($method, $index)
     {
         return new InvokedAtMethodIndexMatcher($index, $method);
+    }
+
+    /**
+     * Returns a matcher that matches when *the method* it its group is evaluated for ,is invoked at the given $groupIndex.
+     *
+     * @param  integer $index
+     * @param  string  $method
+     * @param  string[]  $methodGroup an array of methods that should be counted for the groupIndex
+     * @return Psc\PHPUnit\InvokedAtMethodGroupIndexMatcher;
+     */
+    public static function atMethodGroup($method, $groupIndex, array $methodGroup)
+    {
+        return new InvokedAtMethodGroupIndexMatcher($index, $method);
     }
 }
 ?>
