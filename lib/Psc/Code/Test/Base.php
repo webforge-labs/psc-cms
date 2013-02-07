@@ -244,7 +244,7 @@ class Base extends AssertionsBase {
      */
     public static function atMethodGroup($method, $groupIndex, array $methodGroup)
     {
-        return new InvokedAtMethodGroupIndexMatcher($index, $method);
+        return new InvokedAtMethodGroupIndexMatcher($groupIndex, $method, $methodGroup);
     }
 }
 ?>
