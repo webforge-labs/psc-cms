@@ -76,8 +76,8 @@ PSC::setProjectsFactory($bridge->getProjectsFactory());
 $project = PSC::setProject(PSC::getProjectsFactory()->getProject('%projectName%', %projectMode%, %staging%))
   ->bootstrap()
 %modules%
-  ->getConfiguration()->set(array('url','base'), '%baseUrl%')
 ;
+$project->getConfiguration()->set(array('url','base'), '%baseUrl%');
 
 // register on webforge (dont use local registry)
 $webforge->getPackageRegistry()->addComposerPackageFromDirectory($project->getComposerRoot());
