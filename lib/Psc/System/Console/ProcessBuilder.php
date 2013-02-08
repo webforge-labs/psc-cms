@@ -81,10 +81,11 @@ class ProcessBuilder {
   }
   
   public function addOption($optionName, $value = NULL) {
+    $minus = mb_strlen($optionName) === 1 ? '-' : '--';
     if (isset($value)) {
-      $this->args[] = sprintf('--%s=%s', $optionName, $this->escapeShellArg($value));
+      $this->args[] = $minus.sprintf('%s=%s', $optionName, $this->escapeShellArg($value));
     } else {
-      $this->args[] = '--'.$optionName;
+      $this->args[] = $minus.$optionName;
     }
     return $this;
   }

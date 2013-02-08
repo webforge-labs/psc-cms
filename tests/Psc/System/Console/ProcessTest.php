@@ -20,6 +20,8 @@ class ProcessTest extends \Psc\Code\Test\Base {
     } else {
       $this->binPath = '/usr/local/bin/';
     }
+    
+    $this->win = substr(PHP_OS, 0, 3) == 'WIN';
   }
   
   /**
@@ -111,7 +113,7 @@ class ProcessTest extends \Psc\Code\Test\Base {
     
     $this->assertEquals('piped in', $process->getStdin());
     
-    if (substr(PHP_OS, 0, 3) == 'WIN') {
+    if ($this->win) {
       $cmdLine = <<<'WINDOWS'
 "C:\Program Files\mybin" "argument1" "escaped\argument2" --flag1="value" --flag2 --flag3="escaped\"value"
 WINDOWS;
@@ -122,6 +124,15 @@ UNIX;
     }
 
     $this->assertEquals($cmdLine, $process->getCommandLine());
+  }
+  
+  public function testBuilderConstructsShortOptionsOnlyWithOneMinus() {
+    $process = Process::build(new \Webforge\Common\System\File($this->binPath.'mybin'))
+                  ->addOption('s', 'short-argument')
+                  ->end();
+    
+    $this->assertContains('-s', $process->getCommandLine());
+    $this->assertNotContains('--s', $process->getCommandLine());
   }
 }
 ?>

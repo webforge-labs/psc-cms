@@ -287,7 +287,7 @@ class Module extends \Psc\CMS\Module implements \Psc\Code\Event\Dispatcher {
         $connection = $this->getConnectionOptions($con);
       }
 
-      $entityManager = $this->entityManagers[$con] = EntityManager::create($connection, $this->configuration);
+      $entityManager = $this->entityManagers[$con] = EntityManager::create($connection, $this->getConfiguration());
       $platform = $entityManager->getConnection()->getDatabasePlatform();
       $platform->registerDoctrineTypeMapping('enum','string');
       
@@ -544,6 +544,9 @@ class Module extends \Psc\CMS\Module implements \Psc\Code\Event\Dispatcher {
    * @return \Doctrine\ORM\Configuration
    */
   public function getConfiguration() {
+    if (!isset($this->configuration)) {
+      throw new \RuntimeException('Cannot getConfiguration(), bootstrap() should be called first.');
+    }
     return $this->configuration;
   }
 
