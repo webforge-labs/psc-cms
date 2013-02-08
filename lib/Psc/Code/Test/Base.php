@@ -8,6 +8,7 @@ use Webforge\Common\System\File;
 use Closure;
 use Psc\PHPUnit\InvokedAtMethodIndexMatcher;
 use Psc\PHPUnit\InvokedAtMethodGroupIndexMatcher;
+use Psc\System\Console\Process;
 
 /**
  * Der Base-TestCase
@@ -246,5 +247,26 @@ class Base extends AssertionsBase {
     {
         return new InvokedAtMethodGroupIndexMatcher($groupIndex, $method, $methodGroup);
     }
+
+  /**
+   * @return Psc\System\Console\Process
+   */
+  public function runPHPFile(File $phpFile) {
+    $phpBin = SystemUtil::findPHPBinary();
+    
+    $process = Process::build($phpBin, array(), array('f'=>$phpFile))->end();
+    $process->run();
+    
+    $this->assertTrue($process->isSuccessful(),
+                      sprintf("process for phpfile '%s' did not return 0.\ncmd:\n%s\nerr:\n%s\nout:\n%s\n",
+                        $phpFile,
+                        $process->getCommandLine(),
+                        $process->getErrorOutput(),
+                        $process->getOutput()
+                      )
+                     );
+    
+    return $process;
+  }
 }
 ?>
