@@ -74,11 +74,11 @@ class Container {
       // but thats not a problem at first hand: we assume that we can find a composer.json somewhere
       
       $this->webforge->getPackageRegistry()->addComposerPackageFromDirectory(
-        $composerRoot = $this->findComposerFolder()
+        $this->rootDirectory
       );
       
       // try again to init (its faster to use $composerRoot here, allthough this->rootDirectory would do it anyway)
-      $this->webforge->initLocalPackageFromDirectory($composerRoot); 
+      $this->webforge->initLocalPackageFromDirectory($this->rootDirectory); 
     }  
   }
   
