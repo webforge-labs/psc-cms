@@ -60,7 +60,8 @@ $bootLoader = new BootLoader(__DIR__);
 $bootLoader->setHostConfigFile(getenv('PSC_CMS'));
 $bootLoader->init(BootLoader::COMPOSER);
 
-$bridge = $bootLoader->getCMSContainer()->webforge->getCMSBridge();
+$webforge = $bootLoader->getCMSContainer()->webforge;
+$bridge = $webforge->getCMSBridge();
 
 // hack host-config
 $bridge->getHostConfig()->set(
@@ -77,6 +78,9 @@ $project = PSC::setProject(PSC::getProjectsFactory()->getProject('%projectName%'
 %modules%
   ->getConfiguration()->set(array('url','base'), '%baseUrl%')
 ;
+
+// register on webforge (dont use local registry)
+$webforge->getPackageRegistry()->addComposerPackageFromDirectory($project->getComposerRoot());
 
 ?>
 PHP;
