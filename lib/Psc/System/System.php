@@ -27,7 +27,7 @@ class System extends \Psc\Object {
     $win = ($flags ^ self::FORCE_UNIX) && PSC::getEnvironment()->getOS() == Environment::WINDOWS;
     
     $locate = function ($cmd) use ($flags, $win) {
-      $location = exec($cmd);  
+      $location = exec($cmd);
       
       if (mb_strlen($script = trim($location)) > 0) {
         if ($win && ($flags ^ \Psc\System\System::DONTQUOTE) && mb_strpos($script,' ')) 
