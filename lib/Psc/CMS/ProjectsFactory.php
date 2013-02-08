@@ -180,5 +180,9 @@ class ProjectsFactory extends \Psc\Object {
   protected function getPaths() {
     return $this->paths;
   }
+  
+  public function getHostConfig() {
+    return $this->hostConfig;
+  }
 }
 ?>

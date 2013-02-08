@@ -22,6 +22,16 @@ class Container {
   public function init() {
     ini_set('mbstring.internal_encoding', 'UTF-8');
     $GLOBALS['env']['root'] = $this->rootDirectory;
+    
+    $this->initPSCStaticClass();
+  }
+  
+  protected function initPSCStaticClass() {
+    // some legacy static class from older projects
+    PSC::setProject($this->getProject());
+    
+    // the projectsfactory has the same host config as we have
+    PSC::setProjectsFactory($this->getProjectsFactory());
   }
   
   protected function initRootDirectory($rootDirectory) {
@@ -43,6 +53,13 @@ class Container {
     }
     
     return $this->project;
+  }
+  
+  /**
+   * @return Psc\CMS\ProjectsFactory
+   */
+  public function getProjectsFactory() {
+    return $this->webforge->getCMSBridge()->getProjectsFactory();
   }
   
   /**
