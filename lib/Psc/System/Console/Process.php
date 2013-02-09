@@ -14,7 +14,7 @@ class Process extends \Symfony\Component\Process\Process {
     $inherits = array('PATH','SystemRoot','LOCALAPPDATA','SystemDrive','SSH_AUTH_SOCK','CommonProgramFiles',
                       'APPDATA','COMPUTERNAME','TEMP','TMP','USERNAME',
                       'PHPRC', 'PHP_PEAR_BIN_DIR', 'PHP_PEAR_PHP_BIN', 'PSC_CMS',
-                      'XDEBUG_CONFIG'
+                      'XDEBUG_CONFIG', 'WEBFORGE'
                      );
     foreach ($inherits as $inherit) {
       $env[$inherit] = getenv($inherit);
