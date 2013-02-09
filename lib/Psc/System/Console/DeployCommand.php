@@ -191,7 +191,7 @@ abstract class DeployCommand extends Command {
   }
   
   protected function remoteExec($cmd, $in, &$output = NULL) {
-    $cmd = sprintf('ssh %s "cd %s && export PSC_CMS=/var/local/www/psc-cms-bin/; %s"', $this->server, $this->getRemoteVhostPath($this->vhostName, $in), $cmd);
+    $cmd = sprintf('ssh %s "cd %s && export PSC_CMS=/var/local/www/psc-cms-bin/; export WEBFORGE=/var/local/www/.webforge/; %s"', $this->server, $this->getRemoteVhostPath($this->vhostName, $in), $cmd);
     $this->comment($cmd);
     $ret = NULL;
     
