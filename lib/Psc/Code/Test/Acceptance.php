@@ -54,7 +54,7 @@ abstract class Acceptance extends \Psc\Doctrine\DatabaseTestCase {
     $dispatcher = $this->test->acceptance(NULL)->dispatcher($method, $url, $type, $publicRequest = TRUE);
     
     if ($body) {
-      $dispatcher->getRequest()->setData($body);
+      $dispatcher->setRequestData($body);
     }
     
     if (!self::$htdocsIsHtaccessProtected)
