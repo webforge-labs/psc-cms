@@ -158,7 +158,7 @@ abstract class DeployCommand extends Command {
         'base/src'
       );
       
-      if (!$install && $this->confirm('Fck Composer... Do you want to update with composer?')) {
+      if ($install != 0 && $this->confirm('Fck Composer... Do you want to update with composer?')) {
         $this->remoteExec(
           sprintf($cmd, 'update'),
           'base/src'
