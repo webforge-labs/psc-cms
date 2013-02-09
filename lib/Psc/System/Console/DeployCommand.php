@@ -151,10 +151,19 @@ abstract class DeployCommand extends Command {
   protected function remoteUpdateComposer($mode) {
     $this->out('[DeployCommand] ** remote Install Composer');
     if ($mode === 'staging' || $this->confirm('Do you want to install with composer?')) {
+      $cmd = 'export COMPOSER_ROOT_VERSION=dev-master; /usr/local/sbin/composer.phar --no-interaction --optimize-autoloader --dev %s';
+      
       $install = $this->remoteExec(
-        'export COMPOSER_ROOT_VERSION=dev-master; /usr/local/sbin/composer.phar --no-interaction --optimize-autoloader --dev update',
+        sprintf($cmd, 'install'),
         'base/src'
       );
+      
+      if (!$install && $this->confirm('Fck Composer... Do you want to update with composer?')) {
+        $this->remoteExec(
+          sprintf($cmd, 'update'),
+          'base/src'
+        );
+      }
     }
     $this->br();
   }
