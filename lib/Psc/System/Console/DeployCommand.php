@@ -152,11 +152,9 @@ abstract class DeployCommand extends Command {
     $this->out('[DeployCommand] ** remote Install Composer');
     if ($mode === 'staging' || $this->confirm('Do you want to install with composer?')) {
       $install = $this->remoteExec(
-        'export COMPOSER_ROOT_VERSION=dev-master; /usr/local/sbin/composer.phar --optimize-autoloader --dev install',
+        'export COMPOSER_ROOT_VERSION=dev-master; /usr/local/sbin/composer.phar --no-interaction --optimize-autoloader --dev update',
         'base/src'
       );
-      
-      
     }
     $this->br();
   }
@@ -193,7 +191,7 @@ abstract class DeployCommand extends Command {
   }
   
   protected function remoteExec($cmd, $in, &$output = NULL) {
-    $cmd = sprintf('ssh %s "cd %s && export PSC_CMS=/var/local/www/psc-cms-bin/; %s"', $this->server, $this->getRemoteVhostPath($this->vhostName, $in), $cmd);
+    $cmd = sprintf('ssh %s "cd %s && export PSC_CMS=/var/local/www/psc-cms-bin/; export WEBFORGE=/var/local/www/.webforge/; %s"', $this->server, $this->getRemoteVhostPath($this->vhostName, $in), $cmd);
     $this->comment($cmd);
     $ret = NULL;
     

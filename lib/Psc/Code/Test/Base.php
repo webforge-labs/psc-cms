@@ -5,6 +5,7 @@ namespace Psc\Code\Test;
 use Psc\PSC;
 use Webforge\Common\System\Dir;
 use Webforge\Common\System\File;
+use Webforge\Common\System\Util as SystemUtil;
 use Closure;
 use Psc\PHPUnit\InvokedAtMethodIndexMatcher;
 use Psc\PHPUnit\InvokedAtMethodGroupIndexMatcher;
