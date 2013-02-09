@@ -57,36 +57,21 @@ use Psc\Boot\BootLoader;
 
 require 'package.boot.php';
 $bootLoader = new BootLoader(__DIR__);
-$bootLoader->setHostConfigFile(getenv('PSC_CMS'));
-$bootLoader->init(BootLoader::COMPOSER);
+$bootLoader->loadComposer();
+$bootLoader->registerCMSContainer();
 
-$webforge = $bootLoader->getCMSContainer()->webforge;
-$bridge = $webforge->getCMSBridge();
-
-// hack host-config
-$bridge->getHostConfig()->set(
-  array('projects', '%projectName%', 'root'),
-  $bootLoader->getPath('../../', BootLoader::RELATIVE | BootLoader::VALIDATE)
-);
-
-PSC::setProjectsFactory($bridge->getProjectsFactory());
-
-%phars%
-
-$project = PSC::setProject(PSC::getProjectsFactory()->getProject('%projectName%', %projectMode%, %staging%))
+PSC::getProject()
+  ->setStaging(%staging%)
   ->bootstrap()
 %modules%
+  ->getConfiguration()->set(array('url','base'), '%baseUrl%');
 ;
-$project->getConfiguration()->set(array('url','base'), '%baseUrl%');
-
-// register on webforge (dont use local registry)
-$webforge->getPackageRegistry()->addComposerPackageFromDirectory($project->getComposerRoot());
 
 ?>
 PHP;
     
     $vars = array(
-      'staging'=>$this->targetProject->isStaging() ? '$staging = TRUE' : '$staging = FALSE',
+      'staging'=>$this->targetProject->isStaging() ? 'TRUE' : 'FALSE',
       'projectMode'=>'\Psc\CMS\Project::MODE_SRC',
       'projectName'=>$this->targetProject->getName(),
       'baseUrl'=>$this->baseUrl,
