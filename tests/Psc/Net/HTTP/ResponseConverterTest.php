@@ -108,5 +108,20 @@ class ResponseConverterTest extends \Psc\Code\Test\Base {
     
     $this->assertTrue($httpResponse->hasHeaderField('X-Psc-Cms-Meta'));
   }
+  
+  public function testServiceResponseWith_ResponseOutputting_asBody_willBeConvertedToResponseWithOutputClosure() {
+    $body = $this->getMockForAbstractClass('Psc\Net\ResponseOutputting');
+    $format = ServiceResponse::TEXT;
+    
+    $body->expects($this->once())->method('output')
+         ->with($this->isInstanceOf('Psc\Net\ResponseOutput'), $this->equalTo($format)); 
+    
+    $httpResponse = $this->assertOKConversion($expectedBody = NULL, $body, $format);
+    
+    ob_start();
+    // we exclude http headers output because we have not headers in phpunit test
+    $httpResponse->output(Response::OUTPUT_BODY | Response::OUTPUT_CLOSURE);
+    ob_end_clean();
+  }
 }
 ?>
