@@ -143,12 +143,18 @@ class Page extends \Psc\OptionsObject implements \Psc\HTML\HTMLInterface {
    * print $html;
    * 
    * // hier goes the content
-   * print '</body></html>';
+   * 
+   * 
+   * print $html->getClose();
    */
   public function setOpen() {
     $this->body->setOption('closeTag',FALSE);
     $this->html->setOption('closeTag',FALSE);
     return $this;
+  }
+  
+  public function getClose() {
+    return '</body></html>';
   }
   
   /**
