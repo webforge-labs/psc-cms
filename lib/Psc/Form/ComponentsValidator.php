@@ -146,6 +146,8 @@ class ComponentsValidator extends \Psc\Form\Validator {
    *
    * Der callback bekommt als ersten dynamischen Parameter den ComponentsValidator übergeben
    * als zweiten die componenten die validiert wurden
+   *
+   * $callback(ComponentsValidator $cv, array $components)
    */
   public function addPostValidation(\Psc\Code\Callable $callback) {
     $this->postValidations[] = $callback;
