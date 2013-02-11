@@ -155,7 +155,7 @@ class Request extends \Psc\Object {
       foreach ($sfRequest->files->all() as $key => $sfFile) {
         if ($sfFile instanceof \Symfony\Component\HttpFoundation\File\UploadedFile) {
           if (!$sfFile->isValid()) {
-            throw new \Psc\Exception('Cannot Upload File: '.$sfFile->getClientOriginalName());
+            throw new \Psc\Exception('Cannot Upload File: '.$sfFile->getClientOriginalName().' Error Code: '.$sfFile->getErorr().' size: '.$sfFile->getClientSize());
           } else {
           
             $files[$key] = $f = new \Psc\System\UploadedFile($sfFile->getPathName());
