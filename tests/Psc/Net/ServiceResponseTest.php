@@ -53,7 +53,7 @@ class ServiceResponseTest extends \Psc\Code\Test\Base {
     $this->test->setter('body',$this->getType('String'));
     $this->test->setter('body',$this->getType('Array'));
   }
-
+  
   public function createServiceResponse($status = Service::OK) {
     return new ServiceResponse($status);
   }

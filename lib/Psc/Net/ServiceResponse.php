@@ -8,6 +8,7 @@ use Psc\CMS\Service\MetadataGenerator;
 class ServiceResponse extends \Psc\SimpleObject {
 
   const HTML = 'html';
+  const TEXT = 'text';
   const JSON = 'json';
   const JSON_UPLOAD_RESPONSE = 'json_upload_response'; // sonderfall für sonderbehandlung mit IE bei iframe transfers
   const XML = 'xml';

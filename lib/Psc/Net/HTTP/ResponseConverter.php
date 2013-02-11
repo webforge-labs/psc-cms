@@ -4,6 +4,8 @@ namespace Psc\Net\HTTP;
 
 use Psc\Net\ServiceResponse;
 use Psc\Net\Service;
+use Psc\Net\ResponseOutputting;
+use Psc\Net\PHPResponseOutput;
 use Psc\Code\NotImplementedException;
 use Psc\Code\Code;
 
@@ -75,6 +77,11 @@ class ResponseConverter extends \Psc\SimpleObject {
       }
       
       $format = ServiceResponse::JSON; // weiter
+    }
+    
+    /* ReponseOutputting - Body */
+    if ($body instanceof ResponseOutputting) {
+      return $this->createOutputtingResponse($body, $response, $request);
     }
     
     /* JSON */
@@ -169,7 +176,20 @@ class ResponseConverter extends \Psc\SimpleObject {
       return $this->createResponse($this->prettyPrintJSON ? \Psc\JS\Helper::reformatJSON(json_encode($body)) : json_encode($body));
     }
   }
+  
+  protected function createOutputtingResponse(ResponseOutputting $body, ServiceResponse $response) {
+    $outputController = new PHPResponseOutput();
+    $format = $response->getFormat();
     
+    $response = $this->createResponse(NULL);
+    $response->setOutputClosure(function () use ($body, $outputController, $format) {
+      $outputController->start();
+      
+      return $body->output($outputController, $format);
+    });
+    
+    return $response;
+  }
   
   /**
    * @return list($format, $mimeContentType)
