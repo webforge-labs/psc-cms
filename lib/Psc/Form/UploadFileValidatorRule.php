@@ -14,12 +14,12 @@ class UploadFileValidatorRule implements FieldValidatorRule {
   public function validate($data) {
     // die $data hier ist relativ uninteressant
     // wir machen hier ein bißchen dirty-action
-    if (!isset($_FILES)) throw new EmptyDataException();
+    if (!isset($_FILES)) throw new EmptyDataException('_FILES is not set, there arent any files uploaded');
     
     $field = $this->field;
     
     if (!array_key_exists($field, $_FILES)) {
-      throw new EmptyDataException();
+      throw new EmptyDataException('_FILES['.$field.'] is not set, file was not uploaded. Keys in _FILES: '.implode('|', array_keys($_FILES)));
     }
     $fileArray = $_FILES[$field];
     
