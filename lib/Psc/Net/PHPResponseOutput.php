@@ -29,7 +29,7 @@ class PHPResponseOutput implements ResponseOutput {
    */
   public function flush() {
     flush();
-    ob_flush();
+    if ($this->obFlush) ob_flush();
   }
 }
 ?>

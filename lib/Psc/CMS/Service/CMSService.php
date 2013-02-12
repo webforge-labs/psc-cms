@@ -53,7 +53,9 @@ class CMSService extends ControllerService {
         if ($r->part() === 'convert') {
           // importieren
 
-          return array($controller, 'convert', array($body)); // im body können dann options stehen oder sowas
+          // im body können dann options stehen oder sowas
+          // der controller holt sich die excelFile selbst
+          return array($controller, 'convert', array(is_object($body) ? $body : new \stdClass)); 
 
         } else {
           // exportieren

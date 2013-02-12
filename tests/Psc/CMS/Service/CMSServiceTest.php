@@ -148,9 +148,21 @@ class CMSServiceTest extends \Psc\Code\Test\Base {
     $this->markTestIncomplete('implement this');
 
   }
+
+  public function testExcelControllerConvertRoutingWithoutAnyBody() {
+    list($ctrl, $method, $params) = $this->assertExcelRouting(
+      'convert',
+      array(new \stdClass),
+      $this->service->routeController($this->request('POST', '/cms/excel/convert', $body = ''))
+    );
+  }
   
   protected function assertImageRouting($expectedMethod, Array $expectedParams = NULL, Array $list) {
     return $this->assertRouting('Psc\CMS\Controller\ImageController', $expectedMethod, $expectedParams, $list);
+  }
+
+  protected function assertExcelRouting($expectedMethod, Array $expectedParams = NULL, Array $list) {
+    return $this->assertRouting('Psc\CMS\Controller\ExcelController', $expectedMethod, $expectedParams, $list);
   }
 
   protected function assertFileUploadRouting($expectedMethod, Array $expectedParams = NULL, Array $list) {
@@ -160,6 +172,8 @@ class CMSServiceTest extends \Psc\Code\Test\Base {
   protected function assertNavigationRouting($expectedMethod, Array $expectedParams = NULL, Array $list) {
     return $this->assertRouting('Psc\CMS\Controller\NavigationController', $expectedMethod, $expectedParams, $list);
   }
+  
+  
 
   protected function assertRouting($controllerClass, $expectedMethod, Array $expectedParams = NULL, Array $list) {
     list($ctrl, $method, $params) = $list;
