@@ -172,6 +172,7 @@ class RequestHandler extends \Psc\System\LoggerObject {
         if (isset($this->contextInfo)) {
           $contextInfo .= "\n".$this->contextInfo;
         }
+        $contextInfo .= $this->dumpRequest($request);
         \Psc\PSC::getEnvironment()->getErrorHandler()->handleCaughtException($e, $contextInfo);
       }
     }
@@ -298,6 +299,24 @@ class RequestHandler extends \Psc\System\LoggerObject {
                      $this->logger->toString()
                   );
     }
+  }
+  
+  /**
+   * returns a importable string representation of the request
+   * @return string
+   */
+  protected function dumpRequest(Request $request) {
+    $body = $request->getBody();
+    
+    $dump .= "Body of request is:\n";
+    
+    if (is_object($body) || is_array($body)) {
+      $dump .= json_encode($body);
+    } elseif(is_string($body)) {
+      $dump .= sprintf('"%s"',$body);
+    }
+    
+    return $dump;
   }
   
   /**
