@@ -10,6 +10,7 @@ use Psc\System\Deploy\Deployer;
 use Psc\CMS\Project;
 use Webforge\Common\Preg;
 use Webforge\Framework\Container as WebforgeContainer;
+use Psc\DateTime\TimeBenchmark;
 
 /**
  * 
@@ -97,6 +98,7 @@ abstract class DeployCommand extends Command {
   }
   
   protected function doExecute($input, $output) {
+    $bench = new TimeBenchmark();
     $this->withoutTest = $input->getOption('without-test');
     $cliProject = $this->getHelper('project')->getProject();
     $modes = $input->getArgument('mode');
@@ -131,7 +133,7 @@ abstract class DeployCommand extends Command {
       $this->remoteRunTests($mode);
       
       $this->afterDeploy($deployer, $project, $mode, $container, $input, $output);
-      $this->info('deployment finished.');
+      $this->info('deployment finished in '.$bench->stop());
       
       return 0;
     }
