@@ -2,10 +2,12 @@
 
 namespace Psc\JS;
 
-require_once 'jparser.php';
+import('PLUG.JavaScript.JParser');
+import('PLUG.JavaScript.JLex');
+import('PLUG.JavaScript.JTokenizer'); 
 
 class JParser extends \JParser {
-
+  
   public static function dumpNode($node) {
     ob_start();
     $node->dump(new \JLex);
