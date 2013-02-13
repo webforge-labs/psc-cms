@@ -22,6 +22,8 @@ class ValidationPackage extends \Psc\SimpleObject {
   protected $typeRuleMapper;
   protected $componentRuleMapper;
   
+  protected $validationEntity;
+  
   public function __construct(ComponentRuleMapper $componentRuleMapper = NULL, TypeRuleMapper $typeRuleMapper = NULL) {
     $this->componentRuleMapper = $componentRuleMapper ?: new ComponentRuleMapper();
     $this->typeRuleMapper = $typeRuleMapper ?: $this->componentRuleMapper->getTypeRuleMapper(); // oder andersrum, nech :)
@@ -104,7 +106,7 @@ class ValidationPackage extends \Psc\SimpleObject {
    * Der FormPanel muss die Componenten schon erstellt haben sie werden mit getComponents() aus dem Formular genommen
    */
   public function createComponentsValidator(FormData $requestData, EntityFormPanel $panel, DCPackage $dc, Array $components = NULL) {
-    $entity = $panel->getEntityForm()->getEntity();
+    $this->validationEntity = $entity = $panel->getEntityForm()->getEntity();
     
     $components = isset($components) ? Code::castCollection($components) : $panel->getEntityForm()->getComponents();
     
@@ -113,6 +115,17 @@ class ValidationPackage extends \Psc\SimpleObject {
                                       $components,
                                       $this->componentRuleMapper
                                      );
+  }
+  
+  // dirty: und einmal genutzt in tiptoi GameController für Patch Workaround: todo: schöner bauen
+  public function onPostValidation(ComponentsValidator $validator, \Closure $do) {
+    $entity = $this->validationEntity;
+    
+    $validator->addPostValidation(
+      new \Psc\Code\Callback(function($componentsValidator, $validatedComponents) use ($entity, $do) {
+        $do($entity, $componentsValidator, $validatedComponents);
+      })
+    );
   }
   
   /**

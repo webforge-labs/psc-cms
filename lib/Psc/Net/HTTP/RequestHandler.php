@@ -170,7 +170,7 @@ class RequestHandler extends \Psc\System\LoggerObject {
         $contextInfo = 'im RequestHandler. '.$request->getMethod().' /'.implode('/',$request->getParts())."\n";
         $contextInfo .= '  Referrer: '.$request->getReferrer();
         if (isset($this->contextInfo)) {
-          $contextInfo = "\n".$this->contextInfo;
+          $contextInfo .= "\n".$this->contextInfo;
         }
         \Psc\PSC::getEnvironment()->getErrorHandler()->handleCaughtException($e, $contextInfo);
       }
