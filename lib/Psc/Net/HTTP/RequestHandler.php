@@ -308,7 +308,7 @@ class RequestHandler extends \Psc\System\LoggerObject {
   protected function dumpRequest(Request $request) {
     $body = $request->getBody();
     
-    $dump .= "Body of request is:\n";
+    $dump = "Body of request is:\n";
     
     if (is_object($body) || is_array($body)) {
       $dump .= json_encode($body);
