@@ -29,8 +29,7 @@
     "swiftmailer/swiftmailer": "4.1.*@stable",
     "CodePlex/PHPExcel": "1.7.8@stable",
     "webforge/common": "dev-master",
-    "webforge/webforge": "dev-master",
-    "timwhitlock/jparser": "dev-master"
+    "webforge/webforge": "dev-master"
   },
   "require-dev": {
     "webforge/testdata-repository": "dev-master",
