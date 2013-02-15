@@ -2,9 +2,7 @@
 
 namespace Psc\JS;
 
-import('PLUG.JavaScript.JParser');
-import('PLUG.JavaScript.JLex');
-import('PLUG.JavaScript.JTokenizer'); 
+require_once 'JParser'.DIRECTORY_SEPARATOR.'autoload.php';
 
 class JParser extends \JParser {
   
