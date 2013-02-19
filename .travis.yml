@@ -8,9 +8,11 @@ branches:
 env:
   - PSC_CMS=$HOME/build/pscheit/psc-cms/etc/travis/
   
-before_script:
+before_install:
   - composer self-update
-  - COMPOSER_ROOT_VERSION=dev-master composer install --no-interaction --dev
+  - COMPOSER_ROOT_VERSION=dev-master composer install --prefer-source --no-interaction --dev
+  
+before_script:
   - vendor/bin/webforge register-package .
   - mysql -e 'create database IF NOT EXISTS `psc-cms_tests`;'
   - mysql -e 'create database IF NOT EXISTS `psc-cms`;'
