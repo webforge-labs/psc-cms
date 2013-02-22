@@ -292,7 +292,10 @@ class Module extends \Psc\CMS\Module implements \Psc\Code\Event\Dispatcher {
       $platform->registerDoctrineTypeMapping('enum','string');
       
       if (($cset = $this->project->getConfiguration()->get(array('db',$con,'charset'),'utf8')) != NULL) {
-        $entityManager->getConnection()->query("SET CHARACTER SET '".$cset."'");
+        // take NAMES not SET CHARACTER SET
+        // http://dev.mysql.com/doc/refman/5.1/de/charset-connection.html
+        // set character set, sets the character_set_connection to the collation of the db (when this is wrong everything does not go well)
+        $entityManager->getConnection()->query("SET NAMES '".$cset."'");
       }
     }
     
