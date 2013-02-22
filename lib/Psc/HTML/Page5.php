@@ -6,13 +6,13 @@ namespace Psc\HTML;
  * Eine HTML5 Page
  *
  */
-class Page5 extends Page {
+class Page5 extends FrameworkPage {
   
   protected $doctype = '<!DOCTYPE html>';
   
   public function __construct(\Psc\JS\Manager $jsManager = NULL, \Psc\CSS\Manager $cssManager = NULL) {
-    $jsManager = $jsManager ?: new \Psc\JS\ProxyManager();
     parent::__construct($jsManager, $cssManager);
+    
     $this->setMeta(NULL, FALSE)->setAttribute('charset',$this->charset);
     
     $this->html->removeAttribute('xml:lang');

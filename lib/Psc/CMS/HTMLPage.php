@@ -14,7 +14,7 @@ class HTMLPage extends \Psc\HTML\Page {
     parent::__construct($jsManager, $cssManager);
     
     $projectAbbrev = $projectAbbrev ?: PSC::getProject()->getLowerName();
-    $title = Config::getDefault('project.title','Psc - CMS');
+    
     
     /* Projekt CSS Files */
     $this->cssManager->register($projectAbbrev.'.css',$projectAbbrev,array('jquery-ui'));
@@ -36,6 +36,7 @@ class HTMLPage extends \Psc\HTML\Page {
     
     $this->setUp();
     
+    $title = Config::getDefault('project.title','Psc - CMS');
     $title .= ' '.Config::get('version');
     
     if (PSC::inProduction()) {
@@ -65,5 +66,4 @@ class HTMLPage extends \Psc\HTML\Page {
 
   }
 }
-
 ?>

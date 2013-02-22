@@ -1,8 +1,12 @@
-define(['jquery', 'app/boot', 'joose'], function ($, boot) {
-  var main;
+// use boot to create the default cms - main
+define(['jquery','app/boot'], function ($, boot) {
+  var main = boot.createMain($('#content'));
   
-  // instantiate your main js app here
-  // use boot.getLoader() to get a loader with jobs attached, while loading index.php
+  if (main) { // bei login z.b. gibts kein main und kein javascript
+    // load inline scripts, that are bootloaded while loading main.html
+    // for example select tab
+    main.getLoader().finished();
+  }
   
   return main;
 });

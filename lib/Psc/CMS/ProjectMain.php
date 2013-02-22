@@ -543,7 +543,7 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
     return $this->rightContent;
   }
   
-  public function addMarkup(HTMLPage $page, Array $vars = array()) {
+  public function addMarkup(\Psc\HTML\Page $page, Array $vars = array()) {
     //foreach ($this->getStaticClasses() as $alias => $cp) {
     //  $page->getJSManager()->enqueue($alias);
     //}

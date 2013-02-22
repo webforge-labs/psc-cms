@@ -4,30 +4,46 @@ namespace Psc\HTML;
 
 use Psc\JS\Helper as js;
 use Psc\CSS\Helper as css;
+use Psc\CMS\Project;
 
-class Page5Framework extends Page5 {
+class FrameworkPage extends Page {
   
   /**
    * @var string ohne - dahinter
    */
   protected $titlePrefix;
 
-  public function addTwitterBootstrapCSS() {
+  public function __construct(\Psc\JS\Manager $jsManager = NULL, \Psc\CSS\Manager $cssManager = NULL) {
+    $jsManager = $jsManager ?: new \Psc\JS\ProxyManager();
+		
+		parent::__construct($jsManager, $cssManager);
+	}
+	
+	public function addCMSDefaultCSS() {
+     $this->cssManager->enqueue('default');
+    $this->cssManager->enqueue('jquery-ui');
+    //$this->cssManager->enqueue($projectAbbrev);
+    $this->cssManager->enqueue('cms.form');
+    $this->cssManager->enqueue('cms.ui');
+	}
+
+	public function addTwitterBootstrapCSS() {
     $this->loadCSS('/psc-cms-js/vendor/twitter-bootstrap/css/bootstrap.css');
     $this->loadCSS('/psc-cms-js/vendor/twitter-bootstrap/css/bootstrap-responsive.css');
   }
 
-  
-  public function loadCSS($url, $media = 'all') {
-    $this->head->content[$url] = css::load($url, $media);
-    return $this;
-  }
+	public function setTitleForProject(Project $project) {
+		$config = $project->getConfiguration();
+		
+	  $title = $config->get('project.title', 'Psc - CMS');
+    $title .= ' '.$config->get('version');
+    
+    if ($project->getProduction()) {
+      $title .= ' - PRODUCTION';
+    }
+    $this->setTitle(HTML::tag('title',HTML::esc($title)));
+	}
 
-  public function loadJS($url) {
-    $this->head->content[$url] = js::load($url);
-    return $this;
-  }
-  
   public function addGoogleAnalyticsJS($account, $domainName) {
 		$this->head->content['google-analytics'] = sprintf(<<<'JAVASCRIPT'
 <script type="text/javascript">
@@ -59,5 +75,15 @@ JAVASCRIPT
 		
 		return parent::setTitleString(($this->titlePrefix ? $this->titlePrefix.' - ' : '').$staging.$title);
 	}
+
+  public function loadCSS($url, $media = 'all') {
+    $this->head->content[$url] = css::load($url, $media);
+    return $this;
+  }
+
+  public function loadJS($url) {
+    $this->head->content[$url] = js::load($url);
+    return $this;
+  }  
 }
 ?>
