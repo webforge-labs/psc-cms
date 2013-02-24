@@ -224,19 +224,6 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber {
     return new \Psc\CMS\Service\CMSService($this);
   }
 
-  /**
-   * @return Dir
-   */
-  public function getVendor() {
-    return $this->getSrc()->sub('vendor/');
-  }
-  
-  /**
-   * @return Dir
-   */
-  public function getComposerRoot() {
-    return $this->getVendor()->up();
-  }
 
   /**
    *
@@ -592,6 +579,20 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber {
       $this->libsPath = new Dir($path);
     }
     return $this;
+  }
+
+    /**
+   * @return Dir
+   */
+  public function getVendor() {
+    return $this->getPath(PSC::PATH_VENDOR);
+  }
+  
+  /**
+   * @return Dir
+   */
+  public function getComposerRoot() {
+    return $this->getVendor()->up();
   }
 
   public function getTpl() {
