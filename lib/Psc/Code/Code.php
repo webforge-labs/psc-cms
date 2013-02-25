@@ -2,11 +2,11 @@
 
 namespace Psc\Code;
 
-use \Psc\Object,
-    \Closure,
-    \Webforge\Common\System\File,
-    \Webforge\Common\System\Dir
-;
+use Psc\Object;
+use Closure;
+use Webforge\Common\System\File;
+use Webforge\Common\System\Dir;
+use Webforge\Common\Preg;
 use Psc\Data\Type\Type;
 
 class Code extends \Webforge\Common\Util {
@@ -321,6 +321,17 @@ class Code extends \Webforge\Common\Util {
     } else {
       \Psc\Exception('Der Style: '.self::varInfo($style).' ist nicht bekannt');
     }
+  }
+  
+  
+  /**
+   * @param string $dashString something like nice-class
+   * @return string in CamelCase something like NiceClass
+   */
+  public static function dashToCamelCase($dashString) {
+    return ucfirst(Preg::replace_callback($dashString, '/\-([a-zA-Z])/', function ($match) {
+      return mb_strtoupper($match[1]);
+    }));
   }
 
   public static function getMemoryUsage() {
