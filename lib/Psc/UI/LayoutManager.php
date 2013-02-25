@@ -50,13 +50,13 @@ class LayoutManager extends \Psc\HTML\JooseBase {
       $scrollable = HTML::tag('div', Array(
         Accordion::create(array('autoHeight'=>true))
         ->addSection('Text und Bilder', array(
-          $button('headline', 'Überschrift'),
-          $button('sub-headline', 'Zwischenüberschrift'),
-          $button('paragraph', 'Absatz'),
-          $button('list', 'Aufzählung'),
-          $button('image', 'Bild'),
-          $button('downloadslist', 'Download-Liste'),
-          $button('websitewidget', 'Kalender', (object) array('label'=>'Kalender', 'name'=>'calendar'))
+          $button('Headline', 'Überschrift', (object) array('level'=>1)),
+          $button('Headline', 'Zwischenüberschrift', (object) array('level'=>2)),
+          $button('Paragraph', 'Absatz'),
+          $button('List', 'Aufzählung'),
+          $button('Image', 'Bild'),
+          $button('DownloadsList', 'Download-Liste', (object) array('headline'=>'', 'downloads'=>array())),
+          $button('WebsiteWidget', 'Kalender', (object) array('label'=>'Kalender', 'name'=>'calendar'))
         ))
         //->addSection('weitere Elemente', array(
           

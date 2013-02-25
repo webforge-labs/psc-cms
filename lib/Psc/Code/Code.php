@@ -333,6 +333,10 @@ class Code extends \Webforge\Common\Util {
       return mb_strtoupper($match[1]);
     }));
   }
+  
+  public static function camelCaseToDash($camelCaseString) {
+    return \Psc\HTML\HTML::string2class($camelCaseString);
+  }
 
   public static function getMemoryUsage() {
     $limit = ini_get('memory_limit');
