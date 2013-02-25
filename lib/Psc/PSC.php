@@ -24,6 +24,7 @@ class PSC {
   const PATH_TESTS = 'tests';
   const PATH_FILES = 'files';
   const PATH_BUILD = 'build';
+  const PATH_VENDOR = 'vendor';  
   const PATH_PSC_CMS = 'psc-cms';
   const PATH_PSC_CMS_SRC = 'psc-cms-src';
   const PATH_PSC_CMS_BIN = 'psc-cms-bin';

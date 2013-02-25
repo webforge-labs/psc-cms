@@ -77,6 +77,7 @@ class ProjectsFactory extends \Psc\Object {
       $defaultPaths[PSC::PATH_CLASS] = $name === 'psc-cms' ? './base/src/psc/class/Psc/' : './base/src/'.$name.'/';
       $defaultPaths[PSC::PATH_FILES] = './base/files/';
       $defaultPaths[PSC::PATH_BUILD] = './base/build/';
+      $defaultPaths[PSC::PATH_VENDOR] = './base/src/vendor/';
     } elseif ($mode === self::MODE_PHAR) {
       $defaultPaths[PSC::PATH_SRC] = './'; // bedeutet das verzeichnis vom phar.gz
       $defaultPaths[PSC::PATH_HTDOCS] = './www/';
@@ -89,6 +90,7 @@ class ProjectsFactory extends \Psc\Object {
       $defaultPaths[PSC::PATH_TESTS] = './tests/';
       $defaultPaths[PSC::PATH_FILES] = './files/';
       $defaultPaths[PSC::PATH_BUILD] = './build/';
+      $defaultPaths[PSC::PATH_VENDOR] = './vendor/';
     }
     
     return array_replace($defaultPaths, $this->paths[$name]);
