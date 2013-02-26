@@ -9,10 +9,13 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
+use Webforge\Common\System\Dir;
+use Webforge\Common\System\File;
 
 class Command extends \Symfony\Component\Console\Command\Command {
   
   const MUST_EXIST = 0x000001;
+  const RESOLVE_RELATIVE = 0x000002;
   
   const VALUE_NONE     = InputOption::VALUE_NONE;
   const VALUE_REQUIRED = InputOption::VALUE_REQUIRED;
@@ -123,7 +126,13 @@ class Command extends \Symfony\Component\Console\Command\Command {
   public function validateDirectory($path, $flags = self::MUST_EXIST) {
     $errorDetail = NULL;
     if (!empty($path)) {
-      $dir = \Webforge\Common\System\Dir::factoryTS($path);
+      $dir = Dir::factoryTS($path);
+
+      // workaround file
+      if (self::RESOLVE_RELATIVE && !Dir::isAbsolutePath((string) $dir) && !$dir->isRelative()) {
+        $dir = new Dir('.'.DIRECTORY_SEPARATOR.$dir);
+      }
+
       $dir->resolvePath();
     
       if (!($flags & self::MUST_EXIST) || $dir->exists()) {
@@ -141,7 +150,13 @@ class Command extends \Symfony\Component\Console\Command\Command {
   public function validateFile($path, $flags = self::MUST_EXIST) {
     $errorDetail = NULL;
     if (!empty($path)) {
-      $file = \Webforge\Common\System\File::factory($path);
+      $file = File::factory($path);
+      
+      // workaround file
+      if (self::RESOLVE_RELATIVE && !Dir::isAbsolutePath((string) $file->getDirectory()) && !$file->isRelative()) {
+        $file->setDirectory(new Dir('.'.DIRECTORY_SEPARATOR.$file->getDirectory()));
+      }
+      
       $file->resolvePath();
     
       if (!($flags & self::MUST_EXIST) || $file->exists()) {
