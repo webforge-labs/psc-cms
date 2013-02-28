@@ -23,6 +23,10 @@ abstract class AbstractEntityControllerBaseTest extends ControllerBaseTest {
     
     $this->articleMeta = $this->getEntityMeta($this->entityFQN);
     $this->articles = $this->loadTestEntities('articles');
+
+    // mime default behaviour
+    $this->controller->expects($this->any())->method('getLinkRelationsForEntity')
+                     ->will($this->returnValue(array()));
   }  
 }
 ?>
