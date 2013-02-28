@@ -2,6 +2,8 @@
 
 namespace Psc\CMS;
 
+use Psc\UI\PanelButtons;
+
 /**
  * 
  */
@@ -32,6 +34,11 @@ class EntityViewPackage extends \Psc\SimpleObject {
    */
   protected $searchPanel;
   
+  /**
+   * @var Psc\UI\PanelButtons
+   */
+  protected $panelButtons;
+  
   public function __construct(ComponentMapper $mapper = NULL, Labeler $labeler = NULL) {
     $this->componentMapper = $mapper ?: new ComponentMapper();
     $this->labeler = $labeler ?: new Labeler();
@@ -41,7 +48,18 @@ class EntityViewPackage extends \Psc\SimpleObject {
    * @return Psc\CMS\EntityFormPanel
    */
   public function createFormPanel($label, EntityForm $entityForm) {
-    return $this->formPanel = new EntityFormPanel($label, $entityForm, $this->componentMapper, $this->labeler);
+    $this->formPanel = new EntityFormPanel(
+      $label,
+      $entityForm,
+      $this->componentMapper,
+      $this->labeler
+    );
+    
+    if ($this->panelButtons) {
+      $this->formPanel->setPanelButtons($this->panelButtons);
+    }
+    
+    return $this->formPanel;
   }
   
   /**
@@ -142,6 +160,22 @@ class EntityViewPackage extends \Psc\SimpleObject {
    */
   public function getSearchPanel() {
     return $this->searchPanel;
+  }
+  
+  /**
+   * @param Psc\UI\PanelButtons $panelButtons
+   * @chainable
+   */
+  public function setPanelButtons(PanelButtons $panelButtons) {
+    $this->panelButtons = $panelButtons;
+    return $this;
+  }
+
+  /**
+   * @return Psc\UI\PanelButtons
+   */
+  public function getPanelButtons() {
+    return $this->panelButtons;
   }
 }
 ?>
