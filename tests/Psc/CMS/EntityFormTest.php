@@ -38,5 +38,14 @@ class EntityFormTest extends \Psc\Code\Test\HTMLTestCase {
   public function testGetEntity() {
     $this->assertSame($this->entity, $this->form->getEntity());
   }
+  
+  public function testEntityFormHasARevisionPerDefault() {
+    $this->html = $this->form;
+    
+    $this->test->css('form')
+      ->count(1)
+      ->css('input[name="X-Psc-Cms-Revision"]')->count(1)->end()
+    ;
+  }
 }
 ?>
