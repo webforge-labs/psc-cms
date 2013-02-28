@@ -61,7 +61,7 @@ PHP_CLI;
     $this->targetProject->getBin()->create();
     //$this->buildPscCMS();
     $this->buildCLI();
-    $this->jsHintPscCMSJS();
+    //$this->jsHintPscCMSJS();
     $this->copyPscCMSJSAndPscCSS();
     $this->copyErrors();
     $this->copyPharsToBin();
