@@ -42,6 +42,8 @@ class PanelButtons extends \Psc\HTML\Base {
         $this->addReloadButton();
       } elseif ($button === 'reset') {
         $this->addResetButton();
+      } elseif ($button === 'preview') {
+        $this->addPreviewButton();
       } elseif ($button instanceof \Psc\UI\Button) {
         $this->buttons[] = $button;
       } else {
@@ -153,6 +155,19 @@ class PanelButtons extends \Psc\HTML\Base {
     $button = $this->addButton('zurücksetzen', $flags, 'arrowreturn-1-w', NULL);
     $button->getHTML()
       ->addClass('\Psc\button-reload');
+    
+    return $button;
+  }
+  
+  /**
+   * Button used to preview the document
+   *
+   * used in the edit-tab
+   */
+  public function addPreviewButton($flags = self::ALIGN_LEFT) {
+    $button = $this->addButton('preview', $flags, 'image', NULL);
+    $button->getHTML()
+      ->addClass('\Psc\button-preview');
     
     return $button;
   }

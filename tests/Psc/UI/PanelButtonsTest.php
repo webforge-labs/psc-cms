@@ -39,6 +39,17 @@ class PanelButtonsTest extends \Psc\Code\Test\HTMLTestCase {
     $this->assertNotEmpty($newButton->getLeftIcon());
   }
   
+  public function testPreviewButton() {
+    $this->panelButtons = new PanelButtons(array('preview','save','reload','save-close'));
+    
+    $this->html = $this->panelButtons->html();
+    
+    $this->test->css('div.psc-cms-ui-buttonset')
+      ->count(1)
+      ->test('button.psc-cms-ui-button-preview')->count(1)->end()
+    ;
+  }
+  
   /**
    * @expectedException InvalidArgumentException
    */
