@@ -2,6 +2,8 @@
 
 namespace Psc\CMS\Service;
 
+use Psc\Net\Service\LinkRelation;
+
 /**
  * @group class:Psc\CMS\Service\MetadataGenerator
  */
@@ -13,6 +15,9 @@ class MetadataGeneratorTest extends \Psc\Code\Test\Base {
     $this->chainClass = 'Psc\CMS\Service\MetadataGenerator';
     parent::setUp();
     //$this->metadataGenerator = new MetadataGenerator();
+
+    $this->entity = new \Psc\Doctrine\TestEntities\Article('Lorem Ipsum:', 'Lorem Ipsum Dolor sit amet... <more>');
+    $this->entity->setId(7);
   }
   
   public function testAcceptance() {
@@ -63,6 +68,43 @@ class MetadataGeneratorTest extends \Psc\Code\Test\Base {
         )
       ),
       $meta
+    );
+  }
+  
+  public function testEntityResponseMetaAddsDataAndItemMetaForAnEntity() {
+    $viewRelation = new LinkRelation('view', '/articles/7');
+    
+    $meta = MetadataGenerator::create()
+      ->entity($this->entity, array($viewRelation))
+      ->toArray();
+      
+    $this->assertNotEmpty(
+      $meta['links'],
+      'links have to be defined and in meta for entity '.print_r($meta, true)
+    );
+    
+    $this->assertEquals(
+      'view',
+      $meta['links'][0]->rel,
+      'links[0].rel is wrong'.print_r($meta, true)
+    );
+    
+    $this->assertEquals(
+      '/articles/7',
+      $meta['links'][0]->href,
+      'links[0].href is not defined'.print_r($meta, true)
+    );
+  }
+
+  public function testEntityResponseMetaAddsRevisionInItemMeta() {
+    $meta = MetadataGenerator::create()
+      ->revision($revision = 'some-saved-revision-17')
+      ->toArray();
+    
+    $this->assertEquals(
+      $revision,
+      @$meta['revision'],
+      'revision has to be defined in meta'."\n".print_r($meta, true)
     );
   }
 }

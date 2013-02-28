@@ -4,6 +4,8 @@ namespace Psc\CMS\Service;
 
 use Psc\CMS\Item\TabOpenable;
 use Psc\CMS\Item\Exporter;
+use Psc\CMS\Entity;
+use stdClass;
 
 class MetadataGenerator extends \Psc\SimpleObject {
   
@@ -11,7 +13,7 @@ class MetadataGenerator extends \Psc\SimpleObject {
   
   public function __construct(Exporter $exporter = NULL) {
     $this->meta = array();
-    $this->meta['data'] = (object) array();
+    $this->meta['data'] = new stdClass;
     $this->exporter = $exporter ?: new Exporter;
   }
   
@@ -33,6 +35,31 @@ class MetadataGenerator extends \Psc\SimpleObject {
     foreach ($list->getExceptions() as $validatorException) {
       $this->validationError($validatorException);
     }
+    
+    return $this;
+  }
+  
+  /**
+   * Adds metadata for the reponse from an Entity
+   * 
+   * @param Psc\Net\Service\LinkRelation[] $linkRelations
+   */
+  public function entity(Entity $entity, Array $linkRelations = array()) {
+    if (!isset($this->meta['links']))
+      $this->meta['links'] = array();
+      
+    foreach ($linkRelations as $linkRelation) {
+      $this->meta['links'][] = (object) array(
+        'rel'=>$linkRelation->getName(),
+        'href'=>$linkRelation->getHref()
+      );
+    }
+    
+    return $this;
+  }
+
+  public function revision($revision) {
+    $this->meta['revision'] = $revision;
     
     return $this;
   }
