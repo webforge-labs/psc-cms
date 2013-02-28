@@ -11,6 +11,7 @@ use Psc\Data\Type\BooleanType;
 use Psc\Data\Type\CollectionType;
 use Psc\Data\Type\WalkableHintType;
 use Psc\Data\Type\DateTimeType;
+use Psc\Data\Type\DateType;
 
 use Psc\Data\Type\Type;
 use Psc\Data\Type\Inferrer;
@@ -64,6 +65,8 @@ class Walker extends \Psc\SimpleObject {
     } elseif ($type instanceof BooleanType) {
       return $this->walkBoolean($value);
     } elseif ($type instanceof DateTimeType) {
+      return $this->walkDateTime($value);
+    } elseif ($type instanceof DateType) {
       return $this->walkDateTime($value);
     } elseif ($type instanceof WalkableHintType) {
       $hint = 'walk'.ucfirst($type->getWalkableHint());
@@ -183,6 +186,14 @@ class Walker extends \Psc\SimpleObject {
     }
     
     return $this->walkWalkable($datetime);
+  }
+
+  public function walkDate($date) {
+    if ($date instanceof \Date) {
+      $date = new \Psc\DateTime\Date($date);
+    }
+    
+    return $this->walkWalkable($date);
   }
   
   /**

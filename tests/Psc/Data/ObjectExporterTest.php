@@ -4,6 +4,10 @@ namespace Psc\Data;
 
 use Psc\Code\Generate\GClass;
 use Psc\Data\Type\CollectionType;
+use Psc\Data\Type\BirthdayType;
+use Psc\Data\Type\DateTimeType;
+use Psc\DateTime\Date;
+use Psc\DateTime\DateTime;
 
 /**
  * @group class:Psc\Data\ObjectExporter
@@ -56,6 +60,32 @@ class ObjectExporterTest extends \Psc\Code\Test\Base {
                               $collectionExport = $this->objectExporter->walk($collection,
                                                                               new CollectionType(CollectionType::DOCTRINE_ARRAY_COLLECTION)));
     $this->assertEquals($collectionExport, array('some','inner','items'));
+  }
+  
+  public function testDateExporting() {
+    $birthdayType = new BirthdayType();
+    $birthday = new Date('21.11.1984');
+    
+    $this->assertEquals(
+      (object) array(
+        'date'=>$birthday->getTimestamp(),
+        'timezone'=>date_default_timezone_get()
+      ),
+      $this->objectExporter->walk($birthday, $birthdayType)
+    );
+  }
+
+  public function testDateTimeExporting() {
+    $type = new DateTimeType();
+    $value = new DateTime('21.11.1984 17:21:00');
+    
+    $this->assertEquals(
+      (object) array(
+        'date'=>$value->getTimestamp(),
+        'timezone'=>date_default_timezone_get()
+      ),
+      $this->objectExporter->walk($value, $type)
+    );
   }
 
   public function testEmptyCollectionExportAsArray() {
