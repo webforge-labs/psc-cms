@@ -6,6 +6,7 @@ use Webforge\Common\System\Dir;
 use Psc\CMS\Project;
 use Psc\Code\Build\LibraryBuilder;
 use Webforge\Framework\Container AS WebforgeContainer;
+use Webforge\Framework\Package\Package;
 
 class DeployPscCMSTask extends \Psc\SimpleObject implements Task {
 
@@ -41,7 +42,13 @@ PHP_CLI;
     $this->psc = $bridge->createProjectFromPackage($packageRegistry->findByIdentifier('pscheit/psc-cms'));
     $bridge->initLocalConfigurationFor($this->psc);
 
-    $this->pscjs = $packageRegistry->findByIdentifier('pscheit/psc-cms-js')->getRootDirectory();
+    $vendor = $webforgeContainer->getLocalPackage()->getDirectory(Package::VENDOR);
+    $packageIdentifier = 'pscheit/psc-cms-js';
+    $this->pscjs = $vendor->sub($packageIdentifier.'/');
+    
+    if (!$this->pscjs->exists()) {
+      throw new RuntimeException($webforgeContainer->getLocalPackage()->getIdentifier().' has not a dependency: '.$packageIdentifier.' installed.');
+    }
     
     $this->libraryBuilder = $libraryBuilder ?:
                               new LibraryBuilder(
