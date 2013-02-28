@@ -7,6 +7,7 @@ use Psc\CMS\Project;
 use Psc\Code\Build\LibraryBuilder;
 use Webforge\Framework\Container AS WebforgeContainer;
 use Webforge\Framework\Package\Package;
+use RuntimeException;
 
 class DeployPscCMSTask extends \Psc\SimpleObject implements Task {
 
@@ -47,7 +48,7 @@ PHP_CLI;
     $this->pscjs = $vendor->sub($packageIdentifier.'/');
     
     if (!$this->pscjs->exists()) {
-      throw new RuntimeException($webforgeContainer->getLocalPackage()->getIdentifier().' has not a dependency: '.$packageIdentifier.' installed.');
+      throw new RuntimeException($webforgeContainer->getLocalPackage()->getIdentifier().' has not a dependency: '.$packageIdentifier.' installed. Add it to composer.json');
     }
     
     $this->libraryBuilder = $libraryBuilder ?:
