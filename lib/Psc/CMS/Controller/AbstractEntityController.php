@@ -237,8 +237,47 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
     
     $this->commitTransaction();
     
-    // @TODO tabs meta    
+    $this->setEntityResponseMetadata($entity);
+    
     return $entity;
+  }
+
+  protected function setEntityResponseMetadata(Entity $entity) {
+    if (!$this->metadata) $this->metadata = new MetadataGenerator();
+    
+    $this->metadata->entity(
+      $entity,
+      $this->getLinkRelationsForEntity($entity)
+    );
+  }
+  
+  /**
+   * Returns a set of (REST)-links as meta-information for the entity
+   *
+   * a link is a \Psc\Net\Service\LinkRelation
+   * @return LinkRelation[]
+   */
+  protected function getLinkRelationsForEntity(Entity $entity) {
+    return array();
+  }
+  
+  /**
+   * @controller-api
+   */
+  public function saveEntityRevision($identifier, FormData $requestData, $revision, $subResource = NULL) {
+    $entity = $this->saveEntity($identifier, $requestData, $revision, $subResource);
+    
+    $this->setRevisionMetadata($entity, $revision);
+    
+    return $entity;
+  }
+
+  protected function setRevisionMetadata(Entity $entity, $revision) {
+    if (!$this->metadata) $this->metadata = new MetadataGenerator();
+    
+    $this->metadata->revision(
+      $revision
+    );
   }
 
   /**

@@ -3,6 +3,7 @@
 namespace Psc\CMS\Controller;
 
 use Psc\Doctrine\TestEntities\Article;
+use Psc\Net\Service\LinkRelation;
 
 require_once __DIR__.DIRECTORY_SEPARATOR.'AbstractEntityControllerBaseTest.php';
 
@@ -148,6 +149,48 @@ class AbstractEntityControllerTest extends AbstractEntityControllerBaseTest {
     $article = $this->controller->patchEntity(7, (object) array('title'=>'the patched title'));
     
     $this->assertEquals('the patched title', $article->getTitle());
+  }
+  
+  
+  public function testSaveEntityWithPreviewRevision_returnsAnOpenWindowInResponseMeta_acceptance() {
+    $this->expectRepositoryHydrates($this->article);
+    $this->expectRepositorySavesEqualTo($this->article);
+    
+    $viewRelation = new LinkRelation('view', '/articles/'.$this->article->getId());
+    
+    $this->controller->expects($this->once())->method('getLinkRelationsForEntity')
+                     ->will($this->returnValue(array($viewRelation)));
+    
+    $this->controller->setOptionalProperties(array('tags','category','sort'));
+    
+    $revision = 'preview-172849';
+    $return = $this->controller->saveEntityRevision(
+                7,
+                (object) array(
+                  'title'=>'blubb',
+                  'content'=>'content',
+                  'tags'=>NULL
+                ),
+                $revision,
+                'form'
+              );
+    
+    $this->assertInstanceOf('Psc\CMS\Controller\ResponseMetadataController', $this->controller);
+    $this->assertNotEmpty($meta = $this->controller->getResponseMetadata(), 'controller should define response meta');
+    $meta = $meta->toArray();
+    
+    // see metadataGenerator for Details
+    
+    $this->assertEquals(
+      $revision,
+      $meta['revision']
+    );
+
+    $this->assertNotEmpty(
+      $revision,
+      $meta['links'],
+      'links for relations have to be defined'
+    );
   }
   
   public function testSetRepository() {

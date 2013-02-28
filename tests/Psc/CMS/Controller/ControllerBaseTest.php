@@ -105,7 +105,8 @@ abstract class ControllerBaseTest extends \Psc\Code\Test\Base {
     $controller = $this->getMock($this->chainClass, array('setUp', // wir übersschreiben hier setup, weil wir das repository selbst setzen wollen
                                                           'getEntityName',  // abstract method
                                                           'onContentComponentCreated', // test in FormularTest
-                                                          'myCustomAction' // custom action test
+                                                          'myCustomAction', // custom action test
+                                                          'getLinkRelationsForEntity' // AbstractEntityControllerTest
                                                       )); 
     $controller->setRepository($this->repository); // some kind of ungeil: schöner: repository in init-Funktion
         
