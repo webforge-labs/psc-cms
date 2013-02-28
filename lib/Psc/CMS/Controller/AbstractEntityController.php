@@ -242,6 +242,17 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
     return $entity;
   }
 
+  /**
+   * @controller-api
+   */
+  public function saveEntityRevision($identifier, FormData $requestData, $revision, $subResource = NULL) {
+    $this->setRevisionMetadata($revision);
+    
+    $entity = $this->saveEntity($identifier, $requestData, $subResource);
+    
+    return $entity;
+  }
+
   protected function setEntityResponseMetadata(Entity $entity) {
     if (!$this->metadata) $this->metadata = new MetadataGenerator();
     
@@ -261,18 +272,8 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
     return array();
   }
   
-  /**
-   * @controller-api
-   */
-  public function saveEntityRevision($identifier, FormData $requestData, $revision, $subResource = NULL) {
-    $entity = $this->saveEntity($identifier, $requestData, $revision, $subResource);
-    
-    $this->setRevisionMetadata($entity, $revision);
-    
-    return $entity;
-  }
 
-  protected function setRevisionMetadata(Entity $entity, $revision) {
+  protected function setRevisionMetadata($revision) {
     if (!$this->metadata) $this->metadata = new MetadataGenerator();
     
     $this->metadata->revision(
