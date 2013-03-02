@@ -6,6 +6,8 @@ use Closure;
 use Webforge\Common\System\File;
 use Psc\Code\Code;
 use Doctrine\Common\Collections\Collection;
+use Psc\PHPUnit\InvokedAtMethodIndexMatcher;
+use Psc\PHPUnit\InvokedAtMethodGroupIndexMatcher;
 
 class AssertionsBase extends \PHPUnit_Framework_TestCase {
 
@@ -215,5 +217,31 @@ class AssertionsBase extends \PHPUnit_Framework_TestCase {
 
     return $test;
   }
+
+    /**
+     * Returns a matcher that matches when *the method* it is evaluated for is invoked at the given $index.
+     *
+     * @param  integer $index
+     * @param  string  $method
+     * @return Psc\PHPUnit\InvokedAtMethodIndexMatcher;
+     */
+    public static function atMethod($method, $index)
+    {
+        return new InvokedAtMethodIndexMatcher($index, $method);
+    }
+
+    /**
+     * Returns a matcher that matches when *the method* it its group is evaluated for ,is invoked at the given $groupIndex.
+     *
+     * @param  integer $index
+     * @param  string  $method
+     * @param  string[]  $methodGroup an array of methods that should be counted for the groupIndex
+     * @return Psc\PHPUnit\InvokedAtMethodGroupIndexMatcher;
+     */
+    public static function atMethodGroup($method, $groupIndex, array $methodGroup)
+    {
+        return new InvokedAtMethodGroupIndexMatcher($groupIndex, $method, $methodGroup);
+    }
+
 }
 ?>

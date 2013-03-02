@@ -33,6 +33,9 @@ use ReflectionClass;
  */
 abstract class Builder extends \Psc\Code\Test\AssertionsBase implements PHPUnit_Framework_MockObject_Stub_MatcherCollection { // damit können wir z.b. $this->once() und sowas
   
+  protected $atGroups = array();
+  protected $atGroupsIndexes = array();
+
   protected $testCase;
   
   // ich glaub die brauchen wir nicht, weil wir ja eh über den doublesmanager losgehen
@@ -51,6 +54,16 @@ abstract class Builder extends \Psc\Code\Test\AssertionsBase implements PHPUnit_
    * @var PHPUnit_Framework_MockObject_Matcher_Invocation[]
    */
   protected $matchers = array();
+  
+  /**
+   * @param Psc\Code\Test\Mock\Expectation[]
+   */
+  protected $expectations = array();
+  
+  /**
+   * @var bool
+   */
+  protected $mockAllMethods = FALSE;
   
   public function __construct(\Psc\Code\Test\Base $testCase, $fqn, Array $methods= array()) {
     $this->testCase = $testCase;
@@ -85,7 +98,7 @@ abstract class Builder extends \Psc\Code\Test\AssertionsBase implements PHPUnit_
   protected function buildMock(array $constructorParams = array(), $callConstructor = TRUE) {
     $mock = $this->testCase->getMock(
         $this->fqn,
-        $this->methods,
+        $this->mockAllMethods ? array() : $this->methods,
         $constructorParams,
         '', // mockclassname
         $callConstructor
@@ -111,15 +124,51 @@ abstract class Builder extends \Psc\Code\Test\AssertionsBase implements PHPUnit_
   }
 
   /**
+   * @return Expectation
+   */
+  protected function buildAtMethodGroupExpectation($method, $groupName, $with = NULL, $will = NULL) {
+    $this->addExpectation(
+      $expectation = new AtMethodGroupExpectation($groupName, $method, $with, $will)
+    );
+    
+    return $expectation;
+  }
+  
+  /**
+   * @chainable
+   */
+  protected function addExpectation(Expectation $expectation) {
+    $this->addMethod($expectation->getMethod());
+    
+    if ($expectation instanceof AtMethodGroupExpectation) {
+      if (!isset($this->atGroups[$expectation->getGroupName()])) {
+        $this->atGroups[$expectation->getGroupName()] = array();
+      }
+
+      if (!isset($this->atGroupsIndexes[$expectation->getGroupName()])) {
+        $this->atGroupsIndexes[$expectation->getGroupName()] = 0;
+      }
+      
+      $this->atGroups[$expectation->getGroupName()][] = $expectation->getMethod();
+    }
+    
+    $this->expectations[] = $expectation;
+    return $this;
+  }
+
+  /**
    * Applied alle Matchers (Aufrufe von expects()) an unser MockObject
    * 
    */
   protected function applyMatchers($mock) {
     // alle gesammelten aufrufe von expects "kopieren" wir hier ins mock object
     foreach ($this->matchers as $matcher) {
-      //$matcher ist ein PHPUnit_Framework_MockObject_Matcher, dieser hat public properties, die wir in den matcher den das mock objekt erstellt kopieren müssen
-      // leider können wir im mock dieses objekt nur durch expects erstellen.
-      // wenn es einen setter gäbe, könnten wird das "schöner" lösen (vll kann man die mock templates überschreiben?)
+      /*
+       * $matcher ist ein PHPUnit_Framework_MockObject_Matcher, dieser hat public properties,
+         die wir in den matcher den das mock objekt erstellt kopieren müssen
+         leider können wir im mock dieses objekt nur durch expects erstellen.
+         wenn es einen setter gäbe, könnten wird das "schöner" lösen (vll kann man die mock templates überschreiben?)
+      */
       $mockMatcher = $mock->expects($matcher->invocationMatcher)->getMatcher();
       
       // copy
@@ -127,8 +176,29 @@ abstract class Builder extends \Psc\Code\Test\AssertionsBase implements PHPUnit_
         $mockMatcher->$publicProperty = $value;
       }
     }
+    
+    $this->applyExpectations($mock);
+    
     return $this;
   }
+  
+  protected function applyExpectations($mock) {
+    foreach ($this->expectations as $expectation) {
+      
+      if ($expectation instanceof AtMethodGroupExpectation) {
+        $expectation->expects(
+          $this->atMethodGroup(
+            $expectation->getMethod(),
+            $this->atGroupsIndexes[$expectation->getGroupName()]++,
+            $this->atGroups[$expectation->getGroupName()]
+          )
+        );
+      }
+      
+      $expectation->applyToMock($mock);
+    }
+  }
+
   
   /**
    * @param Psc\Code\Test\Base $testCase

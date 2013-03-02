@@ -224,31 +224,6 @@ class Base extends AssertionsBase {
 //  }
 
   
-    /**
-     * Returns a matcher that matches when *the method* it is evaluated for is invoked at the given $index.
-     *
-     * @param  integer $index
-     * @param  string  $method
-     * @return Psc\PHPUnit\InvokedAtMethodIndexMatcher;
-     */
-    public static function atMethod($method, $index)
-    {
-        return new InvokedAtMethodIndexMatcher($index, $method);
-    }
-
-    /**
-     * Returns a matcher that matches when *the method* it its group is evaluated for ,is invoked at the given $groupIndex.
-     *
-     * @param  integer $index
-     * @param  string  $method
-     * @param  string[]  $methodGroup an array of methods that should be counted for the groupIndex
-     * @return Psc\PHPUnit\InvokedAtMethodGroupIndexMatcher;
-     */
-    public static function atMethodGroup($method, $groupIndex, array $methodGroup)
-    {
-        return new InvokedAtMethodGroupIndexMatcher($groupIndex, $method, $methodGroup);
-    }
-
   /**
    * @return Psc\System\Console\Process
    */
