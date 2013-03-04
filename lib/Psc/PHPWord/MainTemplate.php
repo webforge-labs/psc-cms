@@ -2,7 +2,6 @@
 
 namespace Psc\PHPWord;
 
-use Psc\ICTS\Binder;
 use PHPWord;
 use PHPWord_IOFactory;
 use Doctrine\Common\Collections\ArrayCollection;
