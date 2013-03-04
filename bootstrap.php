@@ -21,7 +21,6 @@ $container->init();
 PSC::setProject($container->getProject())->bootstrap()
   ->getModule('Doctrine')->bootstrap()->getProject()
   ->getModule('PHPExcel')->bootstrap()->getProject()
-  ->getModule('Hitch')->bootstrap()->getProject()
   ->getModule('Imagine')->bootstrap()->getProject()
 ;
 
