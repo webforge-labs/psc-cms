@@ -24,12 +24,10 @@
     </logging>
     
     <filter>
-      <whitelist addUncoveredFilesFromWhitelist="true">
+      <whitelist>
         <directory suffix=".php">lib/Psc/</directory>
         <exclude>
           <directory suffix="Exception.php">lib/Psc/Doctrine</directory>
-          <directory>lib/Psc/DB</directory>
-          <directory>lib/Psc/SQL</directory>
         </exclude>
       </whitelist>
     </filter>
