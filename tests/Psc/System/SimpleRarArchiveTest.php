@@ -70,7 +70,7 @@ class SimpleRarArchiveTest extends \Psc\Code\Test\Base {
     // das asserted, dass der Anfang der Datei gleich ist, da hier die Credits von unrar nicht reinsollen
     $this->assertEquals($start = "1\r\n00:00:00,475 --> 00:00:04,995\r\nHey, what do you guys think of my new ducky tie?\r\nPretty cute, right?", 
     mb_substr($destination->getContents(), 0, 103),
-    \Psc\String::debugEquals($start, mb_substr($destination->getContents(), 0, 103))
+    \Webforge\Common\String::debugEquals($start, mb_substr($destination->getContents(), 0, 103))
     );
   }
 

@@ -2,10 +2,10 @@
 
 namespace Psc;
 
-use \Psc\String AS S;
+use \Webforge\Common\String AS S;
 
 /**
- * @group class:Psc\String
+ * @group class:Webforge\Common\String
  */
 class StringTest extends \Psc\Code\Test\Base {
 

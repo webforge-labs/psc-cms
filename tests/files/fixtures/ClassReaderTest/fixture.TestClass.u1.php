@@ -4,7 +4,7 @@ namespace Psc\Code\Generate\Fixtures;
 
 use Psc\Code\Generate\GClass;
 use Psc\Code\Code;
-use Psc\String AS S;
+use Webforge\Common\String AS S;
 use Psc\DataInput;
 use Psc\Doctrine\Helper as DoctrineHelper;
 

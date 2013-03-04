@@ -5,7 +5,7 @@ namespace Psc\Code\Generate;
 use Psc\Code\Generate\GMethod;
 use ReflectionClass;
 use stdClass;
-use Psc\String AS S;
+use Webforge\Common\String AS S;
 
 /**
  * @group generate
@@ -47,12 +47,12 @@ class GMethodTest extends \Psc\Code\Test\Base {
     $this->assertEquals(4, count($method2->getBodyCode()));
     
     /* method2 method */
-    $this->assertEquals($body, $method2->getBody(0), \Psc\String::debugEquals($body, $method2->getBody(0)));
-    $this->assertEquals($method2Code, $method2->php(), \Psc\String::debugEquals($method2Code, $method2->php()));
+    $this->assertEquals($body, $method2->getBody(0), \Webforge\Common\String::debugEquals($body, $method2->getBody(0)));
+    $this->assertEquals($method2Code, $method2->php(), \Webforge\Common\String::debugEquals($method2Code, $method2->php()));
     
     /* Factory method */
     $this->assertEquals(TRUE,$factory->isStatic());
-    $this->assertEquals($factoryCode, $factory->php(), \Psc\String::debugEquals($factoryCode, $factory->php()));
+    $this->assertEquals($factoryCode, $factory->php(), \Webforge\Common\String::debugEquals($factoryCode, $factory->php()));
     
     
     $this->assertEquals('abstract public function banane();', $banane->php(),

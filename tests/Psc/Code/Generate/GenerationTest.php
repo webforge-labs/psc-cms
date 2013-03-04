@@ -11,7 +11,7 @@ use Psc\Code\Generate\GParameter,
     \Psc\System\System,
     \Psc\PSC,
     \Psc\A,
-    \Psc\String AS S,
+    \Webforge\Common\String AS S,
     \Webforge\Common\System\File
 ;
 use ReflectionClass;

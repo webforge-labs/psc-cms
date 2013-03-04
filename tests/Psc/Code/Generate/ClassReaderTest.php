@@ -34,7 +34,7 @@ class ClassReaderTest extends \Psc\Code\Test\Base {
   public function testReadUseStatements() {
     $this->assertEquals(array('GClass'=>new GClass('Psc\Code\Generate\GClass'),
                               'Code'=>new GClass('Psc\Code\Code'),
-                              'S'=>new GClass('Psc\String'),
+                              'S'=>new GClass('Webforge\Common\String'),
                               'DataInput'=>new GClass('Psc\DataInput'),
                               'DoctrineHelper'=>new GClass('Psc\Doctrine\Helper')
                               ),
