@@ -65,7 +65,7 @@ class GenericCompileCommand extends CompileCommand {
   }
   
   protected function parseExtensionGClass($input) {
-    $extensionClass = Code::expandNamespace(\Psc\String::expand($input->getArgument('name'), 'Extension'), 'Psc\Code\Compile');
+    $extensionClass = Code::expandNamespace(\Webforge\Common\String::expand($input->getArgument('name'), 'Extension'), 'Psc\Code\Compile');
     return GClass::factory($extensionClass);
   }
   

@@ -24,7 +24,7 @@ $createCommand('compile:komodo-command-call',
     $arg('extension-name')
   ),
   function ($input, $output, $command) {
-    $extensionClass = Code::expandNamespace(\Psc\String::expand($input->getArgument('extension-name'), 'Extension'), 'Psc\Code\Compile');
+    $extensionClass = Code::expandNamespace(\Webforge\Common\String::expand($input->getArgument('extension-name'), 'Extension'), 'Psc\Code\Compile');
     $extension = GClass::factory($extensionClass);
     
     $fields = array();

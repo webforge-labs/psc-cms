@@ -144,7 +144,7 @@ class Environment extends \Psc\Object {
    */
   public function getRequestPath() {
     $uri = $this->getRequestURI();
-    if (\Psc\String::startsWith($uri, '/index.php'))
+    if (\Webforge\Common\String::startsWith($uri, '/index.php'))
       $uri = mb_substr($uri,mb_strlen('index.php'));
     
     if (empty($uri) || $uri == '/') return array();

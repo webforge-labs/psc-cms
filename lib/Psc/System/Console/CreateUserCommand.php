@@ -53,7 +53,7 @@ class CreateUserCommand extends Command {
     }
     
     if (($password = $input->getOption('password')) == NULL) {
-      $password = \Psc\String::random(6);
+      $password = \Webforge\Common\String::random(6);
     }
     
     $c = $project->getUserClass();

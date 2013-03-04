@@ -144,7 +144,7 @@ class AssertionsBase extends \PHPUnit_Framework_TestCase {
       } catch (\Exception $e) {
         throw new \Exception("Fehler (".$e->getMessage().") beim Parsen von ".$label."-javascript:\n".
                              "\n".
-                             \Psc\String::lineNumbers($js),
+                             \Webforge\Common\String::lineNumbers($js),
                              0,
                              $e
                             );
@@ -161,7 +161,7 @@ class AssertionsBase extends \PHPUnit_Framework_TestCase {
     //return $this->assertXMLStringEqualsXMLString(\Psc\JS\JParser::dumpNode($expectedAST),
     //                                             \Psc\JS\JParser::dumpNode($actualAST),
     //                                             
-    //                                             \Psc\String::debugEquals((string) $expectedAST, (string) $actualAST) // debug minified
+    //                                             \Webforge\Common\String::debugEquals((string) $expectedAST, (string) $actualAST) // debug minified
     //                                             );
   }
   
@@ -204,7 +204,7 @@ class AssertionsBase extends \PHPUnit_Framework_TestCase {
                                 $expectedSuccess ? 'OK' : 'Failure',
                                 $result->wasSuccessful() ? 'war OK' : 'schlug fehl',
                                 //$test->getStatusMessage(),
-                                \Psc\String::indent($message,4)
+                                \Webforge\Common\String::indent($message,4)
                                 )
                        );
     $this->assertEquals(0,
@@ -212,7 +212,7 @@ class AssertionsBase extends \PHPUnit_Framework_TestCase {
                         sprintf('Inner Test hatte Errors! (False Positive check)'."\n".
                                 "Test Ergebnis war wie erwartet aber der Test enthielt Fehler (nicht Failures!).\n".
                                 "Output:\n\n%s",
-                                \Psc\String::indent($message,4)
+                                \Webforge\Common\String::indent($message,4)
                                 ));
 
     return $test;

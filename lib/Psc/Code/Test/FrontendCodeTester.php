@@ -77,7 +77,7 @@ class FrontendCodeTester extends CodeTester {
       return $data;
     }
     
-    $this->testCase->assertNotEmpty($data, "JSON Error: ".$json_errors[json_last_error()]." für JSON-String: '".\Psc\String::cut($json,100,'...'));
+    $this->testCase->assertNotEmpty($data, "JSON Error: ".$json_errors[json_last_error()]." für JSON-String: '".\Webforge\Common\String::cut($json,100,'...'));
 
     return $data;
   }

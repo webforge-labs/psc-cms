@@ -4,7 +4,7 @@ namespace Psc\PHP;
 
 use Psc\Exception;
 use Psc\Preg;
-use Psc\String AS S;
+use Webforge\Common\String AS S;
 
 /**
  * 

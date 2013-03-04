@@ -142,7 +142,7 @@ class Module extends \Psc\CMS\Module implements \Psc\Code\Event\Dispatcher {
       if (array_key_exists($input,$names = $this->getEntityNames())) {
         $name = $names[$input];
       } elseif (mb_strpos($input,'\\') === FALSE) {
-        $name = \Psc\String::ucfirst($input);
+        $name = \Webforge\Common\String::ucfirst($input);
       } else {
         $name = $input;
       }

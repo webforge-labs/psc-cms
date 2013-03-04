@@ -21,7 +21,7 @@ class Base extends \Psc\SimpleObject {
   }
   
   public function foldValue($value) {
-    $value = \Psc\String::fixEOL($value);
+    $value = \Webforge\Common\String::fixEOL($value);
     $value = wordwrap($value, 74, "\n", TRUE);
     $value = str_replace("\n","\n ",$value);
     return $value;

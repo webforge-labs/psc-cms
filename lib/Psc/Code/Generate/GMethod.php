@@ -5,7 +5,7 @@ namespace Psc\Code\Generate;
 use \Reflector,
     \Psc\A,
     \ReflectionMethod,
-    \Psc\String AS S,
+    \Webforge\Common\String AS S,
     \Psc\Code\Code
 ;
 

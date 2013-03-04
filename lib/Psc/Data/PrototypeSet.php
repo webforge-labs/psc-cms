@@ -2,7 +2,7 @@
 
 namespace Psc\Data;
 
-use Psc\String AS S;
+use Webforge\Common\String AS S;
 
 /**
  * Ein Prototype Set liefert Magic Methoden für ein normales Set um das Objekt als Prototypen für ein echtes Objekt nehmen zu können

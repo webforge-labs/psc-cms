@@ -85,7 +85,7 @@ class SimpleURL extends \Psc\Object {
     
     if (isset($info->path) && $info->path !== '') {
       //@TODO müssen wir hier noch url decodieren?
-      $this->pathTrailingSlash = \Psc\String::endsWith($info->path,'/');
+      $this->pathTrailingSlash = \Webforge\Common\String::endsWith($info->path,'/');
       $this->path = array_filter(array_map('trim',explode('/',trim($info->path,'/'))));
     }
     return $this;

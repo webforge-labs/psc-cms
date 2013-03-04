@@ -76,7 +76,7 @@ abstract class Type extends \Psc\SimpleObject {
       return new ObjectType(new GClass($fqn));
     } elseif ($fqn = Preg::qmatch($name, '/^Collection<(.*)>$/')) {
       return new CollectionType(CollectionType::PSC_ARRAY_COLLECTION, new ObjectType(new GClass($fqn)));
-    } elseif (\Psc\String::endsWith($name, '[]')) {
+    } elseif (\Webforge\Common\String::endsWith($name, '[]')) {
       return new ArrayType(self::create(mb_substr($name, 0,-2)));
     } elseif (mb_strpos($name, '\\') !== FALSE) { // eigenen klassen name
       return $name;
@@ -94,7 +94,7 @@ abstract class Type extends \Psc\SimpleObject {
     
     $type = trim($type);
     
-    if (mb_strpos($type, '\\') !== FALSE && !\Psc\String::startsWith($type, 'Object<')) {
+    if (mb_strpos($type, '\\') !== FALSE && !\Webforge\Common\String::startsWith($type, 'Object<')) {
       return self::create('Object<'.$type.'>');
     }
     

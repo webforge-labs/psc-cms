@@ -66,7 +66,7 @@ class CreateClassCommand extends Command {
     $cliProject = $this->getHelper('project')->getProject();
     
     $cname = $input->getArgument('class');
-    if (\Psc\String::endsWith($cname,'.php')) {
+    if (\Webforge\Common\String::endsWith($cname,'.php')) {
       $cname = mb_substr($cname, 0, -4);
     }
     $cname = trim($cname,';:');

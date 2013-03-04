@@ -5,7 +5,7 @@ namespace Psc\TPL;
 use Webforge\Common\System\Dir;
 use Webforge\Common\System\File;
 use Psc\Exception;
-use Psc\String as S;
+use Webforge\Common\String as S;
 use Psc\A;
 use Psc\PSC;
 use Psc\CMS\RequestMeta;

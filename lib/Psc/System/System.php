@@ -6,7 +6,7 @@ use Psc\PSC,
     Psc\Environment,
     Psc\System\ExecuteException as SystemExecuteException,
     Psc\A,
-    Psc\String
+    Webforge\Common\String
 ;
 
 class System extends \Psc\Object {

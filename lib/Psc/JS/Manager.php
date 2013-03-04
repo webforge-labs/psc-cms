@@ -9,7 +9,7 @@ use
     \Psc\System\System,
     \Psc\JS\Helper AS JSHelper,
     \Psc\PSC,
-    \Psc\String as S
+    \Webforge\Common\String as S
 ;
 
 class Manager extends \Psc\DependencyManager {

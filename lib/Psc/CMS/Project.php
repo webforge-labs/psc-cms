@@ -364,7 +364,7 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber {
    * z. B. Exceptions haben erstmal keinen Test
    */
   public function shouldAutomaticTestCreated(GClass $class) {
-    if (\Psc\String::endsWith($class->getName(),'Exception')) {
+    if (\Webforge\Common\String::endsWith($class->getName(),'Exception')) {
       return FALSE;
     }
     

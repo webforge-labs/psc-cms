@@ -2,7 +2,7 @@
 
 namespace Psc\TPL;
 
-use \Psc\String AS S,
+use \Webforge\Common\String AS S,
     \Psc\Config,
     \Psc\CMS\Ajax\TemplateResponse,
     \Psc\CMS\Ajax\Response,

@@ -153,7 +153,7 @@ abstract class GObject extends \Psc\Object {
   
   public function phpDocBlock($baseIndent = 0) {
     if (isset($this->docBlock)) {
-      return \Psc\String::indent($this->docBlock->toString(),$baseIndent);
+      return \Webforge\Common\String::indent($this->docBlock->toString(),$baseIndent);
     }
   }
   

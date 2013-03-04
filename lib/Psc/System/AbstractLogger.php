@@ -33,7 +33,7 @@ abstract class AbstractLogger extends \Psc\Object { // wir könnten hier auch Di
   }
 
   protected function prefixMessage($msg) {
-    return \Psc\String::prefixLines($msg, $this->prefix, "\n");
+    return \Webforge\Common\String::prefixLines($msg, $this->prefix, "\n");
   }
 
   public function getManager() {

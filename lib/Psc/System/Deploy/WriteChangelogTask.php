@@ -76,7 +76,7 @@ PHP;
     $pos = mb_strpos($contents, $needle = '$data = array();'."\n");
     
     if ($pos === FALSE) {
-      throw new \RuntimeException('Cannot Modify File: '.\Psc\String::cutAt($contents, 300).' enhält nicht '.$needle);
+      throw new \RuntimeException('Cannot Modify File: '.\Webforge\Common\String::cutAt($contents, 300).' enhält nicht '.$needle);
     }
     $pos += mb_strlen($needle);
     

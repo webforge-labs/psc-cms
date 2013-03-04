@@ -13,7 +13,7 @@ class FlushSQLLogger implements \Doctrine\DBAL\Logging\SQLLogger {
           try {
             if (is_array($p)) $p = Helper::implodeIdentifiers($p);
         } catch (\Exception $e) { $p = '[unconvertible array]'; }
-        if (is_string($p)) $p = "'".\Psc\String::cut($p,50,'...')."'";
+        if (is_string($p)) $p = "'".\Webforge\Common\String::cut($p,50,'...')."'";
         if ($p instanceof \DateTime) $p = $p->format('YDM-H:I');
         
         $sql = preg_replace('/\?/',(string) $p, $sql, 1); // ersetze das erste ? mit dem parameter

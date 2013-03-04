@@ -2,7 +2,7 @@
 
 namespace Psc;
 
-use Psc\String AS S;
+use Webforge\Common\String AS S;
 use Psc\CMS\Configuration;
 
 class Version {

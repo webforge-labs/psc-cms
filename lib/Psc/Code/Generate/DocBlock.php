@@ -4,7 +4,7 @@ namespace Psc\Code\Generate;
 
 use Psc\Code\Annotation;
 use Psc\Preg;
-use Psc\String as S;
+use Webforge\Common\String as S;
 
 /**
  *

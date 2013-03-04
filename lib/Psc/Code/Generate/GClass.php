@@ -6,7 +6,7 @@ use ReflectionClass,
     ReflectionMethod,
     Reflector,
     Psc\A,
-    Psc\String as S,
+    Webforge\Common\String as S,
     Psc\Code\Code
 ;
 

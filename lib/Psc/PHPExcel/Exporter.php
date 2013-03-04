@@ -11,7 +11,7 @@ use
   \PHPExcel,
   \PHPExcel_Writer_Excel2007,
   \Webforge\Common\System\File,
-  \Psc\String AS S,
+  \Webforge\Common\String AS S,
   \Psc\Code\Code,
   \Psc\A
 ;

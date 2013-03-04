@@ -57,7 +57,7 @@ class CSSTester extends \Psc\SimpleObject {
   public function hasAttribute($expectedAttribute, $expectedValue = NULL) {
     $jQuery = $this->assertJQuery(__FUNCTION__);
 
-    $this->testCase->assertTrue($jQuery->getElement()->hasAttribute($expectedAttribute), 'Element hat das Attribut: "'.$expectedAttribute.'" nicht. Context: '.\Psc\String::cut($jQuery->html(), 100,'...'));
+    $this->testCase->assertTrue($jQuery->getElement()->hasAttribute($expectedAttribute), 'Element hat das Attribut: "'.$expectedAttribute.'" nicht. Context: '.\Webforge\Common\String::cut($jQuery->html(), 100,'...'));
     
     if (func_num_args() >= 2) {
       $this->testCase->assertEquals($expectedValue, $jQuery->attr($expectedAttribute), 'Wert des Attributes '.$expectedAttribute.' ist nicht identisch');

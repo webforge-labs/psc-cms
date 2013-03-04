@@ -4,7 +4,7 @@ namespace Psc\System\Deploy;
 
 use Psc\CMS\Project;
 use Webforge\Common\System\File;
-use Psc\String AS S;
+use Webforge\Common\String AS S;
 
 use Webforge\Setup\Installer\CopyCmd;
 

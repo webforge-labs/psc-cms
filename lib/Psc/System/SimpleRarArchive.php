@@ -2,7 +2,7 @@
 
 namespace Psc\System;
 
-use Psc\String AS S;
+use Webforge\Common\String AS S;
 use Webforge\Common\System\File AS WebforgeFile;
 use Webforge\Common\System\Dir AS WebforgeDir;
 

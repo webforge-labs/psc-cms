@@ -26,7 +26,7 @@ class TypeRuleMapper extends \Psc\SimpleObject {
       return $class;
     }
     
-    if (!\Psc\String::endsWith($class, 'ValidatorRule')) {
+    if (!\Webforge\Common\String::endsWith($class, 'ValidatorRule')) {
       $class .= 'ValidatorRule';
     }
     

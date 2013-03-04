@@ -6,7 +6,7 @@ use Psc\Data\Type\Type;
 use Psc\JS\Helper as jsHelper;
 use Psc\Code\AST\CodeWriter as ASTCodeWriter;
 use stdClass;
-use Psc\String as S;
+use Webforge\Common\String as S;
 
 class CodeWriter extends \Psc\SimpleObject implements ASTCodeWriter {
   

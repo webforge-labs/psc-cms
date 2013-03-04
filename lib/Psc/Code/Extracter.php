@@ -3,7 +3,7 @@
 namespace Psc\Code;
 
 use Psc\PHP\Lexer;
-use Psc\String AS S;
+use Webforge\Common\String AS S;
 
 class Extracter extends \Psc\Object {
   

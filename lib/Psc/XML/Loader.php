@@ -83,7 +83,7 @@ class Loader extends \Psc\Object {
         break;
     }
     $ret .= trim($error->message).
-      "\n  near: '".\Psc\String::cut($context,140,"'...").
+      "\n  near: '".\Webforge\Common\String::cut($context,140,"'...").
       "\n  Line: $error->line" .
       "\n  Column: $error->column"
     ;

@@ -118,7 +118,7 @@ class Deployer extends \Psc\System\LoggerObject {
    */
   public function createTask($name) {
     $this->init();
-    $class = Code::expandNamespace(\Psc\String::expand($name, 'Task'), 'Psc\System\Deploy');
+    $class = Code::expandNamespace(\Webforge\Common\String::expand($name, 'Task'), 'Psc\System\Deploy');
     
     $gClass = GClass::factory($class);
     $params = array();

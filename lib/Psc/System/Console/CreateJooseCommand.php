@@ -8,7 +8,7 @@ use \Symfony\Component\Console\Input\InputOption,
     Symfony\Component\Console\Output\OutputInterface,
     
     Psc\PSC,
-    Psc\String AS S,
+    Webforge\Common\String AS S,
     
     Webforge\Common\System\Dir,
     Webforge\Common\System\File

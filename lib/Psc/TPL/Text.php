@@ -3,7 +3,7 @@
 namespace Psc\TPL;
 
 use \Psc\Preg,
-    \Psc\String as S,
+    \Webforge\Common\String as S,
     \Psc\HTML\HTML
 ;
 

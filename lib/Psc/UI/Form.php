@@ -7,7 +7,7 @@ use \Psc\UI\HTML AS UIHTML,
     \Psc\Code\Code,
     \Psc\JS\Lambda,
     \stdClass,
-    \Psc\String AS S,
+    \Webforge\Common\String AS S,
     \Psc\A
 ;
 

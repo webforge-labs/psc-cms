@@ -5,7 +5,7 @@ namespace Psc\Code\Generate;
 use stdClass;
 use Psc\A;
 use Psc\Code\Code;
-use Psc\String as S;
+use Webforge\Common\String as S;
 use Psc\Code\AST;
 
 class CodeWriter {

@@ -6,7 +6,7 @@ use Psc\Doctrine\Helper AS DoctrineHelper;
 use Psc\Code\Code;
 use Psc\Inflector;
 use Psc\FE\Helper AS h;
-use Psc\String AS S;
+use Webforge\Common\String AS S;
 use Psc\SimpleObject;
 use Closure;
 use Psc\Data\ArrayCollection;

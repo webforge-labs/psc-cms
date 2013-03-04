@@ -88,7 +88,7 @@ class Phar extends \Psc\Object {
     $this->logger = $logger;
     $this->logLevel = 2;
     
-    if (\Psc\String::endsWith($this->namespace,'_')) {
+    if (\Webforge\Common\String::endsWith($this->namespace,'_')) {
       $this->underscoreStyle = TRUE;
     }
   }
