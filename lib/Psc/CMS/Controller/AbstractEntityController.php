@@ -106,6 +106,11 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
    */
   protected $metadata;
   
+  /**
+   * @var string
+   */
+  protected $defaultRevision = 'default';
+  
   public function __construct(DCPackage $dc = NULL, EntityViewPackage $ev = NULL, ValidationPackage $v = NULL, ServiceErrorPackage $err = NULL) {
     $this->dc = $dc ?: new DCPackage();
     $this->ev = $ev ?: new EntityViewPackage();
@@ -123,8 +128,12 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
    * @controller-api
    */
   public function getEntity($identifier, $subResource = NULL, $query = NULL) {
+    return $this->getEntityRevision($identifier, $this->defaultRevision, $subResource, $query);
+  }
+    
+  public function getEntityRevision($identifier, $revision, $subResource = NULL, $query = NULL) {
     try {
-      $entity = $this->hydrateEntity($identifier);
+      $entity = $this->hydrateEntityRevision($identifier, $revision);
     } catch (\Psc\Doctrine\EntityNotFoundException $e) {
       throw $this->err->resourceNotFound(__FUNCTION__, 'entity', array('identifier'=>$identifier), $e);
     } // was passiert wenn mehrere items gefunden werden? (bis jetzt 500)
@@ -143,11 +152,21 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
   /**
    * @return Entity
    */
-  protected function hydrateEntity($identifier) {
+  protected function hydrateEntityRevision($identifier, $revision) {
     $identifier = $this->v->validateIdentifier($identifier, $this->getEntityMeta());
-    return $this->repository->hydrate($identifier);
+    return $this->repository->hydrate($identifier, $revision);
+  }
+    
+  /**
+   * @return Entity
+   */
+  protected function hydrateEntity($identifier, $revision) {
+    return $this->hydrateEntityRevision($identifier, $this->defaultRevision);
   }
   
+  /**
+   * @return Entity
+   */
   protected function hydrate($entityName, $identifier) {
     return $this->dc->getRepository($entityName)->hydrate($identifier);
   }
@@ -220,8 +239,19 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
 
   /**
    * @controller-api
+   * @return Entity
    */
   public function saveEntity($identifier, FormData $requestData, $subResource = NULL) {
+    return $this->saveEntityRevision($identifier, $requestData, $this->defaultRevision, $subResource);
+  }
+
+  /**
+   * @controller-api
+   * @return Entity
+   */
+  public function saveEntityRevision($identifier, FormData $requestData, $revision, $subResource = NULL) {
+    $this->setRevisionMetadata($revision);
+    
     $entity = $this->getEntity($identifier);
     
     if ($subResource !== NULL && array_key_exists($subResource, $this->customActions)) {
@@ -238,17 +268,6 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
     $this->commitTransaction();
     
     $this->setEntityResponseMetadata($entity);
-    
-    return $entity;
-  }
-
-  /**
-   * @controller-api
-   */
-  public function saveEntityRevision($identifier, FormData $requestData, $revision, $subResource = NULL) {
-    $this->setRevisionMetadata($revision);
-    
-    $entity = $this->saveEntity($identifier, $requestData, $subResource);
     
     return $entity;
   }
@@ -286,6 +305,15 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
    * @return Psc\CMS\Entity
    */
   public function insertEntity(FormData $requestData, $subResource = NULL) {
+    return $this->insertEntityRevision($requestData, $this->defaultRevision, $subResource);
+  }
+  
+  /**
+   * @controller-api
+   */
+  public function insertEntityRevision(FormData $requestData, $revision, $subResource = NULL) {
+    $this->setRevisionMetadata($revision);
+    
     $entity = $this->createEmptyEntity();
     
     if ($subResource !== NULL && array_key_exists($subResource, $this->customActions)) {
@@ -303,17 +331,6 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
     
     $this->setOpenTabMetadata($entity);
     $this->setEntityResponseMetadata($entity);
-    
-    return $entity;
-  }
-  
-  /**
-   * @controller-api
-   */
-  public function insertEntityRevision(FormData $requestData, $revision, $subResource = NULL) {
-    $this->setRevisionMetadata($revision);
-    
-    $entity = $this->insertEntity($requestData, $subResource);
     
     return $entity;
   }
