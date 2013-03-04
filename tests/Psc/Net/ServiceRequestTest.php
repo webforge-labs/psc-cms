@@ -9,10 +9,21 @@ use Psc\Net\ServiceRequest;
  * @group net-service
  */
 class ServiceRequestTest extends \Psc\Code\Test\Base {
+  
+  protected $request;
 
   public function setUp() {
     $this->chainClass = 'Psc\Net\ServiceRequest';
     parent::setUp();
+
+    $this->request = new ServiceRequest(
+      Service::PUT,
+      array('entities', 'tag', 1),
+      $body = NULL,
+      array(),
+      $files = array(),
+      $meta = array('revision'=>'1147')
+    );
   }
 
   public function testConstruct() {
@@ -62,6 +73,26 @@ class ServiceRequestTest extends \Psc\Code\Test\Base {
     $sr->setType(Service::PUT);
     $sr->setType(Service::DELETE);
     $sr->setType(Service::PATCH);
+  }
+  
+  public function testCanHaveMetaAttached_WhichCanBeRetrieved() {
+    $this->assertTrue(
+      $this->request->hasMeta('revision')
+    );
+    
+    $this->assertEquals(
+      1147,
+      $this->request->getMeta('revision')
+    );
+    
+    $this->assertNull($this->request->getMeta('rewision'));
+  }
+  
+  public function testCanSetMeta() {
+    $this->assertChainable($this->request->setMeta('something', 'value'));
+    
+    $this->assertTrue($this->request->hasMeta('something'));
+    $this->assertEquals('value', $this->request->getMeta('something'));
   }
 
   public function createServiceRequest($type, $data, $body = NULL) {

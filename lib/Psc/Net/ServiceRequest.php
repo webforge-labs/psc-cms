@@ -41,13 +41,21 @@ class ServiceRequest extends \Psc\SimpleObject {
    * @var Webforge\Common\System\File[]
    */
   protected $files;
+
+  /**
+   * Zusätzliche Meta Daten aus dem Request
+   * 
+   * @var array
+   */
+  protected $meta;
   
-  public function __construct($type, Array $parts = array(), $body = NULL, Array $query = NULL, Array $files = array()) {
+  public function __construct($type, Array $parts = array(), $body = NULL, Array $query = NULL, Array $files = array(), Array $meta = NULL) {
     $this->parts = $parts;
     $this->setType($type);
     $this->body = $body;
     $this->query = $query;
     $this->files = $files;
+    $this->meta = $meta ? (array) $meta : array();
   }
   
   /**
@@ -122,10 +130,41 @@ class ServiceRequest extends \Psc\SimpleObject {
     return $this->query;
   }
   
+  /**
+   * @return bool
+   */
   public function hasQuery() {
     return count($this->query) > 0;
   }
   
+  /**
+   * @return bool
+   */
+  public function hasMeta($key) {
+    return array_key_exists($key, $this->meta);
+  }
+  
+  /**
+   * @return mixed
+   */
+  public function getMeta($key) {
+    return $this->hasMeta($key) ? $this->meta[$key] : NULL;
+  }
+  
+  /**
+   * Sets meta data
+   * 
+   * @param string|int $key
+   * @param scalar $value
+   */
+  public function setMeta($key, $value) {
+    $this->meta[$key] = $value;
+    return $this;
+  }
+  
+  /**
+   * @return string
+   */
   public function debug() {
     return sprintf('%s /%s%s',
                    $this->type,
