@@ -43,7 +43,7 @@ class TriggerFileChangedCommand extends Command {
       ->setHelp(
         'Teilt der Library mit, dass sich diese Datei geändert haben kann. (zum Neukompilieren etc..)ine Library inklusive einer Bootstrap.
 
-Beispiel: '.$this->getName().' triger-file-changed D:\www\psc-cms\Umsetzung\base\src\psc\class\Psc\ICTS\SiteTemplate.php '
+Beispiel: '.$this->getName().' triger-file-changed D:\www\psc-cms\Umsetzung\base\src\psc\class\Psc\SiteTemplate.php '
       );
     }
   
