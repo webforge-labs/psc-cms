@@ -35,4 +35,3 @@ class SVNMiniClient extends \Psc\SimpleObject {
     return exec($cmd);
   }
 }
-?>n
