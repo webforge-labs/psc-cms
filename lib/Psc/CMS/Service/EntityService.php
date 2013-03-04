@@ -104,6 +104,11 @@ class EntityService extends ControllerService {
   
         $method = 'saveSort';
         $params = array($r->bvar($controller->getSortField(), array()));
+      } elseif($request->hasMeta('revision')) {
+        $method = 'saveEntityRevision';
+        
+        A::insert($params, (object) $request->getBody(), 1);
+        A::insert($params, $request->getMeta('revision'), 2);
       } else {
       
         $method = 'saveEntity';
@@ -119,8 +124,16 @@ class EntityService extends ControllerService {
 
     } elseif ($request->getType() === self::POST) {
       $entityPart = Inflector::singular($entityPart); // singular und plural okay
-      $method = 'insertEntity';
+      
       A::insert($params, $request->getBody(), 0); // $formData als parameter 1
+      
+      if ($request->hasMeta('revision')) {
+        $method = 'insertEntityRevision';
+        A::insert($params, $request->getMeta('revision'), 1);
+      } else {
+        $method = 'insertEntity';
+      }
+      
     } else {
       // das kann glaub ich nicht mehr passieren, weil wir jetzt alle haben: put/pust/delete/get gibts nicht noch head?
       throw HTTPException::MethodNotAllowed('Die Methode: '.$request->getType().' ist für diesen Request nicht erlaubt');

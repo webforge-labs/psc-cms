@@ -73,6 +73,16 @@ class EntityServiceTest extends \Psc\Code\Test\ServiceBase {
       array('1', new \stdClass)
     );
   }
+  
+  public function testControllerRoute_saveEntityRevision() {
+    $this->assertRouteController(
+      $this->rq(array('entities','tag','1'), 'PUT')
+        ->setMeta('revision','preview-1172'),
+      'Psc\Test\Controllers\TagController',
+      'saveEntityRevision',
+      array('1', new \stdClass, 'preview-1172')
+    );
+  }
 
   public function testControllerRoute_patchEntity() { 
     $this->assertRouteController(
@@ -89,6 +99,17 @@ class EntityServiceTest extends \Psc\Code\Test\ServiceBase {
       'Psc\Test\Controllers\TagController',
       'insertEntity',
       array(array('some'=>'data'))
+    );
+  }
+  
+  public function testControllerRoute_inserEntityRevision() {
+    $this->assertRouteController(
+      $this->rq(array('entities','tags'), 'POST')
+        ->setBody(array('some'=>'data'))
+        ->setMeta('revision','preview-1170'),
+      'Psc\Test\Controllers\TagController',
+      'insertEntityRevision',
+      array(array('some'=>'data'), 'preview-1170')
     );
   }
 
