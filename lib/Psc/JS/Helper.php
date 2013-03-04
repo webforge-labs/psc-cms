@@ -4,7 +4,7 @@ namespace Psc\JS;
 
 use Psc\Code\Code AS C;
 use Psc\HTML\HTML;
-use Psc\A;
+use Webforge\Common\ArrayUtil AS A;
 
 class Helper extends \Psc\Object {
   

@@ -77,7 +77,7 @@ class Snippet extends \Psc\SimpleObject implements Expression, \Psc\HTML\HTMLInt
     } elseif (count($req = $this->getRequirements()) > 0) {
       $code = Helper::requirejs($req, array(), $code);
     } else {
-      $code = count($code) > 1 ? \Psc\A::join($code, "%s\n") : current($code);
+      $code = count($code) > 1 ? \Webforge\Common\ArrayUtil::join($code, "%s\n") : current($code);
     }
 
     return TPL::miniTemplate((string) $code, (array) $this->vars);

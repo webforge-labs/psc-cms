@@ -56,7 +56,7 @@ class Loader extends \Psc\Object {
       $msg = sprintf('Beim Laden des XMLs sind %d Fehler aufgetreten: ',$cnt);
     
     $that = $this;
-    $e = new LoadingException($msg."\n".\Psc\A::joinc($errors,"\n   %s\n\n",function ($error) use ($that) {
+    $e = new LoadingException($msg."\n".\Webforge\Common\ArrayUtil::joinc($errors,"\n   %s\n\n",function ($error) use ($that) {
       return $that->errorToString($error);
     }));
     $e->libxmlErrors = $errors;

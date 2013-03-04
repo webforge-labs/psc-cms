@@ -239,7 +239,7 @@ class Phar extends \Psc\Object {
   }
   
   public function debug() {
-    print \Psc\A::join($this->log,"    [phar] %s\n");
+    print \Webforge\Common\ArrayUtil::join($this->log,"    [phar] %s\n");
   }
 }
 ?>

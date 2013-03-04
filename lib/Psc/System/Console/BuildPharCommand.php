@@ -12,7 +12,7 @@ use  Webforge\Common\System\Dir;
 use  Webforge\Common\System\File;
 use  Psc\System\System;
 use  Psc\Code\Code;
-use  Psc\A;
+use  Webforge\Common\ArrayUtil AS A;
 
 use  Psc\Code\Build\LibraryBuilder;
 
@@ -106,7 +106,7 @@ Beispiel: '.$this->getName().' --lib=psc-cms -o D:\www\psc-cms-bin\psc-cms.phar.
       $output->writeln("  Compiling Module to ".$out."... ");
       $pharBuilder = $module->buildPhar($out, $checkCompilingNeeded, $buildName);
       if ($input->getOption('verbose') == TRUE) {
-        print \Psc\A::join($pharBuilder->getPhar()->getLog(),"    [phar] %s\n");
+        print \Webforge\Common\ArrayUtil::join($pharBuilder->getPhar()->getLog(),"    [phar] %s\n");
       }
       $output->writeln('finished.');
       return 0;

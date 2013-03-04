@@ -2,7 +2,7 @@
 
 namespace Psc\UI;
 
-use Psc\A;
+use Webforge\Common\ArrayUtil AS A;
 use stdClass;
 use Psc\CMS\TabsContentItem;
 use Psc\JS\Helper as JSHelper;

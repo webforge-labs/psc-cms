@@ -3,7 +3,7 @@
 namespace Psc\Doctrine;
 
 use Psc\Code\Code;
-use Psc\A;
+use Webforge\Common\ArrayUtil AS A;
 use Psc\Doctrine\Helper as DoctrineHelper;
 
 /**

@@ -2,7 +2,7 @@
 
 namespace Psc\Data\Type;
 
-use Psc\A;
+use Webforge\Common\ArrayUtil AS A;
 
 abstract class DynamicEnumType extends EnumType {
   

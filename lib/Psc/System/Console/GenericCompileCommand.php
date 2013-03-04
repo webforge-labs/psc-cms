@@ -57,7 +57,7 @@ class GenericCompileCommand extends CompileCommand {
     
     $params = (array) $params;
     
-    if (\Psc\A::isNumeric($params)) {
+    if (\Webforge\Common\ArrayUtil::isNumeric($params)) {
       throw new \InvalidArgumentException(sprintf("parametesrJSON muss ein object sein, mit constructorParameterName => value oder propertyName => value"));
     }
     

@@ -17,9 +17,9 @@ class CodeEditor extends JavaScriptBase implements JavaScriptComponent {
   protected $readonly = FALSE;
   
   public function getInnerHTML() {
-    $ace = HTML::tag('div', NULL, array('class'=>'\Psc\ace-editor'));
+    $ace = HTML::tag('div', NULL, array('class'=>'\Webforge\Common\ArrayUtilce-editor'));
     $group = new Group($this->getFormLabel(), $ace);
-    $group->addClass('\Psc\ace-group');
+    $group->addClass('\Webforge\Common\ArrayUtilce-group');
     
     return $group;
   }

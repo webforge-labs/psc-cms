@@ -217,7 +217,7 @@ class RequestHandler extends \Psc\System\LoggerObject {
     throw NoServiceFoundException::build(
         'Es konnte kein passender Service ermittelt werden. Es wurden %d Services (%s) befragt.',
         count($this->services),
-        \Psc\A::implode($this->services, ', ', function ($svc) { return Code::getClass($svc); })
+        \Webforge\Common\ArrayUtil::implode($this->services, ', ', function ($svc) { return Code::getClass($svc); })
     )->set('serviceRequest',$serviceRequest)
      ->end();
   }

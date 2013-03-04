@@ -6,7 +6,7 @@ use Webforge\Common\System\Dir;
 use Webforge\Common\System\File;
 use Psc\Exception;
 use Webforge\Common\String as S;
-use Psc\A;
+use Webforge\Common\ArrayUtil AS A;
 use Psc\PSC;
 use Psc\CMS\RequestMeta;
 

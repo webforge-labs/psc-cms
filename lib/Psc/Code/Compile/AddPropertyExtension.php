@@ -12,7 +12,7 @@ use Psc\Code\Generate\ClassBuilder;
 use Psc\Code\Generate\ClassBuilderProperty;
 use Psc\Data\Type\Type;
 use Psc\Data\Type\ObjectType;
-use Psc\A;
+use Webforge\Common\ArrayUtil AS A;
 
 /**
  * @TODO der Constructor muss parent::__construct aufrufen, wenn überschrieben,parameter sollten vererbt werden

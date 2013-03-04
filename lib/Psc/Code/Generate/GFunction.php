@@ -4,7 +4,7 @@ namespace Psc\Code\Generate;
 
 use \Psc\Doctrine\Helper as DoctrineHelper,
     \Reflector,
-    \Psc\A,
+    \Webforge\Common\ArrayUtil AS A,
     \Webforge\Common\String AS S,
     \Psc\Code\Code,
     \Psc\Code\Extracter
@@ -159,7 +159,7 @@ class GFunction extends GObject {
   
   public function addParameter(GParameter $parameter, $position = self::APPEND) {
     // nicht nach name hashen oder sowas wegen Reihenfolge
-    \Psc\A::insert($this->parameters, $parameter, $position);
+    \Webforge\Common\ArrayUtil::insert($this->parameters, $parameter, $position);
     return $this;
   }
   
@@ -320,7 +320,7 @@ class GFunction extends GObject {
 
   public function insertBody(Array $codeLines, $index) {
     $this->getBodyCode();
-    \Psc\A::insertArray($this->bodyCode, $codeLines, $index);
+    \Webforge\Common\ArrayUtil::insertArray($this->bodyCode, $codeLines, $index);
     return $this;
   }
   

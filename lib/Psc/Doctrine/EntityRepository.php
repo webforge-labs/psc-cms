@@ -9,7 +9,7 @@ use Doctrine\ORM\NoResultException,
     \Psc\Doctrine\Filter,
     \Psc\Doctrine\EntityFilter,
     
-    \Psc\A;
+    \Webforge\Common\ArrayUtil AS A;
 use Closure;
 
 

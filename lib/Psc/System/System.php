@@ -5,7 +5,7 @@ namespace Psc\System;
 use Psc\PSC,
     Psc\Environment,
     Psc\System\ExecuteException as SystemExecuteException,
-    Psc\A,
+    Webforge\Common\ArrayUtil AS A,
     Webforge\Common\String
 ;
 

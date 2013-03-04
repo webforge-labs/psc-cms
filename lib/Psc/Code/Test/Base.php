@@ -217,7 +217,7 @@ class Base extends AssertionsBase {
   }
   
 //  protected function onNotSuccessfulTest(\Exception $e) {
-//    print \Psc\A::join($this->sjg->log, "\n  %s");
+//    print \Webforge\Common\ArrayUtil::join($this->sjg->log, "\n  %s");
 //    throw $e;
 //  }
 

@@ -9,7 +9,7 @@ use Doctrine\ORM\EntityManager,
     Psc\Config,
     Psc\PSC,
     Psc\Code\Code,
-    Psc\A,
+    Webforge\Common\ArrayUtil AS A,
     \Psc\Preg,
     \Closure
 ;
@@ -221,7 +221,7 @@ class Helper {
     if (count($collection) === 0) {
       $ret .= '[leere Collection]';
     } else {
-      $ret .= \Psc\A::implode(Code::castArray($collection), $glue, function ($item, $key) {
+      $ret .= \Webforge\Common\ArrayUtil::implode(Code::castArray($collection), $glue, function ($item, $key) {
         return sprintf('[%s] %s', $key, \Psc\Doctrine\Helper::debugEntity($item));
       });
     }

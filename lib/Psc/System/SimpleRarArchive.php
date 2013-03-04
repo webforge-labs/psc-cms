@@ -91,7 +91,7 @@ class SimpleRarArchive extends \Psc\Object {
     $cmd = sprintf('%s %s%s %s%s',
                    System::escapeExecutable($this->bin),
                    $command,
-                   (count($options) > 0 ? \Psc\A::join($options,' -%s') : NULL), // das letzte ist schalterbearbeitung abschließen
+                   (count($options) > 0 ? \Webforge\Common\ArrayUtil::join($options,' -%s') : NULL), // das letzte ist schalterbearbeitung abschließen
                    (string) escapeshellarg($this->rar),
                    (mb_strlen($append) > 0 ? ' '.$append : NULL)
                    );

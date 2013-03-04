@@ -4,7 +4,7 @@ namespace Psc\System\Console;
 
 use Psc\Code\Generate\GParameter;
 use Psc\Code\Compile\AddPropertyExtension;
-use Psc\A;
+use Webforge\Common\ArrayUtil AS A;
 
 class AddClassPropertyCommand extends CompileCommand {
   

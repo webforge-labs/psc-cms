@@ -3,8 +3,7 @@
 namespace Psc\Form;
 
 use \Psc\HTML\Tag as HTMLTag,
-    \Psc\A
-;
+    \Webforge\Common\ArrayUtil AS A;
 
 /**
  * Wir benutzen hier static::tag damit wir in \Psc\UI\fHTML sachen überschreiben können (z.b. addClass)

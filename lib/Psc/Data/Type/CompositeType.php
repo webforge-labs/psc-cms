@@ -23,7 +23,7 @@ class CompositeType extends \Psc\Data\Type\Type {
 
   public function getName($context = self::CONTEXT_DEFAULT) {
     if ($context === self::CONTEXT_DEBUG)
-      return \Psc\A::implode($this->components, '|', function ($component) {
+      return \Webforge\Common\ArrayUtil::implode($this->components, '|', function ($component) {
         return $component->getName(Type::CONTEXT_DEBUG);
       });
       

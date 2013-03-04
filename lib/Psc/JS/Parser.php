@@ -355,7 +355,7 @@ class Parser extends \Psc\System\LoggerObject {
   }
   
   protected function debugTokens(Array $tokens) {
-    return \Psc\A::joinc($tokens, ', ', function ($token) {
+    return \Webforge\Common\ArrayUtil::joinc($tokens, ', ', function ($token) {
       return is_string($token) ? $token : j_token_name($token);
     });
   }

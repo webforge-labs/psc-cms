@@ -80,7 +80,7 @@ class Walker extends \Psc\SimpleObject {
   }
   
   public function walkArrayValue($phpValue, Type $type) {
-    $isList = $type->isList() !== NULL ? $type->isList() : \Psc\A::isNumeric($phpValue);
+    $isList = $type->isList() !== NULL ? $type->isList() : \Webforge\Common\ArrayUtil::isNumeric($phpValue);
     
     if ($isList) {
       return $this->walkListValue((array) $phpValue, $type);

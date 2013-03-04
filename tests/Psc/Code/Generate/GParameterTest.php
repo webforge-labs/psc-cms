@@ -4,7 +4,7 @@ namespace Psc\Code\Generate;
 
 use Psc\Code\Generate\GParameter;
 use ReflectionClass;
-use Psc\A;
+use Webforge\Common\ArrayUtil AS A;
 
 
 /**

@@ -7,7 +7,7 @@ use Psc\UI\Group;
 use Psc\UI\FormPanel;
 use Psc\UI\PanelButtons;
 use Psc\Data\Type\Type;
-use Psc\A;
+use Webforge\Common\ArrayUtil AS A;
 use InvalidArgumentException;
 use Psc\Data\Set;
 use Psc\UI\DataScreener;

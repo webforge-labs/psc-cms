@@ -221,7 +221,7 @@ class DatabaseTest extends \Psc\Code\Test\NativeDatabaseTest {
   }
   
   public function hydrate($entity, $data) {
-    if (is_array($data) && !\Psc\A::isNumeric($data)) // numeric bedeutet composite key (z.b. OID)
+    if (is_array($data) && !\Webforge\Common\ArrayUtil::isNumeric($data)) // numeric bedeutet composite key (z.b. OID)
       return $this->getRepository($entity)->hydrateBy($data);
     else
       return $this->getRepository($entity)->hydrate($data);

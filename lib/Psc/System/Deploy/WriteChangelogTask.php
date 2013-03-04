@@ -62,7 +62,7 @@ PHP;
     $php = \Psc\TPL\TPL::miniTemplate($php,array('version'=>$newVersion,
                                             'time'=>date('H:i d.m.Y'),
                                             'changesList'=>
-                                              \Psc\A::implode(
+                                              \Webforge\Common\ArrayUtil::implode(
                                                 $this->changes,
                                                 ",\n    ",
                                                 function ($change) {

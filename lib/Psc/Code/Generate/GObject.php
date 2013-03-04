@@ -6,8 +6,7 @@ use Psc\Code\Code,
     \Reflector,
     Webforge\Common\System\File,
     Psc\Object,
-    Psc\A
-;
+    Webforge\Common\ArrayUtil AS A;
 
 /**
  * @todo wenn im Objekt der DocBlock schon gesetzt ist, wird der mit create() einfach überschrieben

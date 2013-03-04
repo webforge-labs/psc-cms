@@ -836,9 +836,9 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
   
   public function removeBlackListProperty($propertyName, $context = 'form') {
     if (array_key_exists($context, $this->contextBlackListProperties)) {
-      \Psc\A::remove($this->contextBlackListProperties[$context], $propertyName);
+      \Webforge\Common\ArrayUtil::remove($this->contextBlackListProperties[$context], $propertyName);
     } else {
-      \Psc\A::remove($this->blackListProperties[$context], $propertyName);
+      \Webforge\Common\ArrayUtil::remove($this->blackListProperties[$context], $propertyName);
     }
     return $this;
   }

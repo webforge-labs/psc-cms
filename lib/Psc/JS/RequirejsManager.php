@@ -28,7 +28,7 @@ class RequirejsManager extends \Psc\JS\Manager implements \Psc\HTML\HTMLInterfac
    * @return string
    */
   public function html() {
-    return \Psc\A::join($this->getHTML(),"%s \n");
+    return \Webforge\Common\ArrayUtil::join($this->getHTML(),"%s \n");
   }
 }
 ?>

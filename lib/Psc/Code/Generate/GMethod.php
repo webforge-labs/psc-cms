@@ -3,7 +3,7 @@
 namespace Psc\Code\Generate;
 
 use \Reflector,
-    \Psc\A,
+    \Webforge\Common\ArrayUtil AS A,
     \ReflectionMethod,
     \Webforge\Common\String AS S,
     \Psc\Code\Code

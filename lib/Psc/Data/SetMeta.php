@@ -4,7 +4,7 @@ namespace Psc\Data;
 
 use Psc\DataInput;
 use Psc\Code\Code;
-use Psc\A;
+use Webforge\Common\ArrayUtil AS A;
 
 class SetMeta extends \Psc\SimpleObject {
   

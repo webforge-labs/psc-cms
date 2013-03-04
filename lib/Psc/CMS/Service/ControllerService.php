@@ -9,7 +9,7 @@ use Psc\CMS\Controller\ServiceController;
 use Psc\CMS\Controller\TransactionalController;
 use Psc\Code\Callback;
 use Psc\Code\Code;
-use Psc\A;
+use Webforge\Common\ArrayUtil AS A;
 use Psc\CMS\Project;
 
 use Psc\Net\HTTP\HTTPException;

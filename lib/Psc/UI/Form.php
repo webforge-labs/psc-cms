@@ -8,8 +8,7 @@ use \Psc\UI\HTML AS UIHTML,
     \Psc\JS\Lambda,
     \stdClass,
     \Webforge\Common\String AS S,
-    \Psc\A
-;
+    \Webforge\Common\ArrayUtil AS A;
 
 class Form {
   
@@ -130,7 +129,7 @@ class Form {
   public static function buttonAdd($label, $flags = 0x000000, $iconLeft = 'circle-plus') {
     $button = self::button($label, $flags, 'circle-plus');
     $button->getHTML()
-      ->addClass('\Psc\add');
+      ->addClass('\Webforge\Common\ArrayUtildd');
         
     return $button;
   }

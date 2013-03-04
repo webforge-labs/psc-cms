@@ -160,7 +160,7 @@ __JS__;
     $classFile->writeContents(\Psc\TPL\TPL::miniTemplate($classJS, compact('class','parent')));
       
     if (!$input->getOption('without-test')) {
-      $scClass = lcfirst(\Psc\A::peek(explode('.',$class)));
+      $scClass = lcfirst(\Webforge\Common\ArrayUtil::peek(explode('.',$class)));
       $output->writeln('Schreibe: '.$testFile.'.');
       $testFile->getDirectory()->create();
       $testFile->writeContents(\Psc\TPL\TPL::miniTemplate($testJS, compact('class','scClass')));

@@ -7,7 +7,7 @@ use Psc\Data\Type\StringType;
 use Psc\Data\Type\IntegerType;
 use Psc\Data\Type\BooleanType;
 use Psc\Data\Type\ArrayType;
-use Psc\A;
+use Webforge\Common\ArrayUtil AS A;
 use Psc\Data\RandomGenerator;
 use ReflectionClass;
 use Psc\Code\Code;

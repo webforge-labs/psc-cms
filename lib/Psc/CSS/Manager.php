@@ -2,7 +2,7 @@
 
 namespace Psc\CSS;
 
-use \Psc\A;
+use \Webforge\Common\ArrayUtil AS A;
 
 class Manager extends \Psc\DependencyManager implements \Psc\HTML\HTMLInterface {
   

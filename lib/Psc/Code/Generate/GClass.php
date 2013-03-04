@@ -2,13 +2,12 @@
 
 namespace Psc\Code\Generate;
 
-use ReflectionClass,
-    ReflectionMethod,
-    Reflector,
-    Psc\A,
-    Webforge\Common\String as S,
-    Psc\Code\Code
-;
+use ReflectionClass;
+use ReflectionMethod;
+use Reflector;
+use Webforge\Common\ArrayUtil AS A;
+use Webforge\Common\String as S;
+use Psc\Code\Code;
 
 /**
  * Jede Klasse hat eine Funktion elevate() die modifizierbare parameter einer ReflectionClass auf die G* Klassen anhebt
@@ -423,7 +422,7 @@ class GClass extends GObject {
     if (!$this->hasMethod($method->getName())) {
       throw new \InvalidArgumentException('Methode muss erst der Klasse hinzugefügt werden. Erst dann darf setMethodOrder() aufgerufen werden');
     }
-    \Psc\A::insert($this->methodsOrder, $method->getName(), $position);
+    \Webforge\Common\ArrayUtil::insert($this->methodsOrder, $method->getName(), $position);
     return $this;
   }
 

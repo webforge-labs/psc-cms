@@ -6,7 +6,7 @@ use \Webforge\Common\System\File,
     \Psc\System\System,
     \Psc\System\ExecuteException,
     \Psc\TPL\TPL,
-    \Psc\A,
+    \Webforge\Common\ArrayUtil AS A,
     Psc\Code\Code
   ;
 

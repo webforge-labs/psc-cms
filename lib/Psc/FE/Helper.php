@@ -2,7 +2,7 @@
 
 namespace Psc\FE;
 
-use Psc\A;
+use Webforge\Common\ArrayUtil AS A;
 use Psc\Code\Code;
 use Closure;
 

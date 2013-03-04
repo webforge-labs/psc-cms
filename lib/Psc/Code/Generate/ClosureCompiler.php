@@ -49,7 +49,7 @@ class ClosureCompiler extends \Psc\SimpleObject {
       $methodNames[] = $closureName;
     }
     
-    return array(\Psc\A::join($closures, "%s;\n\n"), $methodNames);
+    return array(\Webforge\Common\ArrayUtil::join($closures, "%s;\n\n"), $methodNames);
   }
   
   protected function compileClosure(GMethod $method, $closureName) {
@@ -80,11 +80,11 @@ PHP;
     } else {
 
       // kopiert von GFunction
-      $parameters = \Psc\A::implode($method->getParameters(), ', ', function ($parameter) {
+      $parameters = \Webforge\Common\ArrayUtil::implode($method->getParameters(), ', ', function ($parameter) {
         return $parameter->php($useFQNHints = TRUE);
       });
     
-      $callParameters = \Psc\A::implode($method->getParameters(), ', ', function ($parameter) {
+      $callParameters = \Webforge\Common\ArrayUtil::implode($method->getParameters(), ', ', function ($parameter) {
         // für die 2ten parameter entfernen wir alle hints, damit wir nur die parameter auflistungen haben
         $parameter = clone $parameter;
         $parameter->setHint(NULL);

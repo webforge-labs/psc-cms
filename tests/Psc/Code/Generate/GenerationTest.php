@@ -10,7 +10,7 @@ use Psc\Code\Generate\GParameter,
     Psc\Code\Generate\ClassWriter,
     \Psc\System\System,
     \Psc\PSC,
-    \Psc\A,
+    \Webforge\Common\ArrayUtil,
     \Webforge\Common\String AS S,
     \Webforge\Common\System\File
 ;

@@ -3,7 +3,7 @@
 namespace Psc\Code\Generate;
 
 use stdClass;
-use Psc\A;
+use Webforge\Common\ArrayUtil AS A;
 use Psc\Code\Code;
 use Webforge\Common\String as S;
 use Psc\Code\AST;

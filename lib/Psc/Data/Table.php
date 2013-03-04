@@ -3,7 +3,7 @@
 namespace Psc\Data;
 
 use Psc\Data\Type\Type;
-use Psc\A;
+use Webforge\Common\ArrayUtil AS A;
 
 /**
  * 

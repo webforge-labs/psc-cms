@@ -7,7 +7,7 @@ use Psc\Net\Service;
 use Psc\Net\ServiceResponse;
 use Psc\Code\Generate\GClass;
 use Psc\Code\Code;
-use Psc\A;
+use Webforge\Common\ArrayUtil AS A;
 use Psc\Net\HTTP\HTTPException;
 use Psc\Net\RequestMatcher;
 use Psc\Inflector;

@@ -124,7 +124,7 @@ FILE_CODE
     $writer = new ClassWriter();
     $writer->setClass(new GClass('TestClass'));
     $writer->addImport(new GClass('Webforge\Common\System\File'),'SystemFile');
-    $writer->addImport(new GClass('Psc\Another\File'),'SystemFile');
+    $writer->addImport(new GClass('Webforge\Common\ArrayUtilnother\File'),'SystemFile');
   }
 
   /**
@@ -134,7 +134,7 @@ FILE_CODE
     $writer = new ClassWriter();
     $writer->setClass(new GClass('TestClass'));
     $writer->addImport(new GClass('Webforge\Common\System\File'));
-    $writer->addImport(new GClass('Psc\Another\File'));
+    $writer->addImport(new GClass('Webforge\Common\ArrayUtilnother\File'));
   }
   
   public function testSyntaxCheckFailure() {

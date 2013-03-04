@@ -5,7 +5,7 @@ namespace Psc\UI;
 use Psc\JS\Helper AS JSHelper;
 use SimpleObject;
 use Psc\Code\Code;
-use Psc\A;
+use Webforge\Common\ArrayUtil AS A;
 
 /**
  *
@@ -93,8 +93,8 @@ class Accordion extends OptionsObject {
       $indexContent = $indexHeadline+1;
     }
     
-    \Psc\A::insert($this->html->content, $head = new HTMLTag($this->getOption('headlineTag'), $headline, array('class'=>$class)), $indexHeadline);
-    \Psc\A::insert($this->html->content, $div = new HTMLTag($this->getOption('contentTag'), $content, array('class'=>$class)), $indexContent);
+    \Webforge\Common\ArrayUtil::insert($this->html->content, $head = new HTMLTag($this->getOption('headlineTag'), $headline, array('class'=>$class)), $indexHeadline);
+    \Webforge\Common\ArrayUtil::insert($this->html->content, $div = new HTMLTag($this->getOption('contentTag'), $content, array('class'=>$class)), $indexContent);
     $head->addClass('ui-accordion-header');
     
     $div->setOption('br.openTag',TRUE)->setOption('tag.indent', $this->indent+2);

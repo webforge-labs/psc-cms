@@ -2,7 +2,7 @@
 
 namespace Psc\Doctrine;
 
-use Psc\A,
+use Webforge\Common\ArrayUtil AS A,
     Doctrine\ORM\Mapping\ClassMetadataFactory,
     Psc\Doctrine\Helper as DoctrineHelper,
     Doctrine\ORM\EntityManager,

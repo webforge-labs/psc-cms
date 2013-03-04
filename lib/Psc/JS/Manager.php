@@ -4,7 +4,7 @@ namespace Psc\JS;
 
 use 
     \Psc\Config,
-    \Psc\A,
+    \Webforge\Common\ArrayUtil AS A,
     \Webforge\Common\System\File,
     \Psc\System\System,
     \Psc\JS\Helper AS JSHelper,

@@ -15,7 +15,7 @@ class Code implements Expression {
   }
   
   public static function fromCode(Array $codeLines) {
-    return new static(\Psc\A::join($codeLines, "%s\n"));
+    return new static(\Webforge\Common\ArrayUtil::join($codeLines, "%s\n"));
   }
   
   public function __toString() {

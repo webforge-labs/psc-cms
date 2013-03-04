@@ -176,7 +176,7 @@ class Header extends \Psc\Object {
   }
   
   public function __toString() {
-    return \Psc\A::join($this->values, '%2$s: %1$s'."\n");
+    return \Webforge\Common\ArrayUtil::join($this->values, '%2$s: %1$s'."\n");
   }
 }
 ?>

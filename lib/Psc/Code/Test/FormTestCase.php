@@ -265,7 +265,7 @@ abstract class FormTestCase extends \Psc\Doctrine\DatabaseTest {
     };
     
     $formData = function () use (&$fieldKeys) {
-      $fieldData = \Psc\A::fillUp(func_get_args(), NULL, count($fieldKeys));
+      $fieldData = \Webforge\Common\ArrayUtil::fillUp(func_get_args(), NULL, count($fieldKeys));
       
       return array_combine($fieldKeys, $fieldData);
     };

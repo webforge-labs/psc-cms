@@ -13,8 +13,7 @@ use
   \Webforge\Common\System\File,
   \Webforge\Common\String AS S,
   \Psc\Code\Code,
-  \Psc\A
-;
+  \Webforge\Common\ArrayUtil AS A;
 
 /**
  */

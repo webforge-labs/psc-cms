@@ -2,7 +2,7 @@
 
 namespace Psc\Net;
 
-use Psc\A;
+use Webforge\Common\ArrayUtil AS A;
 use Psc\Code\Code;
 use Psc\Preg;
 

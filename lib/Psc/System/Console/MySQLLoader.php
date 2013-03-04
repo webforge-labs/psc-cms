@@ -36,7 +36,7 @@ class MySQLLoader extends \Psc\Object {
     
     //mysql --host=%s --user=%s --password=%s <database> < <file>
     $cmd = System::which('mysql').' %s%s < %s';
-    $this->cmd = sprintf($cmd, \Psc\A::join($this->getOptions(), '--%2$s=%1$s '), $this->database, (string) $this->file);
+    $this->cmd = sprintf($cmd, \Webforge\Common\ArrayUtil::join($this->getOptions(), '--%2$s=%1$s '), $this->database, (string) $this->file);
     
     try {
       if ($justReturn)

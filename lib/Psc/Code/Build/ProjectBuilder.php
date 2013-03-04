@@ -80,7 +80,7 @@ class ProjectBuilder extends \Psc\Object {
       $this->phar->setBootstrapCode($this->getPharBootstrapCode());
       
       $this->phar->build();
-      print \Psc\A::join($this->phar->getLog(),"    [phar] %s\n");
+      print \Webforge\Common\ArrayUtil::join($this->phar->getLog(),"    [phar] %s\n");
     }
   }
   
