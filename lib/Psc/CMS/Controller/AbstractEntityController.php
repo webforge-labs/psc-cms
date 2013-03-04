@@ -302,12 +302,27 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
     $this->commitTransaction();
     
     $this->setOpenTabMetadata($entity);
+    $this->setEntityResponseMetadata($entity);
     
     return $entity;
   }
   
+  /**
+   * @controller-api
+   */
+  public function insertEntityRevision(FormData $requestData, $revision, $subResource = NULL) {
+    $this->setRevisionMetadata($revision);
+    
+    $entity = $this->insertEntity($requestData, $subResource);
+    
+    return $entity;
+  }
+
   protected function setOpenTabMetadata($entity) {
-    $this->metadata = new MetadataGenerator();
+    if (!isset($this->metadata)) {
+      $this->metadata = new MetadataGenerator();
+    }
+    
     $this->metadata->openTab($this->getEntityMeta()->getAdapter($entity)->getTabOpenable());
   }
 

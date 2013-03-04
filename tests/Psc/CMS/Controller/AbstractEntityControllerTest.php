@@ -152,6 +152,40 @@ class AbstractEntityControllerTest extends AbstractEntityControllerBaseTest {
   }
   
   
+  public function testInsertWithPreviewRevision_returnsAnOpenWindowInResponseMeta_acceptance() {
+    $newArticle = new Article('the title', 'the content');
+    $this->expectRepositorySavesEqualTo($newArticle);
+    
+    $this->controller->setOptionalProperties(array('tags','category','sort'));
+    $this->controller->insertEntityRevision(
+      (object) array(
+        'title'=>'the title',
+        'content'=>'the content',
+        'tags'=>NULL
+      ),
+      $revision = 'preview-insert-172849'
+    );
+    
+    $this->assertInstanceOf('Psc\CMS\Service\MetadataGenerator', $meta = $this->controller->getResponseMetadata(), 'insert Entity muss Metadata haben für open Tab');
+    $this->assertDefinesRevisionLink($meta, $revision);
+  }
+  
+  protected function assertDefinesRevisionLink($meta, $revision) {
+    // see metadataGenerator for Details
+    $meta = $meta->toArray();
+    
+    $this->assertEquals(
+      $revision,
+      @$meta['revision']
+    );
+
+    $this->assertNotEmpty(
+      $revision,
+      $meta['links'],
+      'links for relations have to be defined'
+    );
+  }
+  
   public function testSaveEntityWithPreviewRevision_returnsAnOpenWindowInResponseMeta_acceptance() {
     $this->expectRepositoryHydrates($this->article);
     $this->expectRepositorySavesEqualTo($this->article);
@@ -176,21 +210,9 @@ class AbstractEntityControllerTest extends AbstractEntityControllerBaseTest {
               );
     
     $this->assertInstanceOf('Psc\CMS\Controller\ResponseMetadataController', $this->controller);
-    $this->assertNotEmpty($meta = $this->controller->getResponseMetadata(), 'controller should define response meta');
-    $meta = $meta->toArray();
+    $this->assertNotEmpty($meta = $this->controller->getResponseMetadata(), 'controller should define response meta');    
     
-    // see metadataGenerator for Details
-    
-    $this->assertEquals(
-      $revision,
-      $meta['revision']
-    );
-
-    $this->assertNotEmpty(
-      $revision,
-      $meta['links'],
-      'links for relations have to be defined'
-    );
+    $this->assertDefinesRevisionLink($meta, $revision);
   }
   
   public function testSetRepository() {
