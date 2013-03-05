@@ -25,7 +25,6 @@
     "symfony/css-selector": "2.1.*@stable",
     "symfony/http-foundation": "2.1.*@stable",
     "doctrine/orm": "2.3.*@stable",
-    "imagine/Imagine": "0.3.*@stable",
     "swiftmailer/swiftmailer": "4.1.*@stable",
     "CodePlex/PHPExcel": "1.7.8@stable",
     "webforge/common": "1.1.*@dev",
@@ -34,6 +33,9 @@
   "require-dev": {
     "webforge/testdata-repository": "dev-master",
     "doctrine/data-fixtures": "1.0.*@alpha"
+  },
+  "suggest": {
+    "pscheit/psc-cms-imagine": "If you want to use the image processing and controller"
   },
   "minimum-stability": "dev",
   

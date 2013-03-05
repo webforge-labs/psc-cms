@@ -247,6 +247,19 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber {
     throw new \Psc\ModuleNotFoundException('Modul nicht bekannt: '.$name);
   }
   
+  
+  public function bootstrapModuleIfExists($name) {
+    if ($this->isModuleExisting($name)) {
+      $this->getModule($name)->bootstrap();
+    }
+    
+    return $this;
+  }
+  
+  public function isModuleExisting($name) {
+    return $this->isModule($name) && class_exists($this->avaibleModules[$name]['class'], true);
+  }
+  
   public function isModuleLoaded($name) {
     return array_key_exists($name, $this->modules);
   }

@@ -21,7 +21,8 @@ $container->init();
 PSC::setProject($container->getProject())->bootstrap()
   ->getModule('Doctrine')->bootstrap()->getProject()
   ->getModule('PHPExcel')->bootstrap()->getProject()
-  ->getModule('Imagine')->bootstrap()->getProject()
+
+  ->bootstrapModuleIfExists('Imagine')
 ;
 
 $GLOBALS['env']['container'] = $container;
