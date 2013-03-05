@@ -160,7 +160,7 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
   /**
    * @return Entity
    */
-  protected function hydrateEntity($identifier, $revision) {
+  protected function hydrateEntity($identifier) {
     return $this->hydrateEntityRevision($identifier, $this->defaultRevision);
   }
   
