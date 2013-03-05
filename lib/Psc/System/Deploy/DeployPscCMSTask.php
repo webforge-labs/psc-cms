@@ -65,7 +65,6 @@ PHP_CLI;
     //$this->jsHintPscCMSJS();
     $this->copyPscCMSJSAndPscCSS();
     $this->copyErrors();
-    $this->copyPharsToBin();
   }
   
   protected function jsHintPscCMSJS() {
@@ -102,18 +101,6 @@ PHP_CLI;
     if (!$target->exists()) {
       $this->psc->getHtdocs()->sub('errors/')->copy($target->create(), NULL, array('404.wurf1.html'), TRUE);
     }
-  }
-  
-  protected function copyPharsToBin() {
-    $pscBin = \Psc\PSC::getRoot();
-    
-    // wir haben ja eigentlich alle per composer mittlerweile
-    // das ist aber bissl unnütz hier, weil man meistens eh alles noch in bin/ im projekt hat (check this)
-    $ignores = array('psc-cms.phar.gz', 'swift.phar.gz', 'hitch.phar.gz',
-                     'doctrine.phar.gz', 'symfony.phar.gz',
-                     'imagine.phar.gz','phpexcel.phar.gz',
-                     'phppowerpoint.phar.gz');
-    $pscBin->copy($this->targetProject->getBin(), '.gz', $ignores);
   }
   
   protected function buildCLI() {
