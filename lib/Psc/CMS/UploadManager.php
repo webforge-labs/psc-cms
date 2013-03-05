@@ -120,7 +120,6 @@ class UploadManager extends \Psc\SimpleObject {
       } elseif ($input instanceof UploadedFile) {
         $uplFile = $input;
       
-        throw new \Psc\Exception('von einer ImagineResource kann kein Bild geladen werden');
       } else {
         throw new \Psc\Exception('Input kann nicht analyisiert werden: '.Code::varInfo($input));
       }
