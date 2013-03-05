@@ -93,7 +93,7 @@ abstract class DeployCommand extends Command {
   
   protected function updateComposer($project) {
     $this->out('[DeployCommand] ** local update Composer');
-    system('SET COMPOSER_ROOT_VERSION=dev-master && cd '.$project->getVendor()->up().' && composer update --dev');
+    system('SET COMPOSER_ROOT_VERSION=dev-master && cd '.$project->getVendor()->up().' && composer update -v --dev');
     $this->br();
   }
   
