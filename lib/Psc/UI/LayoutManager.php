@@ -53,7 +53,7 @@ class LayoutManager extends \Psc\HTML\JooseBase {
           $button('Headline', 'Überschrift', (object) array('level'=>1)),
           $button('Headline', 'Zwischenüberschrift', (object) array('level'=>2)),
           $button('Paragraph', 'Absatz'),
-          $button('List', 'Aufzählung'),
+          $button('Li', 'Aufzählung'),
           $button('Image', 'Bild'),
           $button('DownloadsList', 'Download-Liste', (object) array('headline'=>'', 'downloads'=>array())),
           $button('WebsiteWidget', 'Kalender', (object) array('label'=>'Kalender', 'name'=>'calendar'))
