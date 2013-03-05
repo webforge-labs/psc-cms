@@ -114,7 +114,6 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber {
   protected $avaibleModules = array(
     'PHPWord'=>array('class'=>'Psc\PHPWord\Module'),
     'PHPExcel'=>array('class'=>'Psc\PHPExcel\Module'),
-    'PHPPowerPoint'=>array('class'=>'Psc\PHPPowerPoint\Module'),
     'Doctrine'=>array('class'=>'Psc\Doctrine\Module'),
     'Symfony'=>array('class'=>'Psc\Symfony\Module'),
     'Imagine'=>array('class'=>'Psc\Image\ImagineModule'),
