@@ -261,7 +261,7 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
     $this->beginTransaction();
     
     // validiert und processed die daten aus requestData und setzt diese im Entity
-    $this->processEntityFormRequest($entity, $requestData);
+    $this->processEntityFormRequest($entity, $requestData, $revision);
 
     $this->repository->save($entity);
     
@@ -325,7 +325,7 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
     $this->beginTransaction();
     
     // validiert und processed die daten aus requestData und setzt diese im Entity
-    $this->processEntityFormRequest($entity, $requestData);
+    $this->processEntityFormRequest($entity, $requestData, $revision);
     
     $this->repository->save($entity);
     
@@ -345,7 +345,7 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
     $this->metadata->openTab($this->getEntityMeta()->getAdapter($entity)->getTabOpenable());
   }
 
-  protected function processEntityFormRequest(Entity $entity, FormData $requestData) {
+  protected function processEntityFormRequest(Entity $entity, FormData $requestData, $revision) {
     /* wir erstellen ein Meta-Set mit den Post-Daten
     
      das problem ist, wenn wir hier z.b. einen int aus dem Formular bekommen, ist dies ein string
