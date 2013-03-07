@@ -10,10 +10,9 @@ env:
   
 before_install:
   - composer self-update
+  - composer require --no-update --no-interaction "pscheit/psc-cms-image:$COMPOSER_ROOT_VERSION"
   - composer install --prefer-source --no-interaction --dev
 
-after_install:
-  - composer require --prefer-source --no-interaction "pscheit/psc-cms-image:$COMPOSER_ROOT_VERSION"
   
 before_script:
   - vendor/bin/webforge register-package .
