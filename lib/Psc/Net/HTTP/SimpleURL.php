@@ -2,6 +2,8 @@
 
 namespace Psc\Net\HTTP;
 
+use Webforge\Common\String AS S;
+
 class SimpleURL extends \Psc\Object {
   
   const HTTP = 'http';
@@ -40,7 +42,6 @@ class SimpleURL extends \Psc\Object {
    * @var array
    */
   protected $query = array();
-  
   
   /**
    * @var string ohne # davor
@@ -85,7 +86,7 @@ class SimpleURL extends \Psc\Object {
     
     if (isset($info->path) && $info->path !== '') {
       //@TODO müssen wir hier noch url decodieren?
-      $this->pathTrailingSlash = \Webforge\Common\String::endsWith($info->path,'/');
+      $this->pathTrailingSlash = S::endsWith($info->path,'/');
       $this->path = array_filter(array_map('trim',explode('/',trim($info->path,'/'))));
     }
     return $this;
@@ -195,6 +196,20 @@ class SimpleURL extends \Psc\Object {
   }
   
   /**
+   * Modifies the current URL with adding an relative Url to the pathParts
+   *
+   * @param string $url only / slashes, first / is optional no query string, no fragment
+   */
+  public function addRelativeUrl($relativeUrl) {
+    $this->pathTrailingSlash = S::endsWith($relativeUrl, '/');
+    
+    $parts = array_filter(explode('/', trim($relativeUrl, '/')));
+    
+    $this->path = array_merge($this->path, $parts);
+    return $this;
+  }
+  
+  /**
    * Gibt einen bestimten Teil des Paths zurück
    * 
    * Gibt NULL zurück wenn der Part nicht gesetzt ist
@@ -226,6 +241,12 @@ class SimpleURL extends \Psc\Object {
    */
   public function getQueryString() {
     return http_build_query($this->query, NULL, '&');
+  }
+  
+  
+  public function setQuery(Array $query) {
+    $this->query = $query;
+    return $this;
   }
   
   /**

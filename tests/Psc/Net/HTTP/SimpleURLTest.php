@@ -139,7 +139,54 @@ class SimpleURLTest extends \Psc\Code\Test\Base {
   public function testRelativeURL() {
     //$url = new SimpleURL('/entities/person/17/form');
     
+  }
+  
+  /**
+   * @dataProvider provideAbsRelativeUrls
+   */
+  public function testAddingRelativeUrlsToAbsoluteOnesWithDirectory($absUrl, $relativeUrl, $resultUrl) {
+    $url = new SimpleUrl($absUrl);
     
+    $combinedUrl = $url->addRelativeUrl($relativeUrl);
+    
+    $this->assertSame($combinedUrl, $url);
+    $this->assertEquals(
+      $resultUrl,
+      (string) $combinedUrl
+    );
+  }
+  
+  public static function provideAbsRelativeUrls() {
+    $tests = array();
+    
+    $tests[] = array(
+      'http://www.example.com',
+      '/relative/url/file.html',
+      'http://www.example.com/relative/url/file.html'
+    );
+
+    $tests[] = array(
+      'http://www.example.com/',
+      '/relative/url/file.html',
+      'http://www.example.com/relative/url/file.html'
+    );
+
+    $tests[] = array(
+      'http://www.example.com/sub/dir',
+      '/relative/url/file.html',
+      'http://www.example.com/sub/dir/relative/url/file.html'
+    );
+
+    /* macht das sinn? oder exception? nicht klar: YAGNI */
+    /*
+    $tests[] = array(
+      'http://www.example.com/sub/dir/some/file.html',
+      '/relative/url/file.html',
+      'http://www.example.com/sub/dir/some/relative/url/file.html'
+    );
+    */
+    
+    return $tests;
   }
   
   /**
