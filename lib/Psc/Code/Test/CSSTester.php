@@ -95,6 +95,13 @@ class CSSTester extends \Psc\SimpleObject {
     $this->testCase->assertEquals($expectedText, $this->getJQuery()->text(), sprintf("Element hat nicht den Textinhalt: '%s'", $expectedText));
     return $this;
   }
+
+  public function text($constraint, $msg = '') {
+    $jQuery = $this->assertJQuery(__FUNCTION__);
+    
+    $this->testCase->assertThat($jQuery->text(), $constraint, $msg);
+    return $this;
+  }
   
   public function containsText($expectedTextPart) {
     $this->testCase->assertContains($expectedTextPart, $this->getJQuery()->text(), sprintf("Element beeinhaltet nicht den Textinhalt: '%s'", $expectedTextPart));
