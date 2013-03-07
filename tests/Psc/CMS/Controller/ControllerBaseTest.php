@@ -19,10 +19,6 @@ abstract class ControllerBaseTest extends \Psc\Code\Test\Base {
     $this->controller = $this->createEntityController();
     $this->controller->setOptionalProperties(array('category'));
     $this->setEntityNameInController($this->entityFQN);
-
-    // mime default behaviour
-    $this->controller->expects($this->any())->method('getLinkRelationsForEntity')
-                     ->will($this->returnValue(array()));
   }
   
   

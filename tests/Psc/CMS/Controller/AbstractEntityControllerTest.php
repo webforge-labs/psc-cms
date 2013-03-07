@@ -155,6 +155,11 @@ class AbstractEntityControllerTest extends AbstractEntityControllerBaseTest {
   public function testInsertWithPreviewRevision_returnsAnOpenWindowInResponseMeta_acceptance() {
     $newArticle = new Article('the title', 'the content');
     $this->expectRepositorySavesEqualTo($newArticle);
+
+    $viewRelation = new LinkRelation('view', '/articles/new+article');
+    
+    $this->controller->expects($this->once())->method('getLinkRelationsForEntity')
+                     ->will($this->returnValue(array($viewRelation)));
     
     $this->controller->setOptionalProperties(array('tags','category','sort'));
     $this->controller->insertEntityRevision(
@@ -166,7 +171,12 @@ class AbstractEntityControllerTest extends AbstractEntityControllerBaseTest {
       $revision = 'preview-insert-172849'
     );
     
-    $this->assertInstanceOf('Psc\CMS\Service\MetadataGenerator', $meta = $this->controller->getResponseMetadata(), 'insert Entity muss Metadata haben für open Tab');
+    $this->assertInstanceOf(
+      'Psc\CMS\Service\MetadataGenerator',
+      $meta = $this->controller->getResponseMetadata(),
+      'insert Entity muss Metadata haben für open Tab'
+    );
+    
     $this->assertDefinesRevisionLink($meta, $revision);
   }
   
@@ -180,9 +190,8 @@ class AbstractEntityControllerTest extends AbstractEntityControllerBaseTest {
     );
 
     $this->assertNotEmpty(
-      $revision,
       $meta['links'],
-      'links for relations have to be defined'
+      'links for relations have to be defined '.print_r($meta['links'], true)
     );
   }
   

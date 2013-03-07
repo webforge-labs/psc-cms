@@ -275,10 +275,12 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
   protected function setEntityResponseMetadata(Entity $entity) {
     if (!$this->metadata) $this->metadata = new MetadataGenerator();
     
-    $this->metadata->entity(
-      $entity,
-      $this->getLinkRelationsForEntity($entity)
-    );
+    if (is_array($links = $this->getLinkRelationsForEntity($entity))) {
+      $this->metadata->entity(
+        $entity,
+        $links
+      );
+    }
   }
   
   /**
