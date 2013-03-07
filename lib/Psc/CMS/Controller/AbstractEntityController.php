@@ -252,7 +252,7 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
   public function saveEntityRevision($identifier, FormData $requestData, $revision, $subResource = NULL) {
     $this->setRevisionMetadata($revision);
     
-    $entity = $this->getEntity($identifier);
+    $entity = $this->getEntityRevision($identifier, $revision);
     
     if ($subResource !== NULL && array_key_exists($subResource, $this->customActions)) {
       return $this->callCustomAction($this->customActions[$subResource], array($entity, $requestData));
@@ -316,7 +316,7 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
   public function insertEntityRevision(FormData $requestData, $revision, $subResource = NULL) {
     $this->setRevisionMetadata($revision);
     
-    $entity = $this->createEmptyEntity();
+    $entity = $this->createEmptyEntity($revision);
     
     if ($subResource !== NULL && array_key_exists($subResource, $this->customActions)) {
       return $this->callCustomAction($this->customActions[$subResource], array($entity, $requestData));
@@ -536,7 +536,7 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
    * @controller-api
    */
   public function getNewEntityFormular() {
-    $entity = $this->createEmptyEntity();
+    $entity = $this->createEmptyEntity($this->defaultRevision);
     return $this->getEntityFormular($entity);
   }
   
@@ -550,7 +550,8 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
    *
    * kann abgeleitet werden, falls der constructor von {$this->getEntityName()} Parameter braucht
    */
-  public function createEmptyEntity() {
+  public function createEmptyEntity($revision = NULL) {
+    
     // @TODO check ob entity einen constructor hat, der parameter braucht?
     $c = $this->getEntityName();
     
