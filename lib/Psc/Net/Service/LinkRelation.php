@@ -41,7 +41,7 @@ class LinkRelation {
    * @param string $href
    */
   public function setHref($href) {
-    $this->href = $href;
+    $this->href = (string) $href;
     return $this;
   }
   
