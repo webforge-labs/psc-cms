@@ -40,5 +40,17 @@ class RequestConverterTest extends \Psc\Code\Test\Base {
     
     $this->assertEquals((object) array('types'=>array('jpg','png','gif')), $serviceRequest->getBody());
   }
+  
+  public function testRevisionMetaHeaderIsConvertedToMeta() {
+    $request = new Request(Request::PUT, '/entities/article/7');
+    $request->setHeaderField('X-Psc-Cms-Revision', 'preview-1127');
+    
+    $serviceRequest = $this->requestConverter->fromHTTPRequest($request);
+    
+    $this->assertEquals(
+      'preview-1127',
+      $serviceRequest->getMeta('revision')
+    );
+  }
 }
 ?>

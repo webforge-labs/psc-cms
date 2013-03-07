@@ -15,13 +15,22 @@ class RequestConverter extends \Psc\System\LoggerObject {
 
   public function fromHTTPRequest(Request $request) {
     $body = $request->getBody();
+    $meta = array();
     
-    $xHeader = 'X-Psc-Cms-Request-Method';
-    if (in_array($method = $request->getHeaderField($xHeader), array(Service::PUT, Service::DELETE))) {
-      $this->log('Request-Method durch HTTP-Header '.$xHeader.' überschrieben zu: '.$method);
-      unset($body->$xHeader);
+    // override method
+    $rqMethodHeader = 'X-Psc-Cms-Request-Method';
+    if (in_array($method = $request->getHeaderField($rqMethodHeader), array(Service::PUT, Service::DELETE))) {
+      $this->log('Request-Method durch HTTP-Header '.$rqMethodHeader.' überschrieben zu: '.$method);
+      unset($body->$rqMethodHeader);
     } else {
       $method = constant('Psc\Net\Service::'.$request->getMethod()); // Request::GET => ServiceRequest::GET
+    }
+    
+    // revision
+    $revisionHeader = 'X-Psc-Cms-Revision';
+    if (($revision = $request->getHeaderField($revisionHeader)) != '') {
+      $meta['revision'] = $revision;
+      unset($body->$revisionHeader);
     }
     
     // convert bodyAsJSON to native
@@ -34,7 +43,8 @@ class RequestConverter extends \Psc\System\LoggerObject {
       $request->getParts(),
       $body,
       $request->getQuery(),
-      $request->getFiles()
+      $request->getFiles(),
+      $meta
     );
   }
 }
