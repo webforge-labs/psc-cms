@@ -6,11 +6,14 @@ branches:
   only:
     - master
 env:
-  - PSC_CMS=$HOME/build/pscheit/psc-cms/etc/travis/
+  - PSC_CMS=$HOME/build/pscheit/psc-cms/etc/travis/; COMPOSER_ROOT_VERSION=dev-master 
   
 before_install:
   - composer self-update
-  - COMPOSER_ROOT_VERSION=dev-master composer install --prefer-source --no-interaction --dev
+  - composer install --prefer-source --no-interaction --dev
+
+after_install:
+  - composer require --prefer-source --no-interaction "pscheit/psc-cms-image:$COMPOSER_ROOT_VERSION"
   
 before_script:
   - vendor/bin/webforge register-package .
