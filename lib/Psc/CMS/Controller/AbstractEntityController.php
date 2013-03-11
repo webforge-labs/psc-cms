@@ -131,10 +131,26 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
     return $this->getEntityRevision($identifier, $this->defaultRevision, $subResource, $query);
   }
     
-  public function getEntityRevision($identifier, $revision, $subResource = NULL, $query = NULL) {
+  /**
+   * Returns a revision from the entity with the $identifier
+   *
+   * if $revision === $this->defaultRevision the entity with the $identifier can be returned
+   *
+   * otherwise an revision from the entity (it maybe new) should be returned
+   * the construction of the revision is delegated to "forkEntity"
+   * 
+   */
+  public function getEntityInRevision($identifier, $revision, $subResource = NULL, $query = NULL) {
     try {
-      $entity = $this->hydrateEntityRevision($identifier, $revision);
+      $entity = $this->hydrateEntity($identifier);
+      
+      /// aaaaaaaaaaaaaaarg komm nich weiter
+      
+      if ($revision )
+      
     } catch (\Psc\Doctrine\EntityNotFoundException $e) {
+      
+      
       throw $this->err->resourceNotFound(__FUNCTION__, 'entity', array('identifier'=>$identifier), $e);
     } // was passiert wenn mehrere items gefunden werden? (bis jetzt 500)
     
@@ -242,14 +258,15 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
    * @return Entity
    */
   public function saveEntity($identifier, FormData $requestData, $subResource = NULL) {
-    return $this->saveEntityRevision($identifier, $requestData, $this->defaultRevision, $subResource);
+    return $this->saveEntityAsRevision($identifier, $requestData, $this->defaultRevision, $subResource);
   }
 
   /**
    * @controller-api
+   *
    * @return Entity
    */
-  public function saveEntityRevision($identifier, FormData $requestData, $revision, $subResource = NULL) {
+  public function saveEntityAsRevision($identifier, FormData $requestData, $revision, $subResource = NULL) {
     $this->setRevisionMetadata($revision);
     
     $entity = $this->getEntityRevision($identifier, $revision);
