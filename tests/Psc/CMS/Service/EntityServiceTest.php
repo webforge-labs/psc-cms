@@ -74,13 +74,13 @@ class EntityServiceTest extends \Psc\Code\Test\ServiceBase {
     );
   }
   
-  public function testControllerRoute_saveEntityRevision() {
+  public function testControllerRoute_saveEntityAsRevision() {
     $this->assertRouteController(
       $this->rq(array('entities','tag','1'), 'PUT')
         ->setMeta('revision','preview-1172'),
       'Psc\Test\Controllers\TagController',
-      'saveEntityRevision',
-      array('1', new \stdClass, 'preview-1172')
+      'saveEntityAsRevision',
+      array('1', 'preview-1172', new \stdClass)
     );
   }
 
@@ -109,7 +109,7 @@ class EntityServiceTest extends \Psc\Code\Test\ServiceBase {
         ->setMeta('revision','preview-1170'),
       'Psc\Test\Controllers\TagController',
       'insertEntityRevision',
-      array(array('some'=>'data'), 'preview-1170')
+      array('preview-1170', array('some'=>'data'))
     );
   }
 

@@ -105,10 +105,10 @@ class EntityService extends ControllerService {
         $method = 'saveSort';
         $params = array($r->bvar($controller->getSortField(), array()));
       } elseif($request->hasMeta('revision')) {
-        $method = 'saveEntityRevision';
+        $method = 'saveEntityAsRevision';
         
-        A::insert($params, (object) $request->getBody(), 1);
-        A::insert($params, $request->getMeta('revision'), 2);
+        A::insert($params, $request->getMeta('revision'), 1);
+        A::insert($params, (object) $request->getBody(), 2);
       } else {
       
         $method = 'saveEntity';
@@ -129,7 +129,7 @@ class EntityService extends ControllerService {
       
       if ($request->hasMeta('revision')) {
         $method = 'insertEntityRevision';
-        A::insert($params, $request->getMeta('revision'), 1);
+        A::insert($params, $request->getMeta('revision'), 0);
       } else {
         $method = 'insertEntity';
       }
