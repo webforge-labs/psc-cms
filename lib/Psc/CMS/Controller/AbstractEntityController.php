@@ -7,6 +7,7 @@ use Psc\CMS\Entity;
 use Psc\CMS\EntityMeta;
 use Psc\CMS\EntityGridPanel;
 use Psc\Data\SetMeta;
+use Psc\Doctrine\EntityNotFoundException;
 
 use stdClass AS FormData;
 use Psc\Code\Generate\GClass;
@@ -128,30 +129,20 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
    * @controller-api
    */
   public function getEntity($identifier, $subResource = NULL, $query = NULL) {
-    return $this->getEntityRevision($identifier, $this->defaultRevision, $subResource, $query);
+    return $this->getEntityInRevision($identifier, $this->defaultRevision, $subResource, $query);
   }
     
   /**
-   * Returns a revision from the entity with the $identifier
+   * Returns a revision from the entity with the $parentIdentifier
    *
-   * if $revision === $this->defaultRevision the entity with the $identifier can be returned
-   *
-   * otherwise an revision from the entity (it maybe new) should be returned
-   * the construction of the revision is delegated to "forkEntity"
-   * 
+   * if no revision or identifier is found an Resource Not Found HTTP Error is raised
+   * @return Entity
    */
-  public function getEntityInRevision($identifier, $revision, $subResource = NULL, $query = NULL) {
+  public function getEntityInRevision($parentIdentifier, $revision, $subResource = NULL, $query = NULL) {
     try {
-      $entity = $this->hydrateEntity($identifier);
-      
-      /// aaaaaaaaaaaaaaarg komm nich weiter
-      
-      if ($revision )
-      
-    } catch (\Psc\Doctrine\EntityNotFoundException $e) {
-      
-      
-      throw $this->err->resourceNotFound(__FUNCTION__, 'entity', array('identifier'=>$identifier), $e);
+      $entity = $this->hydrateEntityInRevision($parentIdentifier, $revision);
+    } catch (EntityNotFoundException $e) {
+      throw $this->err->resourceNotFound(__FUNCTION__, 'entity', array('identifier'=>$parentIdentifier), $e);
     } // was passiert wenn mehrere items gefunden werden? (bis jetzt 500)
     
     if ($subResource === NULL) {
@@ -159,28 +150,40 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
     } elseif ($subResource === 'form') {
       return $this->getEntityFormular($entity);
     } elseif (array_key_exists($subResource, $this->customActions)) {
-      return $this->callCustomAction($this->customActions[$subResource], array($entity, $query));
+      return $this->callCustomAction($this->customActions[$subResource], array($entity, $query, $revision));
     } else {
       throw $this->err->invalidArgument(__FUNCTION__, 'subResource', $subResource);
     }
   }
   
   /**
+   * Returns the $revision of the entity with the $parentIdentifier
+   *
+   * notice that the returned Entity may not have the same identifier as $parentIdentifier
    * @return Entity
    */
-  protected function hydrateEntityRevision($identifier, $revision) {
-    $identifier = $this->v->validateIdentifier($identifier, $this->getEntityMeta());
-    return $this->repository->hydrate($identifier, $revision);
+  protected function hydrateEntityInRevision($parentIdentifier, $revision) {
+    $identifier = $this->v->validateIdentifier($parentIdentifier, $this->getEntityMeta());
+    
+    if ($revision === $this->defaultRevision) {
+      return $this->repository->hydrate($parentIdentifier);
+    } else {
+      throw EntityNotFoundException::criteria(compact('parentIdentifier', 'revision'));
+    }
   }
     
   /**
-   * @return Entity
+   * Returns the entity with the $identifier
+   * 
+   * @return Entity in default Revision
    */
   protected function hydrateEntity($identifier) {
-    return $this->hydrateEntityRevision($identifier, $this->defaultRevision);
+    return $this->hydrateEntityInRevision($identifier, $this->defaultRevision);
   }
   
   /**
+   * Returns an specific Entity
+   * 
    * @return Entity
    */
   protected function hydrate($entityName, $identifier) {
@@ -254,114 +257,71 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
   }
 
   /**
+   * Saves the Entity default Revision
+   * 
    * @controller-api
    * @return Entity
    */
   public function saveEntity($identifier, FormData $requestData, $subResource = NULL) {
-    return $this->saveEntityAsRevision($identifier, $requestData, $this->defaultRevision, $subResource);
+    $revision = $this->defaultRevision;
+    $entity = $this->getEntity($identifier);
+    
+    if ($subResource !== NULL && array_key_exists($subResource, $this->customActions)) {
+      return $this->callCustomAction($this->customActions[$subResource], array($entity, $requestData, $revision));
+    }
+    
+    return $this->updateEntityRevision($entity, $revision, $requestData, $subResource);
   }
 
   /**
-   * @controller-api
+   * Saves an Entity ($parentIdentifier) as a new Entity in a specific $evision
    *
+   * notice: think of a save as... - button
+   * this does NOT use getEntityInRevision to retrieve the revision-entity. it uses hydrateEntityInRevision
+   * a new Revision is created (if it does not exist in db) with createNewRevisionFrom()
+   *
+   * @controller-api
    * @return Entity
    */
-  public function saveEntityAsRevision($identifier, FormData $requestData, $revision, $subResource = NULL) {
-    $this->setRevisionMetadata($revision);
-    
-    $entity = $this->getEntityRevision($identifier, $revision);
-    
+  public function saveEntityAsRevision($parentIdentifier, $revision, FormData $requestData, $subResource = NULL) {
+    try {
+      $entity = $this->hydrateEntityInRevision($parentIdentifier, $revision);
+    } catch (EntityNotFoundException $e) {
+      $parentEntity = $this->getEntity($parentIdentifier);
+      
+      $entity = $this->createNewRevisionFrom($parentEntity, $revision);
+    }
+
     if ($subResource !== NULL && array_key_exists($subResource, $this->customActions)) {
-      return $this->callCustomAction($this->customActions[$subResource], array($entity, $requestData));
+      return $this->callCustomAction($this->customActions[$subResource], array($entity, $requestData, $revision));
     }
     
-    $this->beginTransaction();
-    
-    // validiert und processed die daten aus requestData und setzt diese im Entity
-    $this->processEntityFormRequest($entity, $requestData, $revision);
-
-    $this->repository->save($entity);
-    
-    $this->commitTransaction();
-    
-    $this->setEntityResponseMetadata($entity);
-    
-    return $entity;
+    return $this->updateEntityRevision($entity, $revision, $requestData, $subResource);
   }
 
-  protected function setEntityResponseMetadata(Entity $entity) {
-    if (!$this->metadata) $this->metadata = new MetadataGenerator();
-    
-    if (is_array($links = $this->getLinkRelationsForEntity($entity))) {
-      $this->metadata->entity(
-        $entity,
-        $links
-      );
-    }
-  }
-  
   /**
-   * Returns a set of (REST)-links as meta-information for the entity
+   * Saves the specific Entity with the $requestData in $revision
    *
-   * a link is a \Psc\Net\Service\LinkRelation
-   * @return LinkRelation[]
+   * this does not create new revisions of the entity, it just stores the current with the requestdata
+   * @return Entity
    */
-  protected function getLinkRelationsForEntity(Entity $entity) {
-    return array();
-  }
-  
-
-  protected function setRevisionMetadata($revision) {
-    if (!$this->metadata) $this->metadata = new MetadataGenerator();
-    
-    $this->metadata->revision(
-      $revision
-    );
-  }
-
-  /**
-   * @controller-api
-   * @return Psc\CMS\Entity
-   */
-  public function insertEntity(FormData $requestData, $subResource = NULL) {
-    return $this->insertEntityRevision($requestData, $this->defaultRevision, $subResource);
-  }
-  
-  /**
-   * @controller-api
-   */
-  public function insertEntityRevision(FormData $requestData, $revision, $subResource = NULL) {
+  protected function updateEntityRevision(Entity $entity, $revision, FormData $requestData) {
     $this->setRevisionMetadata($revision);
-    
-    $entity = $this->createEmptyEntity($revision);
-    
-    if ($subResource !== NULL && array_key_exists($subResource, $this->customActions)) {
-      return $this->callCustomAction($this->customActions[$subResource], array($entity, $requestData));
-    }
     
     $this->beginTransaction();
     
     // validiert und processed die daten aus requestData und setzt diese im Entity
     $this->processEntityFormRequest($entity, $requestData, $revision);
-    
+
     $this->repository->save($entity);
     
     $this->commitTransaction();
     
-    $this->setOpenTabMetadata($entity);
     $this->setEntityResponseMetadata($entity);
     
     return $entity;
   }
-
-  protected function setOpenTabMetadata($entity) {
-    if (!isset($this->metadata)) {
-      $this->metadata = new MetadataGenerator();
-    }
-    
-    $this->metadata->openTab($this->getEntityMeta()->getAdapter($entity)->getTabOpenable());
-  }
-
+  
   protected function processEntityFormRequest(Entity $entity, FormData $requestData, $revision) {
     /* wir erstellen ein Meta-Set mit den Post-Daten
     
@@ -396,7 +356,82 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
 
     return $this;
   }
+
+  /**
+   * Inserts a new Entity in default Revision
+   * 
+   * @controller-api
+   * @return Psc\CMS\Entity
+   */
+  public function insertEntity(FormData $requestData, $subResource = NULL) {
+    return $this->insertEntityRevision($this->defaultRevision, $requestData, $subResource);
+  }
   
+  /**
+   * Inserts a new Entity in specific Revision
+   *
+   * @controller-api
+   */
+  public function insertEntityRevision($revision, FormData $requestData, $subResource = NULL) {
+    $entity = $this->createEmptyEntity($revision);
+    
+    if ($subResource !== NULL && array_key_exists($subResource, $this->customActions)) {
+      return $this->callCustomAction($this->customActions[$subResource], array($entity, $requestData, $revision));
+    }
+    
+    $this->updateEntityRevision($entity, $revision, $requestData);
+    $this->setOpenTabMetadata($entity);
+    
+    return $entity;
+  }
+
+  /**
+   * Returns a new $revision based on $parentEntity
+   *
+   */
+  protected function createNewRevisionFrom(Entity $parentEntity, $revision) {
+    // default behaviour is dump
+    return $this->createEmptyEntity($revision);
+  }
+
+  protected function setEntityResponseMetadata(Entity $entity) {
+    if (!$this->metadata) $this->metadata = new MetadataGenerator();
+    
+    if (is_array($links = $this->getLinkRelationsForEntity($entity))) {
+      $this->metadata->entity(
+        $entity,
+        $links
+      );
+    }
+  }
+  
+  /**
+   * Returns a set of (REST)-links as meta-information for the entity
+   *
+   * a link is a \Psc\Net\Service\LinkRelation
+   * @return LinkRelation[]
+   */
+  protected function getLinkRelationsForEntity(Entity $entity) {
+    return array();
+  }
+  
+
+  protected function setRevisionMetadata($revision) {
+    if (!$this->metadata) $this->metadata = new MetadataGenerator();
+    
+    $this->metadata->revision(
+      $revision
+    );
+  }
+
+  protected function setOpenTabMetadata($entity) {
+    if (!isset($this->metadata)) {
+      $this->metadata = new MetadataGenerator();
+    }
+    
+    $this->metadata->openTab($this->getEntityMeta()->getAdapter($entity)->getTabOpenable());
+  }
+
   
   protected function filterRequestData(FormData $requestData) {
     return $this->v->filterjqxWidgetsFromRequestData($requestData);

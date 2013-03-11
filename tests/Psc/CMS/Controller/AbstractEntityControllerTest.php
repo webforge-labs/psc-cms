@@ -163,12 +163,12 @@ class AbstractEntityControllerTest extends AbstractEntityControllerBaseTest {
     
     $this->controller->setOptionalProperties(array('tags','category','sort'));
     $this->controller->insertEntityRevision(
+      $revision = 'preview-insert-172849',
       (object) array(
         'title'=>'the title',
         'content'=>'the content',
         'tags'=>NULL
-      ),
-      $revision = 'preview-insert-172849'
+      )
     );
     
     $this->assertInstanceOf(
@@ -197,7 +197,7 @@ class AbstractEntityControllerTest extends AbstractEntityControllerBaseTest {
   
   public function testSaveEntityWithPreviewRevision_returnsAnOpenWindowInResponseMeta_acceptance() {
     $this->expectRepositoryHydrates($this->article);
-    $this->expectRepositorySavesEqualTo($this->article);
+    //$this->expectRepositorySavesEqualTo($this->article);
     
     $viewRelation = new LinkRelation('view', '/articles/'.$this->article->getId());
     
@@ -207,14 +207,14 @@ class AbstractEntityControllerTest extends AbstractEntityControllerBaseTest {
     $this->controller->setOptionalProperties(array('tags','category','sort'));
     
     $revision = 'preview-172849';
-    $return = $this->controller->saveEntityRevision(
+    $return = $this->controller->saveEntityAsRevision(
                 7,
+                $revision,
                 (object) array(
                   'title'=>'blubb',
                   'content'=>'content',
                   'tags'=>NULL
                 ),
-                $revision,
                 'form'
               );
     
