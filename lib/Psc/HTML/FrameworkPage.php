@@ -85,5 +85,14 @@ JAVASCRIPT
     $this->head->content[$url] = js::load($url);
     return $this;
   }  
+
+  public function loadConditionalJS($url, $condition) {
+    $this->head->content[$url] =
+      '<!--[if '.$condition.']>'.
+      js::load($url).
+      '<![endif]-->';
+    
+    return $this;
+  } 
 }
 ?>

@@ -19,10 +19,9 @@ class Page5 extends FrameworkPage {
     $this->removeMeta('content-type'); // warum gibts das eigentlich nich in html5?
     $this->removeMeta('content-language');
     
-    
     $this->setMeta('viewport', "width=device-width, initial-scale=1.0");
     
-    $this->head->content['/js/html5.js'] = '<!--[if lte IE 8]><script src="/js/html5-ie-fix.js"></script><![endif]-->';
+    $this->loadConditionalJS('/psc-cms-js/vendor/afarkas/html5shiv.min.js', 'lt IE 9');
   }
 }
 ?>
