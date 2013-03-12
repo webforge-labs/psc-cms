@@ -21,7 +21,7 @@ class Page5Test extends \Psc\Code\Test\HTMLTestCase {
   }
   
   public function testHTML5FixForIELTE8() {
-    $this->assertContains('<!--[if lte IE 8]><script src="/js/html5-ie-fix.js"></script><![endif]-->', $this->test->css('head')->html());
+    $this->assertContains('<!--[if lt IE 9]><script type="text/javascript" src="/psc-cms-js/vendor/afarkas/html5shiv.min.js"></script>', $this->test->css('head')->html());
   }
   
   public function testHTMLXMLNS() {
