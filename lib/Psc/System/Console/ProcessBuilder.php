@@ -33,7 +33,7 @@ class ProcessBuilder {
    */
   protected $escapeFor;
 
-  public function __construct(File $bin, array $cmdArgs = array(), array $cmdOptions = array(), $escapeFor = NULL) {
+  public function __construct($bin, array $cmdArgs = array(), array $cmdOptions = array(), $escapeFor = NULL) {
     $this->escapeFor($escapeFor ?: substr(PHP_OS, 0, 3) == 'WIN' ? self::WINDOWS : self::UNIX);
     $this->bin = $bin;
     
@@ -55,7 +55,7 @@ class ProcessBuilder {
     $this->inheritEnv = true;
   }
 
-  public static function create(File $bin, array $cmdArgs = array(), array $cmdOptions = array(), $escapeFor = NULL) {
+  public static function create($bin, array $cmdArgs = array(), array $cmdOptions = array(), $escapeFor = NULL) {
     return new static($bin, $cmdArgs, $cmdOptions, $escapeFor);
   }
   

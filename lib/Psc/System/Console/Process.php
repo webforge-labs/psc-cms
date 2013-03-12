@@ -26,7 +26,7 @@ class Process extends \Symfony\Component\Process\Process {
   /**
    * @return Psc\System\Console\ProcessBuilder
    */
-  public static function build(File $bin, Array $cmdArgs = array(), Array $cmdOptions = array(), $escapeFor = NULL) {
+  public static function build($bin, Array $cmdArgs = array(), Array $cmdOptions = array(), $escapeFor = NULL) {
     return ProcessBuilder::create($bin, $cmdArgs, $cmdOptions, $escapeFor);
   }
 }
