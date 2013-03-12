@@ -101,6 +101,10 @@ class ModelCompiler extends \Psc\SimpleObject {
       return $gclass;
     };
     
+    $expandClass = function ($class) use ($mc) {
+      return $mc->getDefaultNamespace().'\\'.ltrim($class, '\\');
+    };
+    
     $undefined = function () {
       return GParameter::UNDEFINED;
     };
@@ -358,7 +362,7 @@ class ModelCompiler extends \Psc\SimpleObject {
     };
     
     return compact(
-                   'entity', 'entityClass', 'extends', 'getGClass',
+                   'entity', 'expandClass', 'entityClass', 'extends', 'getGClass',
                    'property', 'enumType', 'flag', 'nullable', 'unique', 'type', 'undefined', 'i18n',
                    'constructor','argument',
                    'setIdentifier','isId', 'defaultId',
