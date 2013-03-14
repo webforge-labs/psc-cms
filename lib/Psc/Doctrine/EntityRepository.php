@@ -94,6 +94,16 @@ class EntityRepository extends \Doctrine\ORM\EntityRepository {
     
     return $entity;
   }
+
+
+  /**
+   *  Returns an entity of the project, which implements a specific Psc\CMS\Role
+   * 
+   *  @return Psc\CMS\Role\$role.toCamelCase()
+   */
+  public function hydrateRole($role, $identifier) {
+    return $this->_em->getRepository($this->_class->namespace.'\\'.ucfirst($role))->hydrate($identifier);
+  }
   
   
   /**
