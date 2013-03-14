@@ -5,6 +5,7 @@ namespace Psc\Doctrine;
 use Psc\Code\Code;
 use stdClass;
 use Webforge\CMS\Navigation\Node As NavigationNode;
+use Psc\CMS\Roles\Page as PageRole;
 
 class NavigationNodeRepository extends EntityRepository {
   
@@ -127,6 +128,63 @@ class NavigationNodeRepository extends EntityRepository {
     });
     return $url;
   }
+
+
+  /**
+   * @param bool $throw wenn true wird eine exception geworfen, wenn es den slug nicht gibt, sonst werden # urls zurückgegeben
+   */
+  public function getUrlForPage($pageOrSlug, $localeOrLocales, $throw = TRUE) {
+    $locales = (array) $localeOrLocales;
+    
+    $emptyUrls = function() use ($locales, $localeOrLocales) {
+      if (is_array($localeOrLocales)) {
+        $urls = array();
+        foreach ($locales as $locale) {
+          $urls[$locale] = '#';
+        }
+        return $urls;
+      } else {
+        return '#';
+      }
+    };
+    
+    if ($pageOrSlug instanceof PageRole) {
+      $page = $pageOrSlug;
+    } else {
+      try {
+        $page = $this->hydrateRole('page', $pageOrSlug);
+      } catch (\Psc\Doctrine\EntityNotFoundException $e) {
+        if ($throw) {
+          throw $e;
+        } else {
+          return $emptyUrls();
+        }
+      }
+    }
+    
+    // sonderfall start (grml)
+    $urls = array();
+    
+    // das ist irgendiwe auch in websitehtmltemplate, grrrr
+    if ($page->getSlug() === 'home') {
+      foreach ($locales as $locale) {
+        $urls[$locale] =  '/'.$locale;
+      }
+    } elseif (($node = $page->getPrimaryNavigationNode()) != NULL) {
+      $path = $this->getPath($node);
+      foreach ($locales as $locale) {
+        $urls[$locale] = $this->createUrl($path, $locale);
+      }
+    } else {
+      return $emptyUrls();
+    }
+    
+    if (is_array($localeOrLocales)) {
+      return $urls;
+    } else {
+      return current($urls);
+    }
+  }  
   
   /**
    * @param string $context
