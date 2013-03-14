@@ -17,3 +17,4 @@
 /tests/files/fixtures/SimpleRarArchiveTest/unpacked.srt
 /tests/files/fixtures/SimpleRarArchiveTest/extract/my/out.php
 /tests/files/fixtures/CreateBootstrapTaskTest/target/base/src/auto.prepend.php
+/*.sublime-workspace
