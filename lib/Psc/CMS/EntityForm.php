@@ -15,7 +15,7 @@ class EntityForm extends ComponentsForm {
    * the revision field will be put into the form as
    *  X-Psc-Cms-Revision
    * header
-   * @var string not yet specified format 'unknown' when no specific revision is set
+   * @var string not yet specified format 'default' when no specific revision is set
    */
   protected $revision;
   
@@ -23,7 +23,7 @@ class EntityForm extends ComponentsForm {
    * @TODO vom Entity wird bis jetzt nur identifyable benutzt
    * @param string $revision the revision of the form, which matches the current (loaded)-data
    */
-  public function __construct(Entity $entity, RequestMeta $requestMeta, $revision = 'unknown') {
+  public function __construct(Entity $entity, RequestMeta $requestMeta, $revision = 'default') {
     $this->setRequestMeta($requestMeta);
     $this->entity = $entity;
     $this->setRevision($revision);
