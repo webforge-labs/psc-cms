@@ -10,6 +10,8 @@ use Psc\CMS\Roles\Page as PageRole;
 
 class PageControllerHelper {
 
+  protected $defaultRevision = 'default';
+
   public function getPagesMenuPanel(EntityRepository $navigationRepository, Array $languages, EntityMeta $entityMeta) {
     $menu = new PagesMenu(
      $navigationRepository->setContext('default')->getFlatForUI('de', $languages)
@@ -41,7 +43,7 @@ class PageControllerHelper {
    */
   public function getContentStreamButtons(PageRole $page, EntityMeta $contentStreamEntityMeta) {
     $buttons = array();
-    foreach ($page->getContentStreams() as $contentStream) {
+    foreach ($page->getContentStreamsByRevision($this->defaultRevision) as $contentStream) {
       $adapter = $contentStreamEntityMeta->getAdapter($contentStream, EntityMeta::CONTEXT_GRID);
       $adapter->setButtonMode(\Psc\CMS\Item\Buttonable::CLICK | \Psc\CMS\Item\Buttonable::DRAG);
       $adapter->setTabLabel('Seiteninhalt: '.$page->getSlug().' ('.mb_strtoupper($contentStream->getLocale()).')');

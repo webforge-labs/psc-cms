@@ -2,6 +2,8 @@
 
 namespace Psc\CMS\Roles;
 
+use Psc\Data\ArrayCollection;
+
 abstract class PageEntity extends \Psc\CMS\AbstractEntity implements \Psc\CMS\Roles\Page {
   
   /**
@@ -26,11 +28,7 @@ abstract class PageEntity extends \Psc\CMS\AbstractEntity implements \Psc\CMS\Ro
    * @return CoMun\Entities\ContentStream[]
    */
   public function getContentStreamsByLocale($revision = 'default') {
-    $contentStreams = array_filter($this->contentStreams->toArray(), function ($cs) use ($revision) {
-      return $cs->getRevision() === $revision;
-    });
-    
-    return \Psc\Doctrine\Helper::reindex($contentStreams, 'locale');
+    return \Psc\Doctrine\Helper::reindex($this->getContentStreamsByRevision($revision), 'locale');
   }
   
   /**
@@ -40,7 +38,17 @@ abstract class PageEntity extends \Psc\CMS\AbstractEntity implements \Psc\CMS\Ro
     $cs = $this->getContentStreamsByLocale($revision);
     return $cs[$locale];
   }
-  
+
+  /**
+   * @return array
+   */
+  public function getContentStreamsByRevision($revision = 'default') {
+    return array_filter($this->contentStreams->toArray(), function ($cs) use ($revision) {
+      return $cs->getRevision() === $revision;
+    });
+  }
+
+
   /**
    * @return NavigationNode|NULL
    */
