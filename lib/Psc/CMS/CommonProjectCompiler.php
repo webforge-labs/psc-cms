@@ -190,15 +190,16 @@ class CommonProjectCompiler extends ProjectCompiler {
     );
   }
   
+  
   public function doCompilePage($entityName = 'Page', Closure $doCompile = NULL, $tableName = 'pages') {  
     extract($help = $this->help());
     
     if (!isset($doCompile)) {
       $doCompile = function(){};
     }
-    
+
     return $this->getModelCompiler()->compile(
-      $entity($entityName, NULL, $tableName),
+      $entity($entityName, $extends('Psc\CMS\Roles\PageEntity'), $tableName),
       $defaultId(),
       $property('slug', $type('String')),
 
