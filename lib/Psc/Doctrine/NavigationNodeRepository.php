@@ -7,7 +7,7 @@ use stdClass;
 use Webforge\CMS\Navigation\Node As NavigationNode;
 use Psc\CMS\Roles\Page as PageRole;
 
-class NavigationNodeRepository extends EntityRepository {
+abstract class NavigationNodeRepository extends EntityRepository {
   
   protected $context = 'default';
   public $displayLocale = 'de';
@@ -340,8 +340,6 @@ class NavigationNodeRepository extends EntityRepository {
     return $logger;
   }
   
-  public function createNewNode(stdClass $jsonNode) {
-    return new NavigationNode((array) $jsonNode->title);
-  }
+  abstract public function createNewNode(stdClass $jsonNode);
 }
 ?>
