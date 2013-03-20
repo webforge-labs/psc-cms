@@ -32,10 +32,8 @@
   },
   "require-dev": {
     "webforge/testdata-repository": "dev-master",
-    "doctrine/data-fixtures": "1.0.*@alpha"
-  },
-  "suggest": {
-    "pscheit/psc-cms-imagine": "If you want to use the image processing and controller"
+    "doctrine/data-fixtures": "1.0.*@alpha",
+    "pscheit/psc-cms-image": "1.2.*@dev"
   },
   "minimum-stability": "dev",
   
