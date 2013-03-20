@@ -144,6 +144,11 @@ abstract class Converter extends \Psc\SimpleObject {
     return $this->factoryCreater;
   }
   
+  /**
+   * Returns a full FQN for the $typeName
+   * 
+   * @param string $typeName the JavaScript name without any namespace
+   */
   abstract public function getTypeClass($typeName);
   
   public function getContext() {

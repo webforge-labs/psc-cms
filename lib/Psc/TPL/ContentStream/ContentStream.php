@@ -15,5 +15,13 @@ interface ContentStream {
   public function findFirst($type);
   
   public function findAfter(Entry $entry);
+
+  /**
+   * Converts the ClassName to a Typename
+   * 
+   * called from Entry
+   * @return string the name of the JS Class without Psc.UI.LayoutManagerComponent.
+   */
+  public static function convertClassName($classFQN);
 }
 ?>
