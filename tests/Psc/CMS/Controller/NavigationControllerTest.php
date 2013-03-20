@@ -10,12 +10,13 @@ class NavigationControllerTest extends \Psc\Doctrine\DatabaseTestCase {
   protected $navigationController;
   
   public function setUp() {
-    $this->markTestSkipped('wir muessen erst das entity erstellen');
-    
     $this->chainClass = 'Psc\CMS\Controller\NavigationController';
-    $this->con = 'tests';
     parent::setUp();
     $this->navigationController = new NavigationController('default', $this->getDoctrinePackage());
+  }
+
+  public function testNavigationControllerReturnsTheFixtureAsText() {
+    
   }
   
   public function testSaveAcceptance() {

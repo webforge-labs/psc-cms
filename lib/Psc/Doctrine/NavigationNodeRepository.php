@@ -6,6 +6,7 @@ use Psc\Code\Code;
 use stdClass;
 use Webforge\CMS\Navigation\Node As NavigationNode;
 use Psc\CMS\Roles\Page as PageRole;
+use Webforge\CMS\Navigation\NestedSetConverter;
 
 abstract class NavigationNodeRepository extends EntityRepository {
   
@@ -54,7 +55,7 @@ abstract class NavigationNodeRepository extends EntityRepository {
   /**
    * @param array $htmlSnippets see Webforge\CMS\Navigation\NestedSetConverter::toHTMLList()
    */
-  public function getHTML($locale, Array $htmlSnippets = array()) {
+  public function getHTML($locale, Array $htmlSnippets = array(), NestedSetConverter $converter = NULL) {
     $that = $this;
     $htmlSnippets = array_merge(
       array(
@@ -90,12 +91,12 @@ abstract class NavigationNodeRepository extends EntityRepository {
     
     $nodes = $query->getResult();
     
-    $converter = new \Webforge\CMS\Navigation\NestedSetConverter();
+    $converter = $converter ?: new NestedSetConverter();
     return $converter->toHTMLList($nodes, $htmlSnippets);
   }
   
   
-  public function getText($locale) {
+  public function getText($locale, NestedSetConverter $converter = NULL) {
     $qb = $this->childrenQueryBuilder();
     $qb->andWhere('node.page <> 0');
     
@@ -109,7 +110,7 @@ abstract class NavigationNodeRepository extends EntityRepository {
     
     $nodes = $query->getResult();
     
-    $converter = new \Webforge\CMS\Navigation\NestedSetConverter();
+    $converter = $converter ?: new NestedSetConverter();
     return $converter->toString($nodes);
   }
   
@@ -340,6 +341,9 @@ abstract class NavigationNodeRepository extends EntityRepository {
     return $logger;
   }
   
-  abstract public function createNewNode(stdClass $jsonNode);
+  /**
+   * Just create one, the attributes will be set automatically
+   */
+  abstract protected function createNewNode(stdClass $jsonNode);
 }
 ?>
