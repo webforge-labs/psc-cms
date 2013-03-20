@@ -15,9 +15,9 @@ before_install:
 
 before_script:
   - vendor/bin/webforge register-package .
-  - php -f bin/cli.php compile:test-entities
   - mysql -e 'create database IF NOT EXISTS `psc-cms_tests`;'
   - mysql -e 'create database IF NOT EXISTS `psc-cms`;'
+  - php -f bin/cli.php compile:test-entities
   - php -f tests/inc.update-schema.php
 
 script: phpunit
