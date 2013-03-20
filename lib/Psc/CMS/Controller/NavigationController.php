@@ -5,57 +5,36 @@ namespace Psc\CMS\Controller;
 use Psc\Form\ValidationPackage;
 use Psc\Doctrine\DCPackage;
 use Psc\JS\JooseSnippet;
-
+use Psc\CMS\Entity;
 use Psc\UI\SplitPane;
 use Psc\UI\Group;
 use Psc\UI\Accordion;
 use Psc\UI\PanelButtons;
 use Psc\UI\Form;
 use Psc\UI\HTML;
+use stdClass;
 
-/**
- * 
- */
-class NavigationController extends \Psc\SimpleObject implements LanguageAware {
-  
-  /**
-   * @var Psc\Form\ValidationPackage
-   */
-  protected $v;
+class NavigationController extends SimpleContainerController {
   
   /**
    * Der NavigationsContext um den des geht (default z.B. und in den meisten Fällen)
    * 
    * @var string
    */
-  protected $ident;
-  
-  /**
-   * @var Psc\Doctrine\DCPackage
-   */
-  protected $dc;
-  
-  
-  protected $repository;
-  
-  /**
-   * @var array
-   */
-  protected $languages;
-  
-  /**
-   * @var string
-   */
-  protected $language;
-  
-  public function __construct($ident, DCPackage $dc, $navigationNodeEntityName = NULL, Array $languages = NULL, ValidationPackage $v = NULL) {
-    $this->ident = $ident;
-    $this->setValidationPackage($v ?: new ValidationPackage());
-    $this->setDoctrinePackage($dc);
-    $this->entityName = $navigationNodeEntityName ?: $this->dc->getModule()->getNavigationNodeClass();
-    $this->repository = $this->dc->getRepository($this->entityName);
-    $this->repository->setContext($this->ident);
-    $this->languages = $languages;
+  protected $context;
+
+  public function __construct($context = 'default', DCPackage $dc = NULL, EntityViewPackage $ev = NULL, ValidationPackage $v = NULL, ServiceErrorPackage $err = NULL, SimpleContainer $container = NULL) {
+    $this->context = $context;
+    parent::__construct($dc, $ev, $v, $err, $container);
+  }
+
+  protected function setUp() {
+    parent::setUp();
+    $this->repository->setContext($this->context);
+  }
+
+  public function getEntityName() {
+    return $this->dc->getModule()->getNavigationNodeClass();
   }
   
   public function getFormular() {
@@ -85,7 +64,7 @@ class NavigationController extends \Psc\SimpleObject implements LanguageAware {
     
     $panelButtons = new PanelButtons(array('save', 'reload'));
     
-    $form = new \Psc\CMS\Form(NULL, '/cms/navigation/'.$this->ident, 'post');
+    $form = new \Psc\CMS\Form(NULL, '/cms/navigation/'.$this->context, 'post');
     //$this->setHTTPHeader('X-Psc-Cms-Request-Method', 'PUT');
     
     //$main = HTML::tag('div', Array(
@@ -104,7 +83,11 @@ class NavigationController extends \Psc\SimpleObject implements LanguageAware {
       'Psc.UI.Navigation',
       array(
         'widget'=>JooseSnippet::expr(\Psc\JS\jQuery::getClassSelector($main)),
-        'flat'=>$this->repository->getFlatForUI($this->language ?: 'de', $this->languages)
+        'flat'=>$this->getFlatForUI(
+          $this->repository->childrenQueryBuilder()->getQuery()->getResult(),
+          $this->container->getLanguage(), 
+          $this->container->getLanguages()
+        )
       )
     );
     
@@ -113,10 +96,29 @@ class NavigationController extends \Psc\SimpleObject implements LanguageAware {
     
     return $main;
   }
+
+  public function getFlatForUI(Array $nodes, $displayLocale, Array $languages) {
+    $flat = array();
+    foreach ($nodes as $node) {
+      $flat[] = (object) array(
+        'id'=>$node->getId(),
+        'title'=>(object) $node->getI18NTitle(),
+        'slug'=>(object) $node->getI18NSlug(),
+        'depth'=>$node->getDepth(),
+        'image'=>$node->getImage(),
+        'locale'=>$displayLocale,
+        'languages'=>$languages,
+        'parentId'=>$node->getParent() != NULL ? $node->getParent()->getId() : NULL,
+        'pageId'=>$node->getPage() ? $node->getPage()->getIdentifier() : NULL
+      );
+    }
+    return $flat;
+  }
+
   
   public function saveFormular(Array $flat) {
     \Psc\Doctrine\Helper::enableSQLLogging('stack', $em = $this->dc->getEntityManager());
-    $logger = $this->repository->persistFromUI($flat, $this->dc->getModule());
+    $logger = $this->persistFromUI($flat, $this->dc->getModule());
     
     return array(
       'status'=>TRUE,
@@ -125,87 +127,122 @@ class NavigationController extends \Psc\SimpleObject implements LanguageAware {
       'sql'=>\Psc\Doctrine\Helper::printSQLLog('/^(INSERT|UPDATE|DELETE)/', TRUE, $em)
     );
   }
-  
+
   /**
-   * @param Psc\Form\ValidationPackage $v
+   * @param array $flat der Output der Funktion Psc.UI.Navigation::serialize() als decodierter JSON-Array
+   * @return Psc\System\Logger
    */
-  public function setValidationPackage(ValidationPackage $v) {
-    $this->v = $v;
-    return $this;
+  public function persistFromUI(Array $flat) {
+    $logger = new \Psc\System\BufferLogger();
+    $em = $this->dc->getEntityManager();
+
+    try {
+      $repository = $this->repository;
+      $pageRepository = $em->getRepository($this->container->getRoleFQN('Page'));
+      $controller = $this;
+      
+      $bridge = new \Webforge\CMS\Navigation\DoctrineBridge($em);
+      $bridge->beginTransaction();
+      $em->getConnection()->beginTransaction();
+      
+      $jsonNodes = array();
+      $synchronizer = new \Psc\Doctrine\ActionsCollectionSynchronizer();
+      $hydrator = new \Psc\Doctrine\UniqueEntityHydrator($repository);
+      
+      $synchronizer->onHydrate(function ($jsonNode) use ($hydrator) {
+        return $hydrator->getEntity((array) $jsonNode); // hydriert nach id
+      });
+      
+      $persistNode = function (Entity $node, $jsonNode) use ($bridge, $pageRepository, $repository, &$jsonNodes, $logger) {
+        $node->setContext($repository->getContext());
+        $node->setParent(isset($jsonNode->parent) ? $jsonNodes[$jsonNode->parent->guid] : NULL); // ist immer schon definiert
+        $node->setI18nTitle((array) $jsonNode->title);
+        $node->setImage(isset($jsonNode->image) ? $jsonNode->image : NULL);
+        
+        $logger->writeln(sprintf(
+          "persist %snode: '%s'",
+          $node->isNew() ? 'new ' : ':'.$node->getIdentifier().' ',
+          $node->getTitle($repository->displayLocale)
+        ));
+
+        if (isset($jsonNode->pageId) && $jsonNode->pageId > 0) {
+          $page = $pageRepository->hydrate($jsonNode->pageId);
+          $node->setPage($page);
+          $logger->writeln('  page: '.$node->getPage()->getSlug());
+        }
+        
+        // flat ist von oben nach unten sortiert:
+        // wenn wir also oben anfangen müssen wir die weiteren immmer nach unten anhängen
+        if ($node->getParent() != NULL) {
+          $logger->writeln('  parent: '.$node->getParent()->getTitle($repository->displayLocale));
+        }
+        $bridge->persist($node);
+
+        // index nach guid damit wir sowohl neue als auch bestehende haben
+        $jsonNodes[$jsonNode->guid] = $node;
+      };
+      
+      $synchronizer->onInsert(function ($jsonNode) use ($controller, $persistNode) {
+        $persistNode($node = $controller->createNewNode($jsonNode), $jsonNode);
+      });
+      $synchronizer->onUpdate(function ($node, $jsonNode) use ($repository, $persistNode, $logger) {
+        $persistNode($node, $jsonNode);
+      });
+      $synchronizer->onDelete(function ($node) use ($em, $logger, $repository) {
+        $logger->writeln(sprintf("remove node: '%s'", $node->getTitle($repository->displayLocale)));
+        $em->remove($node);
+      });
+      $synchronizer->onHash(function (Entity $node)  {
+        return $node->getIdentifier();
+      });
+
+      $synchronizer->process(
+        $this->repository->findAllNodes($this->context), // from
+        $flat                                            // to
+      );
+      
+      $bridge->commit();
+      $em->flush();
+      $em->getConnection()->commit();
+
+    } catch (\Exception $e) {
+      $em->getConnection()->rollback();
+      throw $e;
+    }
+
+
+    return $logger;
   }
   
   /**
-   * @return Psc\Form\ValidationPackage
+   * Just create one, the attributes will be set automatically
    */
-  public function getValidationPackage() {
-    return $this->v;
+  public function createNewNode(stdClass $jsonNode) {
+    $c = $this->container->getRoleFQN('NavigationNode');
+    return new $c((array) $jsonNode->title);
   }
-  
+
   /**
-   * @param Psc\Doctrine\DCPackage $dc
-   */
-  public function setDoctrinePackage(DCPackage $dc) {
-    $this->dc = $dc;
-    return $this;
-  }
-  
-  /**
-   * @return Psc\Doctrine\DCPackage
-   */
-  public function getDoctrinePackage() {
-    return $this->dc;
-  }
-  
-  /**
-   * @param string $ident
+   * @param string $context
    * @chainable
    */
-  public function setIdent($ident) {
-    $this->ident = $ident;
+  public function setContext($context) {
+    $this->repository->setContext($context);
+    $this->context = $context;
     return $this;
   }
 
   /**
    * @return string
    */
-  public function getIdent() {
-    return $this->ident;
+  public function getContext() {
+    return $this->context;
   }
   
+  /**
+   * @return Psc\Doctrine\EntityRepository
+   */
   public function getRepository() {
     return $this->repository;
   }
-  
-  /**
-   * @param array $languages
-   * @chainable
-   */
-  public function setLanguages(Array $languages) {
-    $this->languages = $languages;
-    return $this;
-  }
-
-  /**
-   * @return array
-   */
-  public function getLanguages() {
-    return $this->languages;
-  }
-
-  /**
-   * @param string $language
-   * @chainable
-   */
-  public function setLanguage($language) {
-    $this->language = $language;
-    return $this;
-  }
-
-  /**
-   * @return string
-   */
-  public function getLanguage() {
-    return $this->language;
-  }
 }
-?>

@@ -27,7 +27,7 @@ class NavigationNode extends CompiledNavigationNode {
 
   protected function generateSlug($title) {
     // dumb
-    return preg_replace('/\-+/', '-', preg_replace('/[^a-z0-9A-Z-]/', "-", $title));
+    return preg_replace('/\-+/', '-', preg_replace('/[^a-z0-9-]/', "-", mb_strtolower($title)));
   }
 
   public function getContextLabel($context = 'default') {

@@ -20,3 +20,5 @@
 /*.sublime-workspace
 
 /application/src/Proxies/__CG__PscEntitiesPage.php
+
+/application/src/Proxies/__CG__PscEntitiesNavigationNode.php

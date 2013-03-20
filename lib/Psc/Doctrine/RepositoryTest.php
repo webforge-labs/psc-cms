@@ -19,7 +19,6 @@ class RepositoryTest extends \Psc\Doctrine\DatabaseTestCase {
   
   public function testConstruct() {
     $this->assertEquals($this->entityClass, $this->repository->getClassName());
-    $this->assertAttributeSame($this->emm, '_em', $this->repository);
   }
   
   protected function createTagUniqueConstraint() {
@@ -39,4 +38,3 @@ class RepositoryTest extends \Psc\Doctrine\DatabaseTestCase {
     return $this->emm->getRepositoryMock($this, $this->entityClass, $methods);
   }
 }
-?>

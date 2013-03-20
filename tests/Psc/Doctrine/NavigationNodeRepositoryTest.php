@@ -2,19 +2,10 @@
 
 namespace Psc\Doctrine;
 
-class NavigationNodeRepositoryTest extends \Psc\Doctrine\RepositoryTest {
+use Psc\Code\Code;
+
+class NavigationNodeRepositoryTest extends \Psc\Doctrine\NavigationNodesTestCase {
   
-  public function setUp() {
-    $this->chainClass = 'Psc\\Doctrine\\NavigationNodeRepository';
-    $this->entityClass = 'Psc\Entities\NavigationNode';
-
-    $this->fixtures = array(
-      new NestedSetsFixture(self::getFixtures())
-    );
-
-    parent::setUp();
-  }
-
   /**
    * @dataProvider getFixtures
    */
@@ -74,17 +65,30 @@ class NavigationNodeRepositoryTest extends \Psc\Doctrine\RepositoryTest {
     );
   }
 
-  protected function countFixture($fixture) {
-    return count($fixture->toArray());
-  }
+  public function testGetPathForOneNodeContainsAllNodesOnPathWithSelf() {
+    $this->repository->setContext('FoodCategories');
 
+    $food = $this->hydrateNode('food');
+    $fruits = $this->hydrateNode('fruits');
+    $citrons = $this->hydrateNode('citrons');
+    
+    $this->assertCollection(
+      array($food, $fruits, $citrons),
+      $this->repository->getPath($citrons)
+    );
 
-  public static function getFixtures() {
-    return Array(
-      array(new \Webforge\TestData\NestedSet\FoodCategories(), 'FoodCategories'),
-      array(new \Webforge\TestData\NestedSet\Consumables(), 'Consumables')
+    $this->assertCollection(
+      array($food),
+      $this->repository->getPath($food)
     );
   }
-  
+
+  public function testGetURLConstructsPartsFromPathWithSlug() {
+    $this->repository->setContext('FoodCategories');
+
+    $this->assertEquals(
+      '/food/fruits/citrons',
+      $this->repository->getUrl($this->hydrateNode('citrons'), $this->defaultLanguage)
+    );
+  }
 }
-?>

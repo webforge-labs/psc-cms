@@ -40,6 +40,11 @@ abstract class NavigationNodeRepository extends EntityRepository {
     return $qb;
   }
 
+  /**
+   * Returns all Nodes (not filtered in any way except $context)
+   * 
+   * @return array
+   */
   public function findAllNodes($context = NULL) {
     $qb = $this->createQueryBuilder('node');
     $qb->addSelect('page');
@@ -123,7 +128,6 @@ abstract class NavigationNodeRepository extends EntityRepository {
   public function createUrl(Array $path, $locale) {
     $url = '/';
     
-    $slug = $locale == 'fr' ? 'slugFr' : 'slug';
     $url .= \Psc\A::implode($path, '/', function ($node) use ($locale) {
       return $node->getSlug($locale);
     });
@@ -204,25 +208,6 @@ abstract class NavigationNodeRepository extends EntityRepository {
   }
 
   
-  public function getFlatforUI($displayLocale, array $languages) {
-    $query = $this->childrenQueryBuilder()->getQuery();
-    
-    $flat = array();
-    foreach ($query->getResult() as $node) {
-      $flat[] = (object) array(
-        'id'=>$node->getId(),
-        'title'=>(object) $node->getI18NField('title'),
-        'slug'=>(object) $node->getI18NField('slug'),
-        'depth'=>$node->getDepth(),
-        'image'=>$node->getImage(),
-        'locale'=>$displayLocale,
-        'languages'=>$languages,
-        'parentId'=>$node->getParent() != NULL ? $node->getParent()->getId() : NULL,
-        'pageId'=>$node->getPage() ? $node->getPage()->getIdentifier() : NULL
-      );
-    }
-    return $flat;
-  }
 
   /**
    * Get the path of a node
@@ -256,94 +241,5 @@ abstract class NavigationNodeRepository extends EntityRepository {
     
     return $query->getResult();
   }
-
-
-  /**
-   * @param array $flat der Output der Funktion Psc.UI.Navigation::serialize() als decodierter JSON-Array
-   * @param $module weil wir entityMetadata hier abfragen müssen
-   * @return Psc\System\Logger
-   */
-  public function persistFromUI(Array $flat, \Psc\Doctrine\Module $module) {
-    $logger = new \Psc\System\BufferLogger();
-    $em = $module->getEntityManager();
-    try {
-      $repository = $this;
-      
-      $bridge = new \Webforge\CMS\Navigation\DoctrineBridge($em);
-      $bridge->beginTransaction();
-      $em->getConnection()->beginTransaction();
-      
-      $pageRepository = $em->getRepository($module->getEntityName('Page'));
-      
-      $jsonNodes = array();
-      $synchronizer = new \Psc\Doctrine\ActionsCollectionSynchronizer();
-      $hydrator = new \Psc\Doctrine\UniqueEntityHydrator($repository);
-      
-      $synchronizer->onHydrate(function ($jsonNode) use ($hydrator) {
-        return $hydrator->getEntity((array) $jsonNode); // hydriert nach id
-      });
-      
-      $persistNode = function (Entity $node, $jsonNode) use ($bridge, $pageRepository, $repository, $module, &$jsonNodes, $logger) {
-        $node->setContext($repository->getContext());
-        $node->setParent(isset($jsonNode->parent) ? $jsonNodes[$jsonNode->parent->guid] : NULL); // ist immer schon definiert
-        $node->setI18nTitle((array) $jsonNode->title);
-        $node->setImage(isset($jsonNode->image) ? $jsonNode->image : NULL);
-        
-        $logger->writeln(sprintf(
-          "persist %snode: '%s'",
-          $node->isNew() ? 'new ' : ':'.$node->getIdentifier().' ',
-          $node->getTitle($repository->displayLocale)
-        ));
-
-        if (isset($jsonNode->pageId) && $jsonNode->pageId > 0) {
-          $page = $pageRepository->hydrate($jsonNode->pageId);
-          $node->setPage($page);
-          $logger->writeln('  page: '.$node->getPage()->getSlug());
-        }
-        
-        // flat ist von oben nach unten sortiert:
-        // wenn wir also oben anfangen müssen wir die weiteren immmer nach unten anhängen
-        if ($node->getParent() != NULL) {
-          $logger->writeln('  parent: '.$node->getParent()->getTitle($repository->displayLocale));
-        }
-        $bridge->persist($node);
-
-        // index nach guid damit wir sowohl neue als auch bestehende haben
-        $jsonNodes[$jsonNode->guid] = $node;
-      };
-      
-      $synchronizer->onInsert(function ($jsonNode) use ($repository, $persistNode) {
-        $persistNode($node = $repository->createNewNode($jsonNode), $jsonNode);
-      });
-      $synchronizer->onUpdate(function ($node, $jsonNode) use ($repository, $persistNode, $logger) {
-        $persistNode($node, $jsonNode);
-      });
-      $synchronizer->onDelete(function ($node) use ($em) {
-        $em->remove($node);
-      });
-      $synchronizer->onHash(function (Entity $node)  {
-        return $node->getIdentifier();
-      });
-
-      $synchronizer->process(
-        $this->findAllNodes($this->context), // from
-        $flat                                // to
-      );
-      
-      $bridge->commit();
-      $em->flush();
-      $em->getConnection()->commit();
-    } catch (\Exception $e) {
-      $em->getConnection()->rollback();
-      throw $e;
-    }
-    
-    return $logger;
-  }
-  
-  /**
-   * Just create one, the attributes will be set automatically
-   */
-  abstract protected function createNewNode(stdClass $jsonNode);
 }
 ?>

@@ -139,4 +139,3 @@ abstract class PageController extends SimpleContainerController {
     return $this->container->getLanguage();
   }
 }
-?>
