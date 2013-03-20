@@ -231,7 +231,7 @@ class CommonProjectCompiler extends ProjectCompiler {
     }
     
     return $this->getModelCompiler()->compile(
-      $entity('NavigationNode', NULL, $tableName),
+      $entity('NavigationNode', $extends('Psc\CMS\Roles\NavigationNodeEntity'), $tableName),
       $defaultId(),
       
       $property('title', $type('String'), $i18n()),
@@ -324,7 +324,7 @@ class CommonProjectCompiler extends ProjectCompiler {
     }
    
     return $this->getModelCompiler()->compile(
-      $entity($entityName, NULL, $tableName),
+      $entity($entityName, $extends('Psc\TPL\ContentStream\EntryEntity'), $tableName),
       $defaultId(),
       
       $property('sort', $type('PositiveInteger')),

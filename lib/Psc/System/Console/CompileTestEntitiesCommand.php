@@ -46,6 +46,12 @@ class CompileTestEntitiesCommand extends DoctrineCommand {
     $output->writeLn('  '.$this->compileTag().' geschrieben');
     $output->writeLn('  '.$this->compileArticle().' geschrieben');
     $output->writeLn('  '.$this->compileCategory().' geschrieben');
+    $output->writeLn('  '.$this->compilePage().' geschrieben');
+    $output->writeLn('  '.$this->compileNavigationNode().' geschrieben');
+    $output->writeLn('  '.$this->compileContentStream().' geschrieben');
+    $output->writeLn('  '.$this->compileContentStreamEntry().' geschrieben');
+    $output->writeLn('  '.$this->compileCSHeadline().' geschrieben');
+    $output->writeLn('  '.$this->compileCSParagraph().' geschrieben');
     $output->writeLn('finished.');
   }
   
@@ -82,6 +88,30 @@ class CompileTestEntitiesCommand extends DoctrineCommand {
       extract($help);
         
     })->getWrittenFile();
+  }
+
+  public function compilePage() {
+    return $this->ccompiler->doCompilePage()->getWrittenFile();
+  }
+
+  public function compileNavigationNode() {
+    return $this->ccompiler->doCompileNavigationNode()->getWrittenFile();
+  }
+
+  public function compileContentStream() {
+    return $this->ccompiler->doCompileContentStream()->getWrittenFile();
+  }
+
+  public function compileContentStreamEntry() {
+    return $this->ccompiler->doCompileContentStreamEntry()->getWrittenFile();
+  }
+
+  public function compileCSHeadline() {
+    return $this->ccompiler->doCompileCSHeadline()->getWrittenFile();
+  }
+
+  public function compileCSParagraph() {
+    return $this->ccompiler->doCompileCSParagraph()->getWrittenFile();
   }
 
   protected function compileTag() {
@@ -139,4 +169,3 @@ class CompileTestEntitiesCommand extends DoctrineCommand {
     return $entityBuilder->getWrittenFile();
   }
 }
-?>

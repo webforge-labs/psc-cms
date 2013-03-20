@@ -12,11 +12,12 @@ use Doctrine\ORM\Mapping AS ORM;
 class Person extends CompiledPerson {
   
   public function getContextLabel($context = 'default') {
+    /*
     if ($context === self::CONTEXT_DEFAULT) {
-      return parent::getContextLabel();
+      return parent::getContextLabel($context);
     }
-    
-    return parent::getContextLabel();
+    */
+    return parent::getContextLabel($context);
   }
   
   public function getEntityName() {

@@ -450,11 +450,12 @@ class EntityBuilder extends \Psc\Code\Generate\ClassBuilder {
   public function createContextLabelMethod() {
     $this->class->createMethod('getContextLabel', array(new GParameter('context', NULL, \Psc\CMS\Entity::CONTEXT_DEFAULT)),
     array(
+      "/*",
       "if (\$context === self::CONTEXT_DEFAULT) {",
-      "  return parent::getContextLabel();",
+      "  return parent::getContextLabel(\$context);",
       "}",
-      '',
-      "return parent::getContextLabel();",
+      '*/',
+      "return parent::getContextLabel(\$context);",
     ));
   }
   
