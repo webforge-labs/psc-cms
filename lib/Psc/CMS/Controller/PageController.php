@@ -24,6 +24,8 @@ abstract class PageController extends SimpleContainerController {
     $this->addBlackListProperties(array('contentStreams', 'created', 'modified'), 'form');
     $this->addBlackListProperties(array('contentStreams', 'created', 'modified'), 'grid');
 
+    $this->addOptionalProperty('contentStreams');
+
     $this->getEntitymeta()->setPropertiesHints(
       array(
         'slug'=>
@@ -53,12 +55,6 @@ abstract class PageController extends SimpleContainerController {
 
   public function getEntityGrid(EntityMeta $entityMeta, $entities) {
     return $this->helper->getPagesMenuPanel($this->getNavigationRepository(), $this->getLanguages(), $entityMeta);
-  }
-  
-  public function getNewEntityFormular() {
-    // diese zeigen wir erst an wenn das entity gespeichert wurde
-    $this->addPlackListProperty('contentStreams', 'form');
-    return parent::getNewEntityFormular();
   }
   
   public function getEntityFormular(Entity $entity) {

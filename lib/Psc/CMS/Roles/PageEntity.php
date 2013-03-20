@@ -4,16 +4,22 @@ namespace Psc\CMS\Roles;
 
 use Psc\Data\ArrayCollection;
 
+/**
+ * (at)ORM\HasLifecycleCallbacks
+ */
 abstract class PageEntity extends \Psc\CMS\AbstractEntity implements \Psc\CMS\Roles\Page {
   
   /**
    * add this to the parent class with:
    * 
-   * (at)ORM\PrePersist
-   * (at)ORM\PreUpdate
+   * @ORM\PrePersist
+   * @ORM\PreUpdate
    * public function updateTimestamps() {
    *   parent::updateTimestamps();
    * }
+   * 
+   * add this to class level!
+   * @ORM\HasLifecycleCallbacks
   */
   public function updateTimestamps() {
     if (!isset($this->created)) {
