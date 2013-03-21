@@ -5,6 +5,7 @@ namespace Psc\CMS;
 use Psc\Doctrine\DCPackage;
 use Psc\UI\DropContentsList;
 use Psc\UI\Accordion;
+use Psc\CMS\Item\RightContentLink;
 
 class RightContent extends \Psc\SimpleObject implements \Psc\CMS\DropContentsListPopulator {
   
@@ -35,6 +36,18 @@ class RightContent extends \Psc\SimpleObject implements \Psc\CMS\DropContentsLis
       }
     }
     return $this->accordion;
+  }
+
+  protected function addNavigationLink(DropContentsList $list, $context, $label) {
+    return $list->addLinkable(
+      new RightContentLink(
+        new \Psc\CMS\RequestMeta(
+          'GET',
+          '/entities/navigation-node/'.$context.'/form'
+        ),
+        $label
+      )
+    );
   }
   
   protected function addGridLink(DropContentsList $list, $entityName) {
