@@ -69,5 +69,12 @@ abstract class PageEntity extends \Psc\CMS\AbstractEntity implements \Psc\CMS\Ro
     
     return $this->slug;
   }
+
+  /**
+   * @return bool
+   */
+  public function isActive() {
+    return $this->active;
+  }
 }
 ?>

@@ -140,6 +140,7 @@ class NavigationControllerTest extends \Psc\Doctrine\NavigationNodesTestCase {
 
     $this->assertInstanceOf('Psc\Entities\Page', $page = $node->getPage());
     $this->assertTrue($page->isNew(), 'page should be new');
+    $this->assertFalse($page->isActive(), 'page should be inactive');
 
     $this->assertNotEmpty($node->getSlug($this->defaultLanguage));
     $this->assertEquals($node->getSlug($this->defaultLanguage), $page->getSlug($this->defaultLanguage));

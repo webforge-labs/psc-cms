@@ -240,15 +240,25 @@ class NavigationController extends SimpleContainerController {
     $nodeClass = $this->container->getRoleFQN('NavigationNode');
     $node = new $nodeClass((array) $jsonNode->title);
     $node->generateSlugs();
+    $defaultSlug = current($node->getI18nSlug());  // not matter what current language is, this is the default language
 
-    $pageClass = $this->container->getRoleFQN('Page');
-    $defaultSlug = current($node->getI18nSlug()); // not matter what current language is, this is the default language
-    $page = new $pageClass($defaultSlug);
+    $page = $this->createNewPage($defaultSlug);
     $this->dc->getEntityManager()->persist($page);
 
     $node->setPage($page);
 
     return $node;
+  }
+
+  // TODO: nicer: $this->container->getController('Page')->createPage() ?
+  protected function createNewPage($slug) {
+    $pageClass = $this->container->getRoleFQN('Page');
+    $page = new $pageClass($slug);
+    $page->setActive(FALSE);
+
+    \Psc\CMS\PageController::fillContentStreams($page, $this->dc->getEntityManager(), $this->container);
+
+    return $page;
   }
 
   /**

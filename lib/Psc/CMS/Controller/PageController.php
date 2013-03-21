@@ -8,6 +8,8 @@ use Psc\CMS\EntityMeta;
 use Psc\CMS\Controller\PageControllerHelper;
 use Psc\Code\Code;
 use stdClass as FormData;
+use Psc\CMS\Roles\SimpleContainer as SimpleContainerRole;
+use Doctrine\ORM\EntityManager;
 
 abstract class PageController extends SimpleContainerController {
 
@@ -80,17 +82,20 @@ abstract class PageController extends SimpleContainerController {
     
     // wenn es neu ist, wollen wir die content streams erstellen
     if ($entity->isNew()) {
-      $em = $this->dc->getEntityManager();
-      $streams = $entity->getContentStreamsByLocale();
-      $csClass = $this->container->getRoleFQN('ContentStream');
+      self::fillContentStreams($entity, $this->dc->getEntityManager(), $this->container);
+    }
+  }
+
+  public static function fillContentStreams(PageRole $page, EntityManager $em, SimpleContainerRole $container) {
+    $streams = $entity->getContentStreamsByLocale();
+    $csClass = $container->getRoleFQN('ContentStream');
     
-      // per default haben wir immer einen content-stream pro sprache
-      foreach ($this->getLanguages() as $lang) {
-        if (!array_key_exists($lang, $streams)) {
-          $cs = new $csClass($lang);
-          $entity->addContentStream($cs);
-          $em->persist($cs);
-        }
+    // per default haben wir immer einen content-stream pro sprache
+    foreach ($container->getLanguages() as $lang) {
+      if (!array_key_exists($lang, $streams)) {
+        $cs = new $csClass($lang);
+        $page->addContentStream($cs);
+        $em->persist($cs);
       }
     }
   }
