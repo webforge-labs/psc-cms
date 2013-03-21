@@ -28,12 +28,18 @@
     "imagine/Imagine": "0.3.*@stable",
     "swiftmailer/swiftmailer": "4.1.*@stable",
     "CodePlex/PHPExcel": "1.7.8@stable",
-    "webforge/common": "dev-master",
-    "webforge/webforge": "dev-master"
+    "webforge/common": "1.1.*@dev",
+    "webforge/webforge": "1.1.*@dev"
   },
   "require-dev": {
     "webforge/testdata-repository": "dev-master",
-    "doctrine/data-fixtures": "1.0.*@alpha"
+    "doctrine/data-fixtures": "1.0.*@alpha",
+    "pscheit/psc-cms-image": "1.1.*@dev"
   },
-  "minimum-stability": "dev"
+  "minimum-stability": "dev",
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.2.x-dev"
+    }
+  }
 }
