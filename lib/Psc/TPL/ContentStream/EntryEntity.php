@@ -67,7 +67,7 @@ abstract class EntryEntity extends AbstractEntity implements \Psc\HTML\HTMLInter
   /**
    * @return string the name of the JS Class without Psc.UI.LayoutManagerComponent.
    */
-  public function getType($classFQN) {
+  public function getType() {
     return Code::getClassName($this->getEntityName());
   }
 
