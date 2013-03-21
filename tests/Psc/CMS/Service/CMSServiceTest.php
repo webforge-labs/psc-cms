@@ -9,8 +9,6 @@ use Psc\Net\ServiceRequest;
  */
 class CMSServiceTest extends \Psc\Code\Test\Base {
   
-  protected $cMSService;
-  
   public function setUp() {
     $this->chainClass = 'Psc\CMS\Service\CMSService';
     $this->con = "tests";
@@ -18,28 +16,6 @@ class CMSServiceTest extends \Psc\Code\Test\Base {
     
     $this->dc = $this->getProject()->getModule('Doctrine')->createDoctrinePackage();
     $this->service = new CMSService($this->getProject(), 'cms', $this->dc);
-  }
-  
-  public function testNavigationControllerRoutingFormular() {
-    $this->markTestIncomplete('erst das entity wieder herstellen');
-    list($controller, $method, $params) = $this->assertNavigationRouting(
-      'getFormular',
-      array(),
-      $this->service->routeController($this->request('GET', '/cms/navigation/default'))
-    );
-    
-    $this->assertEquals('default', $controller->getIdent());
-  }
-
-  public function testNavigationControllerRoutingSave() {
-    $this->markTestIncomplete('erst das entity wieder herstellen');
-    list($controller, $method, $params) = $this->assertNavigationRouting(
-      'saveFormular',
-      array(array('serialized','stuff')),
-      $this->service->routeController($this->request('POST', '/cms/navigation/default', array('serialized','stuff')))
-    );
-    
-    $this->assertEquals('default', $controller->getIdent());
   }
   
   public function testFileControllerRoutingGetFiles() {
@@ -172,12 +148,6 @@ class CMSServiceTest extends \Psc\Code\Test\Base {
   protected function assertFileUploadRouting($expectedMethod, Array $expectedParams = NULL, Array $list) {
     return $this->assertRouting('Psc\CMS\Controller\FileUploadController', $expectedMethod, $expectedParams, $list);
   }
-
-  protected function assertNavigationRouting($expectedMethod, Array $expectedParams = NULL, Array $list) {
-    return $this->assertRouting('Psc\CMS\Controller\NavigationController', $expectedMethod, $expectedParams, $list);
-  }
-  
-  
 
   protected function assertRouting($controllerClass, $expectedMethod, Array $expectedParams = NULL, Array $list) {
     list($ctrl, $method, $params) = $list;

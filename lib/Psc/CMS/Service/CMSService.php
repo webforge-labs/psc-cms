@@ -29,7 +29,7 @@ class CMSService extends ControllerService {
   public function routeController(ServiceRequest $request) {
     $r = $this->initRequestMatcher($request);
     
-    $controller = $r->qmatchiRx('/^(tpl|navigation|excel|images|uploads)$/i');
+    $controller = $r->qmatchiRx('/^(tpl|excel|images|uploads)$/i');
     
     if ($controller === 'tpl') {
       $x = 0;
@@ -133,26 +133,6 @@ class CMSService extends ControllerService {
         }
         
         return array($controller, $method, $params);
-      }
-
-      
-    } elseif ($controller === 'navigation') {
-      $ident = $r->matchNES();
-      
-      $controller = new \Psc\CMS\Controller\NavigationController(
-        $ident,
-        $this->getDoctrinePackage()
-      );
-
-      if ($controller instanceof \Psc\CMS\Controller\LanguageAware) {
-        $controller->setLanguages($this->languages);
-        $controller->setLanguage($this->language);
-      }
-      
-      if ($request->getType() === Service::POST) {
-        return array($controller, 'saveFormular', array($request->getBody()));
-      } else {
-        return array($controller, 'getFormular', array());
       }
     }
     

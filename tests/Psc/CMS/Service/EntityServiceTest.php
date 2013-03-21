@@ -121,25 +121,27 @@ class EntityServiceTest extends \Psc\Code\Test\ServiceBase {
       array('7')
     );
   }
+
+
+  public function testControllerRoute_NavigationNodeEntitySaving() {
+    $this->assertRouteController(
+      $this->rq(array('entities','navigation-node','default'), 'PUT')
+        ->setBody($body = array((object) array('id'=>1,'title'=>'root'))),
+      'Psc\Test\Controllers\NavigationNodeController',
+      'saveEntity',
+      array('default', (object) $body)
+    );
+  }
+
+  public function testControllerRoute_NavigationNodeEntityGetting() {
+    $this->assertRouteController(
+      $this->rq(array('entities','navigation-node','default', 'form'), 'GET'),
+      'Psc\Test\Controllers\NavigationNodeController',
+      'getEntity',
+      array('default', 'form', NULL)
+    );
+  }
   
-  // den test gibt es erstmal nicht mehr, weil wir jetzt auch delete können
-  ///**
-  // * @dataProvider provideBadRequestType
-  // */
-  //public function testRoute_toController_badType($type) {
-  //  $svc = $this->svc;
-  //  $request = $this->rq(array('entities','tag',1), $type);
-  //  
-  //  $this->assertRoutingException(function () use ($svc, $request) {
-  //    $svc->routeController($request);
-  //  });
-  //}
-  //
-  //public static function provideBadRequestType() {
-  //  return array(
-  //    array('head'),
-  //  );
-  //}
   
   public function testInitRequestMatcher() {
     $r = $this->svc->initRequestMatcher($this->rq(array('entities','person','1')));
@@ -154,15 +156,5 @@ class EntityServiceTest extends \Psc\Code\Test\ServiceBase {
       $svc->initRequestMatcher($request);
     });
   }
-}
-
-namespace Psc\Test\Controllers;
-
-class TagController extends \Psc\CMS\Controller\AbstractEntityController {
-  
-  public function getEntityName() {
-    return 'Psc\Doctrine\TestEntities\Tag';
-  }
-  
 }
 ?>

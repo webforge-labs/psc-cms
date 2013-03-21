@@ -77,7 +77,11 @@ class EntityService extends ControllerService {
   public function routeController(ServiceRequest $request) {
     $r = $this->initRequestMatcher($request);
     
-    $entityPart = $r->qmatchRx('/[a-z0-9]+/i',0);
+    $entityPart = $r->qmatchRx('/^[a-z-0-9]+$/i',0);
+
+    if (mb_strpos($entityPart, '-') !== FALSE) {
+      $entityPart = Code::dashToCamelCase($entityPart);
+    }
 
     // alle weiteren Parameter an den Controller weitergeben
     $params = $r->getLeftParts();
@@ -150,10 +154,10 @@ class EntityService extends ControllerService {
     $entityName = Code::getClassName($entityClass);
     
     $controller = $this->getControllerInstance(
-                    $this->getControllerClass($entityName),
-                    
-                    $this->dc // DPI für Controller
-                  );
+      $this->getControllerClass($entityName),
+
+      $this->dc // DPI für Controller
+    );
     $this->logf("DPI: DoctrinePackage für Controller geladene Database: '%s'", $this->dc->getEntityManager()->getConnection()->getDatabase());
     
     if ($controller instanceof \Psc\CMS\Controller\LanguageAware) {

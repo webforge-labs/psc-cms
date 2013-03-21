@@ -147,7 +147,6 @@ class Module extends \Psc\CMS\Module implements \Psc\Code\Event\Dispatcher {
         $name = $input;
       }
       
-      // expand mit EntitiesNamespace
       return Code::expandNamespace($name, $this->getEntitiesNamespace());
     }
     
