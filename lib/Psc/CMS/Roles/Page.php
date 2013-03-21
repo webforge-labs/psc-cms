@@ -13,6 +13,12 @@ interface Page {
   public function setActive($bool);
 
   //public function addContentStream()
+
+  public function getContentStreamsByLocale($revision = 'default');
+
+  public function getContentStreamsByRevision($revision = 'default');
+
+  public function getContentStreamByLocale($locale, $revision = 'default');
   
 }
 ?>

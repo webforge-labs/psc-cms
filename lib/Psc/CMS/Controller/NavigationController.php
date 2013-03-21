@@ -256,7 +256,7 @@ class NavigationController extends SimpleContainerController {
     $page = new $pageClass($slug);
     $page->setActive(FALSE);
 
-    \Psc\CMS\PageController::fillContentStreams($page, $this->dc->getEntityManager(), $this->container);
+    \Psc\CMS\Controller\PageController::fillContentStreams($page, $this->dc->getEntityManager(), $this->container);
 
     return $page;
   }

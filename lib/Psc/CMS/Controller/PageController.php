@@ -87,7 +87,7 @@ abstract class PageController extends SimpleContainerController {
   }
 
   public static function fillContentStreams(PageRole $page, EntityManager $em, SimpleContainerRole $container) {
-    $streams = $entity->getContentStreamsByLocale();
+    $streams = $page->getContentStreamsByLocale();
     $csClass = $container->getRoleFQN('ContentStream');
     
     // per default haben wir immer einen content-stream pro sprache

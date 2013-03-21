@@ -146,6 +146,8 @@ class NavigationControllerTest extends \Psc\Doctrine\NavigationNodesTestCase {
     $this->assertEquals($node->getSlug($this->defaultLanguage), $page->getSlug($this->defaultLanguage));
 
     $this->assertTrue($this->em->getUnitOfWork()->isScheduledForInsert($page), 'page should be already persisted');
+
+    $this->assertCount(count($this->languages), $page->getContentStreamsByLocale());
     $this->em->clear();
   }
 
@@ -170,6 +172,7 @@ class NavigationControllerTest extends \Psc\Doctrine\NavigationNodesTestCase {
   protected function createContainer() {
     $fqns = array(
       'Page'=>'Psc\Entities\Page',
+      'ContentStream'=>'Psc\Entities\ContentStream\ContentStream',
       'NavigationNode'=>'Psc\Entities\NavigationNode'
     );
     $container = $this->getMockForAbstractClass('Psc\CMS\Roles\SimpleContainer');
