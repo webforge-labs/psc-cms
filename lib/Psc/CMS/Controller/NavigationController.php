@@ -13,9 +13,11 @@ use Psc\UI\PanelButtons;
 use Psc\UI\Form;
 use Psc\UI\HTML;
 use stdClass;
+use stdClass as FormData;
 
 class NavigationController extends SimpleContainerController {
-  
+
+
   /**
    * Der NavigationsContext um den des geht (default z.B. und in den meisten Fällen)
    * 
@@ -31,6 +33,26 @@ class NavigationController extends SimpleContainerController {
   protected function setUp() {
     parent::setUp();
     $this->repository->setContext($this->context);
+  }
+
+  /**
+   * Overrides the saving of the AbstractEntityController to just save the navigation tree from UI
+   * 
+   * @return array
+   */
+  public function saveEntity($context, FormData $requestData, $subResource = NULL) {
+    $this->setContext($context);
+    return $this->saveFormular((array) $requestData);
+  }
+
+  public function getEntity($context, $subResource = NULL, $query = NULL) {
+    $this->setContext($context);
+
+    if ($subResource === 'form') {
+      return $this->getFormular();
+    }
+
+    throw $this->err->invalidArgument(__FUNCTION__, 'subResource', $subResource);
   }
 
   public function getEntityName() {
@@ -55,22 +77,13 @@ class NavigationController extends SimpleContainerController {
         '<br />',
         
       ))->setStyle('margin-top','7px')
-      //Accordion::create(array('autoHeight'=>true))
-      //  ->addSection('Seiten', array(
-      //  ))
-      //  ->html()
-      //    ->addClass('\Psc\right-accordion')
     );
     
     $panelButtons = new PanelButtons(array('save', 'reload'));
     
-    $form = new \Psc\CMS\Form(NULL, '/cms/navigation/'.$this->context, 'post');
-    //$this->setHTTPHeader('X-Psc-Cms-Request-Method', 'PUT');
+    $form = new \Psc\CMS\Form(NULL, '/entities/navigation-node/'.$this->context, 'post');
+    $form->setHTTPHeader('X-Psc-Cms-Request-Method', 'PUT');
     
-    //$main = HTML::tag('div', Array(
-    //  $panelButtons,
-    //  $pane
-    //));
     $form->setContent('buttons', $panelButtons)
          ->setContent('pane', $pane)
     ;
@@ -83,17 +96,12 @@ class NavigationController extends SimpleContainerController {
       'Psc.UI.Navigation',
       array(
         'widget'=>JooseSnippet::expr(\Psc\JS\jQuery::getClassSelector($main)),
-        'flat'=>$this->getFlatForUI(
-          $this->repository->childrenQueryBuilder()->getQuery()->getResult(),
-          $this->container->getLanguage(), 
-          $this->container->getLanguages()
-        )
+        'flat'=>$this->getFlat()
       )
     );
     
     $main->templateAppend($snippet->html());
 
-    
     return $main;
   }
 
@@ -115,6 +123,14 @@ class NavigationController extends SimpleContainerController {
     return $flat;
   }
 
+  protected function getFlat() {
+    return $this->getFlatForUI(
+      $this->repository->childrenQueryBuilder()->getQuery()->getResult(),
+      $this->container->getLanguage(), 
+      $this->container->getLanguages()
+    );
+  }
+
   
   public function saveFormular(Array $flat) {
     \Psc\Doctrine\Helper::enableSQLLogging('stack', $em = $this->dc->getEntityManager());
@@ -124,7 +140,8 @@ class NavigationController extends SimpleContainerController {
       'status'=>TRUE,
       'log'=>$logger->toString(),
       'context'=>$this->repository->getContext(),
-      'sql'=>\Psc\Doctrine\Helper::printSQLLog('/^(INSERT|UPDATE|DELETE)/', TRUE, $em)
+      'sql'=>\Psc\Doctrine\Helper::printSQLLog('/^(INSERT|UPDATE|DELETE)/', TRUE, $em),
+      'flat'=>$this->getFlat()
     );
   }
 
@@ -216,10 +233,22 @@ class NavigationController extends SimpleContainerController {
   
   /**
    * Just create one, the attributes will be set automatically
+   * 
+   * @return Webforge\CMS\Navigation\Node
    */
   public function createNewNode(stdClass $jsonNode) {
-    $c = $this->container->getRoleFQN('NavigationNode');
-    return new $c((array) $jsonNode->title);
+    $nodeClass = $this->container->getRoleFQN('NavigationNode');
+    $node = new $nodeClass((array) $jsonNode->title);
+    $node->generateSlugs();
+
+    $pageClass = $this->container->getRoleFQN('Page');
+    $defaultSlug = current($node->getI18nSlug()); // not matter what current language is, this is the default language
+    $page = new $pageClass($defaultSlug);
+    $this->dc->getEntityManager()->persist($page);
+
+    $node->setPage($page);
+
+    return $node;
   }
 
   /**

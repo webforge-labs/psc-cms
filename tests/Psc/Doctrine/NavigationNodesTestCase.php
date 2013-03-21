@@ -35,6 +35,12 @@ class NavigationNodesTestCase extends \Psc\Doctrine\RepositoryTest {
     );
   }
 
+  public static function getFoodFixture() {
+    return Array(
+      array(new \Webforge\TestData\NestedSet\FoodCategories(), 'FoodCategories')
+    );
+  }
+
   protected function createRepository(Array $methods = NULL) {
     return $this->em->getRepository($this->entityClass);
   }
