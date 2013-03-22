@@ -12,32 +12,6 @@ class PageControllerHelper {
 
   protected $defaultRevision = 'default';
 
-  public function getPagesMenuPanel(EntityRepository $navigationRepository, Array $languages, EntityMeta $entityMeta) {
-    $menu = new PagesMenu(
-     $navigationRepository->setContext('default')->getFlatForUI('de', $languages)
-    );
-
-    $footerMenu = new PagesMenu(
-      $navigationRepository->setContext('footer')->getFlatForUI('de', $languages)
-    );
-
-    $topMenu = new PagesMenu(
-      $navigationRepository->setContext('top')->getFlatForUI('de', $languages)
-    );
-    
-    $panel = new FormPanel('Seiten Übersicht');
-    $panel->setPanelButtons(array('reload'));
-    $panel->getPanelButtons()->addNewButton(
-      $entityMeta->getAdapter()->getNewTabButton()
-    );
-    $panel->setWidth(100);
-    $panel->addContent($topMenu->html());
-    $panel->addContent($menu->html()->setStyle('margin-top', '80px'));
-    $panel->addContent($footerMenu->html()->setStyle('margin-top', '150px'));
-
-    return $panel;
-  }
-
   /**
    * @return array
    */
