@@ -14,6 +14,6 @@ EntityService:
 - Signature has changed. Parameter #1 is not optional (dcPackage), Parameter #2 is a Psc\CMS\Controller\Factory
 
 ProjectMain:
-- create a class YourNamespace\CMS\SimpleContainer which extends \Psc\CMS\Roles\AbstractSimpleContainer (or implements SimpleContainer)
-- set containerClass to this class (per default its the projectNamespace\CMS\SimpleContainer)
-- override getContainer in your main if necessary (if you have ovrriden the constructor from AbstractSimpleContainer)
+- create a class YourNamespace\CMS\Container which extends \Psc\CMS\Roles\AbstractContainer (or implement Psc\CMS\Roles\Container)
+- set containerClass to this class (per default its the projectNamespace\CMS\Container)
+- override getContainer in your main if necessary (if you have ovrriden the constructor from Psc\CMS\Roles\AbstractContainer)

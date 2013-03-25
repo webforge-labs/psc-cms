@@ -23,12 +23,13 @@ use Psc\CMS\AbstractTabsContentItem2 as TCI;
 use Psc\UI\Tabs2;
 use Psc\CMS\Controller\Factory as ControllerFactory;
 use Psc\CMS\Roles\SimpleControllerDependenciesProvider;
-use Psc\CMS\Roles\SimpleContainer;
+use Psc\CMS\Roles\Container as ContainerRole;
 
 class ProjectMain extends \Psc\Object implements DropContentsListCreater{
 
-
-  
+  /**
+   * @var Psc\Environment
+   */  
   protected $environment;
   
   /**
@@ -107,7 +108,7 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
   protected $entityService;
 
   /**
-   * @var Psc\CMS\Roles\SimpleContainer
+   * @var Psc\CMS\Roles\Container
    */
   protected $container;
 
@@ -360,10 +361,7 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
    */
   public function getControllerFactory() {
     if (!isset($this->controllerFactory)) {
-      $this->controllerFactory = new ControllerFactory(
-        $this->getProject()->getNamespace().'\\Controllers',
-        new SimpleControllerDependenciesProvider($this->getDoctrinePackage(), $this->getContainer())
-      );
+      $this->controllerFactory = $this->getContainer()->getControllerFactory();
     }
 
     return $this->controllerFactory;
@@ -375,7 +373,12 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
   public function getContainer() {
     if (!isset($this->container)) {
       $container = $this->getContainerClass();
-      $this->container = new $container($this->getDoctrinePackage(), $languages = $this->retrieveLanguages(), $languages[0]);
+      $this->container = new $container(
+        $this->getProject()->getNamespace().'\\Controllers',
+        $this->getDoctrinePackage(), 
+        $languages = $this->retrieveLanguages(), 
+        $languages[0]
+      );
     }
 
     return $this->container;
@@ -707,7 +710,7 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
   /**
    * @chainable
    */
-  public function setContainer(SimpleContainer $container) {
+  public function setContainer(ContainerRole $container) {
     $this->container = $container;
     return $this;
   }

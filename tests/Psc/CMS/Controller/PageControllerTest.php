@@ -14,7 +14,15 @@ class PageControllerTest extends \Psc\Doctrine\DatabaseTestCase {
     $this->languages = array('de');
     $this->language = 'de';
 
-    $this->container = $this->getMockForAbstractClass('Psc\CMS\Roles\AbstractControllerContainer', array($this->dc, $this->languages, $this->language));
+    $this->container = $this->getMockForAbstractClass(
+      'Psc\CMS\Roles\AbstractContainer', 
+      array('Psc\Test\Controllers', $this->dc, $this->languages, $this->language),
+      '',
+      TRUE,
+      TRUE,
+      TRUE,
+      array('getController')
+    );
     $this->controller = new \Psc\Test\Controllers\PageController($this->dc, $this->container);
   }
 

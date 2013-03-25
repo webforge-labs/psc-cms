@@ -78,7 +78,7 @@ class FactoryTest extends \Webforge\Code\Test\Base {
   protected function setUpDependencyProvider() {
     $this->dc = $this->doublesManager->createDoctrinePackageMock();
 
-    $this->depsProvider = $this->getMockForAbstractClass('Psc\CMS\Roles\AbstractControllerContainer', array($this->dc, $this->languages, $this->language));
+    $this->depsProvider = $this->getMockForAbstractClass('Psc\CMS\Roles\AbstractContainer', array('Psc\Test\Controllers', $this->dc, $this->languages, $this->language));
     $this->simpleContainer = $this->depsProvider->getSimpleContainer();
     $this->container = $this->depsProvider->getContainer();
 

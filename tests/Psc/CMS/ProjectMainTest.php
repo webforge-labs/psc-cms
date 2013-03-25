@@ -15,7 +15,7 @@ class ProjectMainTest extends \Psc\Code\Test\Base {
     
     $this->main = new ProjectMain(); // das geht, total krank, aber das macht ALLE injection
     $this->main->session = $this->getMock('Psc\Session\Session');
-    $this->main->setContainerClass('Psc\Test\CMS\SimpleContainer');
+    $this->main->setContainerClass('Psc\Test\CMS\Container');
     $this->request = $this->doublesManager->createHTTPRequest('GET','/');
   }
   
