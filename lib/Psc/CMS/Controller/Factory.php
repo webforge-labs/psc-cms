@@ -4,11 +4,12 @@ namespace Psc\CMS\Controller;
 
 use Psc\Code\Code;
 use Psc\Code\Generate\GClass;
+use Psc\CMS\Roles\ControllerDependenciesProvider;
 
 /**
  * 
  * 1. needs to resvole names to controller FQNs (check)
- *    (needs the package namespace for this to simplify, but the webforge container could create such a factory for example)
+ *    (needs the Dependency namespace for this to simplify, but the webforge container could create such a factory for example)
  * 
  * 2. needs to inject dependencies into the constructor (or through interfaces) to the controller
  *    How do we provide a flexible way to inject everything we need in project => (Simple-)Container aka ProjectContainer?
@@ -37,8 +38,12 @@ class Factory {
    */
   protected $defaultNamespace;
 
-  public function __construct($defaultNamespace) {
+
+  protected $dependencies;
+
+  public function __construct($defaultNamespace, ControllerDependenciesProvider $dependencies) {
     $this->defaultNamespace = $defaultNamespace;
+    $this->dependencies = $dependencies;
   }
 
   /**
@@ -47,7 +52,31 @@ class Factory {
   public function getController($controllerName) {
     $controllerClass = $this->getControllerGClass($controllerName);
 
-    return $controllerClass->newInstance();
+    $args = array();
+    if ($this->isInstanceOf($controllerClass, 'Psc\CMS\Controller\SimpleContainerController')) {
+      $args = array(
+        $this->dependencies->getDoctrinePackage(),
+        NULL,
+        NULL,
+        NULL,
+        $this->dependencies->getSimpleContainer()
+      );
+
+
+    } elseif ($this->isInstanceOf($controllerClass, 'Psc\CMS\Controller\AbstractEntityController')) {
+      $args[] = $this->dependencies->getDoctrinePackage();
+    }
+
+    $controller = $controllerClass->newInstance($args);
+
+    if ($controller instanceof LanguageAware) {
+      $container = $this->dependencies->getSimpleContainer();
+
+      $controller->setLanguages($container->getLanguages());
+      $controller->setLanguage($container->getLanguage());
+    }
+
+    return $controller;
   }
 
   /**
@@ -65,16 +94,6 @@ class Factory {
     return $gClass;
   }
 
-
-  /**
-   * 
-   * @param string $entityFQN always the full qualified name
-   * @return Controller-Instance
-   */
-  public function getControllerForEntity($entityFQN) {
-    return $this->getController(Code::getClassName($entityFQN));
-  }
-
   /**
    * Returns the default Namespace where to search for controllers
    * 
@@ -87,5 +106,12 @@ class Factory {
   public function setControllerFQN($controllerName, $controllerFQN) {
     $this->classes[$controllerName] = new GClass($controllerFQN);
     return $this;
+  }
+
+  /**
+   * @return bool
+   */
+  protected function isInstanceOf(GClass $controllerClass, $fqn) {
+    return $controllerClass->getReflection()->isSubclassOf($fqn);
   }
 }
