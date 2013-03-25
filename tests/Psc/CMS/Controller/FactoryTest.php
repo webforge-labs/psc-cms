@@ -17,15 +17,15 @@ class FactoryTest extends \Webforge\Code\Test\Base {
     $this->getMockForAbstractClass('Psc\CMS\Controller\SimpleContainerController', array(), 'WO_NAMESPACE_SimpleContainerController', FALSE);
     $this->getMockForAbstractClass('Psc\CMS\Controller\ContainerController', array(), 'WO_NAMESPACE_ContainerController', FALSE);
     $this->factory->setControllerFQN('LanguageAware', 'Psc\CMS\Controller\LanguageAwareController');
-    $this->factory->setControllerFQN('AbstractEntity', 'Psc\Test\Controllers\NavigationNodeController');
+    $this->factory->setControllerFQN('AbstractEntity', 'Psc\Test\Controllers\TagController');
     $this->factory->setControllerFQN('SCC', 'WO_NAMESPACE_SimpleContainerController');
     $this->factory->setControllerFQN('ContainerController', 'WO_NAMESPACE_ContainerController');
   }
 
   public function testConstructsControllerFromNameInDefaultNamespace() {
     $this->assertControllerFQN(
-      $fqn = 'Psc\Test\Controllers\NavigationNodeController',
-      $this->factory->getController('NavigationNode')
+      $fqn = 'Psc\Test\Controllers\TagController',
+      $this->factory->getController('Tag')
     );
   }
 
