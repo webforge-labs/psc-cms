@@ -9,3 +9,6 @@ AbstractEntityController
 
 Psc\Image\*
 - when you used some of the Psc\Image\ Classes: add "pscheit/psc-cms-image" in the same version as pscheit/psc-cms to your dependencies and run update.
+
+EntityService:
+- Signature has changed. Parameter #1 is not optional (dcPackage), Parameter #2 is a Psc\CMS\Controller\Factory
