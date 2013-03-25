@@ -144,7 +144,7 @@ class DoublesManager extends \Psc\Object {
             array(),
             array(
               $module = $module ?: $this->createDoctrineModuleMock(),
-              $entityManager = $entityManager ?: $this->createEntityManagerMock() // nicht module übergeben, da wir wirklich wirklich einen mock wollen
+              $entityManager = $entityManager ?: $this->createRealEntityManagerMock()
             )
           );
     
@@ -152,6 +152,10 @@ class DoublesManager extends \Psc\Object {
     $dc->expects($this->any())->method('getModule')->will($this->returnValue($module));
     
     return $dc;
+  }
+
+  public function createRealEntityManagerMock() {
+    return $this->testCase->getMockBuilder('Doctrine\ORM\EntityManager')->disableOriginalConstructor()->getMock();
   }
   
   public function createEntityMetaProvider(Array $entityMetas = array()) {
