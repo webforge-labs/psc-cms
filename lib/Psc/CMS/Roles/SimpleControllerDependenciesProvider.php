@@ -9,7 +9,7 @@ class SimpleControllerDependenciesProvider implements ControllerDependenciesProv
   protected $dc;
   protected $container;
 
-  public function __construct(DCPackage $dc, SimpleContainer $container) {
+  public function __construct(DCPackage $dc, ControllerContainer $container) {
     $this->dc = $dc;
     $this->container = $container;
   }
@@ -19,6 +19,13 @@ class SimpleControllerDependenciesProvider implements ControllerDependenciesProv
    */
   public function getDoctrinePackage() {
     return $this->dc;
+  }
+
+  /**
+   * @return Psc\CMS\Roles\ControllerContainer
+   */
+  public function getContainer() {
+    return $this->container;
   }
 
   /**

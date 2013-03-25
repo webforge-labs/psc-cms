@@ -8,4 +8,8 @@ abstract class AbstractControllerContainer extends AbstractSimpleContainer imple
     return $this;
   }
 
+  public function getContainer() {
+    return $this;
+  }
+
 }

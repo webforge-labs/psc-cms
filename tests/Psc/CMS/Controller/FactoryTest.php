@@ -15,9 +15,11 @@ class FactoryTest extends \Webforge\Code\Test\Base {
     $this->factory = new Factory('Psc\Test\Controllers', $this->depsProvider);
     
     $this->getMockForAbstractClass('Psc\CMS\Controller\SimpleContainerController', array(), 'WO_NAMESPACE_SimpleContainerController', FALSE);
+    $this->getMockForAbstractClass('Psc\CMS\Controller\ContainerController', array(), 'WO_NAMESPACE_ContainerController', FALSE);
     $this->factory->setControllerFQN('LanguageAware', 'Psc\CMS\Controller\LanguageAwareController');
     $this->factory->setControllerFQN('AbstractEntity', 'Psc\Test\Controllers\NavigationNodeController');
     $this->factory->setControllerFQN('SCC', 'WO_NAMESPACE_SimpleContainerController');
+    $this->factory->setControllerFQN('ContainerController', 'WO_NAMESPACE_ContainerController');
   }
 
   public function testConstructsControllerFromNameInDefaultNamespace() {
@@ -50,7 +52,17 @@ class FactoryTest extends \Webforge\Code\Test\Base {
     $controller = $this->factory->getController('SCC');
     $this->assertInstanceOf('Psc\CMS\Controller\SimpleContainerController', $controller);
 
-    $this->assertSame($this->container, $controller->getContainer(), 'container should be injected into SimpleContainerController');
+    $this->assertSame($this->simpleContainer, $controller->getContainer(), 'container should be injected into SimpleContainerController');
+  }
+
+  public function testControllerContainerControllerGetsControllerContainerInserted() {
+    $this->depsProviderExpectsDCPackageGet();
+
+    $controller = $this->factory->getController('ContainerController');
+    $this->assertInstanceOf('Psc\CMS\Controller\ContainerController', $controller);
+    $this->assertInstanceOf('Psc\CMS\Roles\ControllerContainer', $this->container);
+
+    $this->assertSame($this->container, $controller->getContainer(), 'container should be injected into ContainerController');
   }
 
   public function testLanguageAwareControllerWillBeInjectedWithLanguages() {
@@ -67,7 +79,8 @@ class FactoryTest extends \Webforge\Code\Test\Base {
     $this->dc = $this->doublesManager->createDoctrinePackageMock();
 
     $this->depsProvider = $this->getMockForAbstractClass('Psc\CMS\Roles\AbstractControllerContainer', array($this->dc, $this->languages, $this->language));
-    $this->container = $this->depsProvider->getSimpleContainer();
+    $this->simpleContainer = $this->depsProvider->getSimpleContainer();
+    $this->container = $this->depsProvider->getContainer();
 
     $this->assertInstanceOf('Psc\CMS\Roles\ControllerDependenciesProvider', $this->depsProvider);
 

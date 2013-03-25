@@ -53,7 +53,13 @@ class Factory {
     $controllerClass = $this->getControllerGClass($controllerName);
 
     $args = array();
-    if ($this->isInstanceOf($controllerClass, 'Psc\CMS\Controller\SimpleContainerController')) {
+    if ($this->isInstanceOf($controllerClass, 'Psc\CMS\Controller\ContainerController')) {
+      $args = array(
+        $this->dependencies->getDoctrinePackage(),
+        $this->dependencies->getContainer()
+      );
+      
+    } elseif ($this->isInstanceOf($controllerClass, 'Psc\CMS\Controller\SimpleContainerController')) {
       $args = array(
         $this->dependencies->getDoctrinePackage(),
         NULL,

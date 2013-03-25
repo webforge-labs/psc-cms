@@ -14,4 +14,9 @@ interface ControllerDependenciesProvider {
    */
   public function getSimpleContainer();
 
+  /**
+   * @return Psc\CMS\Roles\ControllerContainer
+   */
+  public function getContainer();
+
 }

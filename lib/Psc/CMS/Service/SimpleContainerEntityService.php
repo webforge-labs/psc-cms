@@ -4,7 +4,7 @@ namespace Psc\CMS\Service;
 
 use Psc\Doctrine\DCPackage;
 use Psc\CMS\Project;
-use Psc\CMS\Roles\SimpleContainer;
+use Psc\CMS\Roles\ControllerContainer;
 use Psc\CMS\Controller\SimpleContainerController;
 use Psc\CMS\Controller\Factory as ControllerFactory;
 use Psc\CMS\Roles\SimpleControllerDependenciesProvider;
@@ -16,7 +16,7 @@ class SimpleContainerEntityService extends EntityService {
    */
   protected $container;
   
-  public function __construct(DCPackage $dc, SimpleContainer $container, Project $project, $prefixPart = 'entities') {
+  public function __construct(DCPackage $dc, ControllerContainer $container, Project $project, $prefixPart = 'entities') {
     $this->container = $container;
 
     $factory = new ControllerFactory(
