@@ -108,5 +108,3 @@ abstract class BaseAuthController extends GPCController {
     throw $e;
   }
 }
-
-?>

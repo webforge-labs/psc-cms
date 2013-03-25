@@ -129,5 +129,3 @@ class AuthController extends BaseAuthController {
     return $this->auth;
   }
 }
-
-?>
