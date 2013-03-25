@@ -150,7 +150,8 @@ class NavigationControllerTest extends \Psc\Doctrine\NavigationNodesTestCase {
 
     $this->assertTrue($this->em->getUnitOfWork()->isScheduledForInsert($page), 'page should be already persisted');
 
-    $this->assertCount(count($this->languages), $page->getContentStreamsByLocale());
+    $this->assertCount(count($this->languages), $page->getContentStreamsByLocale(), 'content streams should be filled');
+
     $this->em->clear();
   }
 
@@ -181,6 +182,14 @@ class NavigationControllerTest extends \Psc\Doctrine\NavigationNodesTestCase {
     $container = $this->getMockForAbstractClass('Psc\CMS\Roles\Container');
     $container->expects($this->any())->method('getRoleFQN')->will($this->returnCallback(function ($name) use ($fqns) {
       return $fqns[$name];
+    }));
+
+    $controllers = array(
+      'Page'=>new \Psc\Test\Controllers\PageController($this->dc, $container)
+    );
+
+    $container->expects($this->any())->method('getController')->will($this->returnCallback(function ($name) use ($controllers) {
+      return $controllers[$name];
     }));
 
     $container->expects($this->any())->method('getLanguage')->will($this->returnvalue($this->defaultLanguage));

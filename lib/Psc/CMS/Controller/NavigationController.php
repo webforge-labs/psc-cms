@@ -255,15 +255,8 @@ class NavigationController extends ContainerController {
     return $node;
   }
 
-  // TODO: nicer: $this->container->getController('Page')->createPage() ?
   protected function createNewPage($slug) {
-    $pageClass = $this->container->getRoleFQN('Page');
-    $page = new $pageClass($slug);
-    $page->setActive(FALSE);
-
-    \Psc\CMS\Controller\PageController::fillContentStreams($page, $this->dc->getEntityManager(), $this->container);
-
-    return $page;
+    return $this->getController('Page')->createInactivePage($slug);
   }
 
   /**

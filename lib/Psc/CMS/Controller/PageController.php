@@ -99,20 +99,42 @@ abstract class PageController extends ContainerController {
     
     // wenn es neu ist, wollen wir die content streams erstellen
     if ($entity->isNew()) {
-      self::fillContentStreams($entity, $this->dc->getEntityManager(), $this->container);
+      $this->fillContentStreams($entity);
     }
   }
 
-  public static function fillContentStreams(PageRole $page, EntityManager $em, SimpleContainerRole $container) {
+  /**
+   * @return PageRole
+   */
+  public function createInactivePage($slug) {
+    $page = $this->createEmptyEntity();
+    $page->setSlug($slug);
+    $page->setActive(FALSE);
+    $this->fillContentStreams($page);
+
+    return $page;
+  }
+
+  /**
+   * Returns an Empty Page with the slug "new-page"
+   * 
+   * @return PageRole
+   */
+  public function createEmptyEntity($revision = NULL) {
+    $page = $this->container->getRoleFQN('Page');
+    return new $page('new-page');
+  }
+
+  protected function fillContentStreams(PageRole $page) {
     $streams = $page->getContentStreamsByLocale();
-    $csClass = $container->getRoleFQN('ContentStream');
+    $csClass = $this->container->getRoleFQN('ContentStream');
     
     // per default haben wir immer einen content-stream pro sprache
-    foreach ($container->getLanguages() as $lang) {
+    foreach ($this->container->getLanguages() as $lang) {
       if (!array_key_exists($lang, $streams)) {
         $cs = new $csClass($lang);
         $page->addContentStream($cs);
-        $em->persist($cs);
+        $this->dc->getEntityManager()->persist($cs);
       }
     }
   }
