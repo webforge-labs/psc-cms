@@ -10,8 +10,11 @@ class NavigationControllerTest extends \Psc\Doctrine\NavigationNodesTestCase {
   public function setUp() {
     parent::setUp();
 
-    $this->controller = new NavigationController('default', $this->getDoctrinePackage());
-    $this->controller->setContainer($this->createContainer());
+    $this->controller = new \Psc\Test\Controllers\NavigationNodeController($this->getDoctrinePackage(), $this->createContainer());
+  }
+
+  public function testPre() {
+    $this->assertInstanceOf('Psc\CMS\Controller\NavigationController', $this->controller);
   }
   
   /**
@@ -175,7 +178,7 @@ class NavigationControllerTest extends \Psc\Doctrine\NavigationNodesTestCase {
       'ContentStream'=>'Psc\Entities\ContentStream\ContentStream',
       'NavigationNode'=>'Psc\Entities\NavigationNode'
     );
-    $container = $this->getMockForAbstractClass('Psc\CMS\Roles\SimpleContainer');
+    $container = $this->getMockForAbstractClass('Psc\CMS\Roles\Container');
     $container->expects($this->any())->method('getRoleFQN')->will($this->returnCallback(function ($name) use ($fqns) {
       return $fqns[$name];
     }));

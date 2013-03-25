@@ -65,7 +65,7 @@ abstract class AbstractSimpleContainer extends \Psc\SimpleObject implements Simp
       $roleName = str_replace('CS\\', 'ContentStream\\', $roleName);
     }
 
-    return $this->dc->getEntitiesNamespace().'\\'.ucfirst($roleName);
+    return $this->dc->getModule()->getEntitiesNamespace().'\\'.ucfirst($roleName);
   }
 
 

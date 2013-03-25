@@ -16,7 +16,7 @@ use stdClass;
 use stdClass as FormData;
 use Psc\UI\PagesMenu;
 
-class NavigationController extends SimpleContainerController {
+class NavigationController extends ContainerController {
 
 
   /**
@@ -26,14 +26,9 @@ class NavigationController extends SimpleContainerController {
    */
   protected $context;
 
-  public function __construct($context = 'default', DCPackage $dc = NULL, EntityViewPackage $ev = NULL, ValidationPackage $v = NULL, ServiceErrorPackage $err = NULL, SimpleContainer $container = NULL) {
-    $this->context = $context;
-    parent::__construct($dc, $ev, $v, $err, $container);
-  }
-
   protected function setUp() {
     parent::setUp();
-    $this->repository->setContext($this->context);
+    $this->setContext('default');
   }
 
   /**
