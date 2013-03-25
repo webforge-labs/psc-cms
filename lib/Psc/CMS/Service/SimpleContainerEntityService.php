@@ -15,7 +15,7 @@ class SimpleContainerEntityService extends EntityService {
   protected $container;
   
   public function __construct(DCPackage $dc, SimpleContainer $container, Project $project = NULL, $prefixPart = 'entities') {
-    $this->setContainer($container);
+    $this->container = $container;
     parent::__construct($dc, $project, $prefixPart);
   }
   
