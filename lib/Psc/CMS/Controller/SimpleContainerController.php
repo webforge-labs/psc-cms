@@ -15,7 +15,7 @@ abstract class SimpleContainerController extends AbstractEntityController {
    */
   protected $container;
   
-  public function __construct(DCPackage $dc = NULL, EntityViewPackage $ev = NULL, ValidationPackage $v = NULL, ServiceErrorPackage $err = NULL, SimpleContainer $container = NULL) {
+  public function __construct(DCPackage $dc, EntityViewPackage $ev = NULL, ValidationPackage $v = NULL, ServiceErrorPackage $err = NULL, SimpleContainer $container = NULL) {
     $this->container = $container;
     parent::__construct($dc, $ev, $v, $err);
   }
