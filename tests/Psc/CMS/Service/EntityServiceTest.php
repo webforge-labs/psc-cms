@@ -5,6 +5,7 @@ namespace Psc\CMS\Service;
 use Psc\Net\ServiceRequest;
 use Psc\Net\Service;
 use Psc\Code\Generate\GClass;
+use Psc\CMS\Controller\Factory;
 
 /**
  * @group class:Psc\CMS\Service\EntityService
@@ -20,10 +21,10 @@ class EntityServiceTest extends \Psc\Code\Test\ServiceBase {
     
     $this->project = clone \Psc\PSC::getProject();
     $this->dc = new \Psc\Doctrine\DCPackage($this->project->getModule('Doctrine'));
+
+    $this->dependencies = $this->getMock('Psc\CMS\Roles\ControllerDependenciesProvider', array(), array(), '', FALSE);
     
-    $this->svc = $this->getMock($this->chainClass, array('getControllersNamespace'), array($this->dc, $this->project, 'entities'));
-    $this->svc->expects($this->any())->method('getControllersNamespace')
-              ->will($this->returnValue('Psc\Test\Controllers'));
+    $this->svc = new EntityService($this->dc, $this->project, 'entities', new Factory('Psc\Test\Controllers', $this->dependencies));
   }
   
   public function testControllerRoute_getEntity() {

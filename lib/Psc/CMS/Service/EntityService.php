@@ -7,10 +7,11 @@ use Psc\Net\Service;
 use Psc\Net\ServiceResponse;
 use Psc\Code\Generate\GClass;
 use Psc\Code\Code;
-use Webforge\Common\ArrayUtil AS A;
+use Webforge\Common\ArrayUtil as A;
 use Psc\Net\HTTP\HTTPException;
 use Psc\Net\RequestMatcher;
 use Psc\Inflector;
+use Psc\CMS\Controller\Factory as ControllerFactory;
 
 class EntityService extends ControllerService {
   
@@ -34,11 +35,17 @@ class EntityService extends ControllerService {
    * /person/1/form okay
    */
   protected $prefixPart;
+
+  /**
+   * @var ControllerFactory
+   */
+  protected $controllerFactory;
   
-  public function __construct(\Psc\Doctrine\DCPackage $dc, \Psc\CMS\Project $project = NULL, $prefixPart = 'entities') {
+  public function __construct(\Psc\Doctrine\DCPackage $dc, \Psc\CMS\Project $project = NULL, $prefixPart = 'entities', ControllerFactory $controllerFactory = NULL) {
     $this->dc = $dc;
     $this->doctrine = $this->dc->getModule();
     $this->prefixPart = $prefixPart;
+    $this->controllerFactory = $controllerFactory;
     parent::__construct($project ?: $this->doctrine->getProject());
   }
   
@@ -152,20 +159,8 @@ class EntityService extends ControllerService {
   public function getEntityController($part) {
     $entityClass = $this->doctrine->getEntityName($part);
     $entityName = Code::getClassName($entityClass);
-    
-    $controller = $this->getControllerInstance(
-      $this->getControllerClass($entityName),
 
-      $this->dc // DPI für Controller
-    );
-    $this->logf("DPI: DoctrinePackage für Controller geladene Database: '%s'", $this->dc->getEntityManager()->getConnection()->getDatabase());
-    
-    if ($controller instanceof \Psc\CMS\Controller\LanguageAware) {
-      $controller->setLanguages($this->languages);
-      $controller->setLanguage($this->language);
-    }
-    
-    return $controller;
+    return $this->controllerFactory->getController($entityName);
   }
   
   /**
