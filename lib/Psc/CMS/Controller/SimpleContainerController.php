@@ -49,4 +49,3 @@ abstract class SimpleContainerController extends AbstractEntityController {
     return $this->container->getLanguage();
   }
 }
-?>

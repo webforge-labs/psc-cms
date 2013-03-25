@@ -10,10 +10,9 @@ use Psc\Code\Code;
 use stdClass as FormData;
 use Psc\CMS\Roles\SimpleContainer as SimpleContainerRole;
 use Doctrine\ORM\EntityManager;
-use Psc\UI\PagesMenu;
 use Psc\UI\FormPanel;
 
-abstract class PageController extends SimpleContainerController {
+abstract class PageController extends ContainerController {
 
   /**
    * @var Psc\Doctrine\EntityRepository
@@ -58,17 +57,11 @@ abstract class PageController extends SimpleContainerController {
   }
 
   public function getEntityGrid(EntityMeta $entityMeta, $entities) {
-    $menu = new PagesMenu(
-     $this->setContext('default')->getFlat('de', $languages)
-    );
+    $navController = $this->getController('NavigationNode');
 
-    $footerMenu = new PagesMenu(
-      $this->setContext('footer')->getFlat('de', $languages)
-    );
-
-    $topMenu = new PagesMenu(
-      $this->setContext('top')->getFlat('de', $languages)
-    );
+    $menu = $navController->getPagesMenu('default');
+    $footerMenu = $navController->getPagesMenu('footer');
+    $topMenu = $navController->getPagesMenu('top');
     
     $panel = new FormPanel('Seiten Übersicht');
     $panel->setPanelButtons(array('reload'));
@@ -153,6 +146,11 @@ abstract class PageController extends SimpleContainerController {
     }
     return $this->navigationRepository;
   }
+
+  protected function getNavigationController() {
+
+  }
+
   
   /**
    * @return Array

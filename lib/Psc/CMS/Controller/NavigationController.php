@@ -14,6 +14,7 @@ use Psc\UI\Form;
 use Psc\UI\HTML;
 use stdClass;
 use stdClass as FormData;
+use Psc\UI\PagesMenu;
 
 class NavigationController extends SimpleContainerController {
 
@@ -131,6 +132,15 @@ class NavigationController extends SimpleContainerController {
     );
   }
 
+  /**
+   * @return Psc\UI\PagesMenu
+   */
+  public function getPagesMenu($context = 'default') {
+    $this->setContext($context);
+    $menu = new PagesMenu($this->getFlat());
+
+    return $menu;
+  }
   
   public function saveFormular(Array $flat) {
     \Psc\Doctrine\Helper::enableSQLLogging('stack', $em = $this->dc->getEntityManager());
