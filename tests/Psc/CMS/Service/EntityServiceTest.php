@@ -6,6 +6,7 @@ use Psc\Net\ServiceRequest;
 use Psc\Net\Service;
 use Psc\Code\Generate\GClass;
 use Psc\CMS\Controller\Factory;
+use Psc\CMS\Roles\SimpleControllerDependenciesProvider;
 
 /**
  * @group class:Psc\CMS\Service\EntityService
@@ -22,7 +23,9 @@ class EntityServiceTest extends \Psc\Code\Test\ServiceBase {
     $this->project = clone \Psc\PSC::getProject();
     $this->dc = new \Psc\Doctrine\DCPackage($this->project->getModule('Doctrine'));
 
-    $this->dependencies = $this->getMock('Psc\CMS\Roles\ControllerDependenciesProvider', array(), array(), '', FALSE);
+    $this->dependencies = new SimpleControllerDependenciesProvider(
+      $this->dc, $this->getMockForAbstractClass('Psc\CMS\Roles\Container')
+    );
     $this->factory = new Factory('Psc\Test\Controllers', $this->dependencies);
     
     $this->svc = new EntityService($this->dc, $this->factory, $this->project, 'entities');
