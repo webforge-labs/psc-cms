@@ -9,4 +9,3 @@ interface SimpleContainer extends \Psc\CMS\Controller\LanguageAware, FQNSolver {
   public function getRevision();
 
 }
-?>
