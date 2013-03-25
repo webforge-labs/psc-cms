@@ -247,7 +247,7 @@ abstract class ControllerService extends \Psc\System\LoggerObject implements \Ps
    */
   public function getControllersNamespace() {
     if (!isset($this->controllersNamespace)) {
-      $this->controllersNamespace = $this->project->getNamespace().'\\Controllers'; // siehe auch CreateControllerCommand
+      $this->controllersNamespace = $this->project->getNamespace().'\\Controllers'; // siehe auch CreateControllerCommand, SimpleContainerEntityService
     }
     return $this->controllersNamespace;
   }

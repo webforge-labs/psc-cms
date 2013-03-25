@@ -41,7 +41,7 @@ class EntityService extends ControllerService {
    */
   protected $controllerFactory;
   
-  public function __construct(\Psc\Doctrine\DCPackage $dc, \Psc\CMS\Project $project = NULL, $prefixPart = 'entities', ControllerFactory $controllerFactory = NULL) {
+  public function __construct(\Psc\Doctrine\DCPackage $dc, ControllerFactory $controllerFactory, \Psc\CMS\Project $project = NULL, $prefixPart = 'entities') {
     $this->dc = $dc;
     $this->doctrine = $this->dc->getModule();
     $this->prefixPart = $prefixPart;
