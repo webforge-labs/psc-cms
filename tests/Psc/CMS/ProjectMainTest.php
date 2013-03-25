@@ -46,10 +46,6 @@ class ProjectMainTest extends \Psc\Code\Test\Base {
   }
 
   public function testAuthControllerGetsEntityManagerInjected_Regression() {
-    // pre condition: this stupid tests uses the default entityManager
-    $this->em = $this->main->getDoctrinePackage()->getModule()->getEntityManager('tests');
-    $this->assertNotSame($this->em, $this->main->getDoctrinePackage()->getEntityManager());
-
     // set to other em for a good test
     $this->main->getDoctrinePackage()->setEntityManager($this->em);
 
