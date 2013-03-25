@@ -99,10 +99,21 @@ class Factory {
    * 
    * without \ before and after the namespace
    */
-  protected function getDefaultNamespace() {
+  public function getDefaultNamespace() {
     return $this->defaultNamespace;
   }
 
+  /**
+   * @chainable
+   */
+  public function setDefaultNamespace($fqn) {
+    $this->defaultNamespace = $fqn;
+    return $this;
+  }
+
+  /**
+   * @chainable
+   */
   public function setControllerFQN($controllerName, $controllerFQN) {
     $this->classes[$controllerName] = new GClass($controllerFQN);
     return $this;

@@ -12,3 +12,8 @@ Psc\Image\*
 
 EntityService:
 - Signature has changed. Parameter #1 is not optional (dcPackage), Parameter #2 is a Psc\CMS\Controller\Factory
+
+ProjectMain:
+- create a class YourNamespace\CMS\SimpleContainer which extends \Psc\CMS\Roles\AbstractSimpleContainer (or implements SimpleContainer)
+- set containerClass to this class (per default its the projectNamespace\CMS\SimpleContainer)
+- override getContainer in your main if necessary (if you have ovrriden the constructor from AbstractSimpleContainer)

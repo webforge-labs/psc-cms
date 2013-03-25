@@ -23,8 +23,9 @@ class EntityServiceTest extends \Psc\Code\Test\ServiceBase {
     $this->dc = new \Psc\Doctrine\DCPackage($this->project->getModule('Doctrine'));
 
     $this->dependencies = $this->getMock('Psc\CMS\Roles\ControllerDependenciesProvider', array(), array(), '', FALSE);
+    $this->factory = new Factory('Psc\Test\Controllers', $this->dependencies);
     
-    $this->svc = new EntityService($this->dc, $this->project, 'entities', new Factory('Psc\Test\Controllers', $this->dependencies));
+    $this->svc = new EntityService($this->dc, $this->factory, $this->project, 'entities');
   }
   
   public function testControllerRoute_getEntity() {
@@ -142,8 +143,24 @@ class EntityServiceTest extends \Psc\Code\Test\ServiceBase {
       array('default', 'form', NULL)
     );
   }
-  
-  
+
+
+  public function testsetControllerClassSetsOtherNamesForAnController() {
+    $this->svc->setControllerClass('User', 'Psc\CMS\Controller\UserEntityController');
+    $this->assertRouteController(
+      $this->rq(array('entities','users', 'grid'), 'GET'),
+      'Psc\CMS\Controller\UserEntityController',
+      'getEntities',
+      array(NULL, 'grid')
+    );
+  }
+
+  public function testSetControllerNampespaceSetsNamespaceInControllerFactory_acceptance_because_this_can_break_later() {
+    $this->svc->setControllersNamespace('Psc\Blubb');
+
+    $this->assertEquals('Psc\Blubb', $this->factory->getDefaultNamespace());
+  }
+
   public function testInitRequestMatcher() {
     $r = $this->svc->initRequestMatcher($this->rq(array('entities','person','1')));
     $this->assertEquals(array('person','1'), $r->getLeftParts());

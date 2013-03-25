@@ -14,6 +14,8 @@ class ProjectMainTest extends \Psc\Code\Test\Base {
     parent::setUp();
     
     $this->main = new ProjectMain(); // das geht, total krank, aber das macht ALLE injection
+    $this->main->session = $this->getMock('Psc\Session\Session');
+    $this->main->setContainerClass('Psc\Test\CMS\SimpleContainer');
     $this->request = $this->doublesManager->createHTTPRequest('GET','/');
   }
   
@@ -38,10 +40,29 @@ class ProjectMainTest extends \Psc\Code\Test\Base {
     $this->assertInstanceOf('Psc\CMS\RightContent', $this->main->getRightContent());
     
     $this->assertInternalType('integer', $this->main->getDebugLevel());
+
+    $this->assertInstanceOf('Psc\CMS\Roles\SimpleContainer', $this->main->getContainer());
+    $this->assertInstanceOf('Psc\CMS\Controller\Factory', $this->main->getControllerFactory());
   }
 
   public function testAuthControllerGetsEntityManagerInjected_Regression() {
-    $this->markTestIncomplete('@TODO');
+    // pre condition: this stupid tests uses the default entityManager
+    $this->em = $this->main->getDoctrinePackage()->getModule()->getEntityManager('tests');
+    $this->assertNotSame($this->em, $this->main->getDoctrinePackage()->getEntityManager());
+
+    // set to other em for a good test
+    $this->main->getDoctrinePackage()->setEntityManager($this->em);
+
+    // inject with new em
+    $authController = $this->main->getAuthController();
+    $this->assertInstanceOf('Psc\CMS\UserManager', $userManager = $authController->getAuth()->getUserManager());
+
+    $this->assertAttributeSame(
+      $this->em->getRepository($this->main->getProject()->getUserClass()),
+      'repository',
+      $userManager,
+      'repository injected in userManager should be the same as in the test'
+    );
   }
   
   

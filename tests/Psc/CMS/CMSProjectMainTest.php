@@ -25,6 +25,7 @@ class CMSProjectMainTest extends \Psc\Code\Test\Base {
     
     // inject a lot
     $this->cms = new ProjectMain($this->project, NULL, NULL, NULL, 10, NULL, $this->environment);
+    $this->cms->setContainerClass('Psc\Test\CMS\SimpleContainer');
     $this->cms->setJSManager($this->jsManager);
     $this->cms->setCSSManager($this->cssManager);
     $this->cms->setAuthController($this->authController);

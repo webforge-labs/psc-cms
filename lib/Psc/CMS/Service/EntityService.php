@@ -200,6 +200,19 @@ class EntityService extends ControllerService {
     
     return $r;
   }
+
+  public function setControllerClass($controllerName, $controllerClass) {
+    parent::setControllerClass($controllerName, $controllerClass);
+    $this->controllerFactory->setControllerFQN($controllerName, $controllerClass);
+    return $this;
+  }
+
+  public function setControllersNamespace($ns) {
+    parent::setControllersNamespace($ns);
+    $this->controllerFactory->setDefaultNamespace($ns);
+    return $this;
+  }
+
   
   /**
    * @param array $languages

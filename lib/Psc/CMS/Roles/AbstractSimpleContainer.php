@@ -58,8 +58,19 @@ abstract class AbstractSimpleContainer extends \Psc\SimpleObject implements Simp
     $this->contentStreamConverter = $contentStreamConverter;
   }
 
+  public function getRoleFQN($roleName) {
+    if ($roleName === 'ContentStream') {
+      $roleName = 'ContentStream\ContentStream';
+    } else {
+      $roleName = str_replace('CS\\', 'ContentStream\\', $roleName);
+    }
+
+    return $this->dc->getEntitiesNamespace().'\\'.ucfirst($roleName);
+  }
+
+
   /**
-   * @return CoMun\ContentStreamConverter
+   * @return Psc\TPL\ContentStream\Converter
    */
   public function getContentStreamConverter() {
     if (!isset($this->contentStreamConverter)) {

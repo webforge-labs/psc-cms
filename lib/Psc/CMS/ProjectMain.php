@@ -21,8 +21,13 @@ use Psc\TPL\TPL;
 use Psc\TPL\Template;
 use Psc\CMS\AbstractTabsContentItem2 as TCI;
 use Psc\UI\Tabs2;
+use Psc\CMS\Controller\Factory as ControllerFactory;
+use Psc\CMS\Roles\SimpleControllerDependenciesProvider;
+use Psc\CMS\Roles\SimpleContainer;
 
 class ProjectMain extends \Psc\Object implements DropContentsListCreater{
+
+
   
   protected $environment;
   
@@ -102,6 +107,21 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
   protected $entityService;
 
   /**
+   * @var Psc\CMS\Roles\SimpleContainer
+   */
+  protected $container;
+
+  /**
+   * @var string
+   */
+  protected $containerClass;
+
+  /**
+   * @var Psc\CMS\Controller\Factory
+   */
+  protected $controllerFactory;
+
+  /**
    * @var Psc\Net\HTTP\Request
    */
   protected $request;
@@ -127,9 +147,9 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
   protected $modelCompiler;
   
   /**
-   * @var string
+   * @var Psc\Session\Session
    */
-  protected $language;
+  public $session; // just a hack for tests
   
   public function __construct($project = NULL, DCPackage $dc = NULL, RightContent $rightContent = NULL, EntityService $entityService = NULL, $debugLevel = 5, FrontController $frontController = NULL, \Psc\Environment $env = NULL) {
     $this->api2 = PSC::getVersion()->is('>=','0.2-DEV');
@@ -329,10 +349,67 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
    */
   public function getEntityService() {
     if (!isset($this->entityService)) {
-      $this->entityService = new EntityService($this->getDoctrinePackage(), $this->getProject());
+      $this->entityService = new EntityService($this->getDoctrinePackage(), $this->getControllerFactory(), $this->getProject());
     }
     
     return $this->entityService;
+  }
+
+  /**
+   * @return Psc\CMS\Controller\Factory
+   */
+  public function getControllerFactory() {
+    if (!isset($this->controllerFactory)) {
+      $this->controllerFactory = new ControllerFactory(
+        $this->getProject()->getNamespace().'\\Controllers',
+        new SimpleControllerDependenciesProvider($this->getDoctrinePackage(), $this->getContainer())
+      );
+    }
+
+    return $this->controllerFactory;
+  }
+
+  /**
+   * @return Psc\CMS\Roles\SimpleContainer
+   */
+  public function getContainer() {
+    if (!isset($this->container)) {
+      $container = $this->getContainerClass();
+      $this->container = new $container($this->getDoctrinePackage(), $languages = $this->retrieveLanguages(), $languages[0]);
+    }
+
+    return $this->container;
+  }
+
+  /**
+   * @param string $language
+   * @chainable
+   */
+  public function setLanguage($language) {
+    $this->getContainer()->setLanguage($language);
+    $this->initLocale($language);
+    
+    return $this;
+  }
+
+  /**
+   * Returns the two char languages for the project
+   * 
+   * @return array the first entry is always set and is the defaultLanguage
+   */
+  protected function retrieveLanguages() {
+    return $this->project->getConfiguration()->req('languages');
+  }
+
+  /**
+   * @return string fqn
+   */
+  public function getContainerClass() {
+    if (!isset($this->containerClass)) {
+      $this->containerClass = $this->project->getNamespace()."\CMS\SimpleContainer";
+    }
+
+    return $this->containerClass;
   }
   
   /**
@@ -442,10 +519,13 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
       $userClass = $this->getProject()->getUserClass();
       
       $this->authController = new \Psc\CMS\Controller\AuthController(
-        new Auth(NULL,
-                 NULL,
-                 new UserManager($this->getDoctrinePackage()->getEntityManager()->getRepository($userClass))
-                )
+        new Auth(
+          $this->session,
+          NULL,
+          new UserManager(
+            $this->getDoctrinePackage()->getEntityManager()->getRepository($userClass)
+          )
+        )
       );
       $this->authController->setUserClass($userClass);
       $this->authController->setHTMLPage($this->createHTMLPage()); // inject our js/css Managers
@@ -610,5 +690,25 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
   public function getDropContents() {
     return $this->dropContents;
   }
+
+  public function setContainerClass($fqn) {
+    $this->containerClass = $fqn;
+    return $this;
+  }
+
+  public function getLanguages() {
+    return $this->getContainer()->getLanguages();
+  }
+
+  public function getLanguage() {
+    return $this->getContainer()->getLanguage();
+  }
+
+  /**
+   * @chainable
+   */
+  public function setContainer(SimpleContainer $container) {
+    $this->container = $container;
+    return $this;
+  }
 }
-?>
