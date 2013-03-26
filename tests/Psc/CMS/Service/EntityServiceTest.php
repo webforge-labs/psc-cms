@@ -39,7 +39,7 @@ class EntityServiceTest extends \Psc\Code\Test\ServiceBase {
       $this->rq(array('entities','tag','1')),
       'Psc\Test\Controllers\TagController',
       'getEntity',
-      array(1, null)
+      array('1', NULL, NULL)
     );
   }
 
@@ -48,7 +48,16 @@ class EntityServiceTest extends \Psc\Code\Test\ServiceBase {
       $this->rq(array('entities','tag','1','form')),
       'Psc\Test\Controllers\TagController',
       'getEntity',
-      array('1', 'form', null)
+      array('1', 'form', NULL)
+    );
+  }
+
+  public function testControllerRoute_SubresourceParameters() {
+    $this->assertRouteController(
+      $this->rq(array('entities','tag',7,'articles','de', 'form'), 'GET'),
+      'Psc\Test\Controllers\TagController',
+      'getEntity',
+      array('7', array('articles', 'de', 'form'), NULL)
     );
   }
 

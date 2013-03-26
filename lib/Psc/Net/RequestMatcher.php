@@ -180,4 +180,3 @@ class RequestMatcher extends \Psc\SimpleObject {
     return $this->request;
   }
 }
-?>

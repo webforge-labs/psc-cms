@@ -95,6 +95,7 @@ class EntityService extends ControllerService {
     
     if ($request->getType() === self::GET) {
       $this->log('EntityPart: '.$entityPart.' '.($this->isPlural($entityPart) ? 'ist plural' : 'ist singular'), 2);
+
       if ($this->isPlural($entityPart)) {
         if ($r->part() === 'form') {
           $method = 'getNewEntityFormular';
@@ -103,8 +104,12 @@ class EntityService extends ControllerService {
           A::insert($params, $request->getQuery(), 0); // query als 1. parameter
         }
         $entityPart = Inflector::singular($entityPart);
+
       } else {
         $method = 'getEntity';
+        $params = array();
+        $params[] = $r->shift(); // id
+        $params[] = count($r->getLeftParts()) > 1 ? $r->getLeftParts() : $r->shift(); // subresource
         $params[] = $request->getQuery();
       }
 
