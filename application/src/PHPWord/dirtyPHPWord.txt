@@ -1,1 +1,1 @@
-Excel2007.php ist mit file_get_contents() erweitert worden, damit resources aus Phars dem ZipArchive hinzugefügt werden können
+Word2007.php ist mit file_get_contents() erweitert worden, damit resources aus Phars dem ZipArchive hinzugef?gt werden k?nnen

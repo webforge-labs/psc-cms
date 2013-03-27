@@ -195,46 +195,28 @@ abstract class CompiledNavigationNode extends \Psc\CMS\Roles\NavigationNodeEntit
     return $this;
   }
   
-  /**
-   * @return integer
-   */
   public function getLft() {
     return $this->lft;
   }
   
-  /**
-   * @param integer $lft
-   */
   public function setLft($lft) {
     $this->lft = $lft;
     return $this;
   }
   
-  /**
-   * @return integer
-   */
   public function getRgt() {
     return $this->rgt;
   }
   
-  /**
-   * @param integer $rgt
-   */
   public function setRgt($rgt) {
     $this->rgt = $rgt;
     return $this;
   }
   
-  /**
-   * @return integer
-   */
   public function getDepth() {
     return $this->depth;
   }
   
-  /**
-   * @param integer $depth
-   */
   public function setDepth($depth) {
     $this->depth = $depth;
     return $this;

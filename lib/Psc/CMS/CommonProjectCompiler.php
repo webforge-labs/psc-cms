@@ -293,6 +293,7 @@ class CommonProjectCompiler extends ProjectCompiler {
       
       $property('locale', $type('String'), $nullable()),
       $property('slug', $type('String'), $nullable()),
+      $property('type', $type('String'))->setDefaultValue('page-content'),
       $property('revision', $type('String'))->setDefaultValue('default'),
       
       $constructor(

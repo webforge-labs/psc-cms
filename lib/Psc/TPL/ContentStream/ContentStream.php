@@ -5,6 +5,9 @@ namespace Psc\TPL\ContentStream;
 use Doctrine\Common\Collections\Collection;
 
 interface ContentStream {
+
+  const PAGE_CONTENT = 'page-content';
+  const SIDEBAR_CONTENT = 'sidebar-content';
   
   public function addEntry(Entry $entry);
   

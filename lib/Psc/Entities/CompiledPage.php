@@ -108,9 +108,6 @@ abstract class CompiledPage extends \Psc\CMS\Roles\PageEntity {
     return $this->active;
   }
   
-  /**
-   * @param bool $active
-   */
   public function setActive($active) {
     $this->active = $active;
     return $this;

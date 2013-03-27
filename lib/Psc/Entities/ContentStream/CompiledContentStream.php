@@ -35,6 +35,12 @@ abstract class CompiledContentStream extends \Psc\TPL\ContentStream\ContentStrea
    * @var string
    * @ORM\Column
    */
+  protected $type = 'page-content';
+  
+  /**
+   * @var string
+   * @ORM\Column
+   */
   protected $revision = 'default';
   
   /**
@@ -115,6 +121,21 @@ abstract class CompiledContentStream extends \Psc\TPL\ContentStream\ContentStrea
   /**
    * @return string
    */
+  public function getType() {
+    return $this->type;
+  }
+  
+  /**
+   * @param string $type
+   */
+  public function setType($type) {
+    $this->type = $type;
+    return $this;
+  }
+  
+  /**
+   * @return string
+   */
   public function getRevision() {
     return $this->revision;
   }
@@ -151,6 +172,7 @@ abstract class CompiledContentStream extends \Psc\TPL\ContentStream\ContentStrea
       'id' => new \Psc\Data\Type\IdType(),
       'locale' => new \Psc\Data\Type\StringType(),
       'slug' => new \Psc\Data\Type\StringType(),
+      'type' => new \Psc\Data\Type\StringType(),
       'revision' => new \Psc\Data\Type\StringType(),
       'entries' => new \Psc\Data\Type\PersistentCollectionType(new \Psc\Code\Generate\GClass('Psc\\Entities\\ContentStream\\Entry')),
     ));

@@ -19,3 +19,8 @@ ProjectMain:
 - set containerClass to this class (per default its the projectNamespace\CMS\Container)
 - override getContainer in your main if necessary (if you have ovrriden the constructor from Psc\CMS\Roles\AbstractContainer)
 
+
+
+
+Projects (DB):
+- ContentStream has another column "type" which defaults to "page-content"

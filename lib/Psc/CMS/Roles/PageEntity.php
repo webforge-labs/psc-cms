@@ -2,7 +2,7 @@
 
 namespace Psc\CMS\Roles;
 
-use Psc\Data\ArrayCollection;
+use Psc\TPL\ContentStream\Collection as CollectionHelper;
 
 /**
  * (at)ORM\HasLifecycleCallbacks
@@ -28,6 +28,20 @@ abstract class PageEntity extends \Psc\CMS\AbstractEntity implements \Psc\CMS\Ro
     $this->modified = \Psc\DateTime\DateTime::now();
     
     return $this;
+  }
+
+  /**
+   * Fluid interface for getting specific ContentStream(s)
+   * 
+   * $page->getContentStream()
+   *     ->locale('de')
+   *     ->type('sidebar-content')
+   *     ->one()
+   *
+   * @return Psc\TPL\ContentStream\Collection
+   */
+  public function getContentStream() {
+    return new CollectionHelper($this->contentStreams->toArray());
   }
   
   /**

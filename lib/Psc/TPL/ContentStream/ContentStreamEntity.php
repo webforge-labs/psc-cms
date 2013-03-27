@@ -5,7 +5,21 @@ namespace Psc\TPL\ContentStream;
 use RuntimeException;
 use Doctrine\Common\Collections\Collection;
 
-abstract class ContentStreamEntity extends \Psc\CMS\AbstractEntity {
+abstract class ContentStreamEntity extends \Psc\CMS\AbstractEntity implements ContentStream {
+
+  public static function create($locale, $type = 'page-content', $revision = 'default', $slug = NULL) {
+    $cs = new static($locale, $slug, $revision);
+    $cs->setType($type);
+    return $cs;
+  }
+
+  /**
+   * Returns the JSType for a class FQN
+   */
+  public static function convertClassName($classFQN) {
+    return Code::getClassName($classFQN);
+    //return Code::camelCaseToDash(Code::getClassName($classFQN));
+  }
 
   /**
    * @param Psc\TPL\ContentStream\Entry $entry
@@ -98,4 +112,3 @@ abstract class ContentStreamEntity extends \Psc\CMS\AbstractEntity {
   
   abstract public function getTypeClass($typeName);
 }
-?>
