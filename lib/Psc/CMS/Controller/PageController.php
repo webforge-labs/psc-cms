@@ -138,6 +138,17 @@ abstract class PageController extends ContainerController {
       }
     }
   }
+
+  protected function onDelete(Entity $entity) {
+    $em = $this->dc->getEntityManager();
+    foreach ($entity->getNavigationNodes() as $node) {
+      $node->setPage($inactivePage = $this->createInactivePage('acreated-paged'));
+      $em->persist($inactivePage);
+      $em->persist($node);
+    }
+
+    return parent::onDelete($entity);
+  }
   
   protected function initProcessor(\Psc\Doctrine\Processor $processor) {
     $processor->setSynchronizeCollections('normal');
@@ -173,11 +184,7 @@ abstract class PageController extends ContainerController {
     return $this->navigationRepository;
   }
 
-  protected function getNavigationController() {
 
-  }
-
-  
   /**
    * @return Array
    */

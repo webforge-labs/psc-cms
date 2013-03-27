@@ -4,6 +4,7 @@ namespace Psc\CMS\Controller;
 
 use Psc\UI\PagesMenu;
 use Psc\Entities\Page;
+use Psc\Entities\NavigationNode;
 use Psc\Entities\ContentStream\ContentStream;
 
 class PageControllerTest extends \Psc\Doctrine\DatabaseTestCase {
@@ -68,6 +69,38 @@ class PageControllerTest extends \Psc\Doctrine\DatabaseTestCase {
     $this->assertEquals('thehtml', $this->controller->getEntity($page->getId(), array('contentstream', 'de')));
   }
 
+  public function testDeletingThePageWillSetAnInactivePageInTheNode() {
+    $page = $this->insertPageWithNavigationNode();
+    $nav = $page->getPrimaryNavigationNode();
+
+    $this->controller->deleteEntity($page->getIdentifier());
+
+    $this->assertNotSame($page, $inactivePage = $nav->getPage(), 'nav should have a new page which is inactive');
+    $this->assertFalse($inactivePage->isActive(), 'inactive page should be inactive');
+  }
+
+  protected function insertPageWithNavigationNode() {
+    $page = new Page('page-with-nav');
+    $page->setActive(TRUE);
+
+    $title = array();
+    foreach ($this->languages as $lang) {
+      $title[$lang] = 'node for page with navigation';
+    }
+
+    $nav = new NavigationNode($title);
+    $nav->setLft(1);
+    $nav->setRgt(1);
+    $nav->setPage($page);
+    $nav->setDepth(0);
+    $this->em->persist($nav);
+    $this->em->persist($page);
+    $this->em->flush();
+    $this->em->clear();
+
+    return $this->hydrate('Page', $page->getIdentifier());
+  }
+
   protected function insertPageWithLocaleContentStreams() {
     $page = new Page('test-page');
 
@@ -84,3 +117,4 @@ class PageControllerTest extends \Psc\Doctrine\DatabaseTestCase {
     return $page;
   }
 }
+
