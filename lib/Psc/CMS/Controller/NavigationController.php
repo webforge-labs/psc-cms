@@ -64,15 +64,7 @@ class NavigationController extends ContainerController {
     $container->addClass('\Psc\navigation');
     
     $pane->setRightContent(
-      \Psc\UI\Group::create('',array(
-        Form::hint('Die Navigations-Ebenen sind von links nach rechts zu lesen. Die Zuordnung der Unterpunkte zu Hauptpunkten '.
-                 'ist von oben nach unten zu lesen.'."\n".
-                 'Die Hauptnavigation besteht aus den Navigations-Punkten, die überhaupt nicht eingerückt sind. '.
-                 'Jede weitere Einrückung bedeutet ein tiefere Ebene in der Navigation.'
-                 ).'<br />',
-        '<br />',
-        
-      ))->setStyle('margin-top','7px')
+      $this->getFormDocumentation()
     );
     
     $panelButtons = new PanelButtons(array('save', 'reload'));
@@ -92,7 +84,8 @@ class NavigationController extends ContainerController {
       'Psc.UI.Navigation',
       array(
         'widget'=>JooseSnippet::expr(\Psc\JS\jQuery::getClassSelector($main)),
-        'flat'=>$this->getFlat()
+        'flat'=>$this->getFlat(),
+        'uiController'=>JooseSnippet::expr('main.getUIController()'),
       )
     );
     
@@ -281,5 +274,26 @@ class NavigationController extends ContainerController {
    */
   public function getRepository() {
     return $this->repository;
+  }
+
+  protected function getFormDocumentation() {
+    $html = \Psc\UI\Group::create('Navigations-Ebenen',array(
+      Form::hint(
+        'Die Navigations-Ebenen sind von links nach rechts zu lesen. Die Zuordnung der Unterpunkte zu Hauptpunkten ist von oben nach unten zu lesen.'."\n".
+        'Die Hauptnavigation besteht aus den Navigations-Punkten, die überhaupt nicht eingerückt sind. Jede weitere Einrückung bedeutet ein tiefere Ebene in der Navigation.'
+        ).'<br />',
+      '<br />'
+    ))->setStyle('margin-top','7px');
+
+    $html .= \Psc\UI\Group::create('Neue Seite erstellen', array(
+      Form::hint(
+'1. Navigations-Punkt hinzufügen
+2. Navigations-Punkt editieren und benennen
+3. Navigation Speichern und neu laden.
+Jetzt kann durch den Seiten-Button des neuen Navigations-Punktes die Seite geöffnet werden.'
+      )
+    ));
+
+    return $html;
   }
 }
