@@ -478,7 +478,7 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
     $entity = $this->getEntity($identifier);
     $oldIdentifier = $entity->getIdentifier(); // casted zur richtigen value
     
-    $this->repository->delete($entity); // delete macht remove + flush zusammen
+    $this->onDelete($entity);
     
     $this->commitTransaction();
     
@@ -489,6 +489,10 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
     // wir wollen aber das entity noch exportieren um das "entity was deleted" event mit richtigem "alten" identifier senden zu können
     
     return $entity;
+  }
+
+  protected function onDelete(Entity $entity) {
+    $this->repository->delete($entity); // delete macht remove + flush zusammen
   }
 
   /**
