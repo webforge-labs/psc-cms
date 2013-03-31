@@ -30,53 +30,18 @@ class LayoutManager extends \Psc\HTML\JooseBase {
   }
   
   protected function doInit() {
-    $pane = new SplitPane(70);
-    
-    $pane->setLeftContent(
-      $layout = Form::group($this->label, NULL)
-    );
-    $layout->getContent()->div->setStyle('min-height','600px');
-    
-    $button = function ($type, $label, $data = NULL) {
-      $button = new Button($label);
-      if ($data) {
-        $button->addData('layoutContent',$data);
-      }
-      $button->getHTML()->setAttribute('title', $type);
-      return $button;
+    $control = function ($type, $label, $data = NULL) {
+      $snippet = \Psc\JS\JooseSnippet::create(
+        'Psc.UI.LayoutManager.Control', array(
+          'params'=>$data,
+          'type'=>$type,
+          'label'=>$label
+        )
+      );
+      return $snippet;
     };
     
-    $pane->setRightContent(
-      $scrollable = HTML::tag('div', Array(
-        Accordion::create(array('autoHeight'=>true))
-        ->addSection('Text und Bilder', array(
-          $button('Headline', 'Überschrift', (object) array('level'=>1)),
-          $button('Headline', 'Zwischenüberschrift', (object) array('level'=>2)),
-          $button('Paragraph', 'Absatz'),
-          $button('Li', 'Aufzählung'),
-          $button('Image', 'Bild'),
-          $button('DownloadsList', 'Download-Liste', (object) array('headline'=>'', 'downloads'=>array())),
-          $button('WebsiteWidget', 'Kalender', (object) array('label'=>'Kalender', 'name'=>'calendar'))
-        ))
-        //->addSection('weitere Elemente', array(
-          
-        //))
-        ->html()
-          ->addClass('\Psc\right-accordion')
-        ,
-        
-        Group::create(
-          'Magic Box',
-          array(
-            Form::textarea(NULL, array('disabled','magic'))->setStyle('width', '100%')->addClass('magic-box'),
-            new Button('umwandeln und hinzufügen'),
-            Form::hint('in die Magic Box kann ein gesamter Text eingefügt werden. Der Text wird dann analysiert und automatisch in Abschnitte und Elemente unterteilt. Die neuen Elemente werden immer ans Ende des Layouts angehängt.')
-          )
-        )->addClass('magic-helper')
-      ))->addClass('should-scroll')
-    );
-    
-    $this->html = $pane->html()->addClass('\Psc\serializable')->addClass('\Psc\layout-manager');
+    $this->html = new HTMLTag('div', NULL, array('class'=>'joose-widget-wrapper'));
 
     $this->autoLoadJoose(
       $this->createJooseSnippet(
@@ -84,9 +49,18 @@ class LayoutManager extends \Psc\HTML\JooseBase {
         array(
           'widget'=>$this->widgetSelector(),
           'uploadService'=>$this->uploadService->getJooseSnippet(),
-          'serializedWidgets'=>$this->serializedWidgets
+          'serializedWidgets'=>$this->serializedWidgets,
+          'controls'=>array(
+            $control('Headline', 'Überschrift', (object) array('level'=>1)),
+            $control('Headline', 'Zwischenüberschrift', (object) array('level'=>2)),
+            $control('Paragraph', 'Absatz'),
+            $control('Li', 'Aufzählung'),
+            $control('Image', 'Bild'),
+            $control('DownloadsList', 'Download-Liste', (object) array('headline'=>'', 'downloads'=>array())),
+            $control('WebsiteWidget', 'Kalender', (object) array('label'=>'Kalender', 'name'=>'calendar'))
+          )
         )
-      )
+      )->addRequirement('Psc.UI.LayoutManager.Control')
     );
   }
   
