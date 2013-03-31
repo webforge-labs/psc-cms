@@ -52,6 +52,9 @@ class CompileTestEntitiesCommand extends DoctrineCommand {
     $output->writeLn('  '.$this->compileContentStreamEntry().' geschrieben');
     $output->writeLn('  '.$this->compileCSHeadline().' geschrieben');
     $output->writeLn('  '.$this->compileCSParagraph().' geschrieben');
+    $output->writeLn('  '.$this->compileCSImage().' geschrieben');
+
+    $output->writeLn('  '.$this->compileCSSimpleTeaser().' geschrieben');
     $output->writeLn('finished.');
   }
   
@@ -112,6 +115,39 @@ class CompileTestEntitiesCommand extends DoctrineCommand {
 
   public function compileCSParagraph() {
     return $this->ccompiler->doCompileCSParagraph()->getWrittenFile();
+  }
+
+  public function compileCSImage() {
+    return $this->ccompiler->doCompileCSImage()->getWrittenFile();
+  }
+
+/*  public function compileCSImage() {
+    return $this->ccompiler->doCompileCSImage()->getWrittenFile();
+  }
+*/
+  public function compileCSSimpleTeaser() {
+    extract($this->modelCompiler->getClosureHelpers());
+    extract($this->ccompiler->csHelp());
+
+    return $this->modelCompiler->compile(
+      $entity('ContentStream\SimpleTeaser', $extends($expandClass('ContentStream\Entry'))),
+
+      $property('headline', $type('String')),
+      $property('text', $type('MarkupText')),
+
+      $constructor(
+        $argument('headline'),
+        $argument('text', NULL)
+      ),
+
+      $build($relation($targetMeta($expandClass('ContentStream\Image')), 'OneToOne', 'unidirectional')->setNullable(TRUE)),
+      $build($relation($targetMeta('NavigationNode')->setAlias('Link'), 'OneToOne', 'unidirectional')->setNullable(TRUE)),
+
+      $build($csSerialize('headline', 'text', 'link', 'image')),
+      $build($csLabel('Normaler Teaser'))
+
+
+    )->getWrittenFile();
   }
 
   protected function compileTag() {

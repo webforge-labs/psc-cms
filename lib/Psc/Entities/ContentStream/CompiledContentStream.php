@@ -148,9 +148,6 @@ abstract class CompiledContentStream extends \Psc\TPL\ContentStream\ContentStrea
     return $this;
   }
   
-  /**
-   * @return Doctrine\Common\Collections\Collection<Psc\Entities\ContentStream\Entry>
-   */
   public function getEntries() {
     return $this->entries;
   }

@@ -4,6 +4,7 @@ namespace Psc\Doctrine;
 
 use Psc\Code\Generate\GClass;
 use Psc\Code\Generate\GParameter;
+use Psc\Code\Generate\GMethod;
 use Psc\Data\Type\Type;
 use Psc\Code\Generate\ClassWriter;
 use Psc\Code\Code;
@@ -115,7 +116,7 @@ class ModelCompiler extends \Psc\SimpleObject {
       
       return \Psc\Data\Type\Type::createArgs($name, array_slice(func_get_args(), 1));
     };
-    
+
 
     //entity
     $entity = function ($entityName, \Psc\Code\Generate\GClass $baseEntity = NULL, $tableName = NULL) use ($mc) {
@@ -262,13 +263,23 @@ class ModelCompiler extends \Psc\SimpleObject {
       foreach (func_get_args() as $item) {
         if ($item instanceof EntityRelation) {
           return $mc->getEntityBuilder()->buildRelation($item);
+        } elseif ($item instanceof GMethod) {
+          return $mc->getEntityBuilder()->addMethod($item);
         } else {
           throw new \InvalidArgumentException('Dont Know how to build: '.Code::varInfo($item));
         }
       }
     };
-    
 
+    $builder = function() use ($mc) {
+      return $mc->getEntityBuilder();
+    };
+    
+    $method = function($name, $params = array(), $body = NULL, $modifiers = 256) use ($mc) {
+       return $mc->getEntityBuilder()->createMethod(
+          $name, $params, $body, $modifiers
+      );
+    };
 
     // constructor
     $constructor = function () use ($mc) {
@@ -364,7 +375,8 @@ class ModelCompiler extends \Psc\SimpleObject {
     return compact(
                    'entity', 'expandClass', 'entityClass', 'extends', 'getGClass',
                    'property', 'enumType', 'flag', 'nullable', 'unique', 'type', 'undefined', 'i18n',
-                   'constructor','argument',
+                   'method',
+                   'constructor','argument', 'builder',
                    'setIdentifier','isId', 'defaultId',
                    
                    'relation','addRelation', 'build',

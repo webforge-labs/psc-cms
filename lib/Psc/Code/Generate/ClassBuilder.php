@@ -102,7 +102,7 @@ class ClassBuilder extends \Psc\Object {
   }
   
   /**
-   * Erstellt eine neue Methode und fügt diese der Klasse hinzu
+   * Erstellt eine neue Methode
    * 
    * @return GMethod
    */

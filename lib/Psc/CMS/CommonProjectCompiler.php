@@ -4,6 +4,9 @@ namespace Psc\CMS;
 
 use Psc\Doctrine\Annotation;
 use Psc\Code\Generate\GClass;
+use Psc\Code\Generate\GParameter;
+use Psc\Code\Generate\GMethod;
+use Psc\Code\Generate\ClassBuilder;
 use Closure;
 use Psc\Doctrine\DCPackage;
 use Psc\Doctrine\EntityRelation;
@@ -363,19 +366,20 @@ class CommonProjectCompiler extends ProjectCompiler {
 
   public function doCompileCSImage($entityName = 'ContentStream\Image', Closure $doCompile = NULL, $tableName = 'cs_images') {
     extract($help = $this->help());
+    extract($cs = $this->csHelp());
    
     if (!isset($doCompile)) {
       $doCompile = function(){};
     }
 
-    return $this->getModelCompiler()->compile(
+    $entityBuilder = $this->getModelCompiler()->compile(
       $entity($entityName, $extends($expandClass("ContentStream\Entry"))),
       $defaultId(),
       
       $property('url', $type('String')),
-      $property('imageId', $type('Integer'),$nullable()),
       $property('caption', $type('String'), $nullable()),
       $property('align', $type('String'), $nullable()),
+      $property('thumbnailFormat', $type('String'))->setDefaultValue('content-page'),
       
       $constructor(
         $argument('url'),
@@ -383,8 +387,55 @@ class CommonProjectCompiler extends ProjectCompiler {
         $argument('align', NULL)
       ),
       
+      $build($relation($targetMeta('Image')->setAlias('ImageEntity'), 'OneToOne', 'unidirectional')),
+
+      //  implement entry interface
+      $build($csSerialize('url', 'caption', 'align', 'imageEntity')),
+      $build($csLabel('Bild')),
+
+      $build($method('html', array(),
+        array(
+          "\$img = HTML::tag('img', NULL, array('src'=>\$this->getHTMLUrl(), 'alt'=>\$this->getLabel()));",
+          "",
+          'if (isset($this->align)) {',
+          "  \$img->addClass('align'.\$this->align);",
+          '}',
+          "",
+          "return \$img;"
+        )
+      )),
+
+      $build($method('getHTMLUrl', array(), 
+        array(
+          'return $this->getImageEntity()->getThumbnailUrl($this->getThumbnailFormat());'
+        )
+      )),
+
+      $getGClass()->addInterface(new GClass('Psc\TPL\ContentStream\ImageManaging')),
+
+      $imageManager = $builder()->addProperty('imageManager', $type('Object<Psc\Image\Manager>')),
+      $builder()
+        ->generateGetter($imageManager, NULL, ClassBuilder::INHERIT)
+        ->generateSetter($imageManager, NULL, ClassBuilder::INHERIT),
+
+      $getGClass()->getMethod('setImageManager')
+        ->insertBody(array(
+          "if (isset(\$this->imageEntity)) {",
+          "  \$this->imageManager->load(\$this->imageEntity);",
+          "}"
+        ), -1),
+
+      $getGClass()->getMethod('setImageEntity')
+        ->insertBody(array(
+          "if (isset(\$this->imageManager)) {",
+          "  \$this->imageManager->load(\$this->imageEntity);",
+          "}",
+        ), -1),
+
       $doCompile($help)
     );
+
+    return $entityBuilder;
   }
 
   public function doCompileCSParagraph($entityName = 'ContentStream\Paragraph', Closure $doCompile = NULL, $tableName = 'cs_paragraphs') {
@@ -499,5 +550,38 @@ class CommonProjectCompiler extends ProjectCompiler {
       $doCompile($help)
     );
   }
+
+  public function csHelp() {
+    extract($this->help());
+
+    $phpWriter = new \Psc\Code\Generate\CodeWriter();
+
+    $csSerialize = function () use ($method, $phpWriter) {
+      $fields = func_get_args();
+
+      return $method('serialize', array(new GParameter('context')),
+        array(
+          "return \$this->doSerialize(array(".$phpWriter->exportFunctionParameters($fields)."));"
+        )
+      );
+    };
+
+    $csLabel = function ($label) use ($method) {
+      return $method('getLabel', array(),
+        array(
+          sprintf("return '%s';", $label)
+        )
+      );
+    };
+
+    $csHTMLTemplate = function ($template) use ($method) {
+      return $method('html', array(),
+        array(
+          "return ".$template.';'
+        )
+      );
+    };
+
+    return compact('csSerialize', 'csLabel', 'csHTMLTemplate');
+  }
 }
-?>
