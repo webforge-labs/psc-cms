@@ -290,16 +290,15 @@ class Tag extends \Psc\OptionsObject implements HTMLInterface {
    * @param string|array
    */
   public function addClass($class) {
-    
-        if (is_array($class)) {
-          foreach ($class as $c) {
-            $this->setClass($c);
-          }
-          return $this;
-    
-        } else {
-          return $this->setClass($class);
-        }
+    if (is_array($class)) {
+      foreach ($class as $c) {
+        $this->setClass($c);
+      }
+      return $this;
+      
+    } else {
+      return $this->setClass($class);
+    }
   }
   
   public function removeClass($class) {
