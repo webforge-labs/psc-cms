@@ -89,7 +89,7 @@ PHP_CLI;
       //$this->psc->getHtdocs()->sub('js/')->copy($target->sub('js/')->create(), NULL, array('ui-dev','fixtures'), TRUE);
       $this->psc->getHtdocs()->sub('css/')->copy($target->sub('css/')->create(), NULL, NULL, TRUE);
       
-      foreach (array('lib/','css/','img/','vendor/') as $sub) {
+      foreach (array('lib/','css/','img/','templates/','vendor/') as $sub) {
         $this->pscjs->sub($sub)->copy($cmsHtdocs->sub('psc-cms-js/'.$sub)->create(), NULL, NULL, TRUE);
       }
     }
