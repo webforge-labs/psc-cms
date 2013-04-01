@@ -58,10 +58,6 @@ class AuthController extends BaseAuthController {
     $formAction = $this->getTodoURL(self::TODO_LOGIN);
     $redirect = $this->getRedirect();
     
-    if (PSC::inProduction()) {
-      TPL::install(array('CMS','loginform'));
-    }
-    
     $errors = $this->errors;
     
     $html->body->content = TPL::get(array('CMS','loginform'), compact('formAction','errors','ident','permanent','html','redirect'));
