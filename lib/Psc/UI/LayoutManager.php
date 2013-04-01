@@ -41,7 +41,7 @@ class LayoutManager extends \Psc\HTML\JooseBase {
       return $snippet;
     };
     
-    $this->html = new HTMLTag('div', NULL, array('class'=>'joose-widget-wrapper'));
+    $this->html = new HTMLTag('div', NULL, array('class'=>array('joose-widget-wrapper', '\Psc\serializable')));
 
     $this->autoLoadJoose(
       $this->createJooseSnippet(

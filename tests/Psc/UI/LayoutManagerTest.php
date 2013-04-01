@@ -19,6 +19,6 @@ class LayoutManagerTest extends \Psc\Code\Test\HTMLTestCase {
     $this->html = $this->layoutManager->html();
     
     $this->assertNotEmpty($this->html);
+    $this->assertContains('\Psc\serializable', $this->html->getAttribute('class'), 'html should have class serializable because the widget is linked here');
   }
 }
-?>
