@@ -96,6 +96,17 @@ abstract class DeployCommand extends Command {
     system('SET COMPOSER_ROOT_VERSION=dev-master && cd '.$project->getVendor()->up().' && composer update --dev');
     $this->br();
   }
+
+  protected function createWebforgeContainer() {
+    if (isset($GLOBALS['env']['container'])) {
+      return $GLOBALS['env']['container']->webforge;
+    } else {
+      $container = new WebforgeContainer();
+      $container->initLocalPackageFromDirectory(new Dir(getcwd().DIRECTORY_SEPARATOR));
+
+      return $container;
+    }
+  }
   
   protected function doExecute($input, $output) {
     $bench = new TimeBenchmark();
@@ -103,8 +114,7 @@ abstract class DeployCommand extends Command {
     $cliProject = $this->getHelper('project')->getProject();
     $modes = $input->getArgument('mode');
 
-    $container = new WebforgeContainer();
-    $container->initLocalPackageFromDirectory(new Dir(__DIR__.DIRECTORY_SEPARATOR));
+    $container = $this->createWebforgeContainer();
     
     foreach ($modes as $mode) {
       $project = clone $cliProject;
