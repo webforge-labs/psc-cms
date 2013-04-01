@@ -3,6 +3,7 @@
 namespace Psc\CMS;
 
 use Doctrine\ORM\Mapping\ClassMetadata;
+use Psc\Code\Code;
 
 /**
  * Eine Meta-Klasse für erweiterte Labels oder Informationen zum Entity
@@ -253,7 +254,7 @@ class EntityMeta extends \Psc\SimpleObject {
    * Dies ist für \tiptoi\Entities\Sound z. b. "sound"
    */
   public function getEntityName() {
-    return mb_strtolower($this->getGClass()->getClassName());
+    return Code::camelCaseToDash($this->getGClass()->getClassName());
   }
     
   /**

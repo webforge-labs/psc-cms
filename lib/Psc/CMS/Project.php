@@ -464,6 +464,12 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber {
       return $baseUrl;
     }
 
+    if ($this->config->get(array('project','cmsUrl')) === 'cms') {
+      $cmsUrl = clone $baseUrl;
+      $cmsUrl->addPathPart('cms');
+      return $cmsUrl;
+    }
+
     // cms vor dem host-name einfügen
     $hostParts = $baseUrl->getHostParts();
     array_unshift($hostParts,'cms');

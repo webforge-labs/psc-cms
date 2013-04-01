@@ -88,7 +88,7 @@ class CMSRequestDispatcher extends \Psc\SimpleObject {
   protected function getRequest() {
     if (!isset($this->request)) {
       $this->request = new \Psc\URL\Request($this->expandUrl($this->url));
-      $this->request->setAuthentication($this->hostConfig->req('cms.user'),$this->hostConfig->req('cms.password'),CURLAUTH_BASIC);
+      $this->request->setAuthentication($this->hostConfig->req('cmf.user'),$this->hostConfig->req('cmf.password'), CURLAUTH_BASIC);
       $this->request->setHeaderField('X-Psc-Cms-Connection','tests');
       $this->request->setHeaderField('X-Psc-Cms-Debug-Level',15);
       
@@ -129,7 +129,7 @@ class CMSRequestDispatcher extends \Psc\SimpleObject {
     } else {
       $baseUrl = $this->project->getCMSBaseURL();
     }
-    
+
     return $baseUrl.ltrim($url,'/');
   }
   

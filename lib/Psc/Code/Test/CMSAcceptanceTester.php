@@ -201,6 +201,42 @@ class CMSAcceptanceTester extends \Psc\System\LoggerObject {
     
     return $html;
   }
+
+  /**
+   * The HTML of home will be returned
+   */
+  public function home($url = '/') {
+    $dispatcher = $this->dispatcher('GET', $url);
+    
+    $html = $this->result($dispatcher, 'html');
+    $test = $this->testCase->getCodeTester();
+
+    return $html;
+  }
+
+  /**
+   * Some Basic markup checks
+   */
+  public function homeDefaults($url = '/') {
+    $html = $this->home($url);
+    $test = $this->testCase->getCodeTester();
+
+    $test->css('html', $html)
+     ->css('head script[src="/psc-cms-js/vendor/require.js"]')->count(1)->end()
+     ->css('head link[rel="stylesheet"][href="/psc-cms-js/css/ui.css"]')->count(1)->end()
+
+     ->css('body', $html)->count(1)
+
+       ->css('#body')->count(1)
+         ->css('#content > .right > #drop-contents div.content')->count(1)->end()
+       ->end()
+       ->css('#header')->count(1)->end()
+       ->css('#footer')->count(1)->end()
+     ->end()
+    ;
+
+    return $html;
+  }
   
   /**
    * Asserted das Result des Tests auf $code
