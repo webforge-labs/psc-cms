@@ -86,6 +86,7 @@ class NavigationController extends ContainerController {
         'widget'=>JooseSnippet::expr(\Psc\JS\jQuery::getClassSelector($main)),
         'flat'=>$this->getFlat(),
         'uiController'=>JooseSnippet::expr('main.getUIController()'),
+        'languages'=>(array) $this->container->getLanguages()
       )
     );
     
