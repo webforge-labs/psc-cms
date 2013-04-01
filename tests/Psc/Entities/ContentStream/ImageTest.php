@@ -8,7 +8,7 @@ class ImageTest extends \Webforge\Code\Test\Base {
     $this->chainClass = 'Psc\\Entities\\ContentStream\\Image';
     parent::setUp();
 
-    $this->image = new Image('/ka/was/das/fuer/ne/url/ist');
+    $this->image = new Image('/sourcepath/in/db');
 
     $this->imageManager = $this->getMock('Psc\Image\Manager', array(), array(), '', FALSE);
     $this->imageEntity = $this->getMock('Psc\Entities\Image', array(), array(), '', FALSE);
@@ -39,6 +39,17 @@ class ImageTest extends \Webforge\Code\Test\Base {
 
     $this->image->setImageManager($this->imageManager);
     $this->image->setImageEntity($this->imageEntity);
+
+    $this->assertSame($this->imageEntity, $this->image->getImageEntity());
+  }
+
+  public function testDBDataTraversion_ImageEntityCanBeLoadedWithJustURL() {
+    $this->image = new Image('/sourcepath/in/db');
+    $this->image->setImageManager($this->imageManager);
+
+    $this->imageManager->expects($this->once())->method('load')
+      ->with($this->equalTo($this->image->getUrl()))
+      ->will($this->returnValue($this->imageEntity));
 
     $this->assertSame($this->imageEntity, $this->image->getImageEntity());
   }

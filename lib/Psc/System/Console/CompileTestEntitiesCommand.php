@@ -59,7 +59,7 @@ class CompileTestEntitiesCommand extends DoctrineCommand {
   }
   
   protected function compilePerson() {
-    extract($this->modelCompiler->getClosureHelpers());
+    extract($this->help());
     
     $entityBuilder = $this->modelCompiler->compile(
       $entity(new GClass('Psc\Doctrine\TestEntities\Person')),
@@ -126,7 +126,7 @@ class CompileTestEntitiesCommand extends DoctrineCommand {
   }
 */
   public function compileCSSimpleTeaser() {
-    extract($this->modelCompiler->getClosureHelpers());
+    extract($this->help());
     extract($this->ccompiler->csHelp());
 
     return $this->modelCompiler->compile(
@@ -151,7 +151,7 @@ class CompileTestEntitiesCommand extends DoctrineCommand {
   }
 
   protected function compileTag() {
-    extract($this->modelCompiler->getClosureHelpers());
+    extract($this->help());
     
     $entityBuilder = $this->modelCompiler->compile(
       $entity(new GClass('Psc\Doctrine\TestEntities\Tag')),
@@ -168,7 +168,7 @@ class CompileTestEntitiesCommand extends DoctrineCommand {
   }
 
   protected function compileCategory() {
-    extract($this->modelCompiler->getClosureHelpers());
+    extract($this->help());
     
     $entityBuilder = $this->modelCompiler->compile(
       $entity(new GClass('Psc\Doctrine\TestEntities\Category')),
@@ -184,7 +184,7 @@ class CompileTestEntitiesCommand extends DoctrineCommand {
   }
   
   protected function compileArticle() {
-    extract($this->modelCompiler->getClosureHelpers());
+    extract($this->help());
     
     $entityBuilder = $this->modelCompiler->compile(
       $entity(new GClass('Psc\Doctrine\TestEntities\Article')),
@@ -203,5 +203,13 @@ class CompileTestEntitiesCommand extends DoctrineCommand {
     );
     
     return $entityBuilder->getWrittenFile();
+  }
+
+  protected function help() {
+    if (!isset($this->help)) {
+      $this->help = $this->modelCompiler->getClosureHelpers();
+    }
+
+    return $this->help;
   }
 }

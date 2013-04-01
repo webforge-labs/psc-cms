@@ -48,7 +48,7 @@ abstract class CompiledImage extends Entry implements \Psc\TPL\ContentStream\Ima
   /**
    * @var Psc\Entities\Image
    * @ORM\ManyToOne(targetEntity="Psc\Entities\Image")
-   * @ORM\JoinColumn(nullable=false, onDelete="cascade")
+   * @ORM\JoinColumn(onDelete="SET NULL")
    */
   protected $imageEntity;
   
@@ -149,13 +149,19 @@ abstract class CompiledImage extends Entry implements \Psc\TPL\ContentStream\Ima
    * @return Psc\Entities\Image
    */
   public function getImageEntity() {
+    if (!isset($this->imageEntity)) {
+      if (!isset($this->imageManager)) {
+        throw new \RuntimeException('ImageManager muss gesetzt sein, bevor html erzeugt wird (getImageEntity)');
+      }
+      $this->imageEntity = $this->imageManager->load($this->url);
+    }
     return $this->imageEntity;
   }
   
   /**
    * @param Psc\Entities\Image $imageEntity
    */
-  public function setImageEntity(Image $imageEntity) {
+  public function setImageEntity(Image $imageEntity = NULL) {
     $this->imageEntity = $imageEntity;
     if (isset($this->imageManager)) {
       $this->imageManager->load($this->imageEntity);

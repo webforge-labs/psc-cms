@@ -34,7 +34,7 @@ abstract class EntryEntity extends AbstractEntity implements \Psc\HTML\HTMLInter
     foreach ($data as $property => $value) {
       $propertyMeta = $entityMeta->getPropertyMeta($property);
 
-      if (is_integer($value) && $propertyMeta->getType() instanceof \Psc\Data\Type\EntityType) {
+      if (is_numeric($value) && $propertyMeta->getType() instanceof \Psc\Data\Type\EntityType) {
         if ($propertyMeta->getType()->isImage()) {
           $value = $converter->getContext()->getImageManager()->load($value);
         } else {

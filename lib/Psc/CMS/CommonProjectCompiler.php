@@ -389,6 +389,8 @@ class CommonProjectCompiler extends ProjectCompiler {
       
       $build(
         $relation($targetMeta('Image')->setAlias('ImageEntity'), 'ManyToOne', 'unidirectional')
+          ->setNullable(TRUE)
+          ->setJoinColumnNullable(TRUE) //most comun images have only just url not entityImage specified, to tranverse to it its nullable
           ->setOnDelete(EntityRelation::CASCADE)
       ),
 
@@ -434,6 +436,16 @@ class CommonProjectCompiler extends ProjectCompiler {
           "  \$this->imageManager->load(\$this->imageEntity);",
           "}",
         ), -1),
+
+      $getGClass()->getMethod('getImageEntity')
+        ->insertBody(array(
+          "if (!isset(\$this->imageEntity)) {",
+          "  if (!isset(\$this->imageManager)) {",
+          "    throw new \RuntimeException('ImageManager muss gesetzt sein, bevor html erzeugt wird (getImageEntity)');",
+          "  }",
+          "  \$this->imageEntity = \$this->imageManager->load(\$this->url);",
+          "}"
+        ), 0),
 
       $doCompile($help)
     );
