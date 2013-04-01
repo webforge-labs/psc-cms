@@ -30,7 +30,9 @@ abstract class ProjectCompileCommand extends \Psc\System\Console\Command {
     $this->addOption('con','',self::VALUE_REQUIRED);
   }
   
-  abstract protected function doCompile(\Symfony\Component\Console\Input\InputInterface $input, \Symfony\Component\Console\Output\OutputInterface $output);
+  protected function doCompile(\Symfony\Component\Console\Input\InputInterface $input, \Symfony\Component\Console\Output\OutputInterface $output) {
+    return $this->doDefaultCompile($input, $output);
+  }
   
   protected function execute(InputInterface $input, OutputInterface $output) {
     parent::execute($input, $output);
