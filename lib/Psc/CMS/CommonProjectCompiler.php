@@ -387,7 +387,10 @@ class CommonProjectCompiler extends ProjectCompiler {
         $argument('align', NULL)
       ),
       
-      $build($relation($targetMeta('Image')->setAlias('ImageEntity'), 'OneToOne', 'unidirectional')),
+      $build(
+        $relation($targetMeta('Image')->setAlias('ImageEntity'), 'ManyToOne', 'unidirectional')
+          ->setOnDelete(EntityRelation::CASCADE)
+      ),
 
       //  implement entry interface
       $build($csSerialize('url', 'caption', 'align', 'imageEntity')),
@@ -395,7 +398,7 @@ class CommonProjectCompiler extends ProjectCompiler {
 
       $build($method('html', array(),
         array(
-          "\$img = HTML::tag('img', NULL, array('src'=>\$this->getHTMLUrl(), 'alt'=>\$this->getLabel()));",
+          "\$img = \Psc\HTML\HTML::tag('img', NULL, array('src'=>\$this->getHTMLUrl(), 'alt'=>\$this->getLabel()));",
           "",
           'if (isset($this->align)) {',
           "  \$img->addClass('align'.\$this->align);",

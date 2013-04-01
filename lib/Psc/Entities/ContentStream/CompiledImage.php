@@ -47,8 +47,8 @@ abstract class CompiledImage extends Entry implements \Psc\TPL\ContentStream\Ima
   
   /**
    * @var Psc\Entities\Image
-   * @ORM\OneToOne(targetEntity="Psc\Entities\Image")
-   * @ORM\JoinColumn(nullable=false, onDelete="SET NULL")
+   * @ORM\ManyToOne(targetEntity="Psc\Entities\Image")
+   * @ORM\JoinColumn(nullable=false, onDelete="cascade")
    */
   protected $imageEntity;
   
@@ -172,7 +172,7 @@ abstract class CompiledImage extends Entry implements \Psc\TPL\ContentStream\Ima
   }
   
   public function html() {
-    $img = HTML::tag('img', NULL, array('src'=>$this->getHTMLUrl(), 'alt'=>$this->getLabel()));
+    $img = \Psc\HTML\HTML::tag('img', NULL, array('src'=>$this->getHTMLUrl(), 'alt'=>$this->getLabel()));
     
     if (isset($this->align)) {
       $img->addClass('align'.$this->align);
