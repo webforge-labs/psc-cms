@@ -428,21 +428,17 @@ class ModelCompiler extends \Psc\SimpleObject {
   public function createEntityBuilder($entityName) {
     if ($entityName instanceof \Psc\Code\Generate\GClass) {
       $entityClass = $entityName;
-      $entityName = $entityClass->getClassName();
-      $entityClass->setClassName('Compiled'.ucfirst($entityName));
-    } elseif(mb_strpos($entityName, '\\') !== FALSE) {
-      $parts = explode('\\', $entityName);
-      $entityName = array_pop($parts);
-      array_push($parts, 'Compiled'.ucfirst($entityName));
-      $entityClass = implode("\\", $parts);
-      // wird dann von entityBuilder expanded zu default Namespace
     } else {
-      $entityClass = 'Compiled'.ucfirst($entityName);
-      // wird dann von entityBuilder expanded zu default Namespace
+      $entityClass = new GClass($this->getDefaultNamespace().'\\'.ltrim($entityName, '\\'));
     }
     
-    $this->originalEntityName = $entityName;      
-    $eb = new EntityBuilder($entityClass, $this->module, $this->classWriter, NULL, $this->getLanguages());
+    $this->originalEntityClass = $entityClass;
+    $this->originalEntityName = $entityClass->getClassName();
+
+    $compiledEntityClass = clone $entityClass;
+    $compiledEntityClass->setClassName('Compiled'.ucfirst($this->originalEntityName));
+    
+    $eb = new EntityBuilder($compiledEntityClass, $this->module, $this->classWriter, NULL, $this->getLanguages());
     $file = $eb->inferFile($eb->getGClass());
     if ($file->exists()) $file->delete();
     
@@ -450,7 +446,8 @@ class ModelCompiler extends \Psc\SimpleObject {
   }
   
   public function getOriginalEntityClass() {
-    return new GClass($this->getDefaultNamespace().'\\'.$this->originalEntityName);
+    return $this->originalEntityClass;
+    
   }
   
   public function setEntityBuilder(EntityBuilder $eb) {

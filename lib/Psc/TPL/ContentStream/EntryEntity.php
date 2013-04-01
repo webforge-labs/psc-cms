@@ -30,7 +30,18 @@ abstract class EntryEntity extends AbstractEntity implements \Psc\HTML\HTMLInter
   protected $context;
   
   public static function unserialize(\stdClass $data, $entityFactory, ContentStreamConverter $converter) {
+    $entityMeta = $entityFactory->getEntityMeta();
     foreach ($data as $property => $value) {
+      $propertyMeta = $entityMeta->getPropertyMeta($property);
+
+      if (is_integer($value) && $propertyMeta->getType() instanceof \Psc\Data\Type\EntityType) {
+        if ($propertyMeta->getType()->isImage()) {
+          $value = $converter->getContext()->getImageManager()->load($value);
+        } else {
+          throw new \RuntimeException('Cannot convert EntityType: '.$propertyMeta->getType()->getClassFQN());
+        }
+      }
+
       $entityFactory->set($property, $value);
     }
     

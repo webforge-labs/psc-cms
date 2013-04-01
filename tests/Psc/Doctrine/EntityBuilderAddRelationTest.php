@@ -21,6 +21,9 @@ class EntityBuilderAddRelationTest extends \Psc\Code\Test\Base {
   
   public function setUp() {
     $this->module = \Psc\PSC::getProject()->getModule('Doctrine');
+
+    $this->game = new EntityRelationMeta(new GClass('Psc\Entities\Game'), 'source');
+    $this->sound = new EntityRelationMeta(new GClass('Psc\Entities\Sound'), 'target');
   }
   
   public function assertPreConditions() {
@@ -101,6 +104,20 @@ class EntityBuilderAddRelationTest extends \Psc\Code\Test\Base {
 
     $m2o = $this->assertCommonRelation($builder, 'person', 'ManyToOne', 'Psc\Entities\Person');
     $this->assertEquals('addresses',$m2o->inversedBy);
+  }
+
+  public function testManyToOne_Unidirectional() {
+    $this->game2sound = new EntityRelation($this->game, $this->sound, EntityRelation::MANY_TO_ONE, EntityRelation::UNIDIRECTIONAL);
+    $this->game2sound->setNullable(TRUE);
+
+    $builder = new EntityBuilder('Game', $this->module);
+    $builder->createDefaultId();
+    $builder->buildRelation($this->game2sound);
+
+    $m2o = $this->assertCommonRelation($builder, 'sound', 'ManyToOne', 'Psc\Entities\Sound');
+    var_dump($m2o);
+    
+    $this->assertNull($m2o->inversedBy);
   }
   
   protected function assertCommonRelation(EntityBuilder $builder, $property, $annotationName, $targetEntity) {

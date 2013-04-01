@@ -241,6 +241,21 @@ class ModelCompilerTest extends \Psc\Code\Test\Base {
     
     $this->assertTrue(($this->mc->getFlags() & ModelCompiler::NO_SET_META_GETTER) === ModelCompiler::NO_SET_META_GETTER);
   }
+
+
+  public function testSourceAndTargetMetaFQNGenerating() {
+    extract($this->mc->getClosureHelpers());
+    
+    $this->mc->compile(
+      $entity('ContentStream\Image'),
+
+      $sm = $sourceMeta('Image'),
+      $tm = $targetMeta('Image')
+    );
+    
+    $this->assertEquals('Psc\Entities\ContentStream\Image', $sm->getFQN());
+    $this->assertEquals('Psc\Entities\Image', $tm->getFQN());
+  }
 }
 
 class ConcreteModelCompiler extends ModelCompiler {
