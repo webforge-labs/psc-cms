@@ -14,6 +14,9 @@ Psc\Image\*
 EntityService:
 - Signature has changed. Parameter #1 is not optional (dcPackage), Parameter #2 is a Psc\CMS\Controller\Factory
 
+Entities:
+- the entityName is now constructed in dash style. That means NavigationNode becomes navigation-node
+
 ProjectMain:
 - create a class YourNamespace\CMS\Container which extends \Psc\CMS\Roles\AbstractContainer (or implement Psc\CMS\Roles\Container)
 - set containerClass to this class (per default its the projectNamespace\CMS\Container)
