@@ -19,7 +19,6 @@ require_once __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'src'.DIRECTOR
 $console = new %projectConsole%($project = \Psc\PSC::getProject(), $project->getModule('Doctrine'));
 $console->run();
 
-?>
 PHP_CLI;
 
   protected $autoPrependFile = 'auto.prepend.php';
@@ -37,6 +36,7 @@ PHP_CLI;
   protected $psc;
   
   public function __construct(WebforgeContainer $webforgeContainer, Project $targetProject, LibraryBuilder $libraryBuilder = NULL) {
+    $this->cliPHPTemplate .= '?>'; // stupid sublime
     $packageRegistry = $webforgeContainer->getPackageRegistry();
     $bridge = $webforgeContainer->getCMSBridge();
     
