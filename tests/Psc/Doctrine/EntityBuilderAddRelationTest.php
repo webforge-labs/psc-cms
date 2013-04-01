@@ -115,7 +115,6 @@ class EntityBuilderAddRelationTest extends \Psc\Code\Test\Base {
     $builder->buildRelation($this->game2sound);
 
     $m2o = $this->assertCommonRelation($builder, 'sound', 'ManyToOne', 'Psc\Entities\Sound');
-    var_dump($m2o);
     
     $this->assertNull($m2o->inversedBy);
   }
