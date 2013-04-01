@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping AS ORM;
  * @ORM\Table(name="cs_entries")
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap({"headline" = "Headline", "paragraph" = "Paragraph"})
+ * @ORM\DiscriminatorMap({"headline" = "Headline", "paragraph" = "Paragraph", "image" = "Image", "simpleteaser" = "SimpleTeaser"})
  */
 abstract class Entry extends CompiledEntry {
   

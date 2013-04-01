@@ -2,6 +2,8 @@
 
 namespace Psc\Entities\ContentStream;
 
+use Doctrine\ORM\Mapping AS ORM;
+
 /**
  * @ORM\Entity(repositoryClass="Psc\Entities\ContentStream\CompiledSimpleTeaser")
  * @ORM\Table(name="cs_simpleteasers")
