@@ -28,6 +28,7 @@ abstract class PageController extends ContainerController {
     $this->addBlackListProperties(array('contentStreams', 'created', 'modified'), 'grid');
 
     $this->addOptionalProperty('contentStreams');
+    $this->addOptionalProperty('slug');
 
     $this->getEntitymeta()->setPropertiesHints(
       array(
@@ -80,7 +81,10 @@ abstract class PageController extends ContainerController {
     $page = $entity;
     $panel = parent::getEntityFormular($page);
     
-    $buttons = $this->helper->getContentStreamButtons($page, $this->dc->getEntityMeta('CoMun\Entities\ContentStream\ContentStream'));
+    $buttons = $this->helper->getContentStreamButtons(
+      $page, 
+      $this->dc->getEntityMeta($this->container->getRoleFQN('ContentStream'))
+    );
     $panel->getRightAccordion()->addSection('Inhalte', $buttons, \Psc\UI\Accordion::START);
     
     return $panel;

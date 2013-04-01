@@ -69,6 +69,12 @@ class PageControllerTest extends \Psc\Doctrine\DatabaseTestCase {
     $this->assertEquals('thehtml', $this->controller->getEntity($page->getId(), array('contentstream', 'de')));
   }
 
+  public function testGetEntityFormularDoesWork() {
+    $page = $this->insertPageWithNavigationNode();
+
+    $this->controller->getEntityFormular($page);
+  }
+
   public function testDeletingThePageWillSetAnInactivePageInTheNode() {
     $page = $this->insertPageWithNavigationNode();
     $nav = $page->getPrimaryNavigationNode();

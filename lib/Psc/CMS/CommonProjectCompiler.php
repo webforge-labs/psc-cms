@@ -204,7 +204,7 @@ class CommonProjectCompiler extends ProjectCompiler {
     return $this->getModelCompiler()->compile(
       $entity($entityName, $extends('Psc\CMS\Roles\PageEntity'), $tableName),
       $defaultId(),
-      $property('slug', $type('String')),
+      $property('slug', $type('String'), $nullable()),
 
       $property('active', $type('Boolean'))->setDefaultValue(TRUE),
 
@@ -212,7 +212,8 @@ class CommonProjectCompiler extends ProjectCompiler {
       $property('modified', $type('DateTime'), $nullable()),
       
       $constructor(
-        $argument('slug')
+        $argument('slug', NULL),
+        $argument('active', FALSE)
       ),
       
       $build($relation($targetMeta('NavigationNode'), 'OneToMany', 'bidirectional')),

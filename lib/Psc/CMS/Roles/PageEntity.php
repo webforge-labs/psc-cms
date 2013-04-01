@@ -10,16 +10,6 @@ use Psc\TPL\ContentStream\Collection as CollectionHelper;
 abstract class PageEntity extends \Psc\CMS\AbstractEntity implements \Psc\CMS\Roles\Page {
   
   /**
-   * add this to the parent class with:
-   * 
-   * @ORM\PrePersist
-   * @ORM\PreUpdate
-   * public function updateTimestamps() {
-   *   parent::updateTimestamps();
-   * }
-   * 
-   * add this to class level!
-   * @ORM\HasLifecycleCallbacks
   */
   public function updateTimestamps() {
     if (!isset($this->created)) {
@@ -27,6 +17,20 @@ abstract class PageEntity extends \Psc\CMS\AbstractEntity implements \Psc\CMS\Ro
     }
     $this->modified = \Psc\DateTime\DateTime::now();
     
+    return $this;
+  }
+
+  /**
+   * add this to the parent class with:
+   * @ORM\PrePersist
+   * @ORM\PreUpdate
+   * 
+   * add this to class level!
+   * @ORM\HasLifecycleCallbacks
+   */
+  public function onPrePersist() {
+    $this->updateTimestamps();
+
     return $this;
   }
 
