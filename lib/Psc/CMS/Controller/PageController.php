@@ -66,9 +66,11 @@ abstract class PageController extends ContainerController {
     
     $panel = new FormPanel('Seiten Übersicht');
     $panel->setPanelButtons(array('reload'));
+    /*
     $panel->getPanelButtons()->addNewButton(
       $entityMeta->getAdapter()->getNewTabButton()
     );
+    */
     $panel->setWidth(100);
     $panel->addContent($topMenu->html());
     $panel->addContent($menu->html()->setStyle('margin-top', '80px'));

@@ -85,7 +85,14 @@ class ConfigureApacheTask extends \Psc\SimpleObject implements Task {
     }
     
     if (isset($this->cmsHtaccess)) {
-      $this->targetProject->getBase()->sub('htdocs-cms/')
+
+      if ($this->targetProject->loadedFromPackage) {
+        $cmsTargetDir = $this->targetProject->getBase()->sub('www/cms/')->create();
+      } else {
+        $cmsTargetDir = $this->targetProject->getBase()->sub('htdocs-cms/')->create();
+      }
+
+      $cmsTargetDir
         ->getFile('.htaccess')
           ->writeContents($this->cmsHtaccess);
     }

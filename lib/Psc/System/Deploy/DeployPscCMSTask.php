@@ -11,15 +11,6 @@ use RuntimeException;
 
 class DeployPscCMSTask extends \Psc\SimpleObject implements Task {
 
-  protected $cliPHPTemplate = <<< 'PHP_CLI'
-<?php
-
-require_once __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.'%autoPrependFile%';
-
-$console = new %projectConsole%($project = \Psc\PSC::getProject(), $project->getModule('Doctrine'));
-$console->run();
-
-PHP_CLI;
 
   protected $autoPrependFile = 'auto.prepend.php';
   
@@ -36,7 +27,33 @@ PHP_CLI;
   protected $psc;
   
   public function __construct(WebforgeContainer $webforgeContainer, Project $targetProject, LibraryBuilder $libraryBuilder = NULL) {
+
+    if ($targetProject->loadedFromPackage) {
+      $this->autoPrependFile = 'bootstrap.php';
+      $this->cliPHPTemplate = <<< 'PHP_CLI'
+<?php
+
+require_once __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'%autoPrependFile%';
+
+$console = new %projectConsole%($project = \Psc\PSC::getProject(), $project->getModule('Doctrine'));
+$console->run();
+
+PHP_CLI;
+    } else {
+      $this->cliPHPTemplate = <<< 'PHP_CLI'
+<?php
+
+require_once __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.'%autoPrependFile%';
+
+$console = new %projectConsole%($project = \Psc\PSC::getProject(), $project->getModule('Doctrine'));
+$console->run();
+
+PHP_CLI;
+
+    }
     $this->cliPHPTemplate .= '?>'; // stupid sublime
+
+
     $packageRegistry = $webforgeContainer->getPackageRegistry();
     $bridge = $webforgeContainer->getCMSBridge();
     
@@ -105,7 +122,7 @@ PHP_CLI;
   
   protected function buildCLI() {
     $vars = array('project'=>$this->targetProject->getName(),
-                  'projectConsole'=>'\\'.$this->targetProject->getNamespace().'\\ProjectConsole',
+                  'projectConsole'=>'\\'.$this->targetProject->getNamespace().($this->targetProject->loadedFromPackage ? '\\CMS' : '').'\\ProjectConsole',
                   'autoPrependFile'=>$this->autoPrependFile
                   );
 

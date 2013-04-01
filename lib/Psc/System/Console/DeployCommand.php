@@ -138,9 +138,9 @@ abstract class DeployCommand extends Command {
       $deployer->deploy();
       
       $this->remoteSync($mode);
-      $this->remoteUpdateComposer($mode);
-      $this->remoteUpdateDB($mode);
-      $this->remoteRunTests($mode);
+      $this->remoteUpdateComposer($mode, $project);
+      $this->remoteUpdateDB($mode, $project);
+      $this->remoteRunTests($mode, $project);
       
       $this->afterDeploy($deployer, $project, $mode, $container, $input, $output);
       $this->info('deployment finished in '.$bench->stop());
@@ -160,20 +160,21 @@ abstract class DeployCommand extends Command {
     $this->br();
   }
   
-  protected function remoteUpdateComposer($mode) {
+  protected function remoteUpdateComposer($mode, $project) {
     $this->out('[DeployCommand] ** remote Install Composer');
     if ($mode === 'staging' || $this->confirm('Do you want to install with composer?')) {
       $cmd = 'export COMPOSER_ROOT_VERSION=dev-master; /usr/local/sbin/composer --optimize-autoloader --dev %s';
+      $src = $project->loadedFromPackage ? '.' : 'base/src';
       
       $install = $this->remoteExec(
         sprintf($cmd, 'install'),
-        'base/src'
+        $src
       );
       
       if ($install != 0 && $this->confirm('Fck Composer... Do you want to update with composer?')) {
         $this->remoteExec(
           sprintf($cmd, 'update'),
-          'base/src'
+          $src
         );
       }
     }
@@ -184,25 +185,27 @@ abstract class DeployCommand extends Command {
     return $mode === 'staging' ? 'tests' : 'default';
   }
   
-  protected function remoteUpdateDB($mode) {
+  protected function remoteUpdateDB($mode, $project) {
     $this->out('[DeployCommand] ** remote Update DB');
     
     $con = $this->getRemoteDBCon($mode);
     $out = '';
-    $this->remoteExec(sprintf('./cli.sh orm:update-schema --con="%s"', $con), 'base/bin/', $out);
+    $bin = $project->loadedFromPackage ? 'bin/' : 'base/bin/';
+    $this->remoteExec(sprintf('./cli.sh orm:update-schema --con="%s"', $con), $bin, $out);
     if (!Preg::match($out, '/nothing to do/')) {
       if ($this->confirm('Do you want to force update the schema? (see above for changes)')) {
-        $this->remoteExec(sprintf('./cli.sh orm:update-schema --force --con="%s"', $con), 'base/bin/');
+        $this->remoteExec(sprintf('./cli.sh orm:update-schema --force --con="%s"', $con), $bin);
       }
     }
     
     $this->br();
   }
   
-  protected function remoteRunTests($mode) {
+  protected function remoteRunTests($mode, $project) {
+    $bin = $project->loadedFromPackage ? 'bin/' : 'base/bin/';
     $this->out('[DeployCommand] ** remote Run Tests');
     if ($mode === 'staging' && !$this->withoutTest) {
-      $this->remoteExec('phpunit', 'base/bin/');
+      $this->remoteExec('phpunit', $bin);
     }
     $this->br();
   }

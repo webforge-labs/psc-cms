@@ -38,9 +38,12 @@ class CreateBootstrapTask implements Task {
   }
   
   protected function createAutoPrepend() {
-    $src = $this->targetProject->getSrc()->create();
-
-    $src->getFile('auto.prepend.php')->writeContents($this->buildAutoPrepend());
+    if ($this->targetProject->loadedFromPackage) {
+      $this->targetProject->getRoot()->getFile('bootstrap.php')->writeContents($this->buildAutoPrepend());
+    } else {
+      $src = $this->targetProject->getSrc()->create();
+      $src->getFile('auto.prepend.php')->writeContents($this->buildAutoPrepend());
+    }
   }
   
   /**

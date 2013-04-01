@@ -24,10 +24,24 @@ class CopyProjectSourcesTask extends \Psc\SimpleObject implements Task {
     $extensions = array('php','json','lock');
     
     // copy src
-    $srcSource = $this->sourceProject->getSrc();
-    $srcTarget = $this->targetProject->getSrc();
-    $srcSource->copy($srcTarget, $extensions, array($ignores), TRUE);
+    if ($this->sourceProject->loadedFromPackage) {
+      $libSource = $this->sourceProject->getRoot()->sub('lib/');
+      $libTarget = $this->targetProject->getRoot()->sub('lib/');
+      $libSource->copy($libTarget, $extensions, array($ignores), TRUE);
+    } else {
+      $srcSource = $this->sourceProject->getSrc();
+      $srcTarget = $this->targetProject->getSrc();
+      $srcSource->copy($srcTarget, $extensions, array($ignores), TRUE);
+    }
     
+    // copy root-files (packge)
+    if ($this->sourceProject->loadedFromPackage) {
+      $this->sourceProject->getRoot()->copy(
+        $this->targetProject->getRoot(),
+        $extensions, array($ignores), $subdirs = FALSE
+      );
+    }
+
     // copy bin
     $this->sourceProject->getBin()->copy($this->targetProject->getBin(), NULL, NULL, TRUE);
     $this->sourceProject->getTpl()->copy($this->targetProject->getTpl(), NULL, NULL, TRUE);
@@ -44,14 +58,23 @@ class CopyProjectSourcesTask extends \Psc\SimpleObject implements Task {
     }
     
     // copy htdocs
-    $cmsHtdocs = $this->sourceProject->getBase()->sub('htdocs-cms/');
+    if ($this->sourceProject->loadedFromPackage) {
+      $cmsHtdocs = $this->sourceProject->getBase()->sub('www/cms/');
+    } else {
+      $cmsHtdocs = $this->sourceProject->getBase()->sub('htdocs-cms/');
+    }
+
     $source = new \stdClass;
     $target = new \stdClass;
     if ($cmsHtdocs->exists()) {
       $source->cmsHtdocs = $cmsHtdocs;
       $source->publicHtdocs = $this->sourceProject->getHtdocs();
       
-      $target->cmsHtdocs = $this->targetProject->getBase()->sub('htdocs-cms')->create();
+      if ($this->targetProject->loadedFromPackage) {
+        $target->cmsHtdocs = $this->targetProject->getBase()->sub('www/cms/')->create();
+      } else {
+        $target->cmsHtdocs = $this->targetProject->getBase()->sub('htdocs-cms/')->create();
+      }
       $target->publicHtdocs = $this->targetProject->getHtdocs();
     } else {
       $source->publicHtdocs = NULL;
@@ -68,7 +91,9 @@ class CopyProjectSourcesTask extends \Psc\SimpleObject implements Task {
     
     // copy img, css, js
     foreach (array('css/','js/','img/') as $d) {
-      $source->cmsHtdocs->sub($d)->copy($target->cmsHtdocs->sub($d), NULL, NULL, TRUE);
+      if ($source->cmsHtdocs->sub($d)->exists()) {
+        $source->cmsHtdocs->sub($d)->copy($target->cmsHtdocs->sub($d), NULL, NULL, TRUE);
+      }
     }
     
     if (isset($source->publicHtdocs))
