@@ -130,4 +130,3 @@ class EntityFactory {
     return $this->entityMeta;
   }
 }
-?>

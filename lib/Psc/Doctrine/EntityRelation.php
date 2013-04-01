@@ -144,6 +144,8 @@ class EntityRelation extends \Psc\SimpleObject {
     // hart überschreiben
     if ($this->source->getFQN() === $this->target->getFQN()) { // wichtig ist hier, dass wir FQN vergleichen, denn getName() kann auch mit setAlias() verändert worden sein
       $direction = self::SELF_REFERENCING;
+      // this could be a nice notice?
+      //('Overwriting to direction: self-referencing. '.$this->source->getFQN().' and '.$this->target->getFQN().' are the same');
     }
     
     $this->setRelationType($type, $direction, $whoIsOwningSide);
