@@ -120,7 +120,7 @@ class EntityService extends ControllerService {
   
         $method = 'saveSort';
         $params = array($r->bvar($controller->getSortField(), array()));
-      } elseif($request->hasMeta('revision')) {
+      } elseif($request->hasMeta('revision') && $request->getMeta('revision') !== 'default') {
         $method = 'saveEntityAsRevision';
         
         A::insert($params, $request->getMeta('revision'), 1);

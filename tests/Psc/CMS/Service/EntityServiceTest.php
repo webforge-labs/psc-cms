@@ -98,6 +98,16 @@ class EntityServiceTest extends \Psc\Code\Test\ServiceBase {
     );
   }
 
+  public function testControllerRoute_saveEntityWithRevision() {
+    $this->assertRouteController(
+      $this->rq(array('entities','tag','1'), 'PUT')
+        ->setMeta('revision','default'),
+      'Psc\Test\Controllers\TagController',
+      'saveEntity',
+      array('1', new \stdClass)
+    );
+  }
+
   public function testControllerRoute_patchEntity() { 
     $this->assertRouteController(
       $this->rq(array('entities', 'tag', '1'), 'PATCH', array('label'=>'changed label')),
