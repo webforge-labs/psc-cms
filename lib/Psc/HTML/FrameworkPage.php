@@ -20,9 +20,8 @@ class FrameworkPage extends Page {
 	}
 	
 	public function addCMSDefaultCSS() {
-     $this->cssManager->enqueue('default');
+    $this->cssManager->enqueue('default');
     $this->cssManager->enqueue('jquery-ui');
-    //$this->cssManager->enqueue($projectAbbrev);
     $this->cssManager->enqueue('cms.form');
     $this->cssManager->enqueue('cms.ui');
 	}
@@ -38,9 +37,6 @@ class FrameworkPage extends Page {
 	  $title = $config->get('project.title', 'Psc - CMS');
     $title .= ' '.$config->get('version');
     
-    if ($project->getProduction()) {
-      $title .= ' - PRODUCTION';
-    }
     $this->setTitle(HTML::tag('title',HTML::esc($title)));
 	}
 

@@ -581,16 +581,36 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
   }
   
   public function createHTMLPage() {
-    return new HTMLPage($this->jsManager, $this->cssManager, $this->project->getLowerName());
+    $page = new \Psc\HTML\FrameworkPage($this->jsManager, $this->cssManager);
+    $page->addCMSDefaultCSS($this->project->getLowerName());
+    return $page;
   }
   
   public function getMainHTMLPage(Array $vars = array()) {
     if (!isset($this->mainHTMLPage)) {
       $this->mainHTMLPage = $this->createHTMLPage();
+      $this->mainHTMLPage->setTitleForProject($this->project);
       $this->addMarkup($this->mainHTMLPage, $vars);
     }
     
     return $this->mainHTMLPage;
+  }
+  
+  public function addMarkup(\Psc\HTML\Page $page, Array $vars = array()) {
+    //foreach ($this->getStaticClasses() as $alias => $cp) {
+    //  $page->getJSManager()->enqueue($alias);
+    //}
+    $page->body->content = TPL::get(array('CMS','main'),
+                                          array_merge(
+                                            array('page'=>$page,
+                                            'authController'=>$this->getAuthController(),
+                                            'user'=>$this->getUser(),
+                                            'tabs'=>$this->getContentTabs(),
+                                            'main'=>$this,
+                                            'cms'=>$this,
+                                          ), $vars)
+                                        );
+
   }
   
   /**
@@ -624,23 +644,6 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
       $this->initRightContent();
     }
     return $this->rightContent;
-  }
-  
-  public function addMarkup(\Psc\HTML\Page $page, Array $vars = array()) {
-    //foreach ($this->getStaticClasses() as $alias => $cp) {
-    //  $page->getJSManager()->enqueue($alias);
-    //}
-    $page->body->content = TPL::get(array('CMS','main'),
-                                          array_merge(
-                                            array('page'=>$page,
-                                            'authController'=>$this->getAuthController(),
-                                            'user'=>$this->getUser(),
-                                            'tabs'=>$this->getContentTabs(),
-                                            'main'=>$this,
-                                            'cms'=>$this,
-                                          ), $vars)
-                                        );
-
   }
   
   /**

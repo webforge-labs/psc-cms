@@ -667,5 +667,16 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber {
   public function isStaging() {
     return $this->staging;
   }
+
+  public function getStatus() {
+    if ($this->isStaging()) {
+      $status = 'staging';
+    } elseif($this->getProduction()) {
+      $status = 'production';
+    } else {
+      $status = 'live';
+    }
+
+    return $status;
+  }
 }
-?>

@@ -26,23 +26,7 @@ class HTMLPage extends \Psc\HTML\Page {
     $this->cssManager->enqueue('cms.form');
     $this->cssManager->enqueue('cms.ui');
     
-    
-    /* JS */
-    //$this->jsManager->enqueue('cms.bootstrap');
-    //$this->jsManager->enqueue('cms.ui');
-    //$this->jsManager->enqueue('jquery-form');
-    //$this->jsManager->enqueue('jquery-json');
-    //$this->jsManager->enqueue('jquery-fileupload');
-    
     $this->setUp();
-    
-    $title = Config::getDefault('project.title','Psc - CMS');
-    $title .= ' '.Config::get('version');
-    
-    if (PSC::inProduction()) {
-      $title .= ' - PRODUCTION';
-    }
-    $this->setTitle(HTML::tag('title',HTML::esc($title)));
   }
   
   protected function setUp() {
