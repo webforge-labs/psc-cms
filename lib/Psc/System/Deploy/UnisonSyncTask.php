@@ -61,7 +61,7 @@ class UnisonSyncTask extends \Psc\SimpleObject implements Task {
     $log = NULL;
     $result = array();
     $resultFound = FALSE;
-    $process->run(function ($type, $buffer) use (&$log, &$result, &$resultFound) {
+    $ret = $process->run(function ($type, $buffer) use (&$log, &$result, &$resultFound) {
       // suche nach dem endergebnis:
       $m = array();
       if (\Psc\Preg::match($buffer, '/^Synchronization\s*complete\s*at\s*[0-9:]*\s*\(([0-9]+)\s*items?\s*transferred, ([0-9]+) skipped,\s*([0-9]+)\s*failed\)/i', $m)) {
@@ -77,8 +77,13 @@ class UnisonSyncTask extends \Psc\SimpleObject implements Task {
       //    echo '[unison-OUT]: '.$buffer;
       //}
     });
-    
-    if ($resultFound) {
+
+
+    if ($ret === 0) {
+      print ("Unison: nothing to synchronize.\n");
+      return;
+      
+    } elseif ($resultFound) {
       print sprintf("Unison: %s: (%d transferred, %d skipped, %d failed)\n",
                     ($status = $result->skipped === 0 && $result->failed === 0 ? 'OK' : 'FAIL'),
                     $result->transferred, $result->skipped, $result->failed);
