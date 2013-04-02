@@ -14,7 +14,7 @@ use Psc\Exception;
  */
 class PasswordValidatorRule extends \Psc\SimpleObject implements \Psc\Form\ValidatorRule {
   
-  protected $default = array('password'=>NULL,'confirmation'=>NULL);
+  protected $default = NULL;
   
   /**
    * @var int
@@ -31,7 +31,7 @@ class PasswordValidatorRule extends \Psc\SimpleObject implements \Psc\Form\Valid
    */
   public function validate($data) {
     if ($data === NULL) throw EmptyDataException::factory($this->default);
-    if (!is_array($data)) throw new Exception($this->default);
+    if (!is_array($data)) throw EmptyDataException::factory($this->default);
     
     if (!array_key_exists('password',$data)) {
       throw new Exception('Schlüssel "password" existiert in den Daten nicht');
