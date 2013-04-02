@@ -54,7 +54,7 @@ class CMSProjectMainTest extends \Psc\Code\Test\Base {
     $this->cms->auth(); // damit user gesetzt ist, sollte das vll mal eine exception schmeissen? (wenn getMainHTMLPage vor auth kommt?)
     
     $page = $this->cms->getMainHTMLPage();
-    $this->assertInstanceOf('Psc\CMS\HTMLPage', $page);
+    $this->assertInstanceOf('Psc\HTML\Page', $page);
     
     $samePage = $this->cms->getMainHTMLPage(); // wird nur einmal erstellt
     $this->assertSame($page,$samePage);
