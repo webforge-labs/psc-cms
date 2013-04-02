@@ -94,17 +94,22 @@ PHP_CLI;
 
     // kopieren für (was auch immer) htdocs ist
     $target = $this->targetProject->getHtdocs();
-    //$this->psc->getHtdocs()->sub('js/')->copy($target->sub('js/')->create(), NULL, array('ui-dev','fixtures'), TRUE);
     $this->psc->getHtdocs()->sub('css/')->copy($target->sub('css/')->create(), NULL, NULL, TRUE);
-    foreach (array('lib/','css/','img/','vendor/') as $sub) {
+
+    // psc-cms-js sources kopieren
+    foreach (array('lib/','css/','img/','vendor/', 'templates/') as $sub) {
       $this->pscjs->sub($sub)->copy($target->sub('psc-cms-js/'.$sub)->create(), NULL, NULL, TRUE);
     }
 
     // für cms htdocs 
-    $cmsHtdocs = $this->targetProject->getBase()->sub('htdocs-cms/');
+    if ($this->targetProject->loadedFromPackage) {
+      $cmsHtdocs = $this->targetProject->getBase()->sub('www/cms/');
+    } else {
+      $cmsHtdocs = $this->targetProject->getBase()->sub('htdocs-cms/');
+    }
+    
     if ($cmsHtdocs->exists()) {
       $target = $cmsHtdocs;
-      //$this->psc->getHtdocs()->sub('js/')->copy($target->sub('js/')->create(), NULL, array('ui-dev','fixtures'), TRUE);
       $this->psc->getHtdocs()->sub('css/')->copy($target->sub('css/')->create(), NULL, NULL, TRUE);
       
       foreach (array('lib/','css/','img/','templates/','vendor/') as $sub) {
@@ -154,4 +159,3 @@ PHP_CLI;
     return $this->autoPrependFile;
   }
 }
-?>

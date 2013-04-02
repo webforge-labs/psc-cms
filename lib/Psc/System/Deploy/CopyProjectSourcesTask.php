@@ -47,6 +47,11 @@ class CopyProjectSourcesTask extends \Psc\SimpleObject implements Task {
         $deployComposer->copy($this->targetProject->getRoot()->getFile('composer.json'));
         $this->targetProject->getRoot()->getFile('composer.deploy.json')->delete();
       }
+
+      // copy tests (all in one)
+      $this->sourceProject->getRoot()->sub('tests/')->copy(
+        $this->targetProject->getRoot()->sub('tests')->create()
+      );
     }
 
     // copy bin

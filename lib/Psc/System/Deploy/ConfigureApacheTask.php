@@ -55,9 +55,16 @@ class ConfigureApacheTask extends \Psc\SimpleObject implements Task {
     $vhost = $targetProject->getVhostName();
     
     $this->customLog = '/var/log/apache2/access.'.$vhost.'.log combined';
-    $this->documentRoot = '/var/local/www/'.$vhost.'/base/htdocs';
-    $this->documentRootCms = '/var/local/www/'.$vhost.'/base/htdocs-cms';
+
     $this->targetProject = $targetProject;
+    if ($this->targetProject->loadedFromPackage) {
+      $this->documentRoot = '/var/local/www/'.$vhost.'/www';
+      $this->documentRootCms = '/var/local/www/'.$vhost.'/www/cms';
+    } else {
+      $this->documentRoot = '/var/local/www/'.$vhost.'/base/htdocs';
+      $this->documentRootCms = '/var/local/www/'.$vhost.'/base/htdocs-cms';
+    }
+    
 
     $this->phpValues = array(
         'log_errors'=>array('admin','On'),
@@ -72,9 +79,21 @@ class ConfigureApacheTask extends \Psc\SimpleObject implements Task {
     );
     
     $this->vars = array('appendix'=>'  ','auth'=>'');
-    $this->setVar('aliases', 'Alias /dimg /var/local/www/'.$vhost.'/base/cache/images'."\n  ".
-                             'Alias /images /var/local/www/'.$vhost.'/base/files/images'
-                 );
+
+    if ($this->targetProject->loadedFromPackage) {
+      $this->phpValues['auto_prepend_file'] = array(NULL, $this->replaceHelpers('%vhost%bootstrap.php'));
+
+      $this->setVar('aliases', 
+        'Alias /dimg /var/local/www/'.$vhost.'/files/cache/images'."\n  ".
+        'Alias /images /var/local/www/'.$vhost.'/files/images'
+      );
+    } else {
+      $this->setVar('aliases', 
+        'Alias /dimg /var/local/www/'.$vhost.'/base/cache/images'."\n  ".
+        'Alias /images /var/local/www/'.$vhost.'/base/files/images'
+      );
+
+    }
   }
   
   public function run() {
@@ -297,7 +316,7 @@ class ConfigureApacheTask extends \Psc\SimpleObject implements Task {
   
   public function setAuth($location, $authFile = NULL, $authName = NULL) {
     $vhost = $this->targetProject->getVhostName();
-    $authFile = $authFile ?: '/var/local/www/'.$vhost.'/base/auth/public';
+    $authFile = $this->replaceHelpers( $authFile ?: '%vhost%base/auth/public');
     $authName = $authName ?: $vhost.' public authentication';
     
     $this->append('

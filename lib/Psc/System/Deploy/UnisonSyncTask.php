@@ -83,12 +83,11 @@ class UnisonSyncTask extends \Psc\SimpleObject implements Task {
                     ($status = $result->skipped === 0 && $result->failed === 0 ? 'OK' : 'FAIL'),
                     $result->transferred, $result->skipped, $result->failed);
     } else {
-      print "Unison Result nicht gefunden!\n";
+      throw new \RuntimeException("Unison Result nicht gefunden!\n".$log);
     }
     
     if (!$resultFound || $status == 'FAIL') {
-      print "Unison Debug:\n";
-      print $log;
+      throw new \RuntimeException('Unison failed: '.$log);
     }
   }
  
