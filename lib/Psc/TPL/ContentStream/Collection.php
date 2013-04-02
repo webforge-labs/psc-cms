@@ -51,8 +51,13 @@ class Collection {
   }
 
   public function one() {
-    if (($cnt = count($streams = $this->getFiltered())) === 1) {
+    $cnt = count($streams = $this->getFiltered());
+    if ($cnt === 1) {
       return current($streams);
+    } elseif($cnt === 0) {
+      throw new RuntimeException(
+        sprintf('No ContentStreams found for filters: %s in one().',$this->debugFilters())
+      );
     } else {
       throw new RuntimeException(
         sprintf('Multiple ContentStreams (%d) found for filters: %s. Use collection() to get multiple.', $cnt, $this->debugFilters())
@@ -109,15 +114,15 @@ class Collection {
     $d = '';
 
     if (isset($this->typeFilter)) {
-      $d .= sprintf("type: '%s'", $this->typeFilter);
+      $d .= sprintf("type: '%s' ", $this->typeFilter);
     }
 
     if (isset($this->localeFilter)) {
-      $d .= sprintf("locale: '%s'", $this->localeFilter);
+      $d .= sprintf("locale: '%s' ", $this->localeFilter);
     }
 
     if (isset($this->revisionFilter)) {
-      $d .= sprintf("revision: '%s'", $this->revisionFilter);
+      $d .= sprintf("revision: '%s' ", $this->revisionFilter);
     }
 
     return $d;
