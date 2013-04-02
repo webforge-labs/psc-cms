@@ -167,11 +167,13 @@ abstract class PageController extends ContainerController {
   }
   
   public function getEntity($identifier, $subResource = NULL, $query = NULL) {
-    $page = parent::getEntity($identifier, NULL, $query);
-
     if ($subResource === 'web') {
+      $page = parent::getEntity($identifier, NULL, $query);
+
       return $this->getWebHTML($page, $query);
     } elseif(is_array($subResource) && $subResource[0] === 'contentstream') {
+      $page = parent::getEntity($identifier, NULL, $query);
+      
       $contentStream = 
         $page->getContentStream()
           ->locale($subResource[1])
@@ -181,9 +183,9 @@ abstract class PageController extends ContainerController {
       ;
 
       return $this->getController('ContentStream')->getEntityFormular($contentStream);
-    } 
-
-    return $page;
+    } else {
+      return parent::getENtity($identifier, $subResource, $query);
+    }
   }
 
   
