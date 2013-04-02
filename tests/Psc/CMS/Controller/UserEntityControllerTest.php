@@ -35,4 +35,3 @@ class UserEntityControllerTest extends ControllerBaseTest {
     $user = $this->controller->insertEntity($data);
   }
 }
-?>
