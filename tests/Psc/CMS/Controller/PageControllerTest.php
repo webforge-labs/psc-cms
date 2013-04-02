@@ -85,6 +85,17 @@ class PageControllerTest extends \Psc\Doctrine\DatabaseTestCase {
     $this->assertFalse($inactivePage->isActive(), 'inactive page should be inactive');
   }
 
+  public function testCreateInactivePageFillesWithContentStreams() {
+    $page = $this->controller->createInactivePage('some-slug');
+    $this->assertFalse($page->isActive(),'inactive page should be inactive ;)');
+
+    $this->assertInstanceOf('Psc\CMS\Roles\Page', $page);
+    $this->assertGreaterThanOrEqual(count($this->languages)*2, count($page->getContentStreams()), 'page should be filled with content streams');
+
+    $this->assertGreaterThanOrEqual(1, count($page->getContentStream()->locale($this->language)->revision('default')->type('page-content')->collection()));
+    $this->assertGreaterThanOrEqual(1, count($page->getContentStream()->locale($this->language)->revision('default')->type('sidebar-content')->collection()));
+  }
+
   protected function insertPageWithNavigationNode() {
     $page = new Page('page-with-nav');
     $page->setActive(TRUE);

@@ -18,7 +18,7 @@ abstract class PageController extends ContainerController {
    * @var Psc\Doctrine\EntityRepository
    */
   protected $navigationRepository;
-  
+
   protected function setUp() {
     // achtung: hier sind languages und language noch nicht defined! (erst nach setup)
     parent::setUp();
@@ -132,15 +132,21 @@ abstract class PageController extends ContainerController {
   }
 
   protected function fillContentStreams(PageRole $page) {
-    $streams = $page->getContentStreamsByLocale();
+    $streams = $page->getContentStreams();
     $csClass = $this->container->getRoleFQN('ContentStream');
-    
-    // per default haben wir immer einen content-stream pro sprache
+
+    $types = array('page-content', 'sidebar-content');
+
+    // per default haben wir immer einen content-stream pro sprache für page-content und einen für die sidebar
     foreach ($this->container->getLanguages() as $lang) {
-      if (!array_key_exists($lang, $streams)) {
-        $cs = new $csClass($lang);
-        $page->addContentStream($cs);
-        $this->dc->getEntityManager()->persist($cs);
+      foreach ($types as $type) {
+        $streams = $page->getContentStream()->locale($lang)->type($type)->revision($this->defaultRevision)->collection();
+
+        if (count($streams) == 0) {
+          $cs = $csClass::create($lang, $type, $this->defaultRevision);
+          $page->addContentStream($cs);
+          $this->dc->getEntityManager()->persist($cs);
+        }
       }
     }
   }
