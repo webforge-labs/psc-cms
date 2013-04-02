@@ -11,6 +11,8 @@ use Psc\JS\JooseSnippetWidget;
 class PagesMenu extends \Psc\HTML\JooseBase implements JooseSnippetWidget {
   
   protected $flatNavigationNodes;
+
+  protected $contentStreamTypes = array('page-content');
   
   public function __construct(Array $flatNavigationNodes) {
     $this->flatNavigationNodes = $flatNavigationNodes;
@@ -29,9 +31,14 @@ class PagesMenu extends \Psc\HTML\JooseBase implements JooseSnippetWidget {
       'Psc.UI.PagesMenu', Array(
         'widget'=>$this->widgetSelector(),
         'uiController'=>$this->jsExpr('main.getUIController()'),
-        'flat'=>$this->flatNavigationNodes
+        'flat'=>$this->flatNavigationNodes,
+        'contentStreamTypes'=>$this->contentStreamTypes
       )
     );
   }
+
+  public function addContentStreamType($name) {
+    $this->contentStreamTypes[] = $name;
+    return $this;
+  }
 }
-?>

@@ -86,7 +86,9 @@ abstract class ContentStreamController extends \Psc\CMS\Controller\SimpleContain
   public function getEntityFormular(Entity $entity) {
     $this->init(array('ev.componentMapper', 'ev.labeler'));
 
-    $panel = $this->createFormPanel($entity, 'ContentStream bearbeiten');
+    $panel = $this->createFormPanel(
+      $entity, $entity->getType() === 'sidebar-content' ? 'Sidebar bearbeiten' : 'Inhalte bearbeiten'
+    );
     $this->initFormPanel($panel);
     $panel->removeRightAccordion();
     

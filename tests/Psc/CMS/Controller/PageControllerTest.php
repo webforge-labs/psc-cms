@@ -52,12 +52,9 @@ class PageControllerTest extends \Psc\Doctrine\DatabaseTestCase {
   public function testGetEntityWithSubresourceContentStreamAndLanguageReturnsTheFormOfTheContentStreamFromThePage() {
     $page = $this->insertPageWithLocaleContentStreams();
 
-    $csController = $this->getMockForAbstractClass('Psc\CMS\Controller\ContentStreamController', array(), '', FALSE, TRUE, TRUE, array('getEntityFormular'));
+    $csController = $this->expectReturnsCSController();
 
-    $this->container->expects($this->atLeastOnce())->method('getController')->with('ContentStream')
-      ->will($this->returnValue($csController));
-
-    $csDe = $page->getContentStreamByLocale('de');
+    $csDe = $page->getContentStream()->locale('de')->revision('default')->type('page-content')->one();
     $that = $this;
 
     $csController->expects($this->atLeastOnce())->method('getEntityFormular')
@@ -67,6 +64,32 @@ class PageControllerTest extends \Psc\Doctrine\DatabaseTestCase {
       }));
 
     $this->assertEquals('thehtml', $this->controller->getEntity($page->getId(), array('contentstream', 'de')));
+  }
+
+  public function testGetEntityWithSubresourceContentStreamAndLanguageReturnsTheFormOfTheContentStreamFromThePageWithTypeGiven() {
+    $that = $this;
+    $page = $this->insertPageWithLocaleContentStreams();
+
+    $csController = $this->expectReturnsCSController();
+
+    $cs = $page->getContentStream()->locale('de')->revision('default')->type('sidebar-content')->one();
+
+    $csController->expects($this->once())->method('getEntityFormular')
+      ->will($this->returnCallback(function ($csDep) use ($that, $cs) {
+        $that->assertEquals($cs->getIdentifier(), $csDep->getIdentifier());
+        return 'thesidebarhtml';
+    }));
+
+    $this->assertEquals('thesidebarhtml', $this->controller->getEntity($page->getId(), array('contentstream', 'de', 'sidebar-content')));
+  }
+
+  protected function expectReturnsCSController() {
+    $csController = $this->getMockForAbstractClass('Psc\CMS\Controller\ContentStreamController', array(), '', FALSE, TRUE, TRUE, array('getEntityFormular'));
+
+    $this->container->expects($this->atLeastOnce())->method('getController')->with('ContentStream')
+      ->will($this->returnValue($csController));
+
+    return $csController;
   }
 
   public function testGetEntityFormularDoesWork() {
@@ -122,9 +145,11 @@ class PageControllerTest extends \Psc\Doctrine\DatabaseTestCase {
     $page = new Page('test-page');
 
     foreach ($this->languages as $lang) {
-      $cs = new ContentStream($lang, 'cs-'.$lang);
-      $page->addContentStream($cs);
-      $this->em->persist($cs);
+      foreach (array('page-content', 'sidebar-content') as $type) {
+        $cs = ContentStream::create($lang, $type, 'default', 'cs-'.$type.'-'.$lang);
+        $page->addContentStream($cs);
+        $this->em->persist($cs);
+      }
     }
 
     $this->em->persist($page);
