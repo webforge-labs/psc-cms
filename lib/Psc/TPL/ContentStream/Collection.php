@@ -24,6 +24,11 @@ class Collection {
   protected $localeFilter;
 
   /**
+   * @var string
+   */
+  protected $revisionFilter;
+
+  /**
    * @param Array $contentStreams
    */
   public function __construct(Array $contentStreams) {
@@ -37,6 +42,11 @@ class Collection {
 
   public function type($typeName) {
     $this->typeFilter = $typeName;
+    return $this;
+  }
+
+  public function revision($revisionName) {
+    $this->revisionFilter = $revisionName;
     return $this;
   }
 
@@ -63,6 +73,7 @@ class Collection {
   protected function getFiltered() {
     $typeFilter = $this->typeFilter;
     $localeFilter = $this->localeFilter;
+    $revisionFilter = $this->revisionFilter;
     
     $streams = $this->streams;
 
@@ -78,6 +89,12 @@ class Collection {
       });
     }
 
+    if (isset($revisionFilter)) {
+      $streams = array_filter($streams, function (ContentStream $cs) use ($revisionFilter) {
+        return $cs->getRevision() === $revisionFilter;
+      });
+    }
+
     return $streams;
   }
 
@@ -85,7 +102,7 @@ class Collection {
    * @return string
    */
   protected function debugFilters() {
-    if (!isset($this->typeFilter) && !isset($this->localeFilter)) {
+    if (!isset($this->typeFilter) && !isset($this->localeFilter) && !isset($this->revisionFilter)) {
       return '(none)';
     }
 
@@ -97,6 +114,10 @@ class Collection {
 
     if (isset($this->localeFilter)) {
       $d .= sprintf("locale: '%s'", $this->localeFilter);
+    }
+
+    if (isset($this->revisionFilter)) {
+      $d .= sprintf("revision: '%s'", $this->revisionFilter);
     }
 
     return $d;

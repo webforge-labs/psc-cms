@@ -129,6 +129,18 @@ class PageTest extends \Webforge\Code\Test\Base {
     );
   }
 
+  public function testGetContentStreamFiltersByRevision() {
+    $this->assertArrayEquals(
+      array(
+        $this->deDefault, $this->frDefault
+      ),
+      $this->revisionPage->getContentStream()
+        ->type('page-content')
+        ->revision('default')
+          ->collection()->toArray()
+    );
+  }
+
   public function testGetContentStreamThrowsMultipleExceptionForOne() {
     $this->setExpectedException('RuntimeException');
 
@@ -146,4 +158,5 @@ class PageTest extends \Webforge\Code\Test\Base {
 
     $this->page->getContentStream()->type('page-content')->one();
   }
+
 }
