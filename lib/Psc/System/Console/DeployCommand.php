@@ -202,7 +202,7 @@ abstract class DeployCommand extends Command {
   }
   
   protected function remoteRunTests($mode, $project) {
-    $bin = $project->loadedFromPackage ? 'bin/' : 'base/bin/';
+    $bin = $project->loadedFromPackage ? '.' : 'base/bin/';
     $this->out('[DeployCommand] ** remote Run Tests');
     if ($mode === 'staging' && !$this->withoutTest) {
       $this->remoteExec('phpunit', $bin);

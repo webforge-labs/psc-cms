@@ -45,6 +45,7 @@ class CopyProjectSourcesTask extends \Psc\SimpleObject implements Task {
       $deployComposer = $this->sourceProject->getRoot()->getFile('composer.deploy.json');
       if ($deployComposer->exists()) {
         $deployComposer->copy($this->targetProject->getRoot()->getFile('composer.json'));
+        $this->targetProject->getRoot()->getFile('composer.deploy.json')->delete();
       }
     }
 
