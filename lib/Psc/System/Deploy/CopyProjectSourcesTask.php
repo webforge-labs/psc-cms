@@ -38,8 +38,14 @@ class CopyProjectSourcesTask extends \Psc\SimpleObject implements Task {
     if ($this->sourceProject->loadedFromPackage) {
       $this->sourceProject->getRoot()->copy(
         $this->targetProject->getRoot(),
-        $extensions, array($ignores), $subdirs = FALSE
+        array_merge($extensions, array('xml')), array($ignores), $subdirs = FALSE
       );
+
+      // copy compoesr deploy (if avaible)
+      $deployComposer = $this->sourceProject->getRoot()->getFile('composer.deploy.json');
+      if ($deployComposer->exists()) {
+        $deployComposer->copy($this->targetProject->getRoot()->getFile('composer.json'));
+      }
     }
 
     // copy bin

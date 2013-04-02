@@ -31,6 +31,7 @@ class DeployPscCMSTask extends \Psc\SimpleObject implements Task {
     if ($targetProject->loadedFromPackage) {
       $this->autoPrependFile = 'bootstrap.php';
       $this->cliPHPTemplate = <<< 'PHP_CLI'
+#!/usr/bin/env php      
 <?php
 
 require_once __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'%autoPrependFile%';
@@ -41,6 +42,7 @@ $console->run();
 PHP_CLI;
     } else {
       $this->cliPHPTemplate = <<< 'PHP_CLI'
+#!/usr/bin/env php
 <?php
 
 require_once __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.'%autoPrependFile%';
@@ -49,7 +51,6 @@ $console = new %projectConsole%($project = \Psc\PSC::getProject(), $project->get
 $console->run();
 
 PHP_CLI;
-
     }
     $this->cliPHPTemplate .= '?>'; // stupid sublime
 
