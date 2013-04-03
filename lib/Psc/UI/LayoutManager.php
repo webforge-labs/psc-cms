@@ -2,15 +2,20 @@
 
 namespace Psc\UI;
 
+use Psc\TPL\ContentStream\ContentStream;
+use Psc\UI\LayoutManager\Control;
+use Webforge\Common\ArrayUtli as A;
+use Psc\JS\JooseSnippetWidget;
+
 /**
  * LayoutManager ist das Pflege Tool für einen ContentStream
  */
-class LayoutManager extends \Psc\HTML\JooseBase {
-  
+class LayoutManager extends \Psc\HTML\JooseBase implements JooseSnippetWidget {
+
   /**
-   * @var string
+   * @var Control[]
    */
-  protected $label;
+  protected $controls;
   
   /**
    * @var array
@@ -21,62 +26,70 @@ class LayoutManager extends \Psc\HTML\JooseBase {
    * @var Psc\UI\UploadService
    */
   protected $uploadService;
+
+  protected $jsParams = array();
   
-  public function __construct($label, UploadService $uploadService, Array $serializedWidgets = array()) {
+  public function __construct(UploadService $uploadService, Array $serializedWidgets = array()) {
     parent::__construct('Psc.UI.LayoutManager');
-    $this->setLabel($label);
     $this->setSerializedWidgets($serializedWidgets);
     $this->setUploadService($uploadService);
+    $this->controls = array();
   }
   
   protected function doInit() {
-    $control = function ($type, $label, $data = NULL) {
-      $snippet = \Psc\JS\JooseSnippet::create(
-        'Psc.UI.LayoutManager.Control', array(
-          'params'=>$data,
-          'type'=>$type,
-          'label'=>$label
-        )
-      );
-      return $snippet;
-    };
-    
     $this->html = new HTMLTag('div', NULL, array('class'=>array('joose-widget-wrapper', '\Psc\serializable')));
 
     $this->autoLoadJoose(
-      $this->createJooseSnippet(
-        'Psc.UI.LayoutManager',
-        array(
-          'widget'=>$this->widgetSelector(),
-          'uploadService'=>$this->uploadService->getJooseSnippet(),
-          'serializedWidgets'=>$this->serializedWidgets,
-          'controls'=>array(
-            $control('Headline', 'Überschrift', (object) array('level'=>1)),
-            $control('Headline', 'Zwischenüberschrift', (object) array('level'=>2)),
-            $control('Paragraph', 'Absatz'),
-            $control('Li', 'Aufzählung'),
-            $control('Image', 'Bild'),
-            $control('DownloadsList', 'Download-Liste', (object) array('headline'=>'', 'downloads'=>array())),
-            $control('WebsiteWidget', 'Kalender', (object) array('label'=>'Kalender', 'name'=>'calendar'))
-          )
-        )
-      )->addRequirement('Psc.UI.LayoutManager.Control')
+      $this->getJooseSnippet()
     );
   }
-  
-  /**
-   * @param string $label
-   */
-  public function setLabel($label) {
-    $this->label = $label;
+
+  public function getJooseSnippet() {
+    return $this->createJooseSnippet(
+      'Psc.UI.LayoutManager',
+      array_merge($this->jsParams,
+        array(
+          'widget'=>$this->widgetSelector(),
+          'container'=>$this->jsExpr('main.getContainer()'),
+          'uploadService'=>$this->uploadService->getJooseSnippet(),
+          'serializedWidgets'=>$this->serializedWidgets,
+          'controls'=>array_map(function ($control) { return $control->getJooseSnippet(); }, $this->controls)
+        )
+      )
+    )->addRequirement('Psc.UI.LayoutManager.Control');
+  }
+
+  public function initControlsFor(ContentStream $cs) {
+
+    if ($cs->getType() === 'page-content') {
+      $this->addNewControl('Headline', (object) array('level'=>1), 'Überschrift');
+      $this->addNewControl('Headline', (object) array('level'=>2), 'Zwischenüberschrift');
+      $this->addNewControl('Paragraph', NULL, 'Absatz');
+      $this->addNewControl('Li', NULL, 'Aufzählung');
+      $this->addNewControl('Image', NULL, 'Bild');
+      $this->addNewControl('DownloadsList', (object) array('headline'=>'', 'downloads'=>array()), 'Download-Liste');
+      $this->addNewControl('WebsiteWidget', (object) array('label'=>'Kalender', 'name'=>'calendar'), 'Kalender');
+    }
+
+  }
+
+  public function hackFlatNavigationInjection(Array $navigationFlat) {
+    $this->jsParams['injectNavigationFlat'] = $navigationFlat;
     return $this;
   }
-  
+
+  public function addControl(Control $control) {
+    $this->controls[] = $control;
+    return $this;
+  }
+
   /**
-   * @return string
+   * @return Control
    */
-  public function getLabel() {
-    return $this->label;
+  protected function addNewControl($type, $data = NULL, $label = NULL) {
+    $this->controls[] = $control = new Control($type, $data, $label);
+    
+    return $control;
   }
   
   /**
@@ -107,6 +120,10 @@ class LayoutManager extends \Psc\HTML\JooseBase {
    */
   public function getUploadService() {
     return $this->uploadService;
+  }
+
+  public function getControls() {
+    return $this->controls;
   }
 }
 ?>

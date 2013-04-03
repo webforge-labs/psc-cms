@@ -10,8 +10,9 @@ use Psc\UI\LayoutManager;
 use Psc\UI\UploadService;
 use Psc\Doctrine\EntityFactory;
 use Psc\Net\Service\LinkRelation;
+use Psc\TPL\ContentStream\ContentStream;
 
-abstract class ContentStreamController extends \Psc\CMS\Controller\SimpleContainerController {
+abstract class ContentStreamController extends \Psc\CMS\Controller\ContainerController {
   
   protected function getLinkRelationsForEntity(Entity $entity) {
     try {
@@ -92,11 +93,31 @@ abstract class ContentStreamController extends \Psc\CMS\Controller\SimpleContain
     $this->initFormPanel($panel);
     $panel->removeRightAccordion();
     
-    $layoutManager = new LayoutManager('', $this->getUploadService(), $this->getContentStreamConverter()->convertSerialized($entity));
+    $layoutManager = new LayoutManager($this->getUploadService(), $this->getContentStreamConverter()->convertSerialized($entity));
+    $this->initLayoutManagerControls($layoutManager, $entity);
+
+    /* for simplicity we'll request a new navigation flat here 
+      this allows us to refresh the state of the UI everytime we reload the php here
+
+      later on this become an asynchron ajax service which caches the flat array and returns it to components requesting it
+    */
+    $layoutManager->hackFlatNavigationInjection(
+      $this->container
+        ->getController('NavigationNode')
+          ->getMergedFlatForUI(
+            $this->container->getLanguage(), 
+            $this->container->getLanguages()
+          )
+    );
+    
     
     $panel->addContent($layoutManager);
     
     return $panel;
+  }
+
+  protected function initLayoutManagerControls(LayoutManager $layoutManager, ContentStream $contentStream) {
+    $layoutManager->initControlsFor($entity);
   }
 
 	protected function initFormPanel(\Psc\CMS\EntityFormPanel $panel) {
