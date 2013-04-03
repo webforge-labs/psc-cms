@@ -113,6 +113,16 @@ class NavigationController extends ContainerController {
     return $flat;
   }
 
+  public function getMergedFlatForUI($displayLocale, Array $languages) {
+    // @TODO fix me: this should be a merge from all contexts belonging together (aka: main+footer+head)
+
+    return $this->getFlatForUI(
+      $this->repository->childrenQueryBuilder()->getQuery()->getResult(),
+      $displayLocale, 
+      $languages
+    );
+  }
+
   protected function getFlat() {
     return $this->getFlatForUI(
       $this->repository->childrenQueryBuilder()->getQuery()->getResult(),

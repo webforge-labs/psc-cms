@@ -39,6 +39,12 @@ class NavigationControllerTest extends \Psc\Doctrine\NavigationNodesTestCase {
     }
   }
 
+  public function testGetMergedFlatForUI() {
+    $this->assertInternalType('array', $this->controller->getMergedFlatForUI($this->defaultLanguage, $this->languages));
+
+    $this->markTestIncomplete('TODO: should return all contexts merged. (aka main+footer+head for internal links e.g.');
+  }
+
   /**
    * @dataProvider getFixtures
    */
