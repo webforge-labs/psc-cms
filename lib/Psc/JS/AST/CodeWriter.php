@@ -89,10 +89,12 @@ class CodeWriter extends \Psc\SimpleObject implements ASTCodeWriter {
    */
   public function writeHashMap(stdClass $walkedHashMap, Type $type) {
     $hashMap = '{';
-    foreach ($walkedHashMap as $field => $walkedValue) {
-      $hashMap .= sprintf("'%s': %s, ", $field, $walkedValue);
+    if (count((array) $walkedHashMap) > 0) {
+      foreach ($walkedHashMap as $field => $walkedValue) {
+        $hashMap .= sprintf("'%s': %s, ", $field, $walkedValue);
+      }
+      $hashMap = mb_substr($hashMap, 0, -2);
     }
-    $hashMap = mb_substr($hashMap, 0, -2);
     $hashMap .= '}';
     return $hashMap;
   }
