@@ -28,7 +28,10 @@ class EntityType extends ObjectType implements MappedComponentType {
    * @var bool
    */
   public function isImage() {
-    return $this->getGClass()->hasInterface(new GClass('Psc\Image\Image'));
+    return $this->implementsInterface('Psc\Image\Image');
+  }
+
+  public function isCSEntry() {
+    return $this->implementsInterface('Psc\TPL\ContentStream\Entry');
   }
 }
-?>

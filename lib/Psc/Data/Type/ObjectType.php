@@ -115,5 +115,12 @@ class ObjectType extends \Psc\Data\Type\Type implements ParameterHintedType, \Ps
   public function getDoctrineExportType() {
     return \Doctrine\DBAL\Types\Type::OBJECT;
   }
+
+  public function implementsInterface($FQN) {
+    if (!($FQN instanceof GClass)) {
+      $FQN = new GClass($FQN);
+    }
+    return $this->getGClass()->hasInterface($FQN);
+  }
 }
 ?>
