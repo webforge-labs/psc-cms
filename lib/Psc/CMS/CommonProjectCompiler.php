@@ -577,7 +577,7 @@ class CommonProjectCompiler extends ProjectCompiler {
 
       return $method('serialize', array(new GParameter('context')),
         array(
-          "return \$this->doSerialize(array(".$phpWriter->exportFunctionParameters($fields)."));"
+          "return \$this->doSerialize(array(".$phpWriter->exportFunctionParameters($fields)."), array(), \$context);"
         )
       );
     };
