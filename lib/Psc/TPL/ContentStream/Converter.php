@@ -6,6 +6,17 @@ use Psc\Doctrine\EntityFactory;
 
 abstract class Converter extends \Psc\SimpleObject {
 
+  protected $context;
+
+  /**
+   * Creates a new Converter
+   * 
+   * a good implementation for $context is a Psc\CMS\Roles\(Simple-)Container
+   */
+  public function __construct(Context $context) {
+    $this->context = $context;
+  }
+
   public function convertHTML(ContentStream $cs, Array $entries = NULL) {
     $html = NULL;
     

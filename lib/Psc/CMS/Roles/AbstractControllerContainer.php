@@ -51,4 +51,11 @@ abstract class AbstractControllerContainer extends AbstractSimpleContainer imple
   public function getContainer() {
     return $this;
   }
+
+  /**
+   * @return Psc\CMS\Controller\NavigationController
+   */
+  public function getNavigationController() {
+    return $this->getController('NavigationNode');
+  }
 }

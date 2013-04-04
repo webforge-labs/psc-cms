@@ -75,26 +75,16 @@ abstract class AbstractSimpleContainer extends \Psc\SimpleObject implements Simp
   public function getContentStreamConverter() {
     if (!isset($this->contentStreamConverter)) {
       $this->contentStreamConverter = $this->createContentStreamConverter();
-      
-    $this->contentStreamConverter->getContext()
-      ->setImageManager(
-        $this->getImageManager()
-      )
-      ->setLanguages($this->languages)
-      ->setLanguage($this->language)
-      ->setDoctrinePackage($this->dc)
-      ->setUploadManager(
-        $this->getUploadManager()
-      )
-      ;
     }
-    
+      
     return $this->contentStreamConverter;
   }
 
-  protected function createContentStreamConverter() {
-    return new ContentStreamConverter();
-  }
+  /**
+   * implement with: return new ACME\ContentStreamConverter($this);
+   */
+  abstract protected function createContentStreamConverter();
+
 
   protected function createImageManager() {
     return new ImageManager($this->getRoleFQN('Image'), $this->dc->getEntityManager());

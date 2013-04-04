@@ -23,7 +23,8 @@ ProjectMain:
 - override getContainer in your main if necessary (if you have ovrriden the constructor from Psc\CMS\Roles\AbstractContainer)
 
 
-
+ContentStreamConverter + Context:
+- the abstract class \Psc\TPL\ContentStream\Converter needs now an implementation of the Psc\TPL\ContentStream\Context as first parameter. You can use a SimpleContainer for this
 
 Projects (DB):
 - ContentStream has another column "type" which defaults to "page-content"
