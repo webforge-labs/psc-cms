@@ -193,6 +193,7 @@ class CMSAcceptanceTester extends \Psc\System\LoggerObject {
     $test = $this->testCase->getCodeTester();
 
     $test->css('head link[rel="stylesheet"][href="/psc-cms-js/css/ui.css"]', $html)->count(1);
+    $test->css('head title')->count(1)->text($this->testCase->logicalNot($this->testCase->equalTo('')));
     $test->css('form', $html)->count(1)
       ->test('input[type="text"]#email')->count(1)->end()
       ->test('input[type="password"]#password')->count(1)->end()

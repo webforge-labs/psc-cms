@@ -510,6 +510,7 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
   public function auth($redirect = '/') {
     /* Auth */
     $authController = $this->getAuthController();
+    $authController->setHTMLPage($this->createHTMLPage());
     $authController->setRedirect($redirect);
     $authController->run();
     
@@ -583,13 +584,13 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
   public function createHTMLPage() {
     $page = new \Psc\HTML\FrameworkPage($this->jsManager, $this->cssManager);
     $page->addCMSDefaultCSS($this->project->getLowerName());
+    $page->setTitleForProject($this->project);
     return $page;
   }
   
   public function getMainHTMLPage(Array $vars = array()) {
     if (!isset($this->mainHTMLPage)) {
       $this->mainHTMLPage = $this->createHTMLPage();
-      $this->mainHTMLPage->setTitleForProject($this->project);
       $this->addMarkup($this->mainHTMLPage, $vars);
     }
     

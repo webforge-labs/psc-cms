@@ -124,4 +124,9 @@ class AuthController extends BaseAuthController {
   public function getAuth() {
     return $this->auth;
   }
+
+  public function setHTMLPage(\Psc\HTML\Page $page) {
+    $this->htmlPage = $page;
+    return $this;
+  }
 }
