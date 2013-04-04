@@ -101,6 +101,12 @@ abstract class AbstractSimpleContainer extends \Psc\SimpleObject implements Simp
     return $this->uploadManager;
   }
 
+
+  public function setUploadManager(UploadManager $manager) {
+    $this->uploadManager = $manager;
+    return $this;
+  }
+
   /**
    * @return Psc\Image\Manager
    */
@@ -112,6 +118,10 @@ abstract class AbstractSimpleContainer extends \Psc\SimpleObject implements Simp
     return $this->imageManager;
   }
 
+  public function setImageManager(ImageManager $manager) {
+    $this->imageManager = $manager;
+    return $this;
+  }
 
   /**
    * @param Psc\TPL\ContentStream\Converter $contentStreamConverter
