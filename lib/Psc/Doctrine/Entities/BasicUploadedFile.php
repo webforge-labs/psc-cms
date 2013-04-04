@@ -8,12 +8,14 @@ use Psc\CMS\UploadManager;
 use Psc\Code\Code;
 use Doctrine\ORM\Mapping AS ORM;
 use Psc\CMS\UploadedFile;
+use Psc\TPL\ContentStream\Context;
+use Psc\TPL\ContentStream\ContextLoadable;
 
 /**
  * 
  * Benutze den CommonProjectCompiler, um eine ableitendes Entity zu erstellen compileFile()
  */
-abstract class BasicUploadedFile extends \Psc\CMS\AbstractEntity implements \Psc\CMS\UploadedFile {
+abstract class BasicUploadedFile extends \Psc\CMS\AbstractEntity implements \Psc\CMS\UploadedFile, ContextLoadable {
   
   /**
    * @var Webforge\Common\System\File
@@ -29,6 +31,14 @@ abstract class BasicUploadedFile extends \Psc\CMS\AbstractEntity implements \Psc
    * @var string
    */
   protected $downloadFilename;
+
+  /**
+   * @inheritdoc
+   * @return File|NULL
+   */
+  public static function loadWithContentStreamContext($value, Context $context) {
+    return $context->getUploadManager()->load($value);
+  }
   
   public function getURL($filename = NULL) {
     return $this->getManager()->getURL($this, $filename);
