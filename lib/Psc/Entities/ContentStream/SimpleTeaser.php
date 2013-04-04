@@ -14,4 +14,7 @@ class SimpleTeaser extends CompiledSimpleTeaser {
     return '';
   }
 
+  public function getEntityName() {
+    return __NAMESPACE__.'\\SimpleTeaser';
+  }
 }

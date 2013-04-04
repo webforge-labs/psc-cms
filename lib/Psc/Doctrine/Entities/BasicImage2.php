@@ -8,6 +8,8 @@ use Psc\Image\Manager;
 use Psc\Code\Code;
 use Imagine\Image\ImageInterface as ImagineImage;
 use Doctrine\ORM\Mapping AS ORM;
+use Psc\TPL\ContentStream\ContextLoadable;
+use Psc\TPL\ContentStream\Context;
 
 /**
  *
@@ -15,7 +17,7 @@ use Doctrine\ORM\Mapping AS ORM;
  * Benutze den CommonProjectCompiler, um eine ableitendes Entity zu erstellen compileImage()
  * 
  */
-abstract class BasicImage2 extends \Psc\CMS\AbstractEntity implements \Psc\Image\Image {
+abstract class BasicImage2 extends \Psc\CMS\AbstractEntity implements \Psc\Image\Image, ContextLoadable {
   
   /**
    * @var Webforge\Common\System\File
@@ -65,6 +67,13 @@ abstract class BasicImage2 extends \Psc\CMS\AbstractEntity implements \Psc\Image
     //'detail-thumb'=>array(104, 73, 'standard'),
     //'detail-featured'=>array(296, 271, 'standard')
   );
+
+  /**
+   * @inheritdoc
+   */
+  public static function loadWithContentStreamContext($value, Context $context) {
+    return $context->getImageManager()->load($value);
+  }
 
   public function getThumbnailURL($format = 'page-default') {
     if (array_key_exists($format,$this->formats)) {

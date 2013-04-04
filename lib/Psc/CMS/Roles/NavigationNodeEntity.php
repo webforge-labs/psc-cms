@@ -4,11 +4,20 @@ namespace Psc\CMS\Roles;
 
 use Psc\CMS\AbstractEntity;
 use Webforge\CMS\Navigation\Node as WebforgeNode;
+use Psc\TPL\ContentStream\ContextLoadable;
+use Psc\TPL\ContentStream\Context;
 
 /**
  * (at)ORM\HasLifecycleCallbacks
  */
-abstract class NavigationNodeEntity extends AbstractEntity implements WebforgeNode {
+abstract class NavigationNodeEntity extends AbstractEntity implements WebforgeNode, ContextLoadable {
+
+  public static function loadWithContentStreamContext($identifier, Context $context) {
+    $identifier = (int) $identifier;
+    if ($identifier > 0) {
+      return $context->getNavigationController()->getEntity($identifier);
+    }
+  }
 
   /**
    * @return string

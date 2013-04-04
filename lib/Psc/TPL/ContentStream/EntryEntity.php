@@ -8,6 +8,7 @@ use Psc\TPL\ContentStream\Converter AS ContentStreamConverter;
 // use Psc\TPL\ContentStream\Context AS ContentStreamContext
 use Psc\Code\Code;
 use Psc\CMS\AbstractEntity;
+use Psc\Doctrine\Entity;
 
 /**
  * (at)ORM\Entity(repositoryClass="ACME\Entities\ContentStream\EntryRepository")
@@ -33,12 +34,26 @@ abstract class EntryEntity extends AbstractEntity implements \Psc\HTML\HTMLInter
     $entityMeta = $entityFactory->getEntityMeta();
     foreach ($data as $property => $value) {
       $propertyMeta = $entityMeta->getPropertyMeta($property);
+      $propertyType = $propertyMeta->getType();
 
-      if (is_numeric($value) && $propertyMeta->getType() instanceof \Psc\Data\Type\EntityType) {
-        if ($propertyMeta->getType()->isImage()) {
-          $value = $converter->getContext()->getImageManager()->load($value);
+      if ($propertyType instanceof \Psc\Data\Type\EntityType) {
+        
+        if ($propertyType->isCSEntry()) {
+          $value = $converter->unserializeEntry($value);
+        
+        } elseif ($propertyType->implementsInterface('Psc\TPL\ContentStream\ContextLoadable')) {
+          $objectClass = $propertyType->getGClass()->getFQN();
+          $value = $objectClass::loadWithContentStreamContext($value, $converter->getContext());
+        
         } else {
-          throw new \RuntimeException('Cannot convert EntityType: '.$propertyMeta->getType()->getClassFQN());
+          throw new \RuntimeException(
+            sprintf(
+              "Cannot convert EntityType: %s in property '%s' from Entity %s",
+              $propertyType->getClassFQN(),
+              $property,
+              $entityMeta->getClass()
+            )
+          );
         }
       }
 
@@ -58,14 +73,18 @@ abstract class EntryEntity extends AbstractEntity implements \Psc\HTML\HTMLInter
   /**
    * @return Entries[]
    */
-  protected function doSerialize(Array $properties, Array $data = array()) {
+  protected function doSerialize(Array $properties, Array $data = array(), $context = NULL) {
     $serialized = array('type'=>$this->getType(),'label'=>$this->getLabel());
     
     foreach ($properties as $property) {
       $value = $this->$property;
       
-      if ($value instanceof \Psc\Doctrine\Entity) {
-        $value = $value->getIdentifier();
+      if ($value instanceof Entity) {
+        if ($value instanceof Entry) {
+          $value = $value->serialize($context);
+        } else {
+          $value = $value->getIdentifier();
+        }
       }
       
       $serialized[$property] = $value;
