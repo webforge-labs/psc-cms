@@ -35,6 +35,13 @@ class CreateBootstrapTask implements Task {
   
   public function run() {
     $this->createAutoPrepend();
+    $this->stagingHack();
+  }
+
+  protected function stagingHack() {
+    if ($this->targetProject->isStaging()) {
+      $this->targetProject->getRoot()->getFile('staging')->writeContents('1');
+    }
   }
   
   protected function createAutoPrepend() {

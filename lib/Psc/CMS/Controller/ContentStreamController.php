@@ -117,7 +117,7 @@ abstract class ContentStreamController extends \Psc\CMS\Controller\ContainerCont
   }
 
   protected function initLayoutManagerControls(LayoutManager $layoutManager, ContentStream $contentStream) {
-    $layoutManager->initControlsFor($entity);
+    $layoutManager->initControlsFor($contentStream);
   }
 
 	protected function initFormPanel(\Psc\CMS\EntityFormPanel $panel) {
