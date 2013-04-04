@@ -22,6 +22,8 @@ ProjectMain:
 - set containerClass to this class (per default its the projectNamespace\CMS\Container)
 - override getContainer in your main if necessary (if you have ovrriden the constructor from Psc\CMS\Roles\AbstractContainer)
 
+AcceptanceTests:
+- use cmf.user and cmf.password from host config in your fixture for access for acceptance tests
 
 ContentStreamConverter + Context:
 - the abstract class \Psc\TPL\ContentStream\Converter needs now an implementation of the Psc\TPL\ContentStream\Context as first parameter. You can use a SimpleContainer for this
