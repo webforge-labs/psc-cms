@@ -2,7 +2,8 @@
 	"folders":
 	[
 		{
-			"path": "D:\\www\\psc-cms"
+			"path": "D:\\www\\psc-cms",
+      "folder_exclude_patterns": ["vendor", "build"]
 		}
 	]
 }
