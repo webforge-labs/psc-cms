@@ -11,17 +11,19 @@ use Closure;
 use Psc\Code\Code;
 use Psc\Doctrine\DCPackage;
 use Psc\Doctrine\EntityRelation;
+use Webforge\Common\JS\JSONConverter;
+use Webforge\Common\System\File;
 
 class CommonProjectCompiler extends ProjectCompiler {
   
   /**
    *
-      public function doCompileImage() {
-        $this->doCompileImage('Image', function ($help) {
-          extract($help);
-         
-        });
-      }
+   *  public function doCompileImage() {
+   *    $this->doCompileImage('Image', function ($help) {
+   *      extract($help);
+   *     
+   *    });
+   *  }
    *
    * @param Closure $doCompile(Array $help)
    */
@@ -78,12 +80,12 @@ class CommonProjectCompiler extends ProjectCompiler {
 
   /**
    *
-      public function doCompileFile() {
-        $this->doCompileFile('File', function ($help) {
-          extract($help);
-         
-        });
-      }
+   *   public function doCompileFile() {
+   *     $this->doCompileFile('File', function ($help) {
+   *       extract($help);
+   *      
+   *     });
+   *   }
    *
    * @param Closure $doCompile(Array $help)
    */
@@ -122,12 +124,12 @@ class CommonProjectCompiler extends ProjectCompiler {
    *
    * Kompiliert einen Prototypen für ein Psc\UI\CalendarEvent
    *
-      public function doCompileCalendarEvent() {
-        $this->doCompileCalendarEvent('CalendarEvent', function ($help) {
-          extract($help);
-         
-        });
-      }
+   *  public function doCompileCalendarEvent() {
+   *    $this->doCompileCalendarEvent('CalendarEvent', function ($help) {
+   *      extract($help);
+   *     
+   *    });
+   *  }
    *
    * @param Closure $doCompile(Array $help)
    */
@@ -333,7 +335,7 @@ class CommonProjectCompiler extends ProjectCompiler {
       $entity($entityName, $extends('Psc\TPL\ContentStream\EntryEntity'), $tableName),
       $defaultId(),
       
-      $property('sort', $type('PositiveInteger')),
+      $property('sort', $type('PositiveInteger'))->setDefaultValue(1),
       
       $build($relation($targetMeta($expandClass('ContentStream\ContentStream')), 'ManyToOne', 'bidirectional')
               ->setJoinColumnNullable(TRUE)
@@ -563,6 +565,11 @@ class CommonProjectCompiler extends ProjectCompiler {
     );
   }
 
+  public function doCompileCSWidgetFile(File $specificationJSONFile) {
+    $converter = new JSONConverter();
+    return $this->doCompileCSWidget($converter->parseFile($specificationJSONFile));
+  }
+
 
   public function doCompileCSWidget(\stdClass $specification) {
 /*
@@ -598,11 +605,14 @@ class CommonProjectCompiler extends ProjectCompiler {
             $relation($expandClass('ContentStream\Image'), 'ManyToOne', 'unidirectional', 'source')
               ->setNullable(TRUE)
               ->setJoinColumnNullable(TRUE)
+              ->setRelationCascade(array('persist'))
           );
           $nullable = TRUE;
 
         } elseif ($field->type === 'link') {
-          $build($relation($targetMeta('NavigationNode')->setAlias(ucfirst($fieldName)), 'ManyToOne', 'unidirectional')->setNullable(TRUE));
+          $build(
+            $relation($targetMeta('NavigationNode')->setAlias(ucfirst($fieldName)), 'ManyToOne', 'unidirectional')->setNullable(TRUE)
+          );
           $nullable = TRUE;
         }
 
@@ -617,10 +627,16 @@ class CommonProjectCompiler extends ProjectCompiler {
 
       call_user_func_array($constructor, $cArgs);
 
-      $build($csSerialize($fields));
+      $build($csSerialize($fields, array('specification'=>$specification)));
       $build($csLabel(isset($specification->label) ? $specification->label : $specification->name));
 
       $build($csHTMLTemplate(isset($specification->template) ? $specification->template : $specification->name));
+
+      $build($method('getType', array(),
+        array(
+          "return 'TemplateWidget';"
+        )
+      ));
     };
 
     return $this->getModelCompiler()->compile(
@@ -636,12 +652,12 @@ class CommonProjectCompiler extends ProjectCompiler {
 
     $phpWriter = new \Psc\Code\Generate\CodeWriter();
 
-    $csSerialize = function ($fields) use ($method, $phpWriter) {
+    $csSerialize = function ($fields, $data = array()) use ($method, $phpWriter) {
       $fields = is_array($fields) ? $fields : func_get_args();
 
       return $method('serialize', array(new GParameter('context')),
         array(
-          "return \$this->doSerialize(array(".$phpWriter->exportFunctionParameters($fields)."), array(), \$context);"
+          "return \$this->doSerialize(array(".$phpWriter->exportFunctionParameters($fields)."), ".$phpWriter->exportFunctionParameter($data).", \$context);"
         )
       );
     };

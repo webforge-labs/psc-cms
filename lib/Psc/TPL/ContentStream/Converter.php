@@ -117,17 +117,29 @@ abstract class Converter extends \Psc\SimpleObject {
   
   public function unserializeEntry(\stdClass $serializedEntry) {
     $factoryCreater = $this->getFactoryCreater();
-    // back:
-    $factory = $factoryCreater($serializedEntry->type);
+
+    $factory = $factoryCreater($this->getEntityType($serializedEntry));
     $c = $factory->getEntityMeta()->getClass();
-      
+
     unset($serializedEntry->type);
+
+    if (isset($serializedEntry->specification)) {
+      unset($serializedEntry->specification);
+    }
     
     if (!$factory->getEntityMeta()->hasProperty('label')) {
       unset($serializedEntry->label);
     }
     
     return $c::unserialize($serializedEntry, $factory, $this);
+  }
+
+  protected function getEntityType(\stdClass $serializedEntry) {
+    if (isset($serializedEntry->specification) && isset($serializedEntry->specification->name)) {
+      return $serializedEntry->specification->name;
+    } else {
+      return $serializedEntry->type;
+    }
   }
   
   /**

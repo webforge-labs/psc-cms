@@ -71,8 +71,6 @@ abstract class ContentStreamController extends \Psc\CMS\Controller\ContainerCont
     // da wir keine unique constraints haben und neu sortieren müssen , nehmen wir die holzhammer methode:
     // delete all
     foreach ($entity->getEntries() as $entry) {
-      //$entity->removeEntry($entry);
-
       // den entry selbst löschen
       $this->repository->remove($entry);
     }

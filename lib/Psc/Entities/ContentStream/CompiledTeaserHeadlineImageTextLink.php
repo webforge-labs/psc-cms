@@ -109,7 +109,7 @@ abstract class CompiledTeaserHeadlineImageTextLink extends Entry {
   }
   
   public function serialize($context) {
-    return $this->doSerialize(array('headline','image','text','link'), array(), $context);
+    return $this->doSerialize(array('headline','image','text','link'), array('specification'=>(object) array('name'=>'TeaserHeadlineImageTextLink','fields'=>(object) array('headline'=>(object) array('type'=>'string','label'=>'Überschrift','defaultValue'=>'die Überschrift'),'image'=>(object) array('type'=>'image','label'=>'Bild'),'text'=>(object) array('type'=>'text','label'=>'Inhalt','defaultValue'=>'Hier ist ein langer Text, der dann in der Teaserbox angezeigt wird...'),'link'=>(object) array('type'=>'link','label'=>'Link-Ziel')))), $context);
   }
   
   public function getLabel() {
@@ -118,6 +118,10 @@ abstract class CompiledTeaserHeadlineImageTextLink extends Entry {
   
   public function html() {
     return TeaserHeadlineImageTextLink;
+  }
+  
+  public function getType() {
+    return 'TemplateWidget';
   }
   
   public function getEntityName() {

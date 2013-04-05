@@ -5,6 +5,7 @@ namespace Psc\Net\HTTP;
 use Psc\Object;
 use Psc\Code\Code;
 use Symfony\Component\HttpFoundation\Request AS SfRequest;
+use Webforge\Common\JS\JSONConverter;
 
 /**
  * use \Psc\Net\HTTP\Request
@@ -355,11 +356,13 @@ class Request extends \Psc\Object {
   }
   
   public function debug() {
+    $converter = new JSONConverter();
+
     $text  = "== Psc\Net\HTTP\Request =========================\n";
     $text .= $this->method.' : /'.$this->resource.($this->getQueryString())."\n";
     $text .= $this->getHeader()."\n";
     $text .= "== Request-Body =================================\n";
-    $text .= \Psc\Doctrine\Helper::getDump((array) $this->body, 6);
+    $text .= $converter->stringify($this->body, JSONConverter::PRETTY_PRINT)."\n";
     $text .= "=================================================\n";
     /*
     $text .= "\n";

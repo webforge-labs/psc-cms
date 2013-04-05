@@ -49,7 +49,11 @@ class ProjectCompiler extends \Psc\System\LoggerObject {
         }
         
         if ($out instanceof \Webforge\Common\System\File) {
-          $this->log('    '.$file.' geschrieben');
+          $this->log('    '.$out.' geschrieben');
+        } elseif (is_array($out)) {
+          foreach ($out as $file) {
+            $this->log('    '.$file.' geschrieben');
+          }
         } elseif ($out instanceof \Psc\Doctrine\EntityBuilder) {
           $this->log('    '.$out->getWrittenFile().' geschrieben');
         }

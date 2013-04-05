@@ -11,7 +11,10 @@ class CommonProjectCompilerTest extends \Psc\Test\DatabaseTestCase {
     parent::setUp();
 
     $this->initInstancer();
+
+    $this->specification = \Psc\System\Console\CompileTestEntitiesCommand::getTeaserSpecification();
   }
+
 
   public function testCSWidgetCompiling() {
     // siehe compiler in test for call for the spec
@@ -22,6 +25,8 @@ class CommonProjectCompilerTest extends \Psc\Test\DatabaseTestCase {
     $this->assertSame($this->headline, $teaser->getHeadline());
     $this->assertSame($this->link, $teaser->getLink());
     $this->assertSame($this->text, $teaser->getText());
+
+    $this->assertEquals('TemplateWidget', $teaser->getType());
 
     return $teaser;
   }
@@ -36,7 +41,21 @@ class CommonProjectCompilerTest extends \Psc\Test\DatabaseTestCase {
     return $teaser;
   }
 
-  public function testSerializing() {
+  public function testSerializing_hasTheTemplateWidgetAsTypeNotTheConcreteTypeOfClass() {
+    $teaser = $this->createTeaser();
+    $serialized = $teaser->serialize($context = NULL);
+
+    $this->assertEquals('TemplateWidget', $serialized->type);
+  }
+
+  public function testSerializing_setstheSpecificationAsAParam() {
+    $teaser = $this->createTeaser();
+    $serialized = $teaser->serialize($context = NULL);
+
+    $this->assertEquals($this->specification, $serialized->specification);
+  }
+
+  public function testSerializing_allSubItemsAreSerializedRecursively() {
     $teaser = $this->createTeaser();
     $serialized = $teaser->serialize($context = NULL);
 

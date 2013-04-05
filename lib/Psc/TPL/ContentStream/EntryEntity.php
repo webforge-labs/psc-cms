@@ -38,12 +38,18 @@ abstract class EntryEntity extends AbstractEntity implements \Psc\HTML\HTMLInter
 
       if ($propertyType instanceof \Psc\Data\Type\EntityType) {
         
-        if ($propertyType->isCSEntry()) {
-          $value = $converter->unserializeEntry($value);
-        
-        } elseif ($propertyType->implementsInterface('Psc\TPL\ContentStream\ContextLoadable')) {
+        if ($propertyType->implementsInterface('Psc\TPL\ContentStream\ContextLoadable')) {
           $objectClass = $propertyType->getGClass()->getFQN();
           $value = $objectClass::loadWithContentStreamContext($value, $converter->getContext());
+
+        } elseif ($propertyType->isCSEntry()) {
+          if (is_string($value) && trim($value) === '') {
+            $value = NULL;
+          } else {
+            $serialized = (object) $value;
+            $serialized->type = $propertyType->getGClass()->getClassName();
+            $value = $converter->unserializeEntry($serialized);
+          }
         
         } else {
           throw new \RuntimeException(

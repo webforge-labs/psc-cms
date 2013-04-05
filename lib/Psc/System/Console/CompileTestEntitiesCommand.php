@@ -19,6 +19,21 @@ use \Symfony\Component\Console\Input\InputOption,
 use Psc\Doctrine\ModelCompiler;
 
 class CompileTestEntitiesCommand extends DoctrineCommand {
+
+  public static function getTeaserSpecification() {
+    return json_decode('
+{
+  "name": "TeaserHeadlineImageTextLink",
+
+  "fields": {
+    "headline": { "type": "string", "label": "Überschrift", "defaultValue": "die Überschrift" },
+    "image": { "type": "image", "label": "Bild" },
+    "text": { "type": "text", "label": "Inhalt", "defaultValue": "Hier ist ein langer Text, der dann in der Teaserbox angezeigt wird..." },
+    "link": {"type": "link", "label": "Link-Ziel"}
+  }
+}
+');    
+  }
   
   protected $modelCompiler;
   protected $ccompiler; // commonProjectCompiler
@@ -222,18 +237,7 @@ class CompileTestEntitiesCommand extends DoctrineCommand {
   }
 
   protected function compileCSTeaserWidget() {
-    return $this->ccompiler->doCompileCSWidget(json_decode('
-{
-  "name": "TeaserHeadlineImageTextLink",
-
-  "fields": {
-    "headline": { "type": "string", "label": "Überschrift", "defaultValue": "die Überschrift" },
-    "image": { "type": "image", "label": "Bild" },
-    "text": { "type": "text", "label": "Inhalt", "defaultValue": "Hier ist ein langer Text, der dann in der Teaserbox angezeigt wird..." },
-    "link": {"type": "link", "label": "Link-Ziel"}
-  }
-}
-'))->getWrittenFile();
+    return $this->ccompiler->doCompileCSWidget(self::getTeaserSpecification())->getWrittenFile();
   }
 
   protected function help() {
