@@ -31,6 +31,8 @@ class CompileTestEntitiesCommand extends DoctrineCommand {
         'Erstellt alle Test Entities in Psc\Doctrine\TestEntities'
       )
     ;
+
+    $this->addOption('filter');
   }
   
   protected function doExecute($input, $output) {
@@ -38,24 +40,38 @@ class CompileTestEntitiesCommand extends DoctrineCommand {
     
     $this->modelCompiler = new ModelCompiler();
     $this->modelCompiler->setOverwriteMode(TRUE);
-    
-    $output->writeLn('compiling TestEntities..');
-    $output->writeLn('  '.$this->compilePerson().' geschrieben');
-    $output->writeLn('  '.$this->compileImage().' geschrieben');
-    $output->writeLn('  '.$this->compileFile().' geschrieben');
-    $output->writeLn('  '.$this->compileTag().' geschrieben');
-    $output->writeLn('  '.$this->compileArticle().' geschrieben');
-    $output->writeLn('  '.$this->compileCategory().' geschrieben');
-    $output->writeLn('  '.$this->compilePage().' geschrieben');
-    $output->writeLn('  '.$this->compileNavigationNode().' geschrieben');
-    $output->writeLn('  '.$this->compileContentStream().' geschrieben');
-    $output->writeLn('  '.$this->compileContentStreamEntry().' geschrieben');
-    $output->writeLn('  '.$this->compileCSHeadline().' geschrieben');
-    $output->writeLn('  '.$this->compileCSParagraph().' geschrieben');
-    $output->writeLn('  '.$this->compileCSImage().' geschrieben');
 
-    $output->writeLn('  '.$this->compileCSSimpleTeaser().' geschrieben');
+    $filter = mb_strtolower($input->getOption('filter'));
+
+    $output->writeLn('compiling TestEntities..');
+
+    $methods = array(
+      'Person',
+      'Image',
+      'File',
+      'Tag',
+      'Article',
+      'Category',
+      'Page',
+      'NavigationNode',
+      'ContentStream',
+      'ContentStreamEntry',
+      'CSHeadline',
+      'CSParagraph',
+      'CSImage',
+      'CSTeaserWidget',
+      'CSSimpleTeaser'
+    );
+
+    foreach ($methods as $method) {
+      if (!$filter || mb_strpos($filter, mb_strtolower($method)) !== FALSE) {
+        $output->writeln('  compile'.$method);
+        $output->writeLn('   wrote '.$this->{'compile'.$method}());
+      }
+    }
+
     $output->writeLn('finished.');
+    return 0;
   }
   
   protected function compilePerson() {
@@ -203,6 +219,21 @@ class CompileTestEntitiesCommand extends DoctrineCommand {
     );
     
     return $entityBuilder->getWrittenFile();
+  }
+
+  protected function compileCSTeaserWidget() {
+    return $this->ccompiler->doCompileCSWidget(json_decode('
+{
+  "name": "TeaserHeadlineImageTextLink",
+
+  "fields": {
+    "headline": { "type": "string", "label": "Überschrift", "defaultValue": "die Überschrift" },
+    "image": { "type": "image", "label": "Bild" },
+    "text": { "type": "text", "label": "Inhalt", "defaultValue": "Hier ist ein langer Text, der dann in der Teaserbox angezeigt wird..." },
+    "link": {"type": "link", "label": "Link-Ziel"}
+  }
+}
+'))->getWrittenFile();
   }
 
   protected function help() {

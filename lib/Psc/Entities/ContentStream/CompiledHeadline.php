@@ -11,14 +11,6 @@ use Doctrine\ORM\Mapping AS ORM;
 abstract class CompiledHeadline extends Entry {
   
   /**
-   * @var integer
-   * @ORM\Id
-   * @ORM\GeneratedValue
-   * @ORM\Column(type="integer")
-   */
-  protected $id;
-  
-  /**
    * @var string
    * @ORM\Column(type="text")
    */
@@ -35,24 +27,6 @@ abstract class CompiledHeadline extends Entry {
     if (isset($level)) {
       $this->setLevel($level);
     }
-  }
-  
-  /**
-   * Gibt den Primärschlüssel des Entities zurück
-   * 
-   * @return mixed meistens jedoch einen int > 0 der eine fortlaufende id ist
-   */
-  public function getIdentifier() {
-    return $this->id;
-  }
-  
-  /**
-   * @param mixed $identifier
-   * @chainable
-   */
-  public function setIdentifier($id) {
-    $this->id = $id;
-    return $this;
   }
   
   /**
@@ -91,7 +65,6 @@ abstract class CompiledHeadline extends Entry {
   
   public static function getSetMeta() {
     return new \Psc\Data\SetMeta(array(
-      'id' => new \Psc\Data\Type\IdType(),
       'content' => new \Psc\Data\Type\MarkupTextType(),
       'level' => new \Psc\Data\Type\PositiveSmallIntegerType(),
     ));

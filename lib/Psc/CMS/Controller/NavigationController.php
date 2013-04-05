@@ -46,9 +46,9 @@ class NavigationController extends ContainerController {
 
     if ($subResource === 'form') {
       return $this->getFormular();
+    } else {
+      return parent::getEntity($context, $subResource, $query);
     }
-
-    throw $this->err->invalidArgument(__FUNCTION__, 'subResource', $subResource);
   }
 
   public function getEntityName() {

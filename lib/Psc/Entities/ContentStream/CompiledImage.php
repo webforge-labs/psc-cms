@@ -170,7 +170,7 @@ abstract class CompiledImage extends Entry implements \Psc\TPL\ContentStream\Ima
   }
   
   public function serialize($context) {
-    return $this->doSerialize(array('url','caption','align','imageEntity'));
+    return $this->doSerialize(array('url','caption','align','imageEntity'), array(), $context);
   }
   
   public function getLabel() {

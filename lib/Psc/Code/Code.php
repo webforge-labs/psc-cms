@@ -81,7 +81,7 @@ class Code extends \Webforge\Common\Util {
     if (isset($dimSpec['dim1'])) {
       foreach ($collection as $item) {
         if (Code::getType($item) != $dimSpec['dim1']) {
-          throw new \Psc\Exception('Im Array ist nur Type: '.$dimSpec['dim1'].' erlaubt. Failed für Array: '.Code::varInfo($collection));
+          throw new \Psc\Exception('Im Array ist nur Type: '.$dimSpec['dim1'].' erlaubt. Failed für Array: '.self::varInfo($collection));
         }
       }
     }

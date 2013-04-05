@@ -8,6 +8,7 @@ use Psc\Code\Generate\GParameter;
 use Psc\Code\Generate\GMethod;
 use Psc\Code\Generate\ClassBuilder;
 use Closure;
+use Psc\Code\Code;
 use Psc\Doctrine\DCPackage;
 use Psc\Doctrine\EntityRelation;
 
@@ -351,7 +352,6 @@ class CommonProjectCompiler extends ProjectCompiler {
 
     return $this->getModelCompiler()->compile(
       $entity($entityName, $extends($expandClass("ContentStream\Entry"))),
-      $defaultId(),
       
       $property('content', $type('MarkupText')),
       $property('level', $type('PositiveSmallInteger')->setZero(FALSE)),
@@ -463,7 +463,6 @@ class CommonProjectCompiler extends ProjectCompiler {
 
     return $this->getModelCompiler()->compile(
       $entity($entityName, $extends($expandClass("ContentStream\Entry"))),
-      $defaultId(),
       
       $property('content', $type('MarkupText')),
       
@@ -484,7 +483,6 @@ class CommonProjectCompiler extends ProjectCompiler {
 
     return $this->getModelCompiler()->compile(
       $entity($entityName, $extends($expandClass("ContentStream\Entry"))),
-      $defaultId(),
       
       $property('content', $type('Array')),
       
@@ -505,7 +503,6 @@ class CommonProjectCompiler extends ProjectCompiler {
    
     return $this->getModelCompiler()->compile(
       $entity($entityName, $extends($expandClass("ContentStream\Entry"))),
-      $defaultId(),
       
       $property('headline', $type('String'), $nullable()),
       
@@ -553,7 +550,6 @@ class CommonProjectCompiler extends ProjectCompiler {
    
     return $this->getModelCompiler()->compile(
       $entity($entityName, $extends($expandClass("ContentStream\Entry"))),
-      $defaultId(),
       
       $property('name', $type('String')),
       $property('label', $type('String')),
@@ -567,13 +563,81 @@ class CommonProjectCompiler extends ProjectCompiler {
     );
   }
 
+
+  public function doCompileCSWidget(\stdClass $specification) {
+/*
+{
+  "name": "TeaserImageTextLink",
+
+  "fields": {
+    "headline": { "type": "string", "label": "Überschrift", "defaultValue": "die Überschrift" },
+    "image": { "type": "image", "label": "Bild" },
+    "text": { "type": "text", "label": "Inhalt", "defaultValue": "Hier ist ein langer Text, der dann in der Teaserbox angezeigt wird..." },
+    "link": {"type": "link", "label": "Link-Ziel"}
+  }
+}
+*/
+    extract($help = array_merge($this->help(), $this->csHelp()));
+
+    $compileSpecification = function ($specification, $help) {
+      extract($help);
+
+      $fields = array();
+      $cArgs = array();
+      foreach ($specification->fields as $fieldName => $field) {
+        $nullable = FALSE;
+
+        if ($field->type === 'string') {
+          $property($fieldName, $type('String'));
+
+        } elseif ($field->type === 'text') {
+          $property($fieldName, $type('MarkupText'));
+          
+        } elseif ($field->type === 'image') {
+          $build(
+            $relation($expandClass('ContentStream\Image'), 'ManyToOne', 'unidirectional', 'source')
+              ->setNullable(TRUE)
+              ->setJoinColumnNullable(TRUE)
+          );
+          $nullable = TRUE;
+
+        } elseif ($field->type === 'link') {
+          $build($relation($targetMeta('NavigationNode')->setAlias(ucfirst($fieldName)), 'ManyToOne', 'unidirectional')->setNullable(TRUE));
+          $nullable = TRUE;
+        }
+
+        $fields[] = $fieldName;
+
+        if ($nullable) {
+          $cArgs[] = $argument($fieldName, NULL);
+        } else {
+          $cArgs[] = $argument($fieldName);
+        }
+      }
+
+      call_user_func_array($constructor, $cArgs);
+
+      $build($csSerialize($fields));
+      $build($csLabel(isset($specification->label) ? $specification->label : $specification->name));
+
+      $build($csHTMLTemplate(isset($specification->template) ? $specification->template : $specification->name));
+    };
+
+    return $this->getModelCompiler()->compile(
+      $entity('ContentStream\\'.$specification->name, $extends($expandClass("ContentStream\Entry"))),
+
+      $compileSpecification($specification, $help)
+    );
+  }
+
+
   public function csHelp() {
     extract($this->help());
 
     $phpWriter = new \Psc\Code\Generate\CodeWriter();
 
-    $csSerialize = function () use ($method, $phpWriter) {
-      $fields = func_get_args();
+    $csSerialize = function ($fields) use ($method, $phpWriter) {
+      $fields = is_array($fields) ? $fields : func_get_args();
 
       return $method('serialize', array(new GParameter('context')),
         array(

@@ -11,14 +11,6 @@ use Doctrine\ORM\Mapping AS ORM;
 abstract class CompiledParagraph extends Entry {
   
   /**
-   * @var integer
-   * @ORM\Id
-   * @ORM\GeneratedValue
-   * @ORM\Column(type="integer")
-   */
-  protected $id;
-  
-  /**
    * @var string
    * @ORM\Column(type="text")
    */
@@ -26,24 +18,6 @@ abstract class CompiledParagraph extends Entry {
   
   public function __construct($content) {
     $this->setContent($content);
-  }
-  
-  /**
-   * Gibt den Primärschlüssel des Entities zurück
-   * 
-   * @return mixed meistens jedoch einen int > 0 der eine fortlaufende id ist
-   */
-  public function getIdentifier() {
-    return $this->id;
-  }
-  
-  /**
-   * @param mixed $identifier
-   * @chainable
-   */
-  public function setIdentifier($id) {
-    $this->id = $id;
-    return $this;
   }
   
   /**
@@ -67,7 +41,6 @@ abstract class CompiledParagraph extends Entry {
   
   public static function getSetMeta() {
     return new \Psc\Data\SetMeta(array(
-      'id' => new \Psc\Data\Type\IdType(),
       'content' => new \Psc\Data\Type\MarkupTextType(),
     ));
   }

@@ -5,6 +5,7 @@ namespace Psc\Doctrine;
 use Psc\Data\Set;
 use Psc\Data\SetMeta;
 use Psc\CMS\EntityMeta;
+use Psc\Code\Code;
 
 class EntityFactory {
   
@@ -63,9 +64,15 @@ class EntityFactory {
       $entity = $this->getGClass()->newInstance($constructParams);
     } catch (\ErrorException $e) {
       throw new \Psc\Exception(
-        sprintf("Fehler beim Erstellen des Entities: '%s'. Es wurden %d (%s) Parameter an den Constructor übergeben. Fehler: %s",
-                $this->entityMeta->getEntityName(), count($constructParams), \Psc\Code\Code::varInfo($constructParams), $e->getMessage()
-               ), 0, $e);
+        sprintf(
+          "Fehler beim Erstellen des Entities: '%s'. Es wurden %d (%s) Parameter an den Constructor übergeben. Fehler: %s",
+          $this->entityMeta->getEntityName(), 
+          count($constructParams), 
+          Code::varInfo($constructParams), $e->getMessage()
+        ), 
+        0, 
+        $e
+      );
     }
     
     // restliche Felder (oben haben wir alle aus dem constructor unsetted)

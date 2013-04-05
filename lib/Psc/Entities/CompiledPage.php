@@ -23,7 +23,7 @@ abstract class CompiledPage extends \Psc\CMS\Roles\PageEntity {
   
   /**
    * @var string
-   * @ORM\Column
+   * @ORM\Column(nullable=true)
    */
   protected $slug;
   
@@ -58,8 +58,13 @@ abstract class CompiledPage extends \Psc\CMS\Roles\PageEntity {
    */
   protected $contentStreams;
   
-  public function __construct($slug) {
-    $this->setSlug($slug);
+  public function __construct($slug = NULL, $active = false) {
+    if (isset($slug)) {
+      $this->setSlug($slug);
+    }
+    if (isset($active)) {
+      $this->setActive($active);
+    }
     $this->navigationNodes = new \Psc\Data\ArrayCollection();
     $this->contentStreams = new \Psc\Data\ArrayCollection();
   }

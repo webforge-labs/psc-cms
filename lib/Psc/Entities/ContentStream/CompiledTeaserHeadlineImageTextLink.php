@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping AS ORM;
 /**
  * @ORM\MappedSuperclass
  */
-abstract class CompiledSimpleTeaser extends Entry {
+abstract class CompiledTeaserHeadlineImageTextLink extends Entry {
   
   /**
    * @var string
@@ -18,29 +18,33 @@ abstract class CompiledSimpleTeaser extends Entry {
   protected $headline;
   
   /**
+   * @var Psc\Entities\ContentStream\Image
+   * @ORM\ManyToOne(targetEntity="Psc\Entities\ContentStream\Image")
+   * @ORM\JoinColumn(onDelete="SET NULL")
+   */
+  protected $image;
+  
+  /**
    * @var string
    * @ORM\Column(type="text")
    */
   protected $text;
   
   /**
-   * @var Psc\Entities\ContentStream\Image
-   * @ORM\OneToOne(targetEntity="Psc\Entities\ContentStream\Image")
-   * @ORM\JoinColumn(onDelete="SET NULL")
-   */
-  protected $image;
-  
-  /**
    * @var Psc\Entities\NavigationNode
-   * @ORM\OneToOne(targetEntity="Psc\Entities\NavigationNode")
+   * @ORM\ManyToOne(targetEntity="Psc\Entities\NavigationNode")
    * @ORM\JoinColumn(onDelete="SET NULL")
    */
   protected $link;
   
-  public function __construct($headline, $text = NULL) {
+  public function __construct($headline, Image $image = NULL, $text, NavigationNode $link = NULL) {
     $this->setHeadline($headline);
-    if (isset($text)) {
-      $this->setText($text);
+    if (isset($image)) {
+      $this->setImage($image);
+    }
+    $this->setText($text);
+    if (isset($link)) {
+      $this->setLink($link);
     }
   }
   
@@ -60,21 +64,6 @@ abstract class CompiledSimpleTeaser extends Entry {
   }
   
   /**
-   * @return string
-   */
-  public function getText() {
-    return $this->text;
-  }
-  
-  /**
-   * @param string $text
-   */
-  public function setText($text) {
-    $this->text = $text;
-    return $this;
-  }
-  
-  /**
    * @return Psc\Entities\ContentStream\Image
    */
   public function getImage() {
@@ -86,6 +75,21 @@ abstract class CompiledSimpleTeaser extends Entry {
    */
   public function setImage(Image $image = NULL) {
     $this->image = $image;
+    return $this;
+  }
+  
+  /**
+   * @return string
+   */
+  public function getText() {
+    return $this->text;
+  }
+  
+  /**
+   * @param string $text
+   */
+  public function setText($text) {
+    $this->text = $text;
     return $this;
   }
   
@@ -105,22 +109,26 @@ abstract class CompiledSimpleTeaser extends Entry {
   }
   
   public function serialize($context) {
-    return $this->doSerialize(array('headline','text','link','image'), array(), $context);
+    return $this->doSerialize(array('headline','image','text','link'), array(), $context);
   }
   
   public function getLabel() {
-    return 'Normaler Teaser';
+    return 'TeaserHeadlineImageTextLink';
+  }
+  
+  public function html() {
+    return TeaserHeadlineImageTextLink;
   }
   
   public function getEntityName() {
-    return 'Psc\Entities\ContentStream\CompiledSimpleTeaser';
+    return 'Psc\Entities\ContentStream\CompiledTeaserHeadlineImageTextLink';
   }
   
   public static function getSetMeta() {
     return new \Psc\Data\SetMeta(array(
       'headline' => new \Psc\Data\Type\StringType(),
-      'text' => new \Psc\Data\Type\MarkupTextType(),
       'image' => new \Psc\Data\Type\EntityType(new \Psc\Code\Generate\GClass('Psc\\Entities\\ContentStream\\Image')),
+      'text' => new \Psc\Data\Type\MarkupTextType(),
       'link' => new \Psc\Data\Type\EntityType(new \Psc\Code\Generate\GClass('Psc\\Entities\\NavigationNode')),
     ));
   }

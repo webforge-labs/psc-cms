@@ -29,7 +29,6 @@ class Instancer {
 
     $imageFile = $this->commonFiles->getFile('images/image'.$num.'.jpg');
 
-
     $image = $manager->store(
       $manager->createImagineImage($imageFile),
       NULL,
@@ -38,6 +37,20 @@ class Instancer {
     $manager->flush();
 
     return $image;
+  }
+
+  protected function instanceNavigationNode($num) {
+    $navNode = new NavigationNode(array('de'=>'node mit nummer '.$num,'en'=>'node with number '.$num));
+    $navNode
+      ->setLft(0)
+      ->setRgt(1)
+      ->setDepth(0)
+    ;
+    $navNode->setIdentifier($num);
+
+    $this->save($navNode);
+
+    return $navNode;
   }
 
   /**
@@ -51,10 +64,23 @@ class Instancer {
       return $entity;
     }
 
-    $entity = call_user_func(array($this, str_replace('get', 'instance', $method)), $num);
+    $callable = array($this, str_replace('get', 'instance', $method));
+
+    if (!method_exists($this, $callable[1])) {
+      throw new \Psc\Exception('Method does not exist: '.get_class($this).'::'.$callable[1]);
+    }
+
+    $entity = call_user_func($callable, $num);
     $this->store($method, $num, $entity);
 
     return $entity;
+  }
+
+  protected function save($entity) {
+    $em = $this->container->getDoctrinePackage()->getEntityManager();
+    $em->persist($entity);
+    $em->flush();
+    return $this;
   }
 
   protected function store($function, $num, $entity) {
