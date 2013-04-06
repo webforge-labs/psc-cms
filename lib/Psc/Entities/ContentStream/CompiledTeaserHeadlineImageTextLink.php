@@ -19,7 +19,7 @@ abstract class CompiledTeaserHeadlineImageTextLink extends Entry {
   
   /**
    * @var Psc\Entities\ContentStream\Image
-   * @ORM\ManyToOne(targetEntity="Psc\Entities\ContentStream\Image")
+   * @ORM\ManyToOne(targetEntity="Psc\Entities\ContentStream\Image", cascade={"persist"})
    * @ORM\JoinColumn(onDelete="SET NULL")
    */
   protected $image;

@@ -22,7 +22,7 @@ abstract class CompiledEntry extends \Psc\TPL\ContentStream\EntryEntity {
    * @var integer
    * @ORM\Column(type="integer")
    */
-  protected $sort;
+  protected $sort = 1;
   
   /**
    * @var Psc\Entities\ContentStream\ContentStream

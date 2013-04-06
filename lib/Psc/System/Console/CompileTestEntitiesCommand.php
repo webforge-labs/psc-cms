@@ -174,7 +174,7 @@ class CompileTestEntitiesCommand extends DoctrineCommand {
       $build($relation($targetMeta($expandClass('ContentStream\Image')), 'OneToOne', 'unidirectional')->setNullable(TRUE)),
       $build($relation($targetMeta('NavigationNode')->setAlias('Link'), 'OneToOne', 'unidirectional')->setNullable(TRUE)),
 
-      $build($csSerialize('headline', 'text', 'link', 'image')),
+      $build($csSerialize(array('headline', 'text', 'link', 'image'))),
       $build($csLabel('Normaler Teaser'))
 
 

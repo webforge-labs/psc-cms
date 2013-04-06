@@ -398,7 +398,7 @@ class CommonProjectCompiler extends ProjectCompiler {
       ),
 
       //  implement entry interface
-      $build($csSerialize('url', 'caption', 'align', 'imageEntity')),
+      $build($csSerialize(array('url', 'caption', 'align', 'imageEntity'))),
       $build($csLabel('Bild')),
 
       $build($method('html', array(),
@@ -652,9 +652,7 @@ class CommonProjectCompiler extends ProjectCompiler {
 
     $phpWriter = new \Psc\Code\Generate\CodeWriter();
 
-    $csSerialize = function ($fields, $data = array()) use ($method, $phpWriter) {
-      $fields = is_array($fields) ? $fields : func_get_args();
-
+    $csSerialize = function (Array $fields, $data = array()) use ($method, $phpWriter) {
       return $method('serialize', array(new GParameter('context')),
         array(
           "return \$this->doSerialize(array(".$phpWriter->exportFunctionParameters($fields)."), ".$phpWriter->exportFunctionParameter($data).", \$context);"
