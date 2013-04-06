@@ -13,6 +13,7 @@ use Psc\Doctrine\DCPackage;
 use Psc\Doctrine\EntityRelation;
 use Webforge\Common\JS\JSONConverter;
 use Webforge\Common\System\File;
+use Webforge\Common\System\Dir;
 
 class CommonProjectCompiler extends ProjectCompiler {
   
@@ -565,9 +566,18 @@ class CommonProjectCompiler extends ProjectCompiler {
     );
   }
 
-  public function doCompileCSWidgetFile(File $specificationJSONFile) {
-    $converter = new JSONConverter();
+  public function doCompileCSWidgetFile(File $specificationJSONFile, JSONConverter $converter = NULL) {
+    $converter = $converter ?: new JSONConverter();
     return $this->doCompileCSWidget($converter->parseFile($specificationJSONFile));
+  }
+
+  public function doCompileCSWidgetsDir(Dir $specifcationsDir) {
+    $converter = new JSONConverter();
+    $compiled = array();
+    foreach ($specifcationsDir->getFiles('json') as $file) {
+      $compiled[] = $this->doCompileCSWidgetFile($file, $converter)->getWrittenFile();
+    }
+    return $compiled;
   }
 
 
