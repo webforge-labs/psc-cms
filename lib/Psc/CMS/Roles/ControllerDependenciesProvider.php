@@ -2,12 +2,9 @@
 
 namespace Psc\CMS\Roles;
 
-interface ControllerDependenciesProvider {
+use Psc\Doctrine\DCPackageProvider;
 
-  /**
-   * @return Psc\Doctrine\DCPackage
-   */
-  public function getDoctrinePackage();
+interface ControllerDependenciesProvider extends DCPackageProvider {
 
   /**
    * @return Psc\CMS\Roles\SimpleContainer

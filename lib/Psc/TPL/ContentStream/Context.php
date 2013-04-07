@@ -2,12 +2,9 @@
 
 namespace Psc\TPL\ContentStream;
 
-interface Context {
+use Psc\Doctrine\DCPackageProvider;
 
-  /**
-   * @return Psc\Doctrine\DCPackage
-   */
-  public function getDoctrinePackage();
+interface Context extends DCPackageProvider {
 
   /**
    * @return Psc\Image\Manager
