@@ -25,10 +25,20 @@ class Control extends \Psc\HTML\JooseBase implements JooseSnippetWidget {
    */
   protected $label;
 
-  public function __construct($type, $params = array(), $label = NULL) {
+  /**
+   * Section for the layoutmanager column (css-class-string)
+   * 
+   * @var string
+   */
+  protected $section = 'misc';
+
+  public function __construct($type, $params = array(), $label = NULL, $section = NULL) {
     $this->type = $type;
     $this->params = (object) $params;
     $this->label = $label;
+
+    if (isset($section))
+      $this->section = $section;
   }
 
   public function getJooseSnippet() {
@@ -36,7 +46,8 @@ class Control extends \Psc\HTML\JooseBase implements JooseSnippetWidget {
       'Psc.UI.LayoutManager.Control', array(
         'params'=>$this->params,
         'type'=>$this->type,
-        'label'=>$this->label
+        'label'=>$this->label,
+        'section'=>$this->section
       )
     );
   }

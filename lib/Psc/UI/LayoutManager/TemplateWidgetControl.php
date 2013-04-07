@@ -38,7 +38,8 @@ class TemplateWidgetControl extends Control {
        array(
          'specification'=>$this->specification
       ), 
-      isset($specification->label) ? $specification->label : $specification->name
+      isset($specification->label) ? $specification->label : $specification->name,
+      isset($specification->section) ? $specification->section : NULL
     );
   }
 }

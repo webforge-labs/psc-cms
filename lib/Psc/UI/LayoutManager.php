@@ -62,13 +62,13 @@ class LayoutManager extends \Psc\HTML\JooseBase implements JooseSnippetWidget {
   public function initControlsFor(ContentStream $cs) {
 
     if ($cs->getType() === 'page-content') {
-      $this->addNewControl('Headline', (object) array('level'=>1), 'Überschrift');
-      $this->addNewControl('Headline', (object) array('level'=>2), 'Zwischenüberschrift');
-      $this->addNewControl('Paragraph', NULL, 'Absatz');
-      $this->addNewControl('Li', NULL, 'Aufzählung');
-      $this->addNewControl('Image', NULL, 'Bild');
-      $this->addNewControl('DownloadsList', (object) array('headline'=>'', 'downloads'=>array()), 'Download-Liste');
-      $this->addNewControl('WebsiteWidget', (object) array('label'=>'Kalender', 'name'=>'calendar'), 'Kalender');
+      $this->addNewControl('Headline', (object) array('level'=>1), 'Überschrift', 'text');
+      $this->addNewControl('Headline', (object) array('level'=>2), 'Zwischenüberschrift', 'text');
+      $this->addNewControl('Paragraph', NULL, 'Absatz', 'text');
+      $this->addNewControl('Li', NULL, 'Aufzählung', 'text');
+      $this->addNewControl('Image', NULL, 'Bild im Text', 'images');
+      $this->addNewControl('DownloadsList', (object) array('headline'=>'', 'downloads'=>array()), 'Download-Liste', 'text');
+      $this->addNewControl('WebsiteWidget', (object) array('label'=>'Kalender', 'name'=>'calendar'), 'Kalender', 'misc');
     }
 
   }
@@ -86,8 +86,8 @@ class LayoutManager extends \Psc\HTML\JooseBase implements JooseSnippetWidget {
   /**
    * @return Control
    */
-  protected function addNewControl($type, $data = NULL, $label = NULL) {
-    $this->controls[] = $control = new Control($type, $data, $label);
+  protected function addNewControl($type, $params = NULL, $label = NULL, $section = NULL) {
+    $this->controls[] = $control = new Control($type, $params, $label, $section);
     
     return $control;
   }
