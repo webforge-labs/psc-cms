@@ -46,6 +46,17 @@ class Base extends AssertionsBase {
     }
     return $this->project;
   }
+
+  /**
+   * @return the local package
+   */
+  public function getPackage() {
+    return $GLOBALS['env']['container']->webforge->getLocalPackage();
+  }
+
+  public function getPackageDir($sub) {
+    return $this->getPackage()->getRootDirectory()->sub($sub);
+  }
   
   public function getHostConfig() {
     return $GLOBALS['env']['container']->getHostConfig();
