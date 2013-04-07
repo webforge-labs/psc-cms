@@ -98,6 +98,10 @@ abstract class EntryEntity extends AbstractEntity implements \Psc\HTML\HTMLInter
     
     return (object) array_merge($serialized, $data);
   }
+
+  public static function getDiscriminatorMap() {
+    return array();
+  }
   
 
   /**

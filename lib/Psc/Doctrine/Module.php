@@ -296,6 +296,8 @@ class Module extends \Psc\CMS\Module implements \Psc\Code\Event\Dispatcher {
         // set character set, sets the character_set_connection to the collation of the db (when this is wrong everything does not go well)
         $entityManager->getConnection()->query("SET NAMES '".$cset."'");
       }
+
+      $this->manager->dispatchEvent('Psc.Doctrine.initEntityManager', (object) array('module'=>$this), $entityManager);
     }
     
     return $this->entityManagers[$con];

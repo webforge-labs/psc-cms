@@ -76,7 +76,7 @@ abstract class DatabaseTestCase extends \Psc\Code\Test\HTMLTestCase {
     parent::setUp();
     
     $this->module = $this->getProject()->getModule('Doctrine');
-    $this->em = $this->module->getEntityManager($this->con, $reset = TRUE, $resetConnection = TRUE);
+    $this->setUpEntityManager();
     $this->dc = $this->getDoctrinePackage();
     
     $this->dcFixtures = new FixturesManager($this->em);
@@ -86,6 +86,10 @@ abstract class DatabaseTestCase extends \Psc\Code\Test\HTMLTestCase {
       $this->setUpDatabase();
       self::$setupDatabase = FALSE;
     }
+  }
+
+  protected function setUpEntityManager() {
+    $this->em = $this->module->getEntityManager($this->con, $reset = TRUE, $resetConnection = TRUE);
   }
 
   /**
