@@ -4,17 +4,17 @@ namespace Psc\CMS\Roles;
 
 use Psc\CMS\UploadManager;
 use Psc\Image\Manager as ImageManager;
+use Psc\Image\ManagerProvider as ImageManagerProvider;
 
-interface SimpleContainer extends \Psc\CMS\Controller\LanguageAware, FQNSolver {
+interface SimpleContainer extends \Psc\CMS\Controller\LanguageAware, FQNSolver, ImageManagerProvider {
 
   public function setRevision($revision);
 
   public function getRevision();
 
   /**
-   * @return Psc\Image\Manager
+   * @param Psc\Image\Manager
    */
-  public function getImageManager();
   public function setImageManager(ImageManager $manager);
 
   /**
