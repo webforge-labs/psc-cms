@@ -4,7 +4,6 @@ namespace Psc\TPL\ContentStream;
 
 use Traversable;
 use Psc\Data\ArrayCollection;
-use RuntimeException;
 
 class Collection {
 
@@ -55,11 +54,11 @@ class Collection {
     if ($cnt === 1) {
       return current($streams);
     } elseif($cnt === 0) {
-      throw new RuntimeException(
+      throw new NoContentStreamsFoundException(
         sprintf('No ContentStreams found for filters: %s in one().',$this->debugFilters())
       );
     } else {
-      throw new RuntimeException(
+      throw new MultipleContentStreamsFoundException(
         sprintf('Multiple ContentStreams (%d) found for filters: %s. Use collection() to get multiple.', $cnt, $this->debugFilters())
       );
     }
