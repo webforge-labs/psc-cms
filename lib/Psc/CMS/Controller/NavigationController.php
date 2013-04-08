@@ -51,6 +51,40 @@ class NavigationController extends ContainerController {
     }
   }
 
+  public function getEntityInRevision($parentIdentifier, $revision, $subResource = NULL, $query = NULL) {
+    if (is_array($subResource) && $subResource[0] === 'contentstream') {
+      $node = parent::getEntityInRevision($parentIdentifier, $revision, NULL, $query);
+
+      $contentStreamController = $this->getController('ContentStream');
+      $type = isset($subResource[2]) ? $subResource[2] : 'page-content';
+      $locale = $subResource[1];
+      
+      try {
+        $contentStream = 
+          $node->getContentStream()
+            ->locale($locale)
+            ->type($type)
+            ->revision($revision)
+            ->one()
+        ;
+      } catch (\Psc\TPL\ContentStream\NoContentStreamsFoundException $e) {
+        $contentStream = 
+          $contentStreamController->createEmptyEntity($revision)
+            ->setLocale($locale)
+            ->setType($type);
+
+        $node->addContentStream($contentStream);
+
+        $this->repository->persist($node);
+        $this->repository->save($contentStream);
+      }
+
+      return $contentStreamController->getEntityFormular($contentStream);
+    }
+
+    return parent::getEntityInRevision($parentIdentifier, $revision, $subResource, $query);
+  }
+
   public function getEntityName() {
     return $this->dc->getModule()->getNavigationNodeClass();
   }

@@ -37,15 +37,11 @@ abstract class CompiledTeaserHeadlineImageTextLink extends Entry {
    */
   protected $link;
   
-  public function __construct($headline, Image $image = NULL, $text, NavigationNode $link = NULL) {
+  public function __construct($headline, Image $image, $text, NavigationNode $link) {
     $this->setHeadline($headline);
-    if (isset($image)) {
-      $this->setImage($image);
-    }
+    $this->setImage($image);
     $this->setText($text);
-    if (isset($link)) {
-      $this->setLink($link);
-    }
+    $this->setLink($link);
   }
   
   /**
