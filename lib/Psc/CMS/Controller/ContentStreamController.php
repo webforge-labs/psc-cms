@@ -114,6 +114,12 @@ abstract class ContentStreamController extends \Psc\CMS\Controller\ContainerCont
     return $panel;
   }
 
+  public function createEmptyEntity($revision = NULL) {
+    $c = $this->container->getRoleFQN('ContentStream');
+    return new $c(NULL, NULL, $revision);
+  }  
+
+
   protected function initLayoutManagerControls(LayoutManager $layoutManager, ContentStream $contentStream) {
     $layoutManager->initControlsFor($contentStream);
   }

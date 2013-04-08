@@ -142,21 +142,26 @@ class PageTest extends \Webforge\Code\Test\Base {
   }
 
   public function testGetContentStreamThrowsMultipleExceptionForOne() {
-    $this->setExpectedException('RuntimeException');
+    $this->setExpectedException('Psc\TPL\ContentStream\MultipleContentStreamsFoundException');
 
     $this->page->getContentStream()->locale('de')->one();
   }
 
   public function testGetContentStreamThrowsMultipleExceptionForOneWithNothing() {
-    $this->setExpectedException('RuntimeException');
+    $this->setExpectedException('Psc\TPL\ContentStream\MultipleContentStreamsFoundException');
 
     $this->page->getContentStream()->one();
   }  
 
   public function testGetContentStreamThrowsMultipleExceptionForOneWithType() {
-    $this->setExpectedException('RuntimeException');
+    $this->setExpectedException('Psc\TPL\ContentStream\MultipleContentStreamsFoundException');
 
     $this->page->getContentStream()->type('page-content')->one();
   }
 
+  public function testGetContentStreamThrowsNotFoundExceptionForCollection() {
+    $this->setExpectedException('Psc\TPL\ContentStream\NoContentStreamsFoundException');
+
+    $this->page->getContentStream()->type('notextsting')->one();
+  }
 }

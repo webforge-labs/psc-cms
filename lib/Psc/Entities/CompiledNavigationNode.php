@@ -4,6 +4,7 @@ namespace Psc\Entities;
 
 use Psc\DateTime\DateTime;
 use Doctrine\Common\Collections\Collection;
+use Psc\Entities\ContentStream\ContentStream;
 use Psc\Data\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
 
@@ -104,8 +105,16 @@ abstract class CompiledNavigationNode extends \Psc\CMS\Roles\NavigationNodeEntit
    */
   protected $parent;
   
+  /**
+   * @var Doctrine\Common\Collections\Collection<Psc\Entities\ContentStream\ContentStream>
+   * @ORM\ManyToMany(targetEntity="Psc\Entities\ContentStream\ContentStream")
+   * @ORM\JoinTable(name="navigationnode2contentstream", joinColumns={@ORM\JoinColumn(name="navigationnode_id", onDelete="cascade")}, inverseJoinColumns={@ORM\JoinColumn(name="contentstream_id", onDelete="cascade")})
+   */
+  protected $contentStreams;
+  
   public function __construct() {
     $this->children = new \Psc\Data\ArrayCollection();
+    $this->contentStreams = new \Psc\Data\ArrayCollection();
   }
   
   /**
@@ -359,6 +368,51 @@ abstract class CompiledNavigationNode extends \Psc\CMS\Roles\NavigationNodeEntit
     return $this;
   }
   
+  /**
+   * @return Doctrine\Common\Collections\Collection<Psc\Entities\ContentStream\ContentStream>
+   */
+  public function getContentStreams() {
+    return $this->contentStreams;
+  }
+  
+  /**
+   * @param Doctrine\Common\Collections\Collection<Psc\Entities\ContentStream\ContentStream> $contentStreams
+   */
+  public function setContentStreams(Collection $contentStreams) {
+    $this->contentStreams = $contentStreams;
+    return $this;
+  }
+  
+  /**
+   * @param Psc\Entities\ContentStream\ContentStream $contentStream
+   * @chainable
+   */
+  public function addContentStream(ContentStream $contentStream) {
+    if (!$this->contentStreams->contains($contentStream)) {
+      $this->contentStreams->add($contentStream);
+    }
+    return $this;
+  }
+  
+  /**
+   * @param Psc\Entities\ContentStream\ContentStream $contentStream
+   * @chainable
+   */
+  public function removeContentStream(ContentStream $contentStream) {
+    if ($this->contentStreams->contains($contentStream)) {
+      $this->contentStreams->removeElement($contentStream);
+    }
+    return $this;
+  }
+  
+  /**
+   * @param Psc\Entities\ContentStream\ContentStream $contentStream
+   * @return bool
+   */
+  public function hasContentStream(ContentStream $contentStream) {
+    return $this->contentStreams->contains($contentStream);
+  }
+  
   public function getEntityName() {
     return 'Psc\Entities\CompiledNavigationNode';
   }
@@ -378,6 +432,7 @@ abstract class CompiledNavigationNode extends \Psc\CMS\Roles\NavigationNodeEntit
       'page' => new \Psc\Data\Type\EntityType(new \Psc\Code\Generate\GClass('Psc\\Entities\\Page')),
       'children' => new \Psc\Data\Type\PersistentCollectionType(new \Psc\Code\Generate\GClass('Psc\\Entities\\NavigationNode')),
       'parent' => new \Psc\Data\Type\EntityType(new \Psc\Code\Generate\GClass('Psc\\Entities\\NavigationNode')),
+      'contentStreams' => new \Psc\Data\Type\PersistentCollectionType(new \Psc\Code\Generate\GClass('Psc\\Entities\\ContentStream\\ContentStream')),
     ));
   }
 }

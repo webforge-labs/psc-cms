@@ -2,6 +2,8 @@
 
 namespace Psc\Entities;
 
+use Psc\Entities\ContentStream\ContentStream;
+
 class NavigationNodeTest extends \Psc\Code\Test\Base {
   
   protected $navigationNode;
@@ -10,6 +12,9 @@ class NavigationNodeTest extends \Psc\Code\Test\Base {
     $this->chainClass = 'Psc\Entities\NavigationNode';
     parent::setUp();
     $this->navigationNode = new NavigationNode(array('de'=>'something de', 'fr'=>'something in france'));
+
+    $this->cs1 = ContentStream::create('de', 'page-content', 'default', 'de-default');
+    $this->cs2 = ContentStream::create('en', 'page-content', 'default', 'en-default');
   }
   
   public function testNewNavigationNodeDoesNotNodeEqualOtherNewNavigationNode() {
@@ -47,6 +52,10 @@ class NavigationNodeTest extends \Psc\Code\Test\Base {
     $context->expects($this->never())->method('getNavigationController');
 
     $this->assertNull(NavigationNode::loadWithContentStreamContext("0", $context));
+  }
+
+  public function testHasContentStreamEntities() {
+    $this->assertInstanceOf('Psc\TPL\ContentStream\Collection', $this->navigationNode->getContentStream());
   }
 
   protected function expectControllerInContext() {
