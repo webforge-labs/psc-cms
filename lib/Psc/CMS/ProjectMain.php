@@ -22,7 +22,6 @@ use Psc\TPL\Template;
 use Psc\CMS\AbstractTabsContentItem2 as TCI;
 use Psc\UI\Tabs2;
 use Psc\CMS\Controller\Factory as ControllerFactory;
-use Psc\CMS\Roles\SimpleControllerDependenciesProvider;
 use Psc\CMS\Roles\Container as ContainerRole;
 
 class ProjectMain extends \Psc\Object implements DropContentsListCreater{
