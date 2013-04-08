@@ -6,6 +6,7 @@ use Psc\CMS\AbstractEntity;
 use Webforge\CMS\Navigation\Node as WebforgeNode;
 use Psc\TPL\ContentStream\ContextLoadable;
 use Psc\TPL\ContentStream\Context;
+use Psc\TPL\ContentStream\Collection as CollectionHelper;
 
 /**
  * (at)ORM\HasLifecycleCallbacks
@@ -70,6 +71,20 @@ abstract class NavigationNodeEntity extends AbstractEntity implements WebforgeNo
     }
     
     return $this;
+  }
+
+  /**
+   * Fluid interface for getting specific ContentStream(s)
+   * 
+   * $page->getContentStream()
+   *     ->locale('de')
+   *     ->type('sidebar-content')
+   *     ->one()
+   *
+   * @return Psc\TPL\ContentStream\Collection
+   */
+  public function getContentStream() {
+    return new CollectionHelper($this->contentStreams->toArray());
   }
   
   public function getContextLabel($context = self::CONTEXT_DEFAULT) {

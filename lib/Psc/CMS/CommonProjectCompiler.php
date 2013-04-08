@@ -280,8 +280,10 @@ class CommonProjectCompiler extends ProjectCompiler {
               ->setJoinColumnNullable(true)
               ->setOnDelete('SET NULL')
        ),
+
+      $build($relation($expandClass('ContentStream\ContentStream'), 'ManyToMany', 'unidirectional', 'source')),
       
-       $doCompile($help)
+      $doCompile($help)
     );
   }
 
