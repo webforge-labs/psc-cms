@@ -600,9 +600,10 @@ class CommonProjectCompiler extends ProjectCompiler {
       extract($help);
 
       $fields = array();
-      $cArgs = array();
+      $requiredArgs = array();
+      $optionalArgs = array();
       foreach ($specification->fields as $fieldName => $field) {
-        $optional = isset($field->optional) ? $field->optional : FALSE;
+        $optional = isset($field->optional) ? (bool) $field->optional : FALSE;
 
         if ($field->type === 'string') {
           if ($optional) {
@@ -635,13 +636,13 @@ class CommonProjectCompiler extends ProjectCompiler {
         $fields[] = $fieldName;
 
         if ($optional) {
-          $cArgs[] = $argument($fieldName, NULL);
+          $optionalArgs[] = $argument($fieldName, NULL);
         } else {
-          $cArgs[] = $argument($fieldName);
+          $requiredArgs[] = $argument($fieldName);
         }
       }
 
-      call_user_func_array($constructor, $cArgs);
+      call_user_func_array($constructor, array_merge($requiredArgs, $optionalArgs));
 
       $build($csSerialize($fields, array('specification'=>$specification)));
       $build($csLabel(isset($specification->label) ? $specification->label : $specification->name));
