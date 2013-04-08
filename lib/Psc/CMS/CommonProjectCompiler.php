@@ -602,13 +602,21 @@ class CommonProjectCompiler extends ProjectCompiler {
       $fields = array();
       $cArgs = array();
       foreach ($specification->fields as $fieldName => $field) {
-        $nullable = FALSE;
+        $optional = isset($field->optional) ? $field->optional : FALSE;
 
         if ($field->type === 'string') {
-          $property($fieldName, $type('String'));
+          if ($optional) {
+            $property($fieldName, $type('String'), $nullable());
+          } else {
+            $property($fieldName, $type('String'));
+          }
 
         } elseif ($field->type === 'text') {
-          $property($fieldName, $type('MarkupText'));
+          if ($optional) {
+            $property($fieldName, $type('MarkupText'), $nullable());
+          } else {
+            $property($fieldName, $type('MarkupText'));
+          }
           
         } elseif ($field->type === 'image') {
           $build(
@@ -617,18 +625,16 @@ class CommonProjectCompiler extends ProjectCompiler {
               ->setJoinColumnNullable(TRUE)
               ->setRelationCascade(array('persist'))
           );
-          $nullable = TRUE;
 
         } elseif ($field->type === 'link') {
           $build(
             $relation($targetMeta('NavigationNode')->setAlias(ucfirst($fieldName)), 'ManyToOne', 'unidirectional')->setNullable(TRUE)
           );
-          $nullable = TRUE;
         }
 
         $fields[] = $fieldName;
 
-        if ($nullable) {
+        if ($optional) {
           $cArgs[] = $argument($fieldName, NULL);
         } else {
           $cArgs[] = $argument($fieldName);
