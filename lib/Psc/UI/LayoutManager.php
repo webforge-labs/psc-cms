@@ -27,6 +27,11 @@ class LayoutManager extends \Psc\HTML\JooseBase implements JooseSnippetWidget {
    */
   protected $uploadService;
 
+  /**
+   * @var array (range)
+   */
+  protected $headlines = array();
+
   protected $jsParams = array();
   
   public function __construct(UploadService $uploadService, Array $serializedWidgets = array()) {
@@ -34,6 +39,7 @@ class LayoutManager extends \Psc\HTML\JooseBase implements JooseSnippetWidget {
     $this->setSerializedWidgets($serializedWidgets);
     $this->setUploadService($uploadService);
     $this->controls = array();
+    $this->headlines = array(1,2);
   }
   
   protected function doInit() {
@@ -62,8 +68,14 @@ class LayoutManager extends \Psc\HTML\JooseBase implements JooseSnippetWidget {
   public function initControlsFor(ContentStream $cs) {
 
     if ($cs->getType() === 'page-content') {
-      $this->addNewControl('Headline', (object) array('level'=>1), 'Überschrift', 'text');
-      $this->addNewControl('Headline', (object) array('level'=>2), 'Zwischenüberschrift', 'text');
+      foreach ($this->headlines as $level) {
+        $this->addNewControl(
+          'Headline', 
+          (object) array('level'=>$level), 
+          sprintf('%s (H%d)', $level === 1 ? 'Überschrift ' : 'Überschrift', $level),
+          'text'
+        );
+      }
       $this->addNewControl('Paragraph', NULL, 'Absatz', 'text');
       $this->addNewControl('Li', NULL, 'Aufzählung', 'text');
       $this->addNewControl('Image', NULL, 'Bild im Text', 'images');
@@ -86,7 +98,7 @@ class LayoutManager extends \Psc\HTML\JooseBase implements JooseSnippetWidget {
   /**
    * @return Control
    */
-  protected function addNewControl($type, $params = NULL, $label = NULL, $section = NULL) {
+  public function addNewControl($type, $params = NULL, $label = NULL, $section = NULL) {
     $this->controls[] = $control = new Control($type, $params, $label, $section);
     
     return $control;
@@ -124,6 +136,11 @@ class LayoutManager extends \Psc\HTML\JooseBase implements JooseSnippetWidget {
 
   public function getControls() {
     return $this->controls;
+  }
+
+  public function setHeadlines(array $levels) {
+    $this->headlines = $levels;
+    return $this;
   }
 }
 ?>

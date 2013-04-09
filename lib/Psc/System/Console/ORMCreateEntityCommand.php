@@ -29,6 +29,10 @@ class ORMCreateEntityCommand extends Command {
           'name', InputArgument::REQUIRED,
           'Der Name des Entites in CamelCase (erster Buchstabe Groß).'
         ),
+        new InputArgument(
+          'tableName',InputArgument::OPTIONAL,
+          'Ist dies gesetzt wird der TableName manuell gesetzt'
+        ),
         new InputOption(
           'with-repository',NULL,InputOption::VALUE_OPTIONAL,
           'Ist dies gesetzt wird das Repository für das Entity erstellt',
@@ -70,6 +74,10 @@ class ORMCreateEntityCommand extends Command {
     }
     
     if ($entity) {
+      if ($table = $input->getArgument('tableName')) {
+        $builder->setTableName($table);
+      }
+
       $file = $builder->write(NULL, $overwrite);
       $output->writeLn('Entity in Datei: "'.$file.'" geschrieben');
     }

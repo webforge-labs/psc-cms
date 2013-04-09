@@ -76,6 +76,10 @@ class Command extends \Symfony\Component\Console\Command\Command {
                         $default
                        );
   }
+
+  public function askDefault($question, $default) {
+    return $this->ask(sprintf($question.' (default %s): ', $default), $default);
+  }
   
   public function confirm($question, $default = TRUE) {
     $dialog = $this->getHelper('dialog');
@@ -117,6 +121,10 @@ class Command extends \Symfony\Component\Console\Command\Command {
   
   public function getProject() {
     return $this->getHelper('project')->getProject();
+  }
+
+  public function getPackage() {
+    return $GLOBALS['env']['container']->webforge->getLocalPackage();
   }
 
   public function getDoctrineModule() {
@@ -173,6 +181,15 @@ class Command extends \Symfony\Component\Console\Command\Command {
   public function validateEnum($value, Array $allowedValues) {
     if (!in_array($value, $allowedValues)) {
       throw exitException("the value '%s' is not allowed. Allowed are only: %s", implode(',', $allowedValues));
+    }
+    return $value;
+  }
+
+
+  public function validateOptionalString($value) {
+    $value = (string) $value;
+    if (trim($value) === "") {
+      return NULL;
     }
     return $value;
   }

@@ -1,8 +1,7 @@
-.psc-cms-ui-form label { display: block; }
+.psc-cms-ui-form label, .psc-cms-ui-label { display: block; margin-bottom: 2px; }
 .psc-cms-ui-form label.checkbox-label { display: inline-block; }
 .psc-cms-ui-form div.ui-buttonset label { display: inline-block; }
 
-.psc-cms-ui-form label.psc-cms-ui-label { margin-bottom: 2px; }
 .psc-cms-ui-form input.text { width: 90%; }
 .psc-cms-ui-form div.component-wrapper { margin-bottom: 20px; }
 

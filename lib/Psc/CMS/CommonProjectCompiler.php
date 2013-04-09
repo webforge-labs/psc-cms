@@ -606,6 +606,7 @@ class CommonProjectCompiler extends ProjectCompiler {
       $optionalArgs = array();
       foreach ($specification->fields as $fieldName => $field) {
         $optional = isset($field->optional) ? (bool) $field->optional : FALSE;
+        $alias = ucfirst($fieldName);
 
         if ($field->type === 'string') {
           if ($optional) {
@@ -623,16 +624,21 @@ class CommonProjectCompiler extends ProjectCompiler {
           
         } elseif ($field->type === 'image') {
           $build(
-            $relation($expandClass('ContentStream\Image'), 'ManyToOne', 'unidirectional', 'source')
-              ->setNullable(TRUE)
-              ->setJoinColumnNullable(TRUE)
-              ->setRelationCascade(array('persist'))
+            $relation(
+              $targetMeta($expandClass('ContentStream\Image'))->setAlias($alias), 'ManyToOne', 'unidirectional', 'source'
+            )->setNullable(TRUE)
+             ->setJoinColumnNullable(TRUE)
+             ->setRelationCascade(array('persist'))
           );
 
         } elseif ($field->type === 'link') {
           $build(
-            $relation($targetMeta('NavigationNode')->setAlias(ucfirst($fieldName)), 'ManyToOne', 'unidirectional')->setNullable(TRUE)
+            $relation($targetMeta('NavigationNode')->setAlias($alias),  'ManyToOne', 'unidirectional', 'source')
+              ->setNullable(TRUE)
           );
+
+        } else {
+          throw new \InvalidArgumentException('Specification parsing error: '.$field->type.' is not avaible');
         }
 
         $fields[] = $fieldName;

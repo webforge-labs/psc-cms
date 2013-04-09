@@ -46,6 +46,7 @@ class ProjectConsole extends \Psc\System\Console\Console {
       new \Psc\System\Console\CreateUserCommand(),
       new \Psc\System\Console\ORMSchemaCommand(),
       new \Psc\System\Console\ORMCreateEntityCommand(),
+      new \Psc\TPL\ContentStream\CreateWidgetTemplateCommand(),
       
       new \Doctrine\ORM\Tools\Console\Command\ClearCache\MetadataCommand(),
       new \Doctrine\ORM\Tools\Console\Command\ClearCache\ResultCommand(),
