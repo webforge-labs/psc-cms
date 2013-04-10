@@ -132,19 +132,23 @@ class NavigationController extends ContainerController {
   public function getFlatForUI(Array $nodes, $displayLocale, Array $languages) {
     $flat = array();
     foreach ($nodes as $node) {
-      $flat[] = (object) array(
-        'id'=>$node->getId(),
-        'title'=>(object) $node->getI18NTitle(),
-        'slug'=>(object) $node->getI18NSlug(),
-        'depth'=>$node->getDepth(),
-        'image'=>$node->getImage(),
-        'locale'=>$displayLocale,
-        'languages'=>$languages,
-        'parentId'=>$node->getParent() != NULL ? $node->getParent()->getId() : NULL,
-        'pageId'=>$node->getPage() ? $node->getPage()->getIdentifier() : NULL
-      );
+      $flat[] = $this->exportNode($node, $displayLocale, $languages);
     }
     return $flat;
+  }
+
+  protected function exportNode($node, $displayLocale, Array $languages) {
+    return (object) array(
+      'id'=>$node->getId(),
+      'title'=>(object) $node->getI18NTitle(),
+      'slug'=>(object) $node->getI18NSlug(),
+      'depth'=>$node->getDepth(),
+      'image'=>$node->getImage(),
+      'locale'=>$displayLocale,
+      'languages'=>$languages,
+      'parentId'=>$node->getParent() != NULL ? $node->getParent()->getId() : NULL,
+      'pageId'=>$node->getPage() ? $node->getPage()->getIdentifier() : NULL
+    );
   }
 
   public function getMergedFlatForUI($displayLocale, Array $languages) {
