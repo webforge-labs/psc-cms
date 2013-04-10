@@ -7,7 +7,7 @@ use Psc\TPL\ContentStream\Collection as CollectionHelper;
 /**
  * (at)ORM\HasLifecycleCallbacks
  */
-abstract class PageEntity extends \Psc\CMS\AbstractEntity implements \Psc\CMS\Roles\Page {
+abstract class PageEntity extends \Psc\CMS\AbstractEntity implements Page, WebsiteTemplateDisplayable {
   
   /**
   */
