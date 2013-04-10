@@ -19,7 +19,7 @@ class Instancer {
   }
 
   protected function instanceCSImage($num) {
-    $image = new ContentStream\Image('/url/in/cms/to/original.png');
+    $image = $this->newObject('CS\Image', array('/url/in/cms/to/original.png'));
     $image->setImageEntity($this->getImage($num));
     return $image;
   }
@@ -39,8 +39,8 @@ class Instancer {
     return $image;
   }
 
-  protected function instanceNavigationNode($num) {
-    $navNode = new NavigationNode(array('de'=>'node mit nummer '.$num,'en'=>'node with number '.$num));
+  protected function instanceNavigationNode($num, \Closure $inject = NULL) {
+    $navNode = $this->newObject('NavigationNode', Array(array('de'=>'node mit nummer '.$num,'en'=>'node with number '.$num)));
     $navNode
       ->setLft(0)
       ->setRgt(1)
@@ -48,9 +48,34 @@ class Instancer {
     ;
     $navNode->setIdentifier($num);
 
+    if (isset($inject)) $inject($navNode);
+
     $this->save($navNode);
 
     return $navNode;
+  }
+
+  protected function instancePage($num, \Closure $inject = NULL) {
+    $page = $this->newObject('Page', array('page-from-instancer-'.$num));
+
+    if (isset($inject)) $inject($page);
+
+    $this->save($page);
+
+    return $page;
+  }
+
+  protected function instanceContentStream($num, \Closure $inject = NULL) {
+    $contentStream = $this->newObject('ContentStream', 
+      array(
+        $this->container->getLanguage(), 
+        'cs-instance-'.$num.'-for-'.$this->container->getLanguage()
+      )
+    );
+
+    if (isset($inject)) $inject($contentStream);
+
+    return $contentStream;
   }
 
   /**
@@ -58,6 +83,9 @@ class Instancer {
    * @return Entity
    */
   public function __call($method, Array $params = array()) {
+    if (!isset($params[0])) {
+      throw new \Psc\Exception('Method required parameter #1 to be integer: '.get_class($this).'::'.$method);
+    }
     $num = $params[0];
 
     if ($entity = $this->hit($method, $num)) {
@@ -70,7 +98,7 @@ class Instancer {
       throw new \Psc\Exception('Method does not exist: '.get_class($this).'::'.$callable[1]);
     }
 
-    $entity = call_user_func($callable, $num);
+    $entity = call_user_func_array($callable, $params);
     $this->store($method, $num, $entity);
 
     return $entity;
@@ -81,6 +109,10 @@ class Instancer {
     $em->persist($entity);
     $em->flush();
     return $this;
+  }
+
+  protected function newObject($role, array $params) {
+    return \Psc\Code\Generate\GClass::newClassInstance($this->container->getRoleFQN($role), $params);
   }
 
   protected function store($function, $num, $entity) {

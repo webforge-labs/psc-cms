@@ -50,11 +50,11 @@ class NestedSetFixture extends Fixture {
 
     foreach ($nodes as $node) {
       $node = (object) $node;
-      $navigationNode = new NavigationNode(array('de'=>$node->title));
+      $navigationNode = $this->createNode(array('de'=>$node->title));
       $navigationNode->setContext($this->context);
       $navigationNode->generateSlugs();
 
-      $page = new Page($navigationNode->getSlug('de'));
+      $page = $this->createPage($navigationNode->getSlug('de'));
       $page->setActive(TRUE);
       $em->persist($page);
 
@@ -73,5 +73,14 @@ class NestedSetFixture extends Fixture {
 
     return $navigationNodes;
   }
+
+  protected function createNode(Array $i18nTitlte) {
+    $navigationNode = new NavigationNode($i81nTitle);
+
+    return $navigationNode;
+  }
+
+  protected function createPage($slug) {
+    return new Page($slug);
+  }
 }
-?>

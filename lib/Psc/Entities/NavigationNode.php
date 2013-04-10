@@ -41,5 +41,9 @@ class NavigationNode extends CompiledNavigationNode {
   public function getEntityName() {
     return 'Psc\Entities\NavigationNode';
   }
+
+  public function __toString() {
+    return 'navigation-node: '.current($this->getI18nTitle());
+  }
 }
 ?>

@@ -32,5 +32,9 @@ class Page extends CompiledPage {
   public function getEntityName() {
     return 'Psc\Entities\Page';
   }
+
+  public function __toString() {
+    return 'page: '.$this->getSLug();
+  }
 }
 ?>
