@@ -13,12 +13,12 @@ abstract class NavigationNodeRepository extends EntityRepository {
   protected $context = 'default';
   public $displayLocale = 'de';
   
-  public function childrenQueryBuilder(NavigationNode $node = NULL) {
+  public function childrenQueryBuilder(NavigationNode $node = NULL, $qbHook = NULL) {
     $qb = $this->createQueryBuilder('node');
     
     if ($node) {
       $qb 
-        ->where($qb->expr()->lt('node.rgt', $node->getRgt()))
+      ->where($qb->expr()->lt('node.rgt', $node->getRgt()))
         ->andWhere($qb->expr()->gt('node.lft', $node->getLft()))
       ;
     
@@ -37,6 +37,28 @@ abstract class NavigationNodeRepository extends EntityRepository {
     ;
     
     $qb->orderBy('node.lft', 'ASC');
+
+    if (isset($qbHook)) {
+      $qbHook($qb);
+    }
+
+    return $qb;
+  }
+
+  /**
+   * Returns the one node with 1 as left
+   * 
+   * you should not have multiple roots
+   * @return Webforge\CMS\Navigation\Node
+   */
+  public function getRootNode() {
+    return $this->rootNodeQueryBuilder()->getQuery()->getSingleResult();
+  }
+  
+  public function rootNodeQueryBuilder() {
+    $qb = $this->childrenQueryBuilder();
+    $qb->andWhere($qb->expr()->eq('node.lft', 1));
+
     return $qb;
   }
 
@@ -56,11 +78,23 @@ abstract class NavigationNodeRepository extends EntityRepository {
     
     return $query->getResult();
   }
+
+  protected function getDefaultQueryBuilderHook() {
+    return function ($qb) {
+      $qb->andWhere('node.page <> 0');
+    
+      // page active
+      $qb
+        ->leftJoin('node.page', 'page')
+        ->andWhere($qb->expr()->eq('page.active', 1))
+      ;
+    };
+  }
   
   /**
    * @param array $htmlSnippets see Webforge\CMS\Navigation\NestedSetConverter::toHTMLList()
    */
-  public function getHTML($locale, Array $htmlSnippets = array(), NestedSetConverter $converter = NULL) {
+  public function getHTML($locale, Array $htmlSnippets = array(), NestedSetConverter $converter = NULL, \Closure $qbHook = NULL) {
     $that = $this;
     $htmlSnippets = array_merge(
       array(
@@ -82,47 +116,66 @@ abstract class NavigationNodeRepository extends EntityRepository {
       $htmlSnippets
     );
     
-    // Gets the array of $node results
-    // It must be order by 'root' and 'left' field
-    $qb = $this->childrenQueryBuilder();
-    $qb->andWhere('node.page <> 0');
-    
-    // page active
-    $qb
-      ->leftJoin('node.page', 'page')
-      ->andWhere($qb->expr()->eq('page.active', 1))
-    ;
+    $qb = $this->childrenQueryBuilder(NULL, $qbHook ?: $this->getDefaultQueryBuilderHook());
+
     $query = $qb->getQuery();
-    
     $nodes = $query->getResult();
     
     $converter = $converter ?: new NestedSetConverter();
     return $converter->toHTMLList($nodes, $htmlSnippets);
   }
-  
-  
-  public function getText($locale, NestedSetConverter $converter = NULL) {
-    $qb = $this->childrenQueryBuilder();
-    $qb->andWhere('node.page <> 0');
-    
-    // page active
-    $qb
-      ->leftJoin('node.page', 'page')
-      ->andWhere($qb->expr()->eq('page.active', 1))
-    ;
-    
+
+  public function getText($locale, NestedSetConverter $converter = NULL, \Closure $qbHook = NULL) {
+    $qb = $this->childrenQueryBuilder(NULL, $qbHook ?: $this->getDefaultQueryBuilderHook());
+
     $query = $qb->getQuery();
-    
     $nodes = $query->getResult();
     
     $converter = $converter ?: new NestedSetConverter();
     return $converter->toString($nodes);
+  }
+
+  /**
+   * Returns a parentPointer array, linked with just one title of $locale
+   * 
+   * useful for creating nested set examples
+   * @return array[]
+   */
+  public function exportParentPointer($locale, \Closure $qbHook = NULL) {
+    $qb = $this->childrenQueryBuilder(NULL, $qbHook ?: $this->getDefaultQueryBuilderHook());
+
+    $query = $qb->getQuery();
+    $nodes = $query->getResult();
+
+    $exported = array();
+    foreach ($nodes as $node) {
+      $exported[] = array(
+        'title'=>$node->getTitle($locale),
+        'parent'=>$node->getParent() !== NULL ? $node->getParent()->getTitle($locale) : NULL,
+        'depth'=>$node->getDepth()
+      );
+    }
+    return $exported;
   }
   
   public function getUrl(NavigationNode $node, $locale) {
     $path = $this->getPath($node);
     
     return $this->createUrl($path, $locale);
+  }
+
+  /**
+   * @param array|NavigationNode $nodeOrPath the path of the node or the node itself
+   * @return array indexed by language keys
+   */
+  public function getI18nUrl($nodeOrPath, Array $languages) {
+    $path = is_array($nodeOrPath) ? $nodeOrPath : $this->getPath($nodeOrPath);
+
+    $urls = array();
+    foreach ($languages as $locale) {
+      $urls[$locale] = $this->createUrl($path, $locale);
+    }
+    return $urls;
   }
   
   public function createUrl(Array $path, $locale) {
@@ -242,4 +295,3 @@ abstract class NavigationNodeRepository extends EntityRepository {
     return $query->getResult();
   }
 }
-?>
