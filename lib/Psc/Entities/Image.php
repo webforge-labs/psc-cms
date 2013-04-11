@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping AS ORM;
  * @ORM\HasLifecycleCallbacks
  */
 class Image extends CompiledImage {
-  
+
   public function getEntityName() {
     return 'Psc\Entities\Image';
   }

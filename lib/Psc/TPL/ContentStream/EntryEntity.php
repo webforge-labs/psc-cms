@@ -9,6 +9,7 @@ use Psc\TPL\ContentStream\Converter AS ContentStreamConverter;
 use Psc\Code\Code;
 use Psc\CMS\AbstractEntity;
 use Psc\Doctrine\Entity;
+use Closure;
 
 /**
  * (at)ORM\Entity(repositoryClass="ACME\Entities\ContentStream\EntryRepository")
@@ -116,7 +117,14 @@ abstract class EntryEntity extends AbstractEntity implements \Psc\HTML\HTMLInter
    * @return string
    */
   abstract public function getLabel();
-  
+
+  /**
+   * @return stdClass
+   */
+  public function getTemplateVariables(Closure $exportTemplateEntry) {
+    throw new \Psc\Exception('This is not implemented for this class: '.get_class($this));
+  }
+
   
   /**
    * @param ContentStreamContext $context

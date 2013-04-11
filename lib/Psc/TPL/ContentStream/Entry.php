@@ -2,7 +2,6 @@
 
 namespace Psc\TPL\ContentStream;
 
-interface Entry {
+interface Entry extends TemplateEntry {
   
 }
-?>

@@ -3,6 +3,7 @@
 namespace Psc\TPL\ContentStream;
 
 use Psc\Doctrine\EntityFactory;
+use Closure;
 
 abstract class Converter extends \Psc\SimpleObject {
 
@@ -35,6 +36,64 @@ abstract class Converter extends \Psc\SimpleObject {
     }
     
     return $html;
+  }
+
+  /**
+   * 
+   * .type the type of the contentstream
+   * .entries a list of all content stream root entities
+   * .revision the revision of the content stream
+   * @return stdClass
+   */
+  public function exportTemplateVariables(ContentStream $cs, Array $entries = NULL) {
+    $variables = (object) array(
+      'entries'=>array(),
+      'type'=>$cs->getType(),
+      'revision'=>$cs->getRevision()
+    );
+    
+    $entries = $entries !== NULL ? $entries : $cs->getEntries();
+    foreach ($entries as $entry) {
+      $variables->entries[] = $this->convertEntryTemplateVariables($entry, $cs, $root = TRUE);
+    }
+    
+    return $variables;
+  }
+
+  public function convertEntryTemplateVariables(TemplateEntry $entry, ContentStream $cs, $root) {
+    if ($entry instanceof ImageManaging) {
+      $entry->setImageManager($this->context->getImageManager());
+    }
+      
+    if ($entry instanceof ContextAware) {
+      $entry->setContext($this->context);
+    }
+
+    $that = $this;
+    $variables = $entry->getTemplateVariables(
+      function (TemplateEntry $entry = NULL) use($that, $cs)  {
+        if ($entry === NULL) return NULL;
+
+        return $that->convertEntryTemplateVariables($entry, $cs, FALSE);
+      }
+    );
+
+    // allow NULL values for items in other complexer items.
+    // imagine a teaser with an optional image
+    if (!$root && $variables === NULL) {
+      return NULL;
+
+    } else {
+      $variables = (object) $variables;
+
+      /* YAGNI: when needed but this into TemplateEntry! 
+      if (!isset($variables->entryType)) {
+        $variables->entryType = $entry->getType();
+      }
+      */
+
+      return $variables;
+    }
   }
   
   public function convertHTMLExcerpt(ContentStream $cs, $maxLength = NULL) {
