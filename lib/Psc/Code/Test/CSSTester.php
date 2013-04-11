@@ -4,8 +4,9 @@ namespace Psc\Code\Test;
 
 use Psc\JS\jQuery;
 use Psc\Code\Code;
+use Psc\HTML\HTMLInterface;
 
-class CSSTester extends \Psc\SimpleObject {
+class CSSTester extends \Psc\SimpleObject implements HTMLInterface {
   
   protected $testCase;
   
@@ -20,7 +21,7 @@ class CSSTester extends \Psc\SimpleObject {
     $this->testCase = $testCase;
     if ($selector instanceof jQuery) {
       $this->jQuery = $selector;
-    } elseif ($html === NULL && $this->testCase instanceof \Psc\Code\Test\HTMLTestCase) { // weil ich depp immer $this->html als 2ten parameter vergesse :)
+    } elseif ($html === NULL && $this->testCase instanceof HTMLTestCase) { // weil ich depp immer $this->html als 2ten parameter vergesse :)
       $this->html = $this->testCase->getHTML();
       $this->selector = $selector;
     } else {
@@ -146,7 +147,20 @@ class CSSTester extends \Psc\SimpleObject {
     $this->assertjQuery(sprintf("css('%s')", $selector));
     $subTest = new static($this->testCase, $this->getJQuery()->find($selector));
     $subTest->setParent($this);
+
     return $subTest;
+  }
+
+  /**
+   * Sets this css test html as context for the testcase (if its an HTMLTestCase)
+   * 
+   * this can be handy to reduce the debug output
+   */
+  public function asContext() {
+    if ($this->testCase instanceof HTMLTestCase) {
+      $this->testCase->setDebugContextHTML($this, 'css: '.$this->getSelector());
+    }
+    return $this;
   }
   
   protected function assertjQuery($function) {
@@ -220,7 +234,4 @@ class CSSTester extends \Psc\SimpleObject {
   public function getParent() {
     return $this->parent;
   }
-
-
 }
-?>

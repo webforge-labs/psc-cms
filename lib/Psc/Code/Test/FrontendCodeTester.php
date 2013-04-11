@@ -31,7 +31,9 @@ class FrontendCodeTester extends CodeTester {
    * @return Psc\Code\Test\CSSTester
    */
   public function css($selector, $html = NULL) {
-    return new CSSTester($this->testCase, $selector, $html);
+    $css = new CSSTester($this->testCase, $selector, $html);
+    $css->asContext();
+    return $css;
   }
   
   /**
