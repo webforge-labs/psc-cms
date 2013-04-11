@@ -94,6 +94,4 @@ abstract class NavigationNodeEntity extends AbstractEntity implements WebforgeNo
   public function __toString() {
     return $this->getTitle('de');
   }
-  
 }
-?>
