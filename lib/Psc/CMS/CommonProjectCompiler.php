@@ -696,7 +696,7 @@ class CommonProjectCompiler extends ProjectCompiler {
     $csHTMLTemplate = function ($template) use ($method) {
       return $method('html', array(),
         array(
-          "return ".$template.';'
+          "return '".$template."';"
         )
       );
     };

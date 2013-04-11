@@ -27,7 +27,8 @@ class Instancer {
   protected function instanceImage($num) {
     $manager = $this->container->getImageManager();
 
-    $imageFile = $this->commonFiles->getFile('images/image'.$num.'.jpg');
+    $imageName = is_numeric($num) ? 'images/image'.$num.'.jpg' : 'images/'.$num;
+    $imageFile = $this->commonFiles->getFile($imageName);
 
     $image = $manager->store(
       $manager->createImagineImage($imageFile),
