@@ -74,8 +74,8 @@ class NestedSetFixture extends Fixture {
     return $navigationNodes;
   }
 
-  protected function createNode(Array $i18nTitlte) {
-    $navigationNode = new NavigationNode($i81nTitle);
+  protected function createNode(Array $i18nTitle) {
+    $navigationNode = new NavigationNode($i18nTitle);
 
     return $navigationNode;
   }
