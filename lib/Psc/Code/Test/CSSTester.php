@@ -92,8 +92,16 @@ class CSSTester extends \Psc\SimpleObject implements HTMLInterface {
     return $this;
   }
 
-  public function hasText($expectedText) {
-    $this->testCase->assertEquals($expectedText, $this->getJQuery()->text(), sprintf("Element hat nicht den Textinhalt: '%s'", $expectedText));
+  public function hasText($expectedText, $msg = NULL) {
+    $this->testCase->assertEquals(
+      $expectedText, 
+      $this->getJQuery()->text(), 
+      sprintf("%sThe text contents of element (%s) do not match.",
+        $msg ? $msg.".\n" : '',
+        $this->getSelector()
+      )
+    );
+
     return $this;
   }
 
@@ -104,8 +112,15 @@ class CSSTester extends \Psc\SimpleObject implements HTMLInterface {
     return $this;
   }
   
-  public function containsText($expectedTextPart) {
-    $this->testCase->assertContains($expectedTextPart, $this->getJQuery()->text(), sprintf("Element beeinhaltet nicht den Textinhalt: '%s'", $expectedTextPart));
+  public function containsText($expectedTextPart, $msg = NULL) {
+    $this->testCase->assertContains(
+      $expectedTextPart, 
+      $this->getJQuery()->text(), 
+      sprintf("%sThe text contents of element %s do not match.", 
+        $msg ? $msg.".\n" : '',
+        $this->getSelector()
+      )
+    );
     return $this;
   }
 
