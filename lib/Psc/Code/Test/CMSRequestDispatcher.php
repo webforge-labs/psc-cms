@@ -56,18 +56,24 @@ class CMSRequestDispatcher extends \Psc\SimpleObject {
   }
   
   /**
-   * @param string $contentType
+   * @param string $format json|html or mimeType
    */
-  public function setContentType($contentType) {
+  public function setContentType($format) {
     $curl = $this->getRequest();
-    if (mb_strtolower($contentType) === 'html') {
-      $curl->setHeaderField('Accept', 'text/html');
-    } elseif (mb_strtolower($contentType) === 'json') {
-      $curl->setHeaderField('Accept', 'application/json');
-    } else {
-      $curl->setHeaderField('Accept', $contentType);
-    }
+    $curl->setHeaderField('Accept', $this->getContentType($format));
     return $this;
+  }
+
+  public function getContentType($format) {
+    if (mb_strtolower($format) === 'html') {
+      return 'text/html';
+    } elseif (mb_strtolower($format) === 'json') {
+      return 'application/json';
+    } elseif (mb_strpos($format,'/') !== FALSE) {
+      return $format;
+    }
+
+    throw new InvalidArgumentException('format: '.$format.' is not a valid format for RequestDispatcher: json|html or mimetype');
   }
   
   public function setHeaderField($name, $value) {

@@ -259,8 +259,10 @@ class CMSAcceptanceTester extends \Psc\System\LoggerObject {
     if ($response->getCode() >= 400 && $response->getHeaderField('X-Psc-Cms-Error') == 'true' && $response->getHeaderField('X-Psc-Cms-Error-Message') != NULL) {
       $msg = "\n".'Fehler auf der Seite: '.$response->getHeaderField('X-Psc-Cms-Error-Message');
     }
-    $this->testCase->assertEquals($code, $response->getCode(), 'Failed asserting that Response is a '.$code.'.'.$msg);
     
+    $this->testCase->assertEquals($code, $response->getCode(), 'Failed asserting that Response is a '.$code.'.'.$msg);
+    $this->testCase->assertContains($dispatcher->getContentType($type), $response->getHeaderField('Content-Type'), 'Failed asserting that response is from right ContentType');
+
     if ($type == 'json') {
       return $this->testCase->getCodeTester()->json($response->getRaw());
     } elseif ($type == 'html') {

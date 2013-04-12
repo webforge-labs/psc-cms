@@ -55,10 +55,10 @@ class FileCache implements Cache {
     if ($value instanceof \Webforge\Common\System\File) {
       $value->copy($file);
     } else {
-      $written = $file->writeContents($value, File::EXCLUSIVE);
+      $file->writeContents($value, File::EXCLUSIVE);
 
-      if ($written <= 0) {
-        throw new \Psc\Exception('Cannot write to file exclusively: '.$file.' 0 bytes written');
+      if (!$file->exists()) {
+        throw new \Psc\Exception('Cannot write to file exclusively: '.$file.' does not exist');
       }
     }
     
