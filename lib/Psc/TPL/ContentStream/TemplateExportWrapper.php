@@ -35,10 +35,10 @@ abstract class TemplateExportWrapper implements TemplateEntry, ContextAware {
    * @param Clousure $convert you can use this to convert another Entry e.g. $convert($this->image)
    * @param Psc\TPL\ContentStream\Converter $converter
    * @param Psc\TPL\ContentStream\ContentStream $contentStream
-   * @return Traversable
+   * @return Scalar
    */
   public function getTemplateVariables(Closure $convert) {
-    return (object) $this->exportTemplateVariables($convert);
+    return $this->exportTemplateVariables($convert);
   }
 
   /**

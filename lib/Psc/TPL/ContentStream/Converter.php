@@ -78,22 +78,7 @@ abstract class Converter extends \Psc\SimpleObject {
       }
     );
 
-    // allow NULL values for items in other complexer items.
-    // imagine a teaser with an optional image
-    if (!$root && $variables === NULL) {
-      return NULL;
-
-    } else {
-      $variables = (object) $variables;
-
-      /* YAGNI: when needed but this into TemplateEntry! 
-      if (!isset($variables->entryType)) {
-        $variables->entryType = $entry->getType();
-      }
-      */
-
-      return $variables;
-    }
+    return $variables; // this can be something scalar (and not traversably) as well
   }
   
   public function convertHTMLExcerpt(ContentStream $cs, $maxLength = NULL) {
