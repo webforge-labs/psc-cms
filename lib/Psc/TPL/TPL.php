@@ -108,7 +108,22 @@ class TPL {
     
     $text = str_replace($search,$repl,$text);
     
+    $text = self::replaceLinksMarkup($text);
+    $text = self::replaceBUIMarkup($text);
+
+    return $text;
+  }
+
+  public static function replaceBUIMarkup($text) {
+    /*  **bold**, //italic//, __underlined__ */
+    $text = Preg::replace($text, '/\*\*(.*?)\*\*/','<strong>$1</strong>');
+    $text = Preg::replace($text, '~(?<=\s)//(.*?)//(?=\s)~','<em>$1</em>');
+    $text = Preg::replace($text, '/__(.*?)__/','<em class="u">$1</em>');
     
+    return $text;
+  }
+
+  public static function replaceLinksMarkup($text) {
     $link = function ($url, $label) {
       // label is already escaped
       if (Preg::match($url, '~^([a-zA-Z0-9]+://|www\.)~')) {
@@ -133,12 +148,6 @@ class TPL {
                                         function ($match) use ($link) {
                                           return $link($match[1], $match[1]);
                                         });
-  
-    /*  **bold**, //italic//, __underlined__ */
-    $text = Preg::replace($text, '/\*\*(.*?)\*\*/','<strong>$1</strong>');
-    $text = Preg::replace($text, '~(?<=\s)//(.*?)//(?=\s)~','<em>$1</em>');
-    $text = Preg::replace($text, '/__(.*?)__/','<em class="u">$1</em>');
-    
     return $text;
   }
   

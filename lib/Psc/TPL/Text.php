@@ -32,6 +32,7 @@ class Text {
     $repl[] = '</h2>';
     
     $text = str_replace($search,$repl,$text);
+
     if (!$inline) {
       $text = self::reformat($text);
     }
