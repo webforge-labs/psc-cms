@@ -70,16 +70,37 @@ abstract class ContentStreamEntity extends \Psc\CMS\AbstractEntity implements Co
    * gibt es das Element nicht, wird eine Exception geschmissen (damit ist es einfacher zu kontrollieren, was man machen will)
    * das element wird nicht im Array zurückgegeben
    * 
+   * if $length is provided only $length elements will be returned
    * @return array
    * @throws RuntimeException
    */
-  public function findAfter(Entry $entry) {
-    $pos = $this->entries->indexOf($entry);
+  public function findAfter(Entry $entry, $length = NULL) {
+    $entries = $this->entries->getValues(); // get entries correctly numbered
+    $pos = array_search($entry, $entries, TRUE);
+
     if ($pos === FALSE) {
       throw new RuntimeException('Das Element '.$entry.' ist nicht im ContentStream. findAfter() ist deshalb undefiniert');
     }
     
-    return array_merge($this->entries->slice($pos+1));
+    return array_merge(array_slice($entries, $pos+1, $length));
+  }
+
+  /**
+   * Returns the element right after the given element
+   * 
+   * if no element is after this NULL will be returned
+   * the $entry has to be in this contentstream otherwise an exception will thrown
+   * 
+   * @return Entry|NULL
+   */
+  public function findNextEntry(Entry $entry) {
+    $list = $this->findAfter($entry, 1);
+
+    if (count($list) === 1) {
+      return current($list);
+    }
+
+    return NULL;
   }
   
   public function getContextLabel($context = self::CONTEXT_DEFAULT) {

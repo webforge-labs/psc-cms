@@ -32,8 +32,6 @@ class ArrayCollectionTest extends \Psc\Code\Test\Base {
   
   
 
-
-
   public function testEntityCollectionSameandEquals() {
     $collection1 = new ArrayCollection();
     $collection1[] = new CollectionObject(10);
@@ -175,6 +173,17 @@ class ArrayCollectionTest extends \Psc\Code\Test\Base {
     $this->assertArrayEquals(array($o4, $o110, $o120, $o130, $o140, $o150, $o160, $o170, $o180, $o190, $o200), $inserts->toArray());
     $this->assertArrayEquals(array($o10, $o40, $o50, $o2, $o1, $o3), $updates->toArray());
   }
+
+  public function testIndexofFromDoctrine() {
+    $o1 = new CollectionObject(1);
+    $o2 = new CollectionObject(2);
+    $o3 = new CollectionObject(3);
+
+    $collection = new ArrayCollection(array($o1, $o2, $o3));
+    $collection->removeElement($o1);
+
+    $this->assertEquals(1, $collection->indexOf($o2)); // this is not 0
+  }
 }
 
 class CollectionObject {
@@ -224,4 +233,3 @@ class Stub {
     return FALSE;
   }
 }
-?>
