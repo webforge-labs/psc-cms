@@ -358,7 +358,10 @@ class RequestHandler extends \Psc\System\LoggerObject {
    * Überschreibt alle Services
    */
   public function setServices(Array $services) {
-    $this->services = $services;
+    $this->services = array();
+    foreach ($services as $service) {
+      $this->addService($service);
+    }
     return $this;
   }
   
