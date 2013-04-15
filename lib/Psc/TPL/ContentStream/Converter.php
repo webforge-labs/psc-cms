@@ -128,7 +128,7 @@ abstract class Converter extends \Psc\SimpleObject {
    * @return Scalar|NULL
    */
   public function shiftFirstEntry(ContentStream $cs, $type, \Closure $withFilter = NULL) {
-    if (($entry = $cs->findFirst($type)) != NULL) {
+    if (($entry = $cs->findFirst($type, $withFilter)) != NULL) {
       $vars = $this->convertEntryTemplateVariables($entry, $cs);
       $cs->removeEntry($entry);
 
