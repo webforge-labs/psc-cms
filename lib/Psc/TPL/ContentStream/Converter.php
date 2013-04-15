@@ -60,7 +60,7 @@ abstract class Converter extends \Psc\SimpleObject {
     return $variables;
   }
 
-  public function convertEntryTemplateVariables(TemplateEntry $entry, ContentStream $cs, $root) {
+  public function convertEntryTemplateVariables(TemplateEntry $entry, ContentStream $cs, $root = FALSE) {
     if ($entry instanceof ImageManaging) {
       $entry->setImageManager($this->context->getImageManager());
     }
@@ -116,6 +116,26 @@ abstract class Converter extends \Psc\SimpleObject {
     //}
     //// wenn nichts gefunden vll den ersten satz des ersten paragraphs nehmen?
     //return $this->convertText($cs, $entries);
+  }
+
+  /**
+   * Finds the first occurence of the entry, removes it and returns the template Variables for it
+   * 
+   * if nothing is found NULL is returned
+   * if entry is found it will be removed from content stream and its variables will be returned
+   * if $withFilter is given the function has to return true to find the entry
+   * @param Closure $withFilter function ($entry) should return TRUE if the filter matches
+   * @return Scalar|NULL
+   */
+  public function shiftFirstEntry(ContentStream $cs, $type, \Closure $withFilter = NULL) {
+    if (($entry = $cs->findFirst($type)) != NULL) {
+      $vars = $this->convertEntryTemplateVariables($entry, $cs);
+      $cs->removeEntry($entry);
+
+      return $vars;
+    }
+
+    return NULL;
   }
   
   /**

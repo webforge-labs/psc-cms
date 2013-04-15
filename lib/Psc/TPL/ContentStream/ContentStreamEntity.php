@@ -101,14 +101,15 @@ abstract class ContentStreamEntity extends \Psc\CMS\AbstractEntity implements Co
    * gibt es kein Vorkommen wird NULL zurückgegeben
    * @param string type ohne Namespace davor z.b. downloadlist für Downloadlist
    */
-  public function findFirst($type) {
+  public function findFirst($type, \Closure $withFilter = NULL) {
     $class = $this->getTypeClass($type);
+    $withFilter = $withFilter ?: function () { return TRUE; };
     foreach ($this->entries as $entry) {
-      if ($entry instanceof $class) {
+      if ($entry instanceof $class && $withFilter($entry)) {
         return $entry;
       }
     }
-  }
-  
+  }  
+
   abstract public function getTypeClass($typeName);
 }
