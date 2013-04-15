@@ -7,6 +7,8 @@ use stdClass;
 use Webforge\CMS\Navigation\Node As NavigationNode;
 use Psc\CMS\Roles\Page as PageRole;
 use Webforge\CMS\Navigation\NestedSetConverter;
+use Webforge\Common\ArrayUtil as A;
+use Psc\Net\RequestMatchingException;
 
 abstract class NavigationNodeRepository extends EntityRepository {
   
@@ -293,5 +295,40 @@ abstract class NavigationNodeRepository extends EntityRepository {
     $query = $qb->getQuery()->setParameter('context', $node->getContext());
     
     return $query->getResult();
+  }
+
+  public function findByUrl(Array $queryPath, Array $languages, &$matchedLocale) {
+    $url = '/'.implode('/', $queryPath);
+    $slug = A::peek($queryPath);
+
+    $qb = $this->createQueryBuilder('node');
+    $qb->leftJoin('node.page', 'page');
+    $or = $qb->expr()->orX();
+    
+    //$dql .= "WHERE node.slugFr = :slug OR node.slugDe = :slug ";
+    foreach ($languages as $lang) {
+      $or->add($qb->expr()->eq(sprintf('node.slug%s', ucfirst($lang)), ':slug'));
+    }
+    $qb->where($or);
+
+    $candidates = $qb->getQuery()
+      ->setParameters(array('slug'=>$slug))
+      ->getResult()
+    ;
+
+    if (count($candidates) > 0) {
+      // lets search for the full path of matching url
+      foreach($candidates as $node) {
+        $path = $this->getPath($node);
+        foreach ($languages as $locale) {
+          if ($this->createUrl($path, $locale) === $url) {
+            $matchedLocale = $locale;
+            return $node;
+          }
+        }
+      }
+    }
+
+    throw new RequestMatchingException('URL cannot be found in navigation: '.$url);
   }
 }
