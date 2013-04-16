@@ -38,24 +38,25 @@ abstract class ContentStreamController extends \Psc\CMS\Controller\ContainerCont
   }
   
   
-	protected function createNewRevisionFrom(Entity $contentStream, $revision) {
-	  /* wir wissen, dass wir niemals eine revision in der DB haben, die wir laden wollen (weil wir immer eine neue revision speichern, bei jedem click auf preview)
+  protected function createNewRevisionFrom(Entity $contentStream, $revision) {
+    /* wir wissen, dass wir niemals eine revision in der DB haben, die wir laden wollen (weil wir immer eine neue revision speichern, bei jedem click auf preview)
      *
      * deshalb müssen wir hier auch keinen roundtrip zur db machen (das ist natürlich inhaltlich eigentlich falsch)
     */
     $revisionContentStream = parent::createNewRevisionFrom($contentStream, $revision);
     $revisionContentStream->setLocale($contentStream->getLocale());
-    $revisionContentStream->getSlug($contentStream->getSlug().':'.$revision);
-    $revisionContentStream->getType($contentStream->getType());
+    $revisionContentStream->setSlug($contentStream->getSlug().':'.$revision);
+    $revisionContentStream->setType($contentStream->getType());
 
-		try {
-			$page = $this->dc->getRepository($this->container->getRoleFQN('Page'))->hydrateByContentStream($contentStream);
-			$page->addContentStream($revisionContentStream);
-		} catch (EntityNotFoundException $e) {
-		}
-		
-		return $revisionContentStream;
-	}
+    try {
+      $page = $this->dc->getRepository($this->container->getRoleFQN('Page'))->hydrateByContentStream($contentStream);
+      $page->addContentStream($revisionContentStream);
+    } catch (EntityNotFoundException $e) {
+      throw $e;
+    }
+    
+    return $revisionContentStream;
+  }
 
   
   /**
@@ -87,7 +88,11 @@ abstract class ContentStreamController extends \Psc\CMS\Controller\ContainerCont
     $this->init(array('ev.componentMapper', 'ev.labeler'));
 
     $panel = $this->createFormPanel(
-      $entity, $entity->getType() === 'sidebar-content' ? 'Sidebar bearbeiten' : 'Inhalte bearbeiten'
+      $entity, 
+      sprintf(
+        $entity->getType() === 'sidebar-content' ? 'Sidebar bearbeiten%s ' : 'Inhalte bearbeiten%s ',
+        '' //$entity
+      )
     );
     $this->initFormPanel($panel);
     $panel->removeRightAccordion();
@@ -125,13 +130,13 @@ abstract class ContentStreamController extends \Psc\CMS\Controller\ContainerCont
     $layoutManager->initControlsFor($contentStream);
   }
 
-	protected function initFormPanel(\Psc\CMS\EntityFormPanel $panel) {
-		$panel->setPanelButtons(
-			array('preview','save','reload','save-close')
-		);
-		
-		return parent::initFormPanel($panel);
-	}
+  protected function initFormPanel(\Psc\CMS\EntityFormPanel $panel) {
+    $panel->setPanelButtons(
+      array('preview','save','reload','save-close')
+    );
+    
+    return parent::initFormPanel($panel);
+  }
   
   public function getUploadService() {
     return new UploadService(

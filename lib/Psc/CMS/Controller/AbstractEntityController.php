@@ -390,7 +390,7 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
    *
    */
   protected function createNewRevisionFrom(Entity $parentEntity, $revision) {
-    // default behaviour is dump
+    // default behaviour is dumb
     return $this->createEmptyEntity($revision);
   }
 
