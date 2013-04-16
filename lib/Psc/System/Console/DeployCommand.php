@@ -139,8 +139,10 @@ abstract class DeployCommand extends Command {
       
       $this->remoteSync($mode);
       $this->remoteUpdateComposer($mode, $project);
+      $this->remoteRefreshAPC($mode, $project);
       $this->remoteUpdateDB($mode, $project);
       $this->remoteRunTests($mode, $project);
+
       
       $this->afterDeploy($deployer, $project, $mode, $container, $input, $output);
       $this->info('deployment finished in '.$bench->stop());
@@ -184,6 +186,22 @@ abstract class DeployCommand extends Command {
   protected function getRemoteDBCon($mode) {
     return $mode === 'staging' ? 'tests' : 'default';
   }
+
+  protected function remoteRefreshAPC($mode, $project) {
+    $this->out('[DeployCommand] ** remote refresh APC');
+    $isOk = $this->remoteExec('apachectl configtest', '/', $out, 'root');
+
+    if ($isOk === 0) {
+      if ($this->confirm('Do you want to graceful restart apache to refresh apc?')) {
+        $this->remoteExec('service apache2 graceful', '/', $restartOut, 'root');
+      }
+    } else {
+      $this->warn(' ERROR: cannot restart apache your apache config is wrong!: '.$out);
+      if ($this->confirm('Will you fix it? Should I retry?')) {
+        return $this->remoteRefreshAPC($mode, $project);
+      }
+    }
+  }
   
   protected function remoteUpdateDB($mode, $project) {
     $this->out('[DeployCommand] ** remote Update DB');
@@ -213,9 +231,13 @@ abstract class DeployCommand extends Command {
   protected function getRemoteVhostPath($vhostName, $sub) {
     return $this->remoteVhostsDir.$vhostName.'/'.trim($sub, '/').'/';
   }
-  
-  protected function remoteExec($cmd, $in, &$output = NULL) {
-    $cmd = sprintf('ssh %s "cd %s && export PSC_CMS=/var/local/www/psc-cms-bin/; export WEBFORGE=/var/local/www/.webforge/; %s"', $this->server, $this->getRemoteVhostPath($this->vhostName, $in), $cmd);
+
+  protected function remoteExec($cmd, $in, &$output = NULL, $user = 'www-data') {
+    $useratserver = preg_replace('/^(.*?)@/', $user.'@', $this->server);
+    $cmd = sprintf(
+      'ssh %s "cd %s && export PSC_CMS=/var/local/www/psc-cms-bin/; export WEBFORGE=/var/local/www/.webforge/; %s"', 
+      $useratserver, $this->getRemoteVhostPath($this->vhostName, $in), $cmd
+    );
     $this->comment($cmd);
     $ret = NULL;
     
