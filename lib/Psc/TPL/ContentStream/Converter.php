@@ -69,6 +69,10 @@ abstract class Converter extends \Psc\SimpleObject {
       $entry->setContext($this->context);
     }
 
+    if ($entry instanceof ContextContentStreamAware) {
+      $entry->setContextContentStream($cs);
+    }
+
     $that = $this;
     $variables = $entry->getTemplateVariables(
       function (TemplateEntry $entry = NULL) use($that, $cs)  {
