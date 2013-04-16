@@ -230,7 +230,7 @@ class NavigationController extends ContainerController {
         return $hydrator->getEntity((array) $jsonNode); // hydriert nach id
       });
       
-      $persistNode = function (Entity $node, $jsonNode) use ($bridge, $pageRepository, $repository, &$jsonNodes, $logger) {
+      $persistNode = function (Entity $node, $jsonNode) use ($bridge, $pageRepository, $repository, &$jsonNodes, $logger, $controller) {
         $node->setContext($repository->getContext());
         $node->setParent(isset($jsonNode->parent) ? $jsonNodes[$jsonNode->parent->guid] : NULL); // ist immer schon definiert
         $node->setI18nTitle((array) $jsonNode->title);
@@ -246,6 +246,12 @@ class NavigationController extends ContainerController {
           $page = $pageRepository->hydrate($jsonNode->pageId);
           $node->setPage($page);
           $logger->writeln('  page: '.$node->getPage()->getSlug());
+        } else {
+          $defaultSlug = current($node->getI18nSlug());  // not matter what current language is, this is the default language
+          $page = $controller->createNewPage($defaultSlug);
+          $node->setPage($page);
+          
+          $pageRepository->persist($page);
         }
         
         // flat ist von oben nach unten sortiert:
@@ -310,7 +316,7 @@ class NavigationController extends ContainerController {
     return $node;
   }
 
-  protected function createNewPage($slug) {
+  public function createNewPage($slug) {
     return $this->getController('Page')->createInactivePage($slug);
   }
 
