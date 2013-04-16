@@ -261,12 +261,17 @@ class CMSAcceptanceTester extends \Psc\System\LoggerObject {
     }
     
     $this->testCase->assertEquals($code, $response->getCode(), 'Failed asserting that Response is a '.$code.'.'.$msg);
-    $this->testCase->assertContains($dispatcher->getContentType($type), $response->getHeaderField('Content-Type'), 'Failed asserting that response is from right ContentType');
+
+    if ($type !== 'response') {
+      $this->testCase->assertContains($dispatcher->getContentType($type), $response->getHeaderField('Content-Type'), 'Failed asserting that response is from right ContentType');
+    }
 
     if ($type == 'json') {
       return $this->testCase->getCodeTester()->json($response->getRaw());
     } elseif ($type == 'html') {
       return $response->getDecodedRaw();
+    } elseif ($type == 'response') {
+      return $response;
     }
     
     return $response;

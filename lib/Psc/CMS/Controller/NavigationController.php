@@ -195,7 +195,12 @@ class NavigationController extends ContainerController {
   }
 
   public function getRootNode() {
-    return $this->repository->getRootNode();
+    try {
+
+      return $this->repository->getRootNode();
+    } catch (\Doctrine\ORM\NoResultException $e) {
+      throw new \Psc\Exception(sprintf("No Root Node for context '%s' was found", $this->repository->getContext()));
+    }
   }
 
   /**

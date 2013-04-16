@@ -73,7 +73,7 @@ class CMSRequestDispatcher extends \Psc\SimpleObject {
       return $format;
     }
 
-    throw new InvalidArgumentException('format: '.$format.' is not a valid format for RequestDispatcher: json|html or mimetype');
+    throw new \InvalidArgumentException(sprintf("format: '%s' is not a valid format for RequestDispatcher: json|html or mimetype", $format));
   }
   
   public function setHeaderField($name, $value) {
