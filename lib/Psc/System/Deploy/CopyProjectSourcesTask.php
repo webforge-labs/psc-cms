@@ -112,7 +112,9 @@ class CopyProjectSourcesTask extends \Psc\SimpleObject implements Task {
       $source->publicHtdocs->copy($target->publicHtdocs, NULL, NULL, TRUE);
     
     // copy fixtures files
-    $this->sourceProject->getTestdata()->sub('fixtures/')->copy($this->targetProject->getTestdata()->sub('fixtures/'), NULL, NULL, TRUE);
+    if ($this->sourceProject->getTestdata()->sub('fixtures/')->exists()) {
+      $this->sourceProject->getTestdata()->sub('fixtures/')->copy($this->targetProject->getTestdata()->sub('fixtures/'), NULL, NULL, TRUE);
+    }
     
     if ($this->sourceProject->getTestdata()->sub('common/')->exists()) {
       $this->sourceProject->getTestdata()->sub('common/')->copy($this->targetProject->getTestdata()->sub('common/'), NULL, NULL, TRUE);
