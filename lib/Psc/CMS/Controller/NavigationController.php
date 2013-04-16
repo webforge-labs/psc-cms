@@ -212,6 +212,8 @@ class NavigationController extends ContainerController {
     $em = $this->dc->getEntityManager();
 
     try {
+      $em->getConnection()->beginTransaction();
+      
       $repository = $this->repository;
       $pageRepository = $em->getRepository($this->container->getRoleFQN('Page'));
       $controller = $this;
@@ -219,7 +221,6 @@ class NavigationController extends ContainerController {
       $bridge = new DoctrineBridge($em);
       $this->initDoctrineBridge($bridge);
       $bridge->beginTransaction();
-      $em->getConnection()->beginTransaction();
       
       $jsonNodes = array();
       $synchronizer = new \Psc\Doctrine\ActionsCollectionSynchronizer();
