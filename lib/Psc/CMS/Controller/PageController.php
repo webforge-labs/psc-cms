@@ -19,6 +19,8 @@ abstract class PageController extends ContainerController {
    */
   protected $navigationRepository;
 
+  protected $metaMenuName = 'top';
+
   protected function setUp() {
     // achtung: hier sind languages und language noch nicht defined! (erst nach setup)
     parent::setUp();
@@ -62,7 +64,7 @@ abstract class PageController extends ContainerController {
 
     $menu = $navController->getPagesMenu('default');
     $footerMenu = $navController->getPagesMenu('footer');
-    $topMenu = $navController->getPagesMenu('top');
+    $topMenu = $navController->getPagesMenu($this->metaMenuName);
     
     $panel = new FormPanel('Seiten Übersicht');
     $panel->setPanelButtons(array('reload'));
@@ -165,18 +167,14 @@ abstract class PageController extends ContainerController {
   protected function initProcessor(\Psc\Doctrine\Processor $processor) {
     $processor->setSynchronizeCollections('normal');
   }
-  
-  public function getEntity($identifier, $subResource = NULL, $query = NULL) {
-    if ($subResource === 'web') {
-      $page = parent::getEntity($identifier, NULL, $query);
 
-      return $this->getWebHTML($page, $query);
-    } elseif(is_array($subResource) && $subResource[0] === 'contentstream') {
-      $page = parent::getEntity($identifier, NULL, $query);
+  public function getEntityInRevision($parentIdentifier, $revision, $subResource = NULL, $query = NULL) {
+    if (is_array($subResource) && $subResource[0] === 'contentstream') {
+      $page = parent::getEntityInRevision($parentIdentifier, $revision, NULL, $query);
 
+      $contentStreamController = $this->getController('ContentStream');
       $type = isset($subResource[2]) ? $subResource[2] : 'page-content';
       $locale = $subResource[1];
-      $revision = $this->defaultRevision;
       
       try {
         $contentStream = 
@@ -187,8 +185,6 @@ abstract class PageController extends ContainerController {
              ->one()
          ;
        } catch (\Psc\TPL\ContentStream\NoContentStreamsFoundException $e) {
-         $contentStreamController = $this->getController('ContentStream');
-
          $contentStream = 
            $contentStreamController->createEmptyEntity($revision)
              ->setLocale($locale)
@@ -201,10 +197,20 @@ abstract class PageController extends ContainerController {
          $this->repository->save($contentStream);
        }
 
-      return $this->getController('ContentStream')->getEntityFormular($contentStream);
-    } else {
-      return parent::getENtity($identifier, $subResource, $query);
+      return $contentStreamController->getEntityFormular($contentStream);
     }
+
+    return parent::getEntityInRevision($parentIdentifier, $revision, $subResource, $query);
+  }
+  
+  public function getEntity($identifier, $subResource = NULL, $query = NULL) {
+    if ($subResource === 'web') {
+      $page = parent::getEntity($identifier, NULL, $query);
+
+      return $this->getWebHTML($page, $query);
+    }
+
+    return parent::getEntity($identifier, $subResource, $query);
   }
 
   
