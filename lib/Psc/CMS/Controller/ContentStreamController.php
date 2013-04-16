@@ -46,6 +46,7 @@ abstract class ContentStreamController extends \Psc\CMS\Controller\ContainerCont
     $revisionContentStream = parent::createNewRevisionFrom($contentStream, $revision);
     $revisionContentStream->setLocale($contentStream->getLocale());
     $revisionContentStream->getSlug($contentStream->getSlug().':'.$revision);
+    $revisionContentStream->getType($contentStream->getType());
 
 		try {
 			$page = $this->dc->getRepository($this->container->getRoleFQN('Page'))->hydrateByContentStream($contentStream);

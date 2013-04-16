@@ -173,14 +173,33 @@ abstract class PageController extends ContainerController {
       return $this->getWebHTML($page, $query);
     } elseif(is_array($subResource) && $subResource[0] === 'contentstream') {
       $page = parent::getEntity($identifier, NULL, $query);
+
+      $type = isset($subResource[2]) ? $subResource[2] : 'page-content';
+      $locale = $subResource[1];
+      $revision = $this->defaultRevision;
       
-      $contentStream = 
-        $page->getContentStream()
-          ->locale($subResource[1])
-          ->type(isset($subResource[2]) ? $subResource[2] : 'page-content')
-          ->revision($this->defaultRevision)
-          ->one()
-      ;
+      try {
+        $contentStream = 
+           $page->getContentStream()
+             ->locale($locale)
+             ->type($type)
+             ->revision($revision)
+             ->one()
+         ;
+       } catch (\Psc\TPL\ContentStream\NoContentStreamsFoundException $e) {
+         $contentStreamController = $this->getController('ContentStream');
+
+         $contentStream = 
+           $contentStreamController->createEmptyEntity($revision)
+             ->setLocale($locale)
+             ->setRevision($revision)
+             ->setType($type);
+ 
+         $page->addContentStream($contentStream);
+ 
+         $this->repository->persist($page);
+         $this->repository->save($contentStream);
+       }
 
       return $this->getController('ContentStream')->getEntityFormular($contentStream);
     } else {
