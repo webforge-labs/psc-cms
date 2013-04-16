@@ -16,6 +16,8 @@ use stdClass;
 use stdClass as FormData;
 use Psc\UI\PagesMenu;
 
+use Webforge\CMS\Navigation\DoctrineBridge;
+
 class NavigationController extends ContainerController {
 
 
@@ -192,6 +194,10 @@ class NavigationController extends ContainerController {
     );
   }
 
+  public function getRootNode() {
+    return $this->repository->getRootNode();
+  }
+
   /**
    * @param array $flat der Output der Funktion Psc.UI.Navigation::serialize() als decodierter JSON-Array
    * @return Psc\System\Logger
@@ -205,7 +211,8 @@ class NavigationController extends ContainerController {
       $pageRepository = $em->getRepository($this->container->getRoleFQN('Page'));
       $controller = $this;
       
-      $bridge = new \Webforge\CMS\Navigation\DoctrineBridge($em);
+      $bridge = new DoctrineBridge($em);
+      $this->initDoctrineBridge($bridge);
       $bridge->beginTransaction();
       $em->getConnection()->beginTransaction();
       
@@ -344,5 +351,9 @@ Jetzt kann durch den Seiten-Button des neuen Navigations-Punktes die Seite geöf
     ));
 
     return $html;
+  }
+
+  protected function initDoctrineBridge(DoctrineBridge $bridge) {
+
   }
 }

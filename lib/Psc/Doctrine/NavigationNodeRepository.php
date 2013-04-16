@@ -48,18 +48,26 @@ abstract class NavigationNodeRepository extends EntityRepository {
   }
 
   /**
-   * Returns the one node with 1 as left
+   * Returns the one node with 1 as left for current context
    * 
    * you should not have multiple roots
    * @return Webforge\CMS\Navigation\Node
    */
-  public function getRootNode() {
-    return $this->rootNodeQueryBuilder()->getQuery()->getSingleResult();
+  public function getRootNode(\Closure $qbHook = NULL) {
+    return $this->rootNodeQueryBuilder($qbHook)->getQuery()->getSingleResult();
   }
   
-  public function rootNodeQueryBuilder() {
-    $qb = $this->childrenQueryBuilder();
-    $qb->andWhere($qb->expr()->eq('node.lft', 1));
+  public function rootNodeQueryBuilder(\Closure $qbHook = NULL) {
+    $qb = $this->childrenQueryBuilder(NULL, function ($qb) use ($qbHook) {
+      $qb->andWhere($qb->expr()->eq('node.lft', 1));
+
+      if (isset($qbHook)) {
+        $qbHook($qb);
+      }
+
+      return $qb;
+    });
+    
 
     return $qb;
   }

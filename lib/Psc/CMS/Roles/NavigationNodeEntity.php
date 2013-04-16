@@ -64,10 +64,13 @@ abstract class NavigationNodeEntity extends AbstractEntity implements WebforgeNo
 
 
   public function generateSlugs() {
+    $slugs = $this->getI18nSlug();
     $titles = $this->getI18nTitle();
     
     foreach ($titles as $locale => $title) {
-      $this->setSlug($this->generateSlug($title), $locale);
+      if (!isset($slugs[$locale]) || empty($slugs[$locale])) {
+        $this->setSlug($this->generateSlug($title), $locale);
+      }
     }
     
     return $this;
