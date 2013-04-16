@@ -132,5 +132,21 @@ abstract class ContentStreamEntity extends \Psc\CMS\AbstractEntity implements Co
     }
   }  
 
+  public function __toString() {
+    return sprintf("ContentStream(%s): %s:%s:%s\n", $this->slug, $this->locale, $this->type, $this->revision);
+  }
+
+  public function getDebug() {
+    $ret = (string) $this;
+
+    $entries = $this->getEntries();
+    $ret .= sprintf("%d Entries:\n", count($entries));
+    foreach ($entries as $entry) {
+      $ret .= sprintf("  %s\n", $entry->getLabel());
+    }
+
+    return $ret;
+  }
+
   abstract public function getTypeClass($typeName);
 }
