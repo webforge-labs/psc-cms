@@ -24,6 +24,9 @@ class CSSTester extends \Psc\SimpleObject implements HTMLInterface {
     } elseif ($html === NULL && $this->testCase instanceof HTMLTestCase) { // weil ich depp immer $this->html als 2ten parameter vergesse :)
       $this->html = $this->testCase->getHTML();
       $this->selector = $selector;
+    } elseif ($html instanceof jQuery) {
+      $this->jQuery = $html->find($selector);
+      $this->html = NULL;
     } else {
       $this->selector = $selector;
       $this->html = $html;
@@ -196,6 +199,7 @@ class CSSTester extends \Psc\SimpleObject implements HTMLInterface {
       
       $this->jQuery = new jQuery($this->selector, $html);
     }
+    
     return $this->jQuery;
   }
   

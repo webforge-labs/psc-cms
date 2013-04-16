@@ -9,7 +9,8 @@ use \Psc\Preg,
 
 class Text {
   
-  const INLINE = 0x000001;
+  const INLINE =     0x000001;
+  const NO_P_FIRST = 0x000002;
 
   public static function convert($text, $flags = 0x000000) {
     $inline = ($flags & self::INLINE) == self::INLINE; 
@@ -34,7 +35,7 @@ class Text {
     $text = str_replace($search,$repl,$text);
 
     if (!$inline) {
-      $text = self::reformat($text);
+      $text = self::reformat($text, !($flags & self::NO_P_FIRST));
     }
     
     return $text;
@@ -72,7 +73,7 @@ class Text {
   
   
   
-  public static function reformat($html) {
+  public static function reformat($html, $withPFirst = TRUE) {
     /* compile regex */
     $blockElements = Array ('h1','h2','h3','div','h3','table','tr','td','ol','li','ul','pre','p');
     $blemRx = '(?:'.implode('|',$blockElements).')';
@@ -87,7 +88,7 @@ class Text {
     $pOpen = FALSE;
     $matching = NULL;
     $ret = NULL;
-    $firstP = TRUE;
+    $firstP = $withPFirst;
     $x = 0;
     while ($html != '' && $x <= 100000000) {
       $x++;
