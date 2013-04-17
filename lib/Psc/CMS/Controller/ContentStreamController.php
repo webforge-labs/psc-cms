@@ -52,7 +52,6 @@ abstract class ContentStreamController extends \Psc\CMS\Controller\ContainerCont
       $page = $this->dc->getRepository($this->container->getRoleFQN('Page'))->hydrateByContentStream($contentStream);
       $page->addContentStream($revisionContentStream);
     } catch (EntityNotFoundException $e) {
-      throw $e;
     }
     
     return $revisionContentStream;
