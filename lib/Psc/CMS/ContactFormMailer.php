@@ -76,6 +76,8 @@ class ContactFormMailer extends \Psc\Object {
   
   protected $from;
   protected $envelope;
+
+  protected $autoReply = NULL;
   
   public function __construct(ContactFormData $data, $mode = self::MODE_LOCAL_MAIL) {
     $this->data = $data;
@@ -134,7 +136,7 @@ class ContactFormMailer extends \Psc\Object {
   public function send() {
     if ($this->init) {
       
-      $recipient = $this->debugRecipient;
+      $recipient = array($this->debugRecipient => 'DebugRecipient');
       
       if ($this->production === FALSE) {
         $recipient = $this->recipient;
@@ -149,20 +151,55 @@ class ContactFormMailer extends \Psc\Object {
         ->setContentType('text/plain')
       ;
       
-      return $this->mailer->send($this->message);
+      $success = $this->mailer->send($this->message);
+
+      if (isset($this->autoReply) && $success > 0) {
+        $this->sendAutoReplyMail();
+      }
+
+      return $success;
       
     } else {
       throw new \Psc\Exception('FormMailer noch nicht initialisiert');
     }
   }
+
+  protected function sendAutoReplyMail() {
+    $recipient = array($this->debugRecipient => 'DebugRecipient');
+      
+    if ($this->production === FALSE) {
+      $recipient = $this->data->getField($this->autoReply->emailField);
+    }
+
+    $reply = Swift_Message::newInstance()
+      ->setSubject($this->autoReply->subject ?: $this->getSubject())
+      ->setFrom($this->from)
+      ->setTo($recipient)
+      ->setSender($this->envelope)
+      ->setBody(TPL::miniTemplate($this->autoReply->text, $this->data->getFields()->toArray()))
+      ->setContentType('text/plain')
+    ;
+      
+    return $this->mailer->send($reply);
+  }
   
   public function getMailText() {
-    
     $mailText = $this->template;
-    
     $mailText = TPL::miniTemplate($mailText, $this->data->getFields()->toArray());
     
     return $mailText;
+  }
+
+  /**
+   * You can use %xx% variables from your fields in $data 
+   * for the template text
+   */
+  public function setAutoReply($emailFieldName, $text, $subject = NULL) {
+    $this->autoReply = (object) array(
+      'emailField'=>$emailFieldName,
+      'subject'=>$subject,
+      'text'=>$text
+    );
   }
   
   /**
@@ -182,4 +219,3 @@ class ContactFormMailer extends \Psc\Object {
     return $this->mode;
   }
 }
-?>

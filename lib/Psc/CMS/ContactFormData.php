@@ -19,7 +19,7 @@ class ContactFormData extends \Psc\Object {
   
   public function getField($field) {
     if (!$this->fields->containsKey($field)) {
-      throw new Exception('Feld: '.$field.' kommt im Formulat nicht vor');
+      throw new Exception('Feld: '.$field.' kommt im Formular nicht vor');
     }
     return $this->fields->get($field);
   }
