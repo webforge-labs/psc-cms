@@ -47,6 +47,13 @@ abstract class NavigationNodeRepository extends EntityRepository {
     return $qb;
   }
 
+  // @TODO this is not ready
+  public function mergedChildrenQueryBuilder($qbHook = NULL) {
+    $qb = $this->childrenQueryBuilder(NULL, $qbHook);
+
+    return $qb;
+  }
+
   /**
    * Returns the one node with 1 as left for current context
    * 

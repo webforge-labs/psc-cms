@@ -22,4 +22,8 @@ abstract class AbstractContainer extends AbstractControllerContainer implements 
     
     return $this->package;
   }
+
+  public function getPackageDir($sub) {
+    return $this->getPackage()->getRootDirectory()->sub($sub);
+  }
 }
