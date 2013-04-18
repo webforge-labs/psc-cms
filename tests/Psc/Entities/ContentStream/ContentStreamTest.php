@@ -62,8 +62,6 @@ class ContentStreamTest extends \Webforge\Code\Test\Base {
 
     $this->cs1->removeEntry($this->headline1);
 
-    var_dump($this->cs1->getEntries()->indexOf($this->headline2));
-
     $this->assertSame(
       $this->paragraph,
       $this->cs1->findNextEntry($this->headline2)

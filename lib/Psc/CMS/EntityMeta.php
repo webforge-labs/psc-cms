@@ -191,12 +191,12 @@ class EntityMeta extends \Psc\SimpleObject {
     
     //var_dump($foreignEntity->getClassMetadata()->associationMappings);
     //var_dump($this->classMetadata->associationMappings);
-    var_dump($this->classMetadata->getFieldForColumn($foreignField));
+    //var_dump($this->classMetadata->getFieldForColumn($foreignField));
     
     $mapping = $this->classMetadata->getAssociationMapping(
       
     );
-    var_dump($mapping);
+    //var_dump($mapping);
 
     return $this->getPropertyMeta($mapping);
   }

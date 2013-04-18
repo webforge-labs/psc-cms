@@ -113,7 +113,7 @@ abstract class CompiledTeaserHeadlineImageTextLink extends Entry {
   }
   
   public function html() {
-    return TeaserHeadlineImageTextLink;
+    return 'TeaserHeadlineImageTextLink';
   }
   
   public function getType() {
