@@ -270,6 +270,8 @@ class CMSAcceptanceTester extends \Psc\System\LoggerObject {
       return $this->testCase->getCodeTester()->json($response->getRaw());
     } elseif ($type == 'html') {
       return $response->getDecodedRaw();
+    } elseif ($type == 'text') {
+      return $response->getRaw();
     } elseif ($type == 'response') {
       return $response;
     }
