@@ -22,4 +22,7 @@ interface SimpleContainer extends \Psc\CMS\Controller\LanguageAware, FQNSolver, 
    */
   public function getUploadManager();
   public function setUploadManager(UploadManager $manager);
+
+
+  public function getRoleRepository($roleName);
 }

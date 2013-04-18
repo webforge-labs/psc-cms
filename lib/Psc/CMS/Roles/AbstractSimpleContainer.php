@@ -136,9 +136,17 @@ abstract class AbstractSimpleContainer extends \Psc\SimpleObject implements Simp
    */
   public function getNavigationRepository() {
     if (!isset($this->navigationRepository)) {
-      $this->navigationRepository = $this->dc->getRepository($this->getRoleFQN('NavigationNode'));
+      $this->navigationRepository = $this->getRoleRepository('NavigationNode');
     }
+
     return $this->navigationRepository;
+  }
+
+  /**
+   * @return Psc\Doctrine\EntityRepository
+   */
+  public function getRoleRepository($roleName) {
+    return $this->dc->getRepository($this->getRoleFQN($roleName));
   }
   
   /**

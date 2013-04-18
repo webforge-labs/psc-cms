@@ -262,6 +262,7 @@ class SimpleURL extends \Psc\Object {
   public function isHTTPs() {
     return $this->scheme === self::HTTPS;
   }
+
   
   public function __toString() {
     try {
@@ -271,4 +272,3 @@ class SimpleURL extends \Psc\Object {
     }
   }
 }
-?>

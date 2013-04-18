@@ -30,3 +30,7 @@ ContentStreamConverter + Context:
 
 Projects (DB):
 - ContentStream has another column "type" which defaults to "page-content"
+
+SimpleContainer
+- add getNavigationRepository
+- add getRoleRepository

@@ -15,4 +15,3 @@ interface FQNSolver {
   public function getRoleFQN($roleName);
 
 }
-?>

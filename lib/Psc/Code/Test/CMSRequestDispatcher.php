@@ -69,6 +69,8 @@ class CMSRequestDispatcher extends \Psc\SimpleObject {
       return 'text/html';
     } elseif (mb_strtolower($format) === 'json') {
       return 'application/json';
+    } elseif (mb_strtolower($format) === 'text') {
+      return 'text/plain';
     } elseif (mb_strpos($format,'/') !== FALSE) {
       return $format;
     }
