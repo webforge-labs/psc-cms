@@ -193,7 +193,7 @@ class CSSTester extends \Psc\SimpleObject implements HTMLInterface {
       
       $html = (string) $this->html;
       // simple heuristic, damit wir html documente korrekt asserten
-      if (mb_strpos(trim($html),'<!DOCTYPE') === 0 || mb_strpos(trim($html),'<html') === 0) {
+      if (mb_strpos(trim($html),'<!DOCTYPE') === 0 || mb_strpos(trim($html),'<html') === 0 || mb_strpos(trim($html), '<?xml') === 0) {
         $html = \Psc\XML\Helper::doc($html);
       }
       
