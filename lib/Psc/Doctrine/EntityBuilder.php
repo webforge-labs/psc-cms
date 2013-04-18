@@ -546,7 +546,19 @@ class EntityBuilder extends \Psc\Code\Generate\ClassBuilder {
     $gClass = $this->getRepositoryGClass();
     
     $this->classWriter->setClass($gClass);
-    if (!isset($file)) $file = $this->module->getEntitiesPath()->getFile($gClass->getClassName().'.php');
+    if (!isset($file)) {
+      $autoLoadRoot = $this->module->getEntitiesPath()
+        ->sub(
+          str_repeat(
+            '../',
+            count(explode('\\', $this->module->getEntitiesNamespace()))
+          )
+        )
+        ->resolvePath();
+
+      $file = Code::mapClassToFile($gClass->getFQN(), $autoLoadRoot);
+    }
+
     $this->classWriter->write($file, array(), $overwrite);
     $this->classWriter->syntaxCheck($file);
     

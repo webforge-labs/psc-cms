@@ -127,4 +127,3 @@ PHP;
     $this->assertEquals($metaGetPHP, $metaGet->php());
   }
 }
-?>
