@@ -12,7 +12,7 @@ use Psc\CMS\Roles\SimpleContainer as SimpleContainerRole;
 use Doctrine\ORM\EntityManager;
 use Psc\UI\FormPanel;
 
-abstract class PageController extends ContainerController {
+abstract class PageController extends ContentStreamContainerController {
 
   /**
    * @var Psc\Doctrine\EntityRepository
@@ -134,7 +134,6 @@ abstract class PageController extends ContainerController {
   }
 
   protected function fillContentStreams(PageRole $page) {
-    $streams = $page->getContentStreams();
     $csClass = $this->container->getRoleFQN('ContentStream');
 
     $types = array('page-content', 'sidebar-content');
@@ -156,7 +155,7 @@ abstract class PageController extends ContainerController {
   protected function onDelete(Entity $entity) {
     $em = $this->dc->getEntityManager();
     foreach ($entity->getNavigationNodes() as $node) {
-      $node->setPage($inactivePage = $this->createInactivePage('acreated-paged'));
+      $node->setPage($inactivePage = $this->createInactivePage('acreated-page'));
       $em->persist($inactivePage);
       $em->persist($node);
     }
@@ -166,41 +165,6 @@ abstract class PageController extends ContainerController {
   
   protected function initProcessor(\Psc\Doctrine\Processor $processor) {
     $processor->setSynchronizeCollections('normal');
-  }
-
-  public function getEntityInRevision($parentIdentifier, $revision, $subResource = NULL, $query = NULL) {
-    if (is_array($subResource) && $subResource[0] === 'contentstream') {
-      $page = parent::getEntityInRevision($parentIdentifier, $revision, NULL, $query);
-
-      $contentStreamController = $this->getController('ContentStream');
-      $type = isset($subResource[2]) ? $subResource[2] : 'page-content';
-      $locale = $subResource[1];
-      
-      try {
-        $contentStream = 
-           $page->getContentStream()
-             ->locale($locale)
-             ->type($type)
-             ->revision($revision)
-             ->one()
-         ;
-       } catch (\Psc\TPL\ContentStream\NoContentStreamsFoundException $e) {
-         $contentStream = 
-           $contentStreamController->createEmptyEntity($revision)
-             ->setLocale($locale)
-             ->setRevision($revision)
-             ->setType($type);
- 
-         $page->addContentStream($contentStream);
- 
-         $this->repository->persist($page);
-         $this->repository->save($contentStream);
-       }
-
-      return $contentStreamController->getEntityFormular($contentStream);
-    }
-
-    return parent::getEntityInRevision($parentIdentifier, $revision, $subResource, $query);
   }
   
   public function getEntity($identifier, $subResource = NULL, $query = NULL) {
@@ -219,27 +183,5 @@ abstract class PageController extends ContainerController {
 
   protected function hydrateEntityInRevision($identifier, $revision) { // slug oder identifier geht beides
     return $this->repository->hydrate($identifier);
-  }
-
-  protected function getNavigationRepository() {
-    if (!isset($this->navigationRepository)) {
-      $this->navigationRepository = $this->dc->getRepository($this->container->getRoleFQN('NavigationNode'));
-    }
-    return $this->navigationRepository;
-  }
-
-
-  /**
-   * @return Array
-   */
-  public function getLanguages() {
-    return $this->container->getLanguages();
-  }
-
-  /**
-   * @return string
-   */
-  public function getLanguage() {
-    return $this->container->getLanguage();
   }
 }

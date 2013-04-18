@@ -83,8 +83,25 @@ class PageControllerTest extends \Psc\Doctrine\DatabaseTestCase {
     $this->assertEquals('thesidebarhtml', $this->controller->getEntity($page->getId(), array('contentstream', 'de', 'sidebar-content')));
   }
 
+  public function testGetEntityWithSubresourceContentStreamAndLanguage_ReturnsTheFormOfTheContentStreamFromThePage_CreatesTheContentStreamIfNotExisting() {
+    $that = $this;
+    $page = $this->insertPageWithLocaleContentStreams();
+
+    $csController = $this->expectReturnsCSController();
+
+    $csController->expects($this->once())->method('getEntityFormular')
+      ->will($this->returnCallback(function ($cs) use ($that) {
+        $that->assertEquals('de', $cs->getLocale());
+        $that->assertEquals('other-content', $cs->getType());
+        $that->assertEquals('default', $cs->getRevision());
+        return 'theotherhtml';
+    }));
+
+    $this->assertEquals('theotherhtml', $this->controller->getEntity($page->getId(), array('contentstream', 'de', 'other-content')));
+  }
+
   protected function expectReturnsCSController() {
-    $csController = $this->getMockForAbstractClass('Psc\CMS\Controller\ContentStreamController', array(), '', FALSE, TRUE, TRUE, array('getEntityFormular'));
+    $csController = $this->getMock('Psc\Test\Controllers\ContentStreamController', array('getEntityFormular'), array($this->dc, $this->container));
 
     $this->container->expects($this->atLeastOnce())->method('getController')->with('ContentStream')
       ->will($this->returnValue($csController));

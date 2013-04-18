@@ -11,6 +11,8 @@ use Psc\UI\UploadService;
 use Psc\Doctrine\EntityFactory;
 use Psc\Net\Service\LinkRelation;
 use Psc\TPL\ContentStream\ContentStream;
+use Psc\CMS\Roles\ContentStreamAware;
+use Psc\TPL\ContentStream\NoContentStreamsFoundException;
 
 abstract class ContentStreamController extends \Psc\CMS\Controller\ContainerController {
   
@@ -117,6 +119,31 @@ abstract class ContentStreamController extends \Psc\CMS\Controller\ContainerCont
     $panel->addContent($layoutManager);
     
     return $panel;
+  }
+
+
+  public function prepareFor(ContentStreamAware $entity, $type, $locale, $revision = 'default') {
+    try {
+      $contentStream = 
+         $entity->getContentStream()
+           ->locale($locale)
+           ->type($type)
+           ->revision($revision)
+           ->one()
+       ;
+     } catch (NoContentStreamsFoundException $e) {
+       $contentStream = 
+         $this->createEmptyEntity($revision)
+           ->setLocale($locale)
+           ->setRevision($revision)
+           ->setType($type);
+
+       $entity->addContentStream($contentStream);
+       $this->repository->persist($entity);
+       $this->repository->save($contentStream);
+     }
+
+    return $contentStream;
   }
 
   public function createEmptyEntity($revision = NULL) {
