@@ -160,8 +160,25 @@ class ConfigureApacheTask extends \Psc\SimpleObject implements Task {
     return $this;
   }
 
+  public function getVar($name) {
+    return $this->vars[$name];
+  }
+
   public function append($string) {
     $this->vars['appendix'] .= $string;
+    return $this;
+  }
+
+  /**
+   * Adds an Location alias 
+   * 
+   * $this->addAlias('/images /var/local/banane');
+   */
+  public function addAlias($location, $path) {
+    $this->setVar('aliases', 
+      $this->getVar('aliases').
+      sprintf("\n  Alias %s %s", $location , $this->replaceHelpers($path))
+    );
     return $this;
   }
   

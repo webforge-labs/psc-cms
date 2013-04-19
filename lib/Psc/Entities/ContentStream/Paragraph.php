@@ -4,6 +4,7 @@ namespace Psc\Entities\ContentStream;
 
 use Psc\Data\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
+use Webforge\Common\String as S;
 
 /**
  * @ORM\Entity(repositoryClass="Psc\Entities\ContentStream\ParagraphRepository")
@@ -16,7 +17,7 @@ class Paragraph extends CompiledParagraph {
   }
   
   public function excerpt($length, $ender = '…') {
-    return HTML::tag('p', TPL::miniMarkup(\Psc\String::cutAtLast($this->getContent(), $length, ' ', $ender)));
+    return HTML::tag('p', TPL::miniMarkup(String::cutAtLast($this->getContent(), $length, ' ', $ender)));
   }
 
   public function serialize($context) {
