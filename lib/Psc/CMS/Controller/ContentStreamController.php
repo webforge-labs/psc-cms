@@ -67,9 +67,11 @@ abstract class ContentStreamController extends \Psc\CMS\Controller\ContainerCont
   protected function processEntityFormRequest(Entity $entity, FormData $requestData, $revision) {
     $dataName = 'layoutManager';
     
-    if (!isset($requestData->$dataName) || count($requestData->$dataName) == 0) {
+    if (isset($requestData->$dataName) && count($requestData->$dataName) > 0) {
+      $serialized = $requestData->$dataName;
+    } /*else {
       throw $this->err->validationError($dataName, NULL, new \Psc\Exception('Das Layout muss mindestens 1 Element enthalten'));
-    }
+    }*/
     
     // da wir keine unique constraints haben und neu sortieren müssen , nehmen wir die holzhammer methode:
     // delete all
@@ -80,8 +82,10 @@ abstract class ContentStreamController extends \Psc\CMS\Controller\ContainerCont
     // auch aus dem CS löschen, weil der sonst automatisch persisted und das remove oben keinen effect hat
     $entity->getEntries()->clear();
     
-    // persist new
-    $this->getContentStreamConverter()->convertUnserialized($requestData->$dataName, $entity);
+    if (isset($serialized)) {
+      // persist new
+      $this->getContentStreamConverter()->convertUnserialized($requestData->$dataName, $entity);
+    }
   }
 
   
