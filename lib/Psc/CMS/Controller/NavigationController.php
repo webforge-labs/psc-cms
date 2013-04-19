@@ -157,7 +157,7 @@ class NavigationController extends ContainerController {
     // @TODO fix me: this should be a merge from all contexts belonging together (aka: main+footer+head)
 
     return $this->getFlatForUI(
-      $this->repository->childrenQueryBuilder()->getQuery()->getResult(),
+      $this->repository->mergedChildrenQueryBuilder()->getQuery()->getResult(),
       $displayLocale, 
       $languages
     );

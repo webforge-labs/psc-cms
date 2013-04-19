@@ -49,7 +49,24 @@ abstract class NavigationNodeRepository extends EntityRepository {
 
   // @TODO this is not ready
   public function mergedChildrenQueryBuilder($qbHook = NULL) {
-    $qb = $this->childrenQueryBuilder(NULL, $qbHook);
+    $qb = $this->createQueryBuilder('node');
+
+    // exclude all start nodes except that from default
+    $qb->andWhere(
+      $qb->expr()->orx(
+        $qb->expr()->neq('node.lft', 1),
+        $qb->expr()->eq('node.context', ':context')
+      )
+    );
+
+    $qb->addOrderBy('node.context', 'ASC');
+    $qb->addOrderBy('node.lft', 'ASC');
+
+    $qb->setParameter('context', 'default');
+
+    if (isset($qbHook)) {
+      $qbHook($qb);
+    }
 
     return $qb;
   }

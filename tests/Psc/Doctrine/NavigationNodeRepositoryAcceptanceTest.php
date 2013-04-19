@@ -39,7 +39,7 @@ class NavigationNodeRepositoryAcceptanceTest extends \Psc\Test\DatabaseTestCase 
 
     $bridge = new DoctrineBridge($this->em);
     $bridge->beginTransaction();
-    $this->context = 'main';
+    $this->context = 'default';
 
     $start = $bridge->persist($this->createNode('Start'));
     $bridge->persist($this->createNode('Über Uns', $start));
@@ -67,22 +67,26 @@ class NavigationNodeRepositoryAcceptanceTest extends \Psc\Test\DatabaseTestCase 
   public function testContextMergingOfNodes() {
     $mergedNodes = $this->repository->mergedChildrenQueryBuilder()->getQuery()->getResult();
 
-    $text = $converter->toString($mergedNodes);
+    $text = $this->converter->toString($mergedNodes);
 
     $this->assertEquals(
-      $text, 
-<<<'TEXT'
+      $expectedText = <<<'TEXT'
 Start
+  Über Uns
+  Produkte
+  Service
   Suche
   Newsletter
   Forum
   Impressum
   Kontakt
   Datenschutz
-  Über Uns
-  Produkte
-  Service
+
 TEXT
+,
+      $text, 
+      "expected >>>\n".$expectedText."\n\n".
+      "actual >>>\n".$text."\n"
     );
   }
 }
