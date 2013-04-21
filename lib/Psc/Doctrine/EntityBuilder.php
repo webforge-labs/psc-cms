@@ -120,7 +120,7 @@ class EntityBuilder extends \Psc\Code\Generate\ClassBuilder {
   /**
    * @param Type $type wenn nicht gesetzt wird Psc\Data\Type\StringType genommen
    */
-  public function createProperty($name, Type $type = NULL, $flags = 0, $upperCaseName = NULL) {
+  public function createProperty($name, Type $type = NULL, $flags = 0, $upperCaseName = NULL, $columnAlias = NULL) {
     if (!isset($type)) $type = Type::create('String');
     
     if ($flags & self::I18N) {
@@ -153,6 +153,10 @@ class EntityBuilder extends \Psc\Code\Generate\ClassBuilder {
       
       if ($flags & self::UNIQUE) {
         $column['unique'] = true;
+      }
+
+      if ($columnAlias) {
+        $column['name'] = $columnAlias;
       }
     
       $property
