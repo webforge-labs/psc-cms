@@ -311,9 +311,14 @@ class ModelCompiler extends \Psc\SimpleObject {
       foreach (array_slice(func_get_args(),2) as $flagSetter) {
         $flagSetter($flags);
       }
+
+      $alias = NULL;
+      if (is_array($name)) {
+        list($name, $alias) = $name;
+      }
       
       $eb = $mc->getEntityBuilder();
-      return $eb->createProperty($name, $type, $flags);
+      return $eb->createProperty($name, $type, $flags, NULL, $alias);
     };
     
     $isId = function () {
