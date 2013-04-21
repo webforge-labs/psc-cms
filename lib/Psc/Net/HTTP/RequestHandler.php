@@ -86,43 +86,12 @@ class RequestHandler extends \Psc\System\LoggerObject {
     $this->request = $request;
     
     try {
-      try { // inner exceptions, die umgewandelt werden
+
+      $serviceRequest = $this->createServiceRequest($this->request);
     
-        // wandle den Request in einen ServiceRequest um
-        $serviceRequest = $this->createServiceRequest($this->request);
-      
-        // suche einen Service für den ServiceRequest
-        $this->service = $this->findService($serviceRequest);
-      
-        // rufe den Service auf
-        $serviceResponse = $this->service->route($serviceRequest);
-      
-        // wandle die ServiceResponse in eine Response um
-        $this->response = $this->convertResponse($serviceResponse);
+      $serviceResponse = $this->route($serviceRequest);
     
-      } catch (\Psc\Form\ValidatorException $e) {
-        $this->logError($e, $this->debugLevel, 2);
-        throw HTTPException::BadRequest(
-          sprintf("Beim Validieren der Daten ist ein Fehler aufgetreten. %s",
-                  //is_array($e->field) ? implode(' ',$e->field) : $e->field,
-                  $e->getMessage()
-          ),
-          $e,
-          array_merge(
-            array('Content-Type'=>'text/html'),
-            $this->metadataGenerator->validationError($e)->toHeaders()
-          )
-        );
-      } catch (\Psc\Form\ValidatorExceptionList $list) {
-        $this->logError($list, $this->debugLevel, 2);
-        
-        throw $this->err->validationResponse($list,
-                                             $this->request->accepts('application/json')
-                                               ? ServiceResponse::JSON
-                                               : ServiceResponse::HTML,
-                                             $this->metadataGenerator
-                                            );
-      }
+      $this->response = $this->convertResponse($serviceResponse);
     
     } catch (HTTPResponseException $e) {
       $this->response = Response::create($e->getCode(),
@@ -178,6 +147,43 @@ class RequestHandler extends \Psc\System\LoggerObject {
     }
     
     return $this->response;
+  }
+
+  /**
+   * @return ServiceResponse
+   */
+  public  function route(ServiceRequest $serviceRequest) {
+    try {
+
+      $this->service = $this->findService($serviceRequest);
+      
+      return $this->service->route($serviceRequest);
+
+    } catch (\Psc\Form\ValidatorException $e) {
+      $this->logError($e, $this->debugLevel, 2);
+      throw HTTPException::BadRequest(
+        sprintf(
+          "Beim Validieren der Daten ist ein Fehler aufgetreten. %s",
+          //is_array($e->field) ? implode(' ',$e->field) : $e->field,
+          $e->getMessage()
+        ),
+        $e,
+        array_merge(
+          array('Content-Type'=>'text/html'),
+          $this->metadataGenerator->validationError($e)->toHeaders()
+        )
+      );
+
+    } catch (\Psc\Form\ValidatorExceptionList $list) {
+      $this->logError($list, $this->debugLevel, 2);
+      
+      throw $this->err->validationResponse(
+        $list,
+        $this->request->accepts('application/json')
+          ? ServiceResponse::JSON : ServiceResponse::HTML,
+        $this->metadataGenerator
+      );
+    }
   }
   
   protected function isIgnoredError(\Exception $e) {
@@ -380,4 +386,3 @@ class RequestHandler extends \Psc\System\LoggerObject {
     return $this->requestConverter;
   }
 }
-?>

@@ -89,9 +89,6 @@ class FrontController extends \Psc\SimpleObject {
       if ($this->response instanceof Response) {
         return $this->response;
       
-      } elseif ($this->response instanceof \Psc\CMS\Ajax\Response) { // legacy
-        return Response::create(200, $response->export(), array('Content-Type', $response->getContentType()));
-    
       } else {
         throw new \Psc\Exception('interner Fehler: RequestHandler gibt keine passende Response zurück');
       }
