@@ -3,8 +3,16 @@
 namespace Psc\CMS\Roles;
 
 use Webforge\Framework\Package\Package;
+use Psc\Doctrine\DCPackage;
+use Psc\TPL\ContentStream\Converter AS ContentStreamConverter;
 
 abstract class AbstractContainer extends AbstractControllerContainer implements Container, \Psc\TPL\ContentStream\Context {
+
+  protected $defaultControllersNamespace;
+
+  public function __construct($controllersNamespace, DCPackage $dc, Array $languages, $language,  ContentStreamConverter $contentStreamConverter = NULL) {
+    parent::__construct($controllersNamespace ?: $this->defaultControllersNamespace, $dc, $languages, $language, $contentStreamConverter);
+  }
 
   /**
    * @var Webforge\Framework\Package\Package
