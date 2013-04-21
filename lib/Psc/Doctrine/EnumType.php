@@ -40,7 +40,7 @@ abstract class EnumType extends Type {
   }
 
   public function convertToDatabaseValue($value, AbstractPlatform $platform) {
-    if (!in_array($value, $this->values)) {
+    if (!in_array($value, $this->getValues())) {
       throw new \InvalidArgumentException("Invalid '".$this->name."' value ".\Psc\Code\Code::varInfo($value).' Erlaubt sind: '.\Psc\Code\Code::varInfo($this->values));
     }
     
