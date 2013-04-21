@@ -10,6 +10,7 @@ use Psc\URL\Helper AS URLHelper;
 
 use Psc\Data\Type\EntityType;
 use Psc\Data\Type\PersistentCollectionType;
+use Psc\Data\ObjectExporter;
 
 /**
  * Entity-Base-Class für alle CMS High-Level Funktionen
@@ -51,8 +52,7 @@ abstract class AbstractEntity extends \Psc\Doctrine\AbstractEntity implements En
       $set->set($property, $this->callGetter($property));
     }
     
-    $exporter = new \Psc\Data\ObjectExporter();
+    $exporter = new ObjectExporter();
     return $exporter->walkWalkable($set);
   }  
 }
-?>
