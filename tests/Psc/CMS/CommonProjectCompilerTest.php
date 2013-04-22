@@ -12,6 +12,7 @@ class CommonProjectCompilerTest extends \Psc\Test\DatabaseTestCase {
 
     $this->initInstancer();
 
+    $this->converter = $this->getContainer()->getContentStreamConverter();
     $this->specification = \Psc\System\Console\CompileTestEntitiesCommand::getTeaserSpecification();
   }
 
@@ -43,24 +44,24 @@ class CommonProjectCompilerTest extends \Psc\Test\DatabaseTestCase {
 
   public function testSerializing_hasTheTemplateWidgetAsTypeNotTheConcreteTypeOfClass() {
     $teaser = $this->createTeaser();
-    $serialized = $teaser->serialize($context = NULL);
+    $serialized = $teaser->serialize($context = NULL, function() {});
 
     $this->assertEquals('TemplateWidget', $serialized->type);
   }
 
   public function testSerializing_setstheSpecificationAsAParam() {
     $teaser = $this->createTeaser();
-    $serialized = $teaser->serialize($context = NULL);
+    $serialized = $this->converter->serializeEntry($teaser);
 
     $this->assertEquals($this->specification, $serialized->specification);
   }
 
   public function testSerializing_allSubItemsAreSerializedRecursively() {
     $teaser = $this->createTeaser();
-    $serialized = $teaser->serialize($context = NULL);
+    $serialized = $this->converter->serializeEntry($teaser);
 
     $this->assertEquals(
-      $this->image->serialize($context),
+      $this->converter->serializeEntry($this->image),
       $serialized->image
     );
 
@@ -81,9 +82,9 @@ class CommonProjectCompilerTest extends \Psc\Test\DatabaseTestCase {
   }
 
   public function testUnserializing() {
-    $serialized = $this->createTeaser()->serialize($context = NULL);
+    $serialized = $this->converter->serializeEntry($this->createTeaser());
 
-    $teaser = $this->getContainer()->getContentStreamConverter()->unserializeEntry($serialized);
+    $teaser = $this->converter->unserializeEntry($serialized);
 
     $this->assertEquals(
       $this->image->getIdentifier(),

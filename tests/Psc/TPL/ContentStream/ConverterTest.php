@@ -9,6 +9,7 @@ use Psc\Entities\ContentStream\Paragraph;
 use Psc\Entities\ContentStream\ContentStreamWrapper;
 use Psc\Entities\ContentStream\Image;
 use Psc\Entities\ContentStream\Li;
+use Psc\Entities\ContentStream\SimpleTeaser;
 
 class ConverterTest extends \Psc\Test\DatabaseTestCase {
   
@@ -31,6 +32,9 @@ class ConverterTest extends \Psc\Test\DatabaseTestCase {
     $this->converter = $this->getContainer()->getContentStreamConverter();
 
     $this->imageEntity = $this->instancer->getImage(1);
+
+    $this->teaser = new SimpleTeaser('Have you noticed that?', 'This is the **markup text**');
+    $this->teaser->setImage($this->teaserImage = $this->instancer->getCSImage(1));
   }
 
   protected function setUpDatabase() {
@@ -110,6 +114,27 @@ class ConverterTest extends \Psc\Test\DatabaseTestCase {
 
   public function testSerializingDownloadsAndDownload() {
     $this->markTestIncomplete('TODO');
+  }
+
+  public function testSimpleTeaserSerializiation() {
+    $serialized = $this->converter->serializeEntry($this->teaser);
+    $this->assertEquals('SimpleTeaser', $serialized->type);
+
+    $debug = print_r($serialized, true);
+
+    foreach (array('text','headline','link','image') as $prop) {
+      $this->assertObjectHasAttribute($prop, $serialized, $debug);
+    }
+
+    $image = $this->teaser->getImage();
+    $this->assertEquals($serialized->image, $this->converter->serializeEntry($image), $debug);
+  }
+
+  public function testSimpleTeaserUnserialization() {
+    $serialized = $this->converter->serializeEntry($this->teaser);
+    $this->assertEquals('SimpleTeaser', $serialized->type, 'this will fail with cannot instantiate abstract class');
+
+    $teaser = $this->converter->unserializeEntry($serialized);
   }
 
   protected function assertSerialized(Array $expectedSerializedEntry, Entry $entry, $withBack = TRUE) {

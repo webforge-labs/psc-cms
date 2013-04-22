@@ -60,12 +60,4 @@ class ImageTest extends \Webforge\Code\Test\Base {
 
     $this->image->getHTMLUrl();
   }
-
-  public function testSerializeSerializesAllCompiledValues() {
-    $serialized = $this->image->serialize(NULL);
-
-    foreach (array('url', 'caption', 'align', 'imageEntity') as $prop) {
-      $this->assertObjectHasAttribute($prop, $serialized);
-    }
-  }
 }
