@@ -3,6 +3,7 @@
 namespace Psc\Entities\ContentStream;
 
 use Psc\Entities\Image;
+use Closure;
 use Psc\Image\Manager;
 use Psc\TPL\ContentStream\ImageManaging;
 use Psc\Data\ArrayCollection;
@@ -169,8 +170,8 @@ abstract class CompiledImage extends Entry implements \Psc\TPL\ContentStream\Ima
     return $this;
   }
   
-  public function serialize($context) {
-    return $this->doSerialize(array('url','caption','align','imageEntity'), array(), $context);
+  public function serialize($context, Closure $serializeEntry) {
+    return $this->doSerialize(array('url','caption','align','imageEntity'), $serializeEntry, array(), $context);
   }
   
   public function getLabel() {

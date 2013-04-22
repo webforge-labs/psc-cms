@@ -3,6 +3,7 @@
 namespace Psc\Entities\ContentStream;
 
 use Psc\Entities\NavigationNode;
+use Closure;
 use Psc\Data\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
 
@@ -104,8 +105,8 @@ abstract class CompiledSimpleTeaser extends Entry {
     return $this;
   }
   
-  public function serialize($context) {
-    return $this->doSerialize(array('headline','text','link','image'), array(), $context);
+  public function serialize($context, Closure $serializeEntry) {
+    return $this->doSerialize(array('headline','text','link','image'), $serializeEntry, array(), $context);
   }
   
   public function getLabel() {

@@ -118,9 +118,6 @@ abstract class CompiledContentStream extends \Psc\TPL\ContentStream\ContentStrea
     return $this;
   }
   
-  /**
-   * @return string
-   */
   public function getType() {
     return $this->type;
   }

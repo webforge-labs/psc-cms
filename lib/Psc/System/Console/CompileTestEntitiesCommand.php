@@ -75,7 +75,8 @@ class CompileTestEntitiesCommand extends DoctrineCommand {
       'CSParagraph',
       'CSImage',
       'CSTeaserWidget',
-      'CSSimpleTeaser'
+      'CSSimpleTeaser',
+      'CSWrapper'
     );
 
     foreach ($methods as $method) {
@@ -138,6 +139,10 @@ class CompileTestEntitiesCommand extends DoctrineCommand {
 
   public function compileContentStreamEntry() {
     return $this->ccompiler->doCompileContentStreamEntry()->getWrittenFile();
+  }
+
+  public function compileCSWrapper() {
+    return $this->ccompiler->doCompileCSWrapper()->getWrittenFile();
   }
 
   public function compileCSHeadline() {

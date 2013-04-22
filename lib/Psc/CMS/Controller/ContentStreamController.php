@@ -81,6 +81,12 @@ abstract class ContentStreamController extends \Psc\CMS\Controller\ContainerCont
     }
     // auch aus dem CS löschen, weil der sonst automatisch persisted und das remove oben keinen effect hat
     $entity->getEntries()->clear();
+
+    /*
+     PS: im Moment werden Entries von ContentStreams innerhalb des ContentStreams nicht mit delete all gelöscht
+     d.h. hier bleiben relativ viele leichen übrig (auch contentstreams selbst). Bei unserialize wird im 
+     sub-ContentStream einfach eine neue instanz erzeugt die dann automatisch persisted wird
+    */
     
     if (isset($serialized)) {
       // persist new

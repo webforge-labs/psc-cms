@@ -20,8 +20,8 @@ class Paragraph extends CompiledParagraph {
     return HTML::tag('p', TPL::miniMarkup(String::cutAtLast($this->getContent(), $length, ' ', $ender)));
   }
 
-  public function serialize($context) {
-    return $this->doSerialize(array('content'));
+  public function serialize($context, \Closure $serializeEntry) {
+    return $this->doSerialize(array('content'), $serializeEntry);
   }
 
   public function getLabel() {

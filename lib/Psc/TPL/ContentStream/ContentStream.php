@@ -4,7 +4,7 @@ namespace Psc\TPL\ContentStream;
 
 use Doctrine\Common\Collections\Collection;
 
-interface ContentStream {
+interface ContentStream extends Entry {
 
   const PAGE_CONTENT = 'page-content';
   const SIDEBAR_CONTENT = 'sidebar-content';

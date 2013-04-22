@@ -15,8 +15,8 @@ class Headline extends CompiledHeadline {
     return HTML::tag(sprintf('h%d', $this->getLevel()), $this->content);
   }
   
-  public function serialize($context) {
-    return $this->doSerialize(array('content','level'));
+  public function serialize($context, \Closure $serializeEntry) {
+    return $this->doSerialize(array('content','level'), $serializeEntry);
   }
     
   public function getLabel() {

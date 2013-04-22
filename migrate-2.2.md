@@ -34,3 +34,7 @@ Projects (DB):
 SimpleContainer
 - add getNavigationRepository
 - add getRoleRepository
+
+ContentStreamEntry:
+serialize needs to be implemented: serialize($context, \Closure $serializeEntry)
+doSerialize needs second parameter to be Closure $serializeEntry

@@ -2,6 +2,6 @@
 
 namespace Psc\Entities;
 
-class PageRepository extends \Psc\Doctrine\EntityRepository {
+class PageRepository extends \Psc\Doctrine\PageRepository {
 }
 ?>

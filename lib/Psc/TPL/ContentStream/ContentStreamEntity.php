@@ -9,8 +9,58 @@ abstract class ContentStreamEntity extends \Psc\CMS\AbstractEntity implements Co
 
   public static function create($locale, $type = 'page-content', $revision = 'default', $slug = NULL) {
     $cs = new static($locale, $slug, $revision);
-    $cs->setType($type);
+    $cs->setType($type ?: 'page-content');
     return $cs;
+  }
+
+  public static function unserialize(\stdClass $data, $entityFactory, Converter $converter) {
+    $contentStream = self::create(
+      $data->locale,
+      isset($data->type) ? $data->type : NULL,
+      isset($data->revision) ? $data->revision : NULL,
+      isset($data->slug) ? $data->slug : NULL
+    );
+
+    $converter->convertUnserialized($data->entries, $contentStream);
+
+    return $contentStream;
+  }
+
+  public function serialize($context, \Closure $serializeEntry) {
+    $entries = array();
+
+    foreach ($this->entries as $entry) {
+      $entries[] = $serializeEntry($entry);
+    }
+
+    return (object) array(
+      'type'=>$this->getType(),
+      'locale'=>$this->locale,
+      'type'=>$this->type,
+      'revision'=>$this->revision,
+      'entries'=>$entries
+    );
+  }
+
+  public function getType() {
+    return 'ContentStream';
+  }
+
+  public function getTemplateVariables(\Closure $exportEntry) {
+    $vars = (object) array(
+      //'locale'=>$this->locale,
+      //'type'=>$this->type
+      'partialRenderable'=>TRUE,
+      'partialName'=>'contentstream'
+    );
+
+    $vars->entries = array();
+
+    foreach ($this->entries as $entry) {
+      $vars->entries[] = $exportEntry($entry);
+    }
+
+    return $vars;
   }
 
   /**

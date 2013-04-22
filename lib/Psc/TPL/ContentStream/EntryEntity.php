@@ -51,7 +51,7 @@ abstract class EntryEntity extends AbstractEntity implements \Psc\HTML\HTMLInter
             $serialized->type = $propertyType->getGClass()->getClassName();
             $value = $converter->unserializeEntry($serialized);
           }
-        
+
         } else {
           throw new \RuntimeException(
             sprintf(
@@ -69,18 +69,12 @@ abstract class EntryEntity extends AbstractEntity implements \Psc\HTML\HTMLInter
     
     return $entityFactory->getEntity();
   }
-
-  
-  /**
-   * @return array
-   */
-  abstract public function serialize($context);
   
 
   /**
    * @return Entries[]
    */
-  protected function doSerialize(Array $properties, Array $data = array(), $context = NULL) {
+  protected function doSerialize(Array $properties, \Closure $serializeEntry, Array $data = array(), $context = NULL) {
     $serialized = array('type'=>$this->getType(),'label'=>$this->getLabel());
     
     foreach ($properties as $property) {
@@ -88,7 +82,7 @@ abstract class EntryEntity extends AbstractEntity implements \Psc\HTML\HTMLInter
       
       if ($value instanceof Entity) {
         if ($value instanceof Entry) {
-          $value = $value->serialize($context);
+          $value = $serializeEntry($value);
         } else {
           $value = $value->getIdentifier();
         }

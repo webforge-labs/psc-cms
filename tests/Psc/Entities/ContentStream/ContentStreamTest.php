@@ -67,4 +67,10 @@ class ContentStreamTest extends \Webforge\Code\Test\Base {
       $this->cs1->findNextEntry($this->headline2)
     );
   }
+
+  public function testSerializeInSubMode() {
+    $wrapper = new ContentStreamWrapper();
+
+
+  }
 }

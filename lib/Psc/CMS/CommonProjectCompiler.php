@@ -348,6 +348,43 @@ class CommonProjectCompiler extends ProjectCompiler {
     );
   }
 
+  public function doCompileCSWrapper($entityName = 'ContentStream\ContentStreamWrapper', Closure $doCompile = NULL, $tableName = 'cs_wrappers') {
+    extract($help = $this->help());
+    extract($cs = $this->csHelp());
+   
+    if (!isset($doCompile)) {
+      $doCompile = function(){};
+    }
+
+    return $this->getModelCompiler()->compile(
+      $entity($entityName, $extends($expandClass("ContentStream\Entry"))),
+      $defaultId(),
+      
+      //$property('thumbnailFormat', $type('String'))->setDefaultValue('content-page'),
+      
+      /*
+      $constructor(
+      ),
+      */
+      
+      $build(
+        $relation($targetMeta($expandClass('ContentStream\ContentStream'))->setAlias('Wrapped'), 'OneToOne', 'unidirectional')
+          ->setRelationCascade(array('persist','remove'))
+          ->setOnDelete(EntityRelation::CASCADE)
+      ),
+
+      //  implement entry interface
+      $build($csSerialize(array('wrapped'))),
+      $build($csLabel('ContentStreamWrapper')),
+
+      $build($method('html', array(),
+        array(
+          "return '';"
+        )
+      ))
+    );
+  }
+
   public function doCompileCSHeadline($entityName = 'ContentStream\Headline', Closure $doCompile = NULL, $tableName = 'cs_headlines') {
     extract($help = $this->help());
    
@@ -678,9 +715,9 @@ class CommonProjectCompiler extends ProjectCompiler {
     $phpWriter = new \Psc\Code\Generate\CodeWriter();
 
     $csSerialize = function (Array $fields, $data = array()) use ($method, $phpWriter) {
-      return $method('serialize', array(new GParameter('context')),
+      return $method('serialize', array(new GParameter('context'), new GParameter('serializeEntry', new GClass('Closure'))),
         array(
-          "return \$this->doSerialize(array(".$phpWriter->exportFunctionParameters($fields)."), ".$phpWriter->exportFunctionParameter($data).", \$context);"
+          "return \$this->doSerialize(array(".$phpWriter->exportFunctionParameters($fields)."), \$serializeEntry, ".$phpWriter->exportFunctionParameter($data).", \$context);"
         )
       );
     };

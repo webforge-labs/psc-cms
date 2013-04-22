@@ -150,21 +150,30 @@ abstract class Converter extends \Psc\SimpleObject {
    */
   public function convertSerialized(ContentStream $cs) {
     $serialized = array();
+
     
     foreach ($cs->getEntries() as $entry) {
       if ($entry instanceof ContextAware) {
         $entry->setContext($this->context);
       }
       
-      $serialized[] = $entry->serialize($this->context);
+      $serialized[] = $this->serializeEntry($entry);
     }
     
     return $serialized;
   }
-  
-  
+
+  public function serializeEntry(Entry $entry) {
+    $converter = $this;
+    $serializeEntry = function ($entry) use ($converter) {
+      return $converter->serializeEntry($entry);
+    };
+    
+    return $entry->serialize($this->context, $serializeEntry);
+  }
+
   /**
-   * @param Closure $factoriesCreater bekommt als einzigen Paramter den Type des Entities (der Klassename ohne Namespace alles in klein)
+   * Convertes an serialized ContentStream to the real object structure
    */
   public function convertUnserialized(Array $serialized, ContentStream $contentStream = NULL) {
     if (isset($contentStream)) {

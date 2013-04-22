@@ -3,6 +3,7 @@
 namespace Psc\Entities\ContentStream;
 
 use Psc\Entities\NavigationNode;
+use Closure;
 use Psc\Data\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
 
@@ -104,8 +105,8 @@ abstract class CompiledTeaserHeadlineImageTextLink extends Entry {
     return $this;
   }
   
-  public function serialize($context) {
-    return $this->doSerialize(array('headline','image','text','link'), array('specification'=>(object) array('name'=>'TeaserHeadlineImageTextLink','fields'=>(object) array('headline'=>(object) array('type'=>'string','label'=>'Überschrift','defaultValue'=>'die Überschrift'),'image'=>(object) array('type'=>'image','label'=>'Bild'),'text'=>(object) array('type'=>'text','label'=>'Inhalt','defaultValue'=>'Hier ist ein langer Text, der dann in der Teaserbox angezeigt wird...'),'link'=>(object) array('type'=>'link','label'=>'Link-Ziel')))), $context);
+  public function serialize($context, Closure $serializeEntry) {
+    return $this->doSerialize(array('headline','image','text','link'), $serializeEntry, array('specification'=>(object) array('name'=>'TeaserHeadlineImageTextLink','fields'=>(object) array('headline'=>(object) array('type'=>'string','label'=>'Überschrift','defaultValue'=>'die Überschrift'),'image'=>(object) array('type'=>'image','label'=>'Bild'),'text'=>(object) array('type'=>'text','label'=>'Inhalt','defaultValue'=>'Hier ist ein langer Text, der dann in der Teaserbox angezeigt wird...'),'link'=>(object) array('type'=>'link','label'=>'Link-Ziel')))), $context);
   }
   
   public function getLabel() {
