@@ -2,6 +2,7 @@
 
 namespace Psc\Entities\ContentStream;
 
+use Closure;
 use Psc\Data\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
 
@@ -57,6 +58,10 @@ abstract class CompiledHeadline extends Entry {
   public function setLevel($level) {
     $this->level = $level;
     return $this;
+  }
+  
+  public function serialize($context, Closure $serializeEntry) {
+    return $this->doSerialize(array('content','level'), $serializeEntry, array(), $context);
   }
   
   public function getEntityName() {

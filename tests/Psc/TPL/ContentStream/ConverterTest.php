@@ -103,7 +103,6 @@ class ConverterTest extends \Psc\Test\DatabaseTestCase {
   }
 
   public function testSerializingLis() {
-    $this->markTestIncomplete('copy li: make commonProjectCompilable');
     $this->assertSerialized(array(
         'type'=>'Li',
         'label'=>'Aufzählung',

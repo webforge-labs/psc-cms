@@ -387,6 +387,7 @@ class CommonProjectCompiler extends ProjectCompiler {
 
   public function doCompileCSHeadline($entityName = 'ContentStream\Headline', Closure $doCompile = NULL, $tableName = 'cs_headlines') {
     extract($help = $this->help());
+    extract($cs = $this->csHelp());
    
     if (!isset($doCompile)) {
       $doCompile = function(){};
@@ -403,7 +404,9 @@ class CommonProjectCompiler extends ProjectCompiler {
         $argument('level', 1)
       ),
       
-      $doCompile($help)
+      $doCompile($help),
+
+      $build($csSerialize(array('content', 'level')))
     );
   }
 
@@ -498,6 +501,7 @@ class CommonProjectCompiler extends ProjectCompiler {
 
   public function doCompileCSParagraph($entityName = 'ContentStream\Paragraph', Closure $doCompile = NULL, $tableName = 'cs_paragraphs') {
     extract($help = $this->help());
+    extract($cs = $this->csHelp());
    
     if (!isset($doCompile)) {
       $doCompile = function(){};
@@ -512,12 +516,16 @@ class CommonProjectCompiler extends ProjectCompiler {
         $argument('content')
       ),
       
-      $doCompile($help)
+      $doCompile($help),
+
+      $build($csSerialize(array('content'))),
+      $build($csLabel('Absatz'))
     );
   }
 
   public function doCompileCSLi($entityName = 'ContentStream\Li', Closure $doCompile = NULL, $tableName = 'cs_lists') {
     extract($help = $this->help());
+    extract($cs = $this->csHelp());
    
     if (!isset($doCompile)) {
       $doCompile = function(){};
@@ -532,7 +540,21 @@ class CommonProjectCompiler extends ProjectCompiler {
         $argument('content')
       ),
       
-      $doCompile($help)
+      $doCompile($help),
+
+      $build($csSerialize(array('content'))),
+      $build($csLabel('Aufzählung')),
+
+      $build($method('html', array(), array(
+        "\$lis = array();",
+        "",
+        "foreach (\$this->content as \$li) {",
+        "  \$lis[] = \Psc\HTML\HTML::tag('li', \$this->wrapText(\$li, \$inline=TRUE)->convert());",
+        "}",
+        "",
+        "return \Psc\HTML\HTML::tag('ul', \$lis, array('class'=>'roll'));"
+        )
+      ))
     );
   }
   

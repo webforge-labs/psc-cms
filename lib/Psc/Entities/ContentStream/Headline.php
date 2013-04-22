@@ -15,10 +15,6 @@ class Headline extends CompiledHeadline {
     return HTML::tag(sprintf('h%d', $this->getLevel()), $this->content);
   }
   
-  public function serialize($context, \Closure $serializeEntry) {
-    return $this->doSerialize(array('content','level'), $serializeEntry);
-  }
-    
   public function getLabel() {
     // das ist auch im js
     if ($this->level == 1) {

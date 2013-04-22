@@ -9,29 +9,29 @@ use Doctrine\ORM\Mapping AS ORM;
 /**
  * @ORM\MappedSuperclass
  */
-abstract class CompiledParagraph extends Entry {
+abstract class CompiledLi extends Entry {
   
   /**
-   * @var string
-   * @ORM\Column(type="text")
+   * @var array
+   * @ORM\Column(type="array")
    */
   protected $content;
   
-  public function __construct($content) {
+  public function __construct(Array $content) {
     $this->setContent($content);
   }
   
   /**
-   * @return string
+   * @return array
    */
   public function getContent() {
     return $this->content;
   }
   
   /**
-   * @param string $content
+   * @param array $content
    */
-  public function setContent($content) {
+  public function setContent(Array $content) {
     $this->content = $content;
     return $this;
   }
@@ -41,16 +41,26 @@ abstract class CompiledParagraph extends Entry {
   }
   
   public function getLabel() {
-    return 'Absatz';
+    return 'Aufzählung';
+  }
+  
+  public function html() {
+    $lis = array();
+    
+    foreach ($this->content as $li) {
+      $lis[] = \Psc\HTML\HTML::tag('li', $this->wrapText($li, $inline=TRUE)->convert());
+    }
+    
+    return \Psc\HTML\HTML::tag('ul', $lis, array('class'=>'roll'));
   }
   
   public function getEntityName() {
-    return 'Psc\Entities\ContentStream\CompiledParagraph';
+    return 'Psc\Entities\ContentStream\CompiledLi';
   }
   
   public static function getSetMeta() {
     return new \Psc\Data\SetMeta(array(
-      'content' => new \Psc\Data\Type\MarkupTextType(),
+      'content' => new \Psc\Data\Type\ArrayType(),
     ));
   }
 }

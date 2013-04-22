@@ -20,14 +20,6 @@ class Paragraph extends CompiledParagraph {
     return HTML::tag('p', TPL::miniMarkup(String::cutAtLast($this->getContent(), $length, ' ', $ender)));
   }
 
-  public function serialize($context, \Closure $serializeEntry) {
-    return $this->doSerialize(array('content'), $serializeEntry);
-  }
-
-  public function getLabel() {
-    return 'Absatz';
-  }
-  
   public function getContextLabel($context = 'default') {
     if ($context === self::CONTEXT_DEFAULT) {
       return parent::getContextLabel();

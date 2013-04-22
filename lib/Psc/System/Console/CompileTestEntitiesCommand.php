@@ -73,6 +73,7 @@ class CompileTestEntitiesCommand extends DoctrineCommand {
       'ContentStreamEntry',
       'CSHeadline',
       'CSParagraph',
+      'CSLi',
       'CSImage',
       'CSTeaserWidget',
       'CSSimpleTeaser',
@@ -151,6 +152,10 @@ class CompileTestEntitiesCommand extends DoctrineCommand {
 
   public function compileCSParagraph() {
     return $this->ccompiler->doCompileCSParagraph()->getWrittenFile();
+  }
+
+  public function compileCSLi() {
+    return $this->ccompiler->doCompileCSLi()->getWrittenFile();
   }
 
   public function compileCSImage() {
