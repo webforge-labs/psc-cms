@@ -16,7 +16,8 @@ class CSSTester extends \Psc\SimpleObject implements HTMLInterface {
   protected $html;
   
   protected $parent;
-  
+
+  protected $msgs;
   public function __construct(Base $testCase, $selector, $html = NULL) {
     $this->testCase = $testCase;
     if ($selector instanceof jQuery) {
@@ -31,6 +32,10 @@ class CSSTester extends \Psc\SimpleObject implements HTMLInterface {
       $this->selector = $selector;
       $this->html = $html;
     }
+
+    $this->msgs = array(
+      'hasClass'=>"Element hat die Klasse: '%s' nicht. %s"
+    );
   }
   
   /**
@@ -85,8 +90,11 @@ class CSSTester extends \Psc\SimpleObject implements HTMLInterface {
     return $this;
   }
   
-  public function hasClass($expectedClass) {
-    $this->testCase->assertTrue($this->getJQuery()->hasClass($expectedClass), 'Element hat die Klasse: '.$expectedClass.' nicht');
+  public function hasClass($expectedClass, $msg = '') {
+    $this->testCase->assertTrue(
+      $this->getJQuery()->hasClass($expectedClass), 
+      sprintf($this->msgs[__FUNCTION__], $expectedClass, $msg)
+    );
     return $this;
   }
 
