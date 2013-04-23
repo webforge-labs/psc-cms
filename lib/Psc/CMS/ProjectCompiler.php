@@ -4,6 +4,7 @@ namespace Psc\CMS;
 
 use Psc\Doctrine\DCPackage;
 use Psc\Doctrine\ModelCompiler;
+use Webforge\Common\ArrayUtil as A;
 
 /**
  * 
@@ -35,6 +36,7 @@ class ProjectCompiler extends \Psc\System\LoggerObject {
     $gClass = new \Psc\Code\Generate\GClass(\Psc\Code\Code::getClass($this));
     $gClass->elevateClass();
     $this->log('compiling ProjectEntities:');
+
     foreach ($gClass->getMethods() as $method) {
       if (\Psc\Preg::match($method->getName(),'/^compile[a-z0-9A-Z_]+$/') && $method->isPublic()) {
         $this->modelCompiler = NULL; // neuen erzeugen damit flags resetted werden, etc
@@ -43,6 +45,16 @@ class ProjectCompiler extends \Psc\System\LoggerObject {
         $this->log('  '.$m.':');
         try {
           $out = $this->$m($this->getModelCompiler());
+        } catch (\Doctrine\DBAL\DBALException $e) {
+          if (mb_strpos($e->getMessage(), 'Unknown column type') !== FALSE) {
+            $types = A::implode(\Doctrine\DBAL\Types\Type::getTypesMap(), "\n", function ($fqn, $type) {
+              return $type."\t\t".': '.$fqn;
+            });
+
+            throw new \Psc\Exception('Database Error: Unknown Column Type: types are: '."\n".$types, $e->getCode(), $e);
+          }
+
+          throw $e;
         } catch (\Exception $e) {
           $this->log('    Fehler beim Aufruf von '.$m);
           throw $e;
@@ -60,6 +72,7 @@ class ProjectCompiler extends \Psc\System\LoggerObject {
       }
     }
     $this->log('finished.');
+    
     return $this;
   }
   
