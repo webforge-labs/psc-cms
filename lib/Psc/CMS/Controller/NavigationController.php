@@ -140,6 +140,7 @@ class NavigationController extends ContainerController {
   }
 
   protected function exportNode($node, $displayLocale, Array $languages) {
+    $page = $node->getPage();
     return (object) array(
       'id'=>$node->getId(),
       'title'=>(object) $node->getI18NTitle(),
@@ -149,7 +150,8 @@ class NavigationController extends ContainerController {
       'locale'=>$displayLocale,
       'languages'=>$languages,
       'parentId'=>$node->getParent() != NULL ? $node->getParent()->getId() : NULL,
-      'pageId'=>$node->getPage() ? $node->getPage()->getIdentifier() : NULL
+      'pageId'=>$page ? $page->getIdentifier() : NULL,
+      'pageIsActive'=>$page && $page->isActive()
     );
   }
 

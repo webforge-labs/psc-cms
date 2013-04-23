@@ -242,6 +242,13 @@ class SimpleURL extends \Psc\Object {
   public function getQueryString() {
     return http_build_query($this->query, NULL, '&');
   }
+
+  /**
+   * @var array
+   */
+  public function getQuery() {
+    return $this->query;
+  }
   
   
   public function setQuery(Array $query) {
