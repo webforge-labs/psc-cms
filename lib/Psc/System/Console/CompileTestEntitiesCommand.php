@@ -34,6 +34,26 @@ class CompileTestEntitiesCommand extends DoctrineCommand {
 }
 ');    
   }
+
+  public static function getCardSpecification() {
+    return json_decode('
+{
+  "name":"Card",
+  "section":"misc",
+  "label":"Standort Visitenkarte",
+  "contexts":[
+    "page-content"
+  ],
+  "fields":{
+    "content":{
+      "type":"content-stream",
+      "label":"Inhalt"
+    }
+  }
+}
+');    
+
+  }
   
   protected $modelCompiler;
   protected $ccompiler; // commonProjectCompiler
@@ -77,6 +97,7 @@ class CompileTestEntitiesCommand extends DoctrineCommand {
       'CSImage',
       'CSTeaserWidget',
       'CSSimpleTeaser',
+      'CSCardWidget',
       'CSWrapper'
     );
 
@@ -248,6 +269,10 @@ class CompileTestEntitiesCommand extends DoctrineCommand {
 
   protected function compileCSTeaserWidget() {
     return $this->ccompiler->doCompileCSWidget(self::getTeaserSpecification())->getWrittenFile();
+  }
+
+  protected function compileCSCardWidget() {
+    return $this->ccompiler->doCompileCSWidget(self::getCardSpecification())->getWrittenFile();
   }
 
   protected function help() {

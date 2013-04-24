@@ -696,6 +696,26 @@ class CommonProjectCompiler extends ProjectCompiler {
               ->setNullable(TRUE)
           );
 
+        } elseif ($field->type === 'content-stream') {
+          $wrapperRelation = 
+            $relation(
+              $targetMeta($expandClass('ContentStream\ContentStreamWrapper'))->setAlias($alias),  'OneToOne', 'unidirectional', 'source'
+            )
+          ;
+
+          if ($optional) {
+            $wrapperRelation
+              ->setNullable(TRUE)
+              ->setJoinColumnNullable(TRUE)
+            ;
+          } else {
+            $wrapperRelation
+              ->setOnDelete(EntityRelation::CASCADE)
+            ;
+          }
+
+          $build($wrapperRelation);
+
         } else {
           throw new \InvalidArgumentException('Specification parsing error: '.$field->type.' is not avaible');
         }
