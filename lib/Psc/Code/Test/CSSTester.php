@@ -34,7 +34,7 @@ class CSSTester extends \Psc\SimpleObject implements HTMLInterface {
     }
 
     $this->msgs = array(
-      'hasClass'=>"Element hat die Klasse: '%s' nicht. %s"
+      'hasClass'=>"Element %s hat die Klasse: '%s' nicht. %s"
     );
   }
   
@@ -93,7 +93,7 @@ class CSSTester extends \Psc\SimpleObject implements HTMLInterface {
   public function hasClass($expectedClass, $msg = '') {
     $this->testCase->assertTrue(
       $this->getJQuery()->hasClass($expectedClass), 
-      sprintf($this->msgs[__FUNCTION__], $expectedClass, $msg)
+      sprintf($this->msgs[__FUNCTION__], $this->getSelector(), $expectedClass, $msg)
     );
     return $this;
   }
@@ -216,7 +216,7 @@ class CSSTester extends \Psc\SimpleObject implements HTMLInterface {
   }
   
   public function getSelector() {
-    return $this->selector ?: $this->getJQuery()->getSelector();
+    return $this->selector ?: $this->getJQuery()->getLiteralSelector();
   }
   
   public function end() {

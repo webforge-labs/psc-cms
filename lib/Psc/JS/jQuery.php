@@ -21,6 +21,7 @@ class jQuery extends \Psc\Data\ArrayCollection {
    * @var string
    */
   protected $selector;
+  protected $literalSelector;
   
   /**
    * @var jQuery
@@ -251,6 +252,15 @@ class jQuery extends \Psc\Data\ArrayCollection {
   public function getSelector() {
     return $this->selector;
   }
+
+  /**
+   * @return string
+   */
+  public function getLiteralSelector() {
+    return $this->literalSelector;
+  }
+
+
   /**
    * @return DOMDocument
    */
@@ -265,6 +275,7 @@ class jQuery extends \Psc\Data\ArrayCollection {
 
   public function setSelector($selector) {
     // nth-of-type ist ein schöner alias für eq jedoch ist es 1-basierend (eq ist 0-basierend)
+    $this->literalSelector = $selector;
     $this->selector = \Psc\Preg::replace_callback(
       $selector, 
       '/:eq\(([0-9]+)\)/', 
