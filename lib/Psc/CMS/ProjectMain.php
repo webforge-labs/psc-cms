@@ -512,6 +512,10 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
     $authController->setHTMLPage($this->createHTMLPage());
     $authController->setRedirect($redirect);
     $authController->run();
+
+    if (isset($this->frontController) && $this->getUser()) { // dpi bereits erfolgt, trotzdem save machen
+      $this->frontController->getRequestHandler()->setContextInfo('eingeloggter User: '.$this->getUser()->getEmail());
+    }
     
     return $authController;
   }
