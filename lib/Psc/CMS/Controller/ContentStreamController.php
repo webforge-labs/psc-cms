@@ -22,21 +22,24 @@ abstract class ContentStreamController extends \Psc\CMS\Controller\ContainerCont
         ->hydrateByContentStream($entity);
         
       $navigationRepository = $this->dc->getRepository($this->container->getRoleFQN('NavigationNode'));
-        
-      return array(
-        new LinkRelation(
-          'view',
+
+      if ($node = $page->getPrimaryNavigationNode()) {
+        return array(
+          new LinkRelation(
+            'view',
           
-          $this->getBaseUrl()
-            ->addRelativeUrl(
-              $navigationRepository->getUrl($page->getPrimaryNavigationNode(), $entity->getLocale())
-            )
-        )
-      );
+            $this->getBaseUrl()
+              ->addRelativeUrl(
+                $navigationRepository->getUrl($node, $entity->getLocale())
+              )
+          )
+        );
+      }
 
     } catch (EntityNotFoundException $e) {
-      return array();
     }
+
+    return array();
   }
   
   

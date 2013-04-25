@@ -268,18 +268,21 @@ class CommonProjectCompiler extends ProjectCompiler {
             ),
       
       // parent<->child
-      $build($relation($targetMeta('NavigationNode')->setAlias('Child'), 'OneToMany', 'self-referencing', 'target',
-                       $sourceMeta('NavigationNode')->setAlias('Parent')
-                      )
-             ),
+      $build(
+        $relation(
+          $targetMeta('NavigationNode')->setAlias('Child'), 'OneToMany', 'self-referencing', 'target',
+          $sourceMeta('NavigationNode')->setAlias('Parent')
+        )->setOrderBy(array('lft'=>'ASC'))
+      ),
       
       // child<->parent
-      $build($relation($targetMeta('NavigationNode')->setAlias('Parent'), 'ManyToOne', 'self-referencing', 'source',
-                       $sourceMeta('NavigationNode')->setAlias('Child')
-                       )
-              ->setJoinColumnNullable(true)
-              ->setOnDelete('SET NULL')
-       ),
+      $build(
+        $relation(
+          $targetMeta('NavigationNode')->setAlias('Parent'), 'ManyToOne', 'self-referencing', 'source',
+          $sourceMeta('NavigationNode')->setAlias('Child')
+        )->setJoinColumnNullable(true)
+         ->setOnDelete('SET NULL')
+      ),
 
       $build($relation($expandClass('ContentStream\ContentStream'), 'ManyToMany', 'unidirectional', 'source')),
       
