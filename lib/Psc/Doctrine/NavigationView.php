@@ -36,6 +36,7 @@ class NavigationView {
     $tree = $this->converter->toStructure($nodes, array(
       'onNodeComplete' => function (Node $node, Node $parent = NULL, Array $stack) use (&$paths) {
         array_shift($stack);
+        $stack[] = $node;
         $paths[$node->getIdentifier()] = $stack;
       }
     ));
