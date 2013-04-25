@@ -91,7 +91,6 @@ abstract class NavigationNodeRepository extends EntityRepository {
 
       return $qb;
     });
-    
 
     return $qb;
   }
@@ -113,8 +112,8 @@ abstract class NavigationNodeRepository extends EntityRepository {
     return $query->getResult();
   }
 
-  protected function getDefaultQueryBuilderHook() {
-    return function ($qb) {
+  public function getDefaultQueryBuilderHook(\Closure $qbHook = NULL) {
+    return function ($qb) use ($qbHook) {
       $qb->andWhere('node.page <> 0');
     
       // page active
@@ -122,6 +121,10 @@ abstract class NavigationNodeRepository extends EntityRepository {
         ->leftJoin('node.page', 'page')
         ->andWhere($qb->expr()->eq('page.active', 1))
       ;
+
+      if (isset($qbHook)) {
+        $qbHook($qb);
+      }
     };
   }
   
