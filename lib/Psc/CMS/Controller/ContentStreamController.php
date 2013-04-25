@@ -22,8 +22,9 @@ abstract class ContentStreamController extends \Psc\CMS\Controller\ContainerCont
         ->hydrateByContentStream($entity);
         
       $navigationRepository = $this->dc->getRepository($this->container->getRoleFQN('NavigationNode'));
+      $node = $page->getPrimaryNavigationNode();
 
-      if ($node = $page->getPrimaryNavigationNode()) {
+      if ($node != NULL) {
         return array(
           new LinkRelation(
             'view',
