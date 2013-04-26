@@ -15,6 +15,8 @@ class CodeEditor extends JavaScriptBase implements JavaScriptComponent {
    * @var bool
    */
   protected $readonly = FALSE;
+
+  protected $mode = 'javascript';
   
   public function getInnerHTML() {
     $ace = HTML::tag('div', NULL, array('class'=>'\Psc\ace-editor'));
@@ -32,7 +34,7 @@ class CodeEditor extends JavaScriptBase implements JavaScriptComponent {
         'text'=>$this->getFormValue(),
         'readonly'=>$this->readonly,
         'formName'=>$this->getFormName(),
-        ''
+        'mode'=>$this->mode
       )
     );
   }
@@ -50,6 +52,14 @@ class CodeEditor extends JavaScriptBase implements JavaScriptComponent {
    */
   public function getReadonly() {
     return $this->readonly;
+  }
+
+  /**
+   * @param string javascript|tito
+   */
+  public function setMode($name) {
+    $this->mode = $name;
+    return $this;
   }
 }
 ?>
