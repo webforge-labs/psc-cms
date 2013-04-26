@@ -1,0 +1,9 @@
+{
+	"folders":
+	[
+		{
+			"path": "D:\\www\\psc-cms",
+      "folder_exclude_patterns": ["vendor", "build", ".komodotools", "application/src/Proxies"]
+		}
+	]
+}
