@@ -63,6 +63,7 @@ abstract class DeployCommand extends Command {
     $this->addOption('deploymentsDir',self::VALUE_REQUIRED);
     //$this->addArgument('class',self::REQUIRED);
     $this->addOption('without-test','',self::VALUE_NONE);
+    $this->addOption('qnd','',self::VALUE_NONE);
     $this->setDescription('Exportiert das Projekt mit allen Binaries und Sourcen in den Deployments Ordner');
     $this->addOption('changes',null, self::VALUE_REQUIRED | self::VALUE_IS_ARRAY);
   }
@@ -113,6 +114,7 @@ abstract class DeployCommand extends Command {
     $this->withoutTest = $input->getOption('without-test');
     $cliProject = $this->getHelper('project')->getProject();
     $modes = $input->getArgument('mode');
+    $qnd = (bool) $input->getOption('qnd');
 
     $container = $this->createWebforgeContainer();
     
@@ -131,7 +133,8 @@ abstract class DeployCommand extends Command {
       
       $deployer->setBaseUrl($this->baseUrl);
       
-      $this->updateComposer($project);
+      if (!$qnd)
+        $this->updateComposer($project);
       
       $this->initTasks($deployer, $project, $mode, $container);
       
