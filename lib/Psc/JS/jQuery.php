@@ -168,10 +168,18 @@ class jQuery extends \Psc\Data\ArrayCollection {
    *
    * @return string|NULL
    */
-  public function attr($name) {
+  public function attr($name, $value = NULL) {
     if (($el = $this->getElement()) === NULL) return NULL;
-    
-    return $el->hasAttribute($name) ? $el->getAttribute($name) : NULL;
+
+    if ($el->hasAttribute($name)) {
+      if (func_num_args() == 2) {
+        $el->setAttribute($name, $value);
+      }
+
+      return $el->getAttribute($name);
+    }
+
+    return NULL;
   }
   
   /**
