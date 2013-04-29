@@ -76,22 +76,29 @@ abstract class BasicImage2 extends \Psc\CMS\AbstractEntity implements \Psc\Image
   }
 
   public function getThumbnailURL($format = 'page-default') {
-    if (array_key_exists($format,$this->formats)) {
-      return $this->getURL('thumbnail', $this->formats[$format]);
+    if (array_key_exists($format, $this->formats)) {
+      $arguments = $this->formats[$format];
+      $options = array();
+      if (count($arguments) == 4) {
+        $options = array_pop($arguments);
+      }
+
+      return $this->getURL('thumbnail', $arguments, $options);
     }
     
     throw new \Psc\Exception('Unbekanntes Format: '.Code::varInfo($format));
   }
   
   /**
+   * 
    * @return ImagineImage
    */
-  public function getThumbnail($width, $height, $method = 'standard') {
-    return $this->getImageManager()->getVersion($this,'thumbnail',array($width,$height,$method));
+  public function getThumbnail($width, $height, $method = 'standard', Array $options = array()) {
+    return $this->getImageManager()->getVersion($this, 'thumbnail', array($width, $height, $method), $options);
   }
   
-  public function getURL($type = 'original', Array $arguments = array()) {
-    return $this->getImageManager()->getURL($this,$type,$arguments);
+  public function getURL($type = 'original', Array $arguments = array(), Array $options = array()) {
+    return $this->getImageManager()->getURL($this, $type, $arguments, $options);
   }
   
   public function getSourceFile() {

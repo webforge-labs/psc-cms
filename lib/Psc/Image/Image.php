@@ -12,7 +12,11 @@ interface Image {
   
   public function getUrl();
   
-  public function getThumbnail($width, $height, $method = 'standard');
+  /**
+   * $options['format'] = 'png|jpg';
+   * $options['quality'] = 0..100;
+   */
+  public function getThumbnail($width, $height, $method = 'standard', Array $options = array());
   
   public function getThumbnailURL($format = 'default');
   
@@ -28,5 +32,3 @@ interface Image {
   public function export();
   
 }
-
-?>
