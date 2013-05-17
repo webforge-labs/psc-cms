@@ -9,8 +9,8 @@ use \Psc\Form\DataInput AS FormDataInput;
  */
 class DataInputTest extends \Psc\Code\Test\Base {
   
-  public function cons($_POST, $expected, $line = NULL) {
-    $input = new \Psc\Form\DataInput($_POST);
+  public function cons($POST, $expected, $line = NULL) {
+    $input = new \Psc\Form\DataInput($POST);
     $this->assertEquals($expected,$input->getData(),'Zeile: '.$line);
     return $input;
   }
