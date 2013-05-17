@@ -154,7 +154,7 @@ PHP
     try {
       $writer->syntaxCheck($file);
     } catch (\Psc\Code\Generate\SyntaxErrorException $e) {
-      $this->assertContains(" unexpected '-', expecting T_NS_SEPARATOR or ';' or '{'", $e->getMessage(), 'syntax error ist nicht ausgezeichnet');
+      $this->assertContains(" unexpected '-', expecting \\\\ (T_NS_SEPARATOR) or ';' or '{'", $e->getMessage(), 'syntax error ist nicht ausgezeichnet');
       return;
     }
     

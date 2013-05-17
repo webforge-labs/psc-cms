@@ -234,7 +234,7 @@ class ClassWriter extends \Psc\Object {
     
     $process = new \Psc\System\Console\Process(System::which('php').' -l -f '.escapeshellarg((string) $file));
     $exit = $process->run();
-    
+
     if ($exit > 0 || $exit == -1) {
       if ($do === 'throw') 
         throw new SyntaxErrorException($process->getOutput());
