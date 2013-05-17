@@ -224,10 +224,12 @@ class Tag extends \Psc\OptionsObject implements HTMLInterface {
     $html = NULL;
     foreach ($this->getAttributes() as $name => $value) {
       $html .= ' '.$name.'="';
-      if (array_key_exists($name,self::$glues)) {
+      if (array_key_exists($name, self::$glues)) {
         $value = implode(self::$glues[$name], $value);
       } elseif ($name === 'id') {
         $value = HTML::string2id($value);
+      } elseif(is_array($value)) {
+        throw new \Psc\Exception('Cannot connvert value (as array) for attribute: '.$name);
       }
       $html .= HTML::escAttr((string) $value);
       $html .= '"';

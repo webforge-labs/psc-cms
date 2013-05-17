@@ -53,15 +53,14 @@ class FormTest extends \Psc\Code\Test\HTMLTestCase {
   public function testAddsPostData() {
     $this->form->addPostData(array(
       'k1'=>'v1',
-      'k2'=>'v2',
-      'k3'=>array('complex')
+      'k2'=>'v2'
     ));
     
     $this->html = $this->form;
     $this->test->css('form.psc-cms-ui-form')->count(1)
       ->test('input[type="hidden"][name="k1"][value="v1"]')->count(1)->end()
       ->test('input[type="hidden"][name="k2"][value="v2"]')->count(1)->end()
-      ->test('input[type="hidden"][name="k3"][value="Array"]')->count(1)->end()
+      
     ;
   }
 }

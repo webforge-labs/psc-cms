@@ -25,5 +25,4 @@ class HTMLTag extends \Psc\HTML\Tag {
     return $attributes;
   }
 }
-
 ?>
