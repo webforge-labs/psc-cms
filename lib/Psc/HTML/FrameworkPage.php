@@ -29,6 +29,7 @@ class FrameworkPage extends Page {
 	public function addTwitterBootstrapCSS() {
     $this->loadCSS('/psc-cms-js/vendor/twitter-bootstrap/css/bootstrap.css');
     $this->loadCSS('/psc-cms-js/vendor/twitter-bootstrap/css/bootstrap-responsive.css');
+    $this->loadCSS('/psc-cms-js/vendor/twitter/typeahead/css/typeahead.js-bootstrap.css');
   }
 
 	public function setTitleForProject(Project $project) {

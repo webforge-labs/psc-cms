@@ -7,7 +7,11 @@ use Psc\JS\jQuery;
 class Scraper extends \Psc\SimpleObject {
   
   public function table($source, $tableSelector = 'table:eq(0)') {
-    return new TableScraper($this->createJQuery($tableSelector, $source));
+    if (!($source instanceof jQuery)) {
+      $source = $this->createJQuery($tableSelector, $source);
+    }
+    
+    return new TableScraper($source);
   }
   
   protected function createJQuery($selector, $source) {

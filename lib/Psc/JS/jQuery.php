@@ -148,11 +148,13 @@ class jQuery extends \Psc\Data\ArrayCollection {
    */
   public function find($selector) {
     if (!is_string($selector)) throw new \InvalidArgumentException('Kann bis jetzt nur string als find Parameter');
+
+    $cnt = count($this);
     
-    if (count($this) > 1) {
-      throw new \Psc\Exception('Kann bis jetzt nur find() auf jQuery-Objekten mit 1 Element. '.$this->selector.' ('.count($this).')');
+    if ($cnt != 1) {
+      throw new \Psc\Exception('Kann bis jetzt nur find() auf jQuery-Objekten mit genau 1 Element. '.$this->selector.' ('.$cnt.')');
     }
-    
+
     // erstellt ein Objekt mit dem Document als unser Element
     // mit den matched Elements als das Ergebnis des Selectors in diesem Document
     $jQuery = new self($selector, $this->getElement());
