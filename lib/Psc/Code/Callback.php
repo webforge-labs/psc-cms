@@ -10,7 +10,7 @@ use Closure;
  * Ermöglicht dem Callback statische Parameter hinzufügen
  * diese statischen Parameter werden in der Reihenfolge für den Callback aufruf VOR die dynamischen Parameter gehängt
  */
-class Callback extends \Psc\SimpleObject implements Callable {
+class Callback extends \Psc\SimpleObject implements CallableObject {
   
   const TYPE_METHOD = 'method';
   const TYPE_STATIC_METHOD = 'static_method';

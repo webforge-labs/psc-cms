@@ -2,7 +2,7 @@
 
 namespace Psc\Code;
 
-interface Callable {
+interface CallableObject {
   
   /**
    * Ruft das Objekt auf
