@@ -66,6 +66,7 @@ abstract class Builder extends \Psc\Code\Test\AssertionsBase implements PHPUnit_
   protected $mockAllMethods = FALSE;
   
   public function __construct(\Psc\Code\Test\Base $testCase, $fqn, Array $methods= array()) {
+    parent::__construct($name = NULL, $data = array(), $dataName = '');
     $this->testCase = $testCase;
     $this->methods = $methods;
     $this->fqn = $fqn;
