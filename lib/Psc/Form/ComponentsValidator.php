@@ -42,7 +42,7 @@ class ComponentsValidator extends \Psc\Form\Validator {
   protected $validatedComponents = array();
   
   /**
-   * @var Psc\Code\Callable[]
+   * @var Psc\Code\CallableObject[]
    */
   protected $postValidations = array();
   
@@ -149,7 +149,7 @@ class ComponentsValidator extends \Psc\Form\Validator {
    *
    * $callback(ComponentsValidator $cv, array $components)
    */
-  public function addPostValidation(\Psc\Code\Callable $callback) {
+  public function addPostValidation(\Psc\Code\CallableObject $callback) {
     $this->postValidations[] = $callback;
     return $this;
   }
