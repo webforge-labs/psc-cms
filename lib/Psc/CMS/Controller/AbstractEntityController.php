@@ -240,7 +240,7 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
     }
     
     if ($subResource === NULL) {
-      return $entities;
+      return Code::castCollection($entities);
     } elseif ($subResource === 'grid') {
       return $this->getEntityGrid($this->dc->getEntityMeta($this->getEntityName()), $entities);
     } else {
