@@ -19,11 +19,13 @@ class FloatValidatorRule implements ValidatorRule {
     if ($data === NULL) throw EmptyDataException::factory(0.0);
     if ($data === '') throw EmptyDataException::factory(0.0);
 
-    if (!is_string($data)) {
-      throw new Exception('Parsing von '.$data.' war nicht möglich');
-    }    
-    
-    $float = \Psc\Code\Numbers::parseFloat($data, '.', ',');
+    if (is_string($data)) {
+      $float = \Psc\Code\Numbers::parseFloat($data, '.', ',');
+    } elseif(is_numeric($data)) {
+      $float = (float) $data;
+    } else {
+      throw new Exception('Parsing von '.$data.' war nicht möglich. String|Integer erwartet');
+    }
     
     if (!is_float($float)) {
       throw new Exception('Parsing von '.$data.' war nicht möglich');

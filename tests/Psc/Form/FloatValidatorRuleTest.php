@@ -31,7 +31,10 @@ class FloatValidatorRuleTest extends  ValidatorRuleTestCase {
       array('0,01', 0.01),
       array('12', 12.0),
       array('12000,01', 12000.01),
-      array('12.000,01', 12000.01)
+      array('12.000,01', 12000.01),
+      
+      array(100, 100.00),
+      array(101.00, 101.00)
     );
   }
   
