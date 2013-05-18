@@ -16,7 +16,7 @@ use \Symfony\Component\Console\Input\InputOption,
     Webforge\Common\System\File
   ;
 
-abstract class ProjectCompileCommand extends \Psc\System\Console\Command {
+class ProjectCompileCommand extends \Psc\System\Console\Command {
 
   protected function configure() {
     $this
