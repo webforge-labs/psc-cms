@@ -267,7 +267,7 @@ class CMSAcceptanceTester extends \Psc\System\LoggerObject {
     }
 
     if ($type == 'json') {
-      return $this->testCase->getCodeTester()->json($response->getRaw());
+      return $this->testCase->getCodeTester()->json($response->getRaw(), FALSE, TRUE);
     } elseif ($type == 'html') {
       return $response->getDecodedRaw();
     } elseif ($type == 'text') {
@@ -279,8 +279,8 @@ class CMSAcceptanceTester extends \Psc\System\LoggerObject {
     return $response;
   }
   
-  public function dispatch($method, $url, $data, $type, $code = 200) {
-    $dispatcher = $this->dispatcher($method, $url, $type);
+  public function dispatch($method, $url, $data, $type, $code = 200, $publicRequest = FALSE) {
+    $dispatcher = $this->dispatcher($method, $url, $type, $publicRequest);
     if ($data) {
       $dispatcher->setRequestData($this->parsePost($data));
     }
