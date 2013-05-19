@@ -587,6 +587,10 @@ class EntityRelation extends \Psc\SimpleObject {
     $this->onDelete = $onDelete;
     return $this;
   }
+
+  public function onDelete($onDelete) {
+    return $this->setOnDelete($onDelete);
+  }
   
   /**
    * @return string
