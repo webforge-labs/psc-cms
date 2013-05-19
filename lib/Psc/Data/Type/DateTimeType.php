@@ -24,8 +24,7 @@ class DateTimeType extends \Psc\Data\Type\ObjectType implements \Psc\Doctrine\Ex
   }
   
   public function __construct() {
-    parent::__construct(new GClass('Psc\DateTime\DateTime'));
+    parent::__construct(new GClass('Webforge\Common\DateTime\DateTime'));
   }
   
 }
-?>

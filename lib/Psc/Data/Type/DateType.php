@@ -18,7 +18,7 @@ class DateType extends \Psc\Data\Type\ObjectType implements \Psc\Doctrine\Export
   }
   
   public function __construct() {
-    parent::__construct(new \Psc\Code\Generate\GClass('Psc\DateTime\Date'));
+    parent::__construct(new \Psc\Code\Generate\GClass('Webforge\Common\DateTime\Date'));
   }
 }
 ?>
