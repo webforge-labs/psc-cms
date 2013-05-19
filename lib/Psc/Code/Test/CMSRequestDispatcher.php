@@ -184,4 +184,3 @@ class CMSRequestDispatcher extends \Psc\SimpleObject {
     return $this->publicRequest;
   }
 }
-?>
