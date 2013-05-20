@@ -15,7 +15,7 @@ class DateTimeTypeTest extends TestCase {
   }
 
   public function testIsAObjectTypeForDateTime() {
-    $this->assertObjectType('Psc\DateTime\DateTime', Type::create('DateTime'));
+    $this->assertObjectType('Webforge\Common\DateTime\DateTime', Type::create('DateTime'));
   }
   
   public function testMapsToComponentDateTimePicker() {
