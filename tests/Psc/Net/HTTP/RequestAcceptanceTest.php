@@ -124,8 +124,10 @@ class RequestAcceptanceTest extends \Psc\Code\Test\HTMLTestCase {
                                )
                               );
     $this->assertEquals(Request::PUT, $request->getMethod());
-    $this->assertEquals(json_decode(json_encode($this->someBody)), // etwas kompizierter, weil json ja aus assoc arrays objects macht
-                        json_decode($request->getBody()));
+    $this->assertEquals(
+      json_decode(json_encode($this->someBody)), // etwas kompizierter, weil json ja aus assoc arrays objects macht
+      json_decode($request->getBody())
+    );
   }
 
   /**

@@ -37,6 +37,11 @@ class RequestConverter extends \Psc\System\LoggerObject {
     if (is_object($body) && count($body) === 1 && isset($body->bodyAsJSON)) {
       $body = $this->jsonConverter->parse($body->bodyAsJSON);
     }
+
+    // convert json request to native
+    if (is_string($body) && $request->isContentType('application/json')) {
+      $body = $this->jsonConverter->parse($body);
+    }
     
     return new ServiceRequest(
       $method,

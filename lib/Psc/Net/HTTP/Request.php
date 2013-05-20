@@ -419,5 +419,11 @@ class Request extends \Psc\Object {
   public function getGreferredLanguages() {
     return $this->preferredLanguages;
   }
+
+  /**
+   * @return bool
+   */
+  public function isContentType($contentType) {
+    return mb_strpos($this->getHeaderField('Content-Type'), $contentType) === 0;
+  }
 }
-?>

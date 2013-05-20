@@ -52,5 +52,19 @@ class RequestConverterTest extends \Psc\Code\Test\Base {
       $serviceRequest->getMeta('revision')
     );
   }
+
+  public function testJSONRequestIsConvertedToConvertedBodyRequest() {
+    $request = new Request(Request::POST, '/entities/something/1');
+    $request
+      ->setHeaderField('Content-Type', 'application/json')
+      ->setBody('{"some": "value"}')
+    ;
+
+    $serviceRequest = $this->requestConverter->fromHTTPRequest($request);
+
+    $this->assertEquals(
+      (object) array('some'=>'value'),
+      $serviceRequest->getBody()
+    );
+  }
 }
-?>
