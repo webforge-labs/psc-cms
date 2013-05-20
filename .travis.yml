@@ -20,7 +20,7 @@ before_script:
   - php -f bin/cli.php compile:test-entities
   - php -f tests/inc.update-schema.php
 
-script: phpunit
+script: phpunit --debug
 
 notifications:
   irc: "irc.freenode.org#webforge"

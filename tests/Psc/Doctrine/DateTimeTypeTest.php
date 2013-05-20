@@ -28,7 +28,7 @@ class DateTimeTypeTest extends \Psc\Doctrine\DatabaseTestCase {
   public function testConversion() {
     $tag = new Tag('timestamped');
     
-    $this->assertInstanceOf('Psc\DateTime\DateTime',$time = $tag->getCreated());
+    $this->assertInstanceOf('Webforge\Common\DateTime\DateTime',$time = $tag->getCreated());
     
     $this->em->persist($tag);
     $this->em->flush();
@@ -36,8 +36,9 @@ class DateTimeTypeTest extends \Psc\Doctrine\DatabaseTestCase {
     $this->em->clear();
     
     $tag = $this->hydrate('Psc\Doctrine\TestEntities\Tag',array('label'=>'timestamped'));
-    $this->assertInstanceOf('Psc\DateTime\DateTime', $savedTime = $tag->getCreated());
+    $this->assertInstanceOf('Webforge\Common\DateTime\DateTime', $savedTime = $tag->getCreated());
     $this->assertEquals($time, $savedTime);
+
   }
 }
 ?>

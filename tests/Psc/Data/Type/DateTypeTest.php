@@ -20,7 +20,7 @@ class DateTypeTest extends TestCase {
   }
 
   public function testIsAObjectTypeForDate() {
-    $this->assertObjectType('Psc\DateTime\Date', $this->dateType);
+    $this->assertObjectType('Webforge\Common\DateTime\Date', $this->dateType);
   }
 }
 ?>
