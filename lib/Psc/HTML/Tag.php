@@ -360,7 +360,7 @@ class Tag extends \Psc\OptionsObject implements HTMLInterface {
   public function generateId() {
     // getObjectId ist auch nicht schön eindeutig, weil pro request bei einem ajaxrequest das object genau dieselbe id bekommen kann
     // deshalb besser uniquid (wobei mir völlig unklar ist, wie die das macht)
-    $this->setAttribute('id','psc-cms-'.str_replace('.', '_', uniqid('html-tag',true)));
+    $this->setAttribute('id','psc-cms-'.str_replace('.', '_', uniqid('',true)));
     return $this;
   }
   
@@ -368,7 +368,7 @@ class Tag extends \Psc\OptionsObject implements HTMLInterface {
     if (($id = $this->getAttribute('id')) != NULL) {
       $set = 'psc-guid-'.$id;
     } else {
-      $set = uniqid('psc-guid-');
+      $set = 'psc-guid-'.str_replace('.', '_', uniqid('',true));
     }
     return $this->guid($set);
   }
