@@ -29,7 +29,7 @@ class CMSService extends ControllerService {
   public function routeController(ServiceRequest $request) {
     $r = $this->initRequestMatcher($request);
     
-    $controller = $r->qmatchiRx('/^(tpl|excel|images|uploads)$/i');
+    $controller = $r->qmatchiRx('/^(tpl|excel|images|uploads|persona)$/i');
     
     if ($controller === 'tpl') {
       $x = 0;
@@ -134,6 +134,10 @@ class CMSService extends ControllerService {
         
         return array($controller, $method, $params);
       }
+    } elseif ($controller === 'persona') {
+      $controller = new \Webforge\Persona\Controller();
+
+      return array($controller, 'verify', array($r->bvar('assertion')));
     }
     
     throw HTTPException::NotFound('Die Resource für cms '.$request.' existiert nicht.');
