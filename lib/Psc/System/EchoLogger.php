@@ -30,4 +30,3 @@ class EchoLogger extends BufferLogger implements Subscriber {
     return $this->out;
   }
 }
-?>
