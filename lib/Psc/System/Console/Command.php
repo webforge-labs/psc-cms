@@ -72,7 +72,7 @@ class Command extends \Symfony\Component\Console\Command\Command {
   public function ask($question, $default = NULL) {
     $dialog = $this->getHelper('dialog');
     return $dialog->ask($this->execOutput,
-                        $question,
+                        rtrim($question, ' ').' ',
                         $default
                        );
   }
@@ -198,4 +198,3 @@ class Command extends \Symfony\Component\Console\Command\Command {
     return new CommandExitException($msg, $code, $previous);
   }
 }
-?>
