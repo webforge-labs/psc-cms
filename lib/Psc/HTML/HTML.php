@@ -2,6 +2,8 @@
 
 namespace Psc\HTML;
 
+use Webforge\Common\Preg;
+
 class HTML {
   
   const NO_LOWER_ATTRIBUTES = 0x000001;
@@ -33,15 +35,20 @@ class HTML {
    * Erstells aus einem CamelCase Namen oder einer Klasse oder einem String eine html-klasse
    */
   public static function string2class($stringValue) {
+    // dirty hack: Psc\Code\Code::camelCase2dash benutzt dies hier: also aufpassen, bei großen Änderungen refactorn
     $stringValue = trim($stringValue);
     
     if ($stringValue === '') {
       return $stringValue;
     }
+
+    if (Preg::match($stringValue, '/^[A-Z0-9]+$/')) {
+      return mb_strtolower($stringValue);
+    }
     
     $specials = preg_quote(implode("", array('.','@','\\',' ','[',']','(',')')), '/');
     
-    $stringValue = \Psc\Preg::replace(// in
+    $stringValue = Preg::replace(// in
                       $stringValue,
                       // what
                       sprintf('/%s|[%s]/',

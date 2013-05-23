@@ -38,8 +38,10 @@ class HTMLTest extends \Psc\Code\Test\Base {
     $test('', '');
     $test('schnurps@ps.de', 'schnurps-ps-de');
     $test(' ', '');
+
+    $test('OID', 'oid');
+    $test('HTMl', 'h-t-ml');
     
     return $tests;
   }
 }
-?>

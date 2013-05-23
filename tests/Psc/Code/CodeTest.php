@@ -256,5 +256,3 @@ class TestingClass {
     return $this;
   }
 }
-
-?>
