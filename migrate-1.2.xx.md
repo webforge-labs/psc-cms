@@ -7,12 +7,14 @@ AbstractEntityController
 - when you overloaded processEntityFormRequest, you have to add a third parameter $revision to the method (and pass it)
 - (overload or call) createEmptyEntity has now a revision parameter which defaults to NULL
 - you can overload onDelete for special operations while deleting
+- see changes in EntityService with getEntity for Subresource
 
 Psc\Image\*
 - when you used some of the Psc\Image\ Classes: add "pscheit/psc-cms-image" in the same version as pscheit/psc-cms to your dependencies and run update.
 
 EntityService:
 - Signature has changed. Parameter #1 is not optional (dcPackage), Parameter #2 is a Psc\CMS\Controller\Factory
+- getEntity groups parameters with more than one subresource into the parameter $subresource as array (entities/game/2/form/maker will become: getEntity(2, array('form', 'maker'))
 
 Entities:
 - the entityName is now constructed in dash style. That means NavigationNode becomes navigation-node

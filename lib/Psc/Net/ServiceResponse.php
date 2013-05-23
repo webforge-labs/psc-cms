@@ -49,6 +49,10 @@ class ServiceResponse extends \Psc\SimpleObject {
     if (isset($format))
       $this->setFormat($format);
   }
+
+  public static function create($body = NULL, $format = NULL) {
+    return new static(serlf::OK, $body, $format);
+  }
   
   /**
    * @param const $status Service::OK|Service::ERROR usw

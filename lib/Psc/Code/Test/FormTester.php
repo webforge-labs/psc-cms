@@ -112,4 +112,3 @@ class FormTester extends \Psc\Object {
     return $this->request;
   }
 }
-?>
