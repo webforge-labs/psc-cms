@@ -116,10 +116,10 @@ class CSSTester extends \Psc\SimpleObject implements HTMLInterface {
     return $this;
   }
 
-  public function text($constraint, $msg = '') {
+  public function text($constraint, $msg = NULL) {
     $jQuery = $this->assertJQuery(__FUNCTION__);
     
-    $this->testCase->assertThat($jQuery->text(), $constraint, $msg);
+    $this->testCase->assertThat($jQuery->text(), $constraint, $msg ?: sprintf('Text of Element %s matches not constraint', $this->getSelector()));
     return $this;
   }
   
