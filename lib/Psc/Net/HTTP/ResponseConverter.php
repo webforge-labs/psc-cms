@@ -101,7 +101,11 @@ class ResponseConverter extends \Psc\SimpleObject {
       } elseif ($body instanceof \Psc\HTML\HTMLInterface) {
         return $this->createResponse($body->html());
       }
-    
+    /* plain text */
+    } elseif ($format === ServiceResponse::TEXT) {
+      $this->headers['Content-Type'] = $this->getContentType($format).'; charset=utf-8';
+      return $this->createResponse($body);
+
     /* XLSX */
     } elseif ($format === ServiceResponse::XLSX) {
       $excel = $body;
@@ -212,6 +216,8 @@ class ResponseConverter extends \Psc\SimpleObject {
       $contentType = Response::CONTENT_TYPE_HTML;
     } elseif($format === ServiceResponse::ICAL) {
       $contentType = Response::CONTENT_TYPE_ICAL;
+    } elseif($format === ServiceResponse::TEXT) {
+      $contentType = 'text/plain';
     } else { // fallback
       $contentType = Response::CONTENT_TYPE_HTML;
     }
@@ -219,4 +225,3 @@ class ResponseConverter extends \Psc\SimpleObject {
     return $contentType;
   }
 }
-?>

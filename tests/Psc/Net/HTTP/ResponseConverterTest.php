@@ -123,5 +123,13 @@ class ResponseConverterTest extends \Psc\Code\Test\Base {
     $httpResponse->output(Response::OUTPUT_BODY | Response::OUTPUT_CLOSURE);
     ob_end_clean();
   }
+
+  public function testTextConversion() {
+    $body = 'some text';
+
+    $format = ServiceResponse::TEXT;
+    $httpResponse = $this->assertOKConversion($expectedBody = $body, $body, $format);
+
+    $this->assertContains('text/plain', $httpResponse->getHeaderField('Content-Type'));
+  }
 }
-?>
