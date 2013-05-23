@@ -40,3 +40,6 @@ SimpleContainer
 ContentStreamEntry:
 serialize needs to be implemented: serialize($context, \Closure $serializeEntry)
 doSerialize needs second parameter to be Closure $serializeEntry
+
+Psc\CMS\HTMLPage
+- deprecated: use Psc\HTML\FrameworkPage instead

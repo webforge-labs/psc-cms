@@ -50,4 +50,3 @@ class HTMLPage extends \Psc\HTML\Page {
 
   }
 }
-?>
