@@ -8,6 +8,9 @@ use \Psc\Config,
     \Psc\TPL\TPL
 ;
 
+/**
+ * @deprecated use Psc\HTML\FrameworkPage
+ */
 class HTMLPage extends \Psc\HTML\Page {
   
   public function __construct(\Psc\JS\Manager $jsManager = NULL, \Psc\CSS\Manager $cssManager = NULL, $projectAbbrev = NULL) {
