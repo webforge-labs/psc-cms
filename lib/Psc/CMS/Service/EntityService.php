@@ -251,4 +251,3 @@ class EntityService extends ControllerService {
     return $this->language;
   }
 }
-?>

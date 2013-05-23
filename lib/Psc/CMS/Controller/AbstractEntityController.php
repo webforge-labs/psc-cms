@@ -163,7 +163,7 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
    * @return Entity
    */
   protected function hydrateEntityInRevision($parentIdentifier, $revision) {
-    $identifier = $this->v->validateIdentifier($parentIdentifier, $this->getEntityMeta());
+    $parentIdentifier = $this->v->validateIdentifier($parentIdentifier, $this->getEntityMeta());
     
     if ($revision === $this->defaultRevision) {
       return $this->repository->hydrate($parentIdentifier);
