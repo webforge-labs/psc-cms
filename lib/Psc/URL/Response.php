@@ -64,7 +64,7 @@ class Response extends \Psc\Object {
   public function debug() {
     $text  = "== Psc\URL\Response =============================\n";
     //$text .= $this->getCode().' : '.$this->getReason()."\n";
-    $text .= $this->getHeader()."\n";
+    $text .= $this->getHeader()->debug()."\n";
     $text .= "== Response-RAW =================================\n";
     $text .= $this->raw;
     $text .= "=================================================\n";

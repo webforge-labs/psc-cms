@@ -174,9 +174,19 @@ class Header extends \Psc\Object {
       
     return $header;
   }
+
+  public function debug() {
+    return \Webforge\Common\ArrayUtil::joinc($this->values, '%2$s: %1$s'."\n", function ($value) {
+      if (is_array($value)) {
+        return implode('; ', $value);
+      }
+
+      return $value;
+    });
+  }
   
   public function __toString() {
-    return \Webforge\Common\ArrayUtil::join($this->values, '%2$s: %1$s'."\n");
+    return $this->debug();
   }
 }
 ?>

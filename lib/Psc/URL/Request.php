@@ -329,7 +329,7 @@ class Request extends \Psc\Object implements \Psc\Code\Event\Dispatcher {
       $text .= "\n";
       $text .= "== Response =====================================\n";
       if (isset($this->response))  {
-        $text .= $this->getResponseHeader()."\n";
+        $text .= $this->getResponseHeader()->debug()."\n";
         if ($withResponseBody) {
           $text .= "== Body =========================================\n";
           $text .= $this->response->getRaw()."\n";
