@@ -27,6 +27,12 @@ class ServiceResponseTest extends \Psc\Code\Test\Base {
     $this->test->constructor($this->chainClass, array('status'=>Service::OK, 'body'=>$this->getType('String')));
     $this->test->constructor($this->chainClass, array('status'=>Service::ERROR, 'body'=>$this->getType('Array')));
   }
+
+  public function testCreateMethod() {
+    $response = $this->createServiceResponse(Service::OK);
+    $this->assertEquals($response, ServiceResponse::create());
+
+  }
   
   public function testStatus() {
     $response = $this->createServiceResponse();
