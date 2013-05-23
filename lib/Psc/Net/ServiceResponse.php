@@ -51,7 +51,7 @@ class ServiceResponse extends \Psc\SimpleObject {
   }
 
   public static function create($body = NULL, $format = NULL) {
-    return new static(self::OK, $body, $format);
+    return new static(Service::OK, $body, $format);
   }
   
   /**
