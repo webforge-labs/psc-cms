@@ -40,4 +40,3 @@ class HTMLTestCase extends \Psc\Code\Test\Base {
     return $this;
   }
 }
-?>

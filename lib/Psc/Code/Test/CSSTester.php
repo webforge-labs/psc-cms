@@ -261,4 +261,8 @@ class CSSTester extends \Psc\SimpleObject implements HTMLInterface {
   public function getParent() {
     return $this->parent;
   }
+
+  public function getHTML() {
+    return $this->html;
+  }
 }
