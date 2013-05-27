@@ -129,7 +129,7 @@ class Form {
   public static function buttonAdd($label, $flags = 0x000000, $iconLeft = 'circle-plus') {
     $button = self::button($label, $flags, 'circle-plus');
     $button->getHTML()
-      ->addClass('\Webforge\Common\ArrayUtildd');
+      ->addClass('\Psc\add');
         
     return $button;
   }

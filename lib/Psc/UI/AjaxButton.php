@@ -18,7 +18,7 @@ class AjaxButton extends Button {
   protected function doInit() {
     parent::doInit();
     
-    $this->html->addClass('\Webforge\Common\ArrayUtiljax-button');
+    $this->html->addClass('\Psc\ajax-button');
   }
   
   /**
