@@ -13,6 +13,8 @@ class Calendar extends \Psc\HTML\JooseBase {
    * @var Doctrine\Common\Collections\Collection<Psc\UI\CalendarEvent>
    */
   protected $events;
+
+  protected $region;
   
   /**
    * @var string
@@ -21,7 +23,8 @@ class Calendar extends \Psc\HTML\JooseBase {
   
   public function __construct($region = 'de') {
     $this->events = new \Psc\Data\ArrayCollection;
-    parent::__construct('Psc.UI.Calendar', array('region'=>$region));
+    $this->region = $region;
+    parent::__construct('Psc.UI.Calendar');
   }
   
   protected function doInit() {
@@ -41,6 +44,7 @@ class Calendar extends \Psc\HTML\JooseBase {
         $this->jooseClass,
         array(
           'widget'=>$this->widgetSelector(),
+          'region'=>$this->region,
           'events'=>$events
         )
       )->addUse($this->eventJooseClass) // schade, dass geht noch nicht automatisch, wegen dem SonderFall, dass wir die Events in einem Array ham
@@ -113,4 +117,3 @@ class Calendar extends \Psc\HTML\JooseBase {
     return $this->eventJooseClass;
   }
 }
-?>
