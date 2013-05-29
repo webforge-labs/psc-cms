@@ -238,4 +238,3 @@ class Auth extends \Psc\Object {
     return $this->debug;
   }
 }
-?>

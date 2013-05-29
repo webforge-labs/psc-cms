@@ -89,5 +89,3 @@ class Session extends \Psc\OptionsObject {
     self::$instance = NULL;
   }
 }
-
-?>

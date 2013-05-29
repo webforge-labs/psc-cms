@@ -24,4 +24,3 @@ class SessionMock extends \Psc\Session\Session {
     return $this;
   }
 }
-?>
