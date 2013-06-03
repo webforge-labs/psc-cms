@@ -62,4 +62,3 @@ class CodeEditor extends JavaScriptBase implements JavaScriptComponent {
     return $this;
   }
 }
-?>
