@@ -83,10 +83,6 @@ class DoublesManager extends \Psc\Object {
     return new \Psc\Net\ServiceRequest($method, $parts, $body, $query);
   }
   
-  public function createClosureTestCase(Closure $closure, $label = 'unkown Testcase') {
-    return new ClosureTestCase($closure,$label);
-  }
-  
   public function createPDOUniqueConstraintException($keyName = 'sound_number_ravensburger', $causingEntry = '2-STA_0802') {
     $e = new \PDOException("SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '".$causingEntry."' for key '".$keyName."'");
     $e->errorInfo = array(0=>'23000',

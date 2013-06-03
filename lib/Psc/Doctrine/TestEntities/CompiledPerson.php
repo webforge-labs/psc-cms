@@ -2,7 +2,7 @@
 
 namespace Psc\Doctrine\TestEntities;
 
-use Psc\DateTime\Date;
+use Webforge\Common\DateTime\Date;
 use Psc\Data\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
 
@@ -38,7 +38,7 @@ abstract class CompiledPerson extends \Psc\CMS\AbstractEntity {
   protected $email;
   
   /**
-   * @var Psc\DateTime\Date
+   * @var Webforge\Common\DateTime\Date
    * @ORM\Column(type="PscDate")
    */
   protected $birthday;
@@ -133,14 +133,14 @@ abstract class CompiledPerson extends \Psc\CMS\AbstractEntity {
   }
   
   /**
-   * @return Psc\DateTime\Date
+   * @return Webforge\Common\DateTime\Date
    */
   public function getBirthday() {
     return $this->birthday;
   }
   
   /**
-   * @param Psc\DateTime\Date $birthday
+   * @param Webforge\Common\DateTime\Date $birthday
    */
   public function setBirthday(Date $birthday) {
     $this->birthday = $birthday;
@@ -172,7 +172,7 @@ abstract class CompiledPerson extends \Psc\CMS\AbstractEntity {
       'name' => new \Psc\Data\Type\StringType(),
       'firstName' => new \Psc\Data\Type\StringType(),
       'email' => new \Psc\Data\Type\EmailType(),
-      'birthday' => new \Psc\Data\Type\BirthdayType(new \Psc\Code\Generate\GClass('Psc\\DateTime\\Date')),
+      'birthday' => new \Psc\Data\Type\BirthdayType(new \Psc\Code\Generate\GClass('Webforge\\Common\\DateTime\\Date')),
       'yearKnown' => new \Psc\Data\Type\BooleanType(),
     ));
   }

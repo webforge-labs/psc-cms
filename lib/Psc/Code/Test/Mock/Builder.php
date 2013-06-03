@@ -31,7 +31,7 @@ use ReflectionClass;
  * expectsxxxx() der Unterklassen ganz normal auf einem MockObject()->expects() aufrufen,indem wir den Builder_InvocationMocker zurückgeben und die Match_Invocations in $this->matchers sammeln.
  * Wir tun also so als wären wir selbst ein PHPUnit_Framework_MockObject_InvocationMocker und müssen dann nur unsere matchers zu dem InvocationMocker vom MockObject kopieren
  */
-abstract class Builder extends \Psc\Code\Test\AssertionsBase implements PHPUnit_Framework_MockObject_Stub_MatcherCollection { // damit können wir z.b. $this->once() und sowas
+abstract class Builder extends \Webforge\Code\Test\Assertions implements PHPUnit_Framework_MockObject_Stub_MatcherCollection { // damit können wir z.b. $this->once() und sowas
   
   protected $atGroups = array();
   protected $atGroupsIndexes = array();

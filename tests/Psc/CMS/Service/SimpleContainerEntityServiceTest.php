@@ -2,7 +2,7 @@
 
 namespace Psc\CMS\Service;
 
-class SimpleContainerEntityServiceTest extends \Webforge\Code\Test\Base {
+class SimpleContainerEntityServiceTest extends \Psc\Code\Test\Base {
   
   public function setUp() {
     $this->chainClass = 'Psc\\CMS\\Service\\SimpleContainerEntityService';

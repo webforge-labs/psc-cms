@@ -14,7 +14,7 @@ abstract class CompiledCard extends Entry {
   /**
    * @var Psc\Entities\ContentStream\ContentStreamWrapper
    * @ORM\OneToOne(targetEntity="Psc\Entities\ContentStream\ContentStreamWrapper")
-   * @ORM\JoinColumn(nullable=false, onDelete="SET NULL")
+   * @ORM\JoinColumn(nullable=false, onDelete="cascade")
    */
   protected $content;
   

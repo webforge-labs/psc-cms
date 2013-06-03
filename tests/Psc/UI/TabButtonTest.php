@@ -181,4 +181,3 @@ class TabButtonTest extends \Psc\Code\Test\HTMLTestCase {
                       ->will($this->returnValue(\Psc\HTML\HTML::tag('a', 'the html')));
   }
 }
-?>

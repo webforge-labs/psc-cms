@@ -10,17 +10,8 @@ use Closure;
 use Psc\System\Console\Process;
 
 /**
- * Der Base-TestCase
- *
- * Custom Assertions für Base siehe in AssertionsBase
  */
-class Base extends AssertionsBase {
-  
-  /**
-   * @var string
-   * @see assertChainable()
-   */
-  protected $chainClass;
+class Base extends \Webforge\Code\Test\Base {
   
   /**
    * @var FrontendCodeTester (CodeTester)
@@ -32,6 +23,10 @@ class Base extends AssertionsBase {
    */
   protected $project;
   
+  /* copy n paste zu DatabaseTest */
+  protected $resourceHelper;
+  
+  protected $doublesManager;
   
   public function __construct($name = NULL, array $data = array(), $dataName = '') {
     parent::__construct($name, $data, $dataName);
@@ -68,11 +63,6 @@ class Base extends AssertionsBase {
 
   public function initAcceptanceTester($tester) {
   }
-
-  /* copy n paste zu DatabaseTest */
-  protected $resourceHelper;
-  
-  protected $doublesManager;
 
   /**
    * @return Psc\Code\Test\ResourceHelper
@@ -231,27 +221,4 @@ class Base extends AssertionsBase {
 //    print \Webforge\Common\ArrayUtil::join($this->sjg->log, "\n  %s");
 //    throw $e;
 //  }
-
-  
-  /**
-   * @return Psc\System\Console\Process
-   */
-  public function runPHPFile(File $phpFile) {
-    $phpBin = SystemUtil::findPHPBinary();
-    
-    $process = Process::build($phpBin, array(), array('f'=>$phpFile))->end();
-    $process->run();
-    
-    $this->assertTrue($process->isSuccessful(),
-                      sprintf("process for phpfile '%s' did not return 0.\ncmd:\n%s\nerr:\n%s\nout:\n%s\n",
-                        $phpFile,
-                        $process->getCommandLine(),
-                        $process->getErrorOutput(),
-                        $process->getOutput()
-                      )
-                     );
-    
-    return $process;
-  }
 }
-?>

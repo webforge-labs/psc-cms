@@ -32,10 +32,6 @@ class DoublesManagerTest extends \Psc\Code\Test\Base {
     // not yet ready (so geht noch nicht)
   }
   
-  public function testCreateTestCase() {
-    $this->assertInstanceOf('Psc\Code\Test\ClosureTestCase',$testCase = $this->manager->createClosureTestCase(function () {}));
-  }
-  
   public function testCreateEntityManagerMock() {
     $this->assertInstanceOf('Doctrine\ORM\EntityManager', $this->manager->createEntityManagerMock());
   }

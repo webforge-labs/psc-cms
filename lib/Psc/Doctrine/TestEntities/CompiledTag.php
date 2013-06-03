@@ -2,7 +2,7 @@
 
 namespace Psc\Doctrine\TestEntities;
 
-use Psc\DateTime\DateTime;
+use Webforge\Common\DateTime\DateTime;
 use Doctrine\Common\Collections\Collection;
 use Psc\Data\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
@@ -27,7 +27,7 @@ abstract class CompiledTag extends \Psc\CMS\AbstractEntity {
   protected $label;
   
   /**
-   * @var Psc\DateTime\DateTime
+   * @var Webforge\Common\DateTime\DateTime
    * @ORM\Column(type="PscDateTime")
    */
   protected $created;
@@ -84,14 +84,14 @@ abstract class CompiledTag extends \Psc\CMS\AbstractEntity {
   }
   
   /**
-   * @return Psc\DateTime\DateTime
+   * @return Webforge\Common\DateTime\DateTime
    */
   public function getCreated() {
     return $this->created;
   }
   
   /**
-   * @param Psc\DateTime\DateTime $created
+   * @param Webforge\Common\DateTime\DateTime $created
    */
   public function setCreated(DateTime $created) {
     $this->created = $created;

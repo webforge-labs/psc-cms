@@ -2,7 +2,7 @@
 
 namespace Psc\Entities;
 
-use Psc\DateTime\DateTime;
+use Webforge\Common\DateTime\DateTime;
 use Doctrine\Common\Collections\Collection;
 use Psc\Entities\ContentStream\ContentStream;
 use Psc\Data\ArrayCollection;
@@ -34,13 +34,13 @@ abstract class CompiledPage extends \Psc\CMS\Roles\PageEntity {
   protected $active = true;
   
   /**
-   * @var Psc\DateTime\DateTime
+   * @var Webforge\Common\DateTime\DateTime
    * @ORM\Column(type="PscDateTime")
    */
   protected $created;
   
   /**
-   * @var Psc\DateTime\DateTime
+   * @var Webforge\Common\DateTime\DateTime
    * @ORM\Column(type="PscDateTime", nullable=true)
    */
   protected $modified;
@@ -119,14 +119,14 @@ abstract class CompiledPage extends \Psc\CMS\Roles\PageEntity {
   }
   
   /**
-   * @return Psc\DateTime\DateTime
+   * @return Webforge\Common\DateTime\DateTime
    */
   public function getCreated() {
     return $this->created;
   }
   
   /**
-   * @param Psc\DateTime\DateTime $created
+   * @param Webforge\Common\DateTime\DateTime $created
    */
   public function setCreated(DateTime $created) {
     $this->created = $created;
@@ -134,14 +134,14 @@ abstract class CompiledPage extends \Psc\CMS\Roles\PageEntity {
   }
   
   /**
-   * @return Psc\DateTime\DateTime
+   * @return Webforge\Common\DateTime\DateTime
    */
   public function getModified() {
     return $this->modified;
   }
   
   /**
-   * @param Psc\DateTime\DateTime $modified
+   * @param Webforge\Common\DateTime\DateTime $modified
    */
   public function setModified(DateTime $modified = NULL) {
     $this->modified = $modified;

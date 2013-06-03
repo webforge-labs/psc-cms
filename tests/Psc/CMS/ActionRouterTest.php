@@ -4,7 +4,7 @@ namespace Psc\CMS;
 
 use Psc\Doctrine\TestEntities\Tag;
 
-class ActionRouterTest extends \Webforge\Code\Test\Base {
+class ActionRouterTest extends \Psc\Code\Test\Base {
   
   protected $router;
   protected $entity, $entityMeta;

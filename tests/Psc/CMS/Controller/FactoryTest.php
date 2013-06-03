@@ -2,7 +2,7 @@
 
 namespace Psc\CMS\Controller;
 
-class FactoryTest extends \Webforge\Code\Test\Base {
+class FactoryTest extends \Psc\Code\Test\Base {
   
   public function setUp() {
     $this->chainClass = 'Psc\\CMS\\Controller\\Factory';

@@ -2,7 +2,7 @@
 
 namespace Psc\Entities;
 
-use Psc\DateTime\DateTime;
+use Webforge\Common\DateTime\DateTime;
 use Doctrine\Common\Collections\Collection;
 use Psc\Entities\ContentStream\ContentStream;
 use Psc\Data\ArrayCollection;
@@ -68,13 +68,13 @@ abstract class CompiledNavigationNode extends \Psc\CMS\Roles\NavigationNodeEntit
   protected $image;
   
   /**
-   * @var Psc\DateTime\DateTime
+   * @var Webforge\Common\DateTime\DateTime
    * @ORM\Column(type="PscDateTime")
    */
   protected $created;
   
   /**
-   * @var Psc\DateTime\DateTime
+   * @var Webforge\Common\DateTime\DateTime
    * @ORM\Column(type="PscDateTime")
    */
   protected $updated;
@@ -95,6 +95,7 @@ abstract class CompiledNavigationNode extends \Psc\CMS\Roles\NavigationNodeEntit
   /**
    * @var Doctrine\Common\Collections\Collection<Psc\Entities\NavigationNode>
    * @ORM\OneToMany(mappedBy="parent", targetEntity="Psc\Entities\NavigationNode")
+   * @ORM\OrderBy({"lft"="ASC"})
    */
   protected $children;
   
@@ -247,14 +248,14 @@ abstract class CompiledNavigationNode extends \Psc\CMS\Roles\NavigationNodeEntit
   }
   
   /**
-   * @return Psc\DateTime\DateTime
+   * @return Webforge\Common\DateTime\DateTime
    */
   public function getCreated() {
     return $this->created;
   }
   
   /**
-   * @param Psc\DateTime\DateTime $created
+   * @param Webforge\Common\DateTime\DateTime $created
    */
   public function setCreated(DateTime $created) {
     $this->created = $created;
@@ -262,14 +263,14 @@ abstract class CompiledNavigationNode extends \Psc\CMS\Roles\NavigationNodeEntit
   }
   
   /**
-   * @return Psc\DateTime\DateTime
+   * @return Webforge\Common\DateTime\DateTime
    */
   public function getUpdated() {
     return $this->updated;
   }
   
   /**
-   * @param Psc\DateTime\DateTime $updated
+   * @param Webforge\Common\DateTime\DateTime $updated
    */
   public function setUpdated(DateTime $updated) {
     $this->updated = $updated;
