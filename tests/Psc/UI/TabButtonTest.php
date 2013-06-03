@@ -19,8 +19,11 @@ class TabButtonTest extends \Psc\Code\Test\HTMLTestCase {
   public function setUp() {
     $this->chainClass = 'Psc\UI\TabButton';
     parent::setUp();
-    $this->item = $this->getEntityMeta('Psc\Doctrine\TestEntities\Article')->getAdapter(current($this->loadTestEntities('articles')));
-    $this->jooseBridge = $this->getMock('Psc\CMS\Item\JooseBridge', array('setItem','link','autoLoad','html'), array($this->item));
+    $this->item = 
+      $this->getEntityMeta('Psc\Doctrine\TestEntities\Article')
+        ->getAdapter(current($this->loadTestEntities('articles')));
+    
+    $this->jooseBridge = $this->getMock('Psc\CMS\Item\JooseBridge', array('setItem','link','autoLoad','html'), array($this->item), '', TRUE, TRUE, TRUE, $cloneArgs = FALSE);
   }
   
   public function testButtonImplementsButtonInterface() {
@@ -66,9 +69,8 @@ class TabButtonTest extends \Psc\Code\Test\HTMLTestCase {
     $this->prepareBridgedButton();
     
     $this->tabButton->setLabel('some other label');
-    
     $buttonable = $this->bridgeItem();
-    
+
     $this->assertEquals(
       'some other label',
       $buttonable->getButtonLabel()
@@ -81,7 +83,7 @@ class TabButtonTest extends \Psc\Code\Test\HTMLTestCase {
     $this->tabButton->onlyClickable();
     
     $buttonable = $this->bridgeItem();
-    
+
     $this->assertEquals(
       TabButtonable::CLICK,
       $buttonable->getButtonMode()

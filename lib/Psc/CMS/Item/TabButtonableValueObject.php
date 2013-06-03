@@ -54,4 +54,3 @@ class TabButtonableValueObject extends ButtonableValueObject implements TabButto
     return $this->tabRequestMeta;
   }
 }
-?>
