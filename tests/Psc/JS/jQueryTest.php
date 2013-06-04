@@ -102,6 +102,11 @@ HTML;
     $firstInput = new jQuery('form.main fieldset.user-data.group input:eq(0)', $this->formHTML);
     $this->assertEquals(array('<input type="text" name="email" value="" />'), $firstInput->export());
   }
+
+  public function testSelectFirst() {
+    $firstInput = new jQuery('form.main fieldset.user-data.group input:first', $this->formHTML);
+    $this->assertEquals(array('<input type="text" name="email" value="" />'), $firstInput->export());
+  }
   
   public function testHasClass() {
     $form = new jQuery('form.main', $this->formHTML);

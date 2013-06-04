@@ -286,8 +286,11 @@ class jQuery extends \Psc\Data\ArrayCollection {
   public function setSelector($selector) {
     // nth-of-type ist ein schöner alias für eq jedoch ist es 1-basierend (eq ist 0-basierend)
     $this->literalSelector = $selector;
+
+    $this->selector = $selector;
+    $this->selector = str_replace(':first', ':nth-of-type(1)', $this->selector);
     $this->selector = \Psc\Preg::replace_callback(
-      $selector, 
+      $this->selector, 
       '/:eq\(([0-9]+)\)/', 
       function ($m) { 
         return sprintf(':nth-of-type(%d)', $m[1]+1); 
