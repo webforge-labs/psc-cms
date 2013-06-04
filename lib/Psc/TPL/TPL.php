@@ -97,7 +97,7 @@ class TPL {
       $repl[] = '</'.$tag.'>';
     }
     $search[] = '[headline]';
-    $search[] = '[/headline]';    
+    $search[] = '[/headline]';
     $repl[] = '<h2>';
     $repl[] = '</h2>';
 
