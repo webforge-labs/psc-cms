@@ -2,7 +2,7 @@
 
 namespace Psc\CMS\Roles;
 
-class AbstractControllerContainerTest extends \Psc\Code\Test\Base {
+class AbstractContainerTest extends \Psc\Code\Test\Base {
   
   public function setUp() {
     $this->chainClass = 'Psc\\CMS\\Roles\\AbstractContainer';
