@@ -171,6 +171,19 @@ class RequestAcceptanceTest extends \Psc\Code\Test\HTMLTestCase {
   }
 
   /**
+   * @group userAgent
+   */
+  public function testUserAgentIsParsed() {
+    $request = $this->dispatch('GET', '/request-acceptance/a/normal/request',
+                               NULL,
+                               array('User-Agent'=>'Firefox/21.0'
+                               )
+                              );
+    
+    $this->assertEquals('Firefox/21.0', $request->getUserAgent());
+  }
+
+  /**
    * @group multi-part
    */
   public function testRequestBodyWillBeConvertedToArrayWhenMultiPartFormData() {
@@ -257,4 +270,3 @@ class RequestAcceptanceTest extends \Psc\Code\Test\HTMLTestCase {
     ;
   }
 }
-?>

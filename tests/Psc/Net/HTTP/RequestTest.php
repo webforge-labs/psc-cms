@@ -53,4 +53,3 @@ class RequestTest extends \Psc\Code\Test\Base {
     $this->assertFalse($htmlRequest->accepts('application/json'));
   }
 }
-?>

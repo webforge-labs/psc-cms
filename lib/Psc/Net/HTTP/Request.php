@@ -61,7 +61,12 @@ class Request extends \Psc\Object {
   /**
    * @var string
    */
-  protected $referrer;
+  protected $referer;
+
+  /**
+   * @var string
+   */
+  protected $userAgent;
   
   /**
    * The languages in order of preference
@@ -127,6 +132,7 @@ class Request extends \Psc\Object {
     $request = new Request($method, rawurldecode($sfRequest->getPathInfo()));
     $request->setQuery($sfRequest->query->all());
     $request->setReferer($sfRequest->server->get('HTTP_REFERER'));
+    $request->setUserAgent($sfRequest->server->get('HTTP_USER_AGENT'));
     $request->setPreferredLanguages($sfRequest->getLanguages());
     
     $header = $request->getHeader();
@@ -425,5 +431,20 @@ class Request extends \Psc\Object {
    */
   public function isContentType($contentType) {
     return mb_strpos($this->getHeaderField('Content-Type'), $contentType) === 0;
+  }
+
+  /**
+   * @return string
+   */
+  public function getUserAgent() {
+    return $this->userAgent;
+  }
+
+  /**
+   * @param string
+   */
+  public function setUserAgent($userAgent) {
+    $this->userAgent = $userAgent;
+    return $this;
   }
 }
