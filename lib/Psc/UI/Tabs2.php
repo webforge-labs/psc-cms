@@ -36,7 +36,7 @@ class Tabs2 extends \Psc\HTML\WidgetBase {
   
   public function __construct(Array $options = array(), Template $tab0Template) {
     $this->tab0Template = $tab0Template;
-    
+
     parent::__construct('tabs', $options);
     $this->exporter = new Exporter();
   }
@@ -53,7 +53,7 @@ class Tabs2 extends \Psc\HTML\WidgetBase {
     }
     
     if (isset($this->tab0Template)) {
-      $this->add('Willkommen', $this->tab0Template->get(), NULL, NULL, FALSE); // nicht schließbar
+      $this->add($this->tab0Template->__('title'), $this->tab0Template->get(), NULL, NULL, FALSE); // nicht schließbar
     }
   }
   

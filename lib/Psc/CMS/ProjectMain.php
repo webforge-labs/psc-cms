@@ -678,11 +678,27 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
   
   public function getWelcomeTemplate() {
     if (!isset($this->welcomeTemplate)) {
+      $translator = $this->getTranslator();
+
       $this->welcomeTemplate = new Template('welcome');
       $this->welcomeTemplate->setVar('cms', $this);
+      $this->welcomeTemplate->mergeI18n(
+        array(
+          'de'=>array('title'=>$translator->trans('welcome.tabTitle', array(), NULL, 'de')),
+          'en'=>array('title'=>$translator->trans('welcome.tabTitle', array(), NULL, 'en'))
+        )
+      );
       $this->welcomeTemplate->setVar('main', $this);
     }
+
     return $this->welcomeTemplate;
+  }
+
+  /**
+   * @return Webforge\Translation\Translator
+   */
+  public function getTranslator() {
+    return $this->getContainer()->getTranslator();
   }
   
   /**

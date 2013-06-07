@@ -13,8 +13,19 @@ class Tabs2Test extends \Psc\Code\Test\HTMLTestCase {
     $this->chainClass = 'Psc\UI\Tabs2';
     parent::setUp();
 
-    $welcome = $this->doublesManager->createTemplateMock('willkommen im psc-cms', $this->once());
-    $this->tabs = new Tabs2(array(), $welcome);
+    $deTitle = 'Willkommen';
+    $enTitle = 'Welcome';
+    $deContent = 'willkommen im Psc - CMS';
+    $enContent = 'Welcome to Psc - CMS';
+
+    $this->welcome = $this->doublesManager->createTemplateMock($deContent, $this->once());
+    $this->welcome->mergeI18n(
+      array(
+        'de'=>array('title'=>$deTitle),
+        'en'=>array('title'=>$enTitle)
+      )
+    );
+    $this->tabs = new Tabs2(array(), $this->welcome);
   }
   
   public function testAddsOpenable() {
@@ -34,9 +45,7 @@ class Tabs2Test extends \Psc\Code\Test\HTMLTestCase {
   public function testAcceptance() {
     $tabs = $this->tabs;
     $tabs->init();
-    
     $tabs->select($selected = 1); // eigentlich unnütz
-    
     $this->assertInstanceof('Psc\HTML\HTMLInterface', $tabs);
     
     $this->html = $html = $tabs->html();
@@ -68,5 +77,31 @@ class Tabs2Test extends \Psc\Code\Test\HTMLTestCase {
     
     $this->assertRegExp(sprintf("/tabs.select\(/"), (string) $html, "tabs.select( konnte nicht gefunden werden");
   }
+
+  public function testTabs2UsesTitleFromI18nTemplateWelcome() {
+    $this->createHTML();
+
+    $this->test->css('div.psc-cms-ui-tabs ul li a')
+      ->count(1, 'in div.psc-cms-ui-tabs muss ein ul mit einem li mit dem Titel vorhanden sein.')
+      ->hasText('Willkommen')
+    ;
+  }
+
+  public function testTabsUsesTitleFromI18nWithOtherLanguage() {
+    $this->welcome->setLanguage('en');
+
+    $this->createHTML();
+
+    $this->test->css('div.psc-cms-ui-tabs ul li a')
+      ->count(1, 'in div.psc-cms-ui-tabs muss ein ul mit einem li mit dem Titel vorhanden sein.')
+      ->hasText('Welcome');
+    ;
+  }
+
+  protected function createHTML() {
+    $tabs = $this->tabs;
+    $tabs->init()->select($selected = 1);
+    
+    $this->html = $html = $tabs->html();
+  }
 }
-?>
