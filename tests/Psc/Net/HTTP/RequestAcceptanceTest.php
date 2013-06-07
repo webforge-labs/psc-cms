@@ -171,6 +171,22 @@ class RequestAcceptanceTest extends \Psc\Code\Test\HTMLTestCase {
   }
 
   /**
+   * @group accept
+   */
+  public function testAcceptsIsParsed() {
+    $request = $this->dispatch(
+      'GET', 
+      '/request-acceptance/a/normal/request',
+      NULL,
+      array(
+        'Accept'=>'application/json,*/*;q=0.1',
+      )
+    );
+    
+    $this->assertTrue($request->accepts('application/json'));
+  }
+
+  /**
    * @group userAgent
    */
   public function testUserAgentIsParsed() {

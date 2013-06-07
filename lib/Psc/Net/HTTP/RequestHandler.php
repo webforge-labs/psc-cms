@@ -138,12 +138,13 @@ class RequestHandler extends \Psc\System\LoggerObject {
       if (!$this->isIgnoredError($e)) {
         $contextInfo = 'im RequestHandler. '."\n";
         $contextInfo .= '  '.$request->getMethod().' /'.implode('/',$request->getParts())."\n";
+        $contextInfo .= '  Accept: '.$request->getHeaderField('Accept')."\n";
         $contextInfo .= '  Referer: '.$request->getReferer()."\n";
         $contextInfo .= '  User-Agent: '.$request->getUserAgent();
         if (isset($this->contextInfo)) {
           $contextInfo .= "\n".$this->contextInfo;
         }
-        $contextInfo .= "\n".$this->dumpRequest($request);
+        $contextInfo .= "\n\n".$this->dumpRequest($request);
         \Psc\PSC::getEnvironment()->getErrorHandler()->handleCaughtException($e, $contextInfo);
       }
     }
