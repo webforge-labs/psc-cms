@@ -23,6 +23,7 @@ use Psc\CMS\AbstractTabsContentItem2 as TCI;
 use Psc\UI\Tabs2;
 use Psc\CMS\Controller\Factory as ControllerFactory;
 use Psc\CMS\Roles\Container as ContainerRole;
+use Webforge\CMS\EnvironmentContainer;
 
 class ProjectMain extends \Psc\Object implements DropContentsListCreater{
 
@@ -30,6 +31,11 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
    * @var Psc\Environment
    */  
   protected $environment;
+
+  /**
+   * @var Webforge\CMS\EnvironmentContainer
+   */
+  protected $environmentContainer;
   
   /**
    * @var Manager
@@ -523,22 +529,34 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
   // ganz wichtig, das hier zu überschreiben, damit der authcontroller auf jeden fall den richtigen EntityManager bekommt
   public function getAuthController() {
     if (!isset($this->authController)) {
-      $userClass = $this->getProject()->getUserClass();
-      
       $this->authController = new \Psc\CMS\Controller\AuthController(
         new Auth(
           $this->session,
           NULL,
-          new UserManager(
-            $this->getDoctrinePackage()->getEntityManager()->getRepository($userClass)
-          )
+          $this->getUserManager()
         )
       );
-      $this->authController->setUserClass($userClass);
+      $this->authController->setUserClass($this->getProject()->getUserClass());
       $this->authController->setHTMLPage($this->createHTMLPage()); // inject our js/css Managers
     }
       
     return $this->authController;
+  }
+
+  public function getUserManager() {
+    return new UserManager(
+      $this->getDoctrinePackage()->getEntityManager()->getRepository(
+        $this->getProject()->getUserClass()
+      )
+    );
+  }
+
+  public function getEnvironmentContainer() {
+    if (!isset($this->environmentContainer)) {
+      $this->environmentContainer = new EnvironmentContainer();
+    }
+
+    return $this->environmentContainer;
   }
   
   public function registerFrontendLibraries($cssManager = NULL, $jsManager = NULL) {
