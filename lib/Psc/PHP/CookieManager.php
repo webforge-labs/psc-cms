@@ -7,8 +7,8 @@ class CookieManager {
   protected $domain;
   
   public function set($cookiename, $value) {
-	$value_coded = base64_encode(serialize($value));
-	return setcookie ($cookiename,$value_coded,(time()+24*60*60*365),'/',$this->getDomain(),0);
+    $value_coded = base64_encode(serialize($value));
+    return setcookie ($cookiename,$value_coded,(time()+24*60*60*365),'/',$this->getDomain(),0);
   }
 
   public function get($cookiename) {
@@ -37,4 +37,3 @@ class CookieManager {
     return $this->domain;
   }
 }
-?>

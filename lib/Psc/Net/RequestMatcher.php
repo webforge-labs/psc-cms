@@ -30,6 +30,18 @@ class RequestMatcher extends \Psc\SimpleObject {
     
     $this->fail('%s matched nicht mit '.Code::varInfo($value));
   }
+
+  /**
+   * @return bool
+   */
+  public function matchesValue($value) {
+    if ($this->part() === $value) {
+      $this->matchValue($value);
+      return TRUE;
+    }
+
+    return FALSE;
+  }
   
   public function matchNES() {
     if (mb_strlen($s = $this->part()) > 0) {
