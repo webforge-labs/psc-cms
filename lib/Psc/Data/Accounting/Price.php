@@ -47,12 +47,14 @@ class Price extends \Psc\Data\ValueObject implements \Psc\Data\Exportable {
       throw new \InvalidArgumentException('Preis muss numerisch sein');
     }
 
-    if (!is_float($tax) || $tax <= 0) {
-      throw new \InvalidArgumentException('Tax bitte als positiven Float angeben. 1 = 100%');
+    if ($tax !== -1 && (!is_float($tax) || ($tax <= 0))) {
+      throw new \InvalidArgumentException('Tax bitte als positiven Float angeben. 1 = 100%. -1 for no taxes');
     }
     $this->tax = $tax;
     
-    if ($type === self::GROSS) {
+    if ($this->tax === -1) {
+      $this->net = $price;
+    } elseif ($type === self::GROSS) {
       $this->net = $price / (1+$this->tax);
     } else {
       $this->net = $price;
@@ -87,9 +89,12 @@ class Price extends \Psc\Data\ValueObject implements \Psc\Data\Exportable {
   
   public function convertTo($type, $precision = NULL) {
     Code::value($type, self::NET, self::GROSS, self::TAX);
-    if ($type === self::GROSS) {
+    if ($type === self::GROSS && $this->tax !== -1) {
       $price = $this->net * (1+$this->tax);
     } elseif ($type === self::TAX) {
+      if ($this->tax === -1) {
+        return 0;
+      }
       $price = $this->net * $this->tax;
     } else {
       $price = $this->net;

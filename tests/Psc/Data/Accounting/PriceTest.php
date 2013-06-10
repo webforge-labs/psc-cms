@@ -39,6 +39,14 @@ class PriceTest extends \Psc\Code\Test\Base {
     $this->assertEquals($expectedBrutto, $price->convertTo(Price::BRUTTO));
     $this->assertEquals($expectedNetto, $price->convertTo(Price::NETTO));
   }
+
+  public function testPricesWithNoTax() {
+    $price = new Price(100, Price::NETTO, -1);
+
+    $this->assertEquals(100, $price->convertTo(Price::NETTO));
+    $this->assertEquals(100, $price->convertTo(Price::BRUTTO));
+    $this->assertEquals(0, $price->convertTo(Price::TAX));
+  }
   
   public static function providePrices() {
     return Array(
