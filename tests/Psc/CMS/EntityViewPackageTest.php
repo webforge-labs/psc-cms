@@ -14,7 +14,7 @@ class EntityViewPackageTest extends \Psc\Code\Test\Base {
   public function setUp() {
     $this->chainClass = 'Psc\CMS\EntityViewPackage';
     parent::setUp();
-    $this->ev = new EntityViewPackage();
+    $this->ev = new EntityViewPackage($this->getTranslationContainer());
     
     $this->entityForm = $this->getMockBuilder('Psc\CMS\EntityForm')->disableOriginalConstructor()->getMock();
   }
@@ -26,7 +26,7 @@ class EntityViewPackageTest extends \Psc\Code\Test\Base {
   
   public function testEntityFormPanelIsInjectedWithPanelButtons() {
     $this->ev->setPanelButtons(
-      $buttons = new PanelButtons(array('preview', 'save', 'reload'))
+      $buttons = new PanelButtons(array('preview', 'save', 'reload'), $this->getTranslationContainer())
     );
     
     $panel = $this->ev->createFormPanel('some label', $this->entityForm);
@@ -34,4 +34,3 @@ class EntityViewPackageTest extends \Psc\Code\Test\Base {
     $this->assertSame($buttons, $panel->getPanelButtons(), 'panel buttons were not injected to formPanel');
   }
 }
-?>

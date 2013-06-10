@@ -2,7 +2,7 @@
 
 namespace Psc\CMS\Controller;
 
-abstract class ControllerBaseTest extends \Psc\Code\Test\Base {
+abstract class ControllerBaseTest extends \Psc\Test\DatabaseTestCase {
   
   protected $entityFQN;
   
@@ -10,12 +10,12 @@ abstract class ControllerBaseTest extends \Psc\Code\Test\Base {
   protected $emm;
   
   protected $controller;
-  
+
   public function setUp() {
     parent::setUp();
     $this->emm = $this->doublesManager->createEntityManagerMock();
     $this->repository = $this->createRepositoryMock($this->emm, $this->entityFQN);
-    
+
     $this->controller = $this->createEntityController();
     $this->controller->setOptionalProperties(array('category'));
     $this->setEntityNameInController($this->entityFQN);
@@ -102,12 +102,19 @@ abstract class ControllerBaseTest extends \Psc\Code\Test\Base {
   }
   
   protected function createEntityController() {
-    $controller = $this->getMock($this->chainClass, array('setUp', // wir übersschreiben hier setup, weil wir das repository selbst setzen wollen
-                                                          'getEntityName',  // abstract method
-                                                          'onContentComponentCreated', // test in FormularTest
-                                                          'myCustomAction', // custom action test
-                                                          'getLinkRelationsForEntity' // AbstractEntityControllerTest
-                                                      )); 
+    $controller = $this->getMock(
+      $this->chainClass,
+      array(
+       'setUp', // wir übersschreiben hier setup, weil wir das repository selbst setzen wollen
+       'getEntityName',  // abstract method
+       'onContentComponentCreated', // test in FormularTest
+       'myCustomAction', // custom action test
+       'getLinkRelationsForEntity' // AbstractEntityControllerTest
+      ),
+      array(
+        $this->getTranslationContainer()
+      )
+    ); 
     $controller->setRepository($this->repository); // some kind of ungeil: schöner: repository in init-Funktion
         
     return $controller;
@@ -127,5 +134,8 @@ abstract class ControllerBaseTest extends \Psc\Code\Test\Base {
       
     throw $e;
   }
+
+  protected function getControllerFactory() {
+    return $this->getContainer()->getControllerFactory();
+  }
 }
-?>

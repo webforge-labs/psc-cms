@@ -8,6 +8,7 @@ use Psc\CMS\Item\MetaAdapter;
 use Psc\UI\DataScreener;
 use Closure;
 use Psc\UI\PanelButtons;
+use Psc\CMS\Translation\Container as TranslationContainer;
 
 class EntityGridPanel extends \Psc\CMS\GridPanel {
   
@@ -24,10 +25,10 @@ class EntityGridPanel extends \Psc\CMS\GridPanel {
   protected $labeler;
   
 
-  public function __construct(EntityMeta $meta, $label = NULL, Labeler $labeler = NULL, DataScreener $screener = NULL, $sortable = FALSE) {
+  public function __construct(EntityMeta $meta, TranslationContainer $translationContainer, $label = NULL, Labeler $labeler = NULL, DataScreener $screener = NULL, $sortable = FALSE) {
     $this->labeler = $labeler ?: new Labeler();
     $this->entityMeta = $meta;
-    parent::__construct($label ?: $this->entityMeta->getGridLabel(), $panelButtons = NULL, $screener, $sortable, $this->entityMeta->getGridRequestMeta(TRUE, $save = TRUE));
+    parent::__construct($label ?: $this->entityMeta->getGridLabel(), $translationContainer, $panelButtons = NULL, $screener, $sortable, $this->entityMeta->getGridRequestMeta(TRUE, $save = TRUE));
   }
   
   protected function doInit() {

@@ -77,7 +77,7 @@ class EntityViewPackage extends \Psc\SimpleObject {
    * @return Psc\CMS\EntityGridPanel
    */
   public function createGridPanel(EntityMeta $entityMeta, $label = NULL) {
-    return $this->gridPanel = new EntityGridPanel($entityMeta, $label, $this->labeler);
+    return $this->gridPanel = new EntityGridPanel($entityMeta, $this->translationContainer, $label, $this->labeler);
   }
   
   /**

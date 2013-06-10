@@ -4,6 +4,7 @@ namespace Psc\CMS\Translation;
 
 use Webforge\Translation\ResourceTranslator;
 use Webforge\Framework\Package\Package;
+use Webforge\Framework\Package\ProjectPackage;
 
 class Container {
 
@@ -16,7 +17,6 @@ class Container {
     $this->translator = $translator;
   }
 
-
   public function loadTranslationsFromPackage(Package $package) {
     $this->getTranslator()->addResourceDirectory(
       $package->getRootDirectory()->sub('resources/translations/')
@@ -25,6 +25,13 @@ class Container {
     return $this;
   }
 
+  public function loadTranslationsFromProjectPackage(ProjectPackage $package, $domain = NULL) {
+    foreach ($package->getConfiguration()->get(array('translations'), array()) as $locale => $translations) {
+      $this->translator->addResource('array', $translations, $locale, $domain);
+    }
+
+    return $this;
+  }
 
   /**
    * @return Webforge\Translation\Translator

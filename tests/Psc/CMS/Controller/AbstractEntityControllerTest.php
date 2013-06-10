@@ -40,7 +40,7 @@ class AbstractEntityControllerTest extends AbstractEntityControllerBaseTest {
   }
   
   public function testSortableControllerInterfaceSetsSortedGridPanelToTrue() {
-    $controller = new \Psc\Test\ArticleSortingController();
+    $controller = $this->getControllerFactory()->getController('Psc\Test\ArticleSortingController');
     $this->assertInstanceof('Psc\CMS\Controller\SortingController', $controller);
     
     $this->articles = $this->loadTestEntities('articles');
@@ -64,7 +64,7 @@ class AbstractEntityControllerTest extends AbstractEntityControllerBaseTest {
     
     shuffle($sortMap);
     
-    $controller = new \Psc\Test\ArticleSortingController();
+    $controller = new \Psc\Test\ArticleSortingController($this->getTranslationContainer());
     $controller->setRepository($this->repository); // inject
 
     $controller->saveSort($sortMap);

@@ -29,11 +29,6 @@ abstract class AbstractContainer extends AbstractControllerContainer implements 
 
   protected $translationContainer;
 
-  /**
-   * @var array
-   */
-  private $translations;
-
   public function __construct($controllersNamespace, DCPackage $dc, Array $languages, $language,  ContentStreamConverter $contentStreamConverter = NULL) {
     parent::__construct($controllersNamespace ?: $this->defaultControllersNamespace, $dc, $languages, $language, $contentStreamConverter);
   }
@@ -71,7 +66,16 @@ abstract class AbstractContainer extends AbstractControllerContainer implements 
    */
   public function getTranslationContainer() {
     if (!isset($this->translationContainer)) {
-      $this->translationContainer = new TranslationContainer($this->getTranslator());
+      $this->translationContainer = new TranslationContainer(
+        new ArrayTranslator(
+          $this->getLanguage(),
+          array(),
+          array($this->getProjectPackage()->getDefaultLanguage())
+        )
+      );
+
+      $this->translationContainer->loadTranslationsFromPackage($this->getPackage());
+      $this->translationContainer->loadTranslationsFromProjectPackage($this->getProjectPackage());
     }
 
     return $this->translationContainer;
@@ -81,28 +85,7 @@ abstract class AbstractContainer extends AbstractControllerContainer implements 
    * @return Webforge\Translation\Translator
    */
   public function getTranslator() {
-    if (!isset($this->translator)) {
-      $package = $this->getProjectPackage();
-
-      $this->translator = new ArrayTranslator(
-        $this->getLanguage(),
-        $this->getTranslationsFromProjectPackage($package),
-        array($package->getDefaultLanguage())
-      );
-    }
-
-    return $this->translator;
-  }
-
-  protected function getTranslationsFromProjectPackage(ProjectPackage $package) {
-    if (!isset($this->translations)) {
-      $this->translations = array();
-      foreach ($this->getLanguages() as $locale)  {// or: this->getLanguages() ??
-        $this->translations[$locale] = $package->getConfiguration()->get(array('translations', $locale), array());
-      }
-    }
-
-    return $this->translations;
+    return $this->getTranslationContainer()->getTranslator();
   }
 
   public function setLanguage($lang) {

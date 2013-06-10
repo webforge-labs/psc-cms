@@ -8,6 +8,7 @@ use Psc\Code\Event\CallbackSubscriber;
 use Psc\UI\Accordion;
 use Psc\CMS\Component;
 use Psc\Code\Code;
+use Psc\CMS\Translation\Container as TranslationContainer;
 
 class EntityFormPanel extends \Psc\UI\FormPanel implements \Psc\CMS\ComponentsCreater {
   

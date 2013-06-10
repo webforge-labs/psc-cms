@@ -25,6 +25,7 @@ class EntityFormPanelTest extends \Psc\Doctrine\DatabaseTestCase {
     
     $this->panel = new EntityFormPanel(
       'Person bearbeiten',
+      $this->getTranslationContainer(),
       new EntityForm(
         $entity,
         $this->getEntityMeta('Psc\Doctrine\TestEntities\Person')->getSaveRequestMeta($entity)

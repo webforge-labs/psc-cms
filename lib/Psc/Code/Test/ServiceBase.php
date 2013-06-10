@@ -7,7 +7,7 @@ use Psc\Net\ServiceRequest;
 use Psc\Net\ServiceResponse;
 use Closure;
 
-class ServiceBase extends \Psc\Code\Test\Base {
+class ServiceBase extends \Psc\Test\DatabaseTestCase {
   
   /**
    * Gibt einen ServiceRequest zurück

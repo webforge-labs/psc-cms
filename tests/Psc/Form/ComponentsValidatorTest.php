@@ -51,7 +51,7 @@ class ComponentsValidatorTest extends \Psc\Code\Test\Base {
   
   protected function createFixture(Array $data = array()) {
     $person = new Person('Scheit', 'p.scheit@ps-webforge.com', 'Philipp', Date::create('21.11.1984'));
-    $formPanel = new EntityFormPanel('Person bearbeiten',new EntityForm($person, $this->getEntityMeta('Psc\Doctrine\TestEntities\Person')->getSaveRequestMeta($person)));
+    $formPanel = new EntityFormPanel('Person bearbeiten', $this->getTranslationContainer(), new EntityForm($person, $this->getEntityMeta('Psc\Doctrine\TestEntities\Person')->getSaveRequestMeta($person)));
     $formPanel->createComponents();
     
     $validator = new ComponentsValidator(

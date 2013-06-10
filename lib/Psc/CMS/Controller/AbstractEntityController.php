@@ -119,8 +119,9 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
   protected $defaultRevision = 'default';
   
   public function __construct(TranslationContainer $translationContainer, DCPackage $dc = NULL, EntityViewPackage $ev = NULL, ValidationPackage $v = NULL, ServiceErrorPackage $err = NULL) {
+    $this->translationContainer = $translationContainer;
     $this->dc = $dc ?: new DCPackage();
-    $this->ev = $ev ?: new EntityViewPackage();
+    $this->ev = $ev ?: new EntityViewPackage($this->translationContainer);
     $this->v = $v ?: new ValidationPackage();
     $this->err = $err ?: new ServiceErrorPackage($this);
     $this->setUp();
@@ -518,10 +519,10 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
     /* Übernehme URL + Methode für den Panel aus EntityMeta*/
     if ($entity->isNew()) {
       $panel->setRequestMeta($requestMeta ?: $entityMeta->getNewRequestMeta());
-      $panel->setPanelButtons(new PanelButtons(array('insert','reset','insert-open')));
+      $panel->setPanelButtons(new PanelButtons(array('insert','reset','insert-open'), $this->translationContainer));
     } else {
       $panel->setRequestMeta($requestMeta ?: $entityMeta->getSaveRequestMeta($entity));
-      $panel->setPanelButtons(new PanelButtons(array('save','reload','save-close')));
+      $panel->setPanelButtons(new PanelButtons(array('save','reload','save-close'), $this->translationContainer));
     }
     
     // custom init
@@ -915,5 +916,9 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
   public function setPropertiesOrder(Array $names) {
     $this->propertiesOrder = $names;
     return $this;
+  }
+
+  protected function getTranslationContainer() {
+    return $this->translationContainer;
   }
 }

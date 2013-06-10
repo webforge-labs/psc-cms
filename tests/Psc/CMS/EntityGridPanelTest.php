@@ -15,7 +15,7 @@ class EntityGridPanelTest extends \Psc\Code\Test\HTMLTestCase {
     
     $this->entities = $this->loadTestEntities('users');
     $this->entityMeta = \Psc\PSC::getProject()->getModule('Doctrine')->getEntityMeta('User');
-    $this->entityGridPanel = new EntityGridPanel($this->entityMeta, 'User Verwaltung'); 
+    $this->entityGridPanel = new EntityGridPanel($this->entityMeta, $this->getTranslationContainer(), 'User Verwaltung');
   }
   
   public function testAcceptance() {
@@ -82,4 +82,3 @@ class EntityGridPanelTest extends \Psc\Code\Test\HTMLTestCase {
                   ->hasAttribute('action', $this->entityMeta->getGridRequestMeta(TRUE, $save = TRUE)->getUrl());
   }
 }
-?>

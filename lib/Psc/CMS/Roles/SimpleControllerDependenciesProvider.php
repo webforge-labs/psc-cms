@@ -34,4 +34,8 @@ class SimpleControllerDependenciesProvider implements ControllerDependenciesProv
   public function getSimpleContainer() {
     return $this->container;
   }
+
+  public function getTranslationContainer() {
+    return $this->getContainer()->getTranslationContainer();
+  }
 }

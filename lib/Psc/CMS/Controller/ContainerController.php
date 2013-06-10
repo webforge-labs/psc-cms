@@ -17,7 +17,7 @@ abstract class ContainerController extends SimpleContainerController {
   protected $container;
 
   public function __construct(DCPackage $dc, ControllerContainer $container, EntityViewPackage $ev = NULL, ValidationPackage $v = NULL, ServiceErrorPackage $err = NULL) {
-    parent::__construct($dc, $ev, $v, $err, $container);
+    parent::__construct($container->getTranslationContainer(), $dc, $ev, $v, $err, $container);
   }
 
   /**

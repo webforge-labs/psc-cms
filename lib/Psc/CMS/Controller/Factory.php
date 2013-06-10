@@ -50,7 +50,7 @@ class Factory {
    *  @return Controller-Instance
    */
   public function getController($controllerName) {
-    $controllerClass = $this->getControllerGClass($controllerName);
+    $controllerClass = $this->isFQN($controllerName) ? new GClass($controllerName) : $this->getControllerGClass($controllerName);
 
     $args = array();
     if ($this->isInstanceOf($controllerClass, 'Psc\CMS\Controller\ContainerController')) {
@@ -61,6 +61,7 @@ class Factory {
       
     } elseif ($this->isInstanceOf($controllerClass, 'Psc\CMS\Controller\SimpleContainerController')) {
       $args = array(
+        $this->dependencies->getTranslationContainer(),
         $this->dependencies->getDoctrinePackage(),
         NULL,
         NULL,
@@ -70,6 +71,7 @@ class Factory {
 
 
     } elseif ($this->isInstanceOf($controllerClass, 'Psc\CMS\Controller\AbstractEntityController')) {
+      $args[] = $this->dependencies->getTranslationContainer();
       $args[] = $this->dependencies->getDoctrinePackage();
     }
 
@@ -98,6 +100,13 @@ class Factory {
     $gClass->setNamespace($this->getDefaultNamespace());
 
     return $gClass;
+  }
+
+  /**
+   * @return bool
+   */
+  protected function isFQN($fqn) {
+    return mb_strpos($fqn, '\\') !== FALSE;
   }
 
   /**

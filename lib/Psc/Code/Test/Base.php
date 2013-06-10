@@ -30,6 +30,8 @@ class Base extends \Webforge\Code\Test\Base {
   protected $resourceHelper;
   
   protected $doublesManager;
+
+  protected $translationContainer;
   
   public function __construct($name = NULL, array $data = array(), $dataName = '') {
     parent::__construct($name, $data, $dataName);
@@ -230,5 +232,13 @@ class Base extends \Webforge\Code\Test\Base {
     $translator->addDomainTranslations($translations->build(), $translations->getDomain());
 
     return new TranslationContainer($translator);
+  }
+
+  public function getTranslationContainer() {
+    if (!isset($this->translationContainer)) {
+      $this->translationContainer = $this->createTranslationContainer($this->buildTranslations());
+    }
+    
+    return $this->translationContainer;
   }
 }

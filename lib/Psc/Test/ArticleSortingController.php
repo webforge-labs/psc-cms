@@ -12,4 +12,3 @@ class ArticleSortingController extends \Psc\CMS\Controller\AbstractEntityControl
     return 'sort';  // ist quatsch, weils das für den article natürlich nicht gibt
   }
 }
-?>

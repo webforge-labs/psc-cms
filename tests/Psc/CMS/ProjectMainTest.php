@@ -95,5 +95,4 @@ class ProjectMainTest extends \Psc\Code\Test\Base {
   protected function assertResponse($code = 200) {
     $this->assertEquals($code, $this->response->getCode(), $this->request->debug()."\n".$this->response->debug());
   }
-
 }

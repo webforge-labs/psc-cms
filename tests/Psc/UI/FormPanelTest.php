@@ -10,7 +10,7 @@ use \Psc\UI\FormPanel;
 class FormPanelTest extends \Psc\Code\Test\HTMLTestCase {
   
   public function testAcceptance() {
-    $this->html = $formPanel = new FormPanel('Episoden verwalten', $form = new \Psc\CMS\Form(NULL, '/episodes/manager'));
+    $this->html = $formPanel = new FormPanel('Episoden verwalten', $this->getTranslationContainer(), $form = new \Psc\CMS\Form(NULL, '/episodes/manager'));
 
     $this->test->css('form.psc-cms-ui-form')->count(1)->hasAttribute('action','/episodes/manager')
       ->test('div.psc-cms-ui-form-panel')->count(1)
@@ -27,7 +27,7 @@ class FormPanelTest extends \Psc\Code\Test\HTMLTestCase {
   }
   
   public function testWithAccordion() {
-    $this->html = $formPanel = new FormPanel('Episoden verwalten', $form = new \Psc\CMS\Form(NULL, '/episodes/manager'));
+    $this->html = $formPanel = new FormPanel('Episoden verwalten', $this->getTranslationContainer(), $form = new \Psc\CMS\Form(NULL, '/episodes/manager'));
     
     $accordion = new \Psc\UI\Accordion(array('autoHeight'=>true, 'active'=>0));
     $accordion->addSection('Optionen', array());
@@ -46,7 +46,7 @@ class FormPanelTest extends \Psc\Code\Test\HTMLTestCase {
   }
   
   public function testWithoutLabelRemovesFieldSet() {
-    $this->html = $formPanel = new FormPanel(NULL, $form = new \Psc\CMS\Form(NULL, '/episodes/manager'));
+    $this->html = $formPanel = new FormPanel(NULL, $this->getTranslationContainer(), $form = new \Psc\CMS\Form(NULL, '/episodes/manager'));
     
     $this->test->css('div.psc-cms-ui-form-panel')->count(1)
       ->test('.psc-cms-ui-buttonset')->count(1)->end()

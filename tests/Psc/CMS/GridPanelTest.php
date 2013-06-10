@@ -14,7 +14,7 @@ class GridPanelTest extends \Psc\Code\Test\HTMLTestCase {
   public function setUp() {
     $this->chainClass = 'Psc\CMS\GridPanel';
     parent::setUp();
-    $this->gridPanel = new GridPanel('A nice Looking Panel for items in a Table');
+    $this->gridPanel = new GridPanel('A nice Looking Panel for items in a Table', $this->getTranslationContainer());
     $this->gridPanel->createColumn('spalte1', $this->getType('String'));
     $this->gridPanel->createColumn('spalte2', $this->getType('Integer'));
     $this->gridPanel->createColumn('spalte3', $this->getType('Integer'), 'Spalte 3');
@@ -81,4 +81,3 @@ class GridPanelTest extends \Psc\Code\Test\HTMLTestCase {
     $this->gridPanel->addRow(array('sizeto','small'));
   }
 }
-?>

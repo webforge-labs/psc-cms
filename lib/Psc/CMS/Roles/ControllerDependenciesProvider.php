@@ -16,4 +16,9 @@ interface ControllerDependenciesProvider extends DCPackageProvider {
    */
   public function getContainer();
 
+
+  /**
+   * @return Psc\CMS\Translation\Container
+   */
+  public function getTranslationContainer();
 }

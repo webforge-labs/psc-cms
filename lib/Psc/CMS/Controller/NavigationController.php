@@ -103,7 +103,7 @@ class NavigationController extends ContainerController {
       $this->getFormDocumentation()
     );
     
-    $panelButtons = new PanelButtons(array('save', 'reload'));
+    $panelButtons = new PanelButtons(array('save', 'reload'), $this->getTranslationContainer());
     
     $form = new \Psc\CMS\Form(NULL, '/entities/navigation-node/'.$this->context, 'post');
     $form->setHTTPHeader('X-Psc-Cms-Request-Method', 'PUT');

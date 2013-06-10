@@ -190,6 +190,11 @@ class NavigationControllerTest extends \Psc\Doctrine\NavigationNodesTestCase {
       return $fqns[$name];
     }));
 
+    $container->expects($this->any())->method('getLanguage')->will($this->returnvalue($this->defaultLanguage));
+    $container->expects($this->any())->method('getLanguages')->will($this->returnvalue($this->languages));
+
+    $container->expects($this->any())->method('getTranslationContainer')->will($this->returnvalue($this->getTranslationContainer()));
+
     $controllers = array(
       'Page'=>new \Psc\Test\Controllers\PageController($this->dc, $container)
     );
@@ -197,9 +202,6 @@ class NavigationControllerTest extends \Psc\Doctrine\NavigationNodesTestCase {
     $container->expects($this->any())->method('getController')->will($this->returnCallback(function ($name) use ($controllers) {
       return $controllers[$name];
     }));
-
-    $container->expects($this->any())->method('getLanguage')->will($this->returnvalue($this->defaultLanguage));
-    $container->expects($this->any())->method('getLanguages')->will($this->returnvalue($this->languages));
 
     return $container;
   }

@@ -57,11 +57,15 @@ class FormPanel extends \Psc\HTML\Base {
    * @var string
    */
   protected $contentTemplate;
+
+
+  protected $translationContainer;
   
   public function __construct($label, TranslationContainer $translationContainer, \Psc\CMS\Form $form = NULL, PanelButtons $panelButtons = NULL, Accordion $accordion = NULL) {
+    $this->translationContainer = $translationContainer;
     $this->form = $form ?: new \Psc\CMS\Form();
     $this->label = $label;
-    $this->panelButtons = $panelButtons ?: new PanelButtons(array('save','reload','save-close'), $translationContainer);
+    $this->panelButtons = $panelButtons ?: new PanelButtons(array('save','reload','save-close'), $this->translationContainer);
     $this->contentTemplate =
       "\n".
       "  %buttons%\n".
@@ -206,7 +210,7 @@ class FormPanel extends \Psc\HTML\Base {
    */
   public function setPanelButtons($panelButtons) {
     if (is_array($panelButtons)) {
-      $panelButtons = new PanelButtons($panelButtons);
+      $panelButtons = new PanelButtons($panelButtons, $this->translationContainer);
     }
     
     $this->panelButtons = $panelButtons;

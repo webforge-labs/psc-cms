@@ -13,6 +13,7 @@ use Psc\Data\Set;
 use Psc\UI\DataScreener;
 use Psc\HTML\HTML;
 use Closure;
+use Psc\CMS\Translation\Container as TranslationContainer;
 
 /**
  * 
@@ -60,9 +61,14 @@ class GridPanel extends \Psc\HTML\JooseBase {
    * @var Psc\CMS\RequestMeta
    */
   protected $formRequestMeta;
+
+  /**
+   * @var Psc\CMS\Translation\Container
+   */
+  protected $translationContainer;
   
-  
-  public function __construct($label, PanelButtons $panelButtons = NULL, DataScreener $dataScreener = NULL, $sortable = false, RequestMeta $formRequestMeta = NULL) {
+  public function __construct($label, TranslationContainer $translationContainer, PanelButtons $panelButtons = NULL, DataScreener $dataScreener = NULL, $sortable = false, RequestMeta $formRequestMeta = NULL) {
+    $this->translationContainer = $translationContainer;
     $this->columns = array();
     $this->dataScreener = $dataScreener ?: new DataScreener();
     $this->label = $label;
@@ -148,7 +154,7 @@ class GridPanel extends \Psc\HTML\JooseBase {
     }
     $grid->tr();
     
-    $panel = new FormPanel($this->label, $this->form = new Form(NULL, $this->getFormRequestMeta()), $this->getPanelButtons());
+    $panel = new FormPanel($this->label, $this->translationContainer, $this->form = new Form(NULL, $this->getFormRequestMeta()), $this->getPanelButtons());
     $panel->setWidth('100%');
     $panel->addContent($this->grid);
 
@@ -199,7 +205,7 @@ class GridPanel extends \Psc\HTML\JooseBase {
   }
   
   protected function initPanelButtons() {
-    $this->panelButtons = new PanelButtons(array('reload'));
+    $this->panelButtons = new PanelButtons(array('reload'), $this->translationContainer);
     return $this;
   }
   
