@@ -229,6 +229,16 @@ class Template extends \Psc\SimpleObject implements \Psc\HTML\HTMLInterface, \Ps
     return $this;
   }
 
+  public function mergeI18n(Array $i18n) {
+    foreach ($i18n as $lang => $keys) {
+      if (!isset($this->i18n[$lang])) {
+        $this->i18n[$lang] = array();
+      }
+      $this->i18n[$lang] = array_merge($this->i18n[$lang], $keys);
+    }
+    return $this;
+  }
+
   /**
    * @return array
    */

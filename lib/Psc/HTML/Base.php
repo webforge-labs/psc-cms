@@ -52,4 +52,3 @@ abstract class Base extends \Psc\SimpleObject implements \Psc\HTML\HTMLInterface
     return \Psc\Form\HTML::getName($name);
   }
 }
-?>

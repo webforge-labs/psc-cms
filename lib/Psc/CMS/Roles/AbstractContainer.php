@@ -7,6 +7,7 @@ use Webforge\Framework\Package\ProjectPackage;
 use Psc\Doctrine\DCPackage;
 use Psc\TPL\ContentStream\Converter AS ContentStreamConverter;
 use Webforge\Translation\ArrayTranslator;
+use Psc\CMS\Translation\Container as TranslationContainer;
 
 abstract class AbstractContainer extends AbstractControllerContainer implements Container, \Psc\TPL\ContentStream\Context {
 
@@ -24,6 +25,9 @@ abstract class AbstractContainer extends AbstractControllerContainer implements 
    * @var Webforge\Framework\Package\Package
    */
   protected $package;
+
+
+  protected $translationContainer;
 
   /**
    * @var array
@@ -63,6 +67,17 @@ abstract class AbstractContainer extends AbstractControllerContainer implements 
   }
 
   /**
+   * @return Psc\CMS\Translation\Container
+   */
+  public function getTranslationContainer() {
+    if (!isset($this->translationContainer)) {
+      $this->translationContainer = new TranslationContainer($this->getTranslator());
+    }
+
+    return $this->translationContainer;
+  }
+
+  /**
    * @return Webforge\Translation\Translator
    */
   public function getTranslator() {
@@ -71,7 +86,7 @@ abstract class AbstractContainer extends AbstractControllerContainer implements 
 
       $this->translator = new ArrayTranslator(
         $this->getLanguage(),
-        $this->getTranslations($package),
+        $this->getTranslationsFromProjectPackage($package),
         array($package->getDefaultLanguage())
       );
     }
@@ -79,7 +94,7 @@ abstract class AbstractContainer extends AbstractControllerContainer implements 
     return $this->translator;
   }
 
-  protected function getTranslations(ProjectPackage $package) {
+  protected function getTranslationsFromProjectPackage(ProjectPackage $package) {
     if (!isset($this->translations)) {
       $this->translations = array();
       foreach ($this->getLanguages() as $locale)  {// or: this->getLanguages() ??
@@ -93,7 +108,9 @@ abstract class AbstractContainer extends AbstractControllerContainer implements 
   public function setLanguage($lang) {
     parent::setLanguage($lang);
 
-    if (isset($this->translator)) {
+    if (isset($this->translationContainer)) {
+      $this->translationContainer->setLocale($this->getLanguage());
+    } elseif (isset($this->translator)) {
       $this->translator->setLocale($this->getLanguage());
     }
 

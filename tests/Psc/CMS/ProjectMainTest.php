@@ -75,6 +75,16 @@ class ProjectMainTest extends \Psc\Code\Test\Base {
     
     $this->assertResponse(200);
   }
+
+  public function testWelcomeTemplateHasInternationalTitle() {
+    $welcome = $this->main->getWelcomeTemplate();
+
+    $welcome->setLanguage('de');
+    $this->assertEquals('Willkommen', $welcome->__('title'));
+
+    $welcome->setLanguage('en');
+    $this->assertEquals('Welcome', $welcome->__('title'));
+  }
   
   protected function request($method, $resource) {
     $fc = $this->main->getFrontController();
@@ -85,5 +95,5 @@ class ProjectMainTest extends \Psc\Code\Test\Base {
   protected function assertResponse($code = 200) {
     $this->assertEquals($code, $this->response->getCode(), $this->request->debug()."\n".$this->response->debug());
   }
+
 }
-?>

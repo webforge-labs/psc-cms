@@ -32,6 +32,7 @@ use Psc\Data\ArrayExportCollection;
 use Psc\CMS\Service\MetadataGenerator;
 
 use Psc\UI\PanelButtons;
+use Psc\CMS\Translation\Container as TranslationContainer;
 
 /**
  * @TODO wie werden hier "custom"-API Funktionen im Service registriert?
@@ -69,6 +70,11 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
    * @var ValidationPackage
    */
   protected $v;
+
+  /**
+   * @var Psc\CMS\Translation\Container
+   */
+  protected $translationContainer;
   
   /**
    * EIn Package für Service Errors
@@ -112,7 +118,7 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
    */
   protected $defaultRevision = 'default';
   
-  public function __construct(DCPackage $dc = NULL, EntityViewPackage $ev = NULL, ValidationPackage $v = NULL, ServiceErrorPackage $err = NULL) {
+  public function __construct(TranslationContainer $translationContainer, DCPackage $dc = NULL, EntityViewPackage $ev = NULL, ValidationPackage $v = NULL, ServiceErrorPackage $err = NULL) {
     $this->dc = $dc ?: new DCPackage();
     $this->ev = $ev ?: new EntityViewPackage();
     $this->v = $v ?: new ValidationPackage();
@@ -911,4 +917,3 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
     return $this;
   }
 }
-?>

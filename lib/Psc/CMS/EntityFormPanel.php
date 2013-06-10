@@ -31,8 +31,8 @@ class EntityFormPanel extends \Psc\UI\FormPanel implements \Psc\CMS\ComponentsCr
    */
   protected $labeler;
   
-  public function __construct($label, \Psc\CMS\EntityForm $form, ComponentMapper $mapper = NULL, Labeler $labeler = NULL, Manager $manager = NULL) {
-    parent::__construct($label, $form);
+  public function __construct($label, TranslationContainer $translationContainer, \Psc\CMS\EntityForm $form, ComponentMapper $mapper = NULL, Labeler $labeler = NULL, Manager $manager = NULL) {
+    parent::__construct($label, $translationContainer, $form);
     $this->componentMapper = $mapper ?: new ComponentMapper();
     $this->labeler = $labeler ?: new Labeler();
     $this->manager = $manager ?: new Manager();

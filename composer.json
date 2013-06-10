@@ -13,7 +13,7 @@
       "Psc": ["lib/", "tests/"],
       "Hitch": ["application/src/hitch/lib/"],
       "PHPWord": ["application/src/PHPWord/"],
-      "Webforge\\Code\\Test": ["D:\\www\\webforge-testplate\\lib"]
+      "Webforge\\Translation": ["D:\\www\\webforge-translation\\lib"]
     }
   },
   "require": {

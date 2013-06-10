@@ -2,6 +2,8 @@
 
 namespace Psc\UI;
 
+use Psc\CMS\Translation\Container as TranslationContainer;
+
 /**
  * Ein FormPanel ist ein Wrapper (Fieldset) um eine Psc\CMS\Form
  *
@@ -56,10 +58,10 @@ class FormPanel extends \Psc\HTML\Base {
    */
   protected $contentTemplate;
   
-  public function __construct($label, \Psc\CMS\Form $form = NULL, PanelButtons $panelButtons = NULL, Accordion $accordion = NULL) {
+  public function __construct($label, TranslationContainer $translationContainer, \Psc\CMS\Form $form = NULL, PanelButtons $panelButtons = NULL, Accordion $accordion = NULL) {
     $this->form = $form ?: new \Psc\CMS\Form();
     $this->label = $label;
-    $this->panelButtons = $panelButtons ?: new PanelButtons(array('save','reload','save-close'));
+    $this->panelButtons = $panelButtons ?: new PanelButtons(array('save','reload','save-close'), $translationContainer);
     $this->contentTemplate =
       "\n".
       "  %buttons%\n".
