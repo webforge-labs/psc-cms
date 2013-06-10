@@ -4,7 +4,7 @@ namespace Psc\CMS\Translation;
 
 use Webforge\Translation\Translator;
 
-class Container implements Translator {
+class Container {
 
   /**
    * @var Webforge\Translation\Translator
@@ -15,21 +15,18 @@ class Container implements Translator {
     $this->translator = $translator;
   }
 
-  public function trans($id, Array $parameters = array(), $domain = NULL, $locale = NULL) {
-    return $this->translator->trans($id, $parametres, $domain, $locale);
+  /**
+   * @return Webforge\Translation\Translator
+   */
+  public function getTranslator() {
+    return $this->translator;
   }
 
+  /**
+   * Changes the current language
+   */
   public function setLocale($locale) {
     $this->translator->setLocale($locale);
-    return $this;
-  }
-
-  public function getLocale() {
-    return $this->translator->getLocale();
-  }
-
-  public function setFallbackLocales(Array $locales) {
-    $this->translator->setFallbackLocales($locales);
     return $this;
   }
 }

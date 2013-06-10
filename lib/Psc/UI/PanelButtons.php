@@ -25,9 +25,13 @@ class PanelButtons extends \Psc\HTML\Base {
   // block bit3 fuer position im panel
   const PREPEND                 = 0x000100;
   const APPEND                  = 0x000200;
+
+  protected $buttons;
+
+  protected $translationContainer;
   
   public function __construct(Array $buttons, TranslationContainer $translationContainer, $flags = NULL) {
-    $this->translator = $translationContainer;
+    $this->translationContainer = $translationContainer;
     $this->buttons = array();
     
     foreach ($buttons as $button) {
@@ -83,20 +87,24 @@ class PanelButtons extends \Psc\HTML\Base {
   }
   
   public function addSaveButton($flags = self::ALIGN_LEFT) {
-    $button = $this->addButton('speichern', $flags, 'disk');
+    $button = $this->addButton($this->translate('save'), $flags, 'disk');
     $button->getHTML()
       ->addClass('\Psc\button-save');
       return $button;
   }
 
   public function addInsertOpenButton($flags = self::ALIGN_LEFT) {
-    $button = $this->addButton('neu erstellen und geöffnet lassen', $flags, 'circle-plus', NULL);
+    $button = $this->addButton($this->translate('insert-open'), $flags, 'circle-plus', NULL);
     $button->getHTML()
       ->addClass('\Psc\button-save');
       return $button;
   }
   
-  public function addNewButton($button = 'Neu', $flags = self::ALIGN_LEFT) {
+  public function addNewButton($button = FALSE, $flags = self::ALIGN_LEFT) {
+    if ($button === FALSE) {
+      $button = $this->translate('insert');
+    }
+
     $button = $this->addButton($button, $flags, 'circle-plus');
     $button->getHTML()
       ->addClass('\Psc\button-new');
@@ -105,7 +113,7 @@ class PanelButtons extends \Psc\HTML\Base {
   }
   
   public function addSaveCloseButton($flags = self::ALIGN_LEFT) {
-    $button = $this->addButton('speichern und schließen', $flags, 'disk', 'close');
+    $button = $this->addButton($this->translate('save-close'), $flags, 'disk', 'close');
     $button->getHTML()
       ->addClass('\Psc\button-save-close');
     
@@ -118,7 +126,7 @@ class PanelButtons extends \Psc\HTML\Base {
    * in insert-tab
    */
   public function addInsertCloseButton($flags = self::ALIGN_LEFT) {
-    $button = $this->addButton('neu erstellen', $flags, 'circle-plus', 'close');
+    $button = $this->addButton($this->translate('insert-close'), $flags, 'circle-plus', 'close');
     $button->getHTML()
       ->addClass('\Psc\button-save-close');
     
@@ -131,7 +139,7 @@ class PanelButtons extends \Psc\HTML\Base {
    * in insert-tab
    */
   public function addInsertButton($flags = self::ALIGN_LEFT) {
-    $button = $this->addButton('neu erstellen', $flags, 'circle-plus', 'close');
+    $button = $this->addButton($this->translate('insert'), $flags, 'circle-plus', 'close');
     $button->getHTML()
       ->addClass('\Psc\button-save-close-this');
     
@@ -142,7 +150,7 @@ class PanelButtons extends \Psc\HTML\Base {
    * used in the save-tab
    */
   public function addReloadButton($flags = self::ALIGN_LEFT) {
-    $button = $this->addButton('neu laden', $flags, 'refresh', NULL);
+    $button = $this->addButton($this->translate('reload'), $flags, 'refresh', NULL);
     $button->getHTML()
       ->addClass('\Psc\button-reload');
     
@@ -155,7 +163,7 @@ class PanelButtons extends \Psc\HTML\Base {
    * used in the insert-tab
    */
   public function addResetButton($flags = self::ALIGN_LEFT) {
-    $button = $this->addButton('zurücksetzen', $flags, 'arrowreturn-1-w', NULL);
+    $button = $this->addButton($this->translate('reset'), $flags, 'arrowreturn-1-w', NULL);
     $button->getHTML()
       ->addClass('\Psc\button-reload');
     
@@ -168,7 +176,7 @@ class PanelButtons extends \Psc\HTML\Base {
    * used in the edit-tab
    */
   public function addPreviewButton($flags = self::ALIGN_LEFT) {
-    $button = $this->addButton('preview', $flags, 'image', NULL);
+    $button = $this->addButton($this->translate('preview'), $flags, 'image', NULL);
     $button->getHTML()
       ->addClass('\Psc\button-preview');
     
@@ -227,5 +235,8 @@ class PanelButtons extends \Psc\HTML\Base {
   public function getButton($index) {
     return $this->buttons[$index];
   }
+
+  protected function translate($key) {
+    return $this->translationContainer->getTranslator()->trans('panel.buttons.'.$key);
+  }
 }
-?>
