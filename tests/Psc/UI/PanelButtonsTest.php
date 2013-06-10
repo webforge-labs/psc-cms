@@ -16,7 +16,7 @@ class PanelButtonsTest extends \Psc\Code\Test\HTMLTestCase {
     parent::setUp();
 
     $this->translationContainer = $this->createTranslationContainer(
-      $this->buildTranslations()
+      $this->buildTranslations('cms')
         ->locale('de')
           ->trans('panel.buttons.save', 'speichern')
           ->trans('panel.buttons.reload', 'neu laden')
@@ -36,7 +36,6 @@ class PanelButtonsTest extends \Psc\Code\Test\HTMLTestCase {
           ->trans('panel.buttons.insert-open', 'save and open in new tab')
           ->trans('panel.buttons.reset', 'reset')
           ->trans('panel.buttons.preview', 'preview')
-      ->build()
     );
   }
   
@@ -150,4 +149,3 @@ class PanelButtonsTest extends \Psc\Code\Test\HTMLTestCase {
     new PanelButtons(array('save','save-close','relod'), $this->translationContainer); // look closely
   }
 }
-?>

@@ -3,6 +3,7 @@
 namespace Psc\CMS;
 
 use Psc\UI\PanelButtons;
+use Psc\CMS\Translation\Container as TranslationContainer;
 
 /**
  * 
@@ -26,7 +27,10 @@ class EntityViewPackage extends \Psc\SimpleObject {
    * @var Psc\CMS\ComponentMapper
    */
   protected $componentMapper;
-  
+
+  /**
+   * @var Psc\CMS\Labeler
+   */
   protected $labeler;
   
   /**
@@ -38,8 +42,14 @@ class EntityViewPackage extends \Psc\SimpleObject {
    * @var Psc\UI\PanelButtons
    */
   protected $panelButtons;
+
+  /**
+   * @var Psc\CMS\Translation\Container
+   */
+  protected $translationContainer;
   
-  public function __construct(ComponentMapper $mapper = NULL, Labeler $labeler = NULL) {
+  public function __construct(TranslationContainer $translationContainer, ComponentMapper $mapper = NULL, Labeler $labeler = NULL) {
+    $this->translationContainer = $translationContainer;
     $this->componentMapper = $mapper ?: new ComponentMapper();
     $this->labeler = $labeler ?: new Labeler();
   }
@@ -50,6 +60,7 @@ class EntityViewPackage extends \Psc\SimpleObject {
   public function createFormPanel($label, EntityForm $entityForm) {
     $this->formPanel = new EntityFormPanel(
       $label,
+      $this->translationContainer,
       $entityForm,
       $this->componentMapper,
       $this->labeler

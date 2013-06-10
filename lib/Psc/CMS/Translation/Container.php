@@ -2,7 +2,8 @@
 
 namespace Psc\CMS\Translation;
 
-use Webforge\Translation\Translator;
+use Webforge\Translation\ResourceTranslator;
+use Webforge\Framework\Package\Package;
 
 class Container {
 
@@ -11,9 +12,19 @@ class Container {
    */
   protected $translator;
 
-  public function __construct(Translator $translator) {
+  public function __construct(ResourceTranslator $translator) {
     $this->translator = $translator;
   }
+
+
+  public function loadTranslationsFromPackage(Package $package) {
+    $this->getTranslator()->addResourceDirectory(
+      $package->getRootDirectory()->sub('resources/translations/')
+    );
+
+    return $this;
+  }
+
 
   /**
    * @return Webforge\Translation\Translator

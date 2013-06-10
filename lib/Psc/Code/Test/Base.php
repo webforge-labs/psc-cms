@@ -10,6 +10,7 @@ use Closure;
 use Psc\System\Console\Process;
 use Webforge\Translation\ArrayTranslator;
 use Psc\CMS\Translation\Container as TranslationContainer;
+use Webforge\Translation\TranslationsBuilder;
 
 /**
  */
@@ -224,8 +225,9 @@ class Base extends \Webforge\Code\Test\Base {
 //    throw $e;
 //  }
 
-  public function createTranslationContainer(Array $translations, $currentLocale = 'de') {
-    $translator = new ArrayTranslator($currentLocale, $translations);
+  public function createTranslationContainer(TranslationsBuilder $translations, $currentLocale = 'de') {
+    $translator = new ArrayTranslator($currentLocale, array());
+    $translator->addDomainTranslations($translations->build(), $translations->getDomain());
 
     return new TranslationContainer($translator);
   }

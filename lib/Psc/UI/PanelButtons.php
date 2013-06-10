@@ -236,7 +236,7 @@ class PanelButtons extends \Psc\HTML\Base {
     return $this->buttons[$index];
   }
 
-  protected function translate($key) {
-    return $this->translationContainer->getTranslator()->trans('panel.buttons.'.$key);
+  protected function translate($key, Array $parameters = array()) {
+    return $this->translationContainer->getTranslator()->trans('panel.buttons.'.$key, $parameters, $domain = 'cms');
   }
 }

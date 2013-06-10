@@ -30,6 +30,10 @@ class AbstractContainerTest extends \Psc\Code\Test\Base {
     // because package reads local config and ProjectPackage cannot be injected
   }
 
+  public function testReturnsATranslationContainer() {
+    $this->assertInstanceOf('Psc\CMS\Translation\Container', $this->container->getTranslationContainer());
+  }
+
   public function testReturnsAnWebforgeTranslatorWithTheRightLocales() {
     $this->assertInstanceOf('Webforge\Translation\Translator', $translator = $this->container->getTranslator());
     $package = $this->container->getProjectPackage();
@@ -40,8 +44,8 @@ class AbstractContainerTest extends \Psc\Code\Test\Base {
     );
   }
 
-  public function testTranslatorTranslationAcceptance() {
-    $this->container->getProjectPackage()->getConfiguration()->set(array('languaes'), $this->languages);
+  public function testTranslatorReadsTranslationsFormTheProjectPackageConfig() {
+    $this->container->getProjectPackage()->getConfiguration()->set(array('languages'), $this->languages);
 
     $this->container->getProjectPackage()->getConfiguration()->set(array('translations'), Array(
       'de'=>Array(
