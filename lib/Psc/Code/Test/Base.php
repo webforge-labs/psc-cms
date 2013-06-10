@@ -8,6 +8,8 @@ use Webforge\Common\System\File;
 use Webforge\Common\System\Util as SystemUtil;
 use Closure;
 use Psc\System\Console\Process;
+use Webforge\Translation\ArrayTranslator;
+use Psc\CMS\Translation\Container as TranslationContainer;
 
 /**
  */
@@ -221,4 +223,10 @@ class Base extends \Webforge\Code\Test\Base {
 //    print \Webforge\Common\ArrayUtil::join($this->sjg->log, "\n  %s");
 //    throw $e;
 //  }
+
+  public function createTranslationContainer(Array $translations, $currentLocale = 'de') {
+    $translator = new ArrayTranslator($currentLocale, $translations);
+
+    return new TranslationContainer($translator);
+  }
 }

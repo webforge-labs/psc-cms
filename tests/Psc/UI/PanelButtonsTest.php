@@ -49,6 +49,12 @@ class PanelButtonsTest extends \Psc\Code\Test\HTMLTestCase {
       ->test('button.psc-cms-ui-button-preview')->count(1)->end()
     ;
   }
+
+  public function testInternationalisationOfPanelButtons() {
+    
+
+
+  }
   
   /**
    * @expectedException InvalidArgumentException

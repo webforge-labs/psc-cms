@@ -3,6 +3,8 @@
 namespace Psc\UI;
 
 use Psc\Code\Code;
+use Webforge\Translation\Translator;
+use Psc\CMS\Translation\Container as TranslationContainer;
 
 /**
  * @todo geil wäre META_MEANING => icon, also ne klasse die "was ich sagen will" zu einem icon mappt. Weil sich das ja mal ändern kann
@@ -24,7 +26,8 @@ class PanelButtons extends \Psc\HTML\Base {
   const PREPEND                 = 0x000100;
   const APPEND                  = 0x000200;
   
-  public function __construct(Array $buttons = array(), $flags = NULL) {
+  public function __construct(Array $buttons, TranslationContainer $translationContainer, $flags = NULL) {
+    $this->translator = $translationContainer;
     $this->buttons = array();
     
     foreach ($buttons as $button) {
