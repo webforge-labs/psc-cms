@@ -38,4 +38,3 @@ class PageTest extends \Psc\Code\Test\HTMLTestCase {
     $this->test->css('head meta[name="content-language"]')->hasAttribute('content', 'fr');
   }
 }
-?>

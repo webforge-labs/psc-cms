@@ -6,6 +6,7 @@ use Psc\TPL\ContentStream\ContentStream;
 use Psc\UI\LayoutManager\Control;
 use Webforge\Common\ArrayUtli as A;
 use Psc\JS\JooseSnippetWidget;
+use Psc\CMS\Translation\Container as TranslationContainer;
 
 /**
  * LayoutManager ist das Pflege Tool für einen ContentStream
@@ -65,22 +66,31 @@ class LayoutManager extends \Psc\HTML\JooseBase implements JooseSnippetWidget {
     )->addRequirement('Psc.UI.LayoutManager.Control');
   }
 
-  public function initControlsFor(ContentStream $cs) {
+  public function initControlsFor(ContentStream $cs, TranslationContainer $translationContainer) {
+    $translator = $translationContainer->getTranslator();
+    $trans = function($key) use ($translator) {
+      return $translator->trans($key, array(), 'cms');
+    };
 
     if ($cs->getType() === 'page-content') {
       foreach ($this->headlines as $level) {
         $this->addNewControl(
-          'Headline', 
+          'Headline',
           (object) array('level'=>$level), 
-          sprintf('%s (H%d)', $level === 1 ? 'Überschrift ' : 'Überschrift', $level),
+          sprintf(
+            '%s (H%d)', 
+            $level === 1 ? $trans('sce.widget.headline').' ' : $trans('sce.widget.headline'), 
+            $level
+          ),
           'text'
         );
       }
-      $this->addNewControl('Paragraph', NULL, 'Absatz', 'text');
-      $this->addNewControl('Li', NULL, 'Aufzählung', 'text');
-      $this->addNewControl('Image', NULL, 'Bild im Text', 'images');
-      $this->addNewControl('DownloadsList', (object) array('headline'=>'', 'downloads'=>array()), 'Download-Liste', 'text');
-      $this->addNewControl('WebsiteWidget', (object) array('label'=>'Kalender', 'name'=>'calendar'), 'Kalender', 'misc');
+
+      $this->addNewControl('Paragraph', NULL, $trans('sce.widget.paragraph'), 'text');
+      $this->addNewControl('Li', NULL, $trans('sce.widget.li'), 'text');
+      $this->addNewControl('Image', NULL, $trans('sce.widget.image'), 'images');
+      $this->addNewControl('DownloadsList', (object) array('headline'=>'', 'downloads'=>array()), $trans('sce.widget.downloadsList'), 'text');
+      $this->addNewControl('WebsiteWidget', (object) array('label'=>$trans('sce.widget.calendar'), 'name'=>'calendar'), $trans('sce.widget.calendar'), 'misc');
     }
 
     if (\Psc\PSC::inProduction()) {
@@ -146,4 +156,3 @@ class LayoutManager extends \Psc\HTML\JooseBase implements JooseSnippetWidget {
     return $this;
   }
 }
-?>
