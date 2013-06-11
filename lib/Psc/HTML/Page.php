@@ -312,5 +312,15 @@ class Page extends \Psc\OptionsObject implements \Psc\HTML\HTMLInterface {
     $this->title = new Tag('title',HTML::esc($title));
     return $this;
   }
+
+  /**
+   * @param string $lang
+   * @chainable
+   */
+  public function setLanguage($lang) {
+    $this->language = $lang;
+    $this->html->setAttribute('xml:lang', $this->language);
+    $this->setMeta('content-language', $this->language);
+    return $this;
+  }
 }
-?>

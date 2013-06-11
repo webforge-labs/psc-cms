@@ -24,4 +24,3 @@ class Page5 extends FrameworkPage {
     $this->loadConditionalJS('/psc-cms-js/vendor/afarkas/html5shiv.min.js', 'lt IE 9');
   }
 }
-?>

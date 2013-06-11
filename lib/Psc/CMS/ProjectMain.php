@@ -249,9 +249,14 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
   public function initEntityMetaFor(EntityMeta $meta) {
     if ($meta->getEntityName() === 'user')
       $meta
-        ->setNewLabel('Neuen Benutzer erstellen')
-        ->setLabel('Benutzer')
+        ->setGridLabel($this->trans('entities.user.grid'))
+        ->setNewLabel($this->trans('entities.user.insert'))
+        ->setLabel($this->trans('entities.user'))
         ->setTCIColumn('email');
+  }
+
+  protected function trans($key, Array $parameters = array(), $domain = 'cms') {
+    return $this->getContainer()->getTranslationContainer()->getTranslator()->trans($key, $parameters, $domain);
   }
   
   public function getEntityMeta($entityName) {
@@ -606,6 +611,7 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
     $page = new \Psc\HTML\FrameworkPage($this->jsManager, $this->cssManager);
     $page->addCMSDefaultCSS($this->project->getLowerName());
     $page->setTitleForProject($this->project);
+    $page->setLanguage($this->getLanguage());
     return $page;
   }
   
@@ -659,9 +665,9 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
     if (!isset($this->rightContent)) {
       if (isset($this->rightContentClass)) {
         $c = $this->rightContentClass;
-        $this->rightContent = new $c($this->dc);
+        $this->rightContent = new $c($this->dc, $this->getContainer()->getTranslationContainer());
       } else {
-        $this->rightContent = new RightContent($this->dc);
+        $this->rightContent = new RightContent($this->dc, $this->getContainer()->getTranslationContainer());
       }
       $this->initRightContent();
     }
@@ -700,6 +706,8 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
 
       $this->welcomeTemplate = new Template('welcome');
       $this->welcomeTemplate->setVar('cms', $this);
+      $this->welcomeTemplate->setVar('project', $this->getProject());
+      $this->welcomeTemplate->setVar('main', $this);
       $this->welcomeTemplate->mergeI18n(
         array(
           'de'=>array('title'=>$translator->trans('welcome.tabTitle', array(), 'cms', 'de')),
@@ -707,7 +715,6 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
           'fr'=>array('title'=>$translator->trans('welcome.tabTitle', array(), 'cms', 'fr'))
         )
       );
-      $this->welcomeTemplate->setVar('main', $this);
     }
 
     return $this->welcomeTemplate;
