@@ -48,14 +48,21 @@ return Array(
   'component.map.create a new city'=>'Neue Stadt erstellen',
   'component.calendar.new entry'=>'Neuen Kalendereintrag erstellen',
 
-  'component.news.published'=>'Erscheinungsdatum',
-  'component.news.teaser'=>'Überschrift',
-  'component.news.active'=>'online sichtbar',
-  'component.news.comments allowed'=>'Kommentarfunktion einschalten',
-  'component.news.created'=>'hinzugefügt',
-  'component.news.updated'=>'aktualisiert',
-  'component.news.comments'=>'Kommentare',
-  'component.news.content streams'=>'Inhalte',
+  'component.news-entry.published'=>'Erscheinungsdatum',
+  'component.news-entry.teaser'=>'Überschrift',
+  'component.news-entry.active'=>'online sichtbar',
+  'component.news-entry.comments allowed'=>'Kommentarfunktion einschalten',
+  'component.news-entry.created'=>'hinzugefügt',
+  'component.news-entry.updated'=>'aktualisiert',
+  'component.news-entry.comments'=>'Kommentare',
+  'component.news-entry.content streams'=>'Inhalte',
+
+  'entities.page.slug'=>'Kurzname',
+  'entities.page.contentStreams'=>'Layouts',
+  'entities.page.modified'=>'zuletzt bearbeitet',
+  'entities.page.navigationNodes'=>'verknüpfte Navigations-Punkte',
+  'entities.page.active'=>'aktiv',
+  'entities.page.commentsAllowed'=>'Kommentare erlauben',
 
   'component.calendar.titel'=>'Titel',
   'component.calendar.from'=>'von',
@@ -69,13 +76,26 @@ return Array(
   'component.map.type'=>'Typ',
   'component.map.marked'=>'markiert',
 
-  'component.navigation.documentation'=>'Die Navigations-Ebenen sind von links nach rechts zu lesen. 
+  'component.navigation.doc.levels'=>'Navigations-Ebenen',
+
+  'component.navigation.doc.reading'=>'Die Navigations-Ebenen sind von links nach rechts zu lesen. 
   Die Zuordnung der Unterpunkte zu Hauptpunkten ist von oben nach unten zu lesen.
   Die Hauptnavigation besteht aus den Navigations-Punkten, die überhaupt nicht eingerückt sind. 
-  Jede weitere Einrückung bedeutet ein tiefere Ebene in der Navigation.,
+  Jede weitere Einrückung bedeutet ein tiefere Ebene in der Navigation.',
 
- 1. Navigations-Punkt hinzufügen
- 2. Navigations-Punkt editieren und benennen
- 3. Navigation Speichern und neu laden.
- Jetzt kann durch den Seiten-Button des neuen Navigations-Punktes die Seite geöffnet werden.'
+  'component.navigation.doc.newPage'=>'Neue Seite erstellen',
+
+  'component.navigation.doc.addNode'=>
+'1. Navigations-Punkt hinzufügen
+2. Navigations-Punkt editieren und benennen
+3. Navigation Speichern und neu laden.
+Jetzt kann durch den Seiten-Button des neuen Navigations-Punktes die Seite geöffnet werden.',
+
+  'sce.widget.paragraph'=>'Absatz',
+  'sce.widget.li'=>'Aufzählung',
+  'sce.widget.image'=>'Bild im Text',
+  'sce.widget.headline'=>'Überschrift',
+  'sce.widget.downloadsList'=>'Download-Liste',
+  'sce.widget.calendar'=>'Kalender'
+
 );
