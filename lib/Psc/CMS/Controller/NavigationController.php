@@ -347,27 +347,20 @@ class NavigationController extends ContainerController {
   }
 
   protected function getFormDocumentation() {
-    $html = \Psc\UI\Group::create('Navigations-Ebenen',array(
-      Form::hint(
-        'Die Navigations-Ebenen sind von links nach rechts zu lesen. Die Zuordnung der Unterpunkte zu Hauptpunkten ist von oben nach unten zu lesen.'."\n".
-        'Die Hauptnavigation besteht aus den Navigations-Punkten, die überhaupt nicht eingerückt sind. Jede weitere Einrückung bedeutet ein tiefere Ebene in der Navigation.'
-        ).'<br />',
-      '<br />'
-    ))->setStyle('margin-top','7px');
-
-    $html .= \Psc\UI\Group::create('Neue Seite erstellen', array(
-      Form::hint(
-'1. Navigations-Punkt hinzufügen
-2. Navigations-Punkt editieren und benennen
-3. Navigation Speichern und neu laden.
-Jetzt kann durch den Seiten-Button des neuen Navigations-Punktes die Seite geöffnet werden.'
+    $html = \Psc\UI\Group::create(
+      $this->trans('component.navigation.doc.levels', array(), 'cms'),
+      array(
+        Form::hint($this->trans('component.navigation.doc.reading', array(), 'cms')).'<br />',
+        '<br />'
       )
+    )->setStyle('margin-top','7px');
+
+    $html .= \Psc\UI\Group::create($this->trans('component.navigation.doc.newPage', array(), 'cms'), array(
+      Form::hint($this->trans('component.navigation.doc.addNode', array(), 'cms'))
     ));
 
     return $html;
   }
 
-  protected function initDoctrineBridge(DoctrineBridge $bridge) {
-
-  }
+  protected function initDoctrineBridge(DoctrineBridge $bridge) {}
 }
