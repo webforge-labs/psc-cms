@@ -18,9 +18,11 @@ class Container {
   }
 
   public function loadTranslationsFromPackage(Package $package) {
-    $this->getTranslator()->addResourceDirectory(
-      $package->getRootDirectory()->sub('resources/translations/')
-    );
+    $translationsDir = $package->getRootDirectory()->sub('resources/translations/');
+
+    if ($translationsDir->exists()) {
+      $this->getTranslator()->addResourceDirectory($translationsDir);
+    }
 
     return $this;
   }
@@ -46,5 +48,9 @@ class Container {
   public function setLocale($locale) {
     $this->translator->setLocale($locale);
     return $this;
+  }
+
+  public function getLocale() {
+    return $this->translator->getLocale();
   }
 }

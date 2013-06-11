@@ -9,6 +9,7 @@ use Webforge\Common\System\Util as SystemUtil;
 use Closure;
 use Psc\System\Console\Process;
 use Webforge\Translation\ArrayTranslator;
+use Webforge\Translation\Translator;
 use Psc\CMS\Translation\Container as TranslationContainer;
 use Webforge\Translation\TranslationsBuilder;
 
@@ -234,11 +235,31 @@ class Base extends \Webforge\Code\Test\Base {
     return new TranslationContainer($translator);
   }
 
-  public function getTranslationContainer() {
+  /**
+   * Adds build translations to the current getTranslationContainer()
+   */
+  public function addTranslations(TranslationsBuilder $translations) {
+    $this->getTranslationContainer()->getTranslator()->addDomainTranslations($translations->build(), $translations->getDomain());
+  }
+
+  public function getTranslationContainer(TranslationsBuilder $translations = NULL) {
     if (!isset($this->translationContainer)) {
-      $this->translationContainer = $this->createTranslationContainer($this->buildTranslations());
+      $this->translationContainer = $this->createTranslationContainer($translations ?: $this->buildTranslations());
+    } elseif (isset($translations)) {
+      // notice: something will be overriden?
+      $this->translationContainer = $this->createTranslationContainer($translations);
     }
     
     return $this->translationContainer;
+  }
+
+  public function assertTranslatedWith($key, $actual, $domain = 'cms', Translator $translator = NULL) {
+    $translator = $translator ?: $this->getTranslationContainer()->getTranslator();
+
+    $this->assertEquals(
+      $translator->trans($key, array(), $domain),
+      $actual,
+      'translation key: "'.$key.'" is not loaded correctly'
+    );
   }
 }
