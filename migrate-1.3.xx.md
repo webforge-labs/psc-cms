@@ -12,3 +12,6 @@ GridPanel, FormPanel, EntityGridPanel, PanelButtons
 
 ControllerDependenciesProvider
 - added Dependency to `Psc\CMS\Translation\Container`
+
+RightContent
+- added Dependency to `Psc\CMS\Translation\Container`

@@ -6,14 +6,18 @@ use Psc\Doctrine\DCPackage;
 use Psc\UI\DropContentsList;
 use Psc\UI\Accordion;
 use Psc\CMS\Item\RightContentLink;
+use Psc\CMS\Translation\Container as TranslationContainer;
 
 class RightContent extends \Psc\SimpleObject implements \Psc\CMS\DropContentsListPopulator {
   
   protected $dc;
   protected $accordion;
+
+  protected $translationContainer;
   
-  public function __construct(DCPackage $dc) {
+  public function __construct(DCPackage $dc, TranslationContainer $translationContainer) {
     $this->dc = $dc;
+    $this->translationContainer = $translationContainer;
   }
   
   /**
@@ -23,7 +27,7 @@ class RightContent extends \Psc\SimpleObject implements \Psc\CMS\DropContentsLis
    *
    */
   public function populateLists(\Psc\CMS\DropContentsListCreater $creater) {
-    $cmsList = $creater->newDropContentsList('CMS');
+    $cmsList = $creater->newDropContentsList($this->translate('sidebar.cms'));
     
     $this->addGridLink($cmsList, 'user');
   }
@@ -65,5 +69,8 @@ class RightContent extends \Psc\SimpleObject implements \Psc\CMS\DropContentsLis
   protected function addEntityLink(DropContentsList $list, \Psc\CMS\Entity $entity) {
     return $list->addLinkable($this->dc->getEntityMeta($entity->getEntityName())->getAdapter($entity,Item\Adapter::CONTEXT_RIGHT_CONTENT)->getRCLinkable());
   }
+
+  protected function translate($key, Array $parameters = array()) {
+    return $this->translationContainer->getTranslator()->trans($key, $parameters, 'cms');
+  }
 }
-?>
