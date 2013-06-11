@@ -536,6 +536,11 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber {
     return $this->production;
   }
 
+
+  public function isDevelopment() {
+    return $this->getProduction();
+  }
+
   public function getSrc() {
     return $this->getPath(PSC::PATH_SRC);
   }
