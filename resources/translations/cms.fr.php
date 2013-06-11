@@ -32,13 +32,13 @@ return Array(
   'sidebar.website.comment administration'=>'administrer les commentaires ',
   'sidebar.website.team administration'=>"administrer l'équipe",
 
-  'sidebar.navigation.main navigation'=>'administrer la navigation prinicpale',
-  'sidebar.navigation.footer navigation'=>'administrer le bas de page',
-  'sidebar.navigation.top navigation'=>'administrer le haut de page',
+  'sidebar.navigation.main'=>'administrer la navigation prinicpale',
+  'sidebar.navigation.footer'=>'administrer le bas de page',
+  'sidebar.navigation.top'=>'administrer le haut de page',
 
-  'sidebar.calendar administration'=>'administrer le calendrier',
-  'sidebar.map.map administration'=>'administrer la carte',
-  'sidebar.map.city administration'=>'administrer les villes',
+  'sidebar.calendar'=>'administrer le calendrier',
+  'sidebar.map'=>'administrer la carte',
+  'sidebar.city'=>'administrer les villes',
 
   'component.navigation.create a new page'=>'créer une nouvelle page',
 

@@ -20,11 +20,10 @@ return Array(
   'sidebar.cms'=>'CMS',
   'sidebar.website'=>'Webseite',
   'sidebar.navigation'=>'Navigation',
-  'sidebar.car'=>'Karte',
+  'sidebar.map'=>'Karte',
   'sidebar.calendar'=>'Kalender',
 
   'sidebar.cms.user administration'=>'Benutzer verwalten',
-  'sidebar.cms.user administration.button.reload'=>'neu laden',
   'sidebar.cms.user administration.button.new user'=>'Neuen Benutzer erstellen',
 
   'sidebar.website.news administration'=>'News verwalten',
@@ -32,13 +31,13 @@ return Array(
   'sidebar.website.comment administration'=>'Kommentare verwalten',
   'sidebar.website.team administration'=>'Team verwalten',
 
-  'sidebar.navigation.main navigation'=>'Haupt-Navigation pflegen',
-  'sidebar.navigation.footer navigation'=>'Footer-Navigation pflegen',
-  'sidebar.navigation.top navigation'=>'Top-Navigation pflegen',
+  'sidebar.navigation.main'=>'Haupt-Navigation pflegen',
+  'sidebar.navigation.footer'=>'Footer-Navigation pflegen',
+  'sidebar.navigation.top'=>'Top-Navigation pflegen',
 
-  'sidebar.calendar administration'=>'Kalender pflegen',
-  'sidebar.map.map administration'=>'Karte pflegen',
-  'sidebar.map.city administration'=>'Städte pflegen',
+  'sidebar.calendar-grid'=>'Kalender pflegen',
+  'sidebar.map-grid'=>'Karte pflegen',
+  'sidebar.city-grid'=>'Städte pflegen',
 
   'component.navigation.create a new page'=>'Neue Seite erstellen',
 

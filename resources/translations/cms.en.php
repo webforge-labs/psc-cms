@@ -32,13 +32,13 @@ return Array(
   'sidebar.website.comment administration'=>'comment administration',
   'sidebar.website.team administration'=>'team administration',
 
-  'sidebar.navigation.main navigation'=>'main navigation',
-  'sidebar.navigation.footer navigation'=>'footer navigation',
-  'sidebar.navigation.top navigation'=>'top navigation',
+  'sidebar.navigation.main'=>'main navigation',
+  'sidebar.navigation.footer'=>'footer navigation',
+  'sidebar.navigation.top'=>'top navigation',
 
-  'sidebar.calendar administration'=>'calendar administration',
-  'sidebar.map.map administration'=>'map administration',
-  'sidebar.map.city administration'=>'city administration',
+  'sidebar.calendar'=>'calendar administration',
+  'sidebar.map'=>'map administration',
+  'sidebar.city'=>'city administration',
 
   'component.navigation.create a new page'=>'navigation.create a new page',
 
