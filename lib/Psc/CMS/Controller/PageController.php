@@ -46,18 +46,10 @@ abstract class PageController extends ContentStreamContainerController {
     
     
     $this->helper = new PageControllerHelper();
+
+    $this->initPropertyTranslations('cms');
   }
     
-  protected function initLabeler(\Psc\CMS\Labeler $labeler) {
-    $labeler
-      ->label('slug', 'Kurzname')
-      ->label('contentStreams','Layouts')
-      ->label('modified','zuletzt bearbeitet')
-      ->label('navigationNodes','verknüpfte Navigations-Punkte')
-      ->label('active', 'aktiv')
-      ->label('commentsAllowed','Kommentare erlauben')
-    ;
-  }
 
   public function getEntityGrid(EntityMeta $entityMeta, $entities) {
     $navController = $this->getController('NavigationNode');
