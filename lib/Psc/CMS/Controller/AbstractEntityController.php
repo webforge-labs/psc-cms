@@ -117,7 +117,15 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
    * @var string
    */
   protected $defaultRevision = 'default';
-  
+
+  /**
+   * On** Callbacks
+   * 
+   * @see on()
+   * @var array event => array(Closure, Closure, ...)
+   */
+  protected $on = array();
+
   public function __construct(TranslationContainer $translationContainer, DCPackage $dc = NULL, EntityViewPackage $ev = NULL, ValidationPackage $v = NULL, ServiceErrorPackage $err = NULL) {
     $this->translationContainer = $translationContainer;
     $this->dc = $dc ?: new DCPackage();
@@ -701,6 +709,9 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
       list($package, $property) = explode('.',$dependency,2);
       $init = 'init'.ucfirst($property);
       $get = 'get'.ucfirst($property);
+
+      $this->trigger('init.'.$property, array($this->$package->$get()));
+
       $this->$init( // Damit es overloadbar ist
         $this->$package->$get()
       );
@@ -920,5 +931,61 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
 
   protected function getTranslationContainer() {
     return $this->translationContainer;
+  }
+
+  protected function trans($key, Array $parameters = array(), $domain = NULL) {
+    if (!isset($domain)) $domain = 'project';
+
+    return $this->translationContainer->getTranslator()->trans($key, $parameters, $domain);
+  }
+
+  /**
+   * Loads translations keys for each property of the entity of the controller with labels
+   * 
+   * domain: project (if not specified)
+   * key:
+   * entities.<entityName>.<propertyName>
+   * 
+   * for example:
+   * entities.news-entry.published
+   * entities.news-entry.teaser
+   * 
+   * if property is i18n property the i18n will be stripped
+   */
+  protected function initPropertyTranslations($domain = NULL) {
+    $entityMeta = $this->getEntityMeta();
+    $translator = $this->translationContainer->getTranslator();
+
+    $this->on('init.labeler', function ($labeler) use ($domain, $entityMeta, $translator) {
+      foreach ($entityMeta->getSetMeta()->getKeys() as $propertyName) {
+        $property = $entityMeta->getPropertyMeta($propertyName);
+        $labeler->label(
+          $property->getName(),
+
+          $translator->trans(
+            sprintf('entities.%s.%s', $entityMeta->getEntityName(), $property->getCanonicalName()),
+            array(),
+            $domain ?: 'project'
+          )
+        );
+      }
+    });
+  }
+
+  protected function on($event, \Closure $do) {
+    if (!array_key_exists($event, $this->on)) {
+      $this->on[$event] = array();
+    }
+
+    $this->on[$event][] = $do;
+    return $this;
+  }
+
+  protected function trigger($event, Array $args) {
+    if (isset($this->on[$event])) {
+      foreach ($this->on[$event] as $closure) {
+        call_user_func_array($closure, $args);
+      }
+    }
   }
 }
