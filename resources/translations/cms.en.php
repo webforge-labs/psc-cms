@@ -27,10 +27,10 @@ return Array(
   'sidebar.cms.user admin.button.reload'=>'reload',
   'sidebar.cms.user admin.button.new user'=>'create a user profile',
 
-  'sidebar.website.news administration'=>'news administration',
-  'sidebar.website.page administration'=>'page administration',
-  'sidebar.website.comment administration'=>'comment administration',
-  'sidebar.website.team administration'=>'team administration',
+  'entities.news.grid'=>'news administration',
+  'entities.page.grid'=>'page administration',
+  'entities.comment.grid'=>'comment administration',
+  'entities.member.grid'=>'team administration',
 
   'sidebar.navigation.main'=>'main navigation',
   'sidebar.navigation.footer'=>'footer navigation',
@@ -42,22 +42,29 @@ return Array(
 
   'component.navigation.create a new page'=>'navigation.create a new page',
 
-  'component.navigation.add navigation nod'=>'add navigation nod',
-  'component.navigation.navigation levels'=>'navigation levels',
+  'component.navigation.addNode'=>'add navigation node',
+  'component.navigation.levels'=>'navigation levels',
 
-  'component.news.write a news'=>'write a news',
+  'entities.news'=>'news',
+  'entities.news.insert'=>'write a news',
   'component.map.create a new city'=>'create a new city',
   'component.calendar.new entry'=>'insert new entry',
 
-  
-  'component.news.published'=>'published',
-  'component.news.teaser'=>'teaser',
-  'component.news.active'=>'active',
-  'component.news.comments allowed'=>'comments allowed',
-  'component.news.created'=>'publication date',
-  'component.news.updated'=>'updated',
-  'component.news.comments'=>'comments',
-  'component.news.content streams'=>'content streams',
+  'component.news-entry.published'=>'published',
+  'component.news-entry.teaser'=>'teaser',
+  'component.news-entry.active'=>'active',
+  'component.news-entry.comments allowed'=>'comments allowed',
+  'component.news-entry.created'=>'publication date',
+  'component.news-entry.updated'=>'updated',
+  'component.news-entry.comments'=>'comments',
+  'component.news-entry.content streams'=>'content streams',
+
+  'entities.page.slug'=>'slug',
+  'entities.page.contentStreams'=>'layouts',
+  'entities.page.modified'=>'last modified',
+  'entities.page.navigationNodes'=>'connected navigation nodes',
+  'entities.page.active'=>'active',
+  'entities.page.commentsAllowed'=>'comments enabled',
 
   'component.calendar.titel'=>'titel',
   'component.calendar.from'=>'from',
@@ -71,14 +78,26 @@ return Array(
   'component.map.type'=>'type',
   'component.map.marked'=>'marked',
 
-  'component.navigation.documentation'=>'You have to read the navigation nods from the left to the right. 
+  'component.navigation.doc.levels'=>'Levels of the navigation',
+
+  'component.navigation.doc.reading'=>'You have to read the navigation nods from the left to the right. 
   The sub-navigation in relation to the main menu is structured from the up to the bottom.
   The main navigation consists of the navigation nods which are not indent at all. 
-  Every indention leads to a deeper navigation level.
+  Every indention leads to a deeper navigation level.',
 
- 1. Insert a navigation nod
+  'component.navigation.doc.newPage'=>'Create a new page',
+
+  'component.navigation.doc.addNode'=>
+'1. Insert a navigation nod
  2. Edit and name a navigations nod
  3. Save and reload the navigation
- By clicking at the page-button of the new navigation nod, you can open the new site. 
-'
+ By clicking at the page-button of the new navigation nod, you can open the new site.',
+
+  'sce.widget.paragraph'=>'Paragraph',
+  'sce.widget.li'=>'List',
+  'sce.widget.image'=>'Image in text',
+  'sce.widget.headline'=>'Headline',
+  'sce.widget.downloadsList'=>'Downloadslist',
+  'sce.widget.calendar'=>'Calendar'
+
 );
