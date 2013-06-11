@@ -34,6 +34,13 @@ class AbstractContainerTest extends \Psc\Code\Test\Base {
     $this->assertInstanceOf('Psc\CMS\Translation\Container', $this->container->getTranslationContainer());
   }
 
+  public function testInjectsATranslationContainer() {
+    $container = $this->getMockBuilder('Psc\CMS\Translation\Container')->disableOriginalConstructor()->getMock();
+    $this->container->setTranslationContainer($container);
+
+    $this->assertSame($this->container->getTranslationContainer(), $container);
+  }
+
   public function testReturnsAnWebforgeTranslatorWithTheRightLocales() {
     $this->assertInstanceOf('Webforge\Translation\Translator', $translator = $this->container->getTranslator());
     $package = $this->container->getProjectPackage();

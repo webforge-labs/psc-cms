@@ -39,12 +39,15 @@ abstract class AbstractContainer extends AbstractControllerContainer implements 
 
   public function getPackage() {
     if (!isset($this->package)) {
-      $this->package = $GLOBALS['env']['container']->webforge->getLocalPackage();
+      $this->package = $this->getWebforge()->getLocalPackage();
     }
     
     return $this->package;
   }
 
+  protected function getWebforge() {
+    return $GLOBALS['env']['container']->webforge;
+  }
 
   public function getProjectPackage() {
     if (!isset($this->projectPackage)) {
@@ -74,11 +77,25 @@ abstract class AbstractContainer extends AbstractControllerContainer implements 
         )
       );
 
+      $localPackage = $this->getPackage();
+
+      if ($localPackage->getIdentifier() !== 'pscheit/psc-cms') {
+        $this->translationContainer->loadTranslationsFromPackage($this->getWebforge()->getVendorPackage('pscheit/psc-cms'));
+      }
+
       $this->translationContainer->loadTranslationsFromPackage($this->getPackage());
       $this->translationContainer->loadTranslationsFromProjectPackage($this->getProjectPackage());
     }
 
     return $this->translationContainer;
+  }
+
+  /**
+   * @chainable
+   */
+  public function setTranslationContainer(TranslationContainer $translationContainer) {
+    $this->translationContainer = $translationContainer;
+    return $this;
   }
 
   /**
@@ -93,8 +110,6 @@ abstract class AbstractContainer extends AbstractControllerContainer implements 
 
     if (isset($this->translationContainer)) {
       $this->translationContainer->setLocale($this->getLanguage());
-    } elseif (isset($this->translator)) {
-      $this->translator->setLocale($this->getLanguage());
     }
 
     return $this;
