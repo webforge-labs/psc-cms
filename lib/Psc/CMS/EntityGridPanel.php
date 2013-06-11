@@ -162,4 +162,3 @@ class EntityGridPanel extends \Psc\CMS\GridPanel {
     return $this->entityMeta;
   }
 }
-?>

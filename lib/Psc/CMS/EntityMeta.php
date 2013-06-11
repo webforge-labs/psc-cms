@@ -44,15 +44,12 @@ class EntityMeta extends \Psc\SimpleObject {
   /**
    *
    * z. B. Neuen Sprecher erstellen
+   * @var string
    */
   protected $newLabel = 'Neues Entity erstellen';
   protected $editLabel = '%s bearbeiten';
   protected $deleteLabel = '%s löschen';
   protected $gridLabel = NULL;
-  
-  /**
-   * @var string
-   */
   protected $searchLabel;
   
   protected $autoCompleteFields = array('id'=>'Nummer');
