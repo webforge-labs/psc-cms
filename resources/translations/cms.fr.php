@@ -102,5 +102,4 @@ La nouvelle page s'ouvre en cliquant sur le nouvel élément de navigation. ",
   'sce.widget.headline'=>'Titre',
   'sce.widget.downloadsList'=>'Téléchargements',
   'sce.widget.calendar'=>'Calendrier'
-
 );
