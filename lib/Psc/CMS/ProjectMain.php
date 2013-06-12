@@ -704,10 +704,14 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
     if (!isset($this->welcomeTemplate)) {
       $translator = $this->getTranslator();
 
-      $this->welcomeTemplate = new Template('welcome');
+      $tpl = $this->welcomeTemplate = new Template('welcome');
       $this->welcomeTemplate->setVar('cms', $this);
       $this->welcomeTemplate->setVar('project', $this->getProject());
       $this->welcomeTemplate->setVar('main', $this);
+      $this->welcomeTemplate->setLanguage($this->getLanguage());
+      $this->welcomeTemplate->setVar('trans', function($key, Array $parameters = array()) use ($tpl, $translator) {
+        return $translator->trans($key, $parameters, 'cms');
+      });
       $this->welcomeTemplate->mergeI18n(
         array(
           'de'=>array('title'=>$translator->trans('welcome.tabTitle', array(), 'cms', 'de')),

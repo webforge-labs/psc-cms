@@ -73,7 +73,8 @@ abstract class AbstractContainer extends AbstractControllerContainer implements 
         new ArrayTranslator(
           $this->getLanguage(),
           array(),
-          array($this->getProjectPackage()->getDefaultLanguage())
+          // fallback:
+          array('en')
         )
       );
 

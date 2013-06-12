@@ -4,10 +4,9 @@ use \Psc\HTML\HTML,
     \Psc\Doctrine\Helper as DoctrineHelper
 ;
 ?>
-<h2>Willkommen im Psc - CMS</h2>
+<h2><?php _e('welcome.headline') ?></h2>
 <div class="content-text">
-<p>Inhalte, die bearbeitet werden sollen, können dieser Tabs-Liste auf der rechten Seiten im Akkordion: "Inhalte" hinzugefügt werden.<br />
-Hilfe und Tipps gibt es auf der rechten Seite im Akkordion: "Tipps"</p>
+<p><?php _e('welcome.navigate') ?></p>
 <br />
 <p><?= $cms->createTemplateTabLink(array('CMS','changelog'), 'Changelog') ?></p>
 <p>Bei Fragen, Schwierigkeiten oder Fehlern, bitte die Fehlermeldung kopieren (oder einen Screenshot machen) und den Entwickler kontaktieren:</p>
