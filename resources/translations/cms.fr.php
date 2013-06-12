@@ -107,7 +107,7 @@ La nouvelle page s'ouvre en cliquant sur le nouvel élément de navigation. ",
   'sce.widget.image'=>'Photo',
   'sce.widget.headline'=>'Titre',
   'sce.widget.downloadsList'=>'Téléchargements',
-  'sce.widget.calendar'=>'Calendrier',
+  'sce.widget.calendar'=>'Calendrier'
 /*
   'sce.headline.sidebar'=>'Sidebar bearbeiten',
   'sce.headline.content'=>'Inhalte bearbeiten'

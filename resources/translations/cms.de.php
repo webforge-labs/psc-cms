@@ -108,7 +108,7 @@ Jetzt kann durch den Seiten-Button des neuen Navigations-Punktes die Seite geöf
   'sce.widget.image'=>'Bild im Text',
   'sce.widget.headline'=>'Überschrift',
   'sce.widget.downloadsList'=>'Download-Liste',
-  'sce.widget.calendar'=>'Kalender'
+  'sce.widget.calendar'=>'Kalender',
 
   'sce.headline.sidebar'=>'Sidebar bearbeiten',
   'sce.headline.content'=>'Inhalte bearbeiten'

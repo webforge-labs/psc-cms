@@ -1,15 +1,14 @@
 <?php
 
-use \Psc\HTML\HTML,
-    \Psc\Doctrine\Helper as DoctrineHelper
-;
+use Psc\HTML\HTML;
+use Psc\Doctrine\Helper as DoctrineHelper;
 ?>
-<h2><?php _e('welcome.headline') ?></h2>
+<h2><?= $trans('welcome.headline') ?></h2>
 <div class="content-text">
-<p><?php _e('welcome.navigate') ?></p>
+<p><?= $trans('welcome.navigate') ?></p>
 <br />
-<p><?= $cms->createTemplateTabLink(array('CMS','changelog'), 'Changelog') ?></p>
-<p>Bei Fragen, Schwierigkeiten oder Fehlern, bitte die Fehlermeldung kopieren (oder einen Screenshot machen) und den Entwickler kontaktieren:</p>
+<p><?= $cms->createTemplateTabLink(array('CMS','changelog'), 'Changelog') ?> - <?= $trans('welcome.readChangelog') ?></p>
+<p><?= $trans('welcome.support') ?></p>
 
 <p>
 Philipp Scheit<br />
