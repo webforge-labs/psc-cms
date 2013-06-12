@@ -107,6 +107,8 @@ return Array(
   'sce.widget.image'=>'Image in text',
   'sce.widget.headline'=>'Headline',
   'sce.widget.downloadsList'=>'Downloadslist',
-  'sce.widget.calendar'=>'Calendar'
+  'sce.widget.calendar'=>'Calendar',
 
+  'sce.headline.sidebar'=>'edit sidebar',
+  'sce.headline.content'=>'edit contents'
 );

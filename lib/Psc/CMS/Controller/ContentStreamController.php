@@ -104,10 +104,10 @@ abstract class ContentStreamController extends \Psc\CMS\Controller\ContainerCont
 
     $panel = $this->createFormPanel(
       $entity, 
-      sprintf(
-        $entity->getType() === 'sidebar-content' ? 'Sidebar bearbeiten%s ' : 'Inhalte bearbeiten%s ',
-        '' //$entity
-      )
+      ($entity->getType() === 'sidebar-content'
+        ? $this->trans('sce.headline.sidebar', array(), 'cms') 
+        : $this->trans('sce.headline.content', array(), 'cms')
+      ).' '
     );
     $this->initFormPanel($panel);
     $panel->removeRightAccordion();
