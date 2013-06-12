@@ -61,4 +61,3 @@ class Labeler extends \Psc\SimpleObject {
     return $this->commonLabels;
   }
 }
-?>

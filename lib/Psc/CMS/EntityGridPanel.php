@@ -46,7 +46,7 @@ class EntityGridPanel extends \Psc\CMS\GridPanel {
     );
 
     if ($this->sortable) {
-      $this->panelButtons->addSaveButton(PanelButtons::ALIGN_LEFT | PanelButtons::PREPEND)->setLabel('Reihenfolge speichern');
+      $this->panelButtons->addSaveButton(PanelButtons::ALIGN_LEFT | PanelButtons::PREPEND)->setLabel($this->trans('panel.buttons.save-sort'));
     }
   }
   
@@ -160,5 +160,9 @@ class EntityGridPanel extends \Psc\CMS\GridPanel {
    */
   public function getEntityMeta() {
     return $this->entityMeta;
+  }
+
+  protected function trans($key, Array $parameters = array()) {
+    return $this->translationContainer->getTranslator()->trans($key, $parameters, 'cms');
   }
 }
