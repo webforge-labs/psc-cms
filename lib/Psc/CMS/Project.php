@@ -10,7 +10,7 @@ use Psc\Config;
 use Psc\Code\Generate\GClass;
 use Psc\Code\Event\Event;
 
-class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber {
+class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber, \Webforge\Framework\Project {
   
   const MODE_PHAR = 'phar';
   const MODE_SRC = 'src';
@@ -412,6 +412,20 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber {
     return clone $this->dirs[$p];
   }
 
+
+  public function getRootDirectory() {
+    return $this->getRoot();
+  }
+
+
+  public function getLanguages() {
+    return $this->getConfiguration()->req('languages');
+  }
+
+  public function getDefaultLanguage() {
+    $languages = $this->getLanguages();
+    return current($languages);
+  }
   
   /**
    * Gibt den Namen des Hosts zurück
