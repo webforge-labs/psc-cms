@@ -178,7 +178,7 @@ class NavigationController extends ContainerController {
    */
   public function getPagesMenu($context = 'default') {
     $this->setContext($context);
-    $menu = new PagesMenu($this->getFlat());
+    $menu = new PagesMenu($this->getFlat(), $this->getContainer()->getLanguage());
 
     return $menu;
   }

@@ -10,7 +10,7 @@ class NavigationControllerTest extends \Psc\Doctrine\NavigationNodesTestCase {
   public function setUp() {
     parent::setUp();
 
-    $this->controller = new \Psc\Test\Controllers\NavigationNodeController($this->getDoctrinePackage(), $this->createContainer());
+    $this->controller = new \Psc\Test\Controllers\NavigationNodeController($this->getDoctrinePackage(), $this->container = $this->createContainer());
   }
 
   public function testPre() {
@@ -172,6 +172,17 @@ class NavigationControllerTest extends \Psc\Doctrine\NavigationNodesTestCase {
        ->css('.psc-cms-ui-button-save')->count(1)->end()
        ->css('.psc-cms-ui-button-save')->count(1)->end()
     ;
+  }
+
+  public function testGetPagesMenu() {
+    $this->assertInstanceOf('Psc\UI\PagesMenu', $pagesMenu = $this->controller->getPagesMenu());
+
+    $pagesMenu->html();
+
+    $this->test->joose($pagesMenu->getJooseSnippet())
+      ->constructsJoose('Psc.UI.PagesMenu', array(
+        'locale'=>$this->container->getLanguage()
+      ));
   }
 
   protected function getFlatForUI($displayLocale, Array $languages) {

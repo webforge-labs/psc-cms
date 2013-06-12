@@ -13,9 +13,12 @@ class PagesMenu extends \Psc\HTML\JooseBase implements JooseSnippetWidget {
   protected $flatNavigationNodes;
 
   protected $contentStreamTypes = array('page-content');
+
+  protected $locale;
   
-  public function __construct(Array $flatNavigationNodes) {
+  public function __construct(Array $flatNavigationNodes, $locale) {
     $this->flatNavigationNodes = $flatNavigationNodes;
+    $this->locale = $locale;
   }
   
   protected function doInit() {
@@ -29,6 +32,7 @@ class PagesMenu extends \Psc\HTML\JooseBase implements JooseSnippetWidget {
   public function getJooseSnippet() {
     return $this->createJooseSnippet(
       'Psc.UI.PagesMenu', Array(
+        'locale'=>$this->locale,
         'widget'=>$this->widgetSelector(),
         'uiController'=>$this->jsExpr('main.getUIController()'),
         'flat'=>$this->flatNavigationNodes,

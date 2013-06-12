@@ -50,6 +50,11 @@ class JSTester extends \Psc\SimpleObject {
     $this->testCase->assertArrayHasKey($name, $params);
     
     if (isset($constraint)) {
+
+      if (is_string($constraint)) {
+        $constraint = $this->testCase->equalTo($constraint);
+      }
+
       $this->testCase->assertThat($params[$name], $constraint);
     }
     
