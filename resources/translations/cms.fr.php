@@ -18,6 +18,7 @@ return Array(
   'panel.buttons.insert-open'=>'enregistrer et ouvrir nouvel onglet',
   'panel.buttons.reset'=>'rétablir',
   'panel.buttons.preview'=>'aperçus',
+  //'panel.buttons.save-sort'=>'Reihenfolge speichern',
 
   'sidebar.content'=>'Contenu',
 
@@ -43,15 +44,15 @@ return Array(
   'entities.user.grid'=>'Administrer les utilisateurs',
   'entities.user.insert'=>'créér un nouveaux compte d’utilisateur',
   
-  'entities.member'=>"Mitarbeiter",
+  //'entities.member'=>"Mitarbeiter",
   'entities.member.grid'=>"administrer l'équipe",
-  'entities.member.insert'=>"Neuen Mitarbeiter erstellen",
+  //'entities.member.insert'=>"Neuen Mitarbeiter erstellen",
 
   'entities.page.grid'=>'administrer les pages',
   'entities.page.insert'=>'créer une nouvelle page',
 
   'entities.comment.grid'=>'administrer les commentaires',
-  //'entities.comment.insert'=>'',
+  //'entities.comment.insert'=>'create a new comment',
   'entities.comment'=>'commentaire',
 
   'entities.news-entry'=>'article',
@@ -88,6 +89,25 @@ return Array(
   'entities.map.type'=>'type',
   'entities.map.marked'=>'marqué',
 
+/*
+  'entities.member.email'=>'email',
+  'entities.member.active'=>'active',
+  'entities.member.telephone1'=>'telephone',
+  'entities.member.mobile'=>'mobilephone',
+  'entities.member.info'=>'info',
+  'entities.member.image'=>'photo',
+  'entities.member.fullname'=>'full name',
+  'entities.member.expertise'=>'position',
+  'entities.member.location'=>'location',
+
+  'entities.comment.content'=>'comment',
+  'entities.comment.email'=>'eail',
+  'entities.comment.name'=>'name',
+  'entities.comment.ip'=>'ip address',
+  'entities.comment.cdate'=>'created',
+  'entities.comment.page'=>'page',
+  'entities.comment.nopage'=>'no page',
+*/  
   'component.navigation.doc.levels'=>'Niveaux de navigation',
 
   'component.navigation.doc.reading'=>"Il faut lire les différents niveau de navigation de gauche à droit. 

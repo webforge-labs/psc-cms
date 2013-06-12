@@ -18,6 +18,7 @@ return Array(
   'panel.buttons.insert-open'=>'save and open in new tab',
   'panel.buttons.reset'=>'reset',
   'panel.buttons.preview'=>'preview',
+  'panel.buttons.save-sort'=>'save ordering',
 
   'sidebar.content'=>'contents',
 
@@ -45,7 +46,7 @@ return Array(
 
   'entities.member'=>'team member',
   'entities.member.grid'=>'team administration',
-  'entities.member.grid'=>'create a new team member',
+  'entities.member.insert'=>'Create a new team member',
 
   'entities.page.grid'=>'page administration',
   'entities.page.insert'=>'create a new page',
@@ -87,6 +88,24 @@ return Array(
   'entities.map.label position'=>'label position',
   'entities.map.type'=>'type',
   'entities.map.marked'=>'marked',
+
+  'entities.member.email'=>'email',
+  'entities.member.active'=>'active',
+  'entities.member.telephone1'=>'telephone',
+  'entities.member.mobile'=>'mobilephone',
+  'entities.member.info'=>'info',
+  'entities.member.image'=>'photo',
+  'entities.member.fullname'=>'full name',
+  'entities.member.expertise'=>'position',
+  'entities.member.location'=>'location',
+
+  'entities.comment.content'=>'comment',
+  'entities.comment.email'=>'email',
+  'entities.comment.name'=>'name',
+  'entities.comment.ip'=>'ip address',
+  'entities.comment.cdate'=>'created',
+  'entities.comment.page'=>'page',
+  'entities.comment.nopage'=>'no page',
 
   'component.navigation.doc.levels'=>'Levels of the navigation',
 

@@ -18,6 +18,7 @@ return Array(
   'panel.buttons.insert-open'=>'neu erstellen und geöffnet lassen',
   'panel.buttons.reset'=>'zurücksetzen',
   'panel.buttons.preview'=>'vorschau',
+  'panel.buttons.save-sort'=>'Reihenfolge speichern',
 
   'sidebar.content'=>'Inhalte',
 
@@ -52,6 +53,7 @@ return Array(
   'entities.page.insert'=>'Neue Seite erstellen',
 
   'entities.comment'=>'Kommentar',
+  'entities.comment.insert'=>'Neuen Kommentar erstellen',
   'entities.comment.grid'=>'Kommentare verwalten',
 
   'entities.news-entry'=>'News',
@@ -88,6 +90,25 @@ return Array(
   'component.map.type'=>'Typ',
   'component.map.marked'=>'markiert',
 
+  'entities.member.email'=>'E-Mail',
+  'entities.member.active'=>'aktiv',
+  'entities.member.telephone'=>'Telefon',
+  'entities.member.mobile'=>'Mobiltelefon',
+  'entities.member.image'=>'Bild',
+  'entities.member.info'=>'Informationen',
+  'entities.member.fullname'=>'Vor- und Zuname',
+  'entities.member.expertise'=>'Position',
+  'entities.member.location'=>'Ort',
+
+  'entities.comment.content'=>'Kommentar',
+  'entities.comment.email'=>'E-Mail',
+  'entities.comment.name'=>'Name',
+  'entities.comment.ip'=>'IP-Adresse',
+  'entities.comment.cdate'=>'erstellt',
+  'entities.comment.page'=>'Seite',
+  'entities.comment.nopage'=>'keine Seite',
+
+  
   'component.navigation.doc.levels'=>'Navigations-Ebenen',
 
   'component.navigation.doc.reading'=>'Die Navigations-Ebenen sind von links nach rechts zu lesen. 
