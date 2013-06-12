@@ -59,14 +59,14 @@ return Array(
 
   'entities.map.grid'=>'map administration',
 
-  'component.news-entry.published'=>'published',
-  'component.news-entry.teaser'=>'teaser',
-  'component.news-entry.active'=>'active',
-  'component.news-entry.commentsAllowed'=>'comments allowed',
-  'component.news-entry.created'=>'created',
-  'component.news-entry.updated'=>'updated',
-  'component.news-entry.comments'=>'comments',
-  'component.news-entry.contentStreams'=>'layouts',
+  'entities.news-entry.published'=>'published',
+  'entities.news-entry.teaser'=>'teaser',
+  'entities.news-entry.active'=>'active',
+  'entities.news-entry.commentsAllowed'=>'comments allowed',
+  'entities.news-entry.created'=>'created',
+  'entities.news-entry.updated'=>'updated',
+  'entities.news-entry.comments'=>'comments',
+  'entities.news-entry.contentStreams'=>'layouts',
 
   'entities.page.slug'=>'slug',
   'entities.page.contentStreams'=>'layouts',

@@ -75,11 +75,11 @@ return Array(
   'entities.page.active'=>'aktiv',
   'entities.page.commentsAllowed'=>'Kommentare erlauben',
 
-  'component.calendar.titel'=>'titre',
-  'component.calendar.from'=>'de',
-  'component.calendar.until'=>'à',
-  'component.calendar.allDay'=>'toute la journée',
-  'component.calendar.color'=>'coleur',
+  'entities.calendar.titel'=>'titre',
+  'entities.calendar.from'=>'de',
+  'entities.calendar.until'=>'à',
+  'entities.calendar.allDay'=>'toute la journée',
+  'entities.calendar.color'=>'coleur',
 
   'component.map.name'=>'Nom',
   'component.map.position'=>'Postition',
