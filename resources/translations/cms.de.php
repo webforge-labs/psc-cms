@@ -3,6 +3,10 @@
 /* Deutsch */
 return Array(
   'welcome.tabTitle'=>'Willkommen',
+  'welcome.headline'=>'Willkommen im Psc - CMS',
+  'welcome.navigate'=>'Die Inhalte die gepflegt werden können, befinden sich auf der rechten Seite. Alle Inhalte werden oben in der Tabs-Leiste angezeigt.',
+  'welcome.support'=>'Bei Fragen, Schwierigkeiten oder Fehlern, bitte die Fehlermeldung kopieren (oder einen Screenshot machen) und den Entwickler kontaktieren:',
+  'welcome.readChangelog'=>'Was hat sich in letzter Zeit alles geändert',
 
   'panel.profile'=>'Profil',
 
@@ -21,41 +25,49 @@ return Array(
   'sidebar.website'=>'Webseite',
   'sidebar.navigation'=>'Navigation',
   'sidebar.map'=>'Karte',
+  'sidebar.city'=>'Städte',
   'sidebar.calendar'=>'Kalender',
-
-  'sidebar.cms.user administration'=>'Benutzer verwalten',
-  'sidebar.cms.user administration.button.new user'=>'Neuen Benutzer erstellen',
-
-  'sidebar.website.news administration'=>'News verwalten',
-  'sidebar.website.page administration'=>'Seiten verwalten',
-  'sidebar.website.comment administration'=>'Kommentare verwalten',
-  'sidebar.website.team administration'=>'Team verwalten',
 
   'sidebar.navigation.main'=>'Haupt-Navigation pflegen',
   'sidebar.navigation.footer'=>'Footer-Navigation pflegen',
   'sidebar.navigation.top'=>'Top-Navigation pflegen',
 
-  'sidebar.calendar-grid'=>'Kalender pflegen',
-  'sidebar.map-grid'=>'Karte pflegen',
-  'sidebar.city-grid'=>'Städte pflegen',
+  'entities.calendar'=>'Kalender',
+  'entities.calendar.grid'=>'Kalender pflegen',
+  'entities.calendar-event.grid'=>'Kalender pflegen',
+  'entities.calendar-event.insert'=>'Neuen Kalendereintrag erstellen',
 
-  'component.navigation.create a new page'=>'Neue Seite erstellen',
+  'entities.city.insert'=>'Neue Stadt erstellen',
+  'entities.city.grid'=>'Städte pflegen',
 
-  'component.navigation.add navigation nod'=>'Navigationspunkt hinzufügen',
-  'component.navigation.navigation levels'=>'Navigationsebenen',
+  'entities.user'=>'Benutzer',
+  'entities.user.grid'=>'Benutzer verwalten',
+  'entities.user.insert'=>'Neuen Benutzer erstellen',
 
-  'component.news.write a news'=>'Neue News erstellen',
-  'component.map.create a new city'=>'Neue Stadt erstellen',
-  'component.calendar.new entry'=>'Neuen Kalendereintrag erstellen',
+  'entities.member'=>"Mitarbeiter",
+  'entities.member.grid'=>'Team verwalten',
+  'entities.member.insert'=>"Neuen Mitarbeiter erstellen",
+
+  'entities.page.grid'=>'Seiten verwalten',
+  'entities.page.insert'=>'Neue Seite erstellen',
+
+  'entities.comment'=>'Kommentar',
+  'entities.comment.grid'=>'Kommentare verwalten',
+
+  'entities.news-entry'=>'News',
+  'entities.news-entry.insert'=>'Neue News erstellen',
+  'entities.news-entry.grid'=>'News verwalten',
+
+  'entities.map.grid'=>'Karte pflegen',
 
   'component.news-entry.published'=>'Erscheinungsdatum',
   'component.news-entry.teaser'=>'Überschrift',
   'component.news-entry.active'=>'online sichtbar',
-  'component.news-entry.comments allowed'=>'Kommentarfunktion einschalten',
+  'component.news-entry.commentsAllowed'=>'Kommentarfunktion einschalten',
   'component.news-entry.created'=>'hinzugefügt',
   'component.news-entry.updated'=>'aktualisiert',
   'component.news-entry.comments'=>'Kommentare',
-  'component.news-entry.content streams'=>'Inhalte',
+  'component.news-entry.contentStreams'=>'Inhalte',
 
   'entities.page.slug'=>'Kurzname',
   'entities.page.contentStreams'=>'Layouts',

@@ -3,6 +3,10 @@
 /* Englisch */
 return Array(
   'welcome.tabTitle'=>'Welcome',
+  'welcome.headline'=>'Welcome to Psc - CMS',
+  'welcome.navigate'=>'All managable conentents are shown in the right sidebar. Those contents will be opened and shown in the tabs bar.',
+  'welcome.support'=>'If you experience unexpected problems make a copy of the error message (or better: make a screenshot) and contact the developer (german and english speaking):',
+  'welcome.readChangelog'=>'read about the last changes',
 
   'panel.profile'=>'Profile',
 
@@ -20,44 +24,49 @@ return Array(
   'sidebar.cms'=>'CMS',
   'sidebar.website'=>'website',
   'sidebar.navigation'=>'navigation',
+  'sidebar.city'=>'cities',
   'sidebar.map'=>'map',
   'sidebar.calendar'=>'calendar',
-
-  'sidebar.cms.user admin'=>'user administration',
-  'sidebar.cms.user admin.button.reload'=>'reload',
-  'sidebar.cms.user admin.button.new user'=>'create a user profile',
-
-  'entities.news.grid'=>'news administration',
-  'entities.page.grid'=>'page administration',
-  'entities.comment.grid'=>'comment administration',
-  'entities.member.grid'=>'team administration',
 
   'sidebar.navigation.main'=>'main navigation',
   'sidebar.navigation.footer'=>'footer navigation',
   'sidebar.navigation.top'=>'top navigation',
 
-  'sidebar.calendar'=>'calendar administration',
-  'sidebar.map'=>'map administration',
-  'sidebar.city'=>'city administration',
+  'entities.calendar'=>'calendar',
+  'entities.calendar.grid'=>'calendar administration',
+  'entities.calendar.insert'=>'Create a new entry',
 
-  'component.navigation.create a new page'=>'navigation.create a new page',
+  'entities.city.insert'=>'create a new city',
+  'entities.city.grid'=>'city administration',
 
-  'component.navigation.addNode'=>'add navigation node',
-  'component.navigation.levels'=>'navigation levels',
+  'entitites.user'=>'user',
+  'entities.user.grid'=>'user administration',
+  'entities.user.insert'=>'create a new user',
 
-  'entities.news'=>'news',
-  'entities.news.insert'=>'write a news',
-  'component.map.create a new city'=>'create a new city',
-  'component.calendar.new entry'=>'insert new entry',
+  'entities.member'=>'team member',
+  'entities.member.grid'=>'team administration',
+  'entities.member.grid'=>'Create a new team member',
+
+  'entities.page.grid'=>'page administration',
+  'entities.page.insert'=>'Create a new page',
+
+  'entities.comment.grid'=>'comment administration',
+  'entities.comment'=>'comment',
+
+  'entities.news-entry.grid'=>'news administration',
+  'entities.news-entry'=>'Create a news',
+  'entities.news-entry'=>'news',
+
+  'entities.map.grid'=>'map administration',
 
   'component.news-entry.published'=>'published',
   'component.news-entry.teaser'=>'teaser',
   'component.news-entry.active'=>'active',
-  'component.news-entry.comments allowed'=>'comments allowed',
-  'component.news-entry.created'=>'publication date',
+  'component.news-entry.commentsAllowed'=>'comments allowed',
+  'component.news-entry.created'=>'created',
   'component.news-entry.updated'=>'updated',
   'component.news-entry.comments'=>'comments',
-  'component.news-entry.content streams'=>'content streams',
+  'component.news-entry.contentStreams'=>'layouts',
 
   'entities.page.slug'=>'slug',
   'entities.page.contentStreams'=>'layouts',

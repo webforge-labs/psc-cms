@@ -3,6 +3,10 @@
 /* Französisch */
 return Array(
   'welcome.tabTitle'=>"Bienvenue",
+  'welcome.headline'=>'Bienvenue - Psc - CMS',
+  //'welcome.navigate'=>'All managable conentents are shown in the right sidebar. Those contents will be opened and shown in the tabs bar.'
+  //welcome.support=>'If you experience unexpected problems make a copy of the error message (or better: make a screenshot) and contact the developer:'
+  //'welcome.readChangelog'=>'Was hat sich in letzter Zeit alles geändert'
 
   'panel.profile'=>'Profil',
 
@@ -29,23 +33,25 @@ return Array(
   'sidebar.navigation.top'=>'administrer le haut de page',
 
   'entities.calendar'=>'calendrier',
-  'entities.calendar.grid'=>'administrer le calendrier',
-  'entities.calendar.insert'=>'rédiger une nouvelle ville',
+  'entities.calendar-event.grid'=>'administrer le calendrier',
+  'entities.calendar-event.insert'=>'Neuen Kalendereintrag erstellen',
+
+  'entities.city.insert'=>'ajouter une nouvelle ville', //'rédiger une nouvelle ville',
+  'entities.city.grid'=>'administrer les villes',
 
   'entities.user'=>'utilisateur',
   'entities.user.grid'=>'Administrer les utilisateurs',
   'entities.user.insert'=>'créér un nouveaux compte d’utilisateur',
   
+  'entities.member'=>"Mitarbeiter",
+  'entities.member.grid'=>"administrer l'équipe",
+  'entities.member.insert'=>"Neuen Mitarbeiter erstellen",
+
   'entities.page.grid'=>'administrer les pages',
   'entities.page.insert'=>'créer une nouvelle page',
 
-  'entities.member.grid'=>"administrer l'équipe",
-
-  'entities.city'=>'administrer les villes',
-  'entities.city.insert'=>'ajouter une nouvelle ville',
-
-  'entities.comment'=>'commentaire',
   'entities.comment.grid'=>'administrer les commentaires',
+  'entities.comment'=>'commentaire',
 
   'entities.news-entry'=>'article',
   'entities.news-entry.insert'=>'rédiger un article',
@@ -102,4 +108,5 @@ La nouvelle page s'ouvre en cliquant sur le nouvel élément de navigation. ",
   'sce.widget.headline'=>'Titre',
   'sce.widget.downloadsList'=>'Téléchargements',
   'sce.widget.calendar'=>'Calendrier'
+
 );
