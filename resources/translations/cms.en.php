@@ -75,17 +75,17 @@ return Array(
   'entities.page.active'=>'active',
   'entities.page.commentsAllowed'=>'comments enabled',
 
-  'component.calendar.titel'=>'titel',
-  'component.calendar.from'=>'from',
-  'component.calendar.until'=>'until',
-  'component.calendar.all-day'=>'all-day',
-  'component.calendar.color'=>'color',
+  'entities.calendar-entry.titel'=>'titel',
+  'entities.calendar-entry.from'=>'from',
+  'entities.calendar-entry.until'=>'until',
+  'entities.calendar-entry.all-day'=>'all-day',
+  'entities.calendar-entry.color'=>'color',
 
-  'component.map.name'=>'name',
-  'component.map.position'=>'postition',
-  'component.map.label position'=>'label position',
-  'component.map.type'=>'type',
-  'component.map.marked'=>'marked',
+  'entities.map.name'=>'name',
+  'entities.map.position'=>'postition',
+  'entities.map.label position'=>'label position',
+  'entities.map.type'=>'type',
+  'entities.map.marked'=>'marked',
 
   'component.navigation.doc.levels'=>'Levels of the navigation',
 

@@ -37,7 +37,7 @@ class PageControllerTest extends \Psc\Doctrine\DatabaseTestCase {
     $navController = $this->getMockForAbstractClass('Psc\CMS\Controller\NavigationController', array(), '', FALSE, TRUE, TRUE, array('getPagesMenu'));
     $navController->expects($this->atLeastOnce())->method('getPagesMenu')
       ->will($this->returnValue(
-        new PagesMenu(array())
+        new PagesMenu(array(), 'de')
       )
     );
 

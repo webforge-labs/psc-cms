@@ -75,17 +75,17 @@ return Array(
   'entities.page.active'=>'aktiv',
   'entities.page.commentsAllowed'=>'Kommentare erlauben',
 
-  'entities.calendar.titel'=>'titre',
-  'entities.calendar.from'=>'de',
-  'entities.calendar.until'=>'à',
-  'entities.calendar.allDay'=>'toute la journée',
-  'entities.calendar.color'=>'coleur',
+  'entities.calendar-entry.titel'=>'titre',
+  'entities.calendar-entry.from'=>'de',
+  'entities.calendar-entry.until'=>'à',
+  'entities.calendar-entry.allDay'=>'toute la journée',
+  'entities.calendar-entry.color'=>'coleur',
 
-  'component.map.name'=>'Nom',
-  'component.map.position'=>'Postition',
-  'component.map.label position'=>'Position du label',
-  'component.map.type'=>'type',
-  'component.map.marked'=>'marqué',
+  'entities.map.name'=>'Nom',
+  'entities.map.position'=>'Postition',
+  'entities.map.label position'=>'Position du label',
+  'entities.map.type'=>'type',
+  'entities.map.marked'=>'marqué',
 
   'component.navigation.doc.levels'=>'Niveaux de navigation',
 
