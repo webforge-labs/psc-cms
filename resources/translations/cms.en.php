@@ -45,16 +45,17 @@ return Array(
 
   'entities.member'=>'team member',
   'entities.member.grid'=>'team administration',
-  'entities.member.grid'=>'Create a new team member',
+  'entities.member.grid'=>'create a new team member',
 
   'entities.page.grid'=>'page administration',
-  'entities.page.insert'=>'Create a new page',
+  'entities.page.insert'=>'create a new page',
 
   'entities.comment.grid'=>'comment administration',
+  'entities.comment.insert'=>'create a new comment',
   'entities.comment'=>'comment',
 
   'entities.news-entry.grid'=>'news administration',
-  'entities.news-entry'=>'Create a news',
+  'entities.news-entry'=>'create a news',
   'entities.news-entry'=>'news',
 
   'entities.map.grid'=>'map administration',

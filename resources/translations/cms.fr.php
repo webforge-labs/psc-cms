@@ -51,6 +51,7 @@ return Array(
   'entities.page.insert'=>'créer une nouvelle page',
 
   'entities.comment.grid'=>'administrer les commentaires',
+  //'entities.comment.insert'=>'',
   'entities.comment'=>'commentaire',
 
   'entities.news-entry'=>'article',
