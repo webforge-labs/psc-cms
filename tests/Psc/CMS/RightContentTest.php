@@ -19,7 +19,7 @@ class RightContentTest extends \Psc\Code\Test\HTMLTestCase implements DropConten
     
     $this->dc = $this->getMock('Psc\Doctrine\DCPackage',array('getEntityMeta'),array(),'',FALSE);
     
-    $this->cmsRightContent = new RightContent($this->dc);
+    $this->cmsRightContent = new RightContent($this->dc, $this->getTranslationContainer());
     
     $this->dc->expects($this->any())->method('getEntityMeta')
              ->will($this->returnValue($this->getEntityMeta('user', $this->getProject()->getModule('Doctrine'))));
@@ -31,28 +31,28 @@ class RightContentTest extends \Psc\Code\Test\HTMLTestCase implements DropConten
   }
 
   public function testAddEntityLink() {
-    $this->rightContent = new RightContentWithEntityLink($this->dc);
+    $this->rightContent = new RightContentWithEntityLink($this->dc, $this->getTranslationContainer());
     $this->list->expects($this->once())->method('addLinkable');
     
     $this->rightContent->populateLists($this);
   }
 
   public function testAddSearchPanelLink() {
-    $this->rightContent = new RightContentWithSearchPanelLink($this->dc);
+    $this->rightContent = new RightContentWithSearchPanelLink($this->dc, $this->getTranslationContainer());
     $this->list->expects($this->once())->method('addLinkable');
     
     $this->rightContent->populateLists($this);
   }
   
   public function testAddGridLink() {
-    $this->rightContent = new RightContentWithGridLink($this->dc);    
+    $this->rightContent = new RightContentWithGridLink($this->dc, $this->getTranslationContainer());
     $this->list->expects($this->once())->method('addLinkable');
     
     $this->rightContent->populateLists($this);
   }
 
   public function testAddNewLink() {
-    $this->rightContent = new RightContentWithNewLink($this->dc);    
+    $this->rightContent = new RightContentWithNewLink($this->dc, $this->getTranslationContainer());
     $this->list->expects($this->once())->method('addLinkable');
     
     $this->rightContent->populateLists($this);
@@ -116,4 +116,3 @@ class RightContentWithSearchPanelLink extends \Psc\CMS\RightContent {
     $this->addSearchPanelLink($list, 'user');
   }
 }
-?>

@@ -2,7 +2,7 @@
 
 /* Französisch */
 return Array(
-  'welcome.tabTitle'=>"??",
+  'welcome.tabTitle'=>"Bienvenue",
 
   'panel.profile'=>'Profil',
 

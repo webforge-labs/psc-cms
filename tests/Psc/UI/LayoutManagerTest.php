@@ -28,7 +28,7 @@ class LayoutManagerTest extends \Psc\Code\Test\HTMLTestCase {
 
   public function testControlsWillBeInitForPageContentStream() {
     $this->html = $this->layoutManager->html();
-    $this->layoutManager->initControlsFor($this->pageContentStream);
+    $this->layoutManager->initControlsFor($this->pageContentStream, $this->getTranslationContainer());
 
     $this->assertGreaterThan(4, count($this->layoutManager->getControls()));
 
