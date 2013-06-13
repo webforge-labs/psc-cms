@@ -119,6 +119,10 @@ abstract class EntryEntity extends AbstractEntity implements \Psc\HTML\HTMLInter
     throw new \Psc\Exception('This is not implemented for this class: '.get_class($this));
   }
 
+
+  public function createCopy() {
+    return clone $this;
+  }
   
   /**
    * @param ContentStreamContext $context

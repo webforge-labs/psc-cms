@@ -75,4 +75,21 @@ class ContentStreamControllerTest extends \Psc\Test\DatabaseTestCase {
     $this->assertEquals('a1', $p1->getContent());
     $this->assertEquals('a2', $p2->getContent());
   }
+
+  public function testCopyOfOneContentStreamToAnother() {
+    $this->cs1->addEntry($p1 = $this->instancer->getParagraph(1));
+    $this->cs1->addEntry($p2 = $this->instancer->getParagraph(2));
+
+    $this->controller->copy($this->cs1, $this->cs2);
+
+    $this->assertCount(2, $this->cs2->getEntries(), 'exactly 2 entries should be copied');
+    list($p1, $p2) = $this->cs1->getEntries()->toArray();
+    list($cp1, $cp2) = $this->cs2->getEntries()->toArray();
+
+    $this->assertEquals($p1->getContent(), $cp1->getContent());
+    $this->assertNotSame($p1, $cp1, 'copied paragraph should not be the same');
+
+    $this->assertEquals($p2->getContent(), $cp2->getContent());
+    $this->assertNotSame($p2, $cp2, 'copied paragraph should not be the same');
+  }
 }

@@ -160,6 +160,13 @@ abstract class ContentStreamController extends \Psc\CMS\Controller\ContainerCont
     return $contentStream;
   }
 
+  public function copy(ContentStream $from, ContentStream $to) {
+    foreach ($from->getEntries() as $entry) {
+      $entryCopy = $entry->createCopy();
+      $entryCopy->setContentStream($to);
+    }
+  }
+
   public function createEmptyEntity($revision = NULL) {
     $c = $this->container->getRoleFQN('ContentStream');
     return new $c(NULL, NULL, $revision);

@@ -114,6 +114,22 @@ abstract class ContentStreamEntity extends \Psc\CMS\AbstractEntity implements Co
   }
 
   /**
+   *
+   *  @inherit-doc
+   * does not copy the revision. It will be created with default
+   * the slug is prepended with "copy from"
+   */
+  public function createCopy() {
+    $copy = self::create($this->locale, $this->type, 'default', 'copy from '.$this->slug);
+    foreach ($this->entries as $entry) {
+      $copy->addEntry($entry->createCopy());
+    }
+
+    return $copy;
+  }
+
+
+  /**
    * Gibt alle Elemente nach dem angegeben Element im CS zurück
    *
    * gibt es keine Element danach wird ein leerer Array zurückgegeben
@@ -200,3 +216,4 @@ abstract class ContentStreamEntity extends \Psc\CMS\AbstractEntity implements Co
 
   abstract public function getTypeClass($typeName);
 }
+
