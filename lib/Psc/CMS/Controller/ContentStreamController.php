@@ -135,8 +135,13 @@ abstract class ContentStreamController extends \Psc\CMS\Controller\ContainerCont
     return $panel;
   }
 
-
-  public function prepareFor(ContentStreamAware $entity, $type, $locale, $revision = 'default') {
+  /**
+   * Adds or returns a new ContentStream for the entity
+   * 
+   * @param bool $save per default the new contentStream (if created) is persisted and the em is flushed(!)
+   * @return ContentStream (created or fetched from db)
+   */
+  public function prepareFor(ContentStreamAware $entity, $type, $locale, $revision = 'default', $save = TRUE) {
     try {
       $contentStream = 
          $entity->getContentStream()
@@ -153,8 +158,12 @@ abstract class ContentStreamController extends \Psc\CMS\Controller\ContainerCont
            ->setType($type);
 
        $entity->addContentStream($contentStream);
-       $this->repository->persist($entity);
-       $this->repository->save($contentStream);
+
+       
+       if ($save) {
+         $this->repository->save($contentStream);
+         $this->repository->persist($entity);
+       }
      }
 
     return $contentStream;

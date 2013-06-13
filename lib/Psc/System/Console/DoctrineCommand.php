@@ -43,10 +43,9 @@ class DoctrineCommand extends \Psc\System\Console\Command {
     
     try {
       $ret = parent::execute($input, $output);
-      
+
       if ($ret <= 0) {
         DoctrineHelper::enableSQLLogging('echo', $this->em);
-        
         if ($input->getOption('dry-run')) {
           $this->warn('DryRun: nothing is flushed');
         } else {
@@ -90,4 +89,3 @@ class DoctrineCommand extends \Psc\System\Console\Command {
     return $this->module->getEntityName($shortName);
   }
 }
-?>
