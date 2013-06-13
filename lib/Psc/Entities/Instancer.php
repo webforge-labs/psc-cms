@@ -66,6 +66,22 @@ class Instancer {
     return $page;
   }
 
+  protected function instanceParagraph($num, \Closure $inject = NULL) {
+    $contents = array(
+      1=>'c1: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
+      2=>'c2: psum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt',
+      3=>'c3: ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea'
+    );
+
+    $p = $this->newObject('CS\Paragraph', array($contents[$num]));
+
+    if (isset($inject)) $inject($p);
+
+    $this->save($p);
+
+    return $p;
+  }
+
   protected function instanceContentStream($num, \Closure $inject = NULL) {
     $contentStream = $this->newObject('ContentStream', 
       array(

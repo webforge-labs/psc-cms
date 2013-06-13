@@ -29,9 +29,8 @@ abstract class Entry extends CompiledEntry {
     
     return parent::getContextLabel();
   }
-  
+
   public function getEntityName() {
     return 'Psc\Entities\ContentStream\Entry';
   }
 }
-?>
