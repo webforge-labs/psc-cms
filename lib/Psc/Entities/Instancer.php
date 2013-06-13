@@ -41,7 +41,15 @@ class Instancer {
   }
 
   protected function instanceNavigationNode($num, \Closure $inject = NULL) {
-    $navNode = $this->newObject('NavigationNode', Array(array('de'=>'node mit nummer '.$num,'en'=>'node with number '.$num)));
+    $navNode = $this->newObject(
+      'NavigationNode', Array(
+        array(
+          'de'=>'node mit nummer '.$num,
+          'en'=>'node with number '.$num, 
+          'es'=>'nodas numeras '.$num
+        )
+      )
+    );
     $navNode
       ->setLft(0)
       ->setRgt(1)
