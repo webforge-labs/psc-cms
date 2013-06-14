@@ -24,10 +24,14 @@ class ProjectFixture extends Fixture {
     $user = new $c('p.scheit@ps-webforge.com');
     $user->setPassword('583cdd008f2ea237bfe4d39a2d827f42');
     $manager->persist($user);
-	
+
     $user = new $c('psc-laptop@ps-webforge.com');
     $user->setPassword('9606fe7ecf5e4e76e4fa0f07c97e3e49');
     $manager->persist($user);
+
+    $hostConfig = $this->project->getHostConfig();
+    $user = new $c($hostConfig->req('cmf.user'));
+    $user->setPassword($hostConfig->req('cmf.password'));
+    $manager->persist($user);
   }
 }
-?>

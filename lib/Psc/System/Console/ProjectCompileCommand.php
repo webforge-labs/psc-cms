@@ -2,19 +2,19 @@
 
 namespace Psc\System\Console;
 
-use \Symfony\Component\Console\Input\InputOption,
-    \Symfony\Component\Console\Input\InputArgument,
-    Symfony\Component\Console\Input\InputInterface,
-    Symfony\Component\Console\Output\OutputInterface,
-    
-    Psc\Code\Generate\TestCreater,
-    Psc\Code\Generate\GClass,
-    Psc\Code\Generate\ClassWritingException,
-    Psc\PSC,
-    
-    Webforge\Common\System\Dir,
-    Webforge\Common\System\File
-  ;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+
+use Psc\Code\Generate\TestCreater;
+use Psc\Code\Generate\GClass;
+use Psc\Code\Generate\ClassWritingException;
+use Psc\PSC;
+
+use Webforge\Common\System\Dir;
+use Webforge\Common\System\File;
+
 
 class ProjectCompileCommand extends \Psc\System\Console\Command {
 

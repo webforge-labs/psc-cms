@@ -255,4 +255,3 @@ abstract class Converter extends \Psc\SimpleObject {
     return $this->context;
   }
 }
-?>
