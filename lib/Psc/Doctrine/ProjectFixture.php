@@ -31,7 +31,7 @@ class ProjectFixture extends Fixture {
 
     $hostConfig = $this->project->getHostConfig();
     $user = new $c($hostConfig->req('cmf.user'));
-    $user->setPassword($hostConfig->req('cmf.password'));
+    $user->hashPassword($hostConfig->req('cmf.password'));
     $manager->persist($user);
   }
 }
