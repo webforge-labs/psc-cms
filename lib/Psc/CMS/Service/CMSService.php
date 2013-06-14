@@ -143,8 +143,8 @@ class CMSService extends ControllerService {
     throw HTTPException::NotFound('Die Resource für cms '.$request.' existiert nicht.');
   }
 
-  public function initRequestMatcher($request) {
-    $r = new \Psc\Net\RequestMatcher($request);
+  public function initRequestMatcher(ServiceRequest $request) {
+    $r = parent::initRequestMatcher($request);
     
     if (isset($this->prefixPart)) {
       $r->matchIValue($this->prefixPart);

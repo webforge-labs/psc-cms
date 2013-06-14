@@ -5,6 +5,7 @@ namespace Psc\CMS\Service;
 use Psc\Net\Service;
 use Psc\Net\ServiceResponse;
 use Psc\Net\ServiceRequest;
+use Psc\Net\HTTP\Request;
 use Psc\CMS\Controller\ServiceController;
 use Psc\CMS\Controller\TransactionalController;
 use Psc\Code\Callback;
@@ -13,6 +14,7 @@ use Webforge\Common\ArrayUtil AS A;
 use Psc\CMS\Project;
 
 use Psc\Net\HTTP\HTTPException;
+use Psc\Net\RequestMatcher;
 use Psc\ExceptionDelegator;
 use Psc\ExceptionListener;
 use Psc\Code\Generate\GClass;
@@ -256,6 +258,13 @@ abstract class ControllerService extends \Psc\System\LoggerObject implements \Ps
     $this->controllersNamespace = $ns;
     return $this;
   }
+
+  /**
+   * @return RequestMatcher
+   */
+  public function initRequestMatcher(ServiceRequest $request) {
+    return new RequestMatcher($request);
+  }
   
   /**
    * @param Psc\CMS\Project $project
@@ -313,4 +322,3 @@ abstract class ControllerService extends \Psc\System\LoggerObject implements \Ps
     return $this->language;
   }
 }
-?>

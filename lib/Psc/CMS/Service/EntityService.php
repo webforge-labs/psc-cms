@@ -195,8 +195,8 @@ class EntityService extends ControllerService {
     return $this->doctrine->getRepository($entityClass);
   }
   
-  public function initRequestMatcher($request) {
-    $r = new RequestMatcher($request);
+  public function initRequestMatcher(ServiceRequest $request) {
+    $r = parent::initRequestMatcher($request);
     
     if (isset($this->prefixPart)) {
       $r->matchIValue($this->prefixPart);
