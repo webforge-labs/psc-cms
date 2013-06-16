@@ -134,4 +134,3 @@ class Exception extends \Webforge\Common\Exception {
     set_exception_handler(array('\Psc\Exception','handler'));
   }
 }
-?>
