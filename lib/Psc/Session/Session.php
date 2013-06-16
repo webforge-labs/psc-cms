@@ -2,11 +2,10 @@
 
 namespace Psc\Session;
 
-use Psc\Form\DataInput,
-    Psc\Exception
-;
+use Psc\Form\DataInput;
+use Psc\Exception;
 
-class Session extends \Psc\OptionsObject {
+class Session extends \Psc\OptionsObject implements \Webforge\Common\Session {
   
   /**
    * @var Session
