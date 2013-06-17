@@ -202,4 +202,3 @@ abstract class AbstractSimpleContainer extends \Psc\SimpleObject implements Simp
     return $this->revision;
   }
 }
-?>

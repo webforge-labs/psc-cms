@@ -29,7 +29,7 @@ class Configuration {
   public function set(Array $keys, $value) {
     return $this->conf->setDataWithKeys($keys,$value);
   }
-  
+
   public function merge(Configuration $config, Array $fromKeys = array(), Array $toKeys = array()) {
     $this->conf->merge($config->getData(), $fromKeys, $toKeys);
     return $this;

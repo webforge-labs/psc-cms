@@ -194,4 +194,3 @@ class Button extends \Psc\HTML\WidgetBase implements ButtonInterface {
     return $this->data;
   }
 }
-?>

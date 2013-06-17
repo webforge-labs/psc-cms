@@ -35,6 +35,7 @@ abstract class AbstractContainer extends AbstractControllerContainer implements 
 
   public function setPackage(Package $package) {
     $this->package = $package;
+    return $this;
   }
 
   public function getPackage() {
@@ -51,7 +52,7 @@ abstract class AbstractContainer extends AbstractControllerContainer implements 
 
   public function getProjectPackage() {
     if (!isset($this->projectPackage)) {
-      $this->projectPackage = new ProjectPackage($this->getPackage());
+      $this->projectPackage = $this->getWebforge()->getProjectsFactory()->fromPackage($this->getPackage());
     }
 
     return $this->projectPackage;
