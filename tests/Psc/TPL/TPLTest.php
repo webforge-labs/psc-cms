@@ -23,5 +23,3 @@ class TPLTest extends \Psc\Code\Test\Base {
     $this->assertEquals($repl, TPL::miniTemplate($tpl, $vars));
   }
 }
-
-?>

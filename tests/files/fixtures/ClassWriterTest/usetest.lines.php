@@ -8,4 +8,3 @@ use Psc\using\that AS aliasOfThat;
 
 class TestClass {
 }
-?>

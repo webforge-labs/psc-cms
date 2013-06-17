@@ -338,4 +338,3 @@ class ArrayCollection extends \Doctrine\Common\Collections\ArrayCollection imple
   //  return array(new ArrayCollection($inserts), new ArrayCollection($updates), new ArrayCollection($deletes));
   //}
 }
-?>
