@@ -31,6 +31,8 @@ class Command extends \Symfony\Component\Console\Command\Command {
   
   protected $execOutput;
   protected $execInput;
+
+  protected $interactionHelper;
   
   protected function execute(InputInterface $input, OutputInterface $output) {
     $this->execInput = $input;
@@ -84,7 +86,7 @@ class Command extends \Symfony\Component\Console\Command\Command {
   public function confirm($question, $default = TRUE) {
     $dialog = $this->getHelper('dialog');
     return $dialog->askConfirmation($this->execOutput,
-                                    $question.' ',
+                                    rtrim($question).' ',
                                     $default
                                    );
   }
@@ -92,7 +94,7 @@ class Command extends \Symfony\Component\Console\Command\Command {
   public function askAndValidate($question, \Closure $validator, $attempts = FALSE) {
     $dialog = $this->getHelper('dialog');
     return $dialog->askAndValidate($this->execOutput,
-                                   $question,
+                                   rtrim($question).' ',
                                    $validator,
                                    $attempts
                                   );
@@ -109,6 +111,14 @@ class Command extends \Symfony\Component\Console\Command\Command {
   
   public function hasHelper($helperName) {
     return $this->getApplication()->getHelperSet()->has($helperName);
+  }
+
+  public function getInteractionHelper() {
+    if (!isset($this->interactionHelper)) {
+      $this->interactionHelper = new InteractionHelper($this->getHelper('dialog'), $this->execOutput);
+    }
+
+    return $this->interactionHelper;
   }
   
   public function callCommand($name, Array $args, $output) {
