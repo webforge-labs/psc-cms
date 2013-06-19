@@ -112,11 +112,11 @@ abstract class DeployCommand extends Command {
   protected function doExecute($input, $output) {
     $bench = new TimeBenchmark();
     $this->withoutTest = $input->getOption('without-test');
-    $cliProject = $this->getHelper('project')->getProject();
     $modes = $input->getArgument('mode');
     $qnd = (bool) $input->getOption('qnd');
 
     $container = $this->createWebforgeContainer();
+    $cliProject = $container->getLocalProject();
     
     foreach ($modes as $mode) {
       $project = clone $cliProject;

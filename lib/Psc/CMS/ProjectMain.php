@@ -87,10 +87,6 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
    */
   protected $rightContentClass;
   
-  /**
-   * @var bool
-   */
-  protected $api2;
   
   /**
    * @var int
@@ -158,7 +154,6 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
   public $session; // just a hack for tests
   
   public function __construct($project = NULL, DCPackage $dc = NULL, RightContent $rightContent = NULL, EntityService $entityService = NULL, $debugLevel = 5, FrontController $frontController = NULL, \Psc\Environment $env = NULL) {
-    $this->api2 = PSC::getVersion()->is('>=','0.2-DEV');
     $this->environment = $env ?: PSC::getEnvironment();
     $this->project = $project ?: PSC::getProject();
 
