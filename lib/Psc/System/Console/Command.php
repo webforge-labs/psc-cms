@@ -11,6 +11,7 @@ use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Webforge\Common\System\Dir;
 use Webforge\Common\System\File;
+use Webforge\Console\InteractionHelper;
 
 class Command extends \Symfony\Component\Console\Command\Command {
   
