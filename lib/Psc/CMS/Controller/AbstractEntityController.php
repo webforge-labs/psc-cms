@@ -933,7 +933,8 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
     return $this->translationContainer;
   }
 
-  protected function trans($key, Array $parameters = array(), $domain = NULL) {
+  // public for usage in 5.3 in closures
+  public function trans($key, Array $parameters = array(), $domain = NULL) {
     if (!isset($domain)) $domain = 'project';
 
     return $this->translationContainer->getTranslator()->trans($key, $parameters, $domain);
