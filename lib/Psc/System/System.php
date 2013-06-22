@@ -2,12 +2,12 @@
 
 namespace Psc\System;
 
-use Psc\PSC,
-    Psc\Environment,
-    Psc\System\ExecuteException as SystemExecuteException,
-    Webforge\Common\ArrayUtil AS A,
-    Webforge\Common\String
-;
+use Psc\PSC;
+use Psc\Environment;
+use Psc\System\ExecuteException as SystemExecuteException;
+use Webforge\Common\ArrayUtil AS A;
+use Webforge\Common\String;
+use Webforge\Common\Preg;
 
 class System extends \Psc\Object {
   
@@ -183,5 +183,12 @@ class System extends \Psc\Object {
     else
       return $script;
   }
+
+  public static function forceUnixPath(Dir $dir) {
+    $bs = preg_quote('\\');
+    $path = Preg::replace((string) $dir, $pattern = '~([a-z]):'.$bs.'~i', '/cygdrive/$1/');
+    $path = Preg::replace($path, '~(?<!'.$bs.')'.$bs.'~', '/');
+
+    return new Dir($path);
+  }
 }
-?>

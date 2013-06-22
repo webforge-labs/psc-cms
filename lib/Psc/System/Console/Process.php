@@ -30,4 +30,3 @@ class Process extends \Symfony\Component\Process\Process {
     return ProcessBuilder::create($bin, $cmdArgs, $cmdOptions, $escapeFor);
   }
 }
-?>

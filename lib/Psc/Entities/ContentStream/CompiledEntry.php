@@ -100,4 +100,3 @@ abstract class CompiledEntry extends \Psc\TPL\ContentStream\EntryEntity {
     ));
   }
 }
-?>

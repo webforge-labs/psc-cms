@@ -15,4 +15,3 @@ class File extends CompiledFile {
     return 'Psc\Entities\File';
   }
 }
-?>

@@ -112,7 +112,10 @@ abstract class ContentStreamController extends \Psc\CMS\Controller\ContainerCont
     $this->initFormPanel($panel);
     $panel->removeRightAccordion();
     
-    $layoutManager = new LayoutManager($this->getUploadService(), $this->getContentStreamConverter()->convertSerialized($entity));
+    $layoutManager = new LayoutManager(
+      $this->getUploadService(), 
+      $this->getContentStreamConverter()->convertSerialized($entity)
+    );
     $this->initLayoutManagerControls($layoutManager, $entity);
 
     /* for simplicity we'll request a new navigation flat here 

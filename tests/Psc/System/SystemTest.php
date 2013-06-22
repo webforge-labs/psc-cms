@@ -51,5 +51,37 @@ class SystemTest extends \Psc\Code\Test\Base {
   public function testWhichNoException() {
     $this->assertEquals($this->notAvaibleCmd, System::which($this->notAvaibleCmd));
   }
+
+  /**
+   * @dataProvider provideForceUnix
+   */
+  public function testForceUnix($path, $expectedPath) {
+    $dir = new Dir($path);
+    $unixDir = System::forceUnixPath($dir);
+
+    $this->assertInstanceOf('Webforge\Common\System\Dir', $unixDir);
+
+    $this->assertEquals(
+      $expectedPath,
+      (string) $unixDir
+    );
+  }
+  
+  public static function provideForceUnix() {
+    $tests = array();
+  
+    $test = function() use (&$tests) {
+      $tests[] = func_get_args();
+    };
+  
+    $test('D:\www\psc-cms-js\git\\', '/cygdrive/D/www/psc-cms-js/git/');
+    $test('C:\windows\\', '/cygdrive/C/windows/');
+
+    $test('/var/local/www/', '/var/local/www');
+    $test('local/www/', 'local/www');
+
+    $test('.\what\todo\with\this', './what/todo/with/this');
+  
+    return $tests;
+  }
 }
-?>

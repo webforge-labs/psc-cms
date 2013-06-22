@@ -6,8 +6,8 @@ use Psc\CMS\Project;
 use Webforge\Common\System\File;
 use Webforge\Common\String AS S;
 use Webforge\Framework\Container;
-use Symfony\Component\Process\Process;
-use Symfony\Component\Process\ProcessBuilder;
+use Psc\System\Console\Process;
+use Psc\System\System;
 
 /**
  * Exports a package which is installed in vendor with git archive
@@ -26,20 +26,19 @@ class ExportPackageTask extends \Psc\SimpleObject implements Task {
   
   public function __construct(Project $targetProject, Container $webforgeContainer) {
     $this->targetProject = $targetProject;
-    $this->webforge = $webfogeContainer;
+    $this->webforge = $webforgeContainer;
   }
   
   public function run() {
     $dir = $this->package->getRootDirectory();
-    $gitArchive = sprintf('git archive --format=tar %s --prefix="export/" | tar xvf -', $this->branch);
+    $gitArchive = sprintf('git archive --format=tar %s | tar xvf - --directory %s', $this->branch, System::forceUnixPath($this->destination));
     
     $process = new Process($gitArchive, $dir, $envs = array());
     $process->setTimeout(0);
     
     $log = NULL;
-    $ret = $process->run(function ($type, $buffer) use (&$log, &$result, &$resultFound) {
+    $ret = $process->run(function ($type, $buffer) use (&$log) {
       $log .= $buffer;
-      print '  '.$buffer."\n";
       
       //if ('err' === $type) {
       //    echo '[unison-ERR]: '.$buffer;
@@ -49,7 +48,7 @@ class ExportPackageTask extends \Psc\SimpleObject implements Task {
     });
 
     if ($ret !== 0) {
-      throw new \RuntimeException(sprintf("Cannot git archive the package.\nPackage: %s\nCmd: \n", $gitArchive));
+      throw new \RuntimeException(sprintf("Cannot git archive the package.\nPackage: %s\nCmd: %s\nLog: %s\n", $this->package, $gitArchive, $log));
     }
   }
 
