@@ -57,7 +57,7 @@ class EntityViewPackage extends \Psc\SimpleObject {
   /**
    * @return Psc\CMS\EntityFormPanel
    */
-  public function createFormPanel($label, EntityForm $entityForm) {
+  public function createFormPanel($label, EntityForm $entityForm, PanelButtons $buttons = NULL) {
     $this->formPanel = new EntityFormPanel(
       $label,
       $this->translationContainer,
@@ -65,8 +65,10 @@ class EntityViewPackage extends \Psc\SimpleObject {
       $this->componentMapper,
       $this->labeler
     );
-    
-    if ($this->panelButtons) {
+
+    if ($buttons) {
+      $this->formPanel->setPanelButtons($buttons);
+    } elseif ($this->panelButtons) {
       $this->formPanel->setPanelButtons($this->panelButtons);
     }
     

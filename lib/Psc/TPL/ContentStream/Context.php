@@ -12,8 +12,4 @@ interface Context extends DCPackageProvider, ImageManagerProvider {
    */
   public function getNavigationController();
 
-  /**
-   * @return Psc\CMS\Translation\Container
-   */
-  public function getTranslationContainer();
 }
