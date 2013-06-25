@@ -62,6 +62,10 @@ class Configuration {
     
     return $this;
   }
+
+  public function toArray() {
+    return $this->data->toArray();
+  }
 }
 
 ?>
