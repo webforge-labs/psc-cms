@@ -12,8 +12,7 @@
     "psr-0": {
       "Psc": ["lib/", "tests/"],
       "Hitch": ["application/src/hitch/lib/"],
-      "PHPWord": ["application/src/PHPWord/"],
-      "Webforge\\Translation": ["D:\\www\\webforge-translation\\lib"]
+      "PHPWord": ["application/src/PHPWord/"]
     }
   },
   "require": {
@@ -29,7 +28,7 @@
     "swiftmailer/swiftmailer": "4.1.*@stable",
     "CodePlex/PHPExcel": "1.7.8@stable",
     "webforge/common": "1.1.*@dev",
-    "webforge/webforge": "1.3.*@dev",
+    "webforge/webforge": "1.4.*@dev",
     "webforge/translation": "1.1.*@dev"
   },
   "require-dev": {
@@ -42,7 +41,7 @@
   
   "extra": {
     "branch-alias": {
-      "dev-master": "1.3.x-dev"
+      "dev-master": "1.4.x-dev"
     }
   }
 }
