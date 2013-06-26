@@ -47,30 +47,8 @@ class CommandsIncluder extends \Psc\SimpleObject {
             
           return $command;
         };
-        
-        $arg = function ($name, $description = NULL, $required = TRUE, $multiple = FALSE) {
-          $mode = $required ? InputArgument::REQUIRED : InputArgument::OPTIONAL;
-          if ($multiple) {
-            $mode |= InputArgument::IS_ARRAY;
-          }
-          return new InputArgument($name, $mode, $description);
-        };
-        
-        $args = function ($name, $description = NULL, $required = TRUE) use ($arg) {
-          return $arg($name, $description, $required, TRUE);
-        };
-  
-        $opt = function ($name, $short = NULL, $withValue = TRUE, $description = NULL, $default = NULL) {
-          return new InputOption($name, $short, $withValue ? InputOption::VALUE_REQUIRED : InputOption::VALUE_OPTIONAL, $description, $default);
-        };
 
-        $defOpt = function ($name, $short = NULL, $default = NULL, $description = NULL) {
-          return new InputOption($name, $short, InputOption::VALUE_REQUIRED, $description, $default);
-        };
-  
-        $flag = function ($name, $short = NULL, $description = NULL) {
-          return new InputOption($name, $short, InputOption::VALUE_NONE, $description);
-        };
+        extract($this->buildArgsAPI());        
         
         require $this->file;
       }
@@ -88,6 +66,34 @@ class CommandsIncluder extends \Psc\SimpleObject {
     }
     
     return $this->commandsList;
+  }
+
+  public function buildArgsAPI() {
+    $arg = function ($name, $description = NULL, $required = TRUE, $multiple = FALSE) {
+      $mode = $required ? InputArgument::REQUIRED : InputArgument::OPTIONAL;
+      if ($multiple) {
+        $mode |= InputArgument::IS_ARRAY;
+      }
+      return new InputArgument($name, $mode, $description);
+    };
+    
+    $args = function ($name, $description = NULL, $required = TRUE) use ($arg) {
+      return $arg($name, $description, $required, TRUE);
+    };
+
+    $opt = function ($name, $short = NULL, $withValue = TRUE, $description = NULL, $default = NULL) {
+      return new InputOption($name, $short, $withValue ? InputOption::VALUE_REQUIRED : InputOption::VALUE_OPTIONAL, $description, $default);
+    };
+
+    $defOpt = function ($name, $short = NULL, $default = NULL, $description = NULL) {
+      return new InputOption($name, $short, InputOption::VALUE_REQUIRED, $description, $default);
+    };
+
+    $flag = function ($name, $short = NULL, $description = NULL) {
+      return new InputOption($name, $short, InputOption::VALUE_NONE, $description);
+    };
+
+    return compact('arg', 'args', 'opt', 'defOpt', 'flag');
   }
 }
 ?>
