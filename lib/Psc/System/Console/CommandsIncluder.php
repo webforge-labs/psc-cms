@@ -21,17 +21,18 @@ class CommandsIncluder extends \Psc\SimpleObject {
   
   protected $commandsList;
   protected $file;
+  protected $scope;
 
-  public function __construct(File $file) {
+  public function __construct(File $file, Array $scope = array()) {
     $this->file = $file;
+    $this->scope = $scope;
   }
   
   public function getCommands() {
     if (!isset($this->commandsList)) {
       $commands = array();
       if ($this->file->exists()) {
-        
-        
+
         $createCommand = function ($name, $configure, \Closure $execute, $help = NULL) use (&$commands) {
           if (is_array($configure)) {
             $definition = $configure;
@@ -48,7 +49,8 @@ class CommandsIncluder extends \Psc\SimpleObject {
           return $command;
         };
 
-        extract($this->buildArgsAPI());        
+        extract($this->buildArgsAPI());
+        extract($this->scope);
         
         require $this->file;
       }
@@ -96,4 +98,3 @@ class CommandsIncluder extends \Psc\SimpleObject {
     return compact('arg', 'args', 'opt', 'defOpt', 'flag');
   }
 }
-?>
