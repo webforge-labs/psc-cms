@@ -183,12 +183,4 @@ class System extends \Psc\Object {
     else
       return $script;
   }
-
-  public static function forceUnixPath(Dir $dir) {
-    $bs = preg_quote('\\');
-    $path = Preg::replace((string) $dir, $pattern = '~([a-z]):'.$bs.'~i', '/cygdrive/$1/');
-    $path = Preg::replace($path, '~(?<!'.$bs.')'.$bs.'~', '/');
-
-    return new Dir($path);
-  }
 }
