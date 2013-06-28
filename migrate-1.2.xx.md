@@ -1,4 +1,4 @@
-Migration to 2.2
+Migration to 1.2
 ====================
 
 AbstractEntityController

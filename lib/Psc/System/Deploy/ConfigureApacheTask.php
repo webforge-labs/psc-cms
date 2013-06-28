@@ -390,6 +390,8 @@ APACHE;
 
   DocumentRoot %documentRoot%
   CustomLog %customLog%
+
+  %aliases%
   
 %phpValues%
   <Directory %documentRoot%>
