@@ -17,7 +17,7 @@ class SimpleImporter {
   
   protected $reader, $file;
   
-  protected $useFirstLineAsColumns = TRUE;
+  protected $useFirstLineAsColumns = FALSE;
   protected $columnsMapping = NULL;
   protected $sheets = array();
   
@@ -211,4 +211,3 @@ class SimpleImporter {
     return $this->excel;
   }
 }
-?>
