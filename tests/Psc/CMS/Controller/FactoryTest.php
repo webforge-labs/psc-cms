@@ -75,10 +75,23 @@ class FactoryTest extends \Psc\Code\Test\Base {
     $this->assertSame($this->languages, $controller->getLanguages(), 'languages should be injeected to languageware');
   }
 
+  public function testContainerAwareControllerWillGetContainerSetAfterConstruct() {
+    $this->factory->setControllerFQN('ContainerAwareController', 'Psc\Test\ContainerAwareClass');
+
+    $controller = $this->factory->getController('ContainerAwareController');
+
+    $this->assertSame($controller->container, $this->depsProvider->getContainer(), 'container is not correctly injected per setter');
+  }
+
   protected function setUpDependencyProvider() {
     $this->dc = $this->doublesManager->createDoctrinePackageMock();
 
-    $this->depsProvider = $this->getMockForAbstractClass('Psc\CMS\Roles\AbstractContainer', array('Psc\Test\Controllers', $this->dc, $this->languages, $this->language));
+    $this->depsProvider = 
+      $this->getMockBuilder('Psc\CMS\Roles\AbstractContainer')
+        ->setConstructorArgs(array('Psc\Test\Controllers', $this->dc, $this->languages, $this->language))
+        ->disableArgumentCloning()
+        ->getMockForAbstractClass();
+
     $this->simpleContainer = $this->depsProvider->getSimpleContainer();
     $this->container = $this->depsProvider->getContainer();
 

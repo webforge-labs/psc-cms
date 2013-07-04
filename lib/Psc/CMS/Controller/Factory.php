@@ -5,6 +5,7 @@ namespace Psc\CMS\Controller;
 use Psc\Code\Code;
 use Psc\Code\Generate\GClass;
 use Psc\CMS\Roles\ControllerDependenciesProvider;
+use Psc\CMS\ContainerAware;
 
 /**
  * 
@@ -53,11 +54,13 @@ class Factory {
     $controllerClass = $this->isFQN($controllerName) ? new GClass($controllerName) : $this->getControllerGClass($controllerName);
 
     $args = array();
+    $containerInjected = FALSE;
     if ($this->isInstanceOf($controllerClass, 'Psc\CMS\Controller\ContainerController')) {
       $args = array(
         $this->dependencies->getDoctrinePackage(),
         $this->dependencies->getContainer()
       );
+      $containerInjected = TRUE;
       
     } elseif ($this->isInstanceOf($controllerClass, 'Psc\CMS\Controller\SimpleContainerController')) {
       $args = array(
@@ -68,7 +71,7 @@ class Factory {
         NULL,
         $this->dependencies->getSimpleContainer()
       );
-
+      $containerInjected = TRUE;
 
     } elseif ($this->isInstanceOf($controllerClass, 'Psc\CMS\Controller\AbstractEntityController')) {
       $args[] = $this->dependencies->getTranslationContainer();
@@ -82,6 +85,10 @@ class Factory {
 
       $controller->setLanguages($container->getLanguages());
       $controller->setLanguage($container->getLanguage());
+    }
+
+    if (!$containerInjected && $controller instanceof ContainerAware) {
+      $controller->setContainer($this->dependencies->getContainer());
     }
 
     return $controller;
