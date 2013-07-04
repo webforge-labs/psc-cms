@@ -187,6 +187,13 @@ class ServiceRequest extends \Psc\SimpleObject {
   public function getFiles() {
     return $this->files;
   }
+
+  /**
+   * @return Webforge\Common\System\File
+   */
+  public function getFile($name) {
+    return isset($this->files[$name]) ? $this->files[$name] : NULL;
+  }
   
   /**
    * @return bool

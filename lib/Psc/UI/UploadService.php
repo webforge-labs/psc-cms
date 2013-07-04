@@ -75,4 +75,3 @@ class UploadService extends \Psc\HTML\JooseBase implements \Psc\JS\JooseSnippetW
     return $this->uiUrl;
   }
 }
-?>

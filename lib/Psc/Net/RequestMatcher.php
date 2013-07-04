@@ -5,6 +5,7 @@ namespace Psc\Net;
 use Webforge\Common\ArrayUtil AS A;
 use Psc\Code\Code;
 use Psc\Preg;
+use Webforge\Common\System\File;
 
 /**
  * Der RequestMatcher ist ein kleines Helferlein, um einen ServiceRequest zu "parsen"
@@ -159,6 +160,15 @@ class RequestMatcher extends \Psc\SimpleObject {
     return isset($body->$name) ? $body->$name : $default;
   }
 
+  public function getFile($name) {
+    $file = $this->request->getFile($name);
+
+    if (!($file instanceof File)) {
+      $this->fail(sprintf("File '%s' is not given in request", $name));
+    }
+
+    return $file;
+  }
   
   /**
    * @return mixed|NULL es wird immer NULL zurückgegeben wenn keine parts mehr voranden sind
