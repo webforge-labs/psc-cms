@@ -153,8 +153,12 @@ class GClass extends GObject {
       
       return clone $this->prototype;
     }
-    
-    return $this->getReflection()->newInstanceArgs($params);
+
+    if (count($params) === 0) {
+      return $this->getReflection()->newInstance();
+    } else {
+      return $this->getReflection()->newInstanceArgs($params);
+    }
   }
   
   /**
