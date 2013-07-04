@@ -112,7 +112,7 @@ return Array(
 */  
   'component.navigation.doc.levels'=>'Niveaux de navigation',
 
-  'component.navigation.doc.reading'=>"Il faut lire les différents niveau de navigation de gauche à droit. 
+  'component.navigation.doc.reading'=>"Les niveaux de navigation sont mis en ordre de gauche à droit.
   La sous-navigation est structurée du haut en bas par rapport à la navigation principale.
   La navigation principale consiste en tous des éléments qui ne sont pas décalés du tout. 
   En décalant un élément de navigation, vous changez le niveau de navigation.",
