@@ -58,7 +58,7 @@ abstract class PageController extends ContentStreamContainerController {
     $footerMenu = $navController->getPagesMenu('footer');
     $topMenu = $navController->getPagesMenu($this->metaMenuName);
     
-    $panel = new FormPanel('Seiten Übersicht', $this->getTranslationContainer());
+    $panel = new FormPanel($this->trans('entities.page.panel', array(), 'cms'), $this->getTranslationContainer());
     $panel->setPanelButtons(array('reload'));
     /*
     $panel->getPanelButtons()->addNewButton(

@@ -49,6 +49,7 @@ return Array(
   //'entities.member.insert'=>"Neuen Mitarbeiter erstellen",
 
   'entities.page.grid'=>'administrer les pages',
+  'entities.page.panel'=>'Aperçu',
   'entities.page.insert'=>'créer une nouvelle page',
 
   'entities.comment.grid'=>'administrer les commentaires',
@@ -89,20 +90,21 @@ return Array(
   'entities.map.type'=>'type',
   'entities.map.marked'=>'marqué',
 
-/*
-  'entities.member.email'=>'email',
+
+  'entities.member.email'=>'Courriel',
   'entities.member.active'=>'active',
-  'entities.member.telephone1'=>'telephone',
-  'entities.member.mobile'=>'mobilephone',
+  'entities.member.telephone1'=>'Téléphone',
+  'entities.member.mobile'=>'GSM',
   'entities.member.info'=>'info',
   'entities.member.image'=>'photo',
-  'entities.member.fullname'=>'full name',
+  'entities.member.fullname'=>'Nom et prénom',
   'entities.member.expertise'=>'position',
-  'entities.member.location'=>'location',
+  'entities.member.location'=>'Lieu',
 
+/*
   'entities.comment.content'=>'comment',
-  'entities.comment.email'=>'eail',
-  'entities.comment.name'=>'name',
+  'entities.comment.email'=>'Courriel',
+  'entities.comment.name'=>'Nom',
   'entities.comment.ip'=>'ip address',
   'entities.comment.cdate'=>'created',
   'entities.comment.page'=>'page',

@@ -49,6 +49,7 @@ return Array(
   'entities.member.insert'=>'Create a new team member',
 
   'entities.page.grid'=>'page administration',
+  'entities.page.panel'=>'pages overview',
   'entities.page.insert'=>'create a new page',
 
   'entities.comment.grid'=>'comment administration',

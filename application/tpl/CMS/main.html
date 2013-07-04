@@ -18,7 +18,7 @@ use Psc\UI\Group;
         $pane = new \Psc\UI\SplitPane(
           80,
           $tabs->html(),
-          Group::create('Inhalte',$main->getRightAccordion())->setAttribute('id','drop-contents')
+          Group::create($trans('sidebar.content'),$main->getRightAccordion())->setAttribute('id','drop-contents')
         );
       
         $pane->init();

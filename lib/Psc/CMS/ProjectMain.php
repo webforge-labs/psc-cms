@@ -623,17 +623,21 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
     //foreach ($this->getStaticClasses() as $alias => $cp) {
     //  $page->getJSManager()->enqueue($alias);
     //}
-    $page->body->content = TPL::get(array('CMS','main'),
-                                          array_merge(
-                                            array('page'=>$page,
-                                            'authController'=>$this->getAuthController(),
-                                            'user'=>$this->getUser(),
-                                            'tabs'=>$this->getContentTabs(),
-                                            'main'=>$this,
-                                            'cms'=>$this,
-                                          ), $vars)
-                                        );
-
+    $translator = $this->getContainer()->getTranslationContainer();
+    $page->body->content = TPL::get(
+      array('CMS','main'),
+      array_merge(
+        array('page'=>$page,
+          'authController'=>$this->getAuthController(),
+          'user'=>$this->getUser(),
+          'tabs'=>$this->getContentTabs(),
+          'main'=>$this,
+          'trans'=>function($key, Array $parameters = array()) use ($translator) {
+            return $translator->trans($key, $parameters, 'cms');
+          },
+          'cms'=>$this,
+        ), $vars)
+    );
   }
   
   /**

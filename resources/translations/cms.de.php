@@ -44,12 +44,14 @@ return Array(
   'entities.user'=>'Benutzer',
   'entities.user.grid'=>'Benutzer verwalten',
   'entities.user.insert'=>'Neuen Benutzer erstellen',
+  'entities.user.email'=>'Courriel',
 
   'entities.member'=>"Mitarbeiter",
   'entities.member.grid'=>'Team verwalten',
   'entities.member.insert'=>"Neuen Mitarbeiter erstellen",
 
   'entities.page.grid'=>'Seiten verwalten',
+  'entities.page.panel'=>'Seitenübersicht',
   'entities.page.insert'=>'Neue Seite erstellen',
 
   'entities.comment'=>'Kommentar',

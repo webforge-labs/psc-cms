@@ -8,6 +8,8 @@ class UserEntityController extends \Psc\CMS\Controller\AbstractEntityController 
     $this->optionalProperties[] = 'password';
     $this->addBlackListProperty('password', 'grid');
     parent::setUp();
+
+    $this->initPropertyTranslations('cms');
   }
   
   protected function initProcessor(\Psc\Doctrine\Processor $processor) {
