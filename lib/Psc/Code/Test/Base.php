@@ -125,7 +125,11 @@ class Base extends \Webforge\Code\Test\Base {
   public function getCommonFile($name, $subDir = 'files/') {
     return $this->getFile($name, $subDir, 'common');
   }
-  
+
+  public function getCommonDirectory($sub) {
+    return $this->getResourceHelper()->getCommonDirectory()->sub($sub);
+  }
+
   /**
    * @return Webforge\Common\System\File
    */

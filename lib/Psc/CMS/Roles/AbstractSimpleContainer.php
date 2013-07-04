@@ -155,6 +155,14 @@ abstract class AbstractSimpleContainer extends \Psc\SimpleObject implements Simp
   public function getDoctrinePackage() {
     return $this->dc;
   }
+
+  /**
+   * @chainable
+   */
+  public function setDoctrinePackage(DCPackage $dc) {
+    $this->dc = $dc;
+    return $this;
+  }
   
   /**
    * @param array $languages alle parameter für setLanguage
