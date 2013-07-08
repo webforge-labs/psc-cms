@@ -4,6 +4,7 @@ namespace Psc\System\Deploy;
 
 use Psc\CMS\Project;
 use Webforge\Common\System\File;
+use Webforge\Common\System\Dir;
 use Webforge\Common\String AS S;
 use Webforge\Framework\Container;
 use Psc\System\Console\Process;
@@ -31,7 +32,9 @@ class ExportPackageTask extends \Psc\SimpleObject implements Task {
   
   public function run() {
     $dir = $this->package->getRootDirectory();
-    $gitArchive = sprintf('git archive --format=tar %s | tar xvf - --directory %s', $this->branch, System::forceUnixPath($this->destination));
+
+    $this->destination->create();
+    $gitArchive = sprintf('git archive --format=tar %s | tar xvf - --directory %s', $this->branch, $this->destination->getUnixOrCygwinPath());
     
     $process = new Process($gitArchive, $dir, $envs = array());
     $process->setTimeout(0);
@@ -67,7 +70,7 @@ class ExportPackageTask extends \Psc\SimpleObject implements Task {
       if (S::endsWith($destination, '/')) {
         $destination = $this->targetProject->getRoot()->sub($destination);
       } else {
-        $destination = File::createFromURL($destination, $this->targetProject->getRoot());  
+        $destination = Dir::createFromURL($destination, $this->targetProject->getRoot());  
       }
     }
     
