@@ -69,7 +69,7 @@ class Request extends \Psc\Object {
   protected $userAgent;
   
   /**
-   * The languages in order of preference
+   * The languages in order of preference (might be locales as well)
    * 
    * @var array
    */
@@ -422,7 +422,7 @@ class Request extends \Psc\Object {
   /**
    * @return array
    */
-  public function getGreferredLanguages() {
+  public function getPreferredLanguages() {
     return $this->preferredLanguages;
   }
 
