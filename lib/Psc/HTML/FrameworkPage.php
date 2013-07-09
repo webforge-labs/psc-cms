@@ -91,5 +91,14 @@ JAVASCRIPT
     
     return $this;
   } 
+
+  public function loadConditionalCSS($url, $condition, $media = 'all') {
+    $this->head->content[$url] =
+      '<!--[if '.$condition.']>'.
+      css::load($url, $media).
+      '<![endif]-->';
+    
+    return $this;
+  } 
 }
 ?>
