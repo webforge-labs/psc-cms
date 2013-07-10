@@ -48,7 +48,7 @@ class Environment extends \Psc\Object {
     date_default_timezone_set('Europe/Berlin');
 
     /* QueryString */
-    $qs = (string) @$_SERVER['QUERY_STRING'];
+    $qs = isset($_SERVER['QUERY_STRING']) ? (string) $_SERVER['QUERY_STRING'] : '';
     if (mb_strpos($qs,'?') === 0)
       $qs = mb_substr($qs,1);
     $this->queryString = ($qs == '') ? NULL : $qs;
