@@ -64,8 +64,6 @@ class Configuration {
   }
 
   public function toArray() {
-    return $this->data->toArray();
+    return $this->conf->toArray();
   }
 }
-
-?>
