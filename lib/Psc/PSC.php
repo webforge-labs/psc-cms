@@ -220,7 +220,7 @@ class PSC {
 
 
   public static function registerFatalErrorHandler() {
-    if (self::getEnvironment()->getFatalErrorHandler() !== NULL) {
+    if (self::getEnvironment()->getFatalErrorHandler() === NULL) {
       $recipient = Config::getDefault(array('debug','errorRecipient','mail'), NULL);
 
       self::getEnvironment()->setFatalErrorHandler(
