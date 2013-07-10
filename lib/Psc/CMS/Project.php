@@ -160,6 +160,7 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber, \Webfor
     
     PSC::registerExceptionHandler();
     PSC::registerErrorHandler();
+    PSC::registerFatalErrorHandler();
 
     PSC::getEventManager()->bind($this, \Psc\Doctrine\Module::EVENT_BOOTSTRAPPED);
 

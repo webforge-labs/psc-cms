@@ -7,6 +7,8 @@ use \Webforge\Common\System\Dir,
     \Psc\URL\Helper as URLHelper
 ;
 
+use Webforge\FatalErrorHandler;
+
 class Environment extends \Psc\Object {
   
   const WINDOWS = 'windows';
@@ -18,6 +20,8 @@ class Environment extends \Psc\Object {
   protected $https = NULL;
   
   protected $errorHandler;
+
+  protected $fatalErrorHandler;
   
   protected $requestUri;
   
@@ -185,6 +189,13 @@ class Environment extends \Psc\Object {
   public static function getPath($name) {
     throw new Exception('deprecated');
   }
-}
 
-?>
+  public function setFatalErrorHandler(FatalErrorHandler $handler) {
+    $this->fatalErrorHandler = $handler;
+    return $this;
+  }
+
+  public function getFatalErrorHandler() {
+    return $this->fatalErrorHandler;
+  }
+}

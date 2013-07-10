@@ -11,6 +11,8 @@ use Psc\CMS\ProjectMain,
     Psc\GPC
 ;
 
+use Webforge\FatalErrorHandler;
+
 class PSC {
 
   const PATH_HTDOCS = 'htdocs';
@@ -214,6 +216,17 @@ class PSC {
     $eh = self::getEnvironment()->getErrorHandler();
     
     return $eh->register()->setRecipient(Config::getDefault(array('debug','errorRecipient','mail'),NULL));
+  }
+
+
+  public static function registerFatalErrorHandler() {
+    if (self::getEnvironment()->getFatalErrorHandler() !== NULL) {
+      $recipient = Config::getDefault(array('debug','errorRecipient','mail'), NULL);
+
+      self::getEnvironment()->setFatalErrorHandler(
+        new FatalErrorHandler($recipient)
+      );
+    }
   }
   
   public static function unregisterErrorHandler() {
