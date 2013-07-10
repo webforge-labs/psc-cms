@@ -224,8 +224,10 @@ class PSC {
       $recipient = Config::getDefault(array('debug','errorRecipient','mail'), NULL);
 
       self::getEnvironment()->setFatalErrorHandler(
-        new FatalErrorHandler($recipient)
+        $handler = new FatalErrorHandler($recipient)
       );
+
+      $handler->register();
     }
   }
   
