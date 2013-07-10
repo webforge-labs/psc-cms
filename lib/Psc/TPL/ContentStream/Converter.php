@@ -87,10 +87,15 @@ abstract class Converter extends \Psc\SimpleObject {
   
   public function convertHTMLExcerpt(ContentStream $cs, $maxLength = NULL) {
     if (($p = $cs->findFirst('paragraph')) != NULL) { // cooler halt: find cuttable/excerptable/textable irgendwie sowas
+
       if (!isset($maxLength)) {
         // so irgendwie, wie machen wir maxLength? für mehrere p's?
         return $this->convertHTML($cs, array($p));
       } else {
+        if ($p instanceof ContextAware) {
+          $p->setContext($this->context);
+        }
+        
         return $p->excerpt($maxLength);
       }
     }
