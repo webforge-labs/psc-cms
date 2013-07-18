@@ -116,7 +116,7 @@ class TPL {
 
   public static function replaceBUIMarkup($text) {
     /*  **bold**, //italic//, __underlined__ */
-    $text = Preg::replace($text, '/\*\*(.*?)\*\*/','<strong>$1</strong>');
+    $text = Preg::replace($text, '/\*\*(.*?)\*\*/s','<strong>$1</strong>');
     $text = Preg::replace($text, '~(?<=\s)//(.*?)//(?=\s)~','<em>$1</em>');
     $text = Preg::replace($text, '/__(.*?)__/','<em class="u">$1</em>');
     
