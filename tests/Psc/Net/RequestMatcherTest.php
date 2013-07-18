@@ -73,6 +73,83 @@ class RequestMatcherTest extends \Psc\Code\Test\Base {
     );
   }
 
+  /**
+   * @dataProvider provideMatchOrderBy
+   */
+  public function testMatchOrderBy($orderBy, Array $mappings, $expectedOrderBy) {
+    $r = $this->createRequestMatcher(array('find','something'), Service::GET);
+
+    $this->assertEquals(
+      $expectedOrderBy,
+      $r->matchOrderBy($orderBy, $mappings)
+    );
+  }
+  
+  public static function provideMatchOrderBy() {
+    $tests = array();
+
+    $defaultMapping = array('name'=>'aliasName', 'type'=>NULL);
+  
+    $test = function($orderBy, $expectedOrderBy, $mapping = NULL) use (&$tests, $defaultMapping) {
+      $tests[] = array($orderBy, $mapping ?: $defaultMapping, $expectedOrderBy);
+    };
+
+    // default to empty array
+    $test(
+      NULL,
+      array()
+    );
+
+    // default to array as field
+    $test(
+      'type',
+      array('type'=>'ASC')
+    );
+
+    $test(
+      1,
+      array()
+    );
+
+    // default to empty if wrong
+    $test(
+      'nondefined',
+      array()
+    );
+
+    // uppercase asc
+    $test(
+      array('type'=>'asc'),
+      array('type'=>'ASC')
+    );
+
+    // uppercase desc
+    $test(
+      array('type'=>'desc'),
+      array('type'=>'DESC')
+    );
+
+    // use ASC as default
+    $test(
+      array('type'=>NULL),
+      array('type'=>'ASC')
+    );
+
+    // use ASC as default, if error
+    $test(
+      array('type'=>'error'),
+      array('type'=>'ASC')
+    );
+
+    // use alias if specified in mapping
+    $test(
+      array('name'=>'ASC'),
+      array('aliasName'=>'ASC')
+    );
+  
+    return $tests;
+  }
+
   public function createRequestMatcher(Array $parts, $method = Service::GET) {
     return new RequestMatcher(new ServiceRequest($method, $parts));
   }

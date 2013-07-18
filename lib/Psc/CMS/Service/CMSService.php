@@ -115,6 +115,14 @@ class CMSService extends ControllerService {
         return array($controller, 'insertFile', array(current($request->getFiles()), $request->getBody()));
       } elseif($r->isEmpty() && $request->getType() === Service::GET) {
         $params = array();
+
+        // criterias
+        $params[] = array(); 
+
+        $params[] = $r->matchOrderBy(
+          $r->qVar('orderby'), 
+          array('name'=>'originalName')
+        );
         
         return array($controller, 'getFiles', $params);
       
@@ -171,4 +179,3 @@ class CMSService extends ControllerService {
     return $this->project;
   }
 }
-?>

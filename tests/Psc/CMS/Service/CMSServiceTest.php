@@ -21,8 +21,16 @@ class CMSServiceTest extends \Psc\Code\Test\Base {
   public function testFileControllerRoutingGetFiles() {
     list($controller, $method, $params) = $this->assertFileUploadRouting(
       'getFiles',
-      array(),
+      array(array(), array()),
       $this->service->routeController($this->request('GET', '/cms/uploads'))
+    );
+  }
+
+  public function testFileControllerRoutingGetFilesWithOrderByMapping() {
+    list($controller, $method, $params) = $this->assertFileUploadRouting(
+      'getFiles',
+      array(array(), array('originalName'=>'ASC')),
+      $this->service->routeController($this->request('GET', '/cms/uploads')->setQuery(array('orderby'=>array('name'=>'ASC'))))
     );
   }
   

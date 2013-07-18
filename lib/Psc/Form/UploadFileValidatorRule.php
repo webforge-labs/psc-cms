@@ -41,5 +41,3 @@ class UploadFileValidatorRule implements FieldValidatorRule {
     $this->field = $field;
   }
 }
-
-?>

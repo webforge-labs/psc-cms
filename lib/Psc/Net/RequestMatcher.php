@@ -160,6 +160,44 @@ class RequestMatcher extends \Psc\SimpleObject {
     return isset($body->$name) ? $body->$name : $default;
   }
 
+
+  /**
+   * Matches a value as it is meant to be a order by value
+   * 
+   * returns an orderby-array if the value can be parsed
+   * returns the $default if the value cannot be parsed
+   * 
+   * the orderby array is like
+   * array (string $field => string ASC|DESC, string $field2 => string ASC|DESC);
+   * 
+   * lowercase asc or desc will be converted. Other values will be expanded to ASC
+   * if only string is given as value it is treated as $field and the sort is default to ASC
+   */
+  public function matchOrderBy($orderByValue, Array $mappings, Array $default = array()) {
+    if (is_string($orderByValue)) {
+      $orderByValue = array($orderByValue => 'ASC');
+    }
+
+    $orderBy = array();
+
+    if (is_array($orderByValue)) {
+      foreach ($orderByValue as $key => $sort) {
+        $sort = mb_stripos($sort, 'desc') !== FALSE ? 'DESC' : 'ASC';
+
+        if (array_key_exists($key, $mappings)) {
+          $alias = $mappings[$key] ?: $key;
+          $orderBy[$alias] = $sort;
+        }
+      }
+    }
+
+    if (empty($orderBy)) {
+      return $default;
+    }
+
+    return $orderBy;
+  }
+
   public function getFile($name) {
     $file = $this->request->getFile($name);
 
