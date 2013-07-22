@@ -620,4 +620,3 @@ class Module extends \Psc\CMS\Module implements \Psc\Code\Event\Dispatcher {
     return new DCPackage($this, $this->getEntityManager());
   }
 }
-?>

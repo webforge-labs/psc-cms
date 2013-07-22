@@ -120,4 +120,3 @@ class DCPackage extends \Psc\SimpleObject implements EntityMetaProvider {
     return $this->em->getConnection()->rollback();
   }
 }
-?>
