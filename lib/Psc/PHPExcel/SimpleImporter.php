@@ -136,7 +136,10 @@ class SimpleImporter {
         $cellIndex = h::getColumnIndex($cell->getColumn());
       
         $isEmpty = TRUE;
-        $row[$mapping[$cellIndex]] = $this->readValue($cell, $isEmpty, $nullValue);
+
+        if (array_key_exists($cellIndex, $mapping)) {
+          $row[$mapping[$cellIndex]] = $this->readValue($cell, $isEmpty, $nullValue);
+        }
       }
       
       $rows[$rowNum] = array_replace($emptyRow, $row);
