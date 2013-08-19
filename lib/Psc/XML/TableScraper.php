@@ -137,7 +137,7 @@ class TableScraper extends \Psc\XML\ScraperBase {
   }
   
   /**
-   * Closure function (jQuery $tr, bool $headerFound) und muss dann bool zurückgeben
+   * Closure function (jQuery $tr, $rowIndex, bool $headerFound) und muss dann bool zurückgeben
    *
    * ist headerFound FALSE wurde der header noch nicht geparsed
    * gibt filter FALSE zurück wird die row übersprungen

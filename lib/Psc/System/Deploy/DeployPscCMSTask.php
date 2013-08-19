@@ -15,6 +15,8 @@ class DeployPscCMSTask extends \Psc\SimpleObject implements Task {
   protected $autoPrependFile = 'auto.prepend.php';
   
   protected $libraryBuilder;
+
+  protected $useBuild = FALSE;
   
   /**
    * @var Webforge\Common\System\Dir
@@ -64,7 +66,7 @@ PHP_CLI;
     $vendor = $webforgeContainer->getLocalPackage()->getDirectory(Package::VENDOR);
     $packageIdentifier = 'pscheit/psc-cms-js';
     $this->pscjs = $vendor->sub($packageIdentifier.'/');
-    
+
     if (!$this->pscjs->exists()) {
       throw new RuntimeException($webforgeContainer->getLocalPackage()->getIdentifier().' has not a dependency: '.$packageIdentifier.' installed. Add it to composer.json');
     }
@@ -86,7 +88,10 @@ PHP_CLI;
   }
   
   protected function jsHintPscCMSJS() {
-    system(sprintf('cd %s && grunt jshint', (string) $this->pscjs));
+    if ($this->useBuild) {
+      system(sprintf('cd %s && grunt jshint', (string) $this->pscjs));
+      system(sprintf('cd %s && grunt requirejs', (string) $this->pscjs));
+    }
   }
   
   protected function copyPscCMSJSAndPscCSS() {
@@ -96,9 +101,15 @@ PHP_CLI;
     $target = $this->targetProject->getHtdocs();
     $this->psc->getHtdocs()->sub('css/')->copy($target->sub('css/')->create(), NULL, NULL, TRUE);
 
+    $pscjsSource = $this->pscjs;
+    if ($this->useBuild) {
+      $pscjsSource = $this->pscjs->sub('build/');
+    }
+
     // psc-cms-js sources kopieren
     foreach (array('lib/','css/','img/','vendor/', 'templates/') as $sub) {
-      $this->pscjs->sub($sub)->copy($target->sub('psc-cms-js/'.$sub)->create(), NULL, NULL, TRUE);
+      $pscjsSource->sub($sub)
+        ->copy($target->sub('psc-cms-js/'.$sub)->create(), NULL, NULL, TRUE);
     }
 
     // für cms htdocs 
@@ -113,7 +124,7 @@ PHP_CLI;
       $this->psc->getHtdocs()->sub('css/')->copy($target->sub('css/')->create(), NULL, NULL, TRUE);
       
       foreach (array('lib/','css/','img/','templates/','vendor/') as $sub) {
-        $this->pscjs->sub($sub)->copy($cmsHtdocs->sub('psc-cms-js/'.$sub)->create(), NULL, NULL, TRUE);
+        $pscjsSource->sub($sub)->copy($cmsHtdocs->sub('psc-cms-js/'.$sub)->create(), NULL, NULL, TRUE);
       }
     }
   }
@@ -157,5 +168,10 @@ PHP_CLI;
    */
   public function getAutoPrependFile() {
     return $this->autoPrependFile;
+  }
+
+  public function useBuildPscJs() {
+    $this->useBuild = TRUE;
+    return $this;
   }
 }
