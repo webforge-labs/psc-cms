@@ -102,4 +102,3 @@ class Numbers {
       return $roman;
     }
 }
-?>

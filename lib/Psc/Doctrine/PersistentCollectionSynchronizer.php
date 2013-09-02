@@ -67,7 +67,7 @@ class PersistentCollectionSynchronizer extends EntityCollectionSynchronizer {
    * ein CollectionSynchronizer kann mehrere Collections eines Types von mehreren Entities synchronisieren wenn jeweils init() für das aktuelle Entity aufgerufen wird
    *
    * new Synchronizer();
-   * forach ($articles as $article) {
+   * foreach ($articles as $article) {
    *   $synchronizer->init($article);
    *
    *   $synchronizer->process($article->getTags(), $formData[$article->getId()]);
@@ -149,4 +149,3 @@ class PersistentCollectionSynchronizer extends EntityCollectionSynchronizer {
     return $this->innerSynchronizer;
   }
 }
-?>

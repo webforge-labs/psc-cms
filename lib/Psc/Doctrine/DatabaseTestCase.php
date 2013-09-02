@@ -234,4 +234,3 @@ abstract class DatabaseTestCase extends \Psc\Code\Test\HTMLTestCase {
   }
   
 }
-?>
