@@ -73,32 +73,43 @@ JAVASCRIPT
 		return parent::setTitleString(($this->titlePrefix ? $this->titlePrefix.' - ' : '').$staging.$title);
 	}
 
+  /**
+   * @return Psc\HTML\Tag
+   */
   public function loadCSS($url, $media = 'all') {
-    $this->head->content[$url] = css::load($url, $media);
-    return $this;
+    $this->head->content[$url] = $link = css::load($url, $media);
+    return $link;
   }
 
+  /**
+   * @return Psc\HTML\Tag
+   */
   public function loadJS($url) {
-    $this->head->content[$url] = js::load($url);
-    return $this;
+    $this->head->content[$url] = $script = js::load($url);
+    return $script;
   }  
 
+  /**
+   * @return Psc\HTML\Tag
+   */
   public function loadConditionalJS($url, $condition) {
     $this->head->content[$url] =
       '<!--[if '.$condition.']>'.
-      js::load($url).
+      ($script = js::load($url)).
       '<![endif]-->';
     
-    return $this;
+    return $script;
   } 
 
+  /**
+   * @return Psc\HTML\Tag
+   */
   public function loadConditionalCSS($url, $condition, $media = 'all') {
     $this->head->content[$url] =
       '<!--[if '.$condition.']>'.
-      css::load($url, $media).
+      ($css = css::load($url, $media)).
       '<![endif]-->';
     
-    return $this;
+    return $css;
   } 
 }
-?>

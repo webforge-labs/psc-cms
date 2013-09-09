@@ -219,4 +219,3 @@ class Helper extends \Psc\Object {
     return JSONConverter::create()->prettyPrint($json);
   }
 }
-?>

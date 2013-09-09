@@ -6,16 +6,18 @@ class RequirejsManager extends \Psc\JS\Manager implements \Psc\HTML\HTMLInterfac
   
   protected $configuration;
   protected $main;
+  protected $requirejsSource;
   
-  public function __construct($name = 'requirejs', $main = '/js/boot.js') {
+  public function __construct($name = 'requirejs', $main = '/js/boot.js', $requirejsSource = '/psc-cms-js/vendor/require.js') {
     parent::__construct($name);
+    $this->requirejsSource = $requirejsSource;
     $this->main = $main;
   }
   
   public function getHTML() {
     $html = array();
     
-    $html[] = Helper::load('/psc-cms-js/vendor/require.js')
+    $html[] = Helper::load($this->requirejsSource)
                 ->setAttribute('data-main', $this->main)
                 ->setOption('br.closeTag',FALSE);
     
@@ -24,6 +26,16 @@ class RequirejsManager extends \Psc\JS\Manager implements \Psc\HTML\HTMLInterfac
     }
     
     return $html;
+  }
+
+  /**
+   * Sets the path to require.js
+   * 
+   * otherwise /psc-cms-js/vendor/require.js is used
+   */
+  public function setRequirejsSource($url) {
+    $this->requirejsSource = $url;
+    return $this;
   }
   
   /**

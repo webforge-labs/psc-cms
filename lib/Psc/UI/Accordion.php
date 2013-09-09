@@ -139,12 +139,14 @@ class Accordion extends OptionsObject {
     $this->cssClass = $class;
     $this->html->addClass($this->cssClass);
   }
+
+  public function getAccordionOptions() {
+    return $this->getOption('options');
+  }
   
   public function html() {
     if ($this->getOption('js',TRUE)) {
-      $accordionOptions = $this->getOption('options');
-  
-      jQuery::widget($this->html, 'accordion', $accordionOptions);
+      jQuery::widget($this->html, 'accordion', $this->getAccordionOptions());
     }
     
     return $this->html;
