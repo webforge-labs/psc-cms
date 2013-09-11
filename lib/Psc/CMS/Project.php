@@ -22,6 +22,7 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber, \Webfor
    */
   protected $name;
   protected $lowerName = NULL;
+  protected $namespace;
   
   /**
    * @var string
@@ -341,7 +342,11 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber, \Webfor
    * @return string ohne \ davor und \ dahinter
    */
   public function getNamespace() {
-    return $this->name;
+    if (isset($this->namespace)) {
+      return $this->namespace;
+    } else {
+      return $this->name;
+    }
   }
 
   /**

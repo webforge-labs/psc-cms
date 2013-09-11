@@ -66,7 +66,8 @@ class Module extends \Psc\CMS\Module implements \Psc\Code\Event\Dispatcher {
    * @var Psc\Doctrine\MetadataDriver
    */
   protected $entityClassesMetadataDriver;
-  
+
+  protected $dcc;
   
   /**
    * @var array
@@ -618,5 +619,13 @@ class Module extends \Psc\CMS\Module implements \Psc\Code\Event\Dispatcher {
   
   public function createDoctrinePackage() {
     return new DCPackage($this, $this->getEntityManager());
+  }
+
+  public function getDoctrineContainer() {
+    if (!isset($this->dcc)) {
+      $this->dcc = new \Webforge\Doctrine\Container();
+      $this->dcc->injectEntityManager($this->getEntityManager());
+    }
+    return $this->dcc;
   }
 }
