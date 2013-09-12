@@ -144,46 +144,11 @@ class ProcessBuilder {
 
     return new Process($cmdLine, $this->cwd, $env, $this->stdin, $this->timeout, $this->options);
   }
-  
-  /**
-   * This escapes shell arguments on windows correctly
-   *
-   * it does not strip multibytes (on windows)
-   * it does not replace " with ' ' on windows
-   * it does not replace % with ' ' on windows
-   *
-   * you got still no chance to give the literal argument %defined%  if the env variabled "defined" is set.
-   *
-   * for unix the default escapeshellarg is used (it does strip multibytes)
-   *
-   * as the php escapeshellarg, on windows " is used and ' is used
+
+  /*
    * @return string
    */
   public function escapeShellArg($arg) {
-    // ported: PHPAPI char *php_escape_shell_arg(char *str)
-    
-    if ($this->escapeFor === self::WINDOWS) {
-      return '"'.str_replace('"', '\"', $arg).'"';
-    
-    } else {
-/*
- * char* arg is the to copied string
- *
- 	case '\'':
-	  arg[y++] = '\'';
-	  arg[y++] = '\\';
-  	arg[y++] = '\'';
-
-    that looks weird to me: escape ' with '\'
-    e.g.: he said it isn't his fault
-         'he said it isn'\'t his fault'
-    
-    well.. they will know..
-*/
-      // this will strap multibytes(!)
-      return escapeshellarg($arg);
-      //$arg = str_replace("'", "'\\'", $arg);
-    }
+    return \Webforge\Common\System\Util::escapeShellArg($arg, $this->escapeFor);
   }
 }
-?>
