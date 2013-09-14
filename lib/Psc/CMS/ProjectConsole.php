@@ -12,10 +12,8 @@ class ProjectConsole extends \Psc\System\Console\Console {
   
   public function __construct(Project $project = NULL, \Psc\Doctrine\Module $doctrine = NULL) {
     parent::__construct();
-    $this->project = $project ?: PSC::getProject();
     $this->name = $this->project->getName().' Developer Interface';
     $this->version = (string) PSC::getVersion($this->project);
-    $this->doctrine = $doctrine;
     $this->setUp();
   }
   
@@ -33,7 +31,7 @@ class ProjectConsole extends \Psc\System\Console\Console {
         ->set(new \Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper($em), 'em');
     }
 
-    $bridge = new \Webforge\Doctrine\ConsoleBridge($this->doctrine->getDoctrineContainer());
+    $bridge = new \Webforge\Doctrine\Console\ConsoleBridge($this->doctrine->getDoctrineContainer());
     $bridge->augment($this->cli);
   }
   

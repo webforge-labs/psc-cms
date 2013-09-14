@@ -19,4 +19,3 @@ class ProjectConsoleTest extends \Psc\Code\Test\Base {
     $this->assertInstanceOf('\Psc\System\Console\Console', $this->projectConsole);
   }
 }
-?>
