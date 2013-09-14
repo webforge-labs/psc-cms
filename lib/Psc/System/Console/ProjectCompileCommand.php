@@ -47,24 +47,27 @@ class ProjectCompileCommand extends \Psc\System\Console\Command {
       
       
       if (($con = $input->getOption('con')) != NULL) {
-        $output->writeln('updating schema...');
-        $output->writeln('');
         try {
-          $code = $this->callCommand('orm:update-schema',
-                                   array('--force'=>true,
-                                         '--con'=>$con
-                                         ),
-                                   $output
-                                  );
+          $code = $this->callCommand(
+            'orm:update-schema',
+            array(
+              '--dry-run'=>false,
+              '--con'=>$con
+            ),
+            $output
+          );
         } catch (\PDOException $e) {
           $this->comment('PDOException für folgende Befehle');
-          $output->writeln($this->callCommand('orm:update-schema',
-                                   array('--force'=>false,
-                                         '--con'=>$con
-                                         ),
-                                   $output
-                                  )
-                          );
+          $output->writeln(
+            $this->callCommand('orm:update-schema',
+              array(
+                '--dry-run'=>true,
+                '--con'=>$con
+              ),
+              $output
+            )
+          );
+
           throw $e;
         }
       }

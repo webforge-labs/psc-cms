@@ -624,8 +624,12 @@ class Module extends \Psc\CMS\Module implements \Psc\Code\Event\Dispatcher {
   public function getDoctrineContainer() {
     if (!isset($this->dcc)) {
       $this->dcc = new \Webforge\Doctrine\Container();
-      $this->dcc->injectEntityManager($this->getEntityManager());
+
+      foreach ($this->project->getConfiguration()->get(array('db')) as $con => $NULL) {
+        $this->dcc->injectEntityManager($this->getEntityManager($con), $con);
+      }
     }
+
     return $this->dcc;
   }
 }

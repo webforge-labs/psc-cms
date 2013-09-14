@@ -32,6 +32,9 @@ class ProjectConsole extends \Psc\System\Console\Console {
       $this->cli->getHelperSet()
         ->set(new \Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper($em), 'em');
     }
+
+    $bridge = new \Webforge\Doctrine\ConsoleBridge($this->doctrine->getDoctrineContainer());
+    $bridge->augment($this->cli);
   }
   
   public function addCommands() {
@@ -44,7 +47,6 @@ class ProjectConsole extends \Psc\System\Console\Console {
       new \Psc\System\Console\AddClassPropertyCommand(),
       
       new \Psc\System\Console\CreateUserCommand(),
-      new \Psc\System\Console\ORMSchemaCommand(),
       new \Psc\System\Console\ORMCreateEntityCommand(),
       new \Psc\TPL\ContentStream\CreateWidgetTemplateCommand(),
       
