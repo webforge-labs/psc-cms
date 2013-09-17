@@ -111,4 +111,3 @@ class ProjectCompiler extends \Psc\System\LoggerObject {
     return $this->languages;
   }
 }
-?>

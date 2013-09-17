@@ -212,10 +212,10 @@ abstract class DeployCommand extends Command {
     $con = $this->getRemoteDBCon($mode);
     $out = '';
     $bin = $project->loadedFromPackage ? 'bin/' : 'base/bin/';
-    $this->remoteExec(sprintf('./cli.sh orm:update-schema --con="%s"', $con), $bin, $out);
+    $this->remoteExec(sprintf('./cli.sh orm:update-schema --dry-run --con="%s"', $con), $bin, $out);
     if (!Preg::match($out, '/nothing to do/')) {
-      if ($this->confirm('Do you want to force update the schema? (see above for changes)')) {
-        $this->remoteExec(sprintf('./cli.sh orm:update-schema --force --con="%s"', $con), $bin);
+      if ($this->confirm('Do you want to update the schema? (see above for changes)')) {
+        $this->remoteExec(sprintf('./cli.sh orm:update-schema --con="%s"', $con), $bin);
       }
     }
     
