@@ -173,7 +173,7 @@ class ConfigureApacheTask extends \Psc\SimpleObject implements Task {
    * Adds configuration after the virtualhosts
    */
   public function after($string) {
-    $this->vars['mainAppendix'] = $string;
+    $this->vars['mainAppendix'] = $this->replaceHelpers($string);
     return $this;
   }
 
@@ -194,7 +194,7 @@ class ConfigureApacheTask extends \Psc\SimpleObject implements Task {
    * @param string $filename relativ zu inc
    */
   public function setAutoPrependFile($filename) {
-    $this->setPHPValue('auto_prepend_file', $filename);
+    $this->setPHPValue('auto_prepend_file', $this->replaceHelpers($filename));
     return $this;
   }
   
@@ -214,7 +214,15 @@ class ConfigureApacheTask extends \Psc\SimpleObject implements Task {
   
   protected function replaceHelpers($string) {
     $vhost = $this->targetProject->getVhostName();
-    return TPL::miniTemplate($string, array('vhost'=>'/var/local/www/'.$vhost.'/'));
+    return TPL::miniTemplate(
+      $string, 
+      array(
+        'vhost'=>'/var/local/www/'.$vhost.'/',
+        'documentRoot'=>$this->documentRoot,
+        'documentRootCms'=>$this->documentRootCms,
+        'serverName'=>$this->serverName
+      )
+    );
   }
 
   /**
