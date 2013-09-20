@@ -141,4 +141,3 @@ class AnnotatedClass {
   protected $property1;
   
 }
-?>

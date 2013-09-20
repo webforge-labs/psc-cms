@@ -78,7 +78,7 @@ class ConfigureApacheTask extends \Psc\SimpleObject implements Task {
         'display_errors'=>array('admin', 'On')
     );
     
-    $this->vars = array('appendix'=>'  ','auth'=>'');
+    $this->vars = array('appendix'=>'  ','auth'=>'', 'mainAppendix'=>'');
 
     if ($this->targetProject->loadedFromPackage) {
       $this->phpValues['auto_prepend_file'] = array(NULL, $this->replaceHelpers('%vhost%bootstrap.php'));
@@ -166,6 +166,14 @@ class ConfigureApacheTask extends \Psc\SimpleObject implements Task {
 
   public function append($string) {
     $this->vars['appendix'] .= $string;
+    return $this;
+  }
+
+  /**
+   * Adds configuration after the virtualhosts
+   */
+  public function after($string) {
+    $this->vars['mainAppendix'] = $string;
     return $this;
   }
 
@@ -380,6 +388,7 @@ class ConfigureApacheTask extends \Psc\SimpleObject implements Task {
     AllowOverride All
   </Directory>
 </VirtualHost>
+%mainAppendix%
 APACHE;
 
     } else {
@@ -399,6 +408,7 @@ APACHE;
   </Directory>
 %appendix%
 </VirtualHost>
+%mainAppendix%
 APACHE;
       
     }
