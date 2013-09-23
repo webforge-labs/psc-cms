@@ -87,7 +87,7 @@ class ObjectType extends \Psc\Data\Type\Type implements ParameterHintedType, \Ps
       return $this->class->getName();
     }
     
-    return 'object';
+    return '\stdClass';
   }
   
   /**

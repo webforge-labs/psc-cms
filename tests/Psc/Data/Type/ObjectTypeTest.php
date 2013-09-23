@@ -53,6 +53,12 @@ class ObjectTypeTest extends \Psc\Code\Test\Base {
     
     $this->assertEquals('\Psc\Data\Set',$type->getPHPHint());
   }
+
+  public function testPHPHintWithoutClass() {
+    $type = Type::create('Object');
+    
+    $this->assertEquals('\stdClass', $type->getPHPHint());
+  }
   
   public function testPHPHintWithNamespaceContext() {
     $type = Type::create('Object')->setClass(new GClass('Webforge\Common\System\Dir'));
