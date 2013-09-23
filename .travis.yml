@@ -11,7 +11,7 @@ env:
 
 before_install:
   - composer self-update
-  - composer require --no-update --no-interaction "pscheit/psc-cms-image:$COMPOSER_ROOT_VERSION"
+  - composer require --no-update --no-interaction "pscheit/psc-cms-image:1.3.*"
   - composer install --prefer-source --no-interaction --dev
 
 before_script:
