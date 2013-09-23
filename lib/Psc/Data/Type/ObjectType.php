@@ -102,7 +102,7 @@ class ObjectType extends \Psc\Data\Type\Type implements ParameterHintedType, \Ps
       }
     }
     
-    return 'Object';
+    return $useFQN ? '\\stdClass' : 'stdClass';
   }
   
   /**

@@ -74,8 +74,8 @@ class ObjectTypeTest extends \Psc\Code\Test\Base {
     $type = Type::create('Object');
     
     $this->assertInstanceOf('Psc\Data\Type\ParameterHintedType', $type);
-    $this->assertEquals('Object', $type->getParameterHint($useFQN = TRUE));
-    $this->assertEquals('Object', $type->getParameterHint($useFQN = FALSE));
+    $this->assertEquals('\stdClass', $type->getParameterHint($useFQN = TRUE));
+    $this->assertEquals('stdClass', $type->getParameterHint($useFQN = FALSE));
     
     $this->assertNull($type->getParameterHintImport());
   }

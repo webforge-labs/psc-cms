@@ -14,4 +14,3 @@ class SmallIntegerField extends \Psc\UI\Component\IntegerField {
     ;
   }
 }
-?>
