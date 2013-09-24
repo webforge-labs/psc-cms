@@ -429,6 +429,8 @@ class CommonProjectCompiler extends ProjectCompiler {
       $property('caption', $type('String'), $nullable()),
       $property('align', $type('String'), $nullable()),
       $property('thumbnailFormat', $type('String'))->setDefaultValue('content-page'),
+      $property('resize', $type('Array'), $nullable()),
+      // add properties to $csSeriaize below(!)
       
       $constructor(
         $argument('url'),
@@ -444,7 +446,7 @@ class CommonProjectCompiler extends ProjectCompiler {
       ),
 
       //  implement entry interface
-      $build($csSerialize(array('url', 'caption', 'align', 'imageEntity'))),
+      $build($csSerialize(array('url', 'caption', 'align', 'resize', 'imageEntity'))),
       $build($csLabel('Bild')),
 
       $build($method('html', array(),

@@ -76,6 +76,12 @@ abstract class BasicImage2 extends \Psc\CMS\AbstractEntity implements \Psc\Image
   }
 
   public function getThumbnailURL($format = 'page-default') {
+    $format = $this->getThumbnailFormat($format);
+
+    return $this->getURL('thumbnail', $format->arguments, $format->options);
+  }
+
+  protected function getThumbnailFormat($format) {
     if (array_key_exists($format, $this->formats)) {
       $arguments = $this->formats[$format];
       $options = array();
@@ -83,9 +89,9 @@ abstract class BasicImage2 extends \Psc\CMS\AbstractEntity implements \Psc\Image
         $options = array_pop($arguments);
       }
 
-      return $this->getURL('thumbnail', $arguments, $options);
+      return (object) array('arguments'=>$arguments, 'options'=>$options);
     }
-    
+
     throw new \Psc\Exception('Unbekanntes Format: '.Code::varInfo($format));
   }
   
@@ -96,11 +102,28 @@ abstract class BasicImage2 extends \Psc\CMS\AbstractEntity implements \Psc\Image
   public function getThumbnail($width, $height, $method = 'standard', Array $options = array()) {
     return $this->getImageManager()->getVersion($this, 'thumbnail', array($width, $height, $method), $options);
   }
+
+  /**
+   * 
+   * @return ImagineImage
+   */
+  public function getThumbnailInFormat($format = 'page-default') {
+    $format = $this->getThumbnailFormat($format);
+
+    list($width, $height, $method) = $format->arguments;
+
+    return $this->getThumbnail($width, $height, $method, $format->options);
+  }
   
+  /**
+   * 
+   * @return string
+   */
   public function getURL($type = 'original', Array $arguments = array(), Array $options = array()) {
     return $this->getImageManager()->getURL($this, $type, $arguments, $options);
   }
   
+
   public function getSourceFile() {
     if (!isset($this->sourceFile)) {
       $this->sourceFile = $this->getImageManager()->getSourceFile($this);
