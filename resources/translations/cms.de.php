@@ -18,6 +18,7 @@ return Array(
   'panel.buttons.insert-open'=>'neu erstellen und geöffnet lassen',
   'panel.buttons.reset'=>'zurücksetzen',
   'panel.buttons.preview'=>'vorschau',
+  'panel.buttons.view'=>'anzeigen',
   'panel.buttons.save-sort'=>'Reihenfolge speichern',
 
   'sidebar.content'=>'Inhalte',

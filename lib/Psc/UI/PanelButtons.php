@@ -49,6 +49,8 @@ class PanelButtons extends \Psc\HTML\Base {
         $this->addReloadButton();
       } elseif ($button === 'reset') {
         $this->addResetButton();
+      } elseif ($button === 'view') {
+        $this->addViewButton();
       } elseif ($button === 'preview') {
         $this->addPreviewButton();
       } elseif ($button instanceof \Psc\UI\Button) {
@@ -179,6 +181,19 @@ class PanelButtons extends \Psc\HTML\Base {
     $button = $this->addButton($this->translate('preview'), $flags, 'image', NULL);
     $button->getHTML()
       ->addClass('\Psc\button-preview');
+    
+    return $button;
+  }
+
+  /**
+   * Button used to view the current document
+   *
+   * used in the edit-tab
+   */
+  public function addViewButton($flags = self::ALIGN_LEFT) {
+    $button = $this->addButton($this->translate('view'), $flags, 'extlink', NULL);
+    $button->getHTML()
+      ->addClass('\Psc\button-view');
     
     return $button;
   }

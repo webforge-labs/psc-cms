@@ -224,4 +224,3 @@ class FormPanel extends \Psc\HTML\Base {
     return $this->panelButtons;
   }
 }
-?>

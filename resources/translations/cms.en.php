@@ -18,6 +18,7 @@ return Array(
   'panel.buttons.insert-open'=>'save and open in new tab',
   'panel.buttons.reset'=>'reset',
   'panel.buttons.preview'=>'preview',
+  'panel.buttons.view'=>'view',
   'panel.buttons.save-sort'=>'save ordering',
 
   'sidebar.content'=>'contents',

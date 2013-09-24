@@ -74,6 +74,17 @@ class PanelButtonsTest extends \Psc\Code\Test\HTMLTestCase {
     ;
   }
 
+  public function testViewButton() {
+    $this->panelButtons = new PanelButtons(array('view','reload'), $this->translationContainer);
+    
+    $this->html = $this->panelButtons->html();
+    
+    $this->test->css('div.psc-cms-ui-buttonset')
+      ->count(1)
+      ->css('button.psc-cms-ui-button-view')->count(1)->end()
+    ;
+  }
+
   protected function setupAllButtons() {
     $buttons = array(
       'save',

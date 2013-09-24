@@ -18,6 +18,7 @@ return Array(
   'panel.buttons.insert-open'=>'enregistrer et ouvrir nouvel onglet',
   'panel.buttons.reset'=>'rétablir',
   'panel.buttons.preview'=>'aperçus',
+  'panel.buttons.view'=>'afficher',
   //'panel.buttons.save-sort'=>'Reihenfolge speichern',
 
   'sidebar.content'=>'Contenu',
