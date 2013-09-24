@@ -87,8 +87,9 @@ class ConverterTest extends \Psc\Test\DatabaseTestCase {
         'label'=>'Bild',
         'imageEntity'=>$this->imageEntity->getId(),
         'url'=>'/path/to/image.jpg',
-        'align'=>'right'
-      ), 
+        'align'=>'right',
+        'resize'=>NULL
+      ),
       $img
     );
   }
