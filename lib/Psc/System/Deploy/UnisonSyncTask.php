@@ -59,7 +59,7 @@ class UnisonSyncTask extends \Psc\SimpleObject implements Task {
     $process->setTimeout(0);
     
     $log = NULL;
-    $result = array();
+    $result = new stdClass;
     $resultFound = FALSE;
     $ret = $process->run(function ($type, $buffer) use (&$log, &$result, &$resultFound) {
       // suche nach dem endergebnis:
@@ -80,9 +80,13 @@ class UnisonSyncTask extends \Psc\SimpleObject implements Task {
 
 
     if ($resultFound || $ret == 0) {
-      print sprintf("Unison: %s: (%d transferred, %d skipped, %d failed)\n",
-                    ($status = $result->skipped === 0 && $result->failed === 0 ? 'OK' : 'FAIL'),
-                    $result->transferred, $result->skipped, $result->failed);
+      if ($ret === 0) {
+        print sprintf('Unison: nothing done');
+      } else {
+        print sprintf("Unison: %s: (%d transferred, %d skipped, %d failed)\n",
+          ($status = $result->skipped === 0 && $result->failed === 0 ? 'OK' : 'FAIL'),
+          $result->transferred, $result->skipped, $result->failed);
+      }
     } else {
       throw new \RuntimeException("Unison Result nicht gefunden!\n".$log);
     }
