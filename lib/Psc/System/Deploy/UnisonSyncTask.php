@@ -59,7 +59,7 @@ class UnisonSyncTask extends \Psc\SimpleObject implements Task {
     $process->setTimeout(0);
     
     $log = NULL;
-    $result = new stdClass;
+    $result = new \stdClass;
     $resultFound = FALSE;
     $ret = $process->run(function ($type, $buffer) use (&$log, &$result, &$resultFound) {
       // suche nach dem endergebnis:
