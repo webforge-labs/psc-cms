@@ -4,7 +4,7 @@ namespace Psc\Code\Test;
 
 use Psc\HTML\HTMLInterface;
 
-class HTMLTestCase extends \Psc\Code\Test\Base {
+class HTMLTestCase extends \Psc\Code\Test\Base implements \Webforge\Code\Test\HTMLTesting {
   
   protected $html, $debugContextHTML, $debugContextLabel = 'no-context';
   

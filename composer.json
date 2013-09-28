@@ -12,7 +12,8 @@
     "psr-0": {
       "Psc": ["lib/", "tests/"],
       "Hitch": ["application/src/hitch/lib/"],
-      "PHPWord": ["application/src/PHPWord/"]
+      "PHPWord": ["application/src/PHPWord/"],
+      "Webforge\\Code\\Test": "D:\\www\\webforge-testplate\\lib"
     }
   },
   "require": {
