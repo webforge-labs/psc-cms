@@ -79,10 +79,10 @@ class UnisonSyncTask extends \Psc\SimpleObject implements Task {
     });
 
 
-    $status = NULL;
     if ($resultFound || $ret == 0) {
       if ($ret === 0) {
         print sprintf('Unison: nothing done');
+        $status = 'OK';
       } else {
         print sprintf("Unison: %s: (%d transferred, %d skipped, %d failed)\n",
           ($status = $result->skipped === 0 && $result->failed === 0 ? 'OK' : 'FAIL'),
