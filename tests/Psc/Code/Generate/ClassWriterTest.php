@@ -150,13 +150,11 @@ PHP
     
     $writer = new ClassWriter();
     $this->assertFalse($writer->syntaxCheck($file, 'return'));
-
-
     
     try {
       $writer->syntaxCheck($file);
     } catch (\Psc\Code\Generate\SyntaxErrorException $e) {
-      $this->assertContains("syntax error, unexpected '-'", $e->getMessage(), 'syntax error ist nicht ausgezeichnet');
+      $this->assertContains("syntax error", $e->getMessage(), 'syntax error ist nicht ausgezeichnet');
       return;
     }
     

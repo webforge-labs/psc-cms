@@ -9,6 +9,9 @@ class Process extends \Symfony\Component\Process\Process {
   const UNIX = ProcessBuilder::UNIX;
   const WINDOWS = ProcessBuilder::WINDOWS;
   
+  /**
+   * Use the Builder to create a environment process
+   */
   public function __construct($commandline, $cwd = null, array $env = null, $stdin = null, $timeout = 60, array $options = array()) {    
     $env = array_replace(array('USERPROFILE'=>getenv('HOME')), (array) $env);
     $inherits = array('PATH','SystemRoot','LOCALAPPDATA','SystemDrive','SSH_AUTH_SOCK','CommonProgramFiles',
@@ -24,7 +27,6 @@ class Process extends \Symfony\Component\Process\Process {
   }
   
   /**
-   * @return Psc\System\Console\ProcessBuilder
    */
   public static function build($bin, Array $cmdArgs = array(), Array $cmdOptions = array(), $escapeFor = NULL) {
     return ProcessBuilder::create($bin, $cmdArgs, $cmdOptions, $escapeFor);

@@ -149,6 +149,6 @@ class ProcessBuilder {
    * @return string
    */
   public function escapeShellArg($arg) {
-    return \Webforge\Common\System\Util::escapeShellArg($arg, $this->escapeFor);
+    return \Symfony\Component\Process\ProcessUtils::escapeArgument($arg);
   }
 }
