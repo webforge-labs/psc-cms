@@ -43,7 +43,7 @@ class FrameworkPage extends Page {
       $main = '/js/boot.js';
     } else {
       $requirejs = '/js-built/require.js';
-      $main = '/js-built/boot.js';
+      $main = '/js-built/lib/boot.js';
     }
 
     return $this->addRequireJS($requirejs, $main);

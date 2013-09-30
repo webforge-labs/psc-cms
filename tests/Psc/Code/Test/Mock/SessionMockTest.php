@@ -23,4 +23,3 @@ class SessionMockTest extends \Psc\Code\Test\Base {
     $this->assertEquals('v1s1', $this->sessionMock->get('key1','sub1'));
   }
 }
-?>
