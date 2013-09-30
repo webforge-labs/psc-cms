@@ -10,8 +10,8 @@ class Page5 extends FrameworkPage {
   
   protected $doctype = '<!DOCTYPE html>';
   
-  public function __construct(\Psc\JS\Manager $jsManager = NULL, \Psc\CSS\Manager $cssManager = NULL) {
-    parent::__construct($jsManager, $cssManager);
+  public function __construct() {
+    parent::__construct();
     
     $this->setMeta(NULL, FALSE)->setAttribute('charset',$this->charset);
     
