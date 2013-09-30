@@ -152,7 +152,6 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
   
   public function init(Request $request = NULL) {
     $this->dropContents = array();
-    $this->registerFrontendLibraries();
     
     // das machen wir schon bevor um z. B. Connection auslesen zu können
     $this->initRequest($request);

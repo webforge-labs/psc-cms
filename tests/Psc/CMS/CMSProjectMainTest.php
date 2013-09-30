@@ -4,6 +4,7 @@ namespace Psc\CMS;
 
 use Psc\Environment;
 use Psc\PSC;
+use Psc\Entities\User;
 
 /**
  * @group class:Psc\CMS\ProjectMain
@@ -16,8 +17,6 @@ class CMSProjectMainTest extends \Psc\Code\Test\Base {
     $this->chainClass = 'Psc\CMS\Projectmain';
     parent::setUp();
     
-    $this->jsManager = $this->getMock('Psc\JS\ProxyManager', array(), array(), '', FALSE);
-    $this->cssManager = $this->getMock('Psc\CSS\Manager', array(), array(), '', FALSE);
     $this->user = $this->createUser();
     $this->authController = $this->createAuthController($this->user);
     $this->environment = new Environment();
@@ -26,8 +25,6 @@ class CMSProjectMainTest extends \Psc\Code\Test\Base {
     // inject a lot
     $this->cms = new ProjectMain($this->project, NULL, NULL, NULL, 10, NULL, $this->environment);
     $this->cms->setContainerClass('Psc\Test\CMS\Container');
-    $this->cms->setJSManager($this->jsManager);
-    $this->cms->setCSSManager($this->cssManager);
     $this->cms->setAuthController($this->authController);
     
     $this->cms->init();
@@ -35,9 +32,6 @@ class CMSProjectMainTest extends \Psc\Code\Test\Base {
   
   public function testConstruct() {
     $this->assertSame($this->authController, $this->cms->getAuthController());
-    $this->assertSame($this->jsManager, $this->cms->getJSManager());
-    $this->assertSame($this->cssManager, $this->cms->getCSSManager());
-    $this->assertSame($this->cssManager, $this->cms->getCSSManager());
     $this->assertSame($this->environment, $this->cms->getEnvironment());
     $this->assertSame($this->user, $this->authController->getUser());
   }
@@ -59,9 +53,6 @@ class CMSProjectMainTest extends \Psc\Code\Test\Base {
     $samePage = $this->cms->getMainHTMLPage(); // wird nur einmal erstellt
     $this->assertSame($page,$samePage);
     
-    $this->assertSame($this->cssManager, $page->getCSSManager());
-    $this->assertSame($this->jsManager, $page->getJSManager());
-    
     // hier könnten wir noch als acceptance jede menge html asserten
   }
   
@@ -76,7 +67,7 @@ class CMSProjectMainTest extends \Psc\Code\Test\Base {
   }
   
   protected function createUser() {
-    $user = new \Psc\Entities\User();
+    $user = new User();
     $user->setEmail('p.scheit@ps-webforge.com');
     $user->setPassword('blubb');
     return $user;

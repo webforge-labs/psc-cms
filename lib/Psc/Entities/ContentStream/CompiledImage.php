@@ -47,6 +47,12 @@ abstract class CompiledImage extends Entry implements \Psc\TPL\ContentStream\Ima
   protected $thumbnailFormat = 'content-page';
   
   /**
+   * @var array
+   * @ORM\Column(type="array", nullable=true)
+   */
+  protected $resize;
+  
+  /**
    * @var Psc\Entities\Image
    * @ORM\ManyToOne(targetEntity="Psc\Entities\Image")
    * @ORM\JoinColumn(onDelete="SET NULL")
@@ -147,6 +153,21 @@ abstract class CompiledImage extends Entry implements \Psc\TPL\ContentStream\Ima
   }
   
   /**
+   * @return array
+   */
+  public function getResize() {
+    return $this->resize;
+  }
+  
+  /**
+   * @param array $resize
+   */
+  public function setResize(Array $resize = NULL) {
+    $this->resize = $resize;
+    return $this;
+  }
+  
+  /**
    * @return Psc\Entities\Image
    */
   public function getImageEntity() {
@@ -171,7 +192,7 @@ abstract class CompiledImage extends Entry implements \Psc\TPL\ContentStream\Ima
   }
   
   public function serialize($context, Closure $serializeEntry) {
-    return $this->doSerialize(array('url','caption','align','imageEntity'), $serializeEntry, array(), $context);
+    return $this->doSerialize(array('url','caption','align','resize','imageEntity'), $serializeEntry, array(), $context);
   }
   
   public function getLabel() {
@@ -221,6 +242,7 @@ abstract class CompiledImage extends Entry implements \Psc\TPL\ContentStream\Ima
       'caption' => new \Psc\Data\Type\StringType(),
       'align' => new \Psc\Data\Type\StringType(),
       'thumbnailFormat' => new \Psc\Data\Type\StringType(),
+      'resize' => new \Psc\Data\Type\ArrayType(),
       'imageEntity' => new \Psc\Data\Type\EntityType(new \Psc\Code\Generate\GClass('Psc\\Entities\\Image')),
       'imageManager' => new \Psc\Data\Type\ObjectType(new \Psc\Code\Generate\GClass('Psc\\Image\\Manager')),
     ));
