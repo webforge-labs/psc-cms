@@ -531,34 +531,39 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber, \Webfor
 
   /**
    * @return bool
+   * @deprecated
    */
   public function getProduction() {
-    if (!isset($this->production)) {
-      $this->production = FALSE;
+    return $this->isDevelopment(); // this is WRONG for backwordwards-compatibility
+  }
+
+  public function isDevelopment() {
+    if (!isset($this->development)) {
+      $this->development = FALSE;
       
-      if ($this->hostConfig->get('production') !== NULL) 
-        return $this->production = (bool) $this->hostConfig->get('production');
+      if ($this->hostConfig->get('development') !== NULL) 
+        return $this->development = (bool) $this->hostConfig->get('development');
         
       $ua = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : FALSE;
       if ($ua === $this->hostConfig->get('uagent-key')) {
-        return $this->production = TRUE;
+        return $this->development = TRUE;
       }
       
       if ($this->getConfiguration()->get('developer') === TRUE) {
-        return $this->production = TRUE;
+        return $this->development = TRUE;
       }
       
       if (PSC::isTravis()) {
-        return $this->production = TRUE;
+        return $this->development = TRUE;
       }
     }
 
-    return $this->production;
+    return $this->development;
   }
 
-
-  public function isDevelopment() {
-    return $this->getProduction();
+  public function setDevelopment($bool) {
+    $this->development = $bool;
+    return $this;
   }
 
   public function getSrc() {
