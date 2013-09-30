@@ -2,10 +2,8 @@
 
 namespace Psc\HTML;
 
-use Psc\CSS\CSS;
-use Psc\CSS\Manager AS CSSManager;
-use Psc\JS\Manager AS JSManager;
-use Psc\JS\JS;
+use Psc\JS\Helper as js;
+use Psc\CSS\Helper as css;
 use stdClass;
 
 class Page extends \Psc\OptionsObject implements \Psc\HTML\HTMLInterface {
@@ -60,17 +58,7 @@ class Page extends \Psc\OptionsObject implements \Psc\HTML\HTMLInterface {
    */
   public $body;
   
-  /**
-   * @var CSSManager
-   */
-  protected $cssManager;
-
-  /**
-   * @var JSManager
-   */
-  protected $jsManager;
-
-  public function __construct(\Psc\JS\Manager $jsManager = NULL, \Psc\CSS\Manager $cssManager = NULL) {
+  public function __construct() {
     $this->html = new Tag('html', new stdClass);
     $this->html
       ->setAttribute('xmlns','http://www.w3.org/1999/xhtml')
@@ -105,9 +93,6 @@ class Page extends \Psc\OptionsObject implements \Psc\HTML\HTMLInterface {
     $this->html->contentTemplate .= '%head%'."\n";
     $this->html->contentTemplate .= '%body%'."\n";
     
-    $this->attachCSSManager($cssManager ?: CSS::getManager());
-    $this->attachJSManager($jsManager ?: JS::getManager());
-    
     $this->setUp();
   }
   
@@ -118,13 +103,6 @@ class Page extends \Psc\OptionsObject implements \Psc\HTML\HTMLInterface {
    */
   public function getHTML() {
     $this->html->content->doctype = $this->doctype;
-    
-    /* CSS Manager */
-    $this->attachCSS();
-    
-    /* JS Manager */
-    $this->attachJS();
-    
     return $this->html;
   }
   
@@ -155,39 +133,6 @@ class Page extends \Psc\OptionsObject implements \Psc\HTML\HTMLInterface {
   
   public function getClose() {
     return '</body></html>';
-  }
-  
-  /**
-   * Fügt der Seite einen Manager für die eingebundenen CSS Files hinzu
-   */
-  public function attachCSSManager(CSSManager $m) {
-    $this->cssManager = $m;
-    return $this;
-  }
-
-
-  /**
-   * Fügt der Seite einen Manager für die eingebundenen JS Files hinzu
-   */
-  public function attachJSManager(JSManager $m) {
-    $this->jsManager = $m;
-    return $this;
-  }
-  
-  protected function attachCSS() {
-    if (isset($this->cssManager)) {
-      foreach ($this->cssManager->getHTML() as $linkTag) {
-        $this->head->content[$linkTag->getAttribute('href')] = $linkTag;
-      }
-    }
-  }
-  
-  protected function attachJS() {
-    if (isset($this->jsManager)) {
-      foreach ($this->jsManager->getHTML() as $script) {
-        $this->head->content[$script->getAttribute('src')] = $script;
-      }
-    }
   }
   
   /**
@@ -267,7 +212,6 @@ class Page extends \Psc\OptionsObject implements \Psc\HTML\HTMLInterface {
     $this->setMeta('content-type',$ct, TRUE);
   }
   
-  public function setCSSManager(CSSManager $m) { return $this->attachCSSManager($m);   }
   public function __toString() {
     try {
       return (string) $this->getHTML();
@@ -279,15 +223,6 @@ class Page extends \Psc\OptionsObject implements \Psc\HTML\HTMLInterface {
       exit;
     }
   }
-  
-  /**
-   * @return CSSManager
-   */
-  public function getCSSManager() { return $this->cssManager; }
-  /**
-   * @return JSManager
-   */
-  public function getJSManager() { return $this->jsManager; }
   
   /**
    * @return Tag
@@ -323,4 +258,44 @@ class Page extends \Psc\OptionsObject implements \Psc\HTML\HTMLInterface {
     $this->setMeta('content-language', $this->language);
     return $this;
   }
+
+  /**
+   * @return Psc\HTML\Tag
+   */
+  public function loadCSS($url, $media = 'all') {
+    $this->head->content[$url] = $link = css::load($url, $media);
+    return $link;
+  }
+
+  /**
+   * @return Psc\HTML\Tag
+   */
+  public function loadJS($url) {
+    $this->head->content[$url] = $script = js::load($url);
+    return $script;
+  }  
+
+  /**
+   * @return Psc\HTML\Tag
+   */
+  public function loadConditionalJS($url, $condition) {
+    $this->head->content[$url] =
+      '<!--[if '.$condition.']>'.
+      ($script = js::load($url)).
+      '<![endif]-->';
+    
+    return $script;
+  } 
+
+  /**
+   * @return Psc\HTML\Tag
+   */
+  public function loadConditionalCSS($url, $condition, $media = 'all') {
+    $this->head->content[$url] =
+      '<!--[if '.$condition.']>'.
+      ($css = css::load($url, $media)).
+      '<![endif]-->';
+    
+    return $css;
+  } 
 }

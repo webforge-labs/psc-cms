@@ -4,7 +4,7 @@ namespace Psc\HTML;
 
 use Psc\JS\Helper as js;
 use Psc\CSS\Helper as css;
-use Psc\CMS\Project;
+use Webforge\Framework\Project;
 
 class FrameworkPage extends Page {
   
@@ -13,36 +13,53 @@ class FrameworkPage extends Page {
    */
   protected $titlePrefix;
 
-  public function __construct(\Psc\JS\Manager $jsManager = NULL, \Psc\CSS\Manager $cssManager = NULL) {
-    $jsManager = $jsManager ?: new \Psc\JS\ProxyManager();
-		
-		parent::__construct($jsManager, $cssManager);
-	}
-	
-	public function addCMSDefaultCSS() {
-    $this->cssManager->enqueue('default');
-    $this->cssManager->enqueue('jquery-ui');
-    $this->cssManager->enqueue('cms.form');
-    $this->cssManager->enqueue('cms.ui');
-	}
+  public function addCMSDefaultCSS($uiTheme = 'smoothness', $jqUIVersion = '1.8.22') {
+    /* Frontend CSS Files */
+    $this->loadCSS('/css/reset.css');
+    $this->loadCSS('/css/colors.css');
+    $this->loadCSS('/css/default.css');
+    $this->loadCSS('/psc-cms-js/vendor/jqwidgets/styles/jqx.base.css');
+    $this->loadCSS('/psc-cms-js/vendor/jqwidgets/styles/jqx.ui-'.$uiTheme.'.css');
+    $this->loadCSS('/psc-cms-js/vendor/jquery-ui/css/'.$uiTheme.'/jquery-ui-'.$jqUIVersion.'.custom.css');
+    $this->loadCSS('/css/cms/form.css');
+    $this->loadCSS('/psc-cms-js/css/ui.css');
+  }
 
-	public function addTwitterBootstrapCSS() {
+  public function addTwitterBootstrapCSS() {
     $this->loadCSS('/psc-cms-js/vendor/twitter-bootstrap/css/bootstrap.css');
     $this->loadCSS('/psc-cms-js/vendor/twitter-bootstrap/css/bootstrap-responsive.css');
     $this->loadCSS('/psc-cms-js/vendor/twitter/typeahead/css/typeahead.js-bootstrap.css');
   }
 
-	public function setTitleForProject(Project $project) {
-		$config = $project->getConfiguration();
-		
-	  $title = $config->get('project.title', 'Psc - CMS');
+/**
+   * Use development as $assetMode to use non-compiled assets
+   * 
+   * use other values or 'built' to the compiled files and minified js
+   */
+  public function addCMSRequireJS($assetModus = 'development') {
+    if ($assetModus === 'development') {
+      $this->loadJs('/psc-cms-js/lib/config.js');
+      $requirejs = '/psc-cms-js/vendor/require.js';
+      $main = '/js/boot.js';
+    } else {
+      $requirejs = '/js-built/require.js';
+      $main = '/js-built/boot.js';
+    }
+
+    return $this->addRequireJS($requirejs, $main);
+  }
+
+  public function setTitleForProject(Project $project) {
+    $config = $project->getConfiguration();
+    
+    $title = $config->get('project.title', 'Psc - CMS');
     $title .= ' '.$config->get('version');
     
     $this->setTitle(HTML::tag('title',HTML::esc($title)));
-	}
+  }
 
   public function addGoogleAnalyticsJS($account, $domainName) {
-		$this->head->content['google-analytics'] = sprintf(<<<'JAVASCRIPT'
+    $this->head->content['google-analytics'] = sprintf(<<<'JAVASCRIPT'
 <script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', '%s']);
@@ -59,57 +76,18 @@ JAVASCRIPT
     , $account, $domainName);
   }
   
-  public function addRequireJS() {
-    $this->head->content['require.js'] = js::load('/psc-cms-js/vendor/require.js')
-                                          ->setAttribute('data-main', '/js/config.js')
-                                          ->setOption('br.closeTag',FALSE);
+  public function addRequireJS($requirejsUrl = NULL, $mainJS = NULL) {
+    $this->loadJS($requirejsUrl ?: '/js/require.js')
+      ->setAttribute('data-main', $mainJS ?: '/js/boot.js')
+      ->setOption('br.closeTag',FALSE);
+
     return $this;
   }
 
-	public function setTitleString($title) {
+  public function setTitleString($title) {
     $project = \Psc\PSC::getProject();
-		$staging = $project instanceof \Psc\CMS\Project && $project->isStaging() ? 'staging - ' : NULL;
-		
-		return parent::setTitleString(($this->titlePrefix ? $this->titlePrefix.' - ' : '').$staging.$title);
-	}
-
-  /**
-   * @return Psc\HTML\Tag
-   */
-  public function loadCSS($url, $media = 'all') {
-    $this->head->content[$url] = $link = css::load($url, $media);
-    return $link;
+    $staging = $project instanceof Project && $project->isStaging() ? 'staging - ' : NULL;
+    
+    return parent::setTitleString(($this->titlePrefix ? $this->titlePrefix.' - ' : '').$staging.$title);
   }
-
-  /**
-   * @return Psc\HTML\Tag
-   */
-  public function loadJS($url) {
-    $this->head->content[$url] = $script = js::load($url);
-    return $script;
-  }  
-
-  /**
-   * @return Psc\HTML\Tag
-   */
-  public function loadConditionalJS($url, $condition) {
-    $this->head->content[$url] =
-      '<!--[if '.$condition.']>'.
-      ($script = js::load($url)).
-      '<![endif]-->';
-    
-    return $script;
-  } 
-
-  /**
-   * @return Psc\HTML\Tag
-   */
-  public function loadConditionalCSS($url, $condition, $media = 'all') {
-    $this->head->content[$url] =
-      '<!--[if '.$condition.']>'.
-      ($css = css::load($url, $media)).
-      '<![endif]-->';
-    
-    return $css;
-  } 
 }

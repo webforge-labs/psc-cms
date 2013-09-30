@@ -11,10 +11,6 @@ use Psc\Code\Event\CallbackSubscriber;
 use Psc\Doctrine\DCPackage;
 use Psc\Doctrine\ModelCompiler;
 use Psc\Environment;
-use Psc\CSS\CSS;
-use Psc\JS\JS;
-use Psc\JS\RequirejsManager;
-use Psc\Config;
 use Psc\UI\DropContentsList;
 use Psc\UI\ContentTabs;
 use Psc\TPL\TPL;
@@ -36,16 +32,6 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
    * @var Webforge\CMS\EnvironmentContainer
    */
   protected $environmentContainer;
-  
-  /**
-   * @var Manager
-   */
-  protected $cssManager;
-
-  /**
-   * @var Manager
-   */
-  protected $jsManager;
   
   /**
    * @var Psc\CMS\Project
@@ -156,10 +142,6 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
   public function __construct($project = NULL, DCPackage $dc = NULL, RightContent $rightContent = NULL, EntityService $entityService = NULL, $debugLevel = 5, FrontController $frontController = NULL, \Psc\Environment $env = NULL) {
     $this->environment = $env ?: PSC::getEnvironment();
     $this->project = $project ?: PSC::getProject();
-
-    $this->cssManager = CSS::getManager();
-    
-    $this->jsManager = new RequirejsManager();
 
     $this->dc = $dc;                              // getter injection, wegen EntityManager
     $this->debugLevel = $debugLevel;
@@ -537,7 +519,7 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
         )
       );
       $this->authController->setUserClass($this->getProject()->getUserClass());
-      $this->authController->setHTMLPage($this->createHTMLPage()); // inject our js/css Managers
+      $this->authController->setHTMLPage($this->createHTMLPage());
     }
       
     return $this->authController;
@@ -557,24 +539,6 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
     }
 
     return $this->environmentContainer;
-  }
-  
-  public function registerFrontendLibraries($cssManager = NULL, $jsManager = NULL) {
-    $cssManager = $cssManager ?: $this->getCSSManager();
-    $jsManager = $jsManager ?: $this->getJSManager();
-    
-    $jqUIVersion = '1.8.22';
-    $uiTheme = Config::getDefault('jquery-ui.theme','smoothness');
-    
-    /* Frontend CSS Files */
-    $cssManager->register('reset.css');
-    $cssManager->register('colors.css');
-    $cssManager->register('default.css','default',array('reset','colors'));
-    $cssManager->register('/psc-cms-js/vendor/jqwidgets/styles/jqx.base.css', 'jqx');
-    $cssManager->register('/psc-cms-js/vendor/jqwidgets/styles/jqx.ui-'.$uiTheme.'.css', 'jqx-theme', array('jqx'));
-    $cssManager->register('/psc-cms-js/vendor/jquery-ui/css/'.$uiTheme.'/jquery-ui-'.$jqUIVersion.'.custom.css', 'jquery-ui');
-    $cssManager->register('cms/form.css','cms.form',array('jquery-ui'));
-    $cssManager->register('/psc-cms-js/css/ui.css','cms.ui',array('jquery-ui', 'jqx-theme'));
   }
   
   public function getProject() {
@@ -603,8 +567,9 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
   }
   
   public function createHTMLPage() {
-    $page = new \Psc\HTML\FrameworkPage($this->jsManager, $this->cssManager);
-    $page->addCMSDefaultCSS($this->project->getLowerName());
+    $page = new \Psc\HTML\FrameworkPage();
+    $page->addCMSDefaultCSS();
+    $page->addCMSRequireJS($assetModus = $this->project->isDevelopment() ? 'development' : 'built');
     $page->setTitleForProject($this->project);
     $page->setLanguage($this->getLanguage());
     return $page;
@@ -620,9 +585,6 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
   }
   
   public function addMarkup(\Psc\HTML\Page $page, Array $vars = array()) {
-    //foreach ($this->getStaticClasses() as $alias => $cp) {
-    //  $page->getJSManager()->enqueue($alias);
-    //}
     $translator = $this->getContainer()->getTranslationContainer()->getTranslator();
     $page->body->content = TPL::get(
       array('CMS','main'),
