@@ -2,12 +2,9 @@
 
 namespace Psc\JS;
 
-use \Webforge\Common\System\File,
-    \Psc\System\System,
-    \Psc\PSC
-;
-
-
+/**
+ * @deprecated
+ */
 class JS {
   
   /**
@@ -48,32 +45,5 @@ class JS {
    */
   public static function getManager() {
     return Manager::instance('default');
-  }
-  
-  
-  public static function minify(\Webforge\Common\System\File $file) {
-    try {
-      $jar = System::which('java').' -jar "./yuicompressor-2.4.5.jar"';
-      $bin = PSC::get(PSC::PATH_BIN);
-      
-      $target = clone $file;
-      $target = $target->setExtension('min.js');
-      
-      try {
-        $target->delete();
-      } catch (\Webforge\Common\System\Exception $e) {}
-    
-      $cmd = $jar.' '.$file.' -o '.$target;
-      System::execute($cmd,$bin);
-      
-      if (!$target->exists()) {
-        throw new \Psc\Exception('Befehl wurde aufgerufen, aber target nicht geschrieben');
-      }
-      return $target;
-      
-    } catch (\Psc\Exception $e) {
-      return $file;
-    }
-  }
+  }  
 }
-?>

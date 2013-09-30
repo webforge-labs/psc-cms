@@ -14,11 +14,17 @@ Psc\HTML\Page
   - cssManager and jsManager are removed from the hierarchy (this includes all attach* and other methods as well)
   - The Psc\CMS\Project references are switched into Webforge\Framework\Project
 
+Psc\HTML\Page5, Psc\HTML\FrameworkPage
+  - cssManager and jsManager were removed
+
 Psc\CMS\Page
   - class was deleted
 
 Psc\CSS\CSS
   - class was deleted
+
+Psc\JS\JS
+  - class was deprecated
 
 Psc\CMS\ProjectMain
   - cssManager and jsManager were removed
