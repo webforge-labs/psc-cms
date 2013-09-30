@@ -15,11 +15,11 @@
         <testsuite name="Psc - CMS - Testsuite">
           <directory>tests/Psc/</directory>
         </testsuite>
-    </testsuites>
+    </testsuites>    
 
     <logging>
       <!--
-      <log type="coverage-html" target="../build/coverage" title="tiptoi" charset="UTF-8" yui="true" highlight="true" lowUpperBound="35" highLowerBound="70"/>
+      <log type="coverage-html" target="../build/coverage" title="Psc CMS" charset="UTF-8" yui="true" highlight="true" lowUpperBound="35" highLowerBound="70"/>
       -->
     </logging>
     
