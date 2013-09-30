@@ -29,3 +29,6 @@ Psc\JS\JS
 Psc\CMS\ProjectMain
   - cssManager and jsManager were removed
   - css ui theme is no longer read from config
+
+Psc\JS\RequirejsManager
+  - class was deprecated

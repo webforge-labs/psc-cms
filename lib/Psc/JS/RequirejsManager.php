@@ -2,6 +2,9 @@
 
 namespace Psc\JS;
 
+/**
+ * @deprecated
+ */
 class RequirejsManager extends \Psc\JS\Manager implements \Psc\HTML\HTMLInterface {
   
   protected $configuration;
