@@ -9,28 +9,6 @@ use Psc\JS\Code as jsCode;
  */
 class jQuery extends \Webforge\DOM\Query {
     
-  public function isChecked() {
-    if (($el = $this->getElement(TRUE)) === NULL) return FALSE;
-    
-    return $el->attr('checked') === 'checked';
-  }
-
-  public function isSelected() {
-    if (($el = $this->getElement(TRUE)) === NULL) return FALSE;
-    
-    return $el->attr('selected') === 'selected';
-  }
-  
-  /**
-   * Reduce the set of matched elements to the one at the specified index.
-   * 
-   */
-  public function eq($index) {
-    if ($index < 0) throw new Exception('Das kann ich noch nicht (negativer index)');
-    
-    return new static($this->get($index));
-  }
-  
   public static function factory($arg1, $arg2=NULL) {
     if ($arg2 !== NULL) {
       return new static($arg1, $arg2);
@@ -38,6 +16,8 @@ class jQuery extends \Webforge\DOM\Query {
       return new static($arg1);
     }
   }
+
+
   
   /* Statische Funktionen (Helpers) */
   public static function getIdSelector(\Psc\HTML\Tag $tag) {

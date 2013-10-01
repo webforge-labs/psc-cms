@@ -2,7 +2,6 @@
 
 namespace Psc\Code\Test;
 
-use Psc\JS\jQuery;
 use Psc\HTML\HTMLInterface;
 
 class CSSTester extends \Webforge\Code\Test\CSSTester implements HTMLInterface {

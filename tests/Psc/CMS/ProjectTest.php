@@ -49,7 +49,7 @@ class ProjectTest extends \Psc\Code\Test\Base {
     $this->assertEquals('http://myproject.dev1.domain/', (string) $this->project->getBaseURL());
     $this->assertInstanceOf('Psc\Net\HTTP\SimpleURL', $this->project->getTestURL());
     $this->assertEquals('http://test.myproject.dev1.domain/', (string) $this->project->getTestURL());
-    $this->assertTrue($this->project->getProduction());
+    $this->assertFalse($this->project->isDevelopment()); // per default production
     
     /* Class Stuff */
     $this->assertEquals('MyProject', $this->project->getNamespace());
