@@ -37,7 +37,7 @@ class FrameworkPageTest extends \Webforge\Code\Test\Base implements \Webforge\Co
     $this->html = $this->page->html();
 
     // make sure, that this is copied in build from grunt
-    $this->hasJS('/js-built/require.js')->attribute('data-main', $this->equalTo('/js-built/boot.js'));; 
+    $this->hasJS('/js-built/require.js')->attribute('data-main', $this->equalTo('/js-built/lib/boot.js'));; 
   }
 
   protected function hasCSS($url) {
