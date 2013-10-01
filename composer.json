@@ -21,7 +21,6 @@
     "ext-curl": "*",
     
     "symfony/console": "2.1.*@stable",
-    "symfony/css-selector": "2.1.*@stable",
     "symfony/http-foundation": "2.1.*@stable",
     "doctrine/orm": "2.3.*@stable",
     "swiftmailer/swiftmailer": "4.1.*@stable",
@@ -29,7 +28,9 @@
     "webforge/webforge": "1.4.*@dev",
     "webforge/doctrine": "1.0.x@dev",
     "webforge/translation": "1.1.*@dev",
-    "webforge/fatal-error-handler": "1.*@dev"
+    "webforge/fatal-error-handler": "1.*@dev",
+
+    "webforge/dom": "1.*@dev"
   },
   "require-dev": {
     "webforge/testdata-repository": "dev-master",

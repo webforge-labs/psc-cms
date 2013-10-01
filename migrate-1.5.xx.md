@@ -32,3 +32,6 @@ Psc\CMS\ProjectMain
 
 Psc\JS\RequirejsManager
   - class was deprecated
+
+Psc\JS\jQuery
+  - the class was shrinked to the minimum. See Webforge\DOM (webforge/dom) on packagist for details
