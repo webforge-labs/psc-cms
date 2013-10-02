@@ -67,21 +67,16 @@ Mobil
   
   public function testConstructInitSend() {
     $mailer = new $this->c($this->data, ContactFormMailer::MODE_NULL);
-    $mailer->setProduction(TRUE);
+    $mailer->setDevelopment(TRUE);
     $mailer->setDebugRecipient('p.scheit@ps-webforge.com');
     $mailer->setTemplate($this->template);
     $mailer->setSubject('Erhaltene Nachricht auf green-group.de');
     
     $mailer->init();
-    $mailer->setTransport(\Swift_SmtpTransport::newInstance('mail.acebusters.com',25)
-       ->setUsername('www@acebusters.com')
-       ->setPassword('laSUeeEYiHDwfdDHPUSd')
-      );
+    $mailer->setTransport(\Swift_NullTransport::newInstance());
     
     $this->assertEquals(0, $mailer->send());
     
     $logger = $mailer->getLogger();
   }
 }
-
-?>

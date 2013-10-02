@@ -76,21 +76,21 @@ class ContactFormMailer extends \Psc\Object {
   protected $from;
   protected $envelope;
 
+  protected $project, $config;
+
   protected $autoReply = NULL;
   
   public function __construct(ContactFormData $data, $mode = self::MODE_LOCAL_MAIL, \Psc\CMS\Project $project = NULL) {
-    $project = $project ?: PSC::getProject();
+    $this->project = $project ?: PSC::getProject();
+    $this->config = $this->project->getConfiguration();
+    $this->development = $this->project->isDevelopment();
+    $this->project->getModule('Swift')->bootstrap();
 
-    $this->config = $project->getConfiguration();
     $this->data = $data;
     $this->setMode($mode);
-
-    $this->development = $project->isDevelopment();
     
     $this->from = $this->config->req('mail.from');
     $this->envelope = $this->config->req('mail.envelope');
-    
-    $project->getModule('Swift')->bootstrap();
   }
   
   public function init() {
