@@ -10,7 +10,7 @@ class HTMLTestCase extends \Psc\Code\Test\Base implements \Webforge\Code\Test\HT
   protected $html, $debugContextHTML, $debugContextLabel = 'no-context';
   
   protected function onNotSuccessfulTest(\Exception $e) {
-    if (isset($this->debugContextHTML)) {
+    if (isset($this->debugContextHTML) && !empty($this->debugContextHTML)) {
       printf ('------------ HTML-debug (%s) ------------'."\n", $this->debugContextLabel);
       print $this->debugContextHTML;
       printf ('------------ /HTML-debug (%s) -----------'."\n", $this->debugContextLabel);

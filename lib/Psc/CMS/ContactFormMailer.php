@@ -3,7 +3,6 @@
 namespace Psc\CMS;
 
 use Psc\PSC;
-use Psc\Config;
 use Psc\TPL\TPL;
 use Swift_Message;
 use Swift_Mailer;
@@ -53,7 +52,7 @@ class ContactFormMailer extends \Psc\Object {
   /**
    * Wenn True wird der DebugRecipient genommen
    */
-  protected $production;
+  protected $development;
 
   /**
    * @var string
@@ -79,25 +78,29 @@ class ContactFormMailer extends \Psc\Object {
 
   protected $autoReply = NULL;
   
-  public function __construct(ContactFormData $data, $mode = self::MODE_LOCAL_MAIL) {
+  public function __construct(ContactFormData $data, $mode = self::MODE_LOCAL_MAIL, \Psc\CMS\Project $project = NULL) {
+    $project = $project ?: PSC::getProject();
+
+    $this->config = $project->getConfiguration();
     $this->data = $data;
     $this->setMode($mode);
-    $this->production = PSC::inProduction();
+
+    $this->development = $project->isDevelopment();
     
-    $this->from = Config::req('mail.from');
-    $this->envelope = Config::req('mail.envelope');
+    $this->from = $this->config->req('mail.from');
+    $this->envelope = $this->config->req('mail.envelope');
     
-    PSC::getProject()->getModule('Swift')->bootstrap();
+    $project->getModule('Swift')->bootstrap();
   }
   
   public function init() {
     
     if (!isset($this->recipient)) {
-      $this->recipient = Config::req('ContactForm.recipient');
+      $this->recipient = $this->config->req('ContactForm.recipient');
     }
     
-    if ($this->production && !isset($this->debugRecipient)) {
-      throw new \Psc\Exception('Debug Recipient nicht gesetzt, aber production ist TRUE');
+    if ($this->Development && !isset($this->debugRecipient)) {
+      throw new \Psc\Exception('Debug Recipient nicht gesetzt, aber Development ist TRUE');
     }
     
     if (!isset($this->template)) {
@@ -110,8 +113,8 @@ class ContactFormMailer extends \Psc\Object {
 
     if ($this->mode === self::MODE_SMTP) {
       $this->transport = \Swift_SmtpTransport::newInstance('smtprelaypool.ispgateway.de',465, 'ssl')
-        ->setUsername(Config::req('mail.smtp.user'))
-        ->setPassword(Config::req('mail.smtp.password'));
+        ->setUsername($this->config->req('mail.smtp.user'))
+        ->setPassword($this->config->req('mail.smtp.password'));
       
       $this->mailer = Swift_Mailer::newInstance($this->transport);
     } elseif($this->mode === self::MODE_NULL) {
@@ -138,7 +141,7 @@ class ContactFormMailer extends \Psc\Object {
       
       $recipient = array($this->debugRecipient => 'DebugRecipient');
       
-      if ($this->production === FALSE) {
+      if ($this->Development === FALSE) {
         $recipient = $this->recipient;
       }
 
@@ -167,7 +170,7 @@ class ContactFormMailer extends \Psc\Object {
   protected function sendAutoReplyMail() {
     $recipient = array($this->debugRecipient => 'DebugRecipient');
       
-    if ($this->production === FALSE) {
+    if ($this->Development === FALSE) {
       $recipient = $this->data->getField($this->autoReply->emailField);
     }
 
@@ -217,5 +220,18 @@ class ContactFormMailer extends \Psc\Object {
    */
   public function getMode() {
     return $this->mode;
+  }
+
+  // backwards compatibility fix: (this was flipped)
+  // discouraged!
+  public function setProduction($development) {
+    $this->development = $development;
+    return $this;
+  }
+
+  // use this
+  public function setDevelopment($dev) {
+    $this->development = $dev;
+    return $this;
   }
 }
