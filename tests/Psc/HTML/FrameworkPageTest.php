@@ -2,7 +2,7 @@
 
 namespace Psc\HTML;
 
-class FrameworkPageTest extends \Webforge\Code\Test\Base implements \Webforge\Code\Test\HTMLTesting {
+class FrameworkPageTest extends \Psc\Code\Test\HTMLTestCase {
   
   public function setUp() {
     $this->chainClass = 'Psc\\HTML\\FrameworkPage';
