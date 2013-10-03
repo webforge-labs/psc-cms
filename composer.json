@@ -25,7 +25,7 @@
     "doctrine/orm": "2.3.*@stable",
     "swiftmailer/swiftmailer": "4.1.*@stable",
     "CodePlex/PHPExcel": "1.7.8@stable",
-    "webforge/webforge": "1.4.*@dev",
+    "webforge/webforge": "1.5.*@dev",
     "webforge/doctrine": "1.0.x@dev",
     "webforge/translation": "1.1.*@dev",
     "webforge/fatal-error-handler": "1.*@dev",
