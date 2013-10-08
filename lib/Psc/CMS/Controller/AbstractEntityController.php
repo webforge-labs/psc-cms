@@ -126,9 +126,9 @@ abstract class AbstractEntityController implements TransactionalController, \Psc
    */
   protected $on = array();
 
-  public function __construct(TranslationContainer $translationContainer, DCPackage $dc = NULL, EntityViewPackage $ev = NULL, ValidationPackage $v = NULL, ServiceErrorPackage $err = NULL) {
+  public function __construct(TranslationContainer $translationContainer, DCPackage $dc, EntityViewPackage $ev = NULL, ValidationPackage $v = NULL, ServiceErrorPackage $err = NULL) {
     $this->translationContainer = $translationContainer;
-    $this->dc = $dc ?: new DCPackage();
+    $this->dc = $dc;
     $this->ev = $ev ?: new EntityViewPackage($this->translationContainer);
     $this->v = $v ?: new ValidationPackage();
     $this->err = $err ?: new ServiceErrorPackage($this);

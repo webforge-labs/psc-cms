@@ -13,7 +13,7 @@ class DatabaseTestCase extends \Psc\Doctrine\DatabaseTestCase {
 
   protected function getContainer() {
     if (!isset($this->container)) {
-      $this->container = new CMS\container('Psc\Test\Controllers', $this->dc, $this->languages, $this->language);
+      $this->container = new CMS\Container('Psc\Test\Controllers', $this->dc, $this->languages, $this->language);
     }
 
     return $this->container;

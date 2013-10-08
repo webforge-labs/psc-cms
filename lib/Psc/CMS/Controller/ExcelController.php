@@ -2,7 +2,6 @@
 
 namespace Psc\CMS\Controller;
 
-use Psc\CMS\Project;
 use Psc\Code\Code;
 use Psc\TPL\TPL;
 use Psc\TPL\Template;
@@ -10,16 +9,13 @@ use Psc\Config;
 use Psc\Net\HTTP\HTTPException;
 use Psc\Net\ServiceResponse;
 use Psc\Net\Service;
-
-use
-  \PHPExcel_Cell,
-  \PHPExcel_NamedRange,
-  \PHPExcel_Worksheet,
-  \PHPExcel_Worksheet_Row,
-  \PHPExcel_IOFactory,
-  \PHPExcel,
-  \PHPExcel_Writer_Excel2007
-;
+use PHPExcel_Cell;
+use PHPExcel_NamedRange;
+use PHPExcel_Worksheet;
+use PHPExcel_Worksheet_Row;
+use PHPExcel_IOFactory;
+use PHPExcel;
+use PHPExcel_Writer_Excel2000;
 use Webforge\Common\System\File;
 use Psc\Form\ValidationPackage;
 use Psc\PHPExcel\Helper AS h;
@@ -28,7 +24,7 @@ class ExcelController extends \Psc\SimpleObject {
   
   protected $v;
   
-  public function __construct(\Psc\CMS\Project $project = NULL, ValidationPackage $validationPackage = NULL) {
+  public function __construct($notUsed = NULL, ValidationPackage $validationPackage = NULL) {
     $this->v = $validationPackage ?: new ValidationPackage();
   }
   
@@ -163,4 +159,3 @@ class ExcelController extends \Psc\SimpleObject {
     return $this;
   }
 }
-?>

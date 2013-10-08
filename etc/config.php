@@ -28,4 +28,3 @@ $conf['fixture']['config']['variable'] = 'valueinpsc-cms';
 
 $conf['ContactForm']['recipient'] = 'info@ps-webforge.com';
 $conf['mail']['from'] = $conf['mail']['envelope'] = 'info@ps-webforge.com';
-?>

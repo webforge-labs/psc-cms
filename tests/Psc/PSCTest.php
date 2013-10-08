@@ -26,4 +26,3 @@ class PSCTest extends \Psc\Code\Test\Base {
     $this->assertInstanceOf('Psc\Code\Event\Manager', PSC::getEventManager());
   }
 }
-?>

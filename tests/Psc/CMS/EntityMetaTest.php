@@ -20,7 +20,7 @@ class EntityMetaTest extends \Psc\Code\Test\Base {
   }
   
   protected function createEntityMeta($name, $label) {
-    $classMetadata = \Psc\PSC::getProject()->getModule('Doctrine')->getEntityManager('tests')->getClassMetadata('Psc\Doctrine\TestEntities\\'.$name);
+    $classMetadata = $this->getModule('Doctrine')->getEntityManager('tests')->getClassMetadata('Psc\Doctrine\TestEntities\\'.$name);
     
     $entityMeta = new EntityMeta('Psc\Doctrine\TestEntities\\'.$name, $classMetadata, $label);
     $entityMeta->setLabel($label);

@@ -12,6 +12,7 @@ use Psc\Net\HTTP\HTTPException;
 use Psc\Net\RequestMatcher;
 use Psc\Inflector;
 use Psc\CMS\Controller\Factory as ControllerFactory;
+use Webforge\Framework\Project;
 
 class EntityService extends ControllerService {
   
@@ -41,7 +42,7 @@ class EntityService extends ControllerService {
    */
   protected $controllerFactory;
   
-  public function __construct(\Psc\Doctrine\DCPackage $dc, ControllerFactory $controllerFactory, \Psc\CMS\Project $project = NULL, $prefixPart = 'entities') {
+  public function __construct(\Psc\Doctrine\DCPackage $dc, ControllerFactory $controllerFactory, Project $project = NULL, $prefixPart = 'entities') {
     $this->dc = $dc;
     $this->doctrine = $this->dc->getModule();
     $this->prefixPart = $prefixPart;

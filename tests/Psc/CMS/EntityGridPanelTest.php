@@ -14,7 +14,7 @@ class EntityGridPanelTest extends \Psc\Code\Test\HTMLTestCase {
     parent::setUp();
     
     $this->entities = $this->loadTestEntities('users');
-    $this->entityMeta = \Psc\PSC::getProject()->getModule('Doctrine')->getEntityMeta('User');
+    $this->entityMeta = $this->getModule('Doctrine')->getEntityMeta('User');
     $this->entityGridPanel = new EntityGridPanel($this->entityMeta, $this->getTranslationContainer(), 'User Verwaltung');
   }
   

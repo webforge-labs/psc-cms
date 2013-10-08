@@ -20,7 +20,11 @@ use Psc\UI\Tabs2;
 use Psc\CMS\Controller\Factory as ControllerFactory;
 use Psc\CMS\Roles\Container as ContainerRole;
 use Webforge\CMS\EnvironmentContainer;
+use Webforge\Framework\Project as WebforgeProject;
 
+/**
+ * @TODO fix GLOBALS container
+ */
 class ProjectMain extends \Psc\Object implements DropContentsListCreater{
 
   /**
@@ -139,7 +143,7 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
    */
   public $session; // just a hack for tests
   
-  public function __construct($project = NULL, DCPackage $dc = NULL, RightContent $rightContent = NULL, EntityService $entityService = NULL, $debugLevel = 5, FrontController $frontController = NULL, \Psc\Environment $env = NULL) {
+  public function __construct(WebforgeProject $project = NULL, DCPackage $dc = NULL, RightContent $rightContent = NULL, EntityService $entityService = NULL, $debugLevel = 5, FrontController $frontController = NULL, \Psc\Environment $env = NULL) {
     $this->environment = $env ?: PSC::getEnvironment();
     $this->project = $project ?: PSC::getProject();
 
@@ -187,7 +191,8 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
    * wird vom getter aufgerufen, damit es immer da ist
    */
   public function initDoctrinePackage() {
-    $this->dc = new DCPackage($module = $this->project->getModule('Doctrine'), $module->getEntityManager($this->getConnectionName()));
+    $module = $GLOBALS['env']['container']->getModule('Doctrine');
+    $this->dc = new DCPackage($module, $module->getEntityManager($this->getConnectionName()));
     $this->attachEntityMetaListener(); // ganz wichtig das hier zu machen, weil das sonst das doctrinepackage initialisiert
   }
   

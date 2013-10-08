@@ -46,6 +46,7 @@ class BaseFileController extends BaseController {
   
   public function __construct($name) {
     $this->name = $name;
+    $this->directory = PSC::getProject()->dir('lib');
     
     parent::__construct();
   }
@@ -103,13 +104,6 @@ class BaseFileController extends BaseController {
   }
 
   public function getDirectory() {
-    if (!isset($this->directory)) {
-      $this->directory = PSC::get(PSC::PATH_SRC);
-    }
-    
     return $this->directory;
   }
 }
-
-
-?>

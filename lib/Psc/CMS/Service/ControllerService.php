@@ -11,8 +11,7 @@ use Psc\CMS\Controller\TransactionalController;
 use Psc\Code\Callback;
 use Psc\Code\Code;
 use Webforge\Common\ArrayUtil AS A;
-use Psc\CMS\Project;
-
+use Webforge\Framework\Project;
 use Psc\Net\HTTP\HTTPException;
 use Psc\Net\RequestMatcher;
 use Psc\ExceptionDelegator;

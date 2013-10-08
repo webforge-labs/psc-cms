@@ -10,14 +10,13 @@ use Doctrine\Common\Annotations\DocParser;
  * @group class:Psc\Code\Generate\AnnotationWriter
  * @group generate
  */
-class AnnotationWriterTest extends \Psc\Code\Test\Base {
+class AnnotationWriterTest extends \Psc\Doctrine\DatabaseTestCase {
   
   protected $annotationReader;
   
-  protected $module;
-  
   public function setUp() {
-    $this->module = \Psc\PSC::getProject()->getModule('Doctrine');
+    parent::setUp();
+    
     $this->annotationReader = $this->module->createAnnotationReader();
     $this->chainClass = 'Psc\Code\Generate\AnnotationWriter';
     
