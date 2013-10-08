@@ -92,10 +92,6 @@ class LayoutManager extends \Psc\HTML\JooseBase implements JooseSnippetWidget {
       $this->addNewControl('DownloadsList', (object) array('headline'=>'', 'downloads'=>array()), $trans('sce.widget.downloadsList'), 'text');
       $this->addNewControl('WebsiteWidget', (object) array('label'=>$trans('sce.widget.calendar'), 'name'=>'calendar'), $trans('sce.widget.calendar'), 'misc');
     }
-
-    if (\Psc\PSC::inProduction()) {
-      $this->addNewControl('ContentStreamWidget', (object) array('label'=>'ContentStream', 'content'=>array()), 'ContentStream', 'misc');
-    }
   }
 
   public function hackFlatNavigationInjection(Array $navigationFlat) {
