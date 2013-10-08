@@ -3,15 +3,16 @@
 namespace Psc\Code\Test;
 
 use Psc\HTML\HTMLInterface;
+use Webforge\Code\Test\CSSTester;
 
 class HTMLTestCase extends \Psc\Code\Test\Base implements \Webforge\Code\Test\HTMLTesting {
   
   protected $html, $debugContextHTML, $debugContextLabel = 'no-context';
   
   protected function onNotSuccessfulTest(\Exception $e) {
-    if (isset($this->debugContextHTML)) {
+    if (isset($this->debugContextHTML) && !empty($this->debugContextHTML)) {
       printf ('------------ HTML-debug (%s) ------------'."\n", $this->debugContextLabel);
-      print $this->debugContextHTML instanceof HTMLInterface ? $this->debugContextHTML->html() : $this->debugContextHTML;
+      print $this->debugContextHTML;
       printf ('------------ /HTML-debug (%s) -----------'."\n", $this->debugContextLabel);
     } elseif (isset($this->html)) {
       print '------------ HTML-debug ------------'."\n";
@@ -25,8 +26,8 @@ class HTMLTestCase extends \Psc\Code\Test\Base implements \Webforge\Code\Test\HT
   /**
    * Can be called to set the debug context
    */
-  public function setDebugContextHTML($htmlly, $label) {
-    $this->debugContextHTML = $htmlly;
+  public function setDebugContextHTML(CSSTester $css, $htmlString, $label) {
+    $this->debugContextHTML = $htmlString;
     $this->debugContextLabel = $label;
     return $this;
   }
