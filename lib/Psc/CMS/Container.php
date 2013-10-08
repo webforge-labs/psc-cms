@@ -12,12 +12,14 @@ class Container {
   public $webforge;
   
   protected $rootDirectory;
+
+  protected $inTests;
   
   protected $project;
   
   public function __construct($rootDirectory) {
     $this->webforge = new WebforgeContainer();
-    $this->initRootDirectory($rootDirectory);
+    $this->initRootDirectory($rootDirectory);    
   }
   
   public function init() {
@@ -34,6 +36,15 @@ class Container {
     // the projectsfactory has the same host config as we have
     PSC::setProjectsFactory($this->getProjectsFactory());
   }
+
+  public function initErrorHandlers() {
+    /* include path setzen */
+    //PSC::getEnvironment()->addIncludePath((string) $this->getSrc(),'prepend'); // checkt ob include path schon gesetzt ist 
+    
+    PSC::registerExceptionHandler();
+    PSC::registerErrorHandler();
+    PSC::registerFatalErrorHandler();
+  }
   
   protected function initRootDirectory($rootDirectory) {
     if ($rootDirectory instanceof Dir) {
@@ -49,7 +60,7 @@ class Container {
       $this->project = $this->webforge->getLocalProject();
       
       if (PSC::isTravis()) {
-        $this->setInTests();
+        $this->setInTests(TRUE);
       }
     }
     
@@ -96,6 +107,26 @@ class Container {
       return $this->rootDirectory();
     }
   }
+
+  protected function getModules() {
+    if (!isset($this->modules)) {
+      $this->modules = new Modules($this->getProject(), $this->inTests());
+    }
+
+    return $this->modules;
+  }
+
+  public function getModule($name) {
+    return $this->modules->get($name);
+  }
+
+  public function bootstrapModule($name) {
+    return $this->getModules()->bootstrap($name);
+  }
+
+  public function bootstrapModuleIfExists($name) {
+    return $this->getModules()->bootstrapIfExists($name);
+  }
   
   /**
    * @return Psc\CMS\ProjectsFactory
@@ -105,14 +136,24 @@ class Container {
   }
   
   /**
-   * @return Psc\CMS\Configuration
+   * @return Webforge\Configuration\Configuration
    */
   public function getHostConfig() {
     return $this->webforge->getCMSBridge()->getHostConfig();
   }
   
-  public function setInTests() {
-    $this->getProject()->setTests(TRUE);
+  public function setInTests($bool = TRUE) {
+    $this->inTests = $bool;
     return $this;
+  }
+
+  /**
+   * Indicates if the unit/acceptance tests are run
+   * 
+   * this is NOT a flag to circumvent tests or behaviour. this is a flag to use the test-datbase for unit-tests
+   * @return bool
+   */
+  public function inTests() {
+    return $this->inTests;
   }
 }

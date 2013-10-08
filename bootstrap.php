@@ -17,13 +17,10 @@ require $vendor.'autoload.php';
 
 $container = new Container(__DIR__);
 $container->init();
-  
-PSC::setProject($container->getProject())->bootstrap()
-  ->getModule('Doctrine')->bootstrap()->getProject()
-  ->getModule('PHPExcel')->bootstrap()->getProject()
+$container->initErrorHandlers();
 
-  ->bootstrapModuleIfExists('Imagine')
-;
+$container->bootstrapModule('Doctrine');
+$container->bootstrapModule('PHPExcel');
+$container->bootstrapModuleIfExists('Imagine');
 
 $GLOBALS['env']['container'] = $container;
-?>

@@ -108,19 +108,6 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber, \Webfor
    */
   protected $classLoader;
   
-  /**
-   * @var array
-   */
-  protected $modules = array();
-  protected $avaibleModules = array(
-    'PHPWord'=>array('class'=>'Psc\PHPWord\Module'),
-    'PHPExcel'=>array('class'=>'Psc\PHPExcel\Module'),
-    'Doctrine'=>array('class'=>'Psc\Doctrine\Module'),
-    'Symfony'=>array('class'=>'Psc\Symfony\Module'),
-    'Imagine'=>array('class'=>'Psc\Image\ImagineModule'),
-    'Hitch'=>array('class'=>'Psc\Hitch\Module'),
-    'Swift'=>array('class'=>'Psc\Mail\Module')
-  );
   
   /**
    * @var string FQN
@@ -144,6 +131,8 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber, \Webfor
     $this->paths = $paths;
     $this->staging = $staging;
 
+    $this->modules = new Modules($this);
+
     $this->setUp();
   }
   
@@ -156,15 +145,6 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber, \Webfor
   }
   
   public function bootstrap() {
-    /* include path setzen */
-    PSC::getEnvironment()->addIncludePath((string) $this->getSrc(),'prepend'); // checkt ob include path schon gesetzt ist 
-    
-    PSC::registerExceptionHandler();
-    PSC::registerErrorHandler();
-    PSC::registerFatalErrorHandler();
-
-    PSC::getEventManager()->bind($this, \Psc\Doctrine\Module::EVENT_BOOTSTRAPPED);
-
     return $this;
   }
   
@@ -251,26 +231,22 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber, \Webfor
   
   
   public function bootstrapModuleIfExists($name) {
-    if ($this->isModuleExisting($name)) {
-      $this->getModule($name)->bootstrap();
-    }
-    
-    return $this;
+    return $this->modules->bootstrapIfExists($name);
   }
   
   public function isModuleExisting($name) {
-    return $this->isModule($name) && class_exists($this->avaibleModules[$name]['class'], true);
+    return $this->modules->isExisting($name);
   }
   
   public function isModuleLoaded($name) {
-    return array_key_exists($name, $this->modules);
+    return $this->modules->isLoaded($name);
   }
   
   /**
    * @return bool
    */
   public function isModule($name) {
-    return array_key_exists($name, $this->avaibleModules);
+    return $this->modules->isModule($name);
   }
   
   /**
@@ -281,15 +257,7 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber, \Webfor
    * @return Psc\CMS\Module
    */
   protected function createModule($name) {
-    $c = $this->avaibleModules[$name]['class'];
-    $module = new $c($this);
-    $module->setName($name);
-    
-    $this->modules[$name] = $module;
-    
-    PSC::getEventManager()->dispatchEvent('Psc.ModuleCreated', NULL, $module);
-    
-    return $module;
+    return $this->modules->create($name);
   }
   
   public function buildPhar(Dir $out, $check = FALSE, $buildName = 'default') {
