@@ -100,7 +100,7 @@ class ComponentsFormTest extends \Psc\Code\Test\HTMLTestCase {
   
   public function testCreateTypeSelect() {
     $c = 'Psc\CMS\TestStatus';
-    \Psc\PSC::getProject()->getModule('Doctrine')->registerType($c);
+    $this->getModule('Doctrine')->registerType($c);
     
     $this->html = $this->form->createTypeSelect($c, 'mailed');
     

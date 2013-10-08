@@ -8,6 +8,7 @@ use Psc\Data\FileCache;
 use Psc\Doctrine\EntityRepository;
 use Webforge\Common\System\Dir;
 use Webforge\Common\System\File;
+use Webforge\Framework\Project as WebforgeProject;
 
 /**
  * 
@@ -41,15 +42,23 @@ class UploadManager extends \Psc\SimpleObject {
    */
   protected $repository;
   
-  public function __construct($entityName, DCPackage $dc, Cache $cache = NULL) {
+  public function __construct($entityName, DCPackage $dc, Cache $cache) {
     if (!isset($entityName)) $entityName = 'file';
     $this->setDoctrinePackage($dc);
-    $this->setCache($cache ?: self::createCache(\Psc\PSC::getProject()->getFiles()->sub('uploads/')));
+    $this->setCache($cache);
     $this->setEntityName($entityName);
   }
   
   public static function createCache(Dir $dir) {
     return new FileCache($dir, $direct = TRUE);
+  }
+
+  public static function createForProject(WebforgeProject $project, DCPackage $dc, $entityName = NULL) {
+    return new static(
+      $entityName,
+      $dc,
+      static::createCache($project->dir('cms-uploads'))
+    );
   }
   
   /**

@@ -7,14 +7,19 @@ use Psc\Net\ServiceRequest;
 use Psc\Net\Service;
 use Psc\Net\RequestMatcher;
 use Psc\Net\HTTP\HTTPException;
-use Psc\CMS\Project;
+use Webforge\Framework\Project;
 use Psc\Doctrine\DCPackage;
 use Psc\CMS\Controller\ImageController;
+use Psc\CMS\Controller\FileUploadController;
+use Psc\CMS\UploadManager;
+use Psc\CMS\Controller\ExcelController;
+use Psc\CMS\Controller\TPLController;
 
 /**
- * Der Standard Service fürs CMS
+ * The Default Service for several commonly used Controllers for the frontend
  *
- * Wird in Project nicht getMainService() überschrieben, so wird immer dieser Service an den FrontController (ohne Parameter) übergeben
+ * @TODO remove GLOBALS['env']['container']
+ * @TODO use ControllerFactory to create the controllers (and inject it here)
  */
 class CMSService extends ControllerService {
   
@@ -39,13 +44,13 @@ class CMSService extends ControllerService {
         $x++;
       }
       
-      $controller = new \Psc\CMS\Controller\TPLController($this->project);
+      $controller = new TPLController($this->project);
       
       return array($controller, 'get', array($tpl));
     
     } elseif ($controller === 'excel') {
       
-      $controller = new \Psc\CMS\Controller\ExcelController($this->project);
+      $controller = new ExcelController($this->project);
       
       if ($request->getType() === Service::POST) {
         $body = $request->getBody();
@@ -102,8 +107,8 @@ class CMSService extends ControllerService {
       
 
     } elseif ($controller === 'uploads') {
-      $controller = new \Psc\CMS\Controller\FileUploadController(
-        $this->getDoctrinePackage()
+      $controller = new FileUploadController(
+        UploadManager::createForProject($this->project, $this->dc)
       );
       
       $this->log('upload-request method: '.$request->getType());
@@ -164,7 +169,8 @@ class CMSService extends ControllerService {
   
   public function getDoctrinePackage() {
     if (!isset($this->dc)) {
-      $this->dc = new DCPackage($doctrine = $this->project->getModule('Doctrine'), $doctrine->getEntityManager());
+      $doctrine = $GLOBALS['env']['container']->getModule('Doctrine');
+      $this->dc = new DCPackage($doctrine, $doctrine->getEntityManager());
     }
       
     return $this->dc;

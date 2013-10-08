@@ -3,7 +3,7 @@
 namespace Psc;
 
 use Webforge\Common\String AS S;
-use Psc\CMS\Configuration;
+use Webforge\Configuration\Configuration;
 
 class Version {
   

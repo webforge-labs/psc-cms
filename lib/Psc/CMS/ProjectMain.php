@@ -295,14 +295,14 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
   
   protected function getMainService() {
     if (!isset($this->mainService)) {
-      $this->mainService = $this->getProject()->getMainService();
+      $this->mainService = new \Psc\CMS\Service\CMSService($this->project);
     }
     
     return $this->mainService;
   }
   
   public function isTesting() {
-    return $this->getEnvironment()->getHostName() === $this->project->getTestURL()->getHost();
+    return FALSE; // extend with something useful
   }
   
   

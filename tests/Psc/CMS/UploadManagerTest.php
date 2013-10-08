@@ -14,10 +14,11 @@ class UploadManagerTest extends \Psc\Doctrine\DatabaseTestCase {
     $this->con = 'tests';
     $this->chainClass = 'Psc\CMS\UploadManager';
     parent::setUp();
-    $this->manager = new UploadManager(NULL,
-                                       $this->getDoctrinePackage(),
-                                       UploadManager::createCache($this->dir = $this->getTestDirectory()->sub('tmp/'))
-                                      );
+    $this->manager = new UploadManager(
+      NULL,
+      $this->getDoctrinePackage(),
+      UploadManager::createCache($this->dir = $this->getTestDirectory()->sub('tmp/'))
+    );
     $this->dir->create()->wipe();
   }
   

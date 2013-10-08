@@ -83,16 +83,16 @@ class Exception extends \Webforge\Common\Exception {
   }
   
   
-  public static function getExceptionText(\Exception $e, $format = 'html', $project = NULL, $label = 'SRC_PATH') {
+  public static function getExceptionText(\Exception $e, $format = 'html', $project = NULL, $label = 'ROOT') { // webforge-common extends much cooler, don't type $project here
     $cr = $format == 'html' ? "<br />" : "\n";
 
     if (isset($project)) {
       // versuche die Pfade übersichtlich zu machen
-      $src = $project->getSrc();
-      $trace = str_replace(array((string) $src,"\n"),
+      $root = $project->getRootDirectory();
+      $trace = str_replace(array((string) $root,"\n"),
                            array('{'.$label.'}'.DIRECTORY_SEPARATOR, $cr),
                            $e->getTraceAsString());
-      $file = str_replace(array((string) $src),
+      $file = str_replace(array((string) $root),
                           array('{'.$label.'}'.DIRECTORY_SEPARATOR),
                           $e->getFile());
     } else {

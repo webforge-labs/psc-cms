@@ -8,7 +8,6 @@ use Webforge\Common\System\Dir;
 use Webforge\Common\System\File;
 use Psc\Code\Code;
 use Psc\PSC;
-use Psc\CMS\Configuration;
 
 /**
  * Wir erstellen eine Test-Klasse für die angegebene Klasse
