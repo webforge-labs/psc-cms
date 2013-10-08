@@ -15,30 +15,10 @@ use Webforge\FatalErrorHandler;
 
 class PSC {
 
-  const PATH_HTDOCS = 'htdocs';
-  const PATH_BASE = 'base';
-  const PATH_CACHE = 'cache';
-  const PATH_SRC = 'src';
-  const PATH_CLASS = 'class';
-  const PATH_BIN = 'bin';
-  const PATH_TPL = 'tpl';
-  const PATH_TESTDATA = 'testdata';
-  const PATH_TESTS = 'tests';
-  const PATH_FILES = 'files';
-  const PATH_BUILD = 'build';
-  const PATH_VENDOR = 'vendor';  
-  const PATH_PSC_CMS = 'psc-cms';
-  const PATH_PSC_CMS_SRC = 'psc-cms-src';
-  const PATH_PSC_CMS_BIN = 'psc-cms-bin';
-  const PATH_PSC_CMS_FILES = 'psc-cms-files';
-  const ROOT = 'root';
-  const ENV_HOST = 'env_host';
-
   /**
    * @var Psc\Environment
    */
   protected static $environment = NULL;
-  
   
   /**
    * Das aktive Projekt
@@ -54,37 +34,12 @@ class PSC {
   protected static $projectsFactory = NULL;
   
   /**
-   * @var \Psc\CMS
-   */
-  protected static $cms = NULL;
-  
-  /**
-   * Cache für den Root
+   * Cache for Root
    *
    * im Root liegt die host-config und das phar der Library
    * @var \Webforge\Common\System\Dir
    */
   protected static $root;
-  
-  
-  /**
-   * Wird von der Phar-bootstrap gesetzt und kann dann für weiteres (schnelles) Klassenladen benutzt werden
-   *
-   * @see PharAutoLoader->addPaths()
-   * @var Psc\PharAutoLoader
-   */
-  protected static $autoLoader;
-  
-  /**
-   * Wird gesetzt sobald inProduction() das erste Mal aufgerufen wird
-   * @var bool
-   */
-  public static $production = NULL;
-  
-  /**
-   * @var bool
-   */
-  public static $tests = FALSE;
   
   /**
    * @var Psc\Code\Event\Manager
@@ -102,55 +57,39 @@ class PSC {
     return self::$environment;
   }
   
-  /**
-   * Gibt den Pfad zurück indem sich aktuelle JQUery, JQuery-UI usw Libraries befinden
-   *
-   * Dies ist für den Installer interessant
-   * @return Dir
-   */
-  public static function getLibraryFilesPath() {
-    if (self::inProduction()) throw new Exception('deprecated call');
-    return PSC::getProjectsFactory()->getProject('psc-cms')->getFiles()->sub('libraries/');
-  }
 
   /**
+   * NOTICE: this is WRONG(!) its legacy and returns TRUE if development is TRUE!
+   * 
+   * don't use it anmyore
    * @return bool
    */
   public static function inProduction() {
-    return self::getProject()->getProduction();
+    throw new DeprecatedException('use project::isDevelopment');
   }
   
   /**
-   * Gibt das Kürzel des Hosts auf dem das CMS ausgeführt wird zurück
-   *
-   * @return string
+   * Returns the root directory of the host where the host-config lives
+   * 
+   * @return Psc\System\Directory
+   * @throws Psc\MissingEnvironmentVariableException
    */
-  public static function getHost() {
-    if (self::inProduction()) throw new Exception('deprecated call: PSC::getProject()->getHost() benutzen');
-    return self::getProject()->getHost(); 
-  }
-  
   public static function getRoot() {
     if (!isset(self::$root)) {
-      if (($root = getenv('PSC_CMS')) == FALSE) {
-        throw MissingEnvironmentVariableException::factory('PSC_CMS', 'Die Variable muss auf ein Verzeichnis in dem die psc-cms.phar liegt zeigen.');
-      }
-    
       try {
-        self::$root = new Dir($root);
-      } catch (\Webforge\Common\System\Exception $e) {
-        throw MissingEnvironmentVariableException::factory('PSC_CMS', 'Die Variable muss auf ein Verzeichnis in dem die psc-cms.phar liegt zeigen. '.$e->getMessage());
-      }
+
+        $root = getenv('PSC_CMS');
+
+        if (!empty($root)) {
+          return self::$root = new Dir($root);
+        }
+  
+      } catch (\Webforge\Common\System\Exception $e) {}
+
+      throw MissingEnvironmentVariableException::factory('PSC_CMS', 'The variable should reference a directory, where the host-config.php can live. Use trailing slash/backslash.');
     }
+
     return self::$root;
-  }
-  
-  public static function setAutoLoader($autoLoader) {
-    self::$autoLoader = $autoLoader;
-  }
-  
-  public static function getAutoLoader() {
-    return self::$autoLoader;
   }
   
   /**
@@ -164,49 +103,7 @@ class PSC {
    * @return bool
    */
   public static function inTests() {
-    return self::getProject()->getTests();
-  }
-  
-  /**
-   * wird in der auto.prepend aufgerufen
-   */
-  public static function registerTools() {
-    $tool = GPC::GET('psc-cms-tools');
-    
-    if ($tool == 'autocopy') {
-      echo "autocopy from library<br />";
-      
-      foreach (self::getAllUsedClassFiles() as $class=>$relPath) {
-        AutoLoader::copyFile($class,$relPath);
-      }
-      exit;
-    }
-    
-    if ($tool == 'update-schema') {
-      $force = GPC::GET('force') != NULL ? Doctrine\Helper::FORCE : NULL;
-
-      if ($force == Doctrine\Helper::FORCE) {
-        print 'Updating Schema (forced) '."<br />";
-      } else {
-        print 'Printing Update-Schema SQL: <br />';
-      }
-      
-      print Doctrine\Helper::updateSchema($force);
-      exit;
-    }
-
-    if ($tool == 'create-schema') {
-      $force = GPC::GET('force') != NULL ? Doctrine\Helper::FORCE : NULL;
-      
-      if ($force == Doctrine\Helper::FORCE) {
-        print 'Creating Schema (forced) '."<br />";
-      } else {
-        print 'Printing Create-Schema SQL: <br />';
-      }
-      
-      print Doctrine\Helper::createSchema($force);
-      exit;
-    }
+    return $GLOBALS['env']['container']->inTests();
   }
   
   /**
@@ -217,7 +114,6 @@ class PSC {
     
     return $eh->register()->setRecipient(Config::getDefault(array('debug','errorRecipient','mail'),NULL));
   }
-
 
   public static function registerFatalErrorHandler() {
     if (self::getEnvironment()->getFatalErrorHandler() === NULL) {
@@ -251,73 +147,10 @@ class PSC {
    * @return Psc\CMS
    */
   public static function getCMS() {
-    if (!isset(self::$cms)) {
-      self::$cms = new ProjectMain(self::getEnvironment());
-    }
-    return self::$cms;
+    throw new DeprecatedException('Dont use this anymore. Instantiate from Controller or else');
   }
   
-  /**
-   * Gibt alle Dateien aus dem Psc-CMS (nicht dem Projekt) zurück
-   *
-   * im nicht-DEV Modus gibt dies dasselbe zurück wie getAllUsedFiles()
-   * die Values sind schon relative Pfade zu base/src/
-   * @return Array Schlüssel ist der voll qualifizierte Klassenname
-   * @TODO move this to projects, psc-cms ist dann ein spezielles Projekt!
-   */
-  public static function getAllClassFiles() {
-    $classPath = self::getProjectsFactory()->getProject('psc-cms')->getClassPath()->up();
-    
-    $iterator = new \RecursiveIteratorIterator(
-                new \RecursiveDirectoryIterator($classPath),
-                \RecursiveIteratorIterator::LEAVES_ONLY
-      );
-    
-    $files = array();
-    foreach ($iterator as $file) {
-      $sourceFile = realpath($file->getPathName());
-      if (mb_strpos($sourceFile,DIRECTORY_SEPARATOR.'.svn') !== FALSE) continue;
-      
-      $f = new File($sourceFile);
-      print $f."\n";
-      
-      $className = self::getFullClassName($f, $classPath);
-    
-      $files[$className] = $f;
-    }
-    return $files;
-  }
-  
-  
-  /**
-   * Gibt alle PSC-CMS Library-Dateien aus dem Projekt zurück
-   * 
-   * @TODO move this to projects
-   * @return Array Schlüssel ist der voll qualifizierte Klassenname, wert ist der relative Pfad zum psc-cms/base/src Pfad als String! (das ist andes als bei getAllClassFiles)
-   */
-  public static function getAllUsedClassFiles() {
-    $classPath = self::getProject()->getClassPath()->up();
-    
-    $iterator = new \RecursiveIteratorIterator(
-                new \RecursiveDirectoryIterator($classPath),
-                \RecursiveIteratorIterator::LEAVES_ONLY
-      );
-    
-    $files = array();
-    foreach ($iterator as $file) {
-      $sourceFile = realpath($file->getPathName());
-      
-      if (mb_strpos($sourceFile,DIRECTORY_SEPARATOR.'.svn') !== FALSE) continue;
-      
-      $f = new File($sourceFile);
-      $className = self::getFullClassName($f, $classPath);
-      
-      $relPath = mb_substr($sourceFile, mb_strlen($classPath));
-      $files[$className] = $relPath;
-    }
-    return $files;
-  }
-  
+
   /**
    * @return Psc\CMS\ProjectsFactory
    */
@@ -362,42 +195,7 @@ class PSC {
    * es werden Projekte und Module untersucht
    */
   public static function getClassFile($className, $projectHint = NULL, $moduleHint = NULL) {
-    $className = ltrim($className,'\\');
-    
-    if (isset($projectHint)) {
-      return self::getProjectsFactory()->getProject($projectHint)->getClassName($className);
-    }
-    
-    if (isset($moduleHint)) {
-      return self::getProject()->getModule($moduleHint)->getClassName($className);
-    }
-    
-    if (mb_strpos($className,'Psc\\') === 0) {
-      $pr = self::getProjectsFactory()->getProject('psc-cms');
-      return $pr->getClassFile($className);
-    }
-    
-    $tries = array();
-    list($rootNS) = explode('\\',$className,1);
-    if (!empty($rootNS)) $tries[] = $rootNS;
-    list($rootNS) = explode('_',$className,1);
-    if (!empty($rootNS)) $tries[] = $rootNS;
-    
-    foreach ($tries as $rootNS) {
-      try {
-        $project = self::getProjectsFactory()->getProject($rootNS);
-        return $project->getClassFile($className);
-      } catch (\Psc\ProjectNotFoundException $e) {
-      }
-      
-      try {
-        $module = self::getProject()->getModule($rootNS);
-        return $module->getClassFile($className);
-      } catch(\Psc\ModuleNotFoundException $e) {
-      }
-    }
-    
-    throw new Exception('kann die Datei nicht für: '.$className.' ermitteln. Es wurden die Namespaces: '.implode(',',$tries).' durchsucht');
+    throw new DeprecatedException('This cannot be used anymore');
   }
 
 
@@ -426,7 +224,7 @@ class PSC {
    *
    */
   public static function get($name) {
-    throw new \Psc\DeprecatedException('Dont use this anymore. Use the paths from project or the direct methods');
+    throw new DeprecatedException('Dont use this anymore. Use the paths from project or the direct methods');
   }
 
   /**
@@ -451,17 +249,18 @@ class PSC {
   }
   
   /**
-   *
-   * wenn schon exit dann wenigstens diese Funktion nehmen
+   * Stops the application immediately (emergency exit)
    */
   public static function terminate($returnCode = 1) {
-    if (!self::inProduction() && !self::inTests()) {
+    if (self::getProject()->isDevelopment() && !self::inTests()) {
       exit($returnCode);
     }
   }
   
+  /**
+   * @return bool
+   */
   public static function isTravis() {
     return getenv('TRAVIS') === 'true';
   }
 }
-?>
