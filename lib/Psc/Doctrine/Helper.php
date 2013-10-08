@@ -9,10 +9,11 @@ use Doctrine\ORM\EntityManager,
     Psc\Config,
     Psc\PSC,
     Psc\Code\Code,
-    Webforge\Common\ArrayUtil AS A,
-    \Psc\Preg,
     \Closure
 ;
+use Webforge\Common\Preg;
+use Webforge\Common\ArrayUtil as A;
+use Webforge\Common\DeprecatedException;
 
 class Helper {
   
@@ -30,7 +31,7 @@ class Helper {
    * @return \Doctrine\ORM\EntityManager
    */
   public static function em($con = NULL) {
-    return PSC::getProject()->getModule('Doctrine')->getEntityManager($con);
+    throw new DeprecatedException('Use cannot use em() statically');
   }
   
   /**
