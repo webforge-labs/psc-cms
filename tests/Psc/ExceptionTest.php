@@ -120,4 +120,3 @@ class MySpecialException extends \Psc\Exception {
   
   public $info;
 }
-?>

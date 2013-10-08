@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManager;
 use Webforge\Common\System\Dir;
 use Psc\CMS\Project;
 use Psc\CMS\ProjectsFactory;
+use Webforge\Configuration\Configuration;
 
 class ProjectBuilder extends \Psc\Code\Test\Mock\Builder {
   
@@ -76,7 +77,7 @@ class ProjectBuilder extends \Psc\Code\Test\Mock\Builder {
   }
   
   
-  public function setHostConfig(\Psc\CMS\Configuration $hostConfig) {
+  public function setHostConfig(Configuration $hostConfig) {
     $this->hostConfig = $hostConfig;
     return $this;
   }

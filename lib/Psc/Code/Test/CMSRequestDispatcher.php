@@ -3,7 +3,7 @@
 namespace Psc\Code\Test;
 
 use Psc\URL\Request;
-use Psc\CMS\Configuration;
+use Webforge\Configuration\Configuration;
 use Psc\URL\Response;
 use Psc\CMS\Project;
 
@@ -18,7 +18,7 @@ class CMSRequestDispatcher extends \Psc\SimpleObject {
   protected $request;
   
   /**
-   * @var Psc\CMS\Configuration
+   * @var Webforge\Configuration\Configuration
    */
   protected $hostConfig;
   
@@ -147,7 +147,7 @@ class CMSRequestDispatcher extends \Psc\SimpleObject {
   }
   
   /**
-   * @param Psc\CMS\Configuration $hostConfig
+   * @param Webforge\Configuration\Configuration $hostConfig
    */
   public function setHostConfig(Configuration $hostConfig) {
     $this->hostConfig = $hostConfig;

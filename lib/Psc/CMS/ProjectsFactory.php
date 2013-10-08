@@ -3,9 +3,13 @@
 namespace Psc\CMS;
 
 use Webforge\Common\System\Dir;
+use Webforge\Configuration\Configuration;
 use Psc\PSC;
 use Phar;
 
+/**
+ * @deprecated use Webforge\Framework\ProjectsFactory instead
+ */
 class ProjectsFactory extends \Psc\Object {
   
   const MODE_SRC = Project::MODE_SRC;
@@ -26,7 +30,7 @@ class ProjectsFactory extends \Psc\Object {
   protected $paths = array();
   
   /**
-   * @var Psc\CMS\Configuration
+   * @var Webforge\Configuration\Configuration
    */
   protected $hostConfig;
   
