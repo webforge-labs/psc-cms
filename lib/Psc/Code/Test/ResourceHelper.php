@@ -13,7 +13,7 @@ class ResourceHelper extends \Psc\Object {
   
   protected $project;
   
-  public function __construct(\Psc\CMS\Project $project) {
+  public function __construct(\Webforge\Framework\Project $project) {
     $this->project = $project;
   }
   
@@ -26,7 +26,7 @@ class ResourceHelper extends \Psc\Object {
    * Was dann in diesem Dir liegt bleibt dem Test überlassen
    */
   public function getTestDirectory(\PHPUnit_Framework_TestCase $test) {
-    $testName = Code::getClassName(Code::getClass($test));
+    $testName = Code::getClassName(get_class($test));
     
     return $this->getFixturesDirectory()->sub($testName.'/');
   }
@@ -36,7 +36,7 @@ class ResourceHelper extends \Psc\Object {
    *
    */
   public function getCommonDirectory() {
-    return $this->project->getTestData()->sub('common/');
+    return $this->project->dir('test-files')->sub('common/');
   }
   
   /**
@@ -46,10 +46,11 @@ class ResourceHelper extends \Psc\Object {
    * @return Webforge\Common\System\Dir
    */
   public function getFixturesDirectory() {
-    return $this->project->getTestdata()->sub('fixtures/');
+    return $this->project->dir('test-files')->sub('fixtures/');
   }
   
   /**
+   * @deprecated use Doctrine Fixtures for this
    * @return array
    */
   public function getEntities($name) {
@@ -63,5 +64,3 @@ class ResourceHelper extends \Psc\Object {
     return $$name;
   }
 }
-
-?>
