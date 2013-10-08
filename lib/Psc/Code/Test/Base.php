@@ -40,19 +40,27 @@ class Base extends \Webforge\Code\Test\Base {
     $this->test = new FrontendCodeTester($this);
     $this->doublesManager = new DoublesManager($this);
   }
+
+  public function getCMSContainer() {
+    return $GLOBALS['env']['container'];
+  }
   
   public function getProject() {
     if (!isset($this->project)) {
-      $this->project = $GLOBALS['env']['container']->getProject();
+      $this->project = $this->getCMSContainer()->getProject();
     }
     return $this->project;
+  }
+
+  public function getModule($name) {
+    return $this->getCMSContainer()->getModule($name);
   }
 
   /**
    * @return the local package
    */
   public function getPackage() {
-    return $GLOBALS['env']['container']->webforge->getLocalPackage();
+    return $this->getCMSContainer()->webforge->getLocalPackage();
   }
 
   public function getPackageDir($sub) {
@@ -60,7 +68,7 @@ class Base extends \Webforge\Code\Test\Base {
   }
   
   public function getHostConfig() {
-    return $GLOBALS['env']['container']->getHostConfig();
+    return $this->getCMSContainer()->getHostConfig();
   }
   
   public function getCodeTester() {
@@ -146,7 +154,7 @@ class Base extends \Webforge\Code\Test\Base {
       if (isset($this->dc)) {
         return $this->dc->getEntityMeta($entityName);
       } else {
-        return PSC::getProject()->getModule('Doctrine')->getEntityMeta($entityName);
+        return $this->getModule('Doctrine')->getEntityMeta($entityName);
       }
     }
     
@@ -189,7 +197,7 @@ class Base extends \Webforge\Code\Test\Base {
    * @param string $contentType  html|json
    * @return Psc\URL\Request
    */
-  public function createCMSRequest($relativeURL, $contentType = NULL, $baseURL = NULL, \Psc\CMS\Configuration $hostConfig = NULL) {
+  public function createCMSRequest($relativeURL, $contentType = NULL, $baseURL = NULL, \Webforge\Configuration\Configuration $hostConfig = NULL) {
     $url = $baseURL ?: $this->getProject()->getBaseURL();
     $url .= ltrim($relativeURL,'/');
     
