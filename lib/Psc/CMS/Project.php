@@ -418,6 +418,10 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber, \Webfor
     return clone $this->dirs[$p];
   }
 
+  public function dir($p) {
+    return $this->getPath($p);
+  }
+
 
   public function getRootDirectory() {
     return $this->getRoot();

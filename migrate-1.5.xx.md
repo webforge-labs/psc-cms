@@ -1,6 +1,11 @@
 Migration to 1.5
 ====================
 
+## Major changes
+- Psc\CMS\Container does not return a Psc\CMS\Project on getProject() anymore. It returns a Webforge\Framework\Package\ProjectPackage instead (which also implements Webforge\Framework\Project). You have to hint EVERYTHING for Webforge\Framework\Project.
+
+## API changes
+
 Psc\System\Process** has been deprecated
 - use Webforge\Process\* classes where you can.
 
