@@ -7,7 +7,6 @@ use Psc\Data\Storage;
 use Psc\Data\PHPStorageDriver;
 use Webforge\Common\System\File;
 use Webforge\Common\System\Dir;
-use Psc\CMS\Configuration;
 
 /**
  * In 99% der Fälle willst Du \Psc\CMS\Project und nicht dieses hier

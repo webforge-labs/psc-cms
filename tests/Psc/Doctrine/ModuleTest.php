@@ -11,7 +11,8 @@ use Psc\PSC;
 class ModuleTest extends \Psc\Code\Test\Base {
   
   public function setUp() {
-    $this->module = clone $this->getProject()->getModule('Doctrine');
+    parent::setUp();
+    $this->module = $this->getModule('Doctrine');
   }
 
   /**

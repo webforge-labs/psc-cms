@@ -75,7 +75,7 @@ abstract class DatabaseTestCase extends \Psc\Code\Test\HTMLTestCase {
   public function setUp() {
     parent::setUp();
     
-    $this->module = $this->getProject()->getModule('Doctrine');
+    $this->module = $this->getModule('Doctrine');
     $this->setUpEntityManager();
     $this->dc = $this->getDoctrinePackage();
 

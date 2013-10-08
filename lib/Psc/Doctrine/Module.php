@@ -2,7 +2,7 @@
 
 namespace Psc\Doctrine;
 
-use Psc\CMS\Project;
+use Webforge\Framework\Project;
 use Psc\PSC;
 use Psc\Config;
 use Psc\Code\Code;
@@ -44,11 +44,7 @@ class Module extends \Psc\CMS\Module implements \Psc\Code\Event\Dispatcher {
    */
   protected $entitiesPath;
   
-  /**
-   * @var Psc\Symfony\Module
-   */
-  protected $symfonyModule;
-  
+
   protected $cache;
   protected $resultCache;
   
@@ -102,11 +98,13 @@ class Module extends \Psc\CMS\Module implements \Psc\Code\Event\Dispatcher {
    */
   protected $manager;
   
-  public function __construct(Project $project) {
+  public function __construct(Project $project, $inTests = FALSE) {
     parent::__construct($project);
     
     $this->entitiesNamespace = Config::get('doctrine.entities.namespace') ?: $this->project->getNamespace().'\Entities';
     $this->manager = PSC::getEventManager();    
+
+    $this->connectionName = $inTests ? 'tests' : 'default';
   }
 
   /**
@@ -204,11 +202,6 @@ class Module extends \Psc\CMS\Module implements \Psc\Code\Event\Dispatcher {
    * 
    */
   public function bootstrap($bootFlags = 0x000000) {
-    $src = $this->project->getSrc();
-    
-    /* Symfony auch laden */
-    $this->symfonyModule = $this->project->getModule('Symfony')->bootstrap();
-
     if (!isset($this->configuration))
       $this->configuration = new Configuration();
     
@@ -220,12 +213,9 @@ class Module extends \Psc\CMS\Module implements \Psc\Code\Event\Dispatcher {
 
     /* Annotations */
     // Register the ORM Annotations in the AnnotationRegistry
-    // new: we always do treat doctrine loaded with composer, now
     AnnotationRegistry::registerFile(
-      $this->project->getVendor()
-        ->getFile('doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/DoctrineAnnotations.php')
+      $this->project->dir('vendor')->getFile('doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/DoctrineAnnotations.php')
     );
-    //@TODO psc annotations laden AnnotationRegistry::registerAutoloadNamespace('Psc\Code\Compile\Annotations\\');
 
     if (!isset($this->driverChain))
       $this->driverChain = new MappingDriverChain();
@@ -247,7 +237,7 @@ class Module extends \Psc\CMS\Module implements \Psc\Code\Event\Dispatcher {
     $this->configuration->setQueryCacheImpl($this->getCache());
     $this->configuration->setResultCacheImpl($this->getResultCache()); // das ist wichtig, damit dieselben abfragen pro result gecached werden
     
-    $this->configuration->setProxyDir($src->sub('Proxies/')->create());
+    $this->configuration->setProxyDir($this->project->dir('cache')->sub('Proxies/')->create());
     $this->configuration->setProxyNamespace('Proxies');
     $this->configuration->setAutoGenerateProxyClasses(TRUE);
     
@@ -478,7 +468,7 @@ class Module extends \Psc\CMS\Module implements \Psc\Code\Event\Dispatcher {
    */
   public function getEntitiesPath() {
     if (!isset($this->entitiesPath))
-      $this->entitiesPath = Code::namespaceToPath($this->entitiesNamespace, $this->project->getClassPath()->up());
+      $this->entitiesPath = Code::namespaceToPath($this->entitiesNamespace, $this->project->dir('lib'));
     
     return $this->entitiesPath;
   }
@@ -487,10 +477,6 @@ class Module extends \Psc\CMS\Module implements \Psc\Code\Event\Dispatcher {
    * @var string
    */
   public function getConnectionName() {
-    if (!isset($this->connectionName)) {
-      return $this->project->getTests() ? 'tests' : 'default';
-    }
-    
     return $this->connectionName;
   }
   
@@ -563,7 +549,7 @@ class Module extends \Psc\CMS\Module implements \Psc\Code\Event\Dispatcher {
   }
   
   public function getModuleDependencies() {
-    return array('Symfony');
+    return array();
   }
   
   public function getDriverChain() {

@@ -333,7 +333,7 @@ class PSC {
     self::$projectsFactory = $factory;
   }
   
-  public static function setProject(\Psc\CMS\Project $project) {
+  public static function setProject(\Webforge\Framework\Project $project) {
     self::$project = $project;
     return $project;
   }
@@ -426,29 +426,7 @@ class PSC {
    *
    */
   public static function get($name) {
-    
-    /* Projektverzeichnisse */
-    if (in_array($name, array(self::PATH_SRC, self::PATH_HTDOCS, self::PATH_BASE, self::PATH_FILES, self::PATH_TESTDATA, self::PATH_BIN, self::PATH_TPL, self::PATH_CACHE))) {
-      return self::getProject()->getPath($name);
-    }
-      
-    /* psc-cms Pfade */
-    if (array_key_exists($name,$ps = array(self::PATH_PSC_CMS => self::PATH_BASE,
-                                     self::PATH_PSC_CMS_SRC => self::PATH_SRC,
-                                     self::PATH_PSC_CMS_BIN => self::PATH_BIN,
-                                     self::PATH_PSC_CMS_FILES => self::PATH_FILES))) {
-      return self::getProjectsFactory()->getProject('psc-cms')->getPath($ps[$name]);
-    }
-    
-    if ($name == self::ENV_HOST) {
-      return self::getHost();
-    }
-    
-    if ($name == self::ROOT) {
-      return self::getRoot();
-    }
-    
-    throw new Exception('unbekannter Name für get():'.Code::varInfo($name));
+    throw new \Psc\DeprecatedException('Dont use this anymore. Use the paths from project or the direct methods');
   }
 
   /**

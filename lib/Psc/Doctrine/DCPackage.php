@@ -18,8 +18,8 @@ class DCPackage extends \Psc\SimpleObject implements EntityMetaProvider {
    */
   protected $module;
   
-  public function __construct(Module $module = NULL, EntityManager $em = NULL) {
-    $this->setModule($module ?: PSC::getProject()->getModule('Doctrine'));
+  public function __construct(Module $module, EntityManager $em = NULL) {
+    $this->setModule($module);
     $this->setEntityManager($em ?: $this->module->getEntityManager());
   }
   

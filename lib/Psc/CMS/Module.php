@@ -2,6 +2,7 @@
 
 namespace Psc\CMS;
 
+use Webforge\Framework\Project as WebforgeProject;
 use Psc\ClassLoader;
 use Webforge\Common\System\File;
 use Psc\PSC;
@@ -14,11 +15,11 @@ abstract class Module extends \Psc\Object {
   
   protected $name;
   
-  public function __construct(Project $project) {
+  public function __construct(WebforgeProject $project) {
     $this->project = $project;
   }
   
-  public function setProject(Project $project) {
+  public function setProject(WebforgeProject $project) {
     $this->project = $project;
     return $this;
   }
