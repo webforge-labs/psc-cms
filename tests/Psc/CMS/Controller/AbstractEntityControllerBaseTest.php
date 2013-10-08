@@ -25,4 +25,3 @@ abstract class AbstractEntityControllerBaseTest extends ControllerBaseTest {
     $this->articles = $this->loadTestEntities('articles');
   }  
 }
-?>

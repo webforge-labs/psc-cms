@@ -112,7 +112,8 @@ abstract class ControllerBaseTest extends \Psc\Test\DatabaseTestCase {
        'getLinkRelationsForEntity' // AbstractEntityControllerTest
       ),
       array(
-        $this->getTranslationContainer()
+        $this->getTranslationContainer(),
+        $this->getContainer()->getDoctrinePackage()
       )
     ); 
     $controller->setRepository($this->repository); // some kind of ungeil: schöner: repository in init-Funktion

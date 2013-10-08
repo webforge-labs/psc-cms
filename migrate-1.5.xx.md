@@ -75,6 +75,8 @@ Psc\PSC:
   - registerTools is removed
   - getAllClassFiles and getAllUsedClasSFiles are removed
 
-
 Psc\Doctrine\Helper:
   - em() is deprecated
+
+Psc\CMS\Controller\AbstractEntityController
+  - DCPackage is no longer optional

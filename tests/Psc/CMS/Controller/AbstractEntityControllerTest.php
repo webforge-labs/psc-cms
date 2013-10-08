@@ -64,7 +64,7 @@ class AbstractEntityControllerTest extends AbstractEntityControllerBaseTest {
     
     shuffle($sortMap);
     
-    $controller = new \Psc\Test\ArticleSortingController($this->getTranslationContainer());
+    $controller = new \Psc\Test\ArticleSortingController($this->getTranslationContainer(), $this->getContainer()->getDoctrinePackage());
     $controller->setRepository($this->repository); // inject
 
     $controller->saveSort($sortMap);
