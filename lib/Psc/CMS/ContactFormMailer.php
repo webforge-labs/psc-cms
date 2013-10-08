@@ -2,7 +2,6 @@
 
 namespace Psc\CMS;
 
-use Psc\PSC;
 use Psc\TPL\TPL;
 use Swift_Message;
 use Swift_Mailer;
@@ -13,6 +12,8 @@ use Swift_Plugins_Loggers_EchoLogger;
 use Swift_Plugins_Loggers_ArrayLogger;
 use Swift_Plugins_LoggerPlugin;
 use Psc\Code\Code;
+use RuntimeException;
+use Webforge\Configuration\Configuration as WebforgeConfiguration;
 
 class ContactFormMailer extends \Psc\Object {
   
@@ -50,11 +51,6 @@ class ContactFormMailer extends \Psc\Object {
   protected $mode;
 
   /**
-   * Wenn True wird der DebugRecipient genommen
-   */
-  protected $development;
-
-  /**
    * @var string
    */
   protected $template;
@@ -76,15 +72,12 @@ class ContactFormMailer extends \Psc\Object {
   protected $from;
   protected $envelope;
 
-  protected $project, $config;
+  protected $config;
 
   protected $autoReply = NULL;
   
-  public function __construct(ContactFormData $data, $mode = self::MODE_LOCAL_MAIL, \Psc\CMS\Project $project = NULL) {
-    $this->project = $project ?: PSC::getProject();
-    $this->config = $this->project->getConfiguration();
-    $this->development = $this->project->isDevelopment();
-    $this->project->getModule('Swift')->bootstrap();
+  public function __construct(WebforgeConfiguration $config, ContactFormData $data, $mode = self::MODE_LOCAL_MAIL) {
+    $this->config = $config;
 
     $this->data = $data;
     $this->setMode($mode);
@@ -94,13 +87,8 @@ class ContactFormMailer extends \Psc\Object {
   }
   
   public function init() {
-    
     if (!isset($this->recipient)) {
       $this->recipient = $this->config->req('ContactForm.recipient');
-    }
-    
-    if ($this->Development && !isset($this->debugRecipient)) {
-      throw new \Psc\Exception('Debug Recipient nicht gesetzt, aber Development ist TRUE');
     }
     
     if (!isset($this->template)) {
@@ -118,7 +106,7 @@ class ContactFormMailer extends \Psc\Object {
       
       $this->mailer = Swift_Mailer::newInstance($this->transport);
     } elseif($this->mode === self::MODE_NULL) {
-      $this->transport = \Swift_NullTransport::newInstance();
+      $this->transport = Swift_NullTransport::newInstance();
       $this->mailer = Swift_Mailer::newInstance($this->transport);
       
       $this->logger = new Swift_Plugins_Loggers_ArrayLogger();
@@ -127,7 +115,7 @@ class ContactFormMailer extends \Psc\Object {
       $this->transport = Swift_Mailtransport::newInstance();
       $this->mailer = Swift_Mailer::newInstance($this->transport);
     } else {
-      throw new \RuntimeException('Mode is set to wrong constant'.Code::varInfo($this->mode));
+      throw new RuntimeException('Mode is set to wrong constant'.Code::varInfo($this->mode));
     }
     
     $this->init = TRUE;
@@ -139,9 +127,9 @@ class ContactFormMailer extends \Psc\Object {
   public function send() {
     if ($this->init) {
       
-      $recipient = array($this->debugRecipient => 'DebugRecipient');
-      
-      if ($this->Development === FALSE) {
+      if ($this->debugRecipient) {
+        $recipient = array($this->debugRecipient => 'DebugRecipient');
+      } else {
         $recipient = $this->recipient;
       }
 
@@ -168,9 +156,9 @@ class ContactFormMailer extends \Psc\Object {
   }
 
   protected function sendAutoReplyMail() {
-    $recipient = array($this->debugRecipient => 'DebugRecipient');
-      
-    if ($this->Development === FALSE) {
+    if ($this->debugRecipient) {
+      $recipient = array($this->debugRecipient => 'DebugRecipient');
+    } else {
       $recipient = $this->data->getField($this->autoReply->emailField);
     }
 
@@ -222,16 +210,19 @@ class ContactFormMailer extends \Psc\Object {
     return $this->mode;
   }
 
-  // backwards compatibility fix: (this was flipped)
-  // discouraged!
-  public function setProduction($development) {
-    $this->development = $development;
-    return $this;
+  /**
+   * @return string
+   */
+  public function getDebugRecipient() {
+    return $this->debugRecipient;
   }
-
-  // use this
-  public function setDevelopment($dev) {
-    $this->development = $dev;
+  
+  /**
+   * @param string debugRecipient
+   * @chainable
+   */
+  public function setDebugRecipient($debugRecipient) {
+    $this->debugRecipient = $debugRecipient;
     return $this;
   }
 }

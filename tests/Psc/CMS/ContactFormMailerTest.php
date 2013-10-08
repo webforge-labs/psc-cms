@@ -5,6 +5,7 @@ namespace Psc\CMS;
 use Psc\CMS\ContactFormMailer;
 use Psc\CMS\ContactFormData;
 
+
 /**
  * @group class:Psc\CMS\ContactFormMailer
  */
@@ -66,17 +67,14 @@ Mobil
 }
   
   public function testConstructInitSend() {
-    $mailer = new $this->c($this->data, ContactFormMailer::MODE_NULL);
-    $mailer->setDevelopment(TRUE);
+    $mailer = new $this->c($this->getProject()->getConfiguration(), $this->data, ContactFormMailer::MODE_NULL);
     $mailer->setDebugRecipient('p.scheit@ps-webforge.com');
     $mailer->setTemplate($this->template);
     $mailer->setSubject('Erhaltene Nachricht auf green-group.de');
     
     $mailer->init();
-    $mailer->setTransport(\Swift_NullTransport::newInstance());
     
     $this->assertEquals(0, $mailer->send());
-    
     $logger = $mailer->getLogger();
   }
 }
