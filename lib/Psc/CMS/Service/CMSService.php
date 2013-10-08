@@ -12,6 +12,7 @@ use Psc\Doctrine\DCPackage;
 use Psc\CMS\Controller\ImageController;
 use Psc\CMS\Controller\FileUploadController;
 use Psc\CMS\UploadManager;
+use Psc\Image\Manager as ImageManager;
 use Psc\CMS\Controller\ExcelController;
 use Psc\CMS\Controller\TPLController;
 
@@ -70,9 +71,10 @@ class CMSService extends ControllerService {
       }
     } elseif ($controller === 'images') {
       $controller = new ImageController(
-        new \Psc\Image\Manager(
-          $this->getDoctrinePackage()->getModule()->getEntityName('Image'),
-          $this->getDoctrinePackage()->getEntityManager()
+        ImageManager::createForProject(
+          $this->project,
+          $this->getDoctrinePackage()->getEntityManager(),
+          $this->getDoctrinePackage()->getModule()->getEntityName('Image')
         )
       );
       

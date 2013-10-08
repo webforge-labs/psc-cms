@@ -6,7 +6,6 @@ use Psc\CMS\UploadManager;
 use Psc\Net\ServiceResponse;
 use Psc\Net\Service;
 use Webforge\Common\System\File;
-use Psc\Doctrine\DCPackage;
 use stdClass;
 
 /**
@@ -21,16 +20,8 @@ class FileUploadController extends \Psc\SimpleObject {
    */
   protected $manager;
   
-  /**
-   * @var Psc\Doctrine\DCPackage
-   */
-  protected $dc;
-  
-  public function __construct(DCPackage $dc, UploadManager $uploadManager = NULL) {
-    $this->setDoctrinePackage($dc);
-    
-    // der Default für diesen UploadManager ist Project::getFiles()->sub('uploads/')
-    $this->setUploadManager($uploadManager ?: new UploadManager(NULL, $this->dc));
+  public function __construct(UploadManager $uploadManager) {
+    $this->setUploadManager($uploadManager);
   }
   
   /**
@@ -96,20 +87,4 @@ class FileUploadController extends \Psc\SimpleObject {
   public function getUploadManager() {
     return $this->manager;
   }
-  
-  /**
-   * @param Psc\Doctrine\DCPackage $dc
-   */
-  public function setDoctrinePackage(DCPackage $dc) {
-    $this->dc = $dc;
-    return $this;
-  }
-  
-  /**
-   * @return Psc\Doctrine\DCPackage
-   */
-  public function getDoctrinePackage() {
-    return $this->dc;
-  }
 }
-?>

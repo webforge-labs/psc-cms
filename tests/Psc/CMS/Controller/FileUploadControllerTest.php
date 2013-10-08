@@ -2,6 +2,8 @@
 
 namespace Psc\CMS\Controller;
 
+use Psc\CMS\UploadManager;
+
 /**
  * @group class:Psc\CMS\Controller\FileUploadController
  */
@@ -12,14 +14,12 @@ class FileUploadControllerTest extends \Psc\Doctrine\DatabaseTestCase {
   public function setUp() {
     $this->chainClass = 'Psc\CMS\Controller\FileUploadController';
     parent::setUp();
-    $this->controller = new FileUploadController($this->dc); // geht ohne parameter zu wuppen
+    $this->controller = new FileUploadController(
+      UploadManager::createForProject($this->getProject(), $this->dc)
+    );
     $this->cFile = $this->getCommonFile('Businessplan.docx');
   }
-  
-  public function testAcceptance() {
-    $this->assertInstanceOf('Psc\CMS\UploadManager', $this->controller->getUploadManager(),'FileUploadController sollte sich einen eigenen uploadmanager bauen');
-  }
-  
+
   public function testInsertFile() {
     $uplFile = $this->getResponseData(
       $this->controller->insertFile($this->cFile, (object) array('description'=>'bp short'))
