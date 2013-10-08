@@ -1,0 +1,32 @@
+<?php
+
+use \Psc\TPl\TPL,
+    \Psc\Doctrine\Helper as DoctrineHelper,
+    \Psc\JS\jQuery,
+    \Psc\JS\Code as JSCode,
+    \Psc\JS\Helper as JSHelper,
+    \Psc\CMS\Auth
+;
+
+$items = array();
+
+if ($main instanceof \Psc\CMS\ProjectMain) {
+  $items[] = $main->getEntityMeta('user')->getAdapter('grid')->getTabOpenable();
+  $items[] = $main->getEntityMeta('user')->getAdapter($main->hydrateEntity('user','info@ps-webforge.com'))->getTabOpenable();
+}
+
+//$tabs->addItem(new \Psc\CMS\AbstractTabsContentItem2('cms','tpl','test','layout.manager', 'LayoutManagerTest'));
+$tabs->addItem(new \Psc\CMS\AbstractTabsContentItem2('cms','tpl','test','navigation', 'NavigationsTest'));
+//$tabs->add('User Verwalten',NULL,'/entities/users/grid', 'entities-user-grid');
+
+
+$lastIndex = 0;
+if (count($items) > 0) {
+  foreach ($items as $key =>$item)  {
+    $lastIndex = $key+1;
+    $tabs->addTabOpenable($item);
+  }
+}
+
+$tabs->select($lastIndex);
+print $tabs->html();
