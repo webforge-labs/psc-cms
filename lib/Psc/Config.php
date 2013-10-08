@@ -8,6 +8,8 @@ use \Psc\Code\Code;
  * Get nehmen wenn man eine Option checken will
  *
  * req nehmen wenn man eine Option unbedingt braucht
+ * 
+ * @deprecated use the configuration locally or get it from your project with the cms container
  */
 class Config extends \Psc\Object {
   
@@ -25,9 +27,9 @@ class Config extends \Psc\Object {
     $args = func_get_args();
     
     if (count($args) > 1) 
-      return PSC::getProject()->getConfig()->get($args);
+      return PSC::getProject()->getConfiguration()->get($args);
     else
-      return PSC::getProject()->getConfig()->get($key);
+      return PSC::getProject()->getConfiguration()->get($key);
   }
   
   /**
@@ -43,9 +45,9 @@ class Config extends \Psc\Object {
     $args = func_get_args();
     
     if (count($args) > 1) 
-      return PSC::getProject()->getConfig()->req($args);
+      return PSC::getProject()->getConfiguration()->req($args);
     else
-      return PSC::getProject()->getConfig()->req($key);
+      return PSC::getProject()->getConfiguration()->req($key);
     
     return $array;
   }
