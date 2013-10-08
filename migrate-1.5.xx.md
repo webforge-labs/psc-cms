@@ -65,3 +65,16 @@ Psc\JS\RequirejsManager
 
 Psc\JS\jQuery
   - the class was shrinked to the minimum. See Webforge\DOM (webforge/dom) on packagist for details
+
+Psc\PSC:
+  - inProduction is deprecated
+  - getLibrariesFilePath was removed
+  - getHost() was removed
+  - getCMS() is deprecated
+  - getClassFile is deprecated
+  - registerTools is removed
+  - getAllClassFiles and getAllUsedClasSFiles are removed
+
+
+Psc\Doctrine\Helper:
+  - em() is deprecated

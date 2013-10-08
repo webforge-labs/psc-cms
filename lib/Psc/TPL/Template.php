@@ -28,6 +28,11 @@ class Template extends \Psc\SimpleObject implements \Psc\HTML\HTMLInterface, \Ps
    * @var string
    */
   protected $fileName = NULL;
+
+  /**
+   * @var Webforge\Common\System\Dir
+   */
+  protected $directory;
   
   /**
    * Die Datei in der das Template liegt
@@ -53,8 +58,11 @@ class Template extends \Psc\SimpleObject implements \Psc\HTML\HTMLInterface, \Ps
    * @var int|NULL 0-basierend
    */
   protected $indent = NULL;
-  
-  public function __construct($fileName, Array $vars = array(), $tabLabel = NULL) {
+
+
+  public function __construct($fileName, Array $vars = array(), $tabLabel = NULL, Dir $root = NULL) {
+    $this->directory = $root ?: PSC::getProject()->dir('cms-tpl');
+
     $this->setFileName($fileName);
     $this->vars = $vars;
     $this->tabLabel = $tabLabel ?: $this->file->getName(File::WITHOUT_EXTENSION);
@@ -185,7 +193,7 @@ class Template extends \Psc\SimpleObject implements \Psc\HTML\HTMLInterface, \Ps
    * @return Webforge\Common\System\Directory
    */
   public function getDirectory() {
-    return PSC::get(PSC::PATH_TPL);
+    return $this->directory;
   }
   
   /**
@@ -273,4 +281,3 @@ class Template extends \Psc\SimpleObject implements \Psc\HTML\HTMLInterface, \Ps
     return $this->tabLabel;
   }
 }
-?>
