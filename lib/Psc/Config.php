@@ -3,6 +3,7 @@
 namespace Psc;
 
 use \Psc\Code\Code;
+use Webforge\Configuration\MissingConfigVariableException;
 
 /**
  * Get nehmen wenn man eine Option checken will
@@ -59,7 +60,7 @@ class Config extends \Psc\Object {
   public static function reqDefault($keys, $defaultValue) {
     try {
       $value = self::req($keys);
-    } catch (ConfigMissingVariableException $e) {
+    } catch (MissingConfigVariableException $e) {
       
       if (is_string($defaultValue) && !Preg::match($defaultValue,'/^(\'|")/') && !self::NEW_ARRAY) {
         $defaultValue = "'".$defaultValue."'";
@@ -80,7 +81,7 @@ class Config extends \Psc\Object {
   public static function getDefault($keys, $defaultValue) {
     try {
       $value = self::req($keys);
-    } catch (ConfigMissingVariableException $e) {
+    } catch (MissingConfigVariableException $e) {
       return $defaultValue;
     }
     
