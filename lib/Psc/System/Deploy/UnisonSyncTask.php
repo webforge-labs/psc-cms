@@ -3,7 +3,7 @@
 namespace Psc\System\Deploy;
 
 use Webforge\Common\System\Dir;
-use Psc\CMS\Project;
+use Webforge\Framework\Project;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\ProcessBuilder;
 

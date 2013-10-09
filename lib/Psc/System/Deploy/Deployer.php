@@ -4,7 +4,7 @@ namespace Psc\System\Deploy;
 
 use Webforge\Common\System\Dir;
 use Webforge\Common\System\File;
-use Psc\CMS\Project;
+use Webforge\Framework\Project;
 use Psc\System\Logger;
 use Psc\System\BufferLogger;
 use Psc\Data\ArrayCollection;
@@ -24,7 +24,7 @@ class Deployer extends \Psc\System\LoggerObject {
   protected $deploymentsRoot;
   
   /**
-   * @var Psc\CMS\Project
+   * @var Webforge\Framework\Project
    */
   protected $project;
   
@@ -43,7 +43,7 @@ class Deployer extends \Psc\System\LoggerObject {
   
   /**
    * Das Projekt mit den Pfaden im target
-   * @var Psc\CMS\Project
+   * @var Webforge\Framework\Project
    */
   protected $targetProject;
   
@@ -174,7 +174,7 @@ class Deployer extends \Psc\System\LoggerObject {
   }
   
   /**
-   * @param Psc\CMS\Project $project
+   * @param Webforge\Framework\Project $project
    */
   public function setProject(Project $project) {
     $this->project = $project;
@@ -182,7 +182,7 @@ class Deployer extends \Psc\System\LoggerObject {
   }
   
   /**
-   * @return Psc\CMS\Project
+   * @return Webforge\Framwork\Project
    */
   public function getProject() {
     return $this->project;

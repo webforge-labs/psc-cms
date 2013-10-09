@@ -8,6 +8,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+use Webforge\Framework\Project;
 
 class Console extends \Psc\Object {
   
@@ -21,7 +22,7 @@ class Console extends \Psc\Object {
   protected $doctrine;
   protected $project;
   
-  public function __construct(Application $application = NULL, \Psc\Doctrine\Module $doctrine = NULL, \Psc\CMS\Project $project = NULL) {
+  public function __construct(Application $application = NULL, \Psc\Doctrine\Module $doctrine = NULL, Project $project = NULL) {
     $this->name = 'Psc Command Line Interface';
     $this->version = NULL;
     $this->cli = $application ?: new Application($this->name, $this->version);
@@ -56,7 +57,6 @@ class Console extends \Psc\Object {
       new \Psc\System\Console\CreateUserCommand(),
       
       new CreateClassCommand(),
-      new CreateJooseCommand(),
       new CreateTestCommand(),
       
       new CompileTestEntitiesCommand(),

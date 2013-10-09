@@ -4,7 +4,7 @@ namespace Psc\Code\Test\Mock;
 
 use Doctrine\ORM\EntityManager;
 use Webforge\Common\System\Dir;
-use Psc\CMS\Project;
+use Psc\CMS\Project; // thats okay
 use Psc\CMS\ProjectsFactory;
 use Webforge\Configuration\Configuration;
 

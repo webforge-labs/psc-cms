@@ -3,12 +3,13 @@
 namespace Psc\Doctrine;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use Webforge\Framework\Project;
 
 class ProjectFixture extends Fixture {
   
   protected $project;
   
-  public function __construct(\Psc\CMS\Project $project = NULL) {
+  public function __construct(Project $project = NULL) {
     $this->project = $project ?: \Psc\PSC::getProject();
   }
   

@@ -37,7 +37,7 @@ class PSC {
    * Das aktive Projekt
    *
    * wird bei $project->bootstrap() gesetzt
-   * @var Psc\CMS\Project
+   * @var Webforge\Framework\Project
    */
   protected static $project;
   

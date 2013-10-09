@@ -46,7 +46,7 @@ class TestCreater extends \Psc\System\LoggerObject {
     $this->setLogger(new \Psc\System\BufferLogger());
     $this->class = $class;
     
-    $this->dir = $testsDir ?: PSC::getProject()->getTestsPath();
+    $this->dir = $testsDir ?: PSC::getProject()->dir('tests');
     $this->testClass = new GClass('\Psc\Code\Test\Base');
   }
   

@@ -5,7 +5,7 @@ namespace Psc\Code\Test;
 use Psc\URL\Request;
 use Webforge\Configuration\Configuration;
 use Psc\URL\Response;
-use Psc\CMS\Project;
+use Webforge\Framework\Project;
 
 /**
  * Konfiguriert einen Request für einen Self-Test (CMS / EntityService)
@@ -23,7 +23,7 @@ class CMSRequestDispatcher extends \Psc\SimpleObject {
   protected $hostConfig;
   
   /**
-   * @var Psc\CMS\Project
+   * @var Webforge\Framework\Project
    */
   protected $project;
   
@@ -155,7 +155,7 @@ class CMSRequestDispatcher extends \Psc\SimpleObject {
   }
   
   /**
-   * @return Psc\CMS\Configuration
+   * @return Webforge\Configuration\Configuration
    */
   public function getHostConfig() {
     return $this->hostConfig;

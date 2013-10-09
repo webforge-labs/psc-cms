@@ -2,7 +2,7 @@
 
 namespace Psc\System\Deploy;
 
-use Psc\CMS\Project;
+use Webforge\Framework\Project;
 
 class DeployDoctrineTask extends \Psc\SimpleObject implements Task {
   
@@ -18,4 +18,3 @@ class DeployDoctrineTask extends \Psc\SimpleObject implements Task {
     
   }
 }
-?>

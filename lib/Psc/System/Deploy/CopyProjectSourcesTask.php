@@ -2,7 +2,7 @@
 
 namespace Psc\System\Deploy;
 
-use Psc\CMS\Project;
+use Webforge\Framework\Project;
 use Webforge\Common\System\File;
 
 class CopyProjectSourcesTask extends \Psc\SimpleObject implements Task {

@@ -7,7 +7,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Webforge\Common\System\File;
 use Webforge\Common\System\Dir;
 use Psc\System\Deploy\Deployer;
-use Psc\CMS\Project;
+use Webforge\Framework\Project;
 use Webforge\Common\Preg;
 use Webforge\Framework\Container as WebforgeContainer;
 use Psc\DateTime\TimeBenchmark;

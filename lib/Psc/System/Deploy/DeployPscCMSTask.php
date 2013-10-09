@@ -3,7 +3,7 @@
 namespace Psc\System\Deploy;
 
 use Webforge\Common\System\Dir;
-use Psc\CMS\Project;
+use Webforge\Framework\Project;
 use Psc\Code\Build\LibraryBuilder;
 use Webforge\Framework\Container AS WebforgeContainer;
 use Webforge\Framework\Package\Package;
@@ -24,7 +24,7 @@ class DeployPscCMSTask extends \Psc\SimpleObject implements Task {
   protected $targetProject;
   
   /**
-   * @var Psc\CMS\Project
+   * @var Webforge\Framework\Project
    */
   protected $psc;
   

@@ -2,7 +2,7 @@
 
 namespace Psc\System\Deploy;
 
-use Psc\CMS\Project;
+use Webforge\Framework\Project;
 use Webforge\Common\System\File;
 use Webforge\Common\System\Dir;
 use Webforge\Common\String AS S;

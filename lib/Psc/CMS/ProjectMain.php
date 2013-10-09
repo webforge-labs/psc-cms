@@ -38,7 +38,7 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
   protected $environmentContainer;
   
   /**
-   * @var Psc\CMS\Project
+   * @var Webforge\Framework\Project
    */
   protected $project;
   

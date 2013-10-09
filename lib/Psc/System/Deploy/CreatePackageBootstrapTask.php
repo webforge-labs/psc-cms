@@ -2,7 +2,7 @@
 
 namespace Psc\System\Deploy;
 
-use Psc\CMS\Project;
+use Webforge\Framework\Project;
 
 /*
 bootstrap.php (in root)

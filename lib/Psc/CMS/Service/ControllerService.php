@@ -266,7 +266,7 @@ abstract class ControllerService extends \Psc\System\LoggerObject implements \Ps
   }
   
   /**
-   * @param Psc\CMS\Project $project
+   * @param Webforge\Framework\Project $project
    * @chainable
    */
   public function setProject(Project $project) {
@@ -275,7 +275,7 @@ abstract class ControllerService extends \Psc\System\LoggerObject implements \Ps
   }
 
   /**
-   * @return Psc\CMS\Project
+   * @return Webforge\Framework\Project
    */
   public function getProject() {
     return $this->project;

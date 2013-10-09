@@ -23,7 +23,7 @@ class Base extends \Webforge\Code\Test\Base {
   protected $test;
 
   /**
-   * @var Psc\CMS\Project
+   * @var Webforge\Framework\Project
    */
   protected $project;
   
