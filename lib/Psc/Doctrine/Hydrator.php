@@ -19,9 +19,9 @@ class Hydrator {
   
   protected $entityName;
   
-  public function __construct($entityName, EntityManager $em) {
-    $this->em = $em;
-    $this->entityName = Helper::getEntityName($entityName);
+  public function __construct($entityName, DCPackage $dc) {
+    $this->em = $dc->getEntityManager();
+    $this->entityName = $dc->getModule()->getEntityName($entityName);
   }
   
   /**
@@ -59,7 +59,7 @@ class Hydrator {
   
   /**
    *
-   * $hydrator = new Hydrator('FoodTag');
+   * $hydrator = new Hydrator('FoodTag', $doctrinePackage);
    * $tags = $hydrator->byList(array('hot','special','spicy'), 'label');
    * 
    * @return array

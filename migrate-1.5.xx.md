@@ -88,8 +88,14 @@ Psc\Code\Test\EntityAsserter
 Psc\Doctrine\EntityBuilder
   - module is not optional  
 
+Psc\Doctrine\Hydrator
+  - second argument is DCPackage instead of em
+
 Psc\Net\HTTP\FrontController
   - requesthandler argument is no longer optional
+
+Psc\CMS\RequestDispatcher
+  - HostConfig (parameter 3 for construct) is no longer optional
 
 ## CLI Commands  
 
