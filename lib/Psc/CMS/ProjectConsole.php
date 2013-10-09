@@ -11,9 +11,9 @@ class ProjectConsole extends \Psc\System\Console\Console {
   protected $doctrine;
   
   public function __construct(Project $project = NULL, \Psc\Doctrine\Module $doctrine = NULL) {
-    parent::__construct();
+    parent::__construct(NULL, $doctrine, $project);
     $this->name = $this->project->getName().' Developer Interface';
-    $this->version = (string) PSC::getVersion($this->project);
+    $this->version = NULL;
     $this->setUp();
   }
   
