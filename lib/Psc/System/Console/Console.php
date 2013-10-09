@@ -23,14 +23,14 @@ class Console extends \Psc\Object {
   
   public function __construct(Application $application = NULL, \Psc\Doctrine\Module $doctrine = NULL, \Psc\CMS\Project $project = NULL) {
     $this->name = 'Psc Command Line Interface';
-    $this->version = (string) \Psc\PSC::getVersion();
+    $this->version = NULL;
     $this->cli = $application ?: new Application($this->name, $this->version);
     $this->cli->setCatchExceptions(true);
     $this->cli->setHelperSet(new HelperSet(array(
       'dialog' => new \Symfony\Component\Console\Helper\DialogHelper()
     )));
     $this->project = $project ?: \Psc\PSC::getProject();
-    $this->doctrine = $this->project->getModule('Doctrine');
+    $this->doctrine = $doctrine ?: $GLOBALS['env']['container']->getModule('Doctrine');
     $this->setUp();
   }
 
