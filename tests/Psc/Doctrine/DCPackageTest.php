@@ -12,10 +12,10 @@ class PackageTest extends \Psc\Code\Test\Base {
     parent::setUp();
   }
   
-  public function testConstruct_emptyArguments() {
-    $package = new DCPackage();
+  public function testConstruct_withoutEntityManager() {
+    $package = new DCPackage($this->getModule('Doctrine'));
     
-    $this->assertInstanceOf('Doctrine\ORM\EntityManager', $package->getEntityManager());
+    $this->assertInstanceOf('Doctrine\ORM\EntityManager', $em = $package->getEntityManager());
     $this->assertInstanceOf('Psc\Doctrine\Module', $package->getModule());
   }
   
