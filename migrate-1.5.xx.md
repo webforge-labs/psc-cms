@@ -81,9 +81,21 @@ Psc\Doctrine\Helper:
 Psc\CMS\Controller\AbstractEntityController
   - DCPackage is no longer optional
 
+Psc\Code\Test\EntityAsserter
+  - class was removed due to inactivity
+  - Psc\Doctrine\EntityDataRow was also removed
+
+Psc\Doctrine\EntityBuilder
+  - module is not optional  
 
 ## CLI Commands  
 
   - create-test was removed (use webforge)
   - create-class was removed (use webforge)
   - create-joose was removed (use grunt)
+  - build-phar command was removed (use the symfony compiler to build phars)
+
+## Misc
+
+  - Serveral classes dealing with phar archives were removed. Most building commands were removed.
+  - EntityAsserter was removed
