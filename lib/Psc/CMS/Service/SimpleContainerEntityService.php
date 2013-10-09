@@ -3,7 +3,7 @@
 namespace Psc\CMS\Service;
 
 use Psc\Doctrine\DCPackage;
-use Psc\CMS\Project;
+use Webforge\Framework\Project;
 use Psc\CMS\Roles\ControllerContainer;
 use Psc\CMS\Controller\SimpleContainerController;
 use Psc\CMS\Controller\Factory as ControllerFactory;
