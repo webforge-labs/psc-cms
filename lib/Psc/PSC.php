@@ -265,7 +265,7 @@ class PSC {
    * Stops the application immediately (emergency exit)
    */
   public static function terminate($returnCode = 1) {
-    if (self::getProject()->isDevelopment() && !self::inTests()) {
+    if (!self::getProject()->isDevelopment() && !self::inTests()) {
       exit($returnCode);
     }
   }
