@@ -80,3 +80,10 @@ Psc\Doctrine\Helper:
 
 Psc\CMS\Controller\AbstractEntityController
   - DCPackage is no longer optional
+
+
+## CLI Commands  
+
+  - create-test was removed (use webforge)
+  - create-class was removed (use webforge)
+  - create-joose was removed (use grunt)

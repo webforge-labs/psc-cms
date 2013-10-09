@@ -52,12 +52,7 @@ class Console extends \Psc\Object {
   
   public function addCommands() {
     $this->cli->addCommands(array_merge(array(
-      new BuildPharCommand(),
-      
       new \Psc\System\Console\CreateUserCommand(),
-      
-      new CreateClassCommand(),
-      new CreateTestCommand(),
       
       new CompileTestEntitiesCommand(),
       

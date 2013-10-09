@@ -37,8 +37,6 @@ class ProjectConsole extends \Psc\System\Console\Console {
   
   public function addCommands() {
     $this->cli->addCommands(array_merge(array(
-      new \Psc\System\Console\CreateClassCommand(),
-      new \Psc\System\Console\CreateTestCommand(),
       new \Psc\System\Console\CreateControllerCommand(),
       new \Psc\System\Console\WriteHtaccessCommand(),
       
