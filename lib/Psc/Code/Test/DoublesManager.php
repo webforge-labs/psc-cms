@@ -35,7 +35,7 @@ class DoublesManager extends \Psc\Object {
     \Psc\Code\Code::value($methodString, 'GET','POST');
     
     $project = \Psc\PSC::getProject();
-    $baseUrl = $project->getBaseURL();
+    $baseUrl = $project->getHostUrl('base');
     
     $SERVER = array (
                       'HTTP_HOST' => $baseUrl->getHost(),
@@ -46,7 +46,7 @@ class DoublesManager extends \Psc\Object {
                       'HTTP_ACCEPT_CHARSET' => 'ISO-8859-1,utf-8;q=0.7,*;q=0.7',
                       'HTTP_CONNECTION' => 'keep-alive',
                       'SERVER_NAME' => $baseUrl->getHost(),
-                      'DOCUMENT_ROOT' => (string) $project->getHtdocs(),
+                      'DOCUMENT_ROOT' => (string) $project->dir('www'),
                       'REDIRECT_QUERY_STRING' => 'request='.$resource,
                       'REDIRECT_URL' => $resource,
                       'GATEWAY_INTERFACE' => 'CGI/1.1',
