@@ -5,12 +5,12 @@ namespace Psc\Doctrine;
 use Psc\Doctrine\TestEntities\Tag;
 use Psc\Doctrine\TestEntities\Article;
 
-require_once __DIR__.DIRECTORY_SEPARATOR.'ActionsCollectionSynchronizerTest.php';
+require_once __DIR__.DIRECTORY_SEPARATOR.'SynchronizerTestCase.php';
 
 /**
  * @group class:Psc\Doctrine\PersistentCollectionSynchronizer
  */
-class PersistentCollectionSynchronizerTest extends ActionsCollectionSynchronizerTest {
+class PersistentCollectionSynchronizerTest extends SynchronizerTestCase {
   
   public function testAcceptanceSynchronization_toCollectionAsObjectsWithId() {
     $o = function ($id, $label) {
@@ -66,4 +66,3 @@ class PersistentCollectionSynchronizerTest extends ActionsCollectionSynchronizer
     $this->assertEquals($createdSynchronizer, $synchronizer);
   }
 }
-?>

@@ -6,9 +6,7 @@ use Psc\Doctrine\CollectionSynchronizer;
 use Psc\Doctrine\TestEntities\Tag;
 use Psc\Data\ArrayCollection;
 
-// nicht verwirren lassen, wir benutzen von diesem test nur die testdaten + die custom assertion
-require_once __DIR__.DIRECTORY_SEPARATOR.'ActionsCollectionSynchronizerTest.php';
-
+require_once __DIR__.DIRECTORY_SEPARATOR.'SynchronizerTestCase.php';
 
 /**
  * Ein CollectionSynchronizer für End-to-End Entity Synchronization
@@ -16,7 +14,7 @@ require_once __DIR__.DIRECTORY_SEPARATOR.'ActionsCollectionSynchronizerTest.php'
  * anders als der PersistentCollectionSynchronizer geht dieser davon aus, dass die $toCollection komplett hydriert ist
  * @group class:Psc\Doctrine\CollectionSynchronizer
  */
-class CollectionSynchronizerTest extends ActionsCollectionSynchronizerTest {
+class CollectionSynchronizerTest extends SynchronizerTestCase {
   
   public function testAcceptanceSynchronization() {
     $synchronizer = CollectionSynchronizer::createFor(
@@ -56,4 +54,3 @@ class CollectionSynchronizerTest extends ActionsCollectionSynchronizerTest {
     );
   }
 }
-?>
