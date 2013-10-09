@@ -24,6 +24,7 @@ $conf['doctrine']['entities']['names'] = array();
 $conf['project']['cmsOnly'] = TRUE;
 $conf['project']['title'] = 'Psc - CMS';
 
+$conf['tests']['personal-directories'] = TRUE;
 $conf['fixture']['config']['variable'] = 'valueinpsc-cms';
 
 $conf['ContactForm']['recipient'] = 'info@ps-webforge.com';

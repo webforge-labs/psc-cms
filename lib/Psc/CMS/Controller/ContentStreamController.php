@@ -210,6 +210,6 @@ abstract class ContentStreamController extends \Psc\CMS\Controller\ContainerCont
   
   protected function getBaseUrl() {
     // lets get dirty
-    return $this->dc->getModule()->getProject()->getBaseUrl();
+    return $this->dc->getModule()->getProject()->getHostUrl('base');
   }
 }

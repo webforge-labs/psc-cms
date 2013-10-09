@@ -5,6 +5,7 @@ namespace Psc\Net\StopForumSpam;
 use Webforge\Common\System\File;
 use Psc\System\Console\Process;
 use Psc\JS\JSONConverter;
+use Webforge\Common\System\ExecutableFinder;
 
 class Client {
   
@@ -20,7 +21,7 @@ class Client {
   }
   
   public static function create() {
-    $finder = new \Psc\System\ExecutableFinder();
+    $finder = new ExecutableFinder(array());
     $daemon = $finder->getExecutable('stop-forum-spam');
     
     return new static($daemon);
@@ -43,4 +44,3 @@ class Client {
     return $result;
   }
 }
-?>

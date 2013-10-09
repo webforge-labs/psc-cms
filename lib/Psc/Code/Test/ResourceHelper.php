@@ -12,9 +12,18 @@ use Webforge\Common\System\Dir;
 class ResourceHelper extends \Psc\Object {
   
   protected $project;
+
+  protected $usePersonalDirs;
+
+  /**
+   * @var string sub path to common dir in test-files (semantic location)
+   */
+  protected $commonDir;
   
-  public function __construct(\Webforge\Framework\Project $project) {
+  public function __construct(\Webforge\Framework\Project $project, $usePersonalDirs = NULL, $commonDir = NULL) {
     $this->project = $project;
+    $this->usePersonalDirs = $usePersonalDirs ?: $this->project->getConfiguration()->get(array('tests', 'personal-directories'), FALSE);
+    $this->commonDir = $commonDir ?: $this->project->getConfiguration()->get(array('tests', 'common-directory'), 'common/');
   }
   
   /**
@@ -26,9 +35,13 @@ class ResourceHelper extends \Psc\Object {
    * Was dann in diesem Dir liegt bleibt dem Test überlassen
    */
   public function getTestDirectory(\PHPUnit_Framework_TestCase $test) {
-    $testName = Code::getClassName(get_class($test));
+    if ($this->usePersonalDirs) {
+      $testName = Code::getClassName(get_class($test));
     
-    return $this->getFixturesDirectory()->sub($testName.'/');
+      return $this->getFixturesDirectory()->sub($testName.'/');
+    } else {
+      return $this->project->dir('test-files');
+    }
   }
   
   /**
@@ -36,7 +49,7 @@ class ResourceHelper extends \Psc\Object {
    *
    */
   public function getCommonDirectory() {
-    return $this->project->dir('test-files')->sub('common/');
+    return $this->project->dir('test-files')->sub($this->commonDir);
   }
   
   /**

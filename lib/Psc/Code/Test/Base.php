@@ -106,17 +106,21 @@ class Base extends \Webforge\Code\Test\Base {
   }
   
   /**
-   * Gibt das "persönliche" Verzeichnis für den Test im Filesystem zurück
+   * Returns the testing directory or the personal dir (old-style)
    *
+   * 
    * Erstellt das Directory wenn es nicht existiert
    */
   public function getTestDirectory($subDir = NULL) {
+    $project = $this->getProject();
+
     $dir = $this->getResourceHelper()->getTestDirectory($this);
     
     if (isset($subDir))
       $dir = $dir->sub($subDir);
       
     $dir->create();
+
     return $dir;
   }
   
