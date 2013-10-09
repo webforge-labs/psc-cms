@@ -237,13 +237,13 @@ class ModelCompilerTest extends \Psc\Code\Test\Base {
     extract($this->mc->getClosureHelpers());
     
     $this->mc->compile(
-      $entity('ContentStream\Image'),
+      $entity('ContentStreamTesting\Image'),
 
       $sm = $sourceMeta('Image'),
       $tm = $targetMeta('Image')
     );
     
-    $this->assertEquals('Psc\Entities\ContentStream\Image', $sm->getFQN());
+    $this->assertEquals('Psc\Entities\ContentStreamTesting\Image', $sm->getFQN());
     $this->assertEquals('Psc\Entities\Image', $tm->getFQN());
   }
 }
