@@ -20,7 +20,7 @@ class EntityBuilderAddRelationTest extends \Psc\Code\Test\Base {
   protected $entityBuilder;
   
   public function setUp() {
-    $this->module = \Psc\PSC::getProject()->getModule('Doctrine');
+    $this->module = $this->getModule('Doctrine');
 
     $this->game = new EntityRelationMeta(new GClass('Psc\Entities\Game'), 'source');
     $this->sound = new EntityRelationMeta(new GClass('Psc\Entities\Sound'), 'target');

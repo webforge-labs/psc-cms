@@ -24,7 +24,7 @@ class ProjectMainTest extends \Psc\Code\Test\Base {
     
     $this->assertInstanceOf('Psc\CMS\ProjectMain', $this->main);
     $this->assertInstanceof('Psc\Environment', $this->main->getEnvironment());
-    $this->assertInstanceof('Psc\CMS\Project', $project = $this->main->getProject());
+    $this->assertInstanceof('Webforge\Framework\Project', $project = $this->main->getProject());
     
     $this->assertInstanceOf('Psc\Net\HTTP\FrontController', $frontController = $this->main->getFrontController());
       $this->assertInstanceOf('Psc\Net\HTTP\RequestHandler', $frontController->getRequestHandler());
@@ -57,7 +57,7 @@ class ProjectMainTest extends \Psc\Code\Test\Base {
     $this->assertInstanceOf('Psc\CMS\UserManager', $userManager = $authController->getAuth()->getUserManager());
 
     $this->assertAttributeSame(
-      $this->em->getRepository($this->main->getProject()->getUserClass()),
+      $this->em->getRepository('Psc\Entities\User'),
       'repository',
       $userManager,
       'repository injected in userManager should be the same as in the test'

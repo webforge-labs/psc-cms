@@ -14,7 +14,7 @@ class CMSServiceTest extends \Psc\Code\Test\Base {
     $this->con = "tests";
     parent::setUp();
     
-    $this->dc = $this->getProject()->getModule('Doctrine')->createDoctrinePackage();
+    $this->dc = $this->getModule('Doctrine')->createDoctrinePackage();
     $this->service = new CMSService($this->getProject(), 'cms', $this->dc);
   }
   
@@ -35,10 +35,6 @@ class CMSServiceTest extends \Psc\Code\Test\Base {
   }
   
   public function testImageControllerRouting() {
-    if (!$this->project->isModuleExisting('Imagine')) {
-      $this->markTestSkipped('Install Imagine Module to run this test');
-    }
-    
     $hash = 's098sdfl324l3j45lkewj5r';
     $id = 7;
     

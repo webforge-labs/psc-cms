@@ -42,7 +42,7 @@ class EntityRelationInterfaceBuilderTest extends \Psc\Code\Test\Base {
    *  game<->game  in unlockGames
    */
   public function setUp() {
-    $this->module = \Psc\PSC::getProject()->getModule('Doctrine');
+    $this->module = $this->getModule('Doctrine');
 
     $this->article = new EntityRelationMeta(new GClass('Psc\Doctrine\TestEntities\Article'), 'source');
     $this->tag = new EntityRelationMeta(new GClass('Psc\Doctrine\TestEntities\Tag'), 'target');

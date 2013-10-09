@@ -22,7 +22,7 @@ class RightContentTest extends \Psc\Code\Test\HTMLTestCase implements DropConten
     $this->cmsRightContent = new RightContent($this->dc, $this->getTranslationContainer());
     
     $this->dc->expects($this->any())->method('getEntityMeta')
-             ->will($this->returnValue($this->getEntityMeta('user', $this->getProject()->getModule('Doctrine'))));
+             ->will($this->returnValue($this->getEntityMeta('user', $this->getModule('Doctrine'))));
              
     $this->list =  $this->getMock('Psc\UI\DropContentsList');
     $this->cmsRightContent->populateLists($this); // this tests implements DropContentsListCreater

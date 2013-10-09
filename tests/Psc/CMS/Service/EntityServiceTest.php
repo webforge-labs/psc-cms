@@ -20,7 +20,7 @@ class EntityServiceTest extends \Psc\Code\Test\ServiceBase {
     parent::setUp();
     
     $this->project = clone \Psc\PSC::getProject();
-    $this->dc = new \Psc\Doctrine\DCPackage($this->project->getModule('Doctrine'));
+    $this->dc = new \Psc\Doctrine\DCPackage($this->getModule('Doctrine'));
 
     $this->factory = new Factory('Psc\Test\Controllers', $this->getContainer());
     

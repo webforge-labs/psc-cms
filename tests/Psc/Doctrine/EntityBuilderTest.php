@@ -20,7 +20,7 @@ class EntityBuilderTest extends \Psc\Code\Test\Base {
   protected $entityBuilder;
   
   public function setUp() {
-    $this->module = \Psc\PSC::getProject()->getModule('Doctrine');
+    $this->module = $this->getModule('Doctrine');
   }
   
   public function assertPreConditions() {
