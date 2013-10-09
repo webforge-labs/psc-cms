@@ -297,4 +297,3 @@ CLASS_END;
     $this->assertEquals($classCode,$gClass->php());
   }
 }
-?>
