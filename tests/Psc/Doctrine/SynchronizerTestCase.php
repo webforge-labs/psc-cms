@@ -25,8 +25,11 @@ abstract class SynchronizerTestCase extends \Psc\Doctrine\DatabaseTestCase {
   }
 
   protected function setUpModule($module) {
+    /*
+    this is done in bootstrap.php
     $this->loadEntity('Psc\Doctrine\TestEntities\Tag', $module);
     $this->loadEntity($this->entityClass, $module);
+    */
   }
 
   // toCollection ist eine Repräsentation der Objekte aus dem Universum ($this->tags) als Tag labels oder als objekt: id,label

@@ -19,7 +19,11 @@ $container = new Container(__DIR__);
 $container->init();
 $container->initErrorHandlers();
 
-$container->bootstrapModule('Doctrine');
+$doctrine = $container->bootstrapModule('Doctrine');
+$ecmd = $doctrine->registerEntityClassesMetadataDriver()->getEntityClassesMetadataDriver();
+$ecmd->addClass('Psc\Doctrine\TestEntities\Tag');
+$ecmd->addClass('Psc\Doctrine\TestEntities\Article');
+
 $container->bootstrapModule('PHPExcel');
 $container->bootstrapModuleIfExists('Imagine');
 
