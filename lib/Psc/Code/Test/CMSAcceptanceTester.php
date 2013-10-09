@@ -33,6 +33,7 @@ class CMSAcceptanceTester extends \Psc\System\LoggerObject {
   
   public function __construct(Base $testCase, $entityName, $debug = FALSE) {
     $this->testCase = $testCase;
+    $this->hostConfig = $testCase->getHostConfig();
     $this->entityMeta = $this->getEntityMeta($entityName);
     $this->setDebug($debug);
     $this->getLogger()->setPrefix('[acceptance]');
@@ -305,7 +306,7 @@ class CMSAcceptanceTester extends \Psc\System\LoggerObject {
    * @return Psc\CMS\Code\Test\CMSRequestDispatcher
    */
   public function dispatcher($method, $url, $contentType = NULL, $publicRequest = FALSE) {
-    $dispatcher = new CMSRequestDispatcher($method, $url);
+    $dispatcher = new CMSRequestDispatcher($method, $url, $this->hostConfig);
     $dispatcher->setPublicRequest($publicRequest);
     
     if (isset($contentType)) {

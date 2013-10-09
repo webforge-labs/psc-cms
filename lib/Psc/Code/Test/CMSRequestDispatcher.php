@@ -39,11 +39,11 @@ class CMSRequestDispatcher extends \Psc\SimpleObject {
   
   public $sendDebugSessionCookie = FALSE;
 
-  public function __construct($method, $url, Configuration $hostConfig = NULL, Project $project = NULL) {
+  public function __construct($method, $url, Configuration $hostConfig, Project $project = NULL) {
     $this->url = $url;
     $this->method = $method;
     $this->project = $project ?: \Psc\PSC::getProject();
-    $this->hostConfig = $hostConfig ?: $this->project->getHostConfig();
+    $this->hostConfig = $hostConfig;
   }
   
   /**
@@ -133,9 +133,9 @@ class CMSRequestDispatcher extends \Psc\SimpleObject {
   
   protected function expandUrl($url) {
     if ($this->publicRequest) {
-      $baseUrl = $this->project->getBaseURL();
+      $baseUrl = $this->project->getHostUrl('base');
     } else {
-      $baseUrl = $this->project->getCMSBaseURL();
+      $baseUrl = $this->project->getHostUrl('cms');
     }
 
     return $baseUrl.ltrim($url,'/');
