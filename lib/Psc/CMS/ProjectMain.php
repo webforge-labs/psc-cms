@@ -522,7 +522,7 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
           $this->getUserManager()
         )
       );
-      $this->authController->setUserClass($this->getProject()->getUserClass());
+      $this->authController->setUserClass($this->getUserClass($this->getProject()));
       $this->authController->setHTMLPage($this->createHTMLPage());
     }
       
@@ -532,7 +532,7 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
   public function getUserManager() {
     return new UserManager(
       $this->getDoctrinePackage()->getEntityManager()->getRepository(
-        $this->getProject()->getUserClass()
+        $this->getUserClass($this->getProject())
       )
     );
   }
@@ -547,6 +547,10 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
   
   public function getProject() {
     return $this->project;
+  }
+
+  public function getUserClass(WebforgeProject $project) {
+    return $this->getDoctrinePackage()->getModule()->getEntityName('User');
   }
   
   public function getUser() {
