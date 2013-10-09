@@ -88,6 +88,9 @@ Psc\Code\Test\EntityAsserter
 Psc\Doctrine\EntityBuilder
   - module is not optional  
 
+Psc\Net\HTTP\FrontController
+  - requesthandler argument is no longer optional
+
 ## CLI Commands  
 
   - create-test was removed (use webforge)

@@ -31,9 +31,8 @@ class FrontController extends \Psc\SimpleObject {
    */
   protected $errorDocuments;
   
-  public function __construct(RequestHandler $requestHandler = NULL, $debugLevel = 0, Array $errorDocuments = array()) {
-    $this->requestHandler = $requestHandler ?:
-      new RequestHandler(PSC::getProject()->getMainService());
+  public function __construct(RequestHandler $requestHandler, $debugLevel = 0, Array $errorDocuments = array()) {
+    $this->requestHandler = $requestHandler;
     
     $this->setDebugLevel($debugLevel);
     $this->setErrorDocuments($errorDocuments);
