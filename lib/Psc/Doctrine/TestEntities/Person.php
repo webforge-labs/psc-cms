@@ -22,4 +22,3 @@ class Person extends CompiledPerson {
     return 'Psc\Doctrine\TestEntities\Person';
   }
 }
-?>

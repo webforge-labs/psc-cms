@@ -20,9 +20,12 @@ $container->init();
 $container->initErrorHandlers();
 
 $doctrine = $container->bootstrapModule('Doctrine');
-$ecmd = $doctrine->registerEntityClassesMetadataDriver()->getEntityClassesMetadataDriver();
-$ecmd->addClass('Psc\Doctrine\TestEntities\Tag');
-$ecmd->addClass('Psc\Doctrine\TestEntities\Article');
+$doctrine->registerEntityClassesMetadataDriver()->getEntityClassesMetadataDriver()
+  ->addClass('Psc\Doctrine\TestEntities\Tag')
+  ->addClass('Psc\Doctrine\TestEntities\Article')
+  ->addClass('Psc\Doctrine\TestEntities\Category')
+  ->addClass('Psc\Doctrine\TestEntities\Person')
+;  
 
 $container->bootstrapModule('PHPExcel');
 $container->bootstrapModuleIfExists('Imagine');

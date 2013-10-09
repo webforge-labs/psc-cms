@@ -24,4 +24,3 @@ class Category extends CompiledCategory implements \Psc\CMS\DefaultRequestableEn
     return 'Psc\Doctrine\TestEntities\Category';
   }
 }
-?>
