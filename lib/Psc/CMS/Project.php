@@ -9,6 +9,7 @@ use Psc\PSC;
 use Psc\Config;
 use Psc\Code\Generate\GClass;
 use Psc\Code\Event\Event;
+use Webforge\Configuration\Configuration;
 
 class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber, \Webforge\Framework\Project {
   
@@ -48,6 +49,8 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber, \Webfor
   protected $loadedWithPhar = FALSE;
   
   public $loadedFromPackage = FALSE;
+
+  protected $modules;
   
   /**
    * @var const MODE_*
@@ -159,7 +162,7 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber, \Webfor
     
     if (!isset($this->config)) {
       /* Überschreibe alle Werte aus der ProjectConfig mit denen aus der Hostconfig in Defaults */
-      $this->config = new Configuration();
+      $this->config = new Configuration(array());
       $this->config->merge($this->hostConfig, array('defaults'));
       
       /* globals sind einfach immer käse ....
@@ -207,28 +210,11 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber, \Webfor
 
 
   /**
-   *
-   */
-  public function runTools() {  
-    if (Config::req('cms.enableTools') == TRUE) {
-      PSC::registerTools();
-    }
-  }
-  
-  /**
    * @return Psc\CMS\Module
    */
   public function getModule($name) {
-    if (array_key_exists($name, $this->modules))
-      return $this->modules[$name];
-      
-    if ($this->isModule($name)) {
-      return $this->createModule($name);
-    }
-
-    throw new \Psc\ModuleNotFoundException('Modul nicht bekannt: '.$name);
+    return $this->modules->get($name);
   }
-  
   
   public function bootstrapModuleIfExists($name) {
     return $this->modules->bootstrapIfExists($name);
@@ -249,17 +235,7 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber, \Webfor
     return $this->modules->isModule($name);
   }
   
-  /**
-   * Erstellt ein neues Modul
-   *
-   * wird nur einmal aufgerufen pro Request
-   * vorher wurde mit isModule ($name) bereits überprüft
-   * @return Psc\CMS\Module
-   */
-  protected function createModule($name) {
-    return $this->modules->create($name);
-  }
-  
+
   public function buildPhar(Dir $out, $check = FALSE, $buildName = 'default') {
     $builder = new \Psc\Code\Build\ProjectBuilder($this, $buildName);
     
@@ -414,6 +390,10 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber, \Webfor
   public function getHost() {
     return $this->hostConfig->req('host');
   }
+
+  public function getHostUrl($type = 'base') {
+    return $type === 'cms' ? $this->getCMSBaseUrl() : $this->getBaseUrl();
+  }
   
   /**
    * @return Psc\URL\SimpleURL
@@ -426,7 +406,6 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber, \Webfor
           
         } elseif (($pattern = $this->hostConfig->get(array('url','hostPattern'))) != NULL) {
           $url = sprintf($pattern, $this->getLowerName(), $this->getName());
-        } elseif (($url = \Psc\URL\Helper::getURL(NULL, \Psc\URL\Helper::ABSOLUTE)) != NULL) {
   
         } else {
           throw new \Psc\Exception('Keine Config Variablen gefunden');

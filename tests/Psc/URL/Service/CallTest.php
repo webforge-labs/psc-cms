@@ -16,5 +16,3 @@ class CallTest extends \Psc\Code\Test\Base {
     $this->assertEquals(Call::UNDEFINED,$call->getParameter(1));
   }
 }
-
-?>

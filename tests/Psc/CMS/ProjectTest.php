@@ -2,6 +2,8 @@
 
 namespace Psc\CMS;
 
+use Webforge\Configuration\Configuration AS WebforgeConfiguration;
+
 /**
  * @group class:Psc\CMS\Project
  */
@@ -104,7 +106,6 @@ $conf['defaults']['debug']['errorRecipient']['mail'] = NULL; // denn lokal wolle
 /* CMS / HTTP */
 $conf['defaults']['js']['url'] = '/js/';
 
-    return new Configuration($conf);
+    return new WebforgeConfiguration($conf);
   }
 }
-?>

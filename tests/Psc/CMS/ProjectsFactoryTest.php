@@ -3,6 +3,7 @@
 namespace Psc\CMS;
 
 use \Psc\PSC;
+use Webforge\Configuration\Configuration;
 
 /**
  * @group class:Psc\CMS\ProjectsFactory
