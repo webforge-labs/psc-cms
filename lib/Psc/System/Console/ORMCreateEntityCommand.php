@@ -62,7 +62,7 @@ class ORMCreateEntityCommand extends Command {
   
   protected function execute(InputInterface $input, OutputInterface $output) {
     $overwrite = $input->getOption('overwrite') ? EntityBuilder::OVERWRITE : NULL;
-    $builder = new EntityBuilder($input->getArgument('name'), \Psc\PSC::getProject()->getModule('Doctrine'));
+    $builder = new EntityBuilder($input->getArgument('name'), $this->getDoctrinePackage()->getModule());
     
     $entity = ($input->getOption('with-entity') != 'false');
     $builder->setWithRepository($repo = ($input->getOption('with-repository') != 'false'));

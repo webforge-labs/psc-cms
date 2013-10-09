@@ -54,4 +54,3 @@ class ProjectConsole extends \Psc\System\Console\Console {
     ), $this->includeCommands()));
   }
 }
-?>

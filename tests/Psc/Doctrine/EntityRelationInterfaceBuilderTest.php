@@ -231,7 +231,7 @@ class EntityRelationInterfaceBuilderTest extends \Psc\Code\Test\Base {
     // es ist auch möglich hier den builder direkt zu testen, jedoch müssen wir dann ein bißchen funktionalität auslassen
     // außerdem wird das relation interface von den entitybuilder tests gar nicht abgedeckt
     
-    $builder = new EntityBuilder($gClass);
+    $builder = new EntityBuilder($gClass, $this->module);
     $builder->buildRelation($relation);
     
     return $gClass;

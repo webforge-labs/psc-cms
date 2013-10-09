@@ -103,8 +103,8 @@ class EntityBuilder extends \Psc\Code\Generate\ClassBuilder {
   /**
    * @param string $entityName der name des Entities ohne den EntitiesNamespace davor
    */
-  public function __construct($entity, Module $doctrineModule = NULL, ClassWriter $classWriter = NULL, TypeExporter $DCTypeExporter = NULL, Array $languages = array()) {
-    $this->module = $doctrineModule ?:  \Psc\PSC::getProject()->getModule('Doctrine');
+  public function __construct($entity, Module $doctrineModule, ClassWriter $classWriter = NULL, TypeExporter $DCTypeExporter = NULL, Array $languages = array()) {
+    $this->module = $doctrineModule;
     
     if (!($entity instanceof GClass)) {
       $entity = new GClass($this->getDefaultNamespace().'\\'.$entity);

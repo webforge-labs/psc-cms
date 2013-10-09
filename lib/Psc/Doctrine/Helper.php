@@ -244,11 +244,11 @@ class Helper {
    * @return string
    */
   public static function getEntityName($input) {
-    return PSC::getProject()->getModule('Doctrine')->getEntityName($input);
+    throw new DeprecatedException('use Module::getEntityName instead');
   }
   
   public static function getDefaultNamespace() {
-    return PSC::getProject()->getModule('Doctrine')->getEntitiesNamespace();
+    throw new DeprecatedException('use Module::getEntitiesNamespace instead');
   }
   
   public static function dump($item,$maxDepth = 3) {
