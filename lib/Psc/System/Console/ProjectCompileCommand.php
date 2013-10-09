@@ -15,8 +15,7 @@ use Psc\PSC;
 use Webforge\Common\System\Dir;
 use Webforge\Common\System\File;
 
-
-class ProjectCompileCommand extends \Psc\System\Console\Command {
+class ProjectCompileCommand extends \Psc\System\Console\DoctrineCommand {
 
   protected function configure() {
     $this
@@ -84,11 +83,10 @@ class ProjectCompileCommand extends \Psc\System\Console\Command {
   }
   
   protected function doDefaultCompile(\Symfony\Component\Console\Input\InputInterface $input, \Symfony\Component\Console\Output\OutputInterface $output) {
-    $module = \Psc\PSC::getProject()->getModule('Doctrine');
-    $namespace = \Psc\PSC::getProject()->getNamespace();
+    $namespace = $this->getProject()->getNamspace();
     $compilerClass = $namespace.'\Entities\Compiler';
     
-    $compiler = new $compilerClass(new \Psc\Doctrine\DCPackage($module, $module->getEntityManager()));
+    $compiler = new $compilerClass($this->getDoctrinePackage());
     try {
       $compiler->compile();
     } catch (\Exception $e) {

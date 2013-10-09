@@ -73,7 +73,7 @@ class CompileTestEntitiesCommand extends DoctrineCommand {
   protected function doExecute($input, $output) {
     $this->ccompiler = new \Psc\CMS\CommonProjectCompiler($this->dc);
     
-    $this->modelCompiler = new ModelCompiler();
+    $this->modelCompiler = new ModelCompiler($this->dc->getModule());
     $this->modelCompiler->setOverwriteMode(TRUE);
 
     $filter = mb_strtolower($input->getOption('filter'));

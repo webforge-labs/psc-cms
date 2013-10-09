@@ -52,7 +52,7 @@ class ModelCompiler extends \Psc\SimpleObject {
    */
   protected $languages = array();
   
-  public function __construct(Module $module = NULL, ClassWriter $classWriter = NULL) {
+  public function __construct(Module $module, ClassWriter $classWriter = NULL) {
     $this->classWriter = $classWriter; // wird dann als NULL an entityBuilder weitergegeben per Default
     $this->module = $module; // siehe createEntityBuilder
   }

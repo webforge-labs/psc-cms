@@ -19,7 +19,7 @@ class ModelCompilerTest extends \Psc\Code\Test\Base {
 
   public function setUp() {
     $this->chainClass = 'Psc\Doctrine\ModelCompiler';
-    $this->module = PSC::getProject()->getModule('Doctrine');
+    $this->module = $this->getModule('Doctrine');
     $this->classWriter = $this->getMock('Psc\Code\Generate\ClassWriter');
     
     $this->mc = new ConcreteModelCompiler($this->module, $this->classWriter);
@@ -30,23 +30,13 @@ class ModelCompilerTest extends \Psc\Code\Test\Base {
     $classWriter = new ClassWriter();
     
     // cw
-    $mc = new ConcreteModelCompiler(NULL, $classWriter);
+    $mc = new ConcreteModelCompiler($this->module, $classWriter);
     $eb = $mc->createEntityBuilder('neuesEntity');
     $this->assertSame($classWriter,$eb->getClassWriter());
     
-    $mc = new ConcreteModelCompiler(NULL, NULL);
+    $mc = new ConcreteModelCompiler($this->module, NULL);
     $eb = $mc->createEntityBuilder('neuesEntity');
     $this->assertNotSame($classWriter,$eb->getClassWriter());
-    
-    // module
-    $module = new Module(PSC::getProject());
-    $mc = new ConcreteModelCompiler($module, NULL);
-    $eb = $mc->createEntityBuilder('neuesEntity');
-    $this->assertSame($module,$eb->getModule());
-    
-    $mc = new ConcreteModelCompiler(NULL, NULL);
-    $eb = $mc->createEntityBuilder('neuesEntity');
-    $this->assertNotSame($module,$eb->getModule());
   }
 
   public function testClosureCompilers_entity() {
@@ -308,4 +298,3 @@ class ConcreteModelCompiler extends ModelCompiler {
     );
   }
 }
-?>

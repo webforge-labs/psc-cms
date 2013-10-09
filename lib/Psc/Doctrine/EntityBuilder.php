@@ -537,7 +537,7 @@ class EntityBuilder extends \Psc\Code\Generate\ClassBuilder {
     if ($class->getNamespace() === $this->module->getEntitiesNamespace()) {
       $file= $this->module->getEntitiesPath()->getFile($class->getClassName().'.php');
     } else {
-      $file = $this->module->getProject()->getClassFile($class);
+      $file = Code::mapClassToFile($class->getFQN(), $this->module->getProject()->dir('lib'));
     }
     
     return $file;

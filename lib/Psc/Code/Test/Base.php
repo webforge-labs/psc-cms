@@ -165,17 +165,11 @@ class Base extends \Webforge\Code\Test\Base {
    * @param $name der Name der Entities in klein in plural
    */
   public function loadTestEntities($name, \Psc\Doctrine\Module $module = NULL) {
-    //$module = $module ?: PSC::getProject()->getModule('Doctrine');
-    
-    //$class = $module->getEntityName(\Psc\Inflector::singular($name));
-    // $this->loadEntity($class, $module); // mittlerweile automatisch
-    
-    // vll auch ergebnis einen rausnehmen und davon die klasse laden?
     return $this->getResourceHelper()->getEntities($name);
   }
 
   public function loadEntity($entityClass, \Psc\Doctrine\Module $module = NULL) {
-    $module = $module ?: PSC::getProject()->getModule('Doctrine');
+    $module = $module ?: $this->getModule('Doctrine');
     $module->registerEntityClassesMetadataDriver()->getEntityClassesMetadataDriver()->addClass($entityClass);
     return $this;
   }

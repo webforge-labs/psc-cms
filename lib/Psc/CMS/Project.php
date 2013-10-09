@@ -259,14 +259,6 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber, \Webfor
     return $this->getRoot()->sub('base/')->exists();
   }
   
-  public function getCommandsFile() {
-    if ($this->isOldStyle()) {
-      return $this->getSrc()->getFile('inc.commands.php');
-    } else {
-      return $this->getRoot()->getFile('lib/inc.commands.php');
-    }
-  }
-
   /**
    * @return File
    */

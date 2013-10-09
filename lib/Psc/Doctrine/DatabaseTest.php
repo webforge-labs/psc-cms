@@ -38,7 +38,7 @@ class DatabaseTest extends \Psc\Code\Test\NativeDatabaseTest {
   public function setUp() {
     $this->configure();
     
-    $this->module = PSC::getProject()->getModule('Doctrine'); 
+    $this->module = $this->getModule('Doctrine'); 
     $this->module->setConnectionName($con = $this->configuration->req(array('doctrine','connectionName'))); // dsa ist nur für doofe tests die entityManager reset mit leerem Parameter aufrufen
     
     // hier ist getEntityManager nochmal explizit mit $con
