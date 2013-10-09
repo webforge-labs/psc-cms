@@ -2,8 +2,6 @@
 
 namespace Psc\JS;
 
-require_once 'JParser'.DIRECTORY_SEPARATOR.'autoload.php';
-
 class JParser extends \JParser {
   
   public static function dumpNode($node) {
