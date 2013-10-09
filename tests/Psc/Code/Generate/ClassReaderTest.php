@@ -3,7 +3,7 @@
 namespace Psc\Code\Generate;
 
 use Psc\Code\Generate\ClassReader;
-use Psc\PSC;
+use Webforge\Common\System\File;
 
 /**
  * @group class:Psc\Code\Generate\ClassReader
@@ -21,7 +21,8 @@ class ClassReaderTest extends \Psc\Code\Test\Base {
   }
   
   public function testGetClass() {
-    $classReader = new ClassReader(PSC::getProject()->getClassFile('Psc\Code\Generate\ClassReader'));
+    $cr = new \ReflectionClass($this->chainClass);
+    $classReader = new ClassReader(new File($cr->getFileName()));
     // wir testen ob der ClassReader die GClass korrekt setzt, wenn wir nur die Datei übergeben
     $this->assertInstanceof('Psc\Code\Generate\GClass',$gClass = $classReader->getClass());
     $this->assertEquals('Psc\Code\Generate\ClassReader', $gClass->getFQN());

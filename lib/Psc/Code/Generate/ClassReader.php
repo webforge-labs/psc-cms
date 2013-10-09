@@ -16,7 +16,7 @@ use Psc\Code\Code;
  *
  * später mal können wir auch nach Kommentaren schauen, die nicht innerhalb von Methoden-Bodys oder CodeBlöcken stehen
  * Der ClassReader kann dann an den ClassWriter gegeben werden, der dann die Datei wieder schreibt
- *
+ * 
  * @TODO auch interfaces müssen speziell geparsed werden (wie use statements) da diese nicht mit reflection getracked werden können, wo sie mit "implements" hinzugefügt wurden
  */
 class ClassReader extends \Psc\SimpleObject {
@@ -77,8 +77,8 @@ class ClassReader extends \Psc\SimpleObject {
    * @return Webforge\Common\System\File
    */
   protected function getGClassFromFile() {
-    // @TODO geht nicht für projektfremde Dateien
-    $gClass = \Psc\PSC::getProject()->getClassFromFile($this->file);
+    $project = \Psc\PSC::getProject();
+    $gClass = new GClass(Code::mapFileToClass($this->file, $project->dir('lib')));
     $gClass->setSrcFileName((string) $this->file); // damit wir wirklich fremde sourcen angeben können
     return $gClass;
   }
@@ -87,4 +87,3 @@ class ClassReader extends \Psc\SimpleObject {
     return $this->file;
   }
 }
-?>
