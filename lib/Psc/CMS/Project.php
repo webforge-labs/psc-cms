@@ -153,7 +153,7 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber, \Webfor
   
   public function initConfiguration($projectConfig = NULL) {
     if (isset($projectConfig)) {
-      $this->config = new Configuration();
+      $this->config = new Configuration(array());
       $this->config->merge($this->hostConfig, array('defaults'));
       
       $this->config->merge($projectConfig);
