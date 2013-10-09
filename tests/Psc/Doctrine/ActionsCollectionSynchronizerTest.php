@@ -17,22 +17,24 @@ class ActionsCollectionSynchronizerTest extends \Psc\Doctrine\DatabaseTestCase {
   public function setUp() {
     $this->chainClass = 'Psc\Doctrine\PersistanceCollectionSynchronizer';
     $this->entityClass = 'Psc\Doctrine\TestEntities\Article';
+
+    $this->fixtures  = array(
+      new TestEntities\TagsFixture(),
+      new TestEntities\ArticlesFixture()
+    );
+
     parent::setUp();
+    $this->loadEntity($this->entityClass, $this->module);
+
     $this->repository = $this->em->getRepository($this->entityClass);
     $this->tagRepository = $this->em->getRepository('Psc\Doctrine\TestEntities\Article');
     
-    //$this->startDebug();
-    $this->loadArticleFixture();
     $this->articleId = 1;
   }
-  
-  protected function loadArticleFixture() {
-    $articles = $this->loadTestEntities('articles');
-    $article = $articles['a1'];    
-    
-    $this->dcFixtures->add(new TestEntities\TagsFixture());
-    $this->dcFixtures->add(new TestEntities\ArticlesFixture());
-    $this->dcFixtures->execute();
+
+  protected function setUpModule($module) {
+    $this->loadEntity('Psc\Doctrine\TestEntities\Tag', $module);
+    $this->loadEntity($this->entityClass, $module);
   }
 
   public function testFixture() {
@@ -153,4 +155,3 @@ class ActionsCollectionSynchronizerTest extends \Psc\Doctrine\DatabaseTestCase {
     parent::tearDown();
   }
 }
-?>

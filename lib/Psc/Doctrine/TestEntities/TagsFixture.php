@@ -32,4 +32,3 @@ class TagsFixture extends \Psc\Doctrine\Fixture {
     return 5;
   }
 }
-?>

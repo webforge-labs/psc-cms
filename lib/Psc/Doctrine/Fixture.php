@@ -8,4 +8,3 @@ abstract class Fixture extends AbstractFixture {
 
   // load(\Doctrine\Common\Persistence\ObjectManager $em)
 }
-?>

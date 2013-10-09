@@ -12,6 +12,7 @@ use Webforge\Translation\ArrayTranslator;
 use Webforge\Translation\Translator;
 use Psc\CMS\Translation\Container as TranslationContainer;
 use Webforge\Translation\TranslationsBuilder;
+use Psc\Doctrine\DCPackage;
 
 /**
  */
@@ -70,6 +71,13 @@ class Base extends \Webforge\Code\Test\Base {
   public function getHostConfig() {
     return $this->getCMSContainer()->getHostConfig();
   }
+
+  /**
+   * @return Psc\Doctrine\DCPackage
+   */
+  public function getDoctrinePackage() {
+    return new DCPackage($module = $this->getModule('Doctrine'), $module->getEntityManager('tests'));
+  }
   
   public function getCodeTester() {
     return $this->test;
@@ -83,7 +91,7 @@ class Base extends \Webforge\Code\Test\Base {
    */
   public function getResourceHelper() {
     if (!isset($this->resourceHelper)) {
-      $this->resourceHelper = new ResourceHelper(PSC::getProject());
+      $this->resourceHelper = new ResourceHelper($this->getProject());
     }
     return $this->resourceHelper;
   }

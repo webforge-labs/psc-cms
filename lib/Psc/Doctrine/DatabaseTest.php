@@ -269,7 +269,7 @@ class DatabaseTest extends \Psc\Code\Test\NativeDatabaseTest {
   }
   
   public function getHydrator($entity) {
-    return new \Psc\Doctrine\Hydrator($this->getEntityName($entity), $this->em);
+    return new \Psc\Doctrine\Hydrator($this->getEntityName($entity), $this->dc);
   }
   
   public function installEntity($entityName) {

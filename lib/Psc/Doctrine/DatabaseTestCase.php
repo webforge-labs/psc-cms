@@ -76,6 +76,7 @@ abstract class DatabaseTestCase extends \Psc\Code\Test\HTMLTestCase {
     parent::setUp();
     
     $this->module = $this->getModule('Doctrine');
+    $this->setUpModule($this->module);
     $this->setUpEntityManager();
     $this->dc = $this->getDoctrinePackage();
 
@@ -86,6 +87,8 @@ abstract class DatabaseTestCase extends \Psc\Code\Test\HTMLTestCase {
       self::$setupDatabase = FALSE;
     }
   }
+
+  protected function setUpModule($module) {}
 
   protected function setUpEntityManager() {
     $this->em = $this->module->getEntityManager($this->con, $reset = TRUE, $resetConnection = TRUE);
@@ -232,5 +235,4 @@ abstract class DatabaseTestCase extends \Psc\Code\Test\HTMLTestCase {
                         'Collections sind nicht gleich'
                        );
   }
-  
 }

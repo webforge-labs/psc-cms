@@ -30,4 +30,3 @@ class Tag extends CompiledTag {
     return sprintf('Tag: %s', $this->label);
   }
 }
-?>
