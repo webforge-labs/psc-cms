@@ -15,6 +15,19 @@ use Webforge\FatalErrorHandler;
 
 class PSC {
 
+  const PATH_HTDOCS = 'htdocs';
+  const PATH_BASE = 'base';
+  const PATH_CACHE = 'cache';
+  const PATH_SRC = 'src';
+  const PATH_CLASS = 'class';
+  const PATH_BIN = 'bin';
+  const PATH_TPL = 'tpl';
+  const PATH_TESTDATA = 'testdata';
+  const PATH_TESTS = 'tests';
+  const PATH_FILES = 'files';
+  const PATH_BUILD = 'build';
+  const PATH_VENDOR = 'vendor';  
+
   /**
    * @var Psc\Environment
    */
