@@ -34,4 +34,3 @@ class CreateBootstrapTaskTest extends \Psc\Code\Test\Base {
     $this->assertContains("('Imagine')->bootstrap()", $contents);
   }
 }
-?>

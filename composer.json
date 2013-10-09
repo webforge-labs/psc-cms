@@ -12,9 +12,7 @@
     "psr-0": {
       "Psc": ["lib/", "tests/"],
       "Hitch": ["application/src/hitch/lib/"],
-      "PHPWord": ["application/src/PHPWord/"],
-      "Webforge": "D:\\www\\webforge\\lib",
-      "Psc\\Image": "D:\\www\\psc-cms-image\\lib"
+      "PHPWord": ["lib/PHPWord/"]
     },
     "files": [
       "lib/JParser/autoload.php"
