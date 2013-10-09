@@ -120,7 +120,6 @@ class Helper {
    *
    */
   public static function loadModule() {
-    PSC::getProject()->getModule('Swift')->bootstrap();
+    $GLOBALS['env']['container']->bootstrapModule('Swift');
   }
 }
-?>
