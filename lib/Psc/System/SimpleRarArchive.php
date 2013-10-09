@@ -5,6 +5,8 @@ namespace Psc\System;
 use Webforge\Common\String AS S;
 use Webforge\Common\System\File AS WebforgeFile;
 use Webforge\Common\System\Dir AS WebforgeDir;
+use Webforge\Common\System\ExecutableFinder;
+use Webforge\Common\System\Util as SystemUtil;
 
 class SimpleRarArchive extends \Psc\Object {
   
@@ -89,7 +91,7 @@ class SimpleRarArchive extends \Psc\Object {
    */
   protected function exec($command, Array $options = array(), $append = NULL) {
     $cmd = sprintf('%s %s%s %s%s',
-                   System::escapeExecutable($this->bin),
+                   SystemUtil::escapeShellArg($this->bin),
                    $command,
                    (count($options) > 0 ? \Webforge\Common\ArrayUtil::join($options,' -%s') : NULL), // das letzte ist schalterbearbeitung abschließen
                    (string) escapeshellarg($this->rar),

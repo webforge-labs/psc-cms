@@ -12,7 +12,7 @@ class HydratorTest extends \Psc\Doctrine\DatabaseTestCase {
     parent::setUp();
     
     $this->tagName = 'Psc\Doctrine\TestEntities\Tag';
-    $this->hydrator = new Hydrator($this->tagName, $this->em);
+    $this->hydrator = new Hydrator($this->tagName, $this->dc);
   }
   
   /**
@@ -46,4 +46,3 @@ class HydratorTest extends \Psc\Doctrine\DatabaseTestCase {
    return $tests;
   }
 }
-?>

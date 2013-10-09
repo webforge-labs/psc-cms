@@ -10,7 +10,7 @@ use Psc\PSC;
 class PSCTest extends \Psc\Code\Test\Base {
   
   public function testProjectIsDefined() {
-    $this->assertInstanceOf('Psc\CMS\Project', PSC::getProject());
+    $this->assertInstanceOf('Webforge\Framework\Project', PSC::getProject());
     $this->assertSame($this->getProject(), PSC::getProject());
   }
   

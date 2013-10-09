@@ -5,6 +5,7 @@ namespace Psc\System;
 use Psc\System\SimpleRarArchive;
 use Psc\CMS\Configuration;
 use Psc\PSC;
+use Webforge\Common\System\ExecutableFinder;
 
 /**
  * @group class:Psc\System\SimpleRarArchive
@@ -19,7 +20,7 @@ class SimpleRarArchiveTest extends \Psc\Code\Test\Base {
       // sonst macht der test hier keinen sinn
       $this->markTestSkipped('Kann Test nicht ausführen, da kein rar-Executable in der Config angegeben ist.');
     }
-    $this->finder = new ExecutableFinder($config);
+    $this->finder = new ExecutableFinder($config->get('executables'));
     
   }
   

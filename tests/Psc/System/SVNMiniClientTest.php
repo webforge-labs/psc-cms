@@ -12,10 +12,8 @@ class SVNMiniClientTest extends \Psc\Code\Test\Base {
   public function setUp() {
     $this->chainClass = 'Psc\System\SVN\MiniClient';
     parent::setUp();
-    
-    if (!is_dir('D:\www\TestRepos')) {
-      $this->markTestSkipped('test needs a local testing sandbox');
-    }
+
+    $this->markTestSkipped('test needs a local testing sandbox (dev test)');
     
     $this->miniClient = new SVNMiniClient();
     $this->repos = new Dir('D:\www\TestRepos\\');
@@ -23,7 +21,5 @@ class SVNMiniClientTest extends \Psc\Code\Test\Base {
   
   public function testCommitsASingleFile() {
     $this->miniClient->commitSinglePath($this->repos, 'Umsetzung/TODO.txt', 'the new contents for '.uniqid(), 'commited from test part xxx');
-    
   }
 }
-?>

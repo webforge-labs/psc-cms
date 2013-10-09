@@ -13,7 +13,7 @@ class ProcessTest extends \Psc\Code\Test\Base {
     $this->chainClass = 'Psc\System\Console\Process';
     parent::setUp();
     
-    $this->echoBat = \Psc\PSC::getProject()->getBin()->getFile('echo.bat');
+    $this->echoBat = \Psc\PSC::getProject()->dir('bin')->getFile('echo.bat');
     
     if (substr(PHP_OS, 0, 3) == 'WIN') {
       $this->binPath = 'C:\Program Files\\';

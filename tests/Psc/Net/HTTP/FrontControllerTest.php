@@ -15,20 +15,6 @@ class FrontControllerTest extends \Psc\Code\Test\Base {
     parent::setUp();
   }
 
-  public function testInit_noConstructorVars() {
-    $fc = $this->createFrontController();
-    
-    $this->assertChainable($fc->init($this->doublesManager->createHTTPRequest('GET','/klimm/bimm')));
-    
-    // RequestHandler sind gesetzt
-    $this->assertInstanceof('Psc\Net\HTTP\RequestHandler',$fc->getRequestHandler());
-    
-    // Psc\CMS\Service ist der Default-Service sozusagen
-    $services = $fc->getRequestHandler()->getServices();
-    $this->assertCount(1,$services);
-    $this->assertInstanceOf('Psc\CMS\Service\CMSService', current($services));
-  }
-  
   public function testFrontcontrollerReturnsResponse_evenExceptionHappens() {
     $mock = $this->createRequestHandlerMock();
     $mock->expects($this->once())

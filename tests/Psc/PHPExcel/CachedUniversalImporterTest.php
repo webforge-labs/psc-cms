@@ -12,7 +12,6 @@ class CachedUniversalImporterTest extends \Psc\Code\Test\Base {
   public function setUp() {
     $this->chainClass = 'Psc\PHPExcel\CachedUniversalImporter';
     parent::setUp();
-    \Psc\PSC::getProject()->getModule('PHPExcel')->bootstrap();
   }
   
   public function testSimpleImport() {

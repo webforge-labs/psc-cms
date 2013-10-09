@@ -29,11 +29,11 @@ class ComboBoxTest extends TestCase {
   }
   
   public function createComponent() {
-    $c = parent::createComponent()->dpi($this->getEntityMeta('Psc\Doctrine\TestEntities\Person'),
-                                          new \Psc\Doctrine\DCPackage()
-                                         );
+    $c = parent::createComponent()->dpi(
+      $this->getEntityMeta('Psc\Doctrine\TestEntities\Person'),
+      $this->getDoctrinePackage()
+    );
     
     return $c;
   }
 }
-?>

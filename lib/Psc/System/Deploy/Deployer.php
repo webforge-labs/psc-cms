@@ -89,7 +89,7 @@ class Deployer extends \Psc\System\LoggerObject {
       $this->init = true;
       $this->target = $this->deploymentsRoot->sub($this->project->getName().($this->variant ? '.'.$this->variant : NULL).'/');
       $this->targetProject = clone $this->project;
-      $this->targetProject->setRoot($this->getTarget());
+      $this->targetProject->setRootDirectory($this->getTarget());
     }
     
     return $this;

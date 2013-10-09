@@ -29,7 +29,7 @@ class ComboDropBoxTest extends TestCase {
   }
   public function createComponent() {
     $comboDropBox = new ComboDropBox();
-    $comboDropBox->dpi($this->getEntityMeta('Psc\Doctrine\TestEntities\Tag'), new \Psc\Doctrine\DCPackage());
+    $comboDropBox->dpi($this->getEntityMeta('Psc\Doctrine\TestEntities\Tag'), $this->getDoctrinePackage());
     return $comboDropBox;
   }
   

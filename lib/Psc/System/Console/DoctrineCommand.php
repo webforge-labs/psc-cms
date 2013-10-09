@@ -28,15 +28,21 @@ class DoctrineCommand extends \Psc\System\Console\Command {
       'dry-run'
     );
   }
-  
-  protected function execute(InputInterface $input, OutputInterface $output) {
+
+  protected function initDoctrine(InputInterface $input, OutputInterface $output) {
     $con = $input->getOption('con');
     $output->writeln('<comment>**DoctrineCommand: working in: '.$con.'</comment>');
-    
+
     $this->module = $this->getDoctrineModule();
     $this->dc = new \Psc\Doctrine\DCPackage($this->module, $this->module->getEntityManager($con));
     $this->em = $this->dc->getEntityManager();
-    
+
+    return $con;
+  }
+  
+  protected function execute(InputInterface $input, OutputInterface $output) {
+    $this->initDoctrine($input, $output);
+
     if ($this->transactional) {
       $this->em->getConnection()->beginTransaction();
     }

@@ -4,7 +4,6 @@ namespace Psc\System\Deploy;
 
 use Webforge\Framework\Project;
 use Psc\TPL\TPL;
-use Webforge\Framework\Project;
 
 /**
  * @TODO diese Klasse würde viel schicker werden, wenn wir es andersrum machen:

@@ -39,18 +39,16 @@ class ORMSchemaCommand extends DoctrineCommand {
     }
   
   protected function execute(InputInterface $input, OutputInterface $output) {
+    $con = $this->initDoctrine($input, $output);
     $force = ($input->getOption('force') === TRUE) ? DoctrineHelper::FORCE : NULL;
-    $con = $input->getOption('con');
 
     if ($force == DoctrineHelper::FORCE) {
-      $output->writeln('Updating Schema (forced) fuer Connection: '.$con.' ');
+      $output->writeln('Updating Schema (forced)');
     } else {
-      $output->writeln("Printing Update-Schema SQL fuer Connection: ".$con);
+      $output->writeln("Printing Update-Schema SQL");
     }
     
-    $em = PSC::getProject()->getModule('Doctrine')->getEntityManager($con);
-    
-    $output->writeln($log = DoctrineHelper::updateSchema($force, "\n", $em));
+    $output->writeln($log = DoctrineHelper::updateSchema($force, "\n", $this->em));
     
     if ($force != DoctrineHelper::FORCE && empty($log)) {
       $output->writeln('nothing to do');
@@ -59,4 +57,3 @@ class ORMSchemaCommand extends DoctrineCommand {
     return 0;
   }
 }
-?>

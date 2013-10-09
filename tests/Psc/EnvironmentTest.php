@@ -7,7 +7,7 @@ use \Psc\PSC;
 /**
  * @group class:Psc\Environment
  */
-class EnvironmentTest extends \PHPUnit_Framework_TestCase {
+class EnvironmentTest extends \Psc\Code\Test\Base {
   
   protected $saveIncludePath;
   
@@ -39,9 +39,9 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase {
     if (PSC::isTravis()) {
       $this->markTestSkipped('include path kann in travis nicht geändert werden');
     }
-    
-    $src = (string) PSC::get(PSC::PATH_SRC)->append('/nichtiminc/');
-    $htdocs = (string) PSC::get(PSC::PATH_HTDOCS);
+
+    $src = (string) $this->getProject()->dir('lib')->sub('notininc');
+    $htdocs = (string) $this->getProject()->dir('www');
     $temp = 'D:\temp\sessions';
     $env = PSC::getEnvironment();
     
@@ -75,6 +75,5 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase {
   public function tearDown() {
     // nicht restore_include_path(), denn das nimmt auch den automatisch hinzugefügten include path für die tests hinzu
     set_include_path($this->saveIncludePath);
-  }
-  
+  }  
 }

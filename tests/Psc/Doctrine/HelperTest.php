@@ -121,17 +121,6 @@ class HelperTest extends \Psc\Code\Test\Base {
   }
   
   
-  public function testEmReCreate() {
-    $em = DoctrineHelper::em();
-    $em->close();
-    
-    $this->assertFalse($em->isOpen());
-    DoctrineHelper::reCreateEm();
-    
-    $em = DoctrineHelper::em();
-    $this->assertTrue($em->isOpen());
-  }
-  
   /**
    * @group coll
    */
