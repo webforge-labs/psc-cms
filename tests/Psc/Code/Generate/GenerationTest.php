@@ -185,69 +185,8 @@ CLASS_CODE;
     $this->assertEquals(TRUE,$prop2->isPublic());
     $this->assertEquals(TRUE,$prop2->isStatic());
     $this->assertEquals("public static \$prop2",$prop2->php());
-    
-    
-  }
-  
-  /**
-   * @depends testClass
-   */
-  public function testClassWriter() {
-    $writer = new ClassWriter();
-    $class = GClass::factory(__NAMESPACE__.'\\TestClass');
-    $class->setNamespace('Psc');
-    $class->setParentClass(new GClass('\Psc\Object')); // dsa fügen wir unten mit str_replace hinzu
-    $writer->setClass($class);
-    $writer->addImport(new GClass('Special\classn\In\nspace\Banane'));
-    
-    $compiledFile = new File('TestClass.compiled.php',PSC::get(PSC::PATH_TESTDATA));
-    if ($compiledFile->exists()) {
-      $compiledFile->delete();
-    }
-    $this->assertFalse($compiledFile->exists());
-    
-    $writer->write($compiledFile);
-    
-    $contents = $compiledFile->getContents();
-$code =
-'<?php
-
-namespace Psc;
-
-use Psc\Code\Generate\SomeClassForAHint,
-    stdClass,
-    Special\classn\In\nspace\Banane;
-
-'.self::$testClassCode.'
-?>';
-    
-    /* extends einfügen */
-    $code = str_replace('abstract class TestClass {','abstract class TestClass extends Object {',$code);
-    
-    //file_put_contents('D:\fixture.txt', $code);
-    //file_put_contents('D:\compiled.txt',$contents);
-    $this->assertEquals($code, $contents);
-    
-    $writer->syntaxCheck($compiledFile);
-    
-    $cought = FALSE;
-    try {
-      $writer = new ClassWriter();
-      $writer->setClass($class);
-      $writer->write($compiledFile);
-    } catch (\Psc\Code\Generate\ClassWritingException $e) {
-      // class exists
-      if ($e->getCode() == \Psc\Code\Generate\ClassWritingException::OVERWRITE_NOT_SET)
-        $cought = TRUE;
-    }
-    
-    if (!$cought) {
-      $this->fail('Klasse darf nicht Datei überschreiben, sondern muss eine Exception schmeissen');
-    }
   }
 }
-
-
 
 abstract class TestClass {
   
@@ -275,4 +214,3 @@ abstract class TestClass {
 
 class SomeClassForAHint {
 }
-?>
