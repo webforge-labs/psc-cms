@@ -276,4 +276,8 @@ class PSC {
   public static function isTravis() {
     return getenv('TRAVIS') === 'true';
   }
+
+  public static function isPHPUnit() {
+    return defined('PHPUnit_MAIN_METHOD');
+  }
 }
