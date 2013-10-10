@@ -13,7 +13,7 @@ class Container {
   
   protected $rootDirectory;
 
-  protected $inTests;
+  protected $inTests = NULL;
   
   protected $project;
   
@@ -154,6 +154,10 @@ class Container {
    * @return bool
    */
   public function inTests() {
+    if (!isset($this->inTests)) {
+      $this->inTests = PSC::isTravis() || PSC::isPHPUnit();
+    }
+
     return $this->inTests;
   }
 }
