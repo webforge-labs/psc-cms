@@ -20,8 +20,7 @@ class Client {
     $this->daemon = $daemon;
   }
   
-  public static function create() {
-    $finder = new ExecutableFinder(array());
+  public static function create(ExecutableFinder $finder) {
     $daemon = $finder->getExecutable('stop-forum-spam');
     
     return new static($daemon);

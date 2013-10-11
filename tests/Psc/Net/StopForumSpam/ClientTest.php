@@ -15,16 +15,16 @@ class ClientTest extends \Psc\Code\Test\Base {
     $this->chainClass = 'Psc\Net\StopForumSpam\Client';
     parent::setUp();
 
-    $finder = new ExecutableFinder(array());
+    $finder = $this->getSystemContainer()->getExecutableFinder();
+
     if (!$finder->findsExecutable('stop-forum-spam')) {
       return $this->markTestSkipped('stop-forum-spam executable not installed');
     }
     
-    $this->client = Client::create();
+    $this->client = Client::create($finder);
   }
   
   public function testAcceptance() {
     $this->assertInternalType('array', $this->client->queryByEmail('p.scheit@ps-webforge.com'));
   }
 }
-?>

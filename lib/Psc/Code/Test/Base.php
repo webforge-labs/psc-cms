@@ -72,6 +72,10 @@ class Base extends \Webforge\Code\Test\Base {
     return $this->getCMSContainer()->getHostConfig();
   }
 
+  public function getSystemContainer() {
+    return $this->getCMSContainer()->webforge->getSystemContainer();
+  }
+
   /**
    * @return Psc\Doctrine\DCPackage
    */
