@@ -7,7 +7,7 @@ branches:
   only:
     - master
 env:
-  - PSC_CMS=$HOME/build/pscheit/psc-cms/etc/travis/; COMPOSER_ROOT_VERSION=dev-master 
+  - PSC_CMS=$TRAVIS_BUILD_DIR/etc/travis/; COMPOSER_ROOT_VERSION=dev-master 
 
 before_install:
   - composer self-update
