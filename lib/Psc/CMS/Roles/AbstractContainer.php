@@ -116,4 +116,11 @@ abstract class AbstractContainer extends AbstractControllerContainer implements 
 
     return $this;
   }
+
+  /**
+   * @return Webforge\Common\System\Container
+   */
+  public function getSystemContainer() {
+    return $this->getWebforge()->getSystemContainer();
+  }
 }

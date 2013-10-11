@@ -4,7 +4,7 @@ namespace Psc\CMS\Roles;
 
 use Webforge\Framework\Package\Package;
 
-interface Container extends ControllerContainer, SystemContainer {
+interface Container extends ControllerContainer, SystemContainerProvider {
 
   public function setPackage(Package $package);
   public function getPackage();

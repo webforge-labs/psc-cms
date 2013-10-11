@@ -77,4 +77,8 @@ class AbstractContainerTest extends \Psc\Code\Test\Base {
       $this->container->getTranslator()->trans('hello')
     );
   }
+
+  public function testReturnsASystemContainer() {
+    $this->assertInstanceOf('Webforge\Common\System\Container', $this->container->getSystemContainer());
+  }
 }
