@@ -23,7 +23,6 @@
     "ext-mbstring": "*",
     "ext-curl": "*",
     
-    "symfony/console": "2.1.*@stable",
     "symfony/http-foundation": "2.1.*@stable",
     "doctrine/orm": "2.3.*@stable",
     "swiftmailer/swiftmailer": "4.1.*@stable",
