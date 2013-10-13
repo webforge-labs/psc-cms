@@ -29,13 +29,13 @@
     "swiftmailer/swiftmailer": "4.1.*@stable",
     "CodePlex/PHPExcel": "1.7.8@stable",
     "webforge/webforge": "1.5.*@dev",
-    "webforge/doctrine": "1.0.x@dev",
-    "webforge/translation": "1.1.*@dev",
-    "webforge/fatal-error-handler": "1.*@dev",
+    "webforge/doctrine": "1.0.*@stable",
+    "webforge/translation": "1.1.*@stable",
+    "webforge/fatal-error-handler": "1.*@stable",
     "webforge/dom": "1.*@dev"
   },
   "require-dev": {
-    "webforge/testdata-repository": "dev-master",
+    "webforge/testdata-repository": "@alpha",
     "doctrine/data-fixtures": "1.0.*@alpha",
     "pscheit/psc-cms-image": "1.2.*",
     "webforge/testplate": "1.4.*"
