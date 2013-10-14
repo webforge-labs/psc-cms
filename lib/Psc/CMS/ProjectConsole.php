@@ -3,6 +3,7 @@
 namespace Psc\CMS;
 
 use Psc\PSC;
+use Webforge\Framework\Project as WebforgeProject;
 
 class ProjectConsole extends \Psc\System\Console\Console {
   
@@ -10,7 +11,7 @@ class ProjectConsole extends \Psc\System\Console\Console {
   
   protected $doctrine;
   
-  public function __construct(Project $project = NULL, \Psc\Doctrine\Module $doctrine = NULL) {
+  public function __construct(WebforgeProject $project = NULL, \Psc\Doctrine\Module $doctrine = NULL) {
     parent::__construct(NULL, $doctrine, $project);
     $this->name = $this->project->getName().' Developer Interface';
     $this->version = NULL;

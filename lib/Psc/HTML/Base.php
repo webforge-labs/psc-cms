@@ -51,4 +51,8 @@ abstract class Base extends \Psc\SimpleObject implements \Psc\HTML\HTMLInterface
   protected function convertHTMLName($name) {
     return \Psc\Form\HTML::getName($name);
   }
+
+  public function isInit() {
+    return $this->init;
+  }
 }
