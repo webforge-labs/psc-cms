@@ -58,6 +58,10 @@ abstract class AbstractContainer extends AbstractControllerContainer implements 
     return $this->projectPackage;
   }
 
+  public function getProject() {
+    return $this->getProjectPackage();
+  }
+
   /**
    * @return Webforge\Common\System\Dir
    */
