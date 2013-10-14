@@ -16,7 +16,7 @@ class ConfigureApacheTaskTest extends \Psc\Code\Test\Base {
     $this->testDir = $this->getTestDirectory('target/');
     
     $this->targetProject = $this->doublesManager->Project('tiptoi', $this->testDir)->build();
-    $this->task = new ConfigureApacheTask($this->targetProject, 'pegasus');
+    $this->task = new ConfigureApacheTask($this->targetProject, 'pegasus', 'tiptoi.ps-webforge.com');
     
     $this->task
       ->setServerName('tiptoi.ps-webforge.com')

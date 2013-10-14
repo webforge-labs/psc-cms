@@ -321,7 +321,7 @@ class ConfigureApacheTask extends \Psc\SimpleObject implements Task {
   
   public function setAuth($location, $authFile = NULL, $authName = NULL) {
     $vhost = $this->vhostName;
-    $authFile = $this->replaceHelpers( $authFile ?: '%vhost%base/auth/public');
+    $authFile = $this->replaceHelpers( $authFile ?: '%vhost%etc/auth/public');
     $authName = $authName ?: $vhost.' public authentication';
     
     $this->append('
