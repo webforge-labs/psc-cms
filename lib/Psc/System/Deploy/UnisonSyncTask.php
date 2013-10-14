@@ -78,22 +78,18 @@ class UnisonSyncTask extends \Psc\SimpleObject implements Task {
       //}
     });
 
-
-    if ($resultFound || $ret == 0) {
-      if ($ret === 0) {
-        print sprintf('Unison: nothing done');
-        $status = 'OK';
-      } else {
+    if ($ret === 0) {
+      print sprintf('Unison: nothing done');
+      
+    } elseif ($resultFound) {
+      
+      if ($result->skipped === 0 && $result->failed === 0) {
         print sprintf("Unison: %s: (%d transferred, %d skipped, %d failed)\n",
-          ($status = $result->skipped === 0 && $result->failed === 0 ? 'OK' : 'FAIL'),
-          $result->transferred, $result->skipped, $result->failed);
+          $result->transferred, $result->skipped, $result->failed
+        );
+      } else {
+        throw new \RuntimeException('Unison failed: '.$log);
       }
-    } else {
-      throw new \RuntimeException("Unison Result nicht gefunden!\n".$log);
-    }
-    
-    if (!$resultFound || $status == 'FAIL') {
-      throw new \RuntimeException('Unison failed: '.$log);
     }
   }
  

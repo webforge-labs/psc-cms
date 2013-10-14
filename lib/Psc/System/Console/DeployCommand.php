@@ -71,7 +71,6 @@ abstract class DeployCommand extends Command {
   abstract protected function initProperties($mode);
   
   protected function initProject(Project $project) {
-    $project->setVhostName($this->vhostName); // das ist nicht die url sondern unser target verzeichnis auf pegasus
     $project->setStaging($this->staging);
   }
   
@@ -82,6 +81,7 @@ abstract class DeployCommand extends Command {
       $deployments,
       $container,
       $project,
+      $this->vhostName,
       $this->variant,
       $logger = new \Psc\System\EchoLogger()
     );
@@ -116,8 +116,9 @@ abstract class DeployCommand extends Command {
     $qnd = (bool) $input->getOption('qnd');
 
     $container = $this->createWebforgeContainer();
+
     $cliProject = $container->getLocalProject();
-    
+
     foreach ($modes as $mode) {
       $project = clone $cliProject;
       
@@ -132,7 +133,7 @@ abstract class DeployCommand extends Command {
       );
       
       $deployer->setBaseUrl($this->baseUrl);
-      
+
       if (!$qnd)
         $this->updateComposer($project);
       
@@ -169,7 +170,7 @@ abstract class DeployCommand extends Command {
     $this->out('[DeployCommand] ** remote Install Composer');
     if ($mode === 'staging' || $this->confirm('Do you want to install with composer?')) {
       $cmd = 'export COMPOSER_ROOT_VERSION=dev-master; composer --optimize-autoloader --dev %s';
-      $src = $project->loadedFromPackage ? '.' : 'base/src';
+      $src = '.';
       
       $install = $this->remoteExec(
         sprintf($cmd, 'install'),
@@ -211,7 +212,7 @@ abstract class DeployCommand extends Command {
     
     $con = $this->getRemoteDBCon($mode);
     $out = '';
-    $bin = $project->loadedFromPackage ? 'bin/' : 'base/bin/';
+    $bin = 'bin/';
     $this->remoteExec(sprintf('./cli.sh orm:update-schema --dry-run --con="%s"', $con), $bin, $out);
     if (!Preg::match($out, '/nothing to do/')) {
       if ($this->confirm('Do you want to update the schema? (see above for changes)')) {
@@ -223,7 +224,7 @@ abstract class DeployCommand extends Command {
   }
   
   protected function remoteRunTests($mode, $project) {
-    $bin = $project->loadedFromPackage ? '.' : 'base/bin/';
+    $bin = '.';
     $this->out('[DeployCommand] ** remote Run Tests');
     if ($mode === 'staging' && !$this->withoutTest) {
       $this->remoteExec('phpunit', $bin);
@@ -252,4 +253,3 @@ abstract class DeployCommand extends Command {
   protected function afterDeploy(Deployer $deployer, Project $project, $mode, WebforgeContainer $container, $input, $output) {
   }
 }
-?>

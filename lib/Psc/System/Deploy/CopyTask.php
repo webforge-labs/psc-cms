@@ -8,22 +8,27 @@ use Webforge\Common\String AS S;
 
 use Webforge\Setup\Installer\CopyCmd;
 
-class CopyTask extends \Psc\SimpleObject implements Task {
+class CopyTask extends AbstractTask {
   
   protected $sourceProject, $targetProject;
   
   protected $copyCommands = array();
+
+  protected $label;
   
   public function __construct(Project $sourceProject, Project $targetProject, Array $ignoreSourceDirectories = array()) {
     $this->sourceProject = $sourceProject;
     $this->targetProject = $targetProject;
+    parent::__construct('Copy');
   }
   
   public function run() {
+    $output = new \Webforge\Console\StringCommandOutput();
     foreach ($this->copyCommands as $copy) {
-      $copy->execute();
+      $copy->execute($output);
     }
   }
+
   
   public function copy($source, $destination = NULL) {
     list ($source, $destination) = $this->expandSourceAndDestination($source, $destination);
@@ -39,15 +44,15 @@ class CopyTask extends \Psc\SimpleObject implements Task {
       $sourceUrl = $source;
       
       if (S::endsWith($source, '/')) {
-        $source = $this->sourceProject->getRoot()->sub($source);
+        $source = $this->sourceProject->getRootDirectory()->sub($source);
       } else {
-        $source = File::createFromURL($source, $this->sourceProject->getRoot());
+        $source = File::createFromURL($source, $this->sourceProject->getRootDirectory());
       }
     }
     
     if (!isset($destination)) {
       if (!isset($sourceUrl)) {
-        $sourceUrl = $source->getUrl($this->sourceProject->getRoot());
+        $sourceUrl = $source->getUrl($this->sourceProject->getRootDirectory());
         if ($source instanceof Dir) {
           $sourceUrl .= '/';
         }
@@ -58,9 +63,9 @@ class CopyTask extends \Psc\SimpleObject implements Task {
     
     if (is_string($destination)) {
       if (S::endsWith($destination, '/')) {
-        $destination = $this->targetProject->getRoot()->sub($destination);
+        $destination = $this->targetProject->getRootDirectory()->sub($destination);
       } else {
-        $destination = File::createFromURL($destination, $this->targetProject->getRoot());  
+        $destination = File::createFromURL($destination, $this->targetProject->getRootDirectory());  
       }
     }
     
@@ -78,4 +83,3 @@ class CopyTask extends \Psc\SimpleObject implements Task {
     return $this;
   }
 }
-?>

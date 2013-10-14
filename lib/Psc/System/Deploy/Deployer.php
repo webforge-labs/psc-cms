@@ -56,6 +56,11 @@ class Deployer extends \Psc\System\LoggerObject {
    * @var der Kurzname des Servers auf dem deployed wird unbedingt setzen für apache
    */
   protected $hostName;
+
+  /**
+   * @var string
+   */
+  protected $vhostName;
   
   /**
    * sowas wie bla.ps-webforge.com
@@ -74,11 +79,12 @@ class Deployer extends \Psc\System\LoggerObject {
    */
   protected $variant;
   
-  public function __construct(Dir $deploymentsRoot, WebforgeContainer $container, Project $project, $variant = NULL, Logger $logger = NULL) {
+  public function __construct(Dir $deploymentsRoot, WebforgeContainer $container, Project $project, $vhostName, $variant = NULL, Logger $logger = NULL) {
     $this->setDeploymentsRoot($deploymentsRoot);
     $this->setProject($project);
     $this->variant = $variant != 'normal' ? $variant : NULL;
     $this->webforgeContainer = $container;
+    $this->vhostName = $vhostName;
     
     $this->setLogger($logger ?: new BufferLogger);
     $this->tasks = new ArrayCollection();
@@ -106,8 +112,14 @@ class Deployer extends \Psc\System\LoggerObject {
     );
     
     foreach ($this->tasks as $task) {
-      $this->logf('** Task: '.Code::getClassName(Code::getClass($task)));
-      $task->run();
+      try {
+        $label = $task instanceof LabelTask ? $task->getLabel() : Code::getClassName(Code::getClass($task));
+        $this->logf('** Task: %s', $label);
+        $task->run();
+      } catch (\Webforge\Common\Exception\MessageException $e) {
+        $e->prependMessage('ERROR in task '.$label.'. ');
+        throw $e;
+      }
     }
     $this->logf('finished Deployment [%s%s]', $this->project->getName(), ($this->variant ? '.'.$this->variant : NULL));
   }
@@ -139,6 +151,7 @@ class Deployer extends \Psc\System\LoggerObject {
       case 'sourceProject':
       case 'target':
       case 'hostName':
+      case 'vhostName':
       case 'baseUrl':
       case 'changelog':
       case 'webforgeContainer':
@@ -272,5 +285,8 @@ class Deployer extends \Psc\System\LoggerObject {
   public function getWebforgeContainer() {
     return $this->webforgeContainer;
   }
+
+  public function getVhostName() {
+    return $this->vhostName;
+  }
 }
-?>

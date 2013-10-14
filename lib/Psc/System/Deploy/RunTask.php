@@ -11,7 +11,7 @@ use Psc\System\System;
 
 /**
  */
-class RunTask extends \Psc\SimpleObject implements Task {
+class RunTask extends AbstractTask {
   
   protected $targetProject;
   protected $webforge;
@@ -21,6 +21,7 @@ class RunTask extends \Psc\SimpleObject implements Task {
   public function __construct(Project $targetProject, Container $webforgeContainer) {
     $this->targetProject = $targetProject;
     $this->webforge = $webforgeContainer;
+    parent::__construct('Run');
   }
 
   public function onRun(\Closure $do) {

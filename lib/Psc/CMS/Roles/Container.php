@@ -27,8 +27,4 @@ interface Container extends ControllerContainer, SystemContainerProvider {
    */
   public function getTranslator();
 
-  /**
-   * @return Webforge\Common\System\Container
-   */
-  public function getSystemContainer();
 }

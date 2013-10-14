@@ -28,6 +28,8 @@ class ConfigureApacheTask extends \Psc\SimpleObject implements Task {
   protected $customLog;
   
   protected $vars = array();
+
+  protected $vhostName;
   
   protected $targetProject;
   protected $host;
@@ -48,30 +50,23 @@ class ConfigureApacheTask extends \Psc\SimpleObject implements Task {
   /**
    * @param string $host der Name des Hosts auf den deployed wird. es wird dann conf/$host.conf erstellt
    */
-  public function __construct(Project $targetProject, $hostName) {
+  public function __construct(Project $targetProject, $hostName, $vhostName) {
     $this->host = $hostName;
     $this->setTemplate('default');
-    
-    $vhost = $targetProject->getVhostName();
-    
-    $this->customLog = '/var/log/apache2/access.'.$vhost.'.log combined';
+    $this->vhostName = $vhostName;
+
+    $this->customLog = '/var/log/apache2/access.'.$vhostName.'.log combined';
 
     $this->targetProject = $targetProject;
-    if ($this->targetProject->loadedFromPackage) {
-      $this->documentRoot = '/var/local/www/'.$vhost.'/www';
-      $this->documentRootCms = '/var/local/www/'.$vhost.'/www/cms';
-    } else {
-      $this->documentRoot = '/var/local/www/'.$vhost.'/base/htdocs';
-      $this->documentRootCms = '/var/local/www/'.$vhost.'/base/htdocs-cms';
-    }
-    
+    $this->documentRoot = '/var/local/www/'.$vhostName.'/www';
+    $this->documentRootCms = '/var/local/www/'.$vhostName.'/www/cms';
 
     $this->phpValues = array(
         'log_errors'=>array('admin','On'),
-        'error_log'=>array('admin', '/var/local/www/'.$vhost.'/logs/php_error_log'),
+        'error_log'=>array('admin', '/var/local/www/'.$vhostName.'/logs/php_error_log'),
         'upload_max_filesize'=>array('admin', '30M'),
         'post_max_size'=>array('admin','30M'),
-        'include_path'=>array(NULL, '/var/local/www/'.$vhost.'/base/src/'),
+        'include_path'=>array(NULL, '/var/local/www/'.$vhostName.'/base/src/'),
         'auto_prepend_file'=>array(NULL, 'auto.prepend.php'),
         //'memory_limit'=>array('admin', '1024M'), // geht in apache nicht höher als 1024 MB oder sowas
         'error_reporting'=>array(NULL, '32767'),
@@ -80,38 +75,23 @@ class ConfigureApacheTask extends \Psc\SimpleObject implements Task {
     
     $this->vars = array('appendix'=>'  ','auth'=>'', 'mainAppendix'=>'');
 
-    if ($this->targetProject->loadedFromPackage) {
-      $this->phpValues['auto_prepend_file'] = array(NULL, $this->replaceHelpers('%vhost%bootstrap.php'));
+    $this->phpValues['auto_prepend_file'] = array(NULL, $this->replaceHelpers('%vhost%bootstrap.php'));
 
-      $this->setVar('aliases', 
-        'Alias /dimg /var/local/www/'.$vhost.'/files/cache/images'."\n  ".
-        'Alias /images /var/local/www/'.$vhost.'/files/images'
-      );
-    } else {
-      $this->setVar('aliases', 
-        'Alias /dimg /var/local/www/'.$vhost.'/base/cache/images'."\n  ".
-        'Alias /images /var/local/www/'.$vhost.'/base/files/images'
-      );
-
-    }
+    $this->setVar('aliases', 
+      'Alias /dimg /var/local/www/'.$vhostName.'/files/cache/images'."\n  ".
+      'Alias /images /var/local/www/'.$vhostName.'/files/images'
+    );
   }
   
   public function run() {
     if (isset($this->htaccess)) {
-      $this->targetProject->getHtdocs()
+      $this->targetProject->dir('www')->create()
         ->getFile('.htaccess')
           ->writeContents($this->htaccess);
     }
     
     if (isset($this->cmsHtaccess)) {
-
-      if ($this->targetProject->loadedFromPackage) {
-        $cmsTargetDir = $this->targetProject->getBase()->sub('www/cms/')->create();
-      } else {
-        $cmsTargetDir = $this->targetProject->getBase()->sub('htdocs-cms/')->create();
-      }
-
-      $cmsTargetDir
+      $this->targetProject->dir('cms-www')->create()
         ->getFile('.htaccess')
           ->writeContents($this->cmsHtaccess);
     }
@@ -131,15 +111,7 @@ class ConfigureApacheTask extends \Psc\SimpleObject implements Task {
     $vars = array_merge($vars, $this->vars); // volle power für setVar
     
     // new style
-    $etc = $this->targetProject->getRoot()->sub('etc/');
-    if ($etc->exists()) {
-      $conf = $etc->sub('apache2/')->create();
-    } else {
-      // old style
-      $conf = $this->targetProject->getRoot()->sub('conf/')->create();
-    }
-    
-    $conf
+    $etc = $this->targetProject->dir('etc')->sub('apache2')->create()
       ->getFile($this->host.'.conf')
         ->writeContents(\Psc\TPL\TPL::miniTemplate($this->template, $vars))
     ;
@@ -213,7 +185,7 @@ class ConfigureApacheTask extends \Psc\SimpleObject implements Task {
   }
   
   protected function replaceHelpers($string) {
-    $vhost = $this->targetProject->getVhostName();
+    $vhost = $this->vhostName;
     return TPL::miniTemplate(
       $string, 
       array(
@@ -348,7 +320,7 @@ class ConfigureApacheTask extends \Psc\SimpleObject implements Task {
   }
   
   public function setAuth($location, $authFile = NULL, $authName = NULL) {
-    $vhost = $this->targetProject->getVhostName();
+    $vhost = $this->vhostName;
     $authFile = $this->replaceHelpers( $authFile ?: '%vhost%base/auth/public');
     $authName = $authName ?: $vhost.' public authentication';
     
@@ -423,4 +395,3 @@ APACHE;
     return $this;
   }
 }
-?>
