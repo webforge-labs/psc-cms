@@ -38,7 +38,8 @@
     "doctrine/data-fixtures": "1.0.*@alpha",
     "pscheit/psc-cms-image": "1.2.*",
     "webforge/testplate": "1.4.*",
-    "liip/rmt": "0.9.*"
+    "liip/rmt": "0.9.*",
+    "mockery/mockery": "dev-master"
   },
   "minimum-stability": "dev",
   

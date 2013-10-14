@@ -2,6 +2,9 @@
 
 namespace Psc\System\Deploy;
 
+use Webforge\Framework\Project;
+use Mockery as m;
+
 /**
  * @group class:Psc\System\Deploy\ConfigureApacheTask
  */
@@ -14,8 +17,11 @@ class ConfigureApacheTaskTest extends \Psc\Code\Test\Base {
     parent::setUp();
     
     $this->testDir = $this->getTestDirectory('target/');
-    
     $this->targetProject = $this->doublesManager->Project('tiptoi', $this->testDir)->build();
+
+    $this->targetProject = m::mock('Webforge\Framework\Project');
+    $this->targetProject->shouldReceive('dir')->with('etc')->andReturn($this->testDir->sub('etc'));
+
     $this->task = new ConfigureApacheTask($this->targetProject, 'pegasus', 'tiptoi.ps-webforge.com');
     
     $this->task
@@ -35,4 +41,3 @@ class ConfigureApacheTaskTest extends \Psc\Code\Test\Base {
     $this->assertContains('ServerAlias test.tiptoi.ps-webforge.com tiptoi.ps-webforge.net', $cfg);
   }
 }
-?>
