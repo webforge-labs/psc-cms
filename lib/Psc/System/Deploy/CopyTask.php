@@ -9,7 +9,7 @@ use Webforge\Common\String AS S;
 use Webforge\Setup\Installer\CopyCmd;
 
 class CopyTask extends AbstractTask {
-  
+
   protected $sourceProject, $targetProject;
   
   protected $copyCommands = array();
@@ -33,7 +33,7 @@ class CopyTask extends AbstractTask {
   public function copy($source, $destination = NULL) {
     list ($source, $destination) = $this->expandSourceAndDestination($source, $destination);
     
-    $cmd = new CopyCmd($source, $destination);
+    $cmd = new CopyCmd($source, $destination, CopyCmd::CREATE_DESTINATION);
     $this->copyCommands[] = $cmd;
     
     return $this;
