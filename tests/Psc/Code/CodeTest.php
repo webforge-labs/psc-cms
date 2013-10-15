@@ -16,11 +16,6 @@ class CodeTest extends \Psc\Code\Test\Base {
   
   protected $c = '\Psc\Code\Code';
   
-  public function testDeprecated() {
-    $this->assertException('Psc\DeprecatedException', function () { Code::callback(NULL,NULL); });
-    $this->assertException('Psc\DeprecatedException', function () { Code::eval_callback(array(),array()); });
-  }
-  
   /**
    * @dataProvider provideCastId
    */
