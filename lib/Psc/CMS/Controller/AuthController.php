@@ -42,9 +42,11 @@ class AuthController extends BaseAuthController {
       return TRUE;
     
     } catch (AuthException $e) {
-      if (PSC::inProduction()) {
+      /*
+      if (PSC::getProject()->isDevelopment()) {
         //file_put_contents('/tmp/log-logfile',(string) $e,FILE_APPEND);
       }
+      */
       
       $this->processAuthException($e);
       

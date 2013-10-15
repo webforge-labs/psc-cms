@@ -179,16 +179,6 @@ class Code extends \Webforge\Common\Util {
     return get_class($object);
   }
   
-  public static function callback($objectOrClass, $function, Array $staticParameters = array()) {
-    if (\Psc\PSC::inProduction())
-      throw new \Psc\DeprecatedException('deprecated: Klasse \Psc\Code\Callback benutzen');
-  }
-  
-  public static function eval_callback($cb, Array $parameters = array()) {
-    if (\Psc\PSC::inProduction())
-      throw new \Psc\DeprecatedException('deprecated: Klasse \Psc\Code\Callback benutzen');
-  }
-  
   public static function dumpEnv() {
     print '$_SERVER = ';var_export($_SERVER); print ';'."\n";
     print '$_GET = '; var_export($_GET); print ';'."\n";

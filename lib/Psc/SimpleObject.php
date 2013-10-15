@@ -51,7 +51,7 @@ class SimpleObject {
    * @cc-ignore
    */
   public function getClass() {
-    if (PSC::inProduction()) {
+    if (PSC::getProject()->isDevelopment()) {
       throw new \Psc\DeprecatedException('getClass ist deprecated. Bitte \Psc\Code\Code::getClass($this) benutzen');
     }
     return get_class($this);

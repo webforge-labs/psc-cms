@@ -32,6 +32,9 @@ class DelegateController extends BaseFileController implements ResponseControlle
   protected $response;
   
   public function __construct(AjaxController $ctrl = NULL) {
+    if (\Psc\PSC::getProject()->isDevelopment()) {
+      throw new \Webforge\Common\DeprecatedException('Dont use this controller anymore');
+    }
     $this->ajaxC = $ctrl;
     parent::__construct('undefined');
   }

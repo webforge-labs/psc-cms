@@ -22,3 +22,5 @@
 /application/src/Proxies/__CG__PscEntitiesPage.php
 
 /application/src/Proxies/__CG__PscEntitiesNavigationNode.php
+
+/tests/files/fixtures/ConfigureApacheTaskTest/target/etc/apache2

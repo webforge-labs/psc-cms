@@ -16,9 +16,6 @@ class ContentTabs extends Tabs {
     $this->init();
     $this->disableJS();
 
-    if (\Psc\PSC::inProduction()) {
-      TPL::install('welcome');
-    }
     $this->add('Willkommen', $welcome ? $welcome->get() : TPL::get('welcome')); // nicht schließbar
 
     $this->setCloseable('Tab schließen');

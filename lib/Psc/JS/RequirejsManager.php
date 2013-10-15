@@ -2,6 +2,8 @@
 
 namespace Psc\JS;
 
+use Webforge\Common\DeprecatedException;
+
 /**
  * @deprecated
  */
@@ -12,6 +14,10 @@ class RequirejsManager extends \Psc\JS\Manager implements \Psc\HTML\HTMLInterfac
   protected $requirejsSource;
   
   public function __construct($name = 'requirejs', $main = '/js/boot.js', $requirejsSource = '/psc-cms-js/vendor/require.js') {
+    if (\Psc\PSC::getProject()->isDevelopment()) {
+      throw new DeprecatedException('Dont use this, use HTML\Frameworkpage');
+    }
+
     parent::__construct($name);
     $this->requirejsSource = $requirejsSource;
     $this->main = $main;
@@ -48,4 +54,3 @@ class RequirejsManager extends \Psc\JS\Manager implements \Psc\HTML\HTMLInterfac
     return \Webforge\Common\ArrayUtil::join($this->getHTML(),"%s \n");
   }
 }
-?>

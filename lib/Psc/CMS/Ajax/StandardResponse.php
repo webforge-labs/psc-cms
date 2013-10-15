@@ -19,6 +19,9 @@ class StandardResponse extends \Psc\Object implements Response, JSON {
   protected $type = Response::TYPE_STANDARD;
   
   public function __construct($status = Response::STATUS_OK, $contentType = Response::CONTENT_TYPE_JSON) {
+    if (\Psc\PSC::getProject()->isDevelopment()) {
+      throw new \Webforge\Common\DeprecatedException('Dont use ajax responses anymore');
+    }
     $this->data = new stdClass();
     $this->data->status = $status;
     $this->data->content = new stdClass();
@@ -55,7 +58,7 @@ class StandardResponse extends \Psc\Object implements Response, JSON {
   public function JSON() {
     $json = json_encode($this->data);
     
-    if (\Psc\PSC::inProduction()) {
+    if (\Psc\PSC::getProject()->isDevelopment()) {
       $json = \Psc\JS\Helper::reformatJSON($json);
     }
     
@@ -95,5 +98,3 @@ class StandardResponse extends \Psc\Object implements Response, JSON {
     $this->contentType = $contentType;
   }
 }
-
-?>

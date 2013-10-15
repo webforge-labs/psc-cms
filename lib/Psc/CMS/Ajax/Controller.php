@@ -26,6 +26,9 @@ use \Psc\CMS\Controller\AjaxController,
 class Controller extends \Psc\CMS\Controller\AjaxController {
 
   public function __construct($name = 'general') {
+    if (\Psc\PSC::getProject()->isDevelopment()) {
+      throw new \Webforge\Common\DeprecatedException('Dont use this controller anymore');
+    }
     parent::__construct($name);
     
     $this->addTodos(array('tabs','tpl','ctrl'));

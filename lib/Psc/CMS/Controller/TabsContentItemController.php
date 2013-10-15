@@ -79,6 +79,10 @@ class TabsContentItemController extends DelegateController implements \Psc\Excep
   protected $main;
   
   public function __construct(AjaxController $ctrl = NULL) {
+    if (\Psc\PSC::getProject()->isDevelopment()) {
+      throw new \Webforge\Common\DeprecatedException('Dont use this anymore');
+    }
+
     $this->ajaxC = $ctrl;
     parent::__construct($ctrl);
     

@@ -97,6 +97,12 @@ Psc\Net\HTTP\FrontController
 Psc\CMS\RequestDispatcher
   - HostConfig (parameter 3 for construct) is no longer optional
 
+Psc\FE\Errors
+  - was removed  
+
+Psc\Code\Code
+  - deprecated functions callback() and eval_callback() were removed
+
 ## CLI Commands  
 
   - create-test was removed (use webforge)

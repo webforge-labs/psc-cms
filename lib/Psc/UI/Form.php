@@ -299,7 +299,7 @@ class Form {
 
 
   public static function comboDropBox($label,$name, $items, $assignedItems, $itemType = NULL, Array $commonItemData = array(), $getObject = FALSE) {
-    if (\Psc\PSC::inProduction()) {
+    if (\Psc\PSC::getProject()->isDevelopment()) {
       throw new \Psc\DeprecatedException('dont use that anymore');
     }
     list ($label,$name,$id) = self::expand($label,$name,NULL);

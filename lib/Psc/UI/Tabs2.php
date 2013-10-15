@@ -63,7 +63,7 @@ class Tabs2 extends \Psc\HTML\WidgetBase {
    * der Content wird per Ajax geladen mit der URL die das TabsContentItem angibt
    */
   public function addItem(TabsContentItem $item) {
-    if ($item instanceof \Psc\Doctrine\Entity && \Psc\PSC::inProduction()) {
+    if ($item instanceof \Psc\Doctrine\Entity && \Psc\PSC::getProject()->isDevelopment()) {
       throw new \Psc\DeprecatedException('Entities übergeben ist deprecated. Psc\CMS\Item\Adapter benutzen.');
     }
     return $this->add($item->getTabsLabel(TabsContentItem::LABEL_TAB), NULL, $item->getTabsURL(), HTML::string2id(implode('-',$item->getTabsId())));

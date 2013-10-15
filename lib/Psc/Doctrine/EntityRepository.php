@@ -396,7 +396,7 @@ class EntityRepository extends \Doctrine\ORM\EntityRepository {
    * deprecated: lieber deliverQuery benutzen
    */
   protected function processQuery(\Doctrine\ORM\AbstractQuery $q, $mode = 'SingleResult', $ident = NULL) {
-    if (\Psc\PSC::inProduction()) {
+    if (\Psc\PSC::getProject()->isDevelopment()) {
       throw new \Psc\DeprecatedException(__FUNCTION__.' ist deprecated');
     }
     
