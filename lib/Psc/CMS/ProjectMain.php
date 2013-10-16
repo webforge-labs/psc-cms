@@ -577,7 +577,7 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
   public function createHTMLPage() {
     $page = new \Psc\HTML\FrameworkPage();
     $page->addCMSDefaultCSS();
-    $page->addCMSRequireJS($assetModus = $this->project->isDevelopment() ? 'development' : 'built');
+    $page->addCMSRequireJS($assetModus = $this->project->isBuilt() ? 'built' : 'development');
     $page->setTitleForProject($this->project);
     $page->setLanguage($this->getLanguage());
     return $page;

@@ -6,6 +6,7 @@ use Webforge\Common\System\Dir;
 use Webforge\Framework\Project;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\ProcessBuilder;
+use RuntimeException;
 
 /**
  * Start ein Unison Profil
@@ -78,18 +79,36 @@ class UnisonSyncTask extends \Psc\SimpleObject implements Task {
       //}
     });
 
-    if ($ret === 0) {
-      print sprintf('Unison: nothing done');
-      
-    } elseif ($resultFound) {
-      
-      if ($result->skipped === 0 && $result->failed === 0) {
-        print sprintf("Unison: %s: (%d transferred, %d skipped, %d failed)\n",
-          $result->transferred, $result->skipped, $result->failed
-        );
-      } else {
-        throw new \RuntimeException('Unison failed: '.$log);
-      }
+    print "\n";
+
+    if ($resultFound) {
+      print sprintf("Unison: %s: (%d transferred, %d skipped, %d failed)\n",
+        $result->transferred, $result->skipped, $result->failed
+      );
+    }
+
+    // http://www.cis.upenn.edu/~bcpierce/unison/download/releases/stable/unison-manual.html#exit
+    switch ($ret) {
+      case 0:
+        print 'Unison: successful synchronization';
+        break;
+      case 1:
+        print 'Unison: some files were skipped, but all file transfers were successful.';
+        break;
+      case 2:
+        print 'Unison: non-fatal failures occurred during file transfer.';
+        break;
+      case 3:
+        print 'Unison: a fatal error occurred, or the execution was interrupted.';
+        break;
+      default:
+        print 'Unison: unknown exit code: '.$ret;
+        break;
+    }
+    print "\n";
+
+    if ($ret !== 0) {
+      throw new RuntimeException('Unison failed');
     }
   }
  

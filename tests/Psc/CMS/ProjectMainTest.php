@@ -85,7 +85,7 @@ class ProjectMainTest extends \Psc\Code\Test\Base {
     $welcome->setLanguage('en');
     $this->assertEquals('Welcome', $welcome->__('title'));
   }
-  
+
   protected function request($method, $resource) {
     $fc = $this->main->getFrontController();
     $fc->init($this->request = $this->doublesManager->createHTTPRequest($method, $resource));
