@@ -82,7 +82,7 @@ class UnisonSyncTask extends \Psc\SimpleObject implements Task {
     print "\n";
 
     if ($resultFound) {
-      print sprintf("Unison: %s: (%d transferred, %d skipped, %d failed)\n",
+      print sprintf("Unison: (%d transferred, %d skipped, %d failed)\n",
         $result->transferred, $result->skipped, $result->failed
       );
     }

@@ -196,7 +196,7 @@ abstract class DeployCommand extends Command {
     $isOk = $this->remoteExec('apachectl configtest', '/', $out, 'root');
 
     if ($isOk === 0) {
-      if ($this->confirm('Do you want to graceful restart apache to refresh apc?')) {
+      if ($this->needGracefulRestart() && $this->confirm('Do you want to graceful restart apache to refresh apc?')) {
         $this->remoteExec('service apache2 graceful', '/', $restartOut, 'root');
       }
     } else {
@@ -205,6 +205,10 @@ abstract class DeployCommand extends Command {
         return $this->remoteRefreshAPC($mode, $project);
       }
     }
+  }
+
+  protected function needGracefulRestart() {
+    return TRUE;
   }
   
   protected function remoteUpdateDB($mode, $project) {
