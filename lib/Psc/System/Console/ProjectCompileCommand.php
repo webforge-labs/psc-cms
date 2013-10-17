@@ -25,8 +25,8 @@ class ProjectCompileCommand extends \Psc\System\Console\DoctrineCommand {
       )
       ->setDefinition(array(
       ));
-      
-    $this->addOption('con','',self::VALUE_REQUIRED);
+
+    parent::configure();
   }
   
   protected function doCompile(\Symfony\Component\Console\Input\InputInterface $input, \Symfony\Component\Console\Output\OutputInterface $output) {
@@ -34,7 +34,9 @@ class ProjectCompileCommand extends \Psc\System\Console\DoctrineCommand {
   }
   
   protected function execute(InputInterface $input, OutputInterface $output) {
+    $this->echoLog = FALSE;
     parent::execute($input, $output);
+
     try {
       $this->doCompile($input, $output);
 
@@ -83,7 +85,7 @@ class ProjectCompileCommand extends \Psc\System\Console\DoctrineCommand {
   }
   
   protected function doDefaultCompile(\Symfony\Component\Console\Input\InputInterface $input, \Symfony\Component\Console\Output\OutputInterface $output) {
-    $namespace = $this->getProject()->getNamspace();
+    $namespace = $this->getProject()->getNamespace();
     $compilerClass = $namespace.'\Entities\Compiler';
     
     $compiler = new $compilerClass($this->getDoctrinePackage());

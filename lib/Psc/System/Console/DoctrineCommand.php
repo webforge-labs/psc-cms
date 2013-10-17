@@ -16,6 +16,7 @@ class DoctrineCommand extends \Psc\System\Console\Command {
   protected $dc, $em, $module;
   
   protected $transactional = FALSE;
+  protected $echoLog = FALSE;
 
   protected function configure() {
     $this->addOption(
@@ -39,6 +40,10 @@ class DoctrineCommand extends \Psc\System\Console\Command {
 
     return $con;
   }
+
+  protected function getDoctrinePackage() {
+    return $this->dc;
+  }
   
   protected function execute(InputInterface $input, OutputInterface $output) {
     $this->initDoctrine($input, $output);
@@ -51,7 +56,9 @@ class DoctrineCommand extends \Psc\System\Console\Command {
       $ret = parent::execute($input, $output);
 
       if ($ret <= 0) {
-        DoctrineHelper::enableSQLLogging('echo', $this->em);
+        if ($this->echoLog)
+          DoctrineHelper::enableSQLLogging('echo', $this->em);
+
         if ($input->getOption('dry-run')) {
           $this->warn('DryRun: nothing is flushed');
         } else {

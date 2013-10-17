@@ -104,4 +104,3 @@ class Compiler extends \Psc\SimpleObject {
     return $this->gClass;
   }
 }
-?>
