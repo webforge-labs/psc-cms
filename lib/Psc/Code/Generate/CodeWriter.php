@@ -7,6 +7,8 @@ use Webforge\Common\ArrayUtil AS A;
 use Psc\Code\Code;
 use Webforge\Common\String as S;
 use Psc\Code\AST;
+use Webforge\Common\ClassInterface;
+use Webforge\Common\PHPClass;
 
 class CodeWriter {
 
@@ -14,11 +16,11 @@ class CodeWriter {
     return new static();
   }
   
-  public function exportConstructor(GClass $class, Array $parameters) {
+  public function exportConstructor(ClassInterface $class, Array $parameters) {
     return $this->writeConstructor($class, $this->exportFunctionParameters($parameters));
   }
   
-  public function writeConstructor(GClass $class, $parametersPHPCode) {
+  public function writeConstructor(ClassInterface $class, $parametersPHPCode) {
     return sprintf('new \%s(%s)', $class->getFQN(), $parametersPHPCode);
   }
   
@@ -125,7 +127,7 @@ class CodeWriter {
   public function exportValue($value) {
     // qnd: leere ArrayCollection geht
     if ($value instanceof \Psc\Data\ArrayCollection) {
-      return $this->writeConstructor(new GClass(Code::getClass($value)), $value->toArray());
+      return $this->writeConstructor(new PHPClass(get_class($value)), $value->toArray());
     } elseif($value === array()) {
       return 'array()';
     } else {
