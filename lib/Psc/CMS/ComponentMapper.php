@@ -10,7 +10,7 @@ use Psc\Code\Event\Manager;
  * Der ComponentMapper ermittelt aus einem Typ die passenden Componente, die automatisch angezeigt werden soll
  *
  */
-class ComponentMapper extends \Psc\SimpleObject implements \Psc\Code\Event\Dispatcher {
+class ComponentMapper extends \Psc\SimpleObject implements \Psc\Code\Event\Dispatcher, \Webforge\Types\Adapters\ComponentMapper {
 
   /**
    * Wird aufgerufen wenn eine Componente durch den Mapper instanziiert wird

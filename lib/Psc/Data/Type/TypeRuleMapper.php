@@ -11,7 +11,7 @@ use Psc\Code\Generate\GClass;
  *
  * dies ist ein Low-Level Type mapper. Für Validierungen von Formularen aus dem CMS sollte der ComponentRuleMapper benutzt werden, der passend zu den Componenten validieren kann
  */
-class TypeRuleMapper extends \Psc\SimpleObject {
+class TypeRuleMapper extends \Psc\SimpleObject implements \Webforge\Types\Adapters\TypeRuleMapper {
   
   public function getRule(Type $type) {
     if (!($type instanceof ValidationType)) {
@@ -39,4 +39,3 @@ class TypeRuleMapper extends \Psc\SimpleObject {
     }
   }
 }
-?>
