@@ -24,7 +24,7 @@ use Psc\Code\Code;
  * @TODO factory() macht nicht klar, dass da durch die GClass elevated wird!
  * @TODO Static Properties
  */
-class GClass extends GObject {
+class GClass extends GObject implements \Webforge\Common\ClassInterface {
   
   const MODIFIER_ABSTRACT = ReflectionClass::IS_EXPLICIT_ABSTRACT;
   const MODIFIER_FINAL= ReflectionClass::IS_FINAL;
