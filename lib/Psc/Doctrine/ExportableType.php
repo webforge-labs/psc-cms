@@ -2,12 +2,6 @@
 
 namespace Psc\Doctrine;
 
-interface ExportableType {
+interface ExportableType extends \Webforge\Types\DoctrineExportAbleType {
 
-  /**
-   * Gibt den String zurück, der in @Doctrine\ORM\Mapping\Column(type="%s")  benutzt werden kann
-   */
-  public function getDoctrineExportType();
-  
 }
-?>
