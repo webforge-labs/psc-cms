@@ -2,9 +2,9 @@
 
 namespace Psc\Data\Type;
 
+use Webforge\Types\Type as WebforgeType;
 use Psc\Form\ValidatorRule;
-use Psc\Code\Code;
-use Psc\Code\Generate\GClass;
+use Webforge\Common\ClassUtil;
 
 /**
  * Mappt einen Typ zu einer ValidatorRule
@@ -13,8 +13,8 @@ use Psc\Code\Generate\GClass;
  */
 class TypeRuleMapper extends \Psc\SimpleObject implements \Webforge\Types\Adapters\TypeRuleMapper {
   
-  public function getRule(Type $type) {
-    if (!($type instanceof ValidationType)) {
+  public function getRule(WebforgeType $type) {
+    if (!($type instanceof \Webforge\Types\ValidationType)) {
       throw new TypeExportException($type.' muss das Interface ValidationType implementieren');
     }
     
@@ -30,12 +30,12 @@ class TypeRuleMapper extends \Psc\SimpleObject implements \Webforge\Types\Adapte
       $class .= 'ValidatorRule';
     }
     
-    $class = Code::expandNamespace($class, 'Psc\Form');
+    $class = ClassUtil::expandNamespace($class, 'Psc\Form');
     
     if (count($constructorParams) === 0) {
       return new $class;
     } else {
-      return GClass::newClassInstance($class, $constructorParams);
+      return ClassUtil::newClassInstance($class, $constructorParams);
     }
   }
 }

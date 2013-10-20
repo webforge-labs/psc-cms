@@ -3,6 +3,7 @@
 namespace Psc\Data\Type;
 
 use Psc\Code\Generate\GClass;
+use Webforge\Types\Type as WebforgeType;
 
 /**
  * @group class:Psc\Data\Type\TypeMatcher
@@ -20,7 +21,7 @@ class TypeMatcherTest extends \Psc\Code\Test\Base {
   /**
    * @dataProvider provideMatchingData
    */
-  public function testMatching($result, $data, Type $type) {
+  public function testMatching($result, $data, WebforgeType $type) {
     $this->assertEquals($result, $this->matcher->isTypeOf($data, $type));
   }
   

@@ -624,11 +624,10 @@ class GClass extends GObject implements \Webforge\Common\ClassInterface {
   }
   
   /**
-   * @return Name der Klasse mit Namespace immer mit \ davor!
+   * @return der Shortname der Klasse
    */
   public function getName() {
-    //return ($this->namespace ? $this->namespace.'\\' : NULL).$this->name;
-    return $this->namespace.'\\'.$this->name;
+    return $this->getClassName();
   }
   
   /**
@@ -639,7 +638,7 @@ class GClass extends GObject implements \Webforge\Common\ClassInterface {
    * @return string
    */
   public function getFQN() {
-    return ltrim($this->getName(),'\\');
+    return ltrim($this->namespace.'\\'.$this->name, '\\');
   }
   
   /**
@@ -870,6 +869,6 @@ class GClass extends GObject implements \Webforge\Common\ClassInterface {
   }
 
   public function __toString() {
-    return '[class '.__CLASS__.': '.$this->getName().']';
+    return '[class '.__CLASS__.': '.$this->getFQN().']';
   }
 }

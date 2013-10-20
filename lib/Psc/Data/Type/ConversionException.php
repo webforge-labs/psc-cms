@@ -2,6 +2,4 @@
 
 namespace Psc\Data\Type;
 
-class ConversionException extends \Psc\Data\Type\Exception {
-}
-?>
+class ConversionException extends \Webforge\Types\ConversionException {}

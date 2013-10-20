@@ -12,7 +12,9 @@
     "psr-0": {
       "Psc": ["lib/", "tests/"],
       "Hitch": ["application/src/hitch/lib/"],
-      "PHPWord": ["lib/PHPWord/"]
+      "PHPWord": ["lib/PHPWord/"],
+      "Webforge\\Common": ["D:\\www\\webforge-common\\lib"],
+      "Webforge\\Types": ["D:\\www\\webforge-types\\lib"]
     },
     "files": [
       "lib/JParser/autoload.php"

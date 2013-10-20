@@ -2,6 +2,4 @@
 
 namespace Psc\Data\Type\Interfaces;
 
-interface Collection extends \Doctrine\Common\Collections\Collection {
-}
-?>
+interface Collection extends \Webforge\Types\Interfaces\Collection {}

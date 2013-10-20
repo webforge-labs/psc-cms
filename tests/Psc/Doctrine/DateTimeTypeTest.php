@@ -35,10 +35,8 @@ class DateTimeTypeTest extends \Psc\Doctrine\DatabaseTestCase {
     
     $this->em->clear();
     
-    $tag = $this->hydrate('Psc\Doctrine\TestEntities\Tag',array('label'=>'timestamped'));
     $this->assertInstanceOf('Webforge\Common\DateTime\DateTime', $savedTime = $tag->getCreated());
     $this->assertEquals($time, $savedTime);
 
   }
 }
-?>

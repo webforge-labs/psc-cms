@@ -14,7 +14,7 @@ class IdTypeTest extends \Psc\Code\Test\Base {
   }
   
   public function testAcceptance() {
-    $this->assertInstanceOf('Psc\Data\Type\IntegerType',$this->type);
+    $this->assertInstanceOf('Webforge\Types\IntegerType',$this->type);
   }
 
 }

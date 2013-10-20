@@ -16,7 +16,7 @@ class MixedTypeTest extends TestCase {
   }
   
   public function testAcceptance() {
-    $this->assertInstanceOf('Psc\Data\Type\PseudoType', $this->mixedType);
+    $this->assertInstanceOf('Webforge\Types\PseudoType', $this->mixedType);
     $this->assertDocType('mixed', $this->mixedType);
   }
 }

@@ -2,8 +2,4 @@
 
 namespace Psc\Data\Type;
 
-class TypeExpectedException extends \Psc\Data\Type\Exception {
-  
-  public $expectedType;
-}
-?>
+class TypeExpectedException extends \Webforge\Types\TypeExpectedException {}

@@ -2,6 +2,4 @@
 
 namespace Psc\Data\Type;
 
-class ArrayNotTypedException extends \Psc\Data\Type\NotTypedException {
-}
-?>
+class ArrayNotTypedException extends \Webforge\Types\ArrayNotTypedException {}

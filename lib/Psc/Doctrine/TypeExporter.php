@@ -46,13 +46,13 @@ class TypeExporter extends \Psc\SimpleObject implements \Psc\Data\Type\Exporter 
     }
     
     // Explicit Interface in der Type-Klasse selbst
-    if ($type instanceof ExportableType) {
+    if ($type instanceof \Webforge\Types\DoctrineExportableType) {
       // keinen dynamischen cache einbauen für z.b. DCEnumType,
       // wir machen den ganz aus, denn der performance overhead sollte minimal sein
       return $type->getDoctrineExportType(); 
     }
     
-    throw \Psc\Data\Type\TypeExportException::create("Es konnte kein DoctrineExportType für: '%s' gefunden werden. Dieser Typ sollte \Psc\Doctrine\ExportableType implementieren.",$tn);
+    throw \Psc\Data\Type\TypeExportException::create("Es konnte kein DoctrineExportType für: '%s' gefunden werden. Dieser Typ sollte \Webfoge\Types\DoctrineExportableType implementieren.",$tn);
     // YAGNI?
   }
   
@@ -73,4 +73,3 @@ class TypeExporter extends \Psc\SimpleObject implements \Psc\Data\Type\Exporter 
     return Type::create($flip[$dcTypeConstant]);
   }
 }
-?>

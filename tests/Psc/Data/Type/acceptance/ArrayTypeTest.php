@@ -32,7 +32,7 @@ class ArrayTypeTest extends \Psc\Code\Test\Base {
    */
   public function testSetAndGetType(ArrayType $typedArray) {
     $it = $typedArray->getType();
-    $this->assertInstanceOf('Psc\Data\Type\IntegerType',$it); // doppelt gemoppelt von testConstruct
+    $this->assertInstanceOf('Webforge\Types\IntegerType',$it); // doppelt gemoppelt von testConstruct
     
     $typedArray->setType($it);
     $this->assertTrue($typedArray->isTyped());
@@ -45,7 +45,7 @@ class ArrayTypeTest extends \Psc\Code\Test\Base {
   
   /**
    * @depends testSetAndGetType
-   * @expectedException Psc\Data\Type\ArrayNotTypedException
+   * @expectedException Webforge\Types\ArrayNotTypedException
    */
   public function testGetTypeThrowsArrayNotTypedExceptionWhenTypeisNULL(ArrayType $array) {
     $array->getType();
@@ -54,11 +54,10 @@ class ArrayTypeTest extends \Psc\Code\Test\Base {
   public function testIsParameterHintedType() {
     $array = new ArrayType();
     
-    $this->assertInstanceOf('Psc\Data\Type\ParameterHintedType', $array);
+    $this->assertInstanceOf('Webforge\Types\ParameterHintedType', $array);
     $this->assertEquals('Array', $array->getParameterHint($useFQN = TRUE));
     $this->assertEquals('Array', $array->getParameterHint($useFQN = FALSE));
     
     $this->assertNull($array->getParameterHintImport());
   }
 }
-?>

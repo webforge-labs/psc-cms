@@ -2,7 +2,8 @@
 
 namespace Psc\CMS;
 
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
+use Webforge\Types\MappedComponentType;
 use Psc\Code\Code;
 use Psc\Code\Event\Manager;
 
@@ -39,7 +40,7 @@ class ComponentMapper extends \Psc\SimpleObject implements \Psc\Code\Event\Dispa
     if (array_key_exists($type->getName(), $this->explicitMappings)) {
       $component = $this->createComponent($this->explicitMappings[$type->getName()]);
     
-    } elseif ($type instanceof \Psc\Data\Type\MappedComponentType) {
+    } elseif ($type instanceof MappedComponentType) {
       $component = $type->getMappedComponent($this);
     
     } else {
@@ -77,4 +78,3 @@ class ComponentMapper extends \Psc\SimpleObject implements \Psc\Code\Event\Dispa
     return $this->manager;
   }
 }
-?>

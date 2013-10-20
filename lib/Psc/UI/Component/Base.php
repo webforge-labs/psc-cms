@@ -6,7 +6,7 @@ use Psc\UI\HTML;
 use stdClass;
 use Psc\UI\Form as f;
 use Psc\Code\Code;
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 use Psc\HTML\Tag AS HTMLTag;
 use Psc\CMS\Component;
 use Psc\Data\Type\TypeRuleMapper;

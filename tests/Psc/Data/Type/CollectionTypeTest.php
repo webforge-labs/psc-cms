@@ -30,7 +30,7 @@ class CollectionTypeTest extends \Psc\Code\Test\Base {
     $type = \Psc\Data\Type\Type::create('Collection', CollectionType::DOCTRINE_ARRAY_COLLECTION, new ObjectType(new GClass('Psc\Doctrine\Entity')));
     $this->assertEquals('Doctrine\Common\Collections\ArrayCollection',$type->getClass()->getFQN());
     $this->assertTrue($type->isTyped());
-    $this->assertInstanceOf('Psc\Data\Type\ObjectType',$type->getType());
+    $this->assertInstanceOf('Webforge\Types\ObjectType',$type->getType());
     $this->assertEquals('Psc\Doctrine\Entity',$type->getType()->getClassFQN());
     return $type;
   }
@@ -46,7 +46,7 @@ class CollectionTypeTest extends \Psc\Code\Test\Base {
    * @depends testConstruct
    */
   public function testInterfaced($link) {
-    $this->assertInstanceOf('Psc\Data\Type\InterfacedType', $link);
+    $this->assertInstanceOf('Webforge\Types\InterfacedType', $link);
     $this->assertTrue(interface_exists($link->getInterface()), 'Interface: '.$link->getInterface().' existiert nicht');
     $this->assertEquals('Doctrine\Common\Collections\Collection', $link->getInterface());
     $this->assertEquals('Doctrine\Common\Collections\Collection', $link->getPHPHint());

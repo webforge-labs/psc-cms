@@ -14,9 +14,9 @@ class PersistentCollectionTypeTest extends \Psc\Code\Test\Base {
   
   public function testConstruct() {
     $pct = new PersistentCollectionType(new \Psc\Code\Generate\GClass('Psc\Doctrine\TestEntities\Tag'));
-    $this->assertInstanceOf('Psc\Data\Type\CollectionType', $pct);
+    $this->assertInstanceOf('Webforge\Types\CollectionType', $pct);
     
-    $this->assertInstanceOf('Psc\Data\Type\ObjectType', $pct->getType());
+    $this->assertInstanceOf('Webforge\Types\ObjectType', $pct->getType());
     $this->assertEquals('Psc\Doctrine\TestEntities\Tag',$pct->getType()->getClass()->getFQN());
   }
 }

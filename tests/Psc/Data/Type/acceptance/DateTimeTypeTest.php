@@ -22,4 +22,3 @@ class DateTimeTypeTest extends TestCase {
     $this->assertTypeMapsComponent('DateTimePicker', Type::create('DateTime'));
   }
 }
-?>

@@ -2,6 +2,4 @@
 
 namespace Psc\Data\Type;
 
-class WrongDataException extends \Psc\Data\Type\Exception {
-}
-?>
+class WrongDataException extends \Webforge\Types\WrongDataException {}

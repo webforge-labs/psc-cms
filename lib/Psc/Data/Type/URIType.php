@@ -2,6 +2,4 @@
 
 namespace Psc\Data\Type;
 
-class URIType extends \Psc\Data\Type\StringType {
-}
-?>
+class URIType extends \Webforge\Types\URIType {}

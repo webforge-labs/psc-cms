@@ -17,8 +17,8 @@ class EnumTypeTest extends TestCase {
   
   public function testInterfaces() {
     // enclosing: weil wir als Enum auf einen Template-Type projezieren können
-    $this->assertInstanceOf('Psc\Data\Type\EnclosingType', $this->enumType);
-    $this->assertInstanceOf('Psc\Data\Type\ValidationType', $this->enumType);
+    $this->assertInstanceOf('Webforge\Types\EnclosingType', $this->enumType);
+    $this->assertInstanceOf('Webforge\Types\ValidationType', $this->enumType);
   }
   
   public function testComponentMapping() {
@@ -26,7 +26,7 @@ class EnumTypeTest extends TestCase {
   }
   
   public function testSetTypeIsNotAllowed() {
-    $this->setExpectedException('Psc\Exception');
+    $this->setExpectedException('Webforge\Common\Exception');
     $this->enumType->setType(Type::create('String'));
   }
 }

@@ -69,7 +69,7 @@ class ObjectTypeTest extends \Psc\Code\Test\Base {
   public function testIsParameterHintedTypeForTypeWithGClass() {
     $type = Type::create('Object')->setClass($gClass = new GClass('Webforge\Common\System\Dir'));
     
-    $this->assertInstanceOf('Psc\Data\Type\ParameterHintedType', $type);
+    $this->assertInstanceOf('Webforge\Types\ParameterHintedType', $type);
     $this->assertEquals('\Webforge\Common\System\Dir', $type->getParameterHint($useFQN = TRUE));
     $this->assertEquals('Dir', $type->getParameterHint($useFQN = FALSE));
     
@@ -79,7 +79,7 @@ class ObjectTypeTest extends \Psc\Code\Test\Base {
   public function testIsParameterHintedTypeForType() {
     $type = Type::create('Object');
     
-    $this->assertInstanceOf('Psc\Data\Type\ParameterHintedType', $type);
+    $this->assertInstanceOf('Webforge\Types\ParameterHintedType', $type);
     $this->assertEquals('\stdClass', $type->getParameterHint($useFQN = TRUE));
     $this->assertEquals('stdClass', $type->getParameterHint($useFQN = FALSE));
     

@@ -2,6 +2,4 @@
 
 namespace Psc\Data\Type;
 
-class TypeException extends \Psc\Data\Exception {
-}
-?>
+class TypeException extends \Webforge\Types\TypeException {}

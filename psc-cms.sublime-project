@@ -2,8 +2,16 @@
 	"folders":
 	[
 		{
-			"path": ".",
-      "folder_exclude_patterns": ["vendor", "build", ".komodotools"]
+			"folder_exclude_patterns":
+			[
+				"vendor",
+				"build",
+				".komodotools"
+			],
+			"path": "/D/www/psc-cms"
+		},
+		{
+			"path": "lib/Psc/Data/Type/Interfaces"
 		}
 	]
 }
