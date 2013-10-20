@@ -19,7 +19,7 @@ use Psc\CMS\AbstractTabsContentItem2 as TCI;
 use Psc\UI\Tabs2;
 use Psc\CMS\Controller\Factory as ControllerFactory;
 use Psc\CMS\Roles\Container as ContainerRole;
-use Webforge\CMS\EnvironmentContainer;
+use Psc\CMS\EnvironmentContainer;
 use Webforge\Framework\Project as WebforgeProject;
 
 /**
@@ -33,7 +33,7 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
   protected $environment;
 
   /**
-   * @var Webforge\CMS\EnvironmentContainer
+   * @var Psc\CMS\EnvironmentContainer
    */
   protected $environmentContainer;
   
