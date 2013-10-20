@@ -5,7 +5,7 @@ namespace Psc\CMS;
 class EnvironmentContainerTest extends \Webforge\Code\Test\Base {
   
   public function setUp() {
-    $this->chainClass = 'Webforge\\CMS\\EnvironmentContainer';
+    $this->chainClass = __NAMESPACE__.'\EnvironmentContainer';
     parent::setUp();
 
     $this->container = new EnvironmentContainer(array('session.init'=>FALSE));
