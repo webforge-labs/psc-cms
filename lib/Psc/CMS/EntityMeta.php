@@ -4,6 +4,7 @@ namespace Psc\CMS;
 
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Psc\Code\Code;
+use Webforge\Types\IntegerType;
 
 /**
  * Eine Meta-Klasse für erweiterte Labels oder Informationen zum Entity
@@ -504,7 +505,7 @@ class EntityMeta extends \Psc\SimpleObject {
    * @return Psc\CMS\RequestMeta
    */
   public function getSaveRequestMeta(Entity $entity = NULL, $subResource = NULL) {
-    $idIsInt = ($type = $this->getIdentifier()->getType()) instanceof \Psc\Data\Type\IntegerType;
+    $idIsInt = ($type = $this->getIdentifier()->getType()) instanceof IntegerType;
     
     // custom save request
     if ($subResource != NULL) {
@@ -590,7 +591,7 @@ class EntityMeta extends \Psc\SimpleObject {
    */
   public function getActionRequestMeta($action, Entity $entity = NULL, $method = \Psc\Net\HTTP\Request::GET) {
     if (!array_key_exists($action, $this->actionsRequestMeta)) {
-      $idIsInt = ($identifierType = $this->getIdentifier()->getType()) instanceof \Psc\Data\Type\IntegerType;
+      $idIsInt = ($identifierType = $this->getIdentifier()->getType()) instanceof IntegerType;
       $this->actionsRequestMeta[$action] = new RequestMeta($method,
                                                $this->constructUrl(array($this->getEntityName(), ($idIsInt ? '%d' : '%s'), $action)),
                                                array($identifierType)
@@ -689,7 +690,7 @@ class EntityMeta extends \Psc\SimpleObject {
    */
   public function getDeleteRequestMeta(Entity $entity = NULL) {
     if (!isset($this->deleteRequestMeta)) {
-      $idIsInt = ($type = $this->getIdentifier()->getType()) instanceof \Psc\Data\Type\IntegerType;
+      $idIsInt = ($type = $this->getIdentifier()->getType()) instanceof IntegerType;
       $this->deleteRequestMeta = new RequestMeta(\Psc\Net\HTTP\Request::DELETE,
                                                $this->constructUrl(array($this->getEntityName(), ($idIsInt ? '%d' : '%s'))),
                                                //'/entities/'.$this->getEntityName().'/'.($idIsInt ? '%d' : '%s'),

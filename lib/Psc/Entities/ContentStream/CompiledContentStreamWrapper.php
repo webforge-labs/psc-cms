@@ -77,8 +77,8 @@ abstract class CompiledContentStreamWrapper extends Entry {
   
   public static function getSetMeta() {
     return new \Psc\Data\SetMeta(array(
-      'id' => new \Psc\Data\Type\IdType(),
-      'wrapped' => new \Psc\Data\Type\EntityType(new \Psc\Code\Generate\GClass('Psc\\Entities\\ContentStream\\ContentStream')),
+      'id' => new \Webforge\Types\IdType(),
+      'wrapped' => new \Webforge\Types\EntityType(new \Psc\Code\Generate\GClass('Psc\\Entities\\ContentStream\\ContentStream')),
     ));
   }
 }

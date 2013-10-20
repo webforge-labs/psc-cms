@@ -10,6 +10,7 @@ use Psc\Code\Generate\ClassWriter;
 use Psc\Code\Compile\Compiler;
 use Psc\Code\Compile;
 use Webforge\Common\System\File;
+use Webforge\Types\Type;
 
 class CompileCommand extends Command {
   
@@ -89,7 +90,7 @@ class CompileCommand extends Command {
     if (mb_strpos($typeDef, '\\') !== FALSE) {
       $typeDef = sprintf('Object<%s>', $typeDef);
     }
-    return \Psc\Data\Type\Type::create($typeDef);
+    return Type::create($typeDef);
   }
 }
 ?>

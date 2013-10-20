@@ -2,7 +2,8 @@
 
 namespace Psc\CMS;
 
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
+use Webforge\Types\MappedComponentType;
 use Psc\Code\Code;
 use Psc\Code\Event\Manager;
 
@@ -10,7 +11,7 @@ use Psc\Code\Event\Manager;
  * Der ComponentMapper ermittelt aus einem Typ die passenden Componente, die automatisch angezeigt werden soll
  *
  */
-class ComponentMapper extends \Psc\SimpleObject implements \Psc\Code\Event\Dispatcher {
+class ComponentMapper extends \Psc\SimpleObject implements \Psc\Code\Event\Dispatcher, \Webforge\Types\Adapters\ComponentMapper {
 
   /**
    * Wird aufgerufen wenn eine Componente durch den Mapper instanziiert wird
@@ -39,11 +40,11 @@ class ComponentMapper extends \Psc\SimpleObject implements \Psc\Code\Event\Dispa
     if (array_key_exists($type->getName(), $this->explicitMappings)) {
       $component = $this->createComponent($this->explicitMappings[$type->getName()]);
     
-    } elseif ($type instanceof \Psc\Data\Type\MappedComponentType) {
+    } elseif ($type instanceof MappedComponentType) {
       $component = $type->getMappedComponent($this);
     
     } else {
-      throw NoComponentFoundException::build("Zum Type '%s' konnte keine Komponente ermittelt werden. Das einfachste ist im Type \Psc\Data\Type\MappedComponentType zu implementieren.", $type->getName())
+      throw NoComponentFoundException::build("Zum Type '%s' konnte keine Komponente ermittelt werden. Das einfachste ist im Type \Webforge\Types\MappedComponentType zu implementieren.", $type->getName())
         ->set('type',$type)
         ->end();
     }
@@ -65,7 +66,7 @@ class ComponentMapper extends \Psc\SimpleObject implements \Psc\Code\Event\Dispa
   }
   
   /**
-   * @param string $typeName der Name ohne Psc\Data\Type\ davor und "Type" dahinter ($type->getName())
+   * @param string $typeName der Name ohne Webforge\Types\ davor und "Type" dahinter ($type->getName())
    * @param string $componentName der Name Psc\UI\Component\$name oder der FQN
    */
   public function addExplicitMapping($typeName, $componentName) {
@@ -77,4 +78,3 @@ class ComponentMapper extends \Psc\SimpleObject implements \Psc\Code\Event\Dispa
     return $this->manager;
   }
 }
-?>

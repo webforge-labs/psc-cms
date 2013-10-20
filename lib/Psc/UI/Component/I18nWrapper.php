@@ -6,7 +6,7 @@ use Psc\CMS\ComponentMapper;
 use Psc\UI\HTML;
 use Psc\UI\jqx\Tabs;
 use Psc\UI\jqx\Tab;
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 
 /**
  * 
@@ -130,4 +130,3 @@ class I18nWrapper extends JavaScriptBase implements JavaScriptComponent {
     return $this->languages;
   }
 }
-?>

@@ -6,7 +6,7 @@ use Psc\UI\HTML;
 use stdClass;
 use Psc\UI\Form as f;
 use Psc\Code\Code;
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 use Psc\HTML\Tag AS HTMLTag;
 use Psc\CMS\Component;
 use Psc\Data\Type\TypeRuleMapper;
@@ -57,7 +57,7 @@ abstract class Base extends \Psc\SimpleObject implements \Psc\CMS\Component, \Ps
   /**
    * Der Typ der Daten, die in der Komponente dargestellt werden
    * 
-   * @var Psc\Data\Type\Type
+   * @var webforge\Types\Type
    */
   protected $type;
   
@@ -282,7 +282,4 @@ abstract class Base extends \Psc\SimpleObject implements \Psc\CMS\Component, \Ps
     }
     return $this->typeRuleMapper;
   }
-
-
 }
-?>

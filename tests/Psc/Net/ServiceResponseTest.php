@@ -3,8 +3,8 @@
 namespace Psc\Net;
 
 use Psc\Net\ServiceResponse;
-use Psc\Data\Type\StringType;
-use Psc\Data\Type\ArrayType;
+use Webforge\Types\StringType;
+use Webforge\Types\ArrayType;
 
 /**
  * @group class:Psc\Net\ServiceResponse

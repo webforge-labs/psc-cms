@@ -163,12 +163,12 @@ abstract class CompiledContentStream extends \Psc\TPL\ContentStream\ContentStrea
   
   public static function getSetMeta() {
     return new \Psc\Data\SetMeta(array(
-      'id' => new \Psc\Data\Type\IdType(),
-      'locale' => new \Psc\Data\Type\StringType(),
-      'slug' => new \Psc\Data\Type\StringType(),
-      'type' => new \Psc\Data\Type\StringType(),
-      'revision' => new \Psc\Data\Type\StringType(),
-      'entries' => new \Psc\Data\Type\PersistentCollectionType(new \Psc\Code\Generate\GClass('Psc\\Entities\\ContentStream\\Entry')),
+      'id' => new \Webforge\Types\IdType(),
+      'locale' => new \Webforge\Types\StringType(),
+      'slug' => new \Webforge\Types\StringType(),
+      'type' => new \Webforge\Types\StringType(),
+      'revision' => new \Webforge\Types\StringType(),
+      'entries' => new \Webforge\Types\PersistentCollectionType(new \Psc\Code\Generate\GClass('Psc\\Entities\\ContentStream\\Entry')),
     ));
   }
 }

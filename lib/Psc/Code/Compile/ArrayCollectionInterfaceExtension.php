@@ -2,7 +2,8 @@
 
 namespace Psc\Code\Compile;
 
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
+use Webforge\Types\TraversableType;
 use Psc\Code\Generate\GClass;
 use Psc\Code\Generate\GParameter;
 
@@ -41,7 +42,7 @@ class ArrayCollectionInterfaceExtension extends Extension {
   protected $itemType;
   
   /**
-   * @var Psc\Data\Type\Type
+   * @var Webforge\Types\Type
    */
   protected $collectionType;
   
@@ -241,10 +242,10 @@ class ArrayCollectionInterfaceExtension extends Extension {
   }
   
   /**
-   * @param Psc\Data\Type\EnclosingType $collectionType
+   * @param Webforge\Types\EnclosingType $collectionType
    * @chainable
    */
-  public function setCollectionType(\Psc\Data\Type\TraversableType $collectionType) {
+  public function setCollectionType(TraversableType $collectionType) {
     $this->collectionType = $collectionType;
     if ($this->itemType) {
       $this->collectionType->setType($this->itemType);
@@ -253,10 +254,9 @@ class ArrayCollectionInterfaceExtension extends Extension {
   }
 
   /**
-   * @return Psc\Data\Type\TraversableType
+   * @return Webforge\Types\TraversableType
    */
   public function getCollectionType() {
     return $this->collectionType;
   }
 }
-?>

@@ -2,7 +2,7 @@
 
 namespace Psc\CMS;
 
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 use Closure;
 
 /**
@@ -85,4 +85,3 @@ class GridPanelColumn extends \Psc\Data\Column {
     return $this->converter;
   }
 }
-?>

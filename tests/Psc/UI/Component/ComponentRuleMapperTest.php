@@ -2,7 +2,7 @@
 
 namespace Psc\UI\Component;
 
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 use Psc\CMS\ComponentMapper;
 
 /**
@@ -53,4 +53,3 @@ class ComponentRuleMapperTest extends \Psc\Code\Test\Base {
     return new ComponentRuleMapper();
   }
 }
-?>

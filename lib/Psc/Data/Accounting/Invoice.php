@@ -4,6 +4,7 @@ namespace Psc\Data\Accounting;
 
 use Psc\Data\PrototypeSet as Data;
 use Psc\Data\Accounting\InvoiceItems;
+use Webforge\Types\Type;
 
 /**
  *
@@ -84,7 +85,7 @@ class Invoice extends \Psc\SimpleObject {
     $set = new Data();
     
     $f = function ($field, $type = 'String') use (&$set) {
-      $set->setFieldType($field, \Psc\Data\Type\Type::create($type));
+      $set->setFieldType($field, Type::create($type));
     };
     
     if ($spec === 'person') {
@@ -123,4 +124,3 @@ class Invoice extends \Psc\SimpleObject {
     return $set;
   }
 }
-?>

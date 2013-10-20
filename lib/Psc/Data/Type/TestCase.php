@@ -4,10 +4,12 @@ namespace Psc\Data\Type;
 
 use Psc\CMS\ComponentMapper;
 use Psc\Code\Code;
+use Webforge\Types\Type as WebforgeType;
+use Webforge\Types\CodeExporter;
 
 class TestCase extends \Psc\Code\Test\Base {
   
-  protected function assertTypeMapsComponent($class, Type $type, $mapper = NULL) {
+  protected function assertTypeMapsComponent($class, WebforgeType $type, $mapper = NULL) {
     $mapper = $mapper ?: new ComponentMapper;
     $this->assertInstanceOf('Psc\CMS\Component', $component = $mapper->inferComponent($type));
     
@@ -23,8 +25,8 @@ class TestCase extends \Psc\Code\Test\Base {
    *
    * dies gewährleistet, dass der type so wie er instanziiert, dann exportiert und dann wieder ausgeführt wird derselbe ist wie die Instanz
    */
-  protected function assertCodeExportEquals(Type $type) {
-    $ce = new CodeExporter();
+  protected function assertCodeExportEquals(WebforgeType $type) {
+    $ce = new CodeExporter(new \Webforge\Common\CodeWriter());
     
     $phpCode = '$actualType = '.$ce->exportType($type).';';
     eval($phpCode);
@@ -35,15 +37,14 @@ class TestCase extends \Psc\Code\Test\Base {
     $this->assertEquals($type, $actualType, 'PHPCode ist: '.$phpCode);
   }
 
-  protected function assertObjectType($classFQN, Type $type) {
-    $this->assertInstanceOf('Psc\Data\Type\ObjectType', $type);
+  protected function assertObjectType($classFQN, WebforgeType $type) {
+    $this->assertInstanceOf('Webforge\Types\ObjectType', $type);
     $this->assertEquals($classFQN, $type->getClassFQN(), 'Type ist ein ObjectType aber hat nicht die richtige Klasse');
   }
   
-  protected function assertDocType($docType, Type $type) {
+  protected function assertDocType($docType, WebforgeType $type) {
     $msg = 'DokumentationsType des Type '.$type.' ist nicht korrekt';
-    $this->assertEquals($docType, $type->getName(Type::CONTEXT_DOCBLOCK), $msg);
+    $this->assertEquals($docType, $type->getName(WebforgeType::CONTEXT_DOCBLOCK), $msg);
     $this->assertEquals($docType, $type->getDocType(), $msg);
   }
 }
-?>

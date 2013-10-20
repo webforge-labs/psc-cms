@@ -2,7 +2,7 @@
 
 namespace Psc\Data;
 
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 
 /**
  * 
@@ -15,7 +15,7 @@ class Column extends \Psc\SimpleObject {
   protected $name;
   
   /**
-   * @var Psc\Data\Type\Type
+   * @var Webforge\Types\Type
    */
   protected $type;
   
@@ -46,7 +46,7 @@ class Column extends \Psc\SimpleObject {
   }
   
   /**
-   * @param Psc\Data\Type\Type $type
+   * @param Webforge\Types\Type $type
    */
   public function setType(Type $type) {
     $this->type = $type;
@@ -54,7 +54,7 @@ class Column extends \Psc\SimpleObject {
   }
   
   /**
-   * @return Psc\Data\Type\Type
+   * @return Webforge\Types\Type
    */
   public function getType() {
     return $this->type;
@@ -75,4 +75,3 @@ class Column extends \Psc\SimpleObject {
     return $this->label;
   }
 }
-?>

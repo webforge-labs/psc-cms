@@ -2,17 +2,18 @@
 
 namespace Psc\Code\Test;
 
+use Closure;
 use Psc\PSC;
 use Webforge\Common\System\Dir;
 use Webforge\Common\System\File;
 use Webforge\Common\System\Util as SystemUtil;
-use Closure;
 use Psc\System\Console\Process;
+use Psc\Doctrine\DCPackage;
+use Psc\CMS\Translation\Container as TranslationContainer;
 use Webforge\Translation\ArrayTranslator;
 use Webforge\Translation\Translator;
-use Psc\CMS\Translation\Container as TranslationContainer;
 use Webforge\Translation\TranslationsBuilder;
-use Psc\Doctrine\DCPackage;
+use Webforge\Types\Type;
 
 /**
  */
@@ -191,9 +192,9 @@ class Base extends \Webforge\Code\Test\Base {
   }
 
   public function createType($typeName) {
-    if ($typeName instanceof \Psc\Data\Type\Type) return $typeName;
+    if ($typeName instanceof Type) return $typeName;
     
-    return \Psc\Data\Type\Type::create($typeName);
+    return Type::create($typeName);
   }
   
   public function getType($typeName) {

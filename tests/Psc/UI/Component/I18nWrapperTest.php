@@ -2,6 +2,8 @@
 
 namespace Psc\UI\Component;
 
+use Webforge\Types\StringType;
+
 /**
  * @group class:Psc\UI\Component\I18nWrapper
  */
@@ -17,7 +19,7 @@ class I18nWrapperTest extends \Psc\Code\Test\HTMLTestCase {
   
   public function testAcceptance() {
     $component = new I18nWrapper();
-    $component->dpi(new \Psc\Data\Type\StringType(), array('de','fr'));
+    $component->dpi(new StringType(), array('de','fr'));
     
     $component->setFormName('title');
     $component->setFormValue(array('de'=>'de-title', 'fr'=>'fr-title'));

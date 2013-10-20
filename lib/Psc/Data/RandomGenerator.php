@@ -2,11 +2,11 @@
 
 namespace Psc\Data;
 
-use Psc\Data\Type\StringType;
-use Psc\Data\Type\IntegerType;
-use Psc\Data\Type\BooleanType;
-use Psc\Data\Type\ArrayType;
-use Psc\Data\Type\Type;
+use Webforge\Types\StringType;
+use Webforge\Types\IntegerType;
+use Webforge\Types\BooleanType;
+use Webforge\Types\ArrayType;
+use Webforge\Types\Type;
 use Webforge\Common\ArrayUtil AS A;
 
 class RandomGenerator extends \Psc\SimpleObject {
@@ -71,4 +71,3 @@ class RandomGenerator extends \Psc\SimpleObject {
     return $string;    
   }
 }
-?>

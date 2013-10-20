@@ -4,7 +4,7 @@ namespace Psc\Code\Generate;
 
 use Psc\Code\Callback;
 use Psc\TPL\TPL;
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 
 /**
  * Eine Klasse um einfach eine Klasse von scratch zu erstellen

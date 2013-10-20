@@ -4,6 +4,7 @@ namespace Psc\Data;
 
 use Psc\DataInput;
 use Psc\Code\Code;
+use Webforge\Types\Type;
 
 class Set extends \Psc\SimpleObject implements \Psc\Form\ValidatorDataProvider, Walkable, \IteratorAggregate {
   
@@ -53,7 +54,7 @@ class Set extends \Psc\SimpleObject implements \Psc\Form\ValidatorDataProvider, 
    * @param array|string wenn string dann ebenen mit . getrennt
    * @throws FieldNotDefinedException
    */
-  public function set($field, $value, Type\Type $type = NULL) {
+  public function set($field, $value, Type $type = NULL) {
     if (isset($type)) {
       $this->meta->setFieldType($field, $type);
     } else {
@@ -159,7 +160,7 @@ class Set extends \Psc\SimpleObject implements \Psc\Form\ValidatorDataProvider, 
    * Shortcoming um die Felder des Sets nicht doppelt bezeichnen zu müssen
    * struct ist ein Array von Listen mit jeweils genau 2 elementen (key 0 und key 1)
    * 
-   * @param list[] $struct die Listen sind von der Form: list(mixed $fieldValue, Psc\Data\Type\Type $fieldType). Die Schlüssel sind die Feldnamen
+   * @param list[] $struct die Listen sind von der Form: list(mixed $fieldValue, Webforge\Types\Type $fieldType). Die Schlüssel sind die Feldnamen
    * @return Set
    */
   public static function createFromStruct(Array $struct, SetMeta $meta = NULL) {

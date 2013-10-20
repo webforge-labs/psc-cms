@@ -131,7 +131,7 @@ CLASS_CODE;
     $gClass = new GClass('Psc\Code\Generate\GClass');
     $this->assertEquals('GClass',$gClass->getClassName());
     $this->assertEquals('\Psc\Code\Generate',$gClass->getNamespace());
-    $this->assertEquals('\Psc\Code\Generate\GClass',$gClass->getName());
+    $this->assertEquals('Psc\Code\Generate\GClass',$gClass->getFQN());
     
     /* test final + abstract zeuch */
     $this->assertFalse($gClass->isFinal());

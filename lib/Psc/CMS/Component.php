@@ -2,13 +2,15 @@
 
 namespace Psc\CMS;
 
+use Webforge\Types\Type;
+
 /**
  * Eine Component ist ein Teil eines Formulars der die Darstellung von Daten im Formular steuert
  *
  * @TODO ich glaube wir brauchen hier eine Steuerung dafür, wann die Componente schon "umgewandelt" wurde. Mit umgewandelt meine ich, dass die Componente schon als HTML zurückgeben wurde. Denn nicht alles lässt sich in der Componente so schön abstrahieren, dass alle Setter auf der Componente immer auch das HTML modifizieren. Das Problem hatte ich schon an mehreren Stellen bei den HTML-Form Dingern
  * Am Besten wäre vielleicht sowas wie morph() und danach ist dann Schluss mit ein paar Settern.
  */
-interface Component extends \Psc\Form\Item {
+interface Component extends \Psc\Form\Item, \Webforge\Types\Adapters\Component {
   
   /**
    * Sollte aufgerufen werden, sobald die Componente Form-Name, Value und Label gesetzt hat
@@ -65,10 +67,10 @@ interface Component extends \Psc\Form\Item {
   public function getHint();
 
   
-  public function setType(\Psc\Data\Type\Type $type);
+  public function setType(Type $type);
   
   /**
-   * @return Psc\Data\Type\Type
+   * @return Webforge\Types\Type
    */
   public function getType();
 
@@ -95,4 +97,3 @@ interface Component extends \Psc\Form\Item {
    */
   public function setValidatorRule($validatorRule);
 }
-?>

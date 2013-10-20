@@ -3,7 +3,7 @@
 namespace Psc;
 
 use stdClass;
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 use InvalidArgumentException;
 use Psc\Code\Code;
 

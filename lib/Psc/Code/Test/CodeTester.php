@@ -2,11 +2,11 @@
 
 namespace Psc\Code\Test;
 
-use Psc\Data\Type\Type;
-use Psc\Data\Type\StringType;
-use Psc\Data\Type\IntegerType;
-use Psc\Data\Type\BooleanType;
-use Psc\Data\Type\ArrayType;
+use Webforge\Types\Type;
+use Webforge\Types\StringType;
+use Webforge\Types\IntegerType;
+use Webforge\Types\BooleanType;
+use Webforge\Types\ArrayType;
 use Webforge\Common\ArrayUtil AS A;
 use Psc\Data\RandomGenerator;
 use ReflectionClass;
@@ -86,10 +86,10 @@ class CodeTester extends \Psc\SimpleObject {
    *
    * damit gehts schöner! @TODO
    *    $this->assertAttributeEquals(
-          'baz',  /* expected value 
-          'bar',  /* attribute name 
-          new Foo /* object         
-        );
+   *       'baz',  /* expected value 
+   *       'bar',  /* attribute name 
+   *       new Foo /* object         
+   *     );
    * @param array|mixed $values wird dies übergeben, werden keine random daten übergeben, sondern diese Values getestet
    */
   public function setterValues($propertyName, $values) {
@@ -128,13 +128,13 @@ class CodeTester extends \Psc\SimpleObject {
   /**
    * Tested die Übergabe von Parametern durch den Constructor
    * 
-   * @param array $signatur schlüssel sind die namen der properties. Values sind entweder Werte für einen konkreten Test, oder ein \Psc\Data\Type\Type (dann wird mit random daten getestet)
+   * @param array $signatur schlüssel sind die namen der properties. Values sind entweder Werte für einen konkreten Test, oder ein \Webforge\Types\Type (dann wird mit random daten getestet)
    * @TODO YAGNI: hier könnte man auch noch als dritten Parameter $expected übergeben (falls man setter hat im constructor die, die Daten ummodellieren)
    */
   public function constructor($class, Array $signatur) {
     $params = array();
     foreach ($signatur as $property => $type) {
-      if ($type instanceof \Psc\Data\Type\Type) {
+      if ($type instanceof Type) {
         $params[$property] = $this->generateRandomData($type);
       } else {
         $params[$property] = $type;
@@ -158,7 +158,7 @@ class CodeTester extends \Psc\SimpleObject {
   }
   
   protected function assertChainable($actual) {
-    $this->testCase->assertInstanceOf(Code::getClass($this->object),$actual);
+    $this->testCase->assertInstanceOf(get_class($this->object),$actual);
   }
   
   public function generateRandomData(Type $type) {
@@ -177,4 +177,3 @@ class CodeTester extends \Psc\SimpleObject {
     return Code::castSetter($property);
   }
 }
-?>

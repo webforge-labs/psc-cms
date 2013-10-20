@@ -81,8 +81,8 @@ abstract class User extends AbstractEntity {
   
   public static function getSetMeta() {
     return new \Psc\Data\SetMeta(array(
-      'email' => new \Psc\Data\Type\StringType(),
-      'password' => new \Psc\Data\Type\PasswordType('md5')
+      'email' => new \Webforge\Types\StringType(),
+      'password' => new \Webforge\Types\PasswordType('md5')
     ));
   }
   

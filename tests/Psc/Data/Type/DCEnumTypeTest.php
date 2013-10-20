@@ -3,6 +3,7 @@
 namespace Psc\Data\Type;
 
 use Psc\Code\Generate\GClass;
+use Webforge\Types\DCEnumType;
 
 /**
  * @group class:Psc\Data\Type\DCEnumType
@@ -32,10 +33,10 @@ class DCEnumTypeTest extends TestCase {
   }
   
   public function testAcceptance() {
-    $this->assertInstanceOf('Psc\Doctrine\ExportableType', $this->enumType);
+    $this->assertInstanceOf('Webforge\Types\DoctrineExportableType', $this->enumType);
     $this->assertEquals('test_speakerType', $this->enumType->getDoctrineExportType());
     
-    $this->assertInstanceOf('Psc\Data\Type\ValidationType', $this->enumType);
+    $this->assertInstanceOf('Webforge\Types\ValidationType', $this->enumType);
     $this->assertInstanceOf('Psc\Form\ValuesValidatorRule', $rule = $this->enumType->getValidatorRule(new TypeRuleMapper()));
     
     $this->assertEquals('Psc\Data\Type\EnumTestType', $this->enumType->getDocType());
@@ -72,4 +73,3 @@ class EnumTestType extends \Psc\Doctrine\EnumType {
     return self::getType('test_speakerType');
   }
 }
-?>

@@ -2,7 +2,7 @@
 
 namespace Psc\UI;
 
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 
 /**
  * @group class:Psc\UI\DataScreener

@@ -149,10 +149,10 @@ abstract class CompiledTag extends \Psc\CMS\AbstractEntity {
   
   public static function getSetMeta() {
     return new \Psc\Data\SetMeta(array(
-      'id' => new \Psc\Data\Type\IdType(),
-      'label' => new \Psc\Data\Type\StringType(),
-      'created' => new \Psc\Data\Type\DateTimeType(),
-      'articles' => new \Psc\Data\Type\PersistentCollectionType(new \Psc\Code\Generate\GClass('Psc\\Doctrine\\TestEntities\\Article')),
+      'id' => new \Webforge\Types\IdType(),
+      'label' => new \Webforge\Types\StringType(),
+      'created' => new \Webforge\Types\DateTimeType(),
+      'articles' => new \Webforge\Types\PersistentCollectionType(new \Psc\Code\Generate\GClass('Psc\\Doctrine\\TestEntities\\Article')),
     ));
   }
 }

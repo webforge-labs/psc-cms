@@ -2,16 +2,19 @@
 
 namespace Psc\Doctrine;
 
-use Psc\Data\Type\Type;
-use Psc\Data\Type\Exporter;
+use Webforge\Types\Type;
 use Doctrine\DBAL\Types\Type AS DC;
+use Webforge\Types\TypeExportException;
+use Webforge\Types\DoctrineExportableType;
+use Webforge\Types\TypeConversionException;
+use Webforge\Types\Exporter;
 
 /**
  * Wandelt einen Typ in den String um der in @Doctrine\ORM\Mapping\Column(type="%s")  benutzt werden kann
  *
  * Wandelt auch eine DC::Type Konstante in den PscType um (siehe getPscType)
  */
-class TypeExporter extends \Psc\SimpleObject implements \Psc\Data\Type\Exporter {
+class TypeExporter extends \Psc\SimpleObject implements Exporter {
     // Doctrine Types!
     //const TARRAY = 'array';
     //const BIGINT = 'bigint';
@@ -46,31 +49,30 @@ class TypeExporter extends \Psc\SimpleObject implements \Psc\Data\Type\Exporter 
     }
     
     // Explicit Interface in der Type-Klasse selbst
-    if ($type instanceof ExportableType) {
+    if ($type instanceof DoctrineExportableType) {
       // keinen dynamischen cache einbauen für z.b. DCEnumType,
       // wir machen den ganz aus, denn der performance overhead sollte minimal sein
       return $type->getDoctrineExportType(); 
     }
     
-    throw \Psc\Data\Type\TypeExportException::create("Es konnte kein DoctrineExportType für: '%s' gefunden werden. Dieser Typ sollte \Psc\Doctrine\ExportableType implementieren.",$tn);
+    throw new TypeExportException(sprintf("Es konnte kein DoctrineExportType für: '%s' gefunden werden. Dieser Typ sollte \Webfoge\Types\DoctrineExportableType implementieren.",$tn));
     // YAGNI?
   }
   
   /**
    * Wandelt einen Doctrine Type in einen Psc Type um
    * 
-   * @return Psc\Data\Type\Type
+   * @return Webforge\Types\Type
    */
   public function getPscType($dcTypeConstant) {
-    if ($dcTypeConstant === NULL) throw new \Psc\Data\Type\TypeConversionException('dcTypeConstant kann nicht NULL sein');
+    if ($dcTypeConstant === NULL) throw new TypeConversionException('dcTypeConstant kann nicht NULL sein');
     
     $flip = array_flip($this->casts);
     
     if (!array_key_exists($dcTypeConstant, $flip)) {
-      throw \Psc\Data\Type\TypeConversionException::typeTarget('Doctrine-Type: '.$dcTypeConstant, 'Psc-Type');
+      throw TypeConversionException::typeTarget('Doctrine-Type: '.$dcTypeConstant, 'Psc-Type');
     }
     
     return Type::create($flip[$dcTypeConstant]);
   }
 }
-?>

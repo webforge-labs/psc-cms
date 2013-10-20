@@ -4,7 +4,7 @@ namespace Psc\Code\AST;
 
 use Psc\Code\Generate\ClosureCompiler;
 use Psc\Code\Generate\GClass;
-use Psc\Data\Type\Inferrer;
+use Webforge\Types\Inferrer;
 
 /**
  * 
@@ -14,7 +14,7 @@ class DSL extends \Psc\SimpleObject {
   private $closures;
   
   /**
-   * @var Psc\Data\Type\Inferrer
+   * @var Webforge\Types\Inferrer
    */
   protected $typeInferrer;
   
@@ -202,7 +202,7 @@ class DSL extends \Psc\SimpleObject {
   }
   
   /**
-   * @param Psc\Data\Type\Inferrer $typeInferrer
+   * @param Webforge\Types\Inferrer $typeInferrer
    */
   public function setTypeInferrer(Inferrer $typeInferrer) {
     $this->typeInferrer = $typeInferrer;
@@ -210,10 +210,9 @@ class DSL extends \Psc\SimpleObject {
   }
   
   /**
-   * @return Psc\Data\Type\Inferrer
+   * @return Webforge\Types\Inferrer
    */
   public function getTypeInferrer() {
     return $this->typeInferrer;
   }
 }
-?>

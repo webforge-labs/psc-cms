@@ -70,8 +70,8 @@ class MyCMSEntity extends AbstractEntity {
   
   public static function getSetMeta() {
     return new \Psc\Data\SetMeta(array(
-      'identifier' => new \Psc\Data\Type\IdType(),
-      'birthday' => new \Psc\Data\Type\BirthdayType()
+      'identifier' => new \Webforge\Types\IdType(),
+      'birthday' => new \Webforge\Types\BirthdayType()
     ));
   }
   
@@ -79,4 +79,3 @@ class MyCMSEntity extends AbstractEntity {
     return 'Psc\CMS\MyCMSEntity';
   }
 }
-?>

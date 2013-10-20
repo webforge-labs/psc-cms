@@ -3,10 +3,8 @@
 namespace Psc\Data\Type;
 
 use Psc\Form\IdValidatorRule;
+use Webforge\Types\Type as WebforgeType;
 
-/**
- * @group class:Psc\Data\Type\TypeRuleMapper
- */
 class TypeRuleMapperTest extends \Psc\Code\Test\Base {
   
   public function setUp() {
@@ -27,7 +25,7 @@ class TypeRuleMapperTest extends \Psc\Code\Test\Base {
     $mapper = new TypeRuleMapper();
     
     $test = function ($type, $rule) use (&$tests, $mapper) {
-      $type = Type::create($type);
+      $type = WebforgeType::create($type);
       $tests[] = array($mapper->createRule($rule),$type);
     };
     
@@ -52,4 +50,3 @@ class TypeRuleMapperTest extends \Psc\Code\Test\Base {
     );
   }
 }
-?>

@@ -2,7 +2,7 @@
 
 namespace Psc\CMS;
 
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 use Psc\Code\Event\Manager;
 use Psc\Code\Event\CallbackSubscriber;
 use Psc\UI\Accordion;

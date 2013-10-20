@@ -3,11 +3,12 @@
 namespace Psc\Data;
 
 use Psc\Data\RandomGenerator;
-use Psc\Data\Type\StringType;
-use Psc\Data\Type\IntegerType;
-use Psc\Data\Type\BooleanType;
-use Psc\Data\Type\ArrayType;
-use Psc\Data\Type\Type;
+use Webforge\Types\StringType;
+use Webforge\Types\IntegerType;
+use Webforge\Types\BooleanType;
+use Webforge\Types\ArrayType;
+use Webforge\Types\Type;
+use Webforge\Types\LinkType;
 
 /**
  * Das ist mal echt kein schöner Test, ich bin aber gerne offen für neuere Vorschläge
@@ -119,11 +120,11 @@ class RandomGeneratorTest extends \Psc\Code\Test\Base {
    * @expectedException Psc\Code\NotImplementedException
    */
   public function testRandomGeneratorIsNotFullyImplemented() {
-    $this->getRandomData(new \Psc\Data\Type\LinkType());
+    $this->getRandomData(new LinkType());
   }
 
   protected function getRandomData($typeName) {
-    if (!($typeName instanceof \Psc\Data\Type\Type)) {
+    if (!($typeName instanceof Type)) {
       $type = Type::create($typeName);
     } else {
       $type = $typeName;
@@ -137,4 +138,3 @@ class RandomGeneratorTest extends \Psc\Code\Test\Base {
     return new RandomGenerator();
   }
 }
-?>

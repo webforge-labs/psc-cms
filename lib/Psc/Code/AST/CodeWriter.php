@@ -2,7 +2,7 @@
 
 namespace Psc\Code\AST;
 
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 use stdClass;
 
 interface CodeWriter {
@@ -60,4 +60,3 @@ interface CodeWriter {
   public function writeList(Array $walkedList);
 
 }
-?>

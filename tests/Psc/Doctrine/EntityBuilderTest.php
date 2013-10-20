@@ -116,11 +116,11 @@ class EntityBuilderTest extends \Psc\Code\Test\Base {
     $metaGetPHP = <<< 'PHP'
 public static function getSetMeta() {
   return new \Psc\Data\SetMeta(array(
-    'id' => new \Psc\Data\Type\IdType(),
-    'email' => new \Psc\Data\Type\EmailType(),
-    'name' => new \Psc\Data\Type\StringType(),
-    'firstName' => new \Psc\Data\Type\StringType(),
-    'birthday' => new \Psc\Data\Type\DateTimeType(),
+    'id' => new \Webforge\Types\IdType(),
+    'email' => new \Webforge\Types\EmailType(),
+    'name' => new \Webforge\Types\StringType(),
+    'firstName' => new \Webforge\Types\StringType(),
+    'birthday' => new \Webforge\Types\DateTimeType(),
   ));
 }
 PHP;

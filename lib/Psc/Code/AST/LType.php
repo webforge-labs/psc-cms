@@ -2,7 +2,7 @@
 
 namespace Psc\Code\AST;
 
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 
 /**
  * Der Type (einer Variable)
@@ -12,15 +12,15 @@ use Psc\Data\Type\Type;
 class LType extends Element {
   
   /**
-   * @var Psc\Data\Type\Type
+   * @var Webforge\Types\Type
    */
   protected $type;
   
   /**
    * Erstellt einen neuen LType - Wrapper
    * 
-   * der Name des Types muss ein bestehender Psc\Data\Type\$nameType sein
-   * siehe auch Psc\Data\Type\Type::create()
+   * der Name des Types muss ein bestehender Webforge\Types\$nameType sein
+   * siehe auch Webforge\Types\Type::create()
    */
   public function __construct($typeName) {
     $this->type = Type::create($typeName);
@@ -37,4 +37,3 @@ class LType extends Element {
     return $this->type;
   }
 }
-?>

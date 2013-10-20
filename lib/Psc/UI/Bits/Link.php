@@ -2,6 +2,5 @@
 
 namespace Psc\UI\Bits;
 
-interface Link extends \Psc\Data\Type\Interfaces\Link {
+interface Link extends \Webforge\Types\Interfaces\Link {
 }
-?>

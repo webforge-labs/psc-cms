@@ -3,8 +3,8 @@
 namespace Psc\Code\Generate;
 
 use Psc\Code\Generate\ClassBuilder;
-use Psc\Data\Type\Type;
-use Psc\Data\Type\MarkupTextType;
+use Webforge\Types\Type;
+use Webforge\Types\MarkupTextType;
 use Psc\Code\Callback;
 
 /**

@@ -2,7 +2,7 @@
 
 namespace Psc\Data;
 
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 
 /**
  * @group class:Psc\Data\Table
@@ -35,4 +35,3 @@ class TableTest extends \Psc\Code\Test\Base {
     $this->assertCount(2, $this->table->getRows());
   }
 }
-?>

@@ -5,11 +5,11 @@ namespace Psc\TPL\ContentStream;
 use Psc\Data\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
 use Psc\TPL\ContentStream\Converter AS ContentStreamConverter;
-// use Psc\TPL\ContentStream\Context AS ContentStreamContext
 use Psc\Code\Code;
 use Psc\CMS\AbstractEntity;
 use Psc\Doctrine\Entity;
 use Closure;
+use Webforge\Types\EntityType;
 
 /**
  * (at)ORM\Entity(repositoryClass="ACME\Entities\ContentStream\EntryRepository")
@@ -37,7 +37,7 @@ abstract class EntryEntity extends AbstractEntity implements \Psc\HTML\HTMLInter
       $propertyMeta = $entityMeta->getPropertyMeta($property);
       $propertyType = $propertyMeta->getType();
 
-      if ($propertyType instanceof \Psc\Data\Type\EntityType) {
+      if ($propertyType instanceof EntityType) {
         
         if ($propertyType->implementsInterface('Psc\TPL\ContentStream\ContextLoadable')) {
           $objectClass = $propertyType->getGClass()->getFQN();

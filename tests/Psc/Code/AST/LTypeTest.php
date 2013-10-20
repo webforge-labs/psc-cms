@@ -16,7 +16,7 @@ class LTypeTest extends \Psc\Code\Test\Base {
   }
   
   public function testInnerPscType() {
-    $this->assertInstanceOf('Psc\Data\Type\IntegerType', $this->lType->unwrap());
+    $this->assertInstanceOf('Webforge\Types\IntegerType', $this->lType->unwrap());
     $this->assertEquals('Integer', $this->lType->getName());
   }
 }

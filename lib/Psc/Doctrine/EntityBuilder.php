@@ -11,13 +11,15 @@ use Psc\Code\Generate\ClassBuilderProperty;
 use Psc\Code\Code;
 use Webforge\Common\System\File;
 use Psc\Inflector;
-use Psc\Data\Type\Type;
-use Psc\Data\Type\I18nType;
-use Psc\Data\Type\CollectionType;
-use Psc\Data\Type\PersistentCollectionType;
-use Psc\Data\Type\ObjectType;
-use Psc\Data\Type\EntityType;
-use Psc\Data\Type\CodeExporter;
+use Webforge\Types\Type;
+use Webforge\Types\I18nType;
+use Webforge\Types\CollectionType;
+use Webforge\Types\PersistentCollectionType;
+use Webforge\Types\ObjectType;
+use Webforge\Types\EntityType;
+use Webforge\Types\DefaultValueType;
+use Webforge\Types\CodeExporter;
+use Webforge\Common\CodeWriter;
 
 /**
  * 
@@ -113,12 +115,12 @@ class EntityBuilder extends \Psc\Code\Generate\ClassBuilder {
     $this->class->setAbstract(TRUE);
     
     $this->classWriter = $classWriter ?: new ClassWriter();
-    $this->dcTypeExporter = $DCTypeExporter ?: new TypeExporter();
+    $this->dcTypeExporter = $DCTypeExporter ?: new TypeExporter(new CodeWriter());
     $this->setLanguages($languages);
   }
   
   /**
-   * @param Type $type wenn nicht gesetzt wird Psc\Data\Type\StringType genommen
+   * @param Type $type wenn nicht gesetzt wird Webforge\Types\StringType genommen
    */
   public function createProperty($name, Type $type = NULL, $flags = 0, $upperCaseName = NULL, $columnAlias = NULL) {
     if (!isset($type)) $type = Type::create('String');
@@ -176,7 +178,7 @@ class EntityBuilder extends \Psc\Code\Generate\ClassBuilder {
       $this->generateSetter($property, NULL, self::INHERIT);
     
     if ($flags & self::I18N) {
-      if ($type instanceof \Psc\Data\Type\DefaultValueType) {
+      if ($type instanceof DefaultValueType) {
         if ($type->hasScalarDefaultValue()) {
           $property->setDefaultValue($type->getDefaultValue());
         } else {
@@ -410,7 +412,7 @@ class EntityBuilder extends \Psc\Code\Generate\ClassBuilder {
    * @chainable
    */
   public function buildSetMetaGetter(CodeExporter $codeExporter = NULL) {
-    if (!isset($codeExporter)) $codeExporter = new CodeExporter();
+    if (!isset($codeExporter)) $codeExporter = new CodeExporter(new CodeWriter);
     $code = array();
     
     $code[] = 'return new \Psc\Data\SetMeta(array(';

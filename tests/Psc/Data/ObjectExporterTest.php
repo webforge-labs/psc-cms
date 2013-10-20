@@ -3,9 +3,12 @@
 namespace Psc\Data;
 
 use Psc\Code\Generate\GClass;
-use Psc\Data\Type\CollectionType;
-use Psc\Data\Type\BirthdayType;
-use Psc\Data\Type\DateTimeType;
+use Webforge\Types\CollectionType;
+use Webforge\Types\BirthdayType;
+use Webforge\Types\ArrayType;
+use Webforge\Types\ObjectType;
+use Webforge\Types\DateTimeType;
+use Webforge\Types\Type;
 use Psc\DateTime\Date;
 use Psc\DateTime\DateTime;
 
@@ -23,7 +26,7 @@ class ObjectExporterTest extends \Psc\Code\Test\Base {
   public function testConstruct() {
     $objectExporter = new ObjectExporter();
     
-    $t = function ($type) { return \Psc\Data\Type\Type::create($type); };
+    $t = function ($type) { return Type::create($type); };
 
     $set = new Set(); // set implements Walkable
     $set->set('name','oids_pages', $t('String'));
@@ -38,8 +41,8 @@ class ObjectExporterTest extends \Psc\Code\Test\Base {
     $j2->set('referencedColumnName', 'id', $t('String'));
     $j2->set('onDelete', 'cascade', $t('String'));
     
-    $set->set('joinColumns', array($j1, $j2), new Type\ArrayType(new Type\ObjectType(new GClass('Psc\Data\Walkable'))));
-    $set->set('inverseJoinColumns', array($j2, $j1), new Type\ArrayType(new Type\ObjectType(new GClass('Psc\Data\Walkable'))));
+    $set->set('joinColumns', array($j1, $j2), new ArrayType(new ObjectType(new GClass('Psc\Data\Walkable'))));
+    $set->set('inverseJoinColumns', array($j2, $j1), new ArrayType(new ObjectType(new GClass('Psc\Data\Walkable'))));
     
     $this->assertInstanceOf('stdClass', $object = $objectExporter->walkWalkable($set));
     $this->assertInternalType('array', $object->joinColumns);
@@ -56,9 +59,12 @@ class ObjectExporterTest extends \Psc\Code\Test\Base {
   
   public function testCollectionWalkingType() {
     $collection = new \Doctrine\Common\Collections\ArrayCollection(array('some','inner','items'));
-    $this->assertInternalType('array',
-                              $collectionExport = $this->objectExporter->walk($collection,
-                                                                              new CollectionType(CollectionType::DOCTRINE_ARRAY_COLLECTION)));
+    $this->assertInternalType(
+      'array',
+      $collectionExport = $this->objectExporter->walk($collection,
+        new CollectionType(CollectionType::DOCTRINE_ARRAY_COLLECTION)
+      )
+    );
     $this->assertEquals($collectionExport, array('some','inner','items'));
   }
   
@@ -95,4 +101,3 @@ class ObjectExporterTest extends \Psc\Code\Test\Base {
     $this->assertEquals(array(), $objectExporter->walk($collection, $this->createType('Collection<String>')));
   }
 }
-?>

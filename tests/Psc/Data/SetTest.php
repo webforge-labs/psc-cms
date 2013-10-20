@@ -3,10 +3,10 @@
 namespace Psc\Data;
 
 use Psc\Data\Set;
-use Psc\Data\Type\StringType;
-use Psc\Data\Type\ArrayType;
-use Psc\Data\Type\SmallIntegerType;
-use Psc\Data\Type\IntegerType;
+use Webforge\Types\StringType;
+use Webforge\Types\ArrayType;
+use Webforge\Types\SmallIntegerType;
+use Webforge\Types\IntegerType;
 
 /**
  * @group class:Psc\Data\Set
@@ -75,11 +75,11 @@ class SetTest extends \Psc\Code\Test\Base {
     
     $set->set('otherField','mystring', new StringType());
     $this->assertEquals('mystring',$set->get('otherField'));
-    $this->assertInstanceOf('Psc\Data\Type\StringType',$set->getMeta()->getFieldType('otherField'));
+    $this->assertInstanceOf('Webforge\Types\StringType',$set->getMeta()->getFieldType('otherField'));
 
     $set->set('otherField',7, new IntegerType());
     $this->assertEquals(7,$set->get('otherField'));
-    $this->assertInstanceOf('Psc\Data\Type\IntegerType',$set->getMeta()->getFieldType('otherField'));
+    $this->assertInstanceOf('Webforge\Types\IntegerType',$set->getMeta()->getFieldType('otherField'));
   }
   
   

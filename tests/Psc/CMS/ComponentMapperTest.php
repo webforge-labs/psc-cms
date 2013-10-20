@@ -3,6 +3,7 @@
 namespace Psc\CMS;
 
 use Psc\CMS\ComponentMapper;
+use Webforge\Types\Type;
 
 /**
  * @group class:Psc\CMS\ComponentMapper
@@ -41,7 +42,7 @@ class ComponentMapperTest extends \Psc\Code\Test\Base {
     $tests = array();
     
     $test = function ($type, $expectedComponent) use (&$tests) {
-      $type = \Psc\Data\Type\Type::create($type);
+      $type = Type::create($type);
       $tests[] = array($expectedComponent, $type);
     };
     
@@ -61,7 +62,7 @@ class ComponentMapperTest extends \Psc\Code\Test\Base {
    * @expectedException Psc\CMS\NoComponentFoundException
    */
   public function testMappingException() {
-    $type = $this->getMock('Psc\Data\Type\Type');
+    $type = $this->getMock('Webforge\Types\Type');
     
     $type->expects($this->any())
         ->method('getName')
@@ -74,4 +75,3 @@ class ComponentMapperTest extends \Psc\Code\Test\Base {
     return new ComponentMapper();
   }
 }
-?>

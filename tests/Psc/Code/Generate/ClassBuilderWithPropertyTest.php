@@ -3,9 +3,10 @@
 namespace Psc\Code\Generate;
 
 use Psc\Code\Generate\ClassBuilder;
-use Psc\Data\Type\Type;
-use Psc\Data\Type\MarkupTextType;
 use Psc\Code\Callback;
+use Webforge\Types\Type;
+use Webforge\Types\MarkupTextType;
+use Webforge\Types\ImageType;
 
 /**
  * @group generate
@@ -30,7 +31,7 @@ class ClassBuilderWithPropertyTest extends \Psc\Code\Test\Base {
     $cb->addProperty('thumb')
          ->setType(Type::create('Image'))
        ->addProperty('image')
-         ->setType(new \Psc\Data\Type\ImageType())
+         ->setType(new ImageType())
        ->addProperty('text')
          ->setType(MarkupTextType::create())
        ->addProperty('link')
@@ -157,7 +158,7 @@ __PHP__
     $this->assertEquals('text',$p2->getName());
     $this->assertNull($p1->getHint());
     $this->assertEquals('link',$p3->getName());
-    $this->assertEquals('Psc\Data\Type\Interfaces\Link',$p3->getHint()->getFQN());
+    $this->assertEquals('Webforge\Types\Interfaces\Link',$p3->getHint()->getFQN());
     
     $constructorPHP = <<< 'PHP'
   $this->setImage($image);

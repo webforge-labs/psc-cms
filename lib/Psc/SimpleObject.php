@@ -3,8 +3,8 @@
 namespace Psc;
 
 use Psc\Code\Code;
-use Psc\Data\Type\Type;
-use Psc\Data\Type\ObjectType;
+use Webforge\Types\Type;
+use Webforge\Types\ObjectType;
 
 /**
  * Die Mutter Object Klasse
@@ -117,4 +117,3 @@ class SimpleObject {
     return $this->$f($field);
   }
 }
-?>

@@ -2,21 +2,18 @@
 
 namespace Psc\Data;
 
-use Psc\Data\Type\ObjectType;
-use Psc\Data\Type\ArrayType;
-use Psc\Data\Type\StringType;
-use Psc\Data\Type\FloatType;
-use Psc\Data\Type\IntegerType;
-use Psc\Data\Type\BooleanType;
-use Psc\Data\Type\CollectionType;
-use Psc\Data\Type\WalkableHintType;
-use Psc\Data\Type\DateTimeType;
-use Psc\Data\Type\DateType;
-
-use Psc\Data\Type\Type;
-use Psc\Data\Type\Inferrer;
-
-use Psc\Code\Code;
+use Webforge\Types\ObjectType;
+use Webforge\Types\ArrayType;
+use Webforge\Types\StringType;
+use Webforge\Types\FloatType;
+use Webforge\Types\IntegerType;
+use Webforge\Types\BooleanType;
+use Webforge\Types\CollectionType;
+use Webforge\Types\WalkableHintType;
+use Webforge\Types\DateTimeType;
+use Webforge\Types\DateType;
+use Webforge\Types\Type;
+use Webforge\Types\Inferrer;
 
 class Walker extends \Psc\SimpleObject {
   
@@ -73,7 +70,7 @@ class Walker extends \Psc\SimpleObject {
       return $this->$hint($value);
     }
     
-    throw new Exception('Kein Walk für '.$type->getName().' ['.Code::getClass($type).'] definiert');
+    throw new Exception('Kein Walk für '.$type->getName().' ['.get_class($type).'] definiert');
   }
   
   public function walkArray(Array $array, Type $arrayType = NULL) {

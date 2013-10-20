@@ -10,8 +10,8 @@ use Psc\Code\Generate\GParameter;
 use Psc\Code\Generate\GMethod;
 use Psc\Code\Generate\ClassBuilder;
 use Psc\Code\Generate\ClassBuilderProperty;
-use Psc\Data\Type\Type;
-use Psc\Data\Type\ObjectType;
+use Webforge\Types\Type;
+use Webforge\Types\ObjectType;
 use Webforge\Common\ArrayUtil AS A;
 
 /**

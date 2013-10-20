@@ -19,7 +19,7 @@ class RightContentLinkTest extends \Psc\Code\Test\HTMLTestCase {
   }
   
   public function testInterfaces() {
-    $this->assertInstanceOf('Psc\Data\Type\Interfaces\Link', $this->link);
+    $this->assertInstanceOf('Webforge\Types\Interfaces\Link', $this->link);
     $this->assertInstanceOf('Psc\CMS\Item\RightContentLinkable', $this->link);
   }
   

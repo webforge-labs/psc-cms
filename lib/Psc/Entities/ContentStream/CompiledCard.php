@@ -59,7 +59,7 @@ abstract class CompiledCard extends Entry {
   
   public static function getSetMeta() {
     return new \Psc\Data\SetMeta(array(
-      'content' => new \Psc\Data\Type\EntityType(new \Psc\Code\Generate\GClass('Psc\\Entities\\ContentStream\\ContentStreamWrapper')),
+      'content' => new \Webforge\Types\EntityType(new \Psc\Code\Generate\GClass('Psc\\Entities\\ContentStream\\ContentStreamWrapper')),
     ));
   }
 }

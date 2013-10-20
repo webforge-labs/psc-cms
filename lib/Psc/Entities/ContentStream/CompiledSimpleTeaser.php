@@ -119,10 +119,10 @@ abstract class CompiledSimpleTeaser extends Entry {
   
   public static function getSetMeta() {
     return new \Psc\Data\SetMeta(array(
-      'headline' => new \Psc\Data\Type\StringType(),
-      'text' => new \Psc\Data\Type\MarkupTextType(),
-      'image' => new \Psc\Data\Type\EntityType(new \Psc\Code\Generate\GClass('Psc\\Entities\\ContentStream\\Image')),
-      'link' => new \Psc\Data\Type\EntityType(new \Psc\Code\Generate\GClass('Psc\\Entities\\NavigationNode')),
+      'headline' => new \Webforge\Types\StringType(),
+      'text' => new \Webforge\Types\MarkupTextType(),
+      'image' => new \Webforge\Types\EntityType(new \Psc\Code\Generate\GClass('Psc\\Entities\\ContentStream\\Image')),
+      'link' => new \Webforge\Types\EntityType(new \Psc\Code\Generate\GClass('Psc\\Entities\\NavigationNode')),
     ));
   }
 }

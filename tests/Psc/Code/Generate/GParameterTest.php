@@ -38,7 +38,7 @@ class GParameterTest extends \Psc\Code\Test\Base {
     
     $param = new GParameter();
     $param->elevate(A::index($class->getMethod('factory')->getParameters(),0));
-    $this->assertEquals('\Psc\Code\Generate\TestHint $dunno',$param->php($useFQN = TRUE));
+    $this->assertEquals('\Psc\Code\Generate\TestHint $dunno', $param->php($useFQN = TRUE));
   }
   
   public function testBugParameterArrayHint() {

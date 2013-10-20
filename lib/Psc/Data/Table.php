@@ -2,7 +2,7 @@
 
 namespace Psc\Data;
 
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 use Webforge\Common\ArrayUtil AS A;
 
 /**
@@ -36,7 +36,7 @@ class Table extends \Psc\SimpleObject {
   
   public function insertRow(Array $row, $index = self::END) {
     if (!is_integer($index) && $index !== self::END) {
-      throw new \InvalidArgumentException('index muss ein integer sein. self::END für append');
+      throw new \InvalidArgumentException('index muss ein integer sein. self::END f?r append');
     }
     
     if (!count($row) === count($this->columns)) {

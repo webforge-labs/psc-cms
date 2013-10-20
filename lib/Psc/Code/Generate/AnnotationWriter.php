@@ -8,6 +8,7 @@ use Psc\Doctrine\Annotation AS DoctrineAnnotationWrapper; // das hier extended
 use Psc\Code\Annotation AS PscAnnotation; // das hier
 use ReflectionObject;
 use Psc\Code\WriteableAnnotation;
+use Webforge\Types\Type;
 
 /**
  *
@@ -110,7 +111,7 @@ class AnnotationWriter extends \Psc\Data\Walker {
     return $Values;
   }
   
-  public function walk($value, \Psc\Data\Type\Type $type) {
+  public function walk($value, Type $type) {
     if ($value instanceof DoctrineAnnotation || $value instanceof PscAnnotation) {
       return $this->writeAnnotation($value);
     }
@@ -159,4 +160,3 @@ class AnnotationWriter extends \Psc\Data\Walker {
     return $this;
   }
 }
-?>

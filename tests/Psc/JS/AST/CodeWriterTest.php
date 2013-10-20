@@ -3,6 +3,7 @@
 namespace Psc\JS\AST;
 
 use stdClass;
+use Webforge\Types\ObjectType;
 
 class CodeWriterTest extends \Webforge\Code\Test\Base {
   
@@ -14,6 +15,6 @@ class CodeWriterTest extends \Webforge\Code\Test\Base {
   }
 
   public function testWriteHashMapWithNoElements() {
-    $this->assertEquals('{}', $this->writer->writeHashMap(new stdClass(), new \Psc\Data\Type\ObjectType()));
+    $this->assertEquals('{}', $this->writer->writeHashMap(new stdClass(), new ObjectType()));
   }
 }

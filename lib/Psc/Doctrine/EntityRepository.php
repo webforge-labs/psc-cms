@@ -2,15 +2,15 @@
 
 namespace Psc\Doctrine;
 
-use Doctrine\ORM\NoResultException,
-    Doctrine\ORM\QueryBuilder,
-    \Psc\Code\Code,
-    \Psc\Doctrine\Helper as DoctrineHelper,
-    \Psc\Doctrine\Filter,
-    \Psc\Doctrine\EntityFilter,
-    
-    \Webforge\Common\ArrayUtil AS A;
+use Doctrine\ORM\NoResultException;
+use Doctrine\ORM\QueryBuilder;
+use Psc\Code\Code;
+use Psc\Doctrine\Helper as DoctrineHelper;
+use Psc\Doctrine\Filter;
+use Psc\Doctrine\EntityFilter;
+use Webforge\Common\ArrayUtil AS A;
 use Closure;
+use Webforge\Types\TypeConversionException;
 
 
 /**
@@ -268,7 +268,7 @@ class EntityRepository extends \Doctrine\ORM\EntityRepository {
         }
         try {
           $keys[$field] = $typeConverter->getPscType($dcColumnType);
-        } catch (\Psc\Data\Type\TypeConversionException $e) {
+        } catch (TypeConversionException $e) {
           throw new \Psc\Exception('Der UniqueConstraint '.$name.' in Table '.$metadata->table['name'].' kann nicht zurückgegeben werden, da type Informationen für das Feld: '.$column.' fehlen. @Column hinzufügen.');
         }
       }

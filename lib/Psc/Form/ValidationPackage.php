@@ -8,7 +8,7 @@ use Psc\CMS\Entity;
 use Psc\Doctrine\DCPackage;
 use Psc\Data\Set;
 use Psc\Code\Code;
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 use Psc\Data\Type\TypeRuleMapper;
 use Psc\UI\Component\ComponentRuleMapper;
 use Psc\Form\Validator;
@@ -181,7 +181,4 @@ class ValidationPackage extends \Psc\SimpleObject {
   public function getComponentsValidator() {
     return $this->componentsValidator;
   }
-
-
 }
-?>

@@ -6,7 +6,7 @@ use Psc\UI\GridTable;
 use Psc\UI\Group;
 use Psc\UI\FormPanel;
 use Psc\UI\PanelButtons;
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 use Webforge\Common\ArrayUtil AS A;
 use InvalidArgumentException;
 use Psc\Data\Set;

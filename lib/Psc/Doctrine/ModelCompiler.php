@@ -5,9 +5,11 @@ namespace Psc\Doctrine;
 use Psc\Code\Generate\GClass;
 use Psc\Code\Generate\GParameter;
 use Psc\Code\Generate\GMethod;
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
+use Webforge\Types\DCEnumType;
 use Psc\Code\Generate\ClassWriter;
 use Psc\Code\Code;
+use Webforge\Common\ClassInterface;
 
 /**
  * @TODO addRelation in ein Objekt kapseln, sodass man die onDelete cascade oder propertyNames oder andere Identifier als 'id' konfigurieren kann
@@ -111,10 +113,10 @@ class ModelCompiler extends \Psc\SimpleObject {
     };
 
     $type = function ($name) {
-      if ($name instanceof \Psc\Data\Type\Type)
+      if ($name instanceof Type)
         return $name;
       
-      return \Psc\Data\Type\Type::createArgs($name, array_slice(func_get_args(), 1));
+      return Type::createArgs($name, array_slice(func_get_args(), 1));
     };
 
 
@@ -306,7 +308,7 @@ class ModelCompiler extends \Psc\SimpleObject {
     
     
     // properties
-    $property = function ($name, \Psc\Data\Type\Type $type) use ($mc) {
+    $property = function ($name, Type $type) use ($mc) {
       $flags = 0x000000;
       foreach (array_slice(func_get_args(),2) as $flagSetter) {
         $flagSetter($flags);
@@ -364,7 +366,7 @@ class ModelCompiler extends \Psc\SimpleObject {
     };
     
     $enumType = function ($class) {
-      return new \Psc\Data\Type\DCEnumType(new GClass($class));
+      return new DCEnumType(new GClass($class));
     };
     
     $flag = function ($constant) use ($mc) {
@@ -431,7 +433,7 @@ class ModelCompiler extends \Psc\SimpleObject {
   }
   
   public function createEntityBuilder($entityName) {
-    if ($entityName instanceof \Psc\Code\Generate\GClass) {
+    if ($entityName instanceof ClassInterface) {
       $entityClass = $entityName;
     } else {
       $entityClass = new GClass($this->getDefaultNamespace().'\\'.ltrim($entityName, '\\'));
@@ -497,4 +499,3 @@ class ModelCompiler extends \Psc\SimpleObject {
     return $this->languages;
   }
 }
-?>
