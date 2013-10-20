@@ -2,7 +2,9 @@
 
 namespace Psc\CMS;
 
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
+use Webforge\Types\EntityType;
+use Webforge\Types\PersistentCollectionType;
 
 /**
  * Sub-Element von EntityMeta
@@ -49,7 +51,7 @@ class EntityPropertyMeta extends \Psc\SimpleObject {
    * @param Psc\Data\Type\Type $type
    * @chainable
    */
-  public function setType(\Psc\Data\Type\Type $type) {
+  public function setType(Type $type) {
     $this->type = $type;
     return $this;
   }
@@ -66,7 +68,7 @@ class EntityPropertyMeta extends \Psc\SimpleObject {
    */
   public function isRelation() {
     // siehe auch \Psc\UI\DataScreener
-    return $this->type instanceof \Psc\Data\Type\PersistentCollectionType || $this->type instanceof \Psc\Data\Type\EntityType;
+    return $this->type instanceof PersistentCollectionType || $this->type instanceof EntityType;
   }
   
   /**
@@ -76,9 +78,9 @@ class EntityPropertyMeta extends \Psc\SimpleObject {
    * @return GClass
    */
   public function getRelationEntityClass() {
-    if ($this->type instanceof \Psc\Data\Type\PersistentCollectionType) {
+    if ($this->type instanceof PersistentCollectionType) {
       return $this->type->getType()->getGClass();
-    } elseif ($this->type instanceof \Psc\Data\Type\EntityType) {
+    } elseif ($this->type instanceof EntityType) {
       return $this->type->getGClass();
     }
   }
@@ -160,4 +162,3 @@ class EntityPropertyMeta extends \Psc\SimpleObject {
     return $this->hint;
   }
 }
-?>

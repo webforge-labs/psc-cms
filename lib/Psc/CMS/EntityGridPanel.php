@@ -2,13 +2,13 @@
 
 namespace Psc\CMS;
 
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 use Psc\CMS\Item\Adapter as ItemAdapter;
 use Psc\CMS\Item\MetaAdapter;
 use Psc\UI\DataScreener;
-use Closure;
 use Psc\UI\PanelButtons;
 use Psc\CMS\Translation\Container as TranslationContainer;
+use Closure;
 
 class EntityGridPanel extends \Psc\CMS\GridPanel {
   

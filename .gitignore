@@ -24,3 +24,5 @@
 /application/src/Proxies/__CG__PscEntitiesNavigationNode.php
 
 /tests/files/fixtures/ConfigureApacheTaskTest/target/etc/apache2
+
+/tests/files/fixtures/EntityBuilderTest

@@ -2,8 +2,8 @@
 
 namespace Psc\UI;
 
-use Psc\Data\Type\Type;
-use Psc\Data\Type AS Types;
+use Webforge\Types\Type;
+use Webforge\Types;
 
 /*
  * Zeigt beliebige Typ-Daten für den User an

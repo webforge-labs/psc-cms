@@ -2,7 +2,7 @@
 
 namespace Psc\Code\AST;
 
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 
 /**
  * Der Type (einer Variable)
@@ -37,4 +37,3 @@ class LType extends Element {
     return $this->type;
   }
 }
-?>

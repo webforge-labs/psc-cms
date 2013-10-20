@@ -2,7 +2,7 @@
 
 namespace Psc\Data;
 
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 
 /**
  * 
@@ -75,4 +75,3 @@ class Column extends \Psc\SimpleObject {
     return $this->label;
   }
 }
-?>

@@ -2,16 +2,16 @@
 
 namespace Psc\Code\AST;
 
-use Psc\Data\Type\Type;
-use Psc\Data\Type\EnclosingType;
-use Psc\Data\Type\ArrayType;
-use Psc\Data\Type\ObjectType;
-use Psc\Data\Type\MixedType;
-use Psc\Data\Type\IntegerType;
-use Psc\Data\Type\BooleanType;
-use Psc\Data\Type\StringType;
-use Psc\Data\Type\FloatType;
-use Psc\Data\Type\Inferrer AS TypeInferrer;
+use Webforge\Types\Type;
+use Webforge\Types\EnclosingType;
+use Webforge\Types\ArrayType;
+use Webforge\Types\ObjectType;
+use Webforge\Types\MixedType;
+use Webforge\Types\IntegerType;
+use Webforge\Types\BooleanType;
+use Webforge\Types\StringType;
+use Webforge\Types\FloatType;
+use Webforge\Types\Inferrer AS TypeInferrer;
 use stdClass;
 use Psc\Code\Code;
 
@@ -26,7 +26,7 @@ class Walker extends \Psc\SimpleObject {
   protected $codeWriter;
 
   /**
-   * @var Psc\Data\Type\Inferrer
+   * @var Webforge\Types\Inferrer
    */
   protected $typeInferrer;
   
@@ -225,4 +225,3 @@ class Walker extends \Psc\SimpleObject {
     return $this->codeWriter;
   }
 }
-?>

@@ -5,16 +5,18 @@ namespace Psc\Data;
 use Psc\DataInput;
 use Psc\Code\Code;
 use Webforge\Common\ArrayUtil AS A;
+use Webforge\Types\Type;
+use Webforge\Types\TypeExpectedException;
 
 class SetMeta extends \Psc\SimpleObject {
   
   /**
-   * @var Psc\Data\Type[] Schlüssel sind Namen der Felder, Werte sind Psc\Data\Type\Type-Objekte
+   * @var Webforge\Types[] Schlüssel sind Namen der Felder, Werte sind Webforge\Types\Type-Objekte
    */
   protected $types;
   
   /**
-   * @param array Psc\Data\Type[] Schlüssel sind Namen der Felder (Ebenen getrennt mit .), Werte sind Psc\Data\Type\Type-Objekte
+   * @param array Webforge\Types[] Schlüssel sind Namen der Felder (Ebenen getrennt mit .), Werte sind Webforge\Types\Type-Objekte
    */
   public function __construct(Array $types = array()) {
     $this->types = new DataInput();
@@ -25,7 +27,7 @@ class SetMeta extends \Psc\SimpleObject {
    * Gibt den Typ eines Feldes zurück
    * 
    * @param string|array wenn string dann ebenen mit . getrennt
-   * @return Psc\Data\Type
+   * @return Webforge\Types
    * @throws FieldNotDefinedException
    */
   public function getFieldType($field) {
@@ -58,18 +60,18 @@ class SetMeta extends \Psc\SimpleObject {
    * wenn das Feld nicht existiert, wird es angelegt
    * @param string|array wenn string dann ebenen mit . getrennt
    */
-  public function setFieldType($field, Type\Type $type) {
+  public function setFieldType($field, Type $type) {
     $this->types->set($this->getKey($field), $type);
     return $this;
   }
 
   /**
-   * @param array Psc\Data\Type[] Schlüssel sind Namen der Felder (Ebenen getrennt mit .), Werte sind Psc\Data\Type\Type-Objekte
+   * @param array Webforge\Types[] Schlüssel sind Namen der Felder (Ebenen getrennt mit .), Werte sind Webforge\Types\Type-Objekte
    */
   public function setTypesFromArray(Array $types) {
     foreach ($types as $field => $type) {
-      if (!($type instanceof Type\Type)) {
-        throw new Type\TypeExpectedException('Instanz von Psc\Data\Type\Type als Werte des Arrays erwartet. '.Code::varInfo($type).' gegeben.');
+      if (!($type instanceof Type)) {
+        throw new TypeExpectedException('Instances from Type as values from the array expected. '.Code::varInfo($type).' was provided.');
       }
       
       $this->setFieldType($field, $type);
@@ -78,12 +80,12 @@ class SetMeta extends \Psc\SimpleObject {
   }
 
   /**
-   * @param array Psc\Data\Type[] Schlüssel sind Namen der Felder (Ebenen getrennt mit .), Werte sind Psc\Data\Type\Type-Objekte
+   * @param array Webforge\Types[] Schlüssel sind Namen der Felder (Ebenen getrennt mit .), Werte sind Webforge\Types\Type-Objekte
    */
   public function addTypesFromArray(Array $types) {
     foreach ($types as $field => $type) {
-      if (!($type instanceof Type\Type)) {
-        throw new Type\TypeExpectedException('Instanz von Psc\Data\Type\Type als Werte des Arrays erwartet. '.Code::varInfo($type).' gegeben.');
+      if (!($type instanceof Type)) {
+        throw new TypeExpectedException('Instances from Type as values from the array expected. '.Code::varInfo($type).' was provided.');
       }
       
       $this->setFieldType($field, $type);
@@ -134,4 +136,3 @@ class SetMeta extends \Psc\SimpleObject {
     return $key;
   }
 }
-?>

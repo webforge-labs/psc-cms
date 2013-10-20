@@ -3,8 +3,10 @@
 namespace Psc\Doctrine;
 
 use Psc\DataInput;
-use Psc\Data\Type\TypeMatcher;
-use Psc\Data\Type\TypeExpectedException;
+use Webforge\Types\TypeMatcher;
+use Webforge\Types\TypeExpectedException;
+use Webforge\Types\WrongDataException;
+use InvalidArgumentException;
 
 class UniqueConstraintValidator extends \Psc\SimpleObject {
   
@@ -39,7 +41,7 @@ class UniqueConstraintValidator extends \Psc\SimpleObject {
         $type = $constraint->getKeyType($key);
         
         if (!array_key_exists($key, $data)) {
-          throw \Psc\Data\Type\WrongDataException::create("In Data ist der Schlüssel '%s' nicht vorhanden. Erwartet: '%s'", $key, $type->getName());
+          throw WrongDataException::create("In Data ist der Schlüssel '%s' nicht vorhanden. Erwartet: '%s'", $key, $type->getName());
         }
         $value = $data[$key];
         
@@ -77,7 +79,7 @@ class UniqueConstraintValidator extends \Psc\SimpleObject {
    */
   public function updateIndex(UniqueConstraint $constraint, Array $dataRows) {
     if (!array_key_exists($constraint->getName(), $this->uniqueConstraints)) {
-      throw new \InvalidArgumentException(sprintf("Constraint '%s' wurde noch nicht mit addConstraint() hinzugefügt'",$constraint->getName()));
+      throw new InvalidArgumentException(sprintf("Constraint '%s' wurde noch nicht mit addConstraint() hinzugefügt'",$constraint->getName()));
     }
     
     foreach ($dataRows as $data) {
@@ -108,4 +110,3 @@ class UniqueConstraintValidator extends \Psc\SimpleObject {
     return $this->uniqueConstraints;
   }
 }
-?>

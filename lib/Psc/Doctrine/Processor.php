@@ -11,8 +11,9 @@ use Psc\SimpleObject;
 use Closure;
 use Psc\Data\ArrayCollection;
 use Psc\Data\Set;
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 use Doctrine\ORM\EntityManager;
+use Webforge\Types\PersistentCollectionType;
 
 /**
  * 
@@ -71,7 +72,7 @@ class Processor extends \Psc\System\LoggerObject {
       if (isset($this->onFieldTodos[$field])) {
         call_user_func($this->onFieldTodos[$field], $this->entity, $field, $value, $type);
       
-      } elseif ($type instanceof \Psc\Data\Type\PersistentCollectionType) {
+      } elseif ($type instanceof PersistentCollectionType) {
         $this->processCollectionField($this->entity, $field, $value, $type);
       
       } else {

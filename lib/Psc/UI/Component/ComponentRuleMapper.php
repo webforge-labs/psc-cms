@@ -2,9 +2,9 @@
 
 namespace Psc\UI\Component;
 
-use Psc\Data\Type\TypeRuleMapper;
 use Psc\CMS\Component;
-use Psc\Data\Type\TypeExportException;
+use Psc\Data\Type\TypeRuleMapper;
+use Webforge\Types\TypeExportException;
 
 class ComponentRuleMapper extends \Psc\SimpleObject {
   
@@ -52,4 +52,3 @@ class ComponentRuleMapper extends \Psc\SimpleObject {
     return $this->typeRuleMapper;
   }
 }
-?>

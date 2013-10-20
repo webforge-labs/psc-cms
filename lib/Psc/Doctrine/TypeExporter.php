@@ -2,7 +2,7 @@
 
 namespace Psc\Doctrine;
 
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 use Psc\Data\Type\Exporter;
 use Doctrine\DBAL\Types\Type AS DC;
 

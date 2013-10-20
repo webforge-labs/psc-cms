@@ -5,8 +5,8 @@ namespace Psc\System\Console;
 use Psc\Code\Generate\GClass;
 use Psc\Code\Code;
 use Psc\Code\Compile\ArrayCollectionInterfaceExtension;
-use Psc\Data\Type\Type;
-use Psc\Data\Type\CollectionType;
+use Webforge\Types\Type;
+use Webforge\Types\CollectionType;
 
 class ArrayCollectionInterfaceCompileCommand extends CompileCommand {
   
@@ -44,4 +44,3 @@ class ArrayCollectionInterfaceCompileCommand extends CompileCommand {
     $compiler->compile($this->getOutFile());
   }
 }
-?>

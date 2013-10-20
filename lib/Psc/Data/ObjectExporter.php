@@ -2,7 +2,8 @@
 
 namespace Psc\Data;
 
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
+use Webforge\Types\ObjectType;
 
 class ObjectExporter extends \Psc\Data\Walker {
   
@@ -11,7 +12,7 @@ class ObjectExporter extends \Psc\Data\Walker {
       return $value->export();
     }
     
-    if ($type instanceof \Psc\Data\Type\ObjectType && $value === NULL) {
+    if ($type instanceof ObjectType && $value === NULL) {
       return NULL;
     }
     
@@ -46,4 +47,3 @@ class ObjectExporter extends \Psc\Data\Walker {
     return (object) $walkedFields;
   }
 }
-?>

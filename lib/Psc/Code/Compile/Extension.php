@@ -5,7 +5,7 @@ namespace Psc\Code\Compile;
 use Psc\Code\Generate\ClassBuilder;
 use Psc\Code\Generate\GClass;
 use Psc\Code\Generate\CodeWriter;
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 
 abstract class Extension implements ClassCompiler {
 

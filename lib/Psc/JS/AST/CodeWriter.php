@@ -2,7 +2,7 @@
 
 namespace Psc\JS\AST;
 
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 use Psc\JS\Helper as jsHelper;
 use Psc\Code\AST\CodeWriter as ASTCodeWriter;
 use stdClass;
@@ -108,4 +108,3 @@ class CodeWriter extends \Psc\SimpleObject implements ASTCodeWriter {
     return '['.implode(', ', $walkedList).']';
   }
 }
-?>

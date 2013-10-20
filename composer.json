@@ -34,7 +34,7 @@
     "webforge/translation": "1.0.*@stable",
     "webforge/fatal-error-handler": "1.*@stable",
     "webforge/dom": "1.*@dev",
-    "webforge/types": "1.0.*@stable"
+    "webforge/types": "1.0.*"
   },
   "require-dev": {
     "webforge/testdata-repository": "@alpha",

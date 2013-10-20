@@ -2,12 +2,10 @@
 
 namespace Psc\Code;
 
-use Psc\Object;
 use Closure;
 use Webforge\Common\System\File;
 use Webforge\Common\System\Dir;
 use Webforge\Common\Preg;
-use Psc\Data\Type\Type;
 
 class Code extends \Webforge\Common\Util {
   

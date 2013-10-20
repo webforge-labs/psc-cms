@@ -7,6 +7,8 @@ use Psc\CMS\EntityMeta;
 use Psc\CMS\EntityPropertyMeta;
 use Psc\Doctrine\DCPackage;
 use Psc\Code\Code;
+use Webforge\Types\IntegerType;
+use Webforge\Types\StringType;
 
 /**
  * Validiert die FormularAusgaben einer \Psc\UI\DropBox2
@@ -58,7 +60,7 @@ class DropBox2ValidatorRule implements ValidatorRule {
   }
   
   protected function getIdentifierCaster(EntityPropertyMeta $identifierMeta) {
-    if ($identifierMeta->getType() instanceof \Psc\Data\Type\IntegerType) {
+    if ($identifierMeta->getType() instanceof IntegerType) {
       $idCaster = function ($idString, $debugKey) {
         $id = \Psc\Code\Code::castId($idString, FALSE);
         if ($id === FALSE) {
@@ -68,7 +70,7 @@ class DropBox2ValidatorRule implements ValidatorRule {
         return $id;
       };
       
-    } elseif ($identifierMeta->getType() instanceof \Psc\Data\Type\StringType) {
+    } elseif ($identifierMeta->getType() instanceof StringType) {
       $idCaster = function ($idString, $debugKey) {
         if (!is_string($idString))
           throw new ValidatorRuleException(sprintf("Der Type '%s' des Schlüssels %s muss ein String sein",
