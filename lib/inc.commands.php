@@ -7,8 +7,9 @@ use Webforge\Common\System\Dir;
 use Webforge\Setup\ConfigurationTester\ConfigurationTester;
 use Psc\System\System;
 use Psc\Code\Generate\ClassWriter;
-
+use Webforge\Common\JS\JSONConverter;
 use Psc\JS\jQuery;
+use Seld\JsonLint\JsonParser;
 
 /**
  *
@@ -179,4 +180,66 @@ $createCommand('compile:jqx-widget-specification',
     $output->writeln($phpFile.' written.');
   }
 );
-?>
+
+$createCommand('tests:build-from-json',
+  array(
+    $arg('file')
+  ),
+  function ($input, $output, $command) {
+    $jsonc = JSONConverter::create();
+    $root = Dir::factoryTS(__DIR__)->sub('../');
+
+    $json = $root->getFile($input->getArgument('file'))->getContents();
+
+    $json = '['.str_replace('}{', '},{', $json).']';
+
+    try {
+      $report = $jsonc->parse($json);
+
+    } catch (\Webforge\Common\JS\JSONParsingException $e) {
+      $parser = new JsonParser();
+      $parsingException = $parser->lint($root->getFile('output.json')->getContents());
+
+      throw $parsingException;
+    }
+
+    $toRun = array();
+
+    foreach ($report as $event) {
+      if ($event->event === 'test' && ($event->status === 'fail' || $event->status === 'error')) {
+        $testFQN = $event->suite;
+        $file = Code::mapClassToFile($testFQN, $root->sub('tests/'));
+        $file->getDirectory()->resolvePath();
+        $toRun[(string) $file] = (string) $file;
+      }
+    }
+    $toRun = array_filter($toRun);
+
+    $output->writeln(count($toRun).' tests have failed');
+    $root->getFile('to-run.json')->writeContents($jsonc->stringify($toRun));
+  }
+);
+
+$createCommand('tests:to-run',
+  array(
+  ),
+  function ($input, $output, $command) {
+    $jsonc = JSONConverter::create();
+    $root = Dir::factoryTS(__DIR__)->sub('../');
+    $toRun = (array) $jsonc->parseFile($root->getFile('to-run.json'));
+
+    $leftToRun = array();
+    foreach ($toRun as $filename) {
+      $leftToRun[] = $filename;
+      $output->writeln('phpunit '.$filename);
+    }
+
+    $ret = 200;
+    do {
+      passthru('phpunit '.array_pop($leftToRun), $ret);
+    } while($ret === 0 && count($leftToRun) > 0);
+
+    $root->getFile('to-run.json')->writeContents($jsonc->stringify($leftToRun));
+    $output->writeln('<comment>reduced to: '.count($leftToRun).' tests.</comment>');
+  }
+);

@@ -2,10 +2,9 @@
 
 namespace Psc\Form;
 
-use \Psc\ExceptionDelegator,
-    \Psc\ExceptionListener,
-    \Psc\CMS\ResponseController
-;
+use Psc\ExceptionDelegator;
+use Psc\ExceptionListener;
+use Psc\CMS\ResponseController;
 
 class UniqueConstraintValidatorRule implements FieldValidatorRule, ExceptionListener {
 
@@ -59,5 +58,3 @@ class UniqueConstraintValidatorRule implements FieldValidatorRule, ExceptionList
     $this->field = $field;
   }
 }
-
-?>

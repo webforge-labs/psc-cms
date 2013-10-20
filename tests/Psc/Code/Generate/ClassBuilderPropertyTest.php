@@ -37,7 +37,7 @@ class ClassBuilderPropertyTest extends \Psc\Code\Test\Base {
    * @depends testSetType
    */
   public function testGetType($property) {
-    $this->assertInstanceOf('Psc\Data\Type\Type', $property->getType());
+    $this->assertInstanceOf('Webforge\Types\Type', $property->getType());
     
     $this->assertEquals('string',$property->getDocType());
   }

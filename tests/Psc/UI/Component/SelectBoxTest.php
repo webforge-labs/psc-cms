@@ -2,6 +2,8 @@
 
 namespace Psc\UI\Component;
 
+use Webforge\Types\Type;
+
 /**
  * @group class:Psc\UI\Component\SelectBox
  */
@@ -23,7 +25,7 @@ class SelectBoxTest extends TestCase {
   public function testRespectsTypeValidationRule() {
     $c = $this->createComponent();
     
-    $typeMock = $this->getMock('Psc\Data\Type\EnumType', array('getValidatorRule'), array(\Psc\Data\Type\Type::create('String'), array('v1','v2')));
+    $typeMock = $this->getMock('Webforge\Types\EnumType', array('getValidatorRule'), array(Type::create('String'), array('v1','v2')));
     
     $typeMock->expects($this->once())->method('getValidatorRule')->with($this->isInstanceOf('Psc\Data\Type\TypeRuleMapper'));
     
@@ -56,4 +58,3 @@ class SelectBoxTest extends TestCase {
     return $box;
   }
 }
-?>

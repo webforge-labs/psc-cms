@@ -23,10 +23,10 @@ class SetMetaTest extends \Psc\Code\Test\Base {
   }
   
   /**
-   * @expectedException Psc\Data\Type\TypeExpectedException
    * @depends testConstruct
    */
   public function testSetTypesFromArrayThrowsTypeExpectedException(SetMeta $meta) {
+    $this->setExpectedException('Webforge\Types\TypeExpectedException');
     $meta->setTypesFromArray(array(
       'label'=> new StringType(), // das ist okay
       'numbers'=> 'ichbinkeinobjekt', // das ist nicht okay
@@ -48,7 +48,7 @@ class SetMetaTest extends \Psc\Code\Test\Base {
     $this->assertInstanceOf('Psc\Data\SetMeta',
                             $meta->setFieldType('tiny', $sit = new SmallIntegerType()));
     
-    $this->assertInstanceOf('Psc\Data\Type\Type',
+    $this->assertInstanceOf('Webforge\Types\Type',
                             $type = $meta->getFieldType('tiny'));
     $this->assertSame($sit,$type);
 
@@ -56,7 +56,7 @@ class SetMetaTest extends \Psc\Code\Test\Base {
     $this->assertInstanceOf('Psc\Data\SetMeta',
                             $meta->setFieldType('seconddim.tiny', $sit2 = new SmallIntegerType()));
     
-    $this->assertInstanceOf('Psc\Data\Type\Type',
+    $this->assertInstanceOf('Webforge\Types\Type',
                             $type = $meta->getFieldType(array('seconddim','tiny')));
     $this->assertSame($sit2,$type);
   }

@@ -157,7 +157,7 @@ __PHP__
     $this->assertEquals('text',$p2->getName());
     $this->assertNull($p1->getHint());
     $this->assertEquals('link',$p3->getName());
-    $this->assertEquals('Psc\Data\Type\Interfaces\Link',$p3->getHint()->getFQN());
+    $this->assertEquals('Webforge\Types\Interfaces\Link',$p3->getHint()->getFQN());
     
     $constructorPHP = <<< 'PHP'
   $this->setImage($image);

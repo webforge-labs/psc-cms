@@ -62,7 +62,7 @@ class DSLTest extends \Psc\Code\Test\Base {
   
   public function testValueTypeInferring() {
     $this->assertInstanceOf('Psc\Code\AST\LValue', $value = $this->dsl->value((object) array('test'=>'v1')));
-    $this->assertInstanceOf('Psc\Data\Type\ObjectType', $value->getInferredType()->unwrap());
+    $this->assertInstanceOf('Webforge\Types\ObjectType', $value->getInferredType()->unwrap());
   }
   
   public function testConstructCallNoParams() {

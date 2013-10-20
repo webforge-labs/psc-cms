@@ -3,7 +3,7 @@
 namespace Psc\Doctrine;
 
 use Psc\Doctrine\TypeExporter;
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 
 /**
  * @group class:Psc\Doctrine\TypeExporter
@@ -50,10 +50,11 @@ class TypeExporterTest extends \Psc\Code\Test\Base {
   }
   
   /**
-   * @expectedException Psc\Data\Type\TypeExportException
+   * 
    * @dataProvider provideExportException
    */
   public function testExportException($type) {
+    $this->setExpectedException('Webforge\Types\TypeExportException');
     $this->exporter->exportType($type);
   }
   
@@ -65,7 +66,7 @@ class TypeExporterTest extends \Psc\Code\Test\Base {
       $tests[] = array($type);
     };
     
-    $test('FailingTest');
+    $test(new \Psc\Data\Type\FailingTestType());
 
     return $tests;
   }
@@ -82,4 +83,3 @@ class TypeExporterTest extends \Psc\Code\Test\Base {
     return new TypeExporter();
   }
 }
-?>

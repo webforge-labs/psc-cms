@@ -123,11 +123,11 @@ class EntityBuilderAddRelationTest extends \Psc\Code\Test\Base {
     $this->assertTrue($builder->hasProperty($property),'Builder hat property: '.$property.' nicht.');
     $property = $builder->getProperty($property);
     $this->assertNotNull($property->getDocBlock(),'DocBlock des Properties: '.$property->getName().' ist nicht gesetzt');
-    $this->assertInstanceOf('Psc\Data\Type\Type',$type = $property->getType(),'Type des Properties: '.$property->getName().' ist nicht gesetzt');
+    $this->assertInstanceOf('Webforge\Types\Type', $type = $property->getType(),'Type des Properties: '.$property->getName().' ist nicht gesetzt');
     
     if ($type->getName() === 'PersistentCollection') {
       $innerType = $type->getType();
-      $this->assertInstanceof('Psc\Data\Type\ObjectType',$innerType);
+      $this->assertInstanceof('Webforge\Types\ObjectType',$innerType);
       $this->assertEquals($targetEntity, $innerType->getClass()->getFQN());
     } elseif ($type->getName() === 'Entity') {
       $this->assertEquals($targetEntity, $type->getClass()->getFQN());

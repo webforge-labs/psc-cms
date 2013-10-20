@@ -412,7 +412,7 @@ class EntityBuilder extends \Psc\Code\Generate\ClassBuilder {
    * @chainable
    */
   public function buildSetMetaGetter(CodeExporter $codeExporter = NULL) {
-    if (!isset($codeExporter)) $codeExporter = new CodeExporter();
+    if (!isset($codeExporter)) $codeExporter = new CodeExporter(new CodeWriter);
     $code = array();
     
     $code[] = 'return new \Psc\Data\SetMeta(array(';

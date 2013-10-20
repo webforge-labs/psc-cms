@@ -166,7 +166,7 @@ class ProcessorTest extends \Psc\Doctrine\DatabaseTestCase {
     $this->processor->onProcessSetField('content', function($entity, $field, $value, $type) use ($that, $article, $expectedContent) {
       $that->assertSame($article, $entity);
       $that->assertEquals('content', $field);
-      $that->assertInstanceOf('Psc\Data\Type\StringType', $type);
+      $that->assertInstanceOf('Webforge\Types\StringType', $type);
       $entity->callSetter($field, $expectedContent);
     });
     

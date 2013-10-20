@@ -16,4 +16,3 @@ class EntityRepositoryTest extends \Psc\Doctrine\RepositoryTest {
     $this->assertInstanceOf('Doctrine\ORM\EntityRepository',$this->repository);
   }
 }
-?>

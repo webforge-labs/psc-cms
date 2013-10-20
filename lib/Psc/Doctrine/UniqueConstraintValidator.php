@@ -41,14 +41,17 @@ class UniqueConstraintValidator extends \Psc\SimpleObject {
         $type = $constraint->getKeyType($key);
         
         if (!array_key_exists($key, $data)) {
-          throw WrongDataException::create("In Data ist der Schlüssel '%s' nicht vorhanden. Erwartet: '%s'", $key, $type->getName());
+          throw new WrongDataException(sprintf("In Data ist der Schlüssel '%s' nicht vorhanden. Erwartet: '%s'", $key, $type->getName()));
         }
         $value = $data[$key];
         
         if (!$this->typeMatcher->isTypeof($value, $type)) {
-          throw TypeExpectedException::build("Data %s für Key: '%s' sollte vom Type '%s' sein", \Psc\Code\Code::varInfo($value), $key, $type->getName())
-                                      ->set('expectedType', $type)
-                                      ->end();
+          $e = new TypeExpectedException(
+            sprintf("Data %s für Key: '%s' sollte vom Type '%s' sein", \Psc\Code\Code::varInfo($value), $key, $type->getName())
+          );
+
+          $e->expectedType = $type;
+          throw $e;
         }
         
         $constraintValue[$key] = $value;

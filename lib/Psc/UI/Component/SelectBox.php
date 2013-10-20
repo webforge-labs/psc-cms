@@ -5,6 +5,7 @@ namespace Psc\UI\Component;
 use Psc\UI\fHTML;
 use Psc\CMS\Labeler;
 use Psc\CMS\LabelerAware;
+use Webforge\Types\ValidationType;
 
 class SelectBox extends ValuesBase implements LabelerAware {
   
@@ -28,7 +29,7 @@ class SelectBox extends ValuesBase implements LabelerAware {
   }
   
   protected function initValidatorRule() {
-    if (isset($this->type) && $this->getType() instanceof \Psc\Data\Type\ValidationType) {
+    if (isset($this->type) && $this->getType() instanceof ValidationType) {
       $this->validatorRule = $this->getType()->getValidatorRule($this->getTypeRuleMapper());
     } else {
       $this->validatorRule =  new \Psc\Form\ValuesValidatorRule($this->values);

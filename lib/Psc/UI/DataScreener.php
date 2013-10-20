@@ -4,6 +4,8 @@ namespace Psc\UI;
 
 use Webforge\Types\Type;
 use Webforge\Types;
+use Webforge\Types\NotTypedException;
+use Psc\TPL\TPL;
 
 /*
  * Zeigt beliebige Typ-Daten für den User an
@@ -43,7 +45,7 @@ class DataScreener extends \Psc\SimpleObject {
             function ($innerValue) use ($that, $type) { // ersetzt den getter
               try {
                 return $that->toString($innerValue, $type->getType()); 
-              } catch (\Psc\Data\Type\NotTypedException $e) {
+              } catch (NotTypedException $e) {
                 // was tun wenn wir den inner type nicht kennen?
                 return $that->toString($innerValue);
               }
@@ -58,7 +60,7 @@ class DataScreener extends \Psc\SimpleObject {
             function ($innerValue, $key) use ($that, $type) { // ersetzt den getter
               try {
                 return '['.$key.'] '.$that->toString($innerValue, $type->getType()); 
-              } catch (\Psc\Data\Type\NotTypedException $e) {
+              } catch (NotTypedException $e) {
                 // was tun wenn wir den inner type nicht kennen?
                 return $that->toString($innerValue);
               }
@@ -74,11 +76,10 @@ class DataScreener extends \Psc\SimpleObject {
       }
       
       if ($type instanceof Types\MarkupTextType) {
-        return \Psc\TPL\TPL::MiniMarkup($value);
+        return TPL::MiniMarkup($value);
       }
     }
     
     return (string) $value;
   }
 }
-?>

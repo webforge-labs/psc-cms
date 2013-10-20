@@ -102,27 +102,22 @@ class UniqueConstraintValidatorTest extends \Psc\Code\Test\Base {
     $this->assertFalse($this->validate($data(28, 4, 'dimension')));
   }
   
-  /**
-   * @expectedException Psc\Data\Type\TypeExpectedException
-   */
   public function testWrongData() {
+    $this->setExpectedException('Webforge\Types\TypeExpectedException');
     $this->validator->process(array('season_id'=>'string', 'num'=>1, 'release'=>'frm'));
   }
   
-  /**
-   * @expectedException Psc\Data\Type\WrongDataException
-   */
   public function testMissingData() {
+    $this->setExpectedException('Webforge\Types\WrongDataException');
     $this->validator->process(array('season_id'=>7, 'release'=>'frm'));
   }
   
-  /**
-   * @expectedException InvalidArgumentException
-   */
   public function testUpdateIndex_WrongUniqueConstraint() {
-    $this->validator->updateIndex(new UniqueConstraint('test', array('episode_id'=>Type::create('Integer'))),
-                                  array()
-                                  );
+    $this->setExpectedException('InvalidArgumentException');
+    $this->validator->updateIndex(
+      new UniqueConstraint('test', array('episode_id'=>Type::create('Integer'))),
+      array()
+    );
   }
   
   protected function getDataHelper() {

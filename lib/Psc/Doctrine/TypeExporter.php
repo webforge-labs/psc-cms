@@ -5,6 +5,7 @@ namespace Psc\Doctrine;
 use Webforge\Types\Type;
 use Psc\Data\Type\Exporter;
 use Doctrine\DBAL\Types\Type AS DC;
+use Psc\Data\Type\TypeExportException;
 
 /**
  * Wandelt einen Typ in den String um der in @Doctrine\ORM\Mapping\Column(type="%s")  benutzt werden kann
@@ -52,7 +53,7 @@ class TypeExporter extends \Psc\SimpleObject implements \Psc\Data\Type\Exporter 
       return $type->getDoctrineExportType(); 
     }
     
-    throw \Psc\Data\Type\TypeExportException::create("Es konnte kein DoctrineExportType für: '%s' gefunden werden. Dieser Typ sollte \Webfoge\Types\DoctrineExportableType implementieren.",$tn);
+    throw new TypeExportException(sprintf("Es konnte kein DoctrineExportType für: '%s' gefunden werden. Dieser Typ sollte \Webfoge\Types\DoctrineExportableType implementieren.",$tn));
     // YAGNI?
   }
   

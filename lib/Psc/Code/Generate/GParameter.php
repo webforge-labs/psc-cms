@@ -96,7 +96,7 @@ class GParameter extends GObject {
       $php .= 'Array ';
     } elseif (($c = $this->getHint()) != NULL) {
       if ($useFQNHints) {
-        $php .= $c->getName().' ';
+        $php .= '\\'.$c->getFQN().' ';
       } else {
         $php .= $c->getClassName().' ';
         // @TODO das hier macht aus den FQNs immer was ohne \ am Anfang,

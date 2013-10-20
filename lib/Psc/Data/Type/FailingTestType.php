@@ -2,4 +2,5 @@
 
 namespace Psc\Data\Type;
 
-class FailingTestType extends \Webforge\Types\FailingTestType {}
+class FailingTestType extends \Psc\Data\Type\Type {
+}
