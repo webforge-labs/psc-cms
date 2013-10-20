@@ -8,6 +8,7 @@ class EnvironmentContainerTest extends \Webforge\Code\Test\Base {
     $this->chainClass = __NAMESPACE__.'\EnvironmentContainer';
     parent::setUp();
 
+    $_SERVER['HTTP_HOST'] = '';
     $this->container = new EnvironmentContainer(array('session.init'=>FALSE));
   }
 
