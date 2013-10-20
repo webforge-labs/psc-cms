@@ -12,9 +12,7 @@
     "psr-0": {
       "Psc": ["lib/", "tests/"],
       "Hitch": ["application/src/hitch/lib/"],
-      "PHPWord": ["lib/PHPWord/"],
-      "Webforge\\Common": ["D:\\www\\webforge-common\\lib"],
-      "Webforge\\Types": ["D:\\www\\webforge-types\\lib"]
+      "PHPWord": ["lib/PHPWord/"]
     },
     "files": [
       "lib/JParser/autoload.php"
@@ -34,7 +32,7 @@
     "webforge/translation": "1.0.*@stable",
     "webforge/fatal-error-handler": "1.*@stable",
     "webforge/dom": "1.*@dev",
-    "webforge/types": "1.0.*"
+    "webforge/types": "1.0.*@stable"
   },
   "require-dev": {
     "webforge/testdata-repository": "@alpha",
@@ -42,7 +40,8 @@
     "pscheit/psc-cms-image": "1.2.*",
     "webforge/testplate": "1.4.*",
     "liip/rmt": "0.9.*",
-    "mockery/mockery": "dev-master"
+    "mockery/mockery": "dev-master",
+    "seld/jsonlint": "1.1.*"
   },
   "minimum-stability": "dev",
   
