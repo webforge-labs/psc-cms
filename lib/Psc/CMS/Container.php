@@ -3,6 +3,7 @@
 namespace Psc\CMS;
 
 use Webforge\Framework\Container as WebforgeContainer;
+use Psc\CMS\ProjectsFactory;
 use Webforge\Common\System\Dir;
 use Psc\PSC;
 
@@ -11,6 +12,8 @@ class Container extends \Webforge\Setup\BootContainer {
   protected $inTests = NULL;
   
   protected $project;
+
+  protected $projetsFactory;
   
   public function init() {
     ini_set('mbstring.internal_encoding', 'UTF-8');
@@ -53,7 +56,11 @@ class Container extends \Webforge\Setup\BootContainer {
    * @return Psc\CMS\ProjectsFactory
    */
   public function getProjectsFactory() {
-    return $this->webforge->getCMSBridge()->getProjectsFactory();
+    if (!isset($this->projectsFactory)) {
+      $this->projectsFactory = new ProjectsFactory($this->webforge->getHostConfiguration());
+    }
+    
+    return $this->projectsFactory;
   }
   
   protected function getModules() {
