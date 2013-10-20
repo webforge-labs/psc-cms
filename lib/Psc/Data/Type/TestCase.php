@@ -5,6 +5,7 @@ namespace Psc\Data\Type;
 use Psc\CMS\ComponentMapper;
 use Psc\Code\Code;
 use Webforge\Types\Type as WebforgeType;
+use Webforge\Types\CodeExporter;
 
 class TestCase extends \Psc\Code\Test\Base {
   
@@ -43,7 +44,7 @@ class TestCase extends \Psc\Code\Test\Base {
   
   protected function assertDocType($docType, WebforgeType $type) {
     $msg = 'DokumentationsType des Type '.$type.' ist nicht korrekt';
-    $this->assertEquals($docType, $type->getName(Type::CONTEXT_DOCBLOCK), $msg);
+    $this->assertEquals($docType, $type->getName(WebforgeType::CONTEXT_DOCBLOCK), $msg);
     $this->assertEquals($docType, $type->getDocType(), $msg);
   }
 }

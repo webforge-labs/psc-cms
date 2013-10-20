@@ -127,10 +127,10 @@ abstract class CompiledTeaserHeadlineImageTextLink extends Entry {
   
   public static function getSetMeta() {
     return new \Psc\Data\SetMeta(array(
-      'headline' => new \Psc\Data\Type\StringType(),
-      'image' => new \Psc\Data\Type\EntityType(new \Psc\Code\Generate\GClass('Psc\\Entities\\ContentStream\\Image')),
-      'text' => new \Psc\Data\Type\MarkupTextType(),
-      'link' => new \Psc\Data\Type\EntityType(new \Psc\Code\Generate\GClass('Psc\\Entities\\NavigationNode')),
+      'headline' => new \Webforge\Types\StringType(),
+      'image' => new \Webforge\Types\EntityType(new \Psc\Code\Generate\GClass('Psc\\Entities\\ContentStream\\Image')),
+      'text' => new \Webforge\Types\MarkupTextType(),
+      'link' => new \Webforge\Types\EntityType(new \Psc\Code\Generate\GClass('Psc\\Entities\\NavigationNode')),
     ));
   }
 }

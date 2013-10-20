@@ -3,10 +3,10 @@
 namespace Psc\Data;
 
 use Psc\Data\SetMeta;
-use Psc\Data\Type\StringType;
-use Psc\Data\Type\ArrayType;
-use Psc\Data\Type\IntegerType;
-use Psc\Data\Type\SmallIntegerType;
+use Webforge\Types\StringType;
+use Webforge\Types\ArrayType;
+use Webforge\Types\IntegerType;
+use Webforge\Types\SmallIntegerType;
 
 /**
  * @group class:Psc\Data\SetMeta

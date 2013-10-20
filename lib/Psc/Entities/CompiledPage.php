@@ -244,13 +244,13 @@ abstract class CompiledPage extends \Psc\CMS\Roles\PageEntity {
   
   public static function getSetMeta() {
     return new \Psc\Data\SetMeta(array(
-      'id' => new \Psc\Data\Type\IdType(),
-      'slug' => new \Psc\Data\Type\StringType(),
-      'active' => new \Psc\Data\Type\BooleanType(),
-      'created' => new \Psc\Data\Type\DateTimeType(),
-      'modified' => new \Psc\Data\Type\DateTimeType(),
-      'navigationNodes' => new \Psc\Data\Type\PersistentCollectionType(new \Psc\Code\Generate\GClass('Psc\\Entities\\NavigationNode')),
-      'contentStreams' => new \Psc\Data\Type\PersistentCollectionType(new \Psc\Code\Generate\GClass('Psc\\Entities\\ContentStream\\ContentStream')),
+      'id' => new \Webforge\Types\IdType(),
+      'slug' => new \Webforge\Types\StringType(),
+      'active' => new \Webforge\Types\BooleanType(),
+      'created' => new \Webforge\Types\DateTimeType(),
+      'modified' => new \Webforge\Types\DateTimeType(),
+      'navigationNodes' => new \Webforge\Types\PersistentCollectionType(new \Psc\Code\Generate\GClass('Psc\\Entities\\NavigationNode')),
+      'contentStreams' => new \Webforge\Types\PersistentCollectionType(new \Psc\Code\Generate\GClass('Psc\\Entities\\ContentStream\\ContentStream')),
     ));
   }
 }

@@ -2,7 +2,7 @@
 
 namespace Psc\Doctrine;
 
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 
 /**
  * @group class:Psc\Doctrine\UniqueConstraintValidator
@@ -128,4 +128,3 @@ class UniqueConstraintValidatorTest extends \Psc\Code\Test\Base {
     return new UniqueConstraintValidator($uqc);
   }
 }
-?>

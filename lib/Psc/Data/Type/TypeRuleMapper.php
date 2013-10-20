@@ -5,6 +5,8 @@ namespace Psc\Data\Type;
 use Webforge\Types\Type as WebforgeType;
 use Psc\Form\ValidatorRule;
 use Webforge\Common\ClassUtil;
+use Webforge\Types\TypeExportException;
+use Webforge\Types\ObjectType;
 
 /**
  * Mappt einen Typ zu einer ValidatorRule

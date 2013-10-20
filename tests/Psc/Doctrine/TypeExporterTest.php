@@ -19,7 +19,7 @@ class TypeExporterTest extends \Psc\Code\Test\Base {
   }
 
   public function testConstruct() {
-    $this->assertInstanceOf('Psc\Data\Type\Exporter',$this->createTypeExporter());
+    $this->assertInstanceOf('Webforge\Types\Exporter',$this->createTypeExporter());
   }
   
   /**
@@ -72,12 +72,11 @@ class TypeExporterTest extends \Psc\Code\Test\Base {
   }
 
   /**
-   * @expectedException Psc\Data\Type\TypeConversionException
    */
   public function testGetPscTypeException() {
+    $this->setExpectedException('Webforge\Types\TypeConversionException');
     $this->exporter->getPscType('notKnown');
   }
-
 
   public function createTypeExporter() {
     return new TypeExporter();

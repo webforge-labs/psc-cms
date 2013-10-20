@@ -31,7 +31,7 @@ class EntityPropertyMeta extends \Psc\SimpleObject {
   protected $hint;
   
   /**
-   * @var Psc\Data\Type\Type
+   * @var Webforge\Types\Type
    */
   protected $type;
   
@@ -48,7 +48,7 @@ class EntityPropertyMeta extends \Psc\SimpleObject {
   }
   
   /**
-   * @param Psc\Data\Type\Type $type
+   * @param Webforge\Types\Type $type
    * @chainable
    */
   public function setType(Type $type) {
@@ -57,7 +57,7 @@ class EntityPropertyMeta extends \Psc\SimpleObject {
   }
 
   /**
-   * @return Psc\Data\Type\Type
+   * @return Webforge\Types\Type
    */
   public function getType() {
     return $this->type;

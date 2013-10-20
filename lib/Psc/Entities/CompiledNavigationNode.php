@@ -420,20 +420,20 @@ abstract class CompiledNavigationNode extends \Psc\CMS\Roles\NavigationNodeEntit
   
   public static function getSetMeta() {
     return new \Psc\Data\SetMeta(array(
-      'id' => new \Psc\Data\Type\IdType(),
-      'i18nTitle' => new \Psc\Data\Type\I18nType(new \Psc\Data\Type\StringType(), array('de')),
-      'i18nSlug' => new \Psc\Data\Type\I18nType(new \Psc\Data\Type\StringType(), array('de')),
-      'lft' => new \Psc\Data\Type\PositiveIntegerType(),
-      'rgt' => new \Psc\Data\Type\PositiveIntegerType(),
-      'depth' => new \Psc\Data\Type\PositiveIntegerType(),
-      'image' => new \Psc\Data\Type\ImageType(),
-      'created' => new \Psc\Data\Type\DateTimeType(),
-      'updated' => new \Psc\Data\Type\DateTimeType(),
-      'context' => new \Psc\Data\Type\StringType(),
-      'page' => new \Psc\Data\Type\EntityType(new \Psc\Code\Generate\GClass('Psc\\Entities\\Page')),
-      'children' => new \Psc\Data\Type\PersistentCollectionType(new \Psc\Code\Generate\GClass('Psc\\Entities\\NavigationNode')),
-      'parent' => new \Psc\Data\Type\EntityType(new \Psc\Code\Generate\GClass('Psc\\Entities\\NavigationNode')),
-      'contentStreams' => new \Psc\Data\Type\PersistentCollectionType(new \Psc\Code\Generate\GClass('Psc\\Entities\\ContentStream\\ContentStream')),
+      'id' => new \Webforge\Types\IdType(),
+      'i18nTitle' => new \Webforge\Types\I18nType(new \Webforge\Types\StringType(), array('de')),
+      'i18nSlug' => new \Webforge\Types\I18nType(new \Webforge\Types\StringType(), array('de')),
+      'lft' => new \Webforge\Types\PositiveIntegerType(),
+      'rgt' => new \Webforge\Types\PositiveIntegerType(),
+      'depth' => new \Webforge\Types\PositiveIntegerType(),
+      'image' => new \Webforge\Types\ImageType(),
+      'created' => new \Webforge\Types\DateTimeType(),
+      'updated' => new \Webforge\Types\DateTimeType(),
+      'context' => new \Webforge\Types\StringType(),
+      'page' => new \Webforge\Types\EntityType(new \Psc\Code\Generate\GClass('Psc\\Entities\\Page')),
+      'children' => new \Webforge\Types\PersistentCollectionType(new \Psc\Code\Generate\GClass('Psc\\Entities\\NavigationNode')),
+      'parent' => new \Webforge\Types\EntityType(new \Psc\Code\Generate\GClass('Psc\\Entities\\NavigationNode')),
+      'contentStreams' => new \Webforge\Types\PersistentCollectionType(new \Psc\Code\Generate\GClass('Psc\\Entities\\ContentStream\\ContentStream')),
     ));
   }
 }

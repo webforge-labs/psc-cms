@@ -4,7 +4,7 @@ namespace Psc\UI;
 
 use Psc\HTML\Base;
 
-class Link extends \Psc\HTML\Base implements \Psc\Data\Type\Interfaces\Link {
+class Link extends \Psc\HTML\Base implements \Webforge\Types\Interfaces\Link {
   
   /**
    * Die Beschreibung des Links

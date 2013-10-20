@@ -5,7 +5,7 @@ namespace Psc\Code\Compile;
 use Psc\Code\Generate\ClassWriter;
 use Psc\Code\Generate\GClass;
 use Psc\Data\Column;
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 
 /**
  * @group class:Psc\Code\Compile\ArrayCollectionInterfaceExtension

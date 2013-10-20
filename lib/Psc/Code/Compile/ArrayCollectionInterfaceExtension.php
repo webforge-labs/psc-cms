@@ -42,7 +42,7 @@ class ArrayCollectionInterfaceExtension extends Extension {
   protected $itemType;
   
   /**
-   * @var Psc\Data\Type\Type
+   * @var Webforge\Types\Type
    */
   protected $collectionType;
   
@@ -242,7 +242,7 @@ class ArrayCollectionInterfaceExtension extends Extension {
   }
   
   /**
-   * @param Psc\Data\Type\EnclosingType $collectionType
+   * @param Webforge\Types\EnclosingType $collectionType
    * @chainable
    */
   public function setCollectionType(TraversableType $collectionType) {
@@ -254,7 +254,7 @@ class ArrayCollectionInterfaceExtension extends Extension {
   }
 
   /**
-   * @return Psc\Data\Type\TraversableType
+   * @return Webforge\Types\TraversableType
    */
   public function getCollectionType() {
     return $this->collectionType;

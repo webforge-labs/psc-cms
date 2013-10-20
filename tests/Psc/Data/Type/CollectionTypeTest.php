@@ -3,10 +3,10 @@
 namespace Psc\Data\Type;
 
 use Psc\Code\Generate\GClass;
+use Webforge\Types\Type;
+use Webforge\Types\CollectionType;
+use Webforge\Types\ObjectType;
 
-/**
- * @group class:Psc\Data\Type\CollectionType
- */
 class CollectionTypeTest extends \Psc\Code\Test\Base {
 
   public function setUp() {
@@ -15,19 +15,19 @@ class CollectionTypeTest extends \Psc\Code\Test\Base {
   }
 
   public function testConstruct() {
-    return \Psc\Data\Type\Type::create('Collection');
+    return Type::create('Collection');
   }
   
   public function testImplementationConstruct() {
-    $type = \Psc\Data\Type\Type::create('Collection', CollectionType::PSC_ARRAY_COLLECTION);
+    $type = Type::create('Collection', CollectionType::PSC_ARRAY_COLLECTION);
     $this->assertEquals('Psc\Data\ArrayCollection',$type->getClass()->getFQN());
 
-    $type = \Psc\Data\Type\Type::create('Collection', CollectionType::DOCTRINE_ARRAY_COLLECTION);
+    $type = Type::create('Collection', CollectionType::DOCTRINE_ARRAY_COLLECTION);
     $this->assertEquals('Doctrine\Common\Collections\ArrayCollection',$type->getClass()->getFQN());
   }
   
   public function testImplementationInnerTypeConstruct() {
-    $type = \Psc\Data\Type\Type::create('Collection', CollectionType::DOCTRINE_ARRAY_COLLECTION, new ObjectType(new GClass('Psc\Doctrine\Entity')));
+    $type = Type::create('Collection', CollectionType::DOCTRINE_ARRAY_COLLECTION, new ObjectType(new GClass('Psc\Doctrine\Entity')));
     $this->assertEquals('Doctrine\Common\Collections\ArrayCollection',$type->getClass()->getFQN());
     $this->assertTrue($type->isTyped());
     $this->assertInstanceOf('Webforge\Types\ObjectType',$type->getType());
@@ -56,4 +56,3 @@ class CollectionTypeTest extends \Psc\Code\Test\Base {
     return new CollectionType();
   }
 }
-?>

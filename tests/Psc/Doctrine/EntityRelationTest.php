@@ -167,14 +167,14 @@ class EntityRelationTest extends EntityRelationBaseTest {
   // gibt das property in der source class zurück
   public function testGetSourceProperty() {
     $this->assertEquals('tags', $this->relation->getSourcePropertyName());
-    $this->assertInstanceof('Psc\Data\Type\PersistentCollectionType', $this->relation->getSourcePropertyType());
+    $this->assertInstanceof('Webforge\Types\PersistentCollectionType', $this->relation->getSourcePropertyType());
     $this->assertEquals('tag', $this->relation->getSourceParamName());
   }
 
   // gibt das property in der target class zurück
   public function testGetTargetProperty() {
     $this->assertEquals('articles', $this->relation->getTargetPropertyName());
-    $this->assertInstanceof('Psc\Data\Type\PersistentCollectionType', $this->relation->getTargetPropertyType());
+    $this->assertInstanceof('Webforge\Types\PersistentCollectionType', $this->relation->getTargetPropertyType());
     $this->assertEquals('article', $this->relation->getTargetParamName());
   }
   

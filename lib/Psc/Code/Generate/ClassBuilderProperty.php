@@ -26,7 +26,7 @@ class ClassBuilderProperty extends \Psc\Object {
   protected $upcaseName;
   
   /**
-   * @var Psc\Data\Type\Type
+   * @var Webforge\Types\Type
    */
   protected $type;
   
@@ -115,7 +115,7 @@ class ClassBuilderProperty extends \Psc\Object {
   }
   
   /**
-   * @param Psc\Data\Type\Type $type
+   * @param Webforge\Types\Type $type
    * @chainable
    */
   public function setType(Type $type) {
@@ -124,7 +124,7 @@ class ClassBuilderProperty extends \Psc\Object {
   }
   
   /**
-   * @return Psc\Data\Type\Type
+   * @return Webforge\Types\Type
    */
   public function getType() {
     return $this->type;

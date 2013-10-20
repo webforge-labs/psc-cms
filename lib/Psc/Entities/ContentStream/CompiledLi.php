@@ -60,7 +60,7 @@ abstract class CompiledLi extends Entry {
   
   public static function getSetMeta() {
     return new \Psc\Data\SetMeta(array(
-      'content' => new \Psc\Data\Type\ArrayType(),
+      'content' => new \Webforge\Types\ArrayType(),
     ));
   }
 }

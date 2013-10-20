@@ -17,7 +17,7 @@ class UniqueConstraint extends \Psc\SimpleObject {
   protected $name;
 
   /**
-   * array Psc\Data\Type[] $keys Schlüssel sind Namen der Felder des Unique-Constraints, Werte sind Psc\Data\Type\Type-Objekte
+   * array Webforge\Types\Type[] $keys Schlüssel sind Namen der Felder des Unique-Constraints, Werte sind Psc\Data\Type\Type-Objekte
    */
   public function __construct($name, Array $keys) {
     $this->meta = new SetMeta($keys);
@@ -32,7 +32,7 @@ class UniqueConstraint extends \Psc\SimpleObject {
   }
   
   /**
-   * @return Psc\Data\Type\Type
+   * @return Webforge\Types\Type
    */
   public function getKeyType($key) {
     return $this->meta->getFieldType($key);
@@ -86,4 +86,3 @@ class UniqueConstraint extends \Psc\SimpleObject {
     return $data;
   }
 }
-?>

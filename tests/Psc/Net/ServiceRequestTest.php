@@ -49,13 +49,13 @@ class ServiceRequestTest extends \Psc\Code\Test\Base {
   
   public function testDataSetterAndGetter() {
     $this->createServiceRequest(Service::POST, array('episodes','8','form'));
-    $this->test->getter('parts', new \Psc\Data\Type\ArrayType());
-    $this->test->setter('parts', new \Psc\Data\Type\ArrayType());
+    $this->test->getter('parts', new \Webforge\Types\ArrayType());
+    $this->test->setter('parts', new \Webforge\Types\ArrayType());
 
-    $this->test->getter('body', new \Psc\Data\Type\ArrayType());
-    $this->test->setter('body', new \Psc\Data\Type\ArrayType());
-    $this->test->getter('body', new \Psc\Data\Type\StringType());
-    $this->test->setter('body', new \Psc\Data\Type\StringType());
+    $this->test->getter('body', new \Webforge\Types\ArrayType());
+    $this->test->setter('body', new \Webforge\Types\ArrayType());
+    $this->test->getter('body', new \Webforge\Types\StringType());
+    $this->test->setter('body', new \Webforge\Types\StringType());
   }
   
   /**
@@ -99,4 +99,3 @@ class ServiceRequestTest extends \Psc\Code\Test\Base {
     return $this->test->object = new ServiceRequest($type,$data, $body);
   }
 }
-?>

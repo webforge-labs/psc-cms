@@ -237,14 +237,14 @@ abstract class CompiledImage extends Entry implements \Psc\TPL\ContentStream\Ima
   
   public static function getSetMeta() {
     return new \Psc\Data\SetMeta(array(
-      'id' => new \Psc\Data\Type\IdType(),
-      'url' => new \Psc\Data\Type\StringType(),
-      'caption' => new \Psc\Data\Type\StringType(),
-      'align' => new \Psc\Data\Type\StringType(),
-      'thumbnailFormat' => new \Psc\Data\Type\StringType(),
-      'resize' => new \Psc\Data\Type\ArrayType(),
-      'imageEntity' => new \Psc\Data\Type\EntityType(new \Psc\Code\Generate\GClass('Psc\\Entities\\Image')),
-      'imageManager' => new \Psc\Data\Type\ObjectType(new \Psc\Code\Generate\GClass('Psc\\Image\\Manager')),
+      'id' => new \Webforge\Types\IdType(),
+      'url' => new \Webforge\Types\StringType(),
+      'caption' => new \Webforge\Types\StringType(),
+      'align' => new \Webforge\Types\StringType(),
+      'thumbnailFormat' => new \Webforge\Types\StringType(),
+      'resize' => new \Webforge\Types\ArrayType(),
+      'imageEntity' => new \Webforge\Types\EntityType(new \Psc\Code\Generate\GClass('Psc\\Entities\\Image')),
+      'imageManager' => new \Webforge\Types\ObjectType(new \Psc\Code\Generate\GClass('Psc\\Image\\Manager')),
     ));
   }
 }

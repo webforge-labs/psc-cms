@@ -70,7 +70,7 @@ interface Component extends \Psc\Form\Item, \Webforge\Types\Adapters\Component {
   public function setType(Type $type);
   
   /**
-   * @return Psc\Data\Type\Type
+   * @return Webforge\Types\Type
    */
   public function getType();
 

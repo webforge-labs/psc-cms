@@ -131,10 +131,10 @@ abstract class CompiledImage extends \Psc\Doctrine\Entities\BasicImage2 {
   
   public static function getSetMeta() {
     return new \Psc\Data\SetMeta(array(
-      'id' => new \Psc\Data\Type\IdType(),
-      'sourcePath' => new \Psc\Data\Type\StringType(),
-      'hash' => new \Psc\Data\Type\StringType(),
-      'label' => new \Psc\Data\Type\StringType(),
+      'id' => new \Webforge\Types\IdType(),
+      'sourcePath' => new \Webforge\Types\StringType(),
+      'hash' => new \Webforge\Types\StringType(),
+      'label' => new \Webforge\Types\StringType(),
     ));
   }
 }

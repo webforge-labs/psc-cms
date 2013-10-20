@@ -57,7 +57,7 @@ abstract class Base extends \Psc\SimpleObject implements \Psc\CMS\Component, \Ps
   /**
    * Der Typ der Daten, die in der Komponente dargestellt werden
    * 
-   * @var Psc\Data\Type\Type
+   * @var webforge\Types\Type
    */
   protected $type;
   
@@ -282,7 +282,4 @@ abstract class Base extends \Psc\SimpleObject implements \Psc\CMS\Component, \Ps
     }
     return $this->typeRuleMapper;
   }
-
-
 }
-?>

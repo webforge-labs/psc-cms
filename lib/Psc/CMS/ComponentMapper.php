@@ -44,7 +44,7 @@ class ComponentMapper extends \Psc\SimpleObject implements \Psc\Code\Event\Dispa
       $component = $type->getMappedComponent($this);
     
     } else {
-      throw NoComponentFoundException::build("Zum Type '%s' konnte keine Komponente ermittelt werden. Das einfachste ist im Type \Psc\Data\Type\MappedComponentType zu implementieren.", $type->getName())
+      throw NoComponentFoundException::build("Zum Type '%s' konnte keine Komponente ermittelt werden. Das einfachste ist im Type \Webforge\Types\MappedComponentType zu implementieren.", $type->getName())
         ->set('type',$type)
         ->end();
     }
@@ -66,7 +66,7 @@ class ComponentMapper extends \Psc\SimpleObject implements \Psc\Code\Event\Dispa
   }
   
   /**
-   * @param string $typeName der Name ohne Psc\Data\Type\ davor und "Type" dahinter ($type->getName())
+   * @param string $typeName der Name ohne Webforge\Types\ davor und "Type" dahinter ($type->getName())
    * @param string $componentName der Name Psc\UI\Component\$name oder der FQN
    */
   public function addExplicitMapping($typeName, $componentName) {

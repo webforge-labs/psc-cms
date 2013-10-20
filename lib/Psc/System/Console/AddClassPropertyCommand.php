@@ -18,7 +18,7 @@ class AddClassPropertyCommand extends CompileCommand {
     parent::configure();
     
     $this->addArgument('name', self::REQUIRED);
-    $this->addArgument('type', self::OPTIONAL, 'Ein Psc\Data\Type\{$type}Type oder ein FQN', 'String');
+    $this->addArgument('type', self::OPTIONAL, 'Ein Webforge\Types\{$type}Type oder ein FQN', 'String');
     $this->addArgument('getter',self::OPTIONAL, 'Soll ein Getter erstellt werden', 'true');
     $this->addArgument('setter',self::OPTIONAL, 'Soll ein Setter erstellt werden', 'true');
     $this->addArgument('constructor',self::OPTIONAL, 'Soll der Parameter in den Constructor eingefügt werden? append|prepend|int(0-based-Position)', 'append');

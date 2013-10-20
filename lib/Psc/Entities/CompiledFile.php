@@ -133,10 +133,10 @@ abstract class CompiledFile extends \Psc\Doctrine\Entities\BasicUploadedFile {
   
   public static function getSetMeta() {
     return new \Psc\Data\SetMeta(array(
-      'id' => new \Psc\Data\Type\IdType(),
-      'hash' => new \Psc\Data\Type\StringType(),
-      'description' => new \Psc\Data\Type\StringType(),
-      'originalName' => new \Psc\Data\Type\StringType(),
+      'id' => new \Webforge\Types\IdType(),
+      'hash' => new \Webforge\Types\StringType(),
+      'description' => new \Webforge\Types\StringType(),
+      'originalName' => new \Webforge\Types\StringType(),
     ));
   }
 }

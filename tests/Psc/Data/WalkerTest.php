@@ -5,6 +5,9 @@ namespace Psc\Data;
 use Psc\Data\Walker;
 use Psc\Code\Generate\GClass;
 use Psc\Code\Code;
+use Webforge\Types\Type;
+use Webforge\Types\ArrayType;
+use Webforge\Types\ObjectType;
 
 /**
  * @group class:Psc\Data\Walker
@@ -44,7 +47,7 @@ class WalkerTest extends \Psc\Code\Test\Base {
   }
   
   public function createWalkable() {
-    $t = function ($type) { return \Psc\Data\Type\Type::create($type); };
+    $t = function ($type) { return Type::create($type); };
     
     $set = new Set(); // set implements Walkable
     $set->set('name','oids_pages', $t('String'));
@@ -59,8 +62,8 @@ class WalkerTest extends \Psc\Code\Test\Base {
     $j2->set('referencedColumnName', 'id', $t('String'));
     $j2->set('onDelete', 'cascade', $t('String'));
     
-    $set->set('joinColumns', array($j1, $j2), new Type\ArrayType(new Type\ObjectType(new GClass('Psc\Data\Walkable'))));
-    $set->set('inverseJoinColumns', array($j2, $j1), new Type\ArrayType(new Type\ObjectType(new GClass('Psc\Data\Walkable'))));
+    $set->set('joinColumns', array($j1, $j2), new ArrayType(new ObjectType(new GClass('Psc\Data\Walkable'))));
+    $set->set('inverseJoinColumns', array($j2, $j1), new ArrayType(new ObjectType(new GClass('Psc\Data\Walkable'))));
     
     return $set;
   }
@@ -91,4 +94,3 @@ class DocWalker extends \Psc\Data\Walker {
     return '@'.Code::getClass($walkable).'('.implode(', ',$walkedFields).')';
   }
 }
-?>

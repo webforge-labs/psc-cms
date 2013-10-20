@@ -3,6 +3,7 @@
 namespace Psc\Data\Type;
 
 use Psc\Code\Generate\GClass;
+use Webforge\Types\DCEnumType;
 
 /**
  * @group class:Psc\Data\Type\DCEnumType

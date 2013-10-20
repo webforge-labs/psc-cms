@@ -197,12 +197,12 @@ abstract class CompiledArticle extends \Psc\CMS\AbstractEntity {
   
   public static function getSetMeta() {
     return new \Psc\Data\SetMeta(array(
-      'id' => new \Psc\Data\Type\IdType(),
-      'title' => new \Psc\Data\Type\StringType(),
-      'content' => new \Psc\Data\Type\MarkupTextType(),
-      'sort' => new \Psc\Data\Type\IntegerType(),
-      'tags' => new \Psc\Data\Type\PersistentCollectionType(new \Psc\Code\Generate\GClass('Psc\\Doctrine\\TestEntities\\Tag')),
-      'category' => new \Psc\Data\Type\EntityType(new \Psc\Code\Generate\GClass('Psc\\Doctrine\\TestEntities\\Category')),
+      'id' => new \Webforge\Types\IdType(),
+      'title' => new \Webforge\Types\StringType(),
+      'content' => new \Webforge\Types\MarkupTextType(),
+      'sort' => new \Webforge\Types\IntegerType(),
+      'tags' => new \Webforge\Types\PersistentCollectionType(new \Psc\Code\Generate\GClass('Psc\\Doctrine\\TestEntities\\Tag')),
+      'category' => new \Webforge\Types\EntityType(new \Psc\Code\Generate\GClass('Psc\\Doctrine\\TestEntities\\Category')),
     ));
   }
 }

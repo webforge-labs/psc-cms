@@ -70,8 +70,8 @@ abstract class CompiledHeadline extends Entry {
   
   public static function getSetMeta() {
     return new \Psc\Data\SetMeta(array(
-      'content' => new \Psc\Data\Type\MarkupTextType(),
-      'level' => new \Psc\Data\Type\PositiveSmallIntegerType(),
+      'content' => new \Webforge\Types\MarkupTextType(),
+      'level' => new \Webforge\Types\PositiveSmallIntegerType(),
     ));
   }
 }

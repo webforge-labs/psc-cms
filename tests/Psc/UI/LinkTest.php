@@ -11,7 +11,7 @@ class LinkTest extends \Psc\Code\Test\Base {
 
   public function testAPI() {
     $link = new Link('http://www.ps-webforge.com','Meine Webseite');
-    $this->assertInstanceof('Psc\Data\Type\Interfaces\Link',$link);
+    $this->assertInstanceof('Webforge\Types\Interfaces\Link',$link);
     $this->assertEquals('http://www.ps-webforge.com', $link->getURI());
     $this->assertEquals('Meine Webseite', $link->getLabel());
 

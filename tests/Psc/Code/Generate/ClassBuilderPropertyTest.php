@@ -3,6 +3,7 @@
 namespace Psc\Code\Generate;
 
 use Psc\Code\Generate\ClassBuilderProperty;
+use Webforge\Types\StringType;
 
 /**
  * @group generate
@@ -29,7 +30,7 @@ class ClassBuilderPropertyTest extends \Psc\Code\Test\Base {
    * @depends testConstruct
    */
   public function testSetType($property) {
-    $this->assertChainable($property->setType(new \Psc\Data\Type\StringType()));
+    $this->assertChainable($property->setType(new StringType()));
     return $property;
   }
 
@@ -104,4 +105,3 @@ class ClassBuilderPropertyTest extends \Psc\Code\Test\Base {
     return $property;
   }
 }
-?>

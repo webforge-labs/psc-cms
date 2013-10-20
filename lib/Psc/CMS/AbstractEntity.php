@@ -8,8 +8,8 @@ use Psc\Data\Set;
 use Psc\Data\SetMeta;
 use Psc\URL\Helper AS URLHelper;
 
-use Psc\Data\Type\EntityType;
-use Psc\Data\Type\PersistentCollectionType;
+use Webforge\Types\EntityType;
+use Webforge\Types\PersistentCollectionType;
 use Psc\Data\ObjectExporter;
 
 /**

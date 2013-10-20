@@ -5,7 +5,7 @@ namespace Psc\Doctrine;
 use Psc\Code\Generate\GClass;
 use Psc\Data\ArrayCollection;
 use Psc\Data\Set;
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 use Psc\Data\SetMeta;
 use Psc\Doctrine\TestEntities\Tag as ArticleTag;
 

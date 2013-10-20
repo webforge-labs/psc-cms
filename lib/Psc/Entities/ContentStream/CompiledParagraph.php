@@ -50,7 +50,7 @@ abstract class CompiledParagraph extends Entry {
   
   public static function getSetMeta() {
     return new \Psc\Data\SetMeta(array(
-      'content' => new \Psc\Data\Type\MarkupTextType(),
+      'content' => new \Webforge\Types\MarkupTextType(),
     ));
   }
 }

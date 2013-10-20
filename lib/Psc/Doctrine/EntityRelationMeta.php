@@ -5,8 +5,8 @@ namespace Psc\Doctrine;
 use Psc\Code\Generate\GClass;
 use Psc\Code\Code;
 use Psc\Inflector;
-use Psc\Data\Type\PersistentCollectionType;
-use Psc\Data\Type\EntityType;
+use Webforge\Types\PersistentCollectionType;
+use Webforge\Types\EntityType;
 
 /**
  * 
@@ -190,7 +190,7 @@ class EntityRelationMeta extends \Psc\SimpleObject {
   /**
    * Gibt den Typ des Properties in der Entity-Klasse zurück
    * 
-   * @return Psc\Data\Type\Type
+   * @return Webforge\Types\Type
    */
   public function getPropertyType() {
     if ($this->valueType === self::COLLECTION_VALUED) {
@@ -293,4 +293,3 @@ class EntityRelationMeta extends \Psc\SimpleObject {
     return $this->valueType === self::COLLECTION_VALUED;
   }
 }
-?>

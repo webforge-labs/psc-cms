@@ -3,6 +3,8 @@
 namespace Psc\CMS;
 
 use Psc\Code\Generate\GClass;
+use Webforge\Types\PersistentCollectionType;
+use Webforge\Types\EntityType;
 
 /**
  * @group class:Psc\CMS\EntityPropertyMeta
@@ -14,15 +16,17 @@ class EntityPropertyMetaTest extends \Psc\Code\Test\Base {
   public function setUp() {
     $this->chainClass = 'Psc\CMS\EntityPropertyMeta';
     parent::setUp();
-    $this->entityPropertyMeta = new EntityPropertyMeta('translations',
-                                                       new \Psc\Data\Type\PersistentCollectionType(new GClass('Entities\User')),
-                                                       'Übersetzungen'
-                                                       );
+    $this->entityPropertyMeta = new EntityPropertyMeta(
+      'translations',
+      new PersistentCollectionType(new GClass('Entities\User')),
+      'Übersetzungen'
+    );
 
-    $this->singleEntityPropertyMeta = new EntityPropertyMeta('person',
-                                  new \Psc\Data\Type\EntityType(new GClass('Entities\Person')),
-                                  'zuständige Person'
-                                 );
+    $this->singleEntityPropertyMeta = new EntityPropertyMeta(
+      'person',
+      new EntityType(new GClass('Entities\Person')),
+      'zuständige Person'
+    );
   }
   
   public function testAcceptance() {
@@ -39,4 +43,3 @@ class EntityPropertyMetaTest extends \Psc\Code\Test\Base {
     $this->assertEquals('Entities\Person', $this->singleEntityPropertyMeta->getRelationEntityClass()->getFQN());
   }
 }
-?>

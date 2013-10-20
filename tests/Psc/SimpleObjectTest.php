@@ -2,7 +2,7 @@
 
 namespace Psc;
 
-use Psc\Data\Type\Type;
+use Webforge\Types\Type;
 
 /**
  * @group class:Psc\SimpleObject
@@ -43,4 +43,3 @@ class ASimpleObjectClass extends \Psc\SimpleObject {
   }
   
 }
-?>

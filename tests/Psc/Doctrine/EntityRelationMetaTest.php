@@ -78,12 +78,12 @@ class EntityRelationMetaTest extends \Psc\Code\Test\Base {
   public function testPropertyTypeIsCollectionForCollectionValued() {
     // da unser fall ziemlich langweilig ist, hier ein neuer
     $ermC = new EntityRelationMeta(new GClass('tiptoi\Entities\Product'), EntityRelationMeta::TARGET, EntityRelationMeta::COLLECTION_VALUED);
-    $this->assertInstanceOf('Psc\Data\Type\PersistentCollectionType', $ermC->getPropertyType());
+    $this->assertInstanceOf('Webforge\Types\PersistentCollectionType', $ermC->getPropertyType());
   }
   
   public function testPropertyTypeIsEntityTypeForSingleValued() {
     $ermS = new EntityRelationMeta(new GClass('tiptoi\Entities\Product'), EntityRelationMeta::TARGET, EntityRelationMeta::SINGLE_VALUED);
-    $this->assertInstanceOf('Psc\Data\Type\EntityType', $ermS->getPropertyType());
+    $this->assertInstanceOf('Webforge\Types\EntityType', $ermS->getPropertyType());
   }
   
   public function testPropertyNameCanBeSet() {

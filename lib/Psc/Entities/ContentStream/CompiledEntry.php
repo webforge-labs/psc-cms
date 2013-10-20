@@ -94,9 +94,9 @@ abstract class CompiledEntry extends \Psc\TPL\ContentStream\EntryEntity {
   
   public static function getSetMeta() {
     return new \Psc\Data\SetMeta(array(
-      'id' => new \Psc\Data\Type\IdType(),
-      'sort' => new \Psc\Data\Type\PositiveIntegerType(),
-      'contentStream' => new \Psc\Data\Type\EntityType(new \Psc\Code\Generate\GClass('Psc\\Entities\\ContentStream\\ContentStream')),
+      'id' => new \Webforge\Types\IdType(),
+      'sort' => new \Webforge\Types\PositiveIntegerType(),
+      'contentStream' => new \Webforge\Types\EntityType(new \Psc\Code\Generate\GClass('Psc\\Entities\\ContentStream\\ContentStream')),
     ));
   }
 }

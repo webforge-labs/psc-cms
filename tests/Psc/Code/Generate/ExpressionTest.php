@@ -2,9 +2,6 @@
 
 namespace Psc\Code\Generate;
 
-/**
- * @group class:Psc\Code\Generate\Expression
- */
 class ExpressionTest extends \Psc\Code\Test\Base {
   
   protected $expression;
@@ -12,7 +9,7 @@ class ExpressionTest extends \Psc\Code\Test\Base {
   public function setUp() {
     $this->chainClass = 'Psc\Code\Generate\Expression';
     parent::setUp();
-    $this->expression = new Expression($this->code = 'new \Psc\Data\Type\Type::create(\'String\')');
+    $this->expression = new Expression($this->code = 'new \Webforge\Types\Type::create(\'String\')');
   }
   
   public function testAcceptance() {
@@ -23,4 +20,3 @@ class ExpressionTest extends \Psc\Code\Test\Base {
     $this->assertEquals($this->code, $this->expression->php());
   }
 }
-?>

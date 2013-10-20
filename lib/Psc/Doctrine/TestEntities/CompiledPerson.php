@@ -168,12 +168,12 @@ abstract class CompiledPerson extends \Psc\CMS\AbstractEntity {
   
   public static function getSetMeta() {
     return new \Psc\Data\SetMeta(array(
-      'id' => new \Psc\Data\Type\IdType(),
-      'name' => new \Psc\Data\Type\StringType(),
-      'firstName' => new \Psc\Data\Type\StringType(),
-      'email' => new \Psc\Data\Type\EmailType(),
-      'birthday' => new \Psc\Data\Type\BirthdayType(new \Psc\Code\Generate\GClass('Webforge\\Common\\DateTime\\Date')),
-      'yearKnown' => new \Psc\Data\Type\BooleanType(),
+      'id' => new \Webforge\Types\IdType(),
+      'name' => new \Webforge\Types\StringType(),
+      'firstName' => new \Webforge\Types\StringType(),
+      'email' => new \Webforge\Types\EmailType(),
+      'birthday' => new \Webforge\Types\BirthdayType(new \Psc\Code\Generate\GClass('Webforge\\Common\\DateTime\\Date')),
+      'yearKnown' => new \Webforge\Types\BooleanType(),
     ));
   }
 }
