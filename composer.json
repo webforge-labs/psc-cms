@@ -28,7 +28,7 @@
     "doctrine/orm": "2.3.*@stable",
     "swiftmailer/swiftmailer": "4.1.*@stable",
     "CodePlex/PHPExcel": "1.7.8@stable",
-    "webforge/webforge": "1.5.*@dev",
+    "webforge/webforge": "1.6.*@dev",
     "webforge/doctrine": "1.0.*@stable",
     "webforge/translation": "1.0.*@stable",
     "webforge/fatal-error-handler": "1.*@stable",
@@ -48,7 +48,7 @@
   
   "extra": {
     "branch-alias": {
-      "dev-master": "1.5.x-dev"
+      "dev-master": "1.6.x-dev"
     }
   }
 }
