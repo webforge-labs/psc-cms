@@ -358,6 +358,9 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber, \Webfor
     return $this->getPath($p);
   }
 
+  public function isBuilt() {
+    return FALSE;
+  }
 
   public function getRootDirectory() {
     return $this->getRoot();
