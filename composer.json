@@ -25,7 +25,6 @@
     "ext-curl": "*",
     
     "symfony/http-foundation": "2.1.*@stable",
-    "doctrine/orm": "2.3.*@stable",
     "swiftmailer/swiftmailer": "4.1.*@stable",
     "CodePlex/PHPExcel": "1.7.8@stable",
     "webforge/webforge": "1.6.*@dev",
