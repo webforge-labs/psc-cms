@@ -3,7 +3,7 @@
 namespace Psc\Doctrine;
 
 use Webforge\TestData\NestedSet\NestedSetExample;
-use Webforge\CMS\Navigation\DoctrineBridge;
+use Webforge\Doctrine\CMS\NavigationBridge as DoctrineBridge;
 use Psc\Code\Code;
 
 use Psc\Entities\NavigationNode;

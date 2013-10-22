@@ -15,8 +15,7 @@ use Psc\UI\HTML;
 use stdClass;
 use stdClass as FormData;
 use Psc\UI\PagesMenu;
-
-use Webforge\CMS\Navigation\DoctrineBridge;
+use Webforge\Doctrine\CMS\NavigationBridge as DoctrineBridge;
 
 class NavigationController extends ContainerController {
 
