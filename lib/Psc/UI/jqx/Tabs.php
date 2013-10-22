@@ -103,4 +103,3 @@ class Tabs extends TabsSpecification {
     return in_array($tab, $this->tabs);
   }
 }
-?>
