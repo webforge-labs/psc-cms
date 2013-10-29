@@ -92,8 +92,7 @@ class Deployer extends \Psc\System\LoggerObject {
   
   public function init() {
     if (!$this->init) {
-      $this->init = true;
-      $this->target = $this->deploymentsRoot->sub($this->project->getName().($this->variant ? '.'.$this->variant : NULL).'/');
+      $this->init = true;      
       $this->targetProject = clone $this->project;
       $this->targetProject->setRootDirectory($this->getTarget());
     }
@@ -229,6 +228,10 @@ class Deployer extends \Psc\System\LoggerObject {
    * @return Webforge\Common\System\Dir
    */
   public function getTarget() {
+    if (!isset($this->target)) {
+      $this->target = $this->deploymentsRoot->sub($this->project->getName().($this->variant ? '.'.$this->variant : NULL).'/');
+    }
+
     return $this->target;
   }
   

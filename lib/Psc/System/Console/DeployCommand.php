@@ -85,11 +85,17 @@ abstract class DeployCommand extends Command {
       $this->variant,
       $logger = new \Psc\System\EchoLogger()
     );
+
+    $this->beforeInit($deployer);
     
     $deployer->init();
     $deployer->setHostName($this->hostName);
     
     return $deployer;
+  }
+
+  protected function beforeInit($deployer) {
+
   }
   
   protected function updateComposer($project) {
@@ -117,7 +123,8 @@ abstract class DeployCommand extends Command {
 
     $container = $this->createWebforgeContainer();
 
-    $cliProject = $container->getLocalProject();
+    $this->cliProject = $cliProject = $container->getLocalProject();
+
 
     foreach ($modes as $mode) {
       $project = clone $cliProject;
