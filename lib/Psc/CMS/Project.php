@@ -358,6 +358,10 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber, \Webfor
     return $this->getPath($p);
   }
 
+  public function getNamespaceDirectory() {
+     throw new \RuntimeException('not implemented');
+  }
+
   public function isBuilt() {
     return FALSE;
   }
