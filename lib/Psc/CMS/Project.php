@@ -362,6 +362,18 @@ class Project extends \Psc\Object implements \Psc\Code\Event\Subscriber, \Webfor
     return FALSE;
   }
 
+  public function configurationUpdate() {
+
+  }
+
+  public function updateDirectoryLocations(array $multiple) {
+    throw new \RuntimeException('not implemented');
+  }
+
+  public function defineDirectory($alias, $location) {
+    throw new \RuntimeException('not implemented');
+  }
+
   public function getRootDirectory() {
     return $this->getRoot();
   }
