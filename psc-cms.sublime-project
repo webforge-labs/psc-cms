@@ -8,10 +8,7 @@
 				"build",
 				".komodotools"
 			],
-			"path": "/D/www/psc-cms"
-		},
-		{
-			"path": "lib/Psc/Data/Type/Interfaces"
+			"path": "."
 		}
 	]
 }
