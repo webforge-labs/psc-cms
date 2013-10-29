@@ -11,8 +11,6 @@ class Container extends \Webforge\Setup\BootContainer {
   
   protected $inTests = NULL;
   
-  protected $project;
-
   protected $projetsFactory;
   
   public function init() {
@@ -20,6 +18,10 @@ class Container extends \Webforge\Setup\BootContainer {
     $GLOBALS['env']['root'] = $this->rootDirectory;
     
     $this->initPSCStaticClass();
+
+    if (PSC::isTravis()) {
+      $this->setInTests(TRUE);
+    }
   }
   
   protected function initPSCStaticClass() {
@@ -37,19 +39,6 @@ class Container extends \Webforge\Setup\BootContainer {
     PSC::registerExceptionHandler();
     PSC::registerErrorHandler();
     PSC::registerFatalErrorHandler();
-  }
-  
-  public function getProject() {
-    if (!isset($this->project)) {
-      $this->initLocalWebforgePackage();
-      $this->project = $this->webforge->getLocalProject();
-      
-      if (PSC::isTravis()) {
-        $this->setInTests(TRUE);
-      }
-    }
-    
-    return $this->project;
   }
 
   /**
