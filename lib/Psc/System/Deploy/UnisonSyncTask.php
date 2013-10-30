@@ -25,10 +25,15 @@ class UnisonSyncTask extends \Psc\SimpleObject implements Task {
    * @var string
    */
   protected $profile;
-  
+
+  public $unisonBinary;
+
   public function __construct(Dir $target) {
     $this->target = $target;
     $this->profile = NULL;
+    
+    $this->unisonBinary = '"D:\www\configuration\bin\unison\Unison-2.32.52 Text.exe"';
+    $this->unisonBinary = '"D:\www\configuration\bin\unison\Unison-2.40.102 Text.exe"';
   }
   
   public function run() {
@@ -40,8 +45,7 @@ class UnisonSyncTask extends \Psc\SimpleObject implements Task {
   }
 
   protected function sync() {
-    $unison = '"D:\www\configuration\bin\unison\Unison-2.32.52 Text.exe" -batch -terse ';
-    
+    $unison = $this->unisonBinary.' -batch -terse ';
     $unison .= \Psc\TPL\TPL::miniTemplate(
       '%profile% ',
       array(
