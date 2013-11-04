@@ -6,6 +6,7 @@ use Webforge\Common\System\Dir;
 use Psc\CMS\Project;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\ProcessBuilder;
+use RuntimeException;
 
 /**
  * Start ein Unison Profil
@@ -63,7 +64,7 @@ class UnisonSyncTask extends \Psc\SimpleObject implements Task {
     $process->setTimeout(0);
     
     $log = NULL;
-    $result = array();
+    $result = new \stdClass;
     $resultFound = FALSE;
     $ret = $process->run(function ($type, $buffer) use (&$log, &$result, &$resultFound) {
       // suche nach dem endergebnis:
@@ -82,17 +83,36 @@ class UnisonSyncTask extends \Psc\SimpleObject implements Task {
       //}
     });
 
+    print "\n";
 
-    if ($resultFound || $ret == 0) {
-      print sprintf("Unison: %s: (%d transferred, %d skipped, %d failed)\n",
-                    ($status = $result->skipped === 0 && $result->failed === 0 ? 'OK' : 'FAIL'),
-                    $result->transferred, $result->skipped, $result->failed);
-    } else {
-      throw new \RuntimeException("Unison Result nicht gefunden!\n".$log);
+    if ($resultFound) {
+      print sprintf("Unison: (%d transferred, %d skipped, %d failed)\n",
+        $result->transferred, $result->skipped, $result->failed
+      );
     }
-    
-    if (!$resultFound || $status == 'FAIL') {
-      throw new \RuntimeException('Unison failed: '.$log);
+
+    // http://www.cis.upenn.edu/~bcpierce/unison/download/releases/stable/unison-manual.html#exit
+    switch ($ret) {
+      case 0:
+        print 'Unison: successful synchronization';
+        break;
+      case 1:
+        print 'Unison: some files were skipped, but all file transfers were successful.';
+        break;
+      case 2:
+        print 'Unison: non-fatal failures occurred during file transfer.';
+        break;
+      case 3:
+        print 'Unison: a fatal error occurred, or the execution was interrupted.';
+        break;
+      default:
+        print 'Unison: unknown exit code: '.$ret;
+        break;
+    }
+    print "\n";
+
+    if ($ret !== 0) {
+      throw new RuntimeException('Unison failed');
     }
   }
  
