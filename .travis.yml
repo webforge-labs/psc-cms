@@ -9,7 +9,7 @@ branches:
     - v1.4
 
 env:
-  - PSC_CMS=$HOME/build/pscheit/psc-cms/etc/travis/; COMPOSER_ROOT_VERSION=dev-master 
+  - PSC_CMS=$HOME/build/webforge-labs/psc-cms/etc/travis/; COMPOSER_ROOT_VERSION=dev-master 
 
 before_install:
   - composer self-update
