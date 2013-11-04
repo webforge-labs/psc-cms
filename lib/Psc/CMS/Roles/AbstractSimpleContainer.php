@@ -8,6 +8,7 @@ use Psc\TPL\ContentStream\Converter as ContentStreamConverter;
 use Psc\CMS\UploadManager;
 use Psc\Doctrine\EntityRepository;
 use Psc\Image\Manager as ImageManager;
+use Psc\PSC;
 
 abstract class AbstractSimpleContainer extends \Psc\SimpleObject implements SimpleContainer {
 
@@ -56,6 +57,7 @@ abstract class AbstractSimpleContainer extends \Psc\SimpleObject implements Simp
     $this->setLanguages($languages);
     $this->setLanguage($language);
     $this->contentStreamConverter = $contentStreamConverter;
+    $this->project = PSC::getProject();
   }
 
   public function getRoleFQN($roleName) {
@@ -87,16 +89,23 @@ abstract class AbstractSimpleContainer extends \Psc\SimpleObject implements Simp
 
 
   protected function createImageManager() {
-    return new ImageManager($this->getRoleFQN('Image'), $this->dc->getEntityManager());
+    return ImageManager::createForProject(
+      $this->project,
+      $this->dc->getEntityManager(),
+      $this->getRoleFQN('Image')
+    );
   }
-
 
   /**
    * @return Psc\CMS\UploadManager
    */
   public function getUploadManager() {
     if (!isset($this->uploadManager)) {
-      $this->uploadManager = new UploadManager($this->getRoleFQN('File'), $this->dc);
+      $this->uploadManager = UploadManager::createForProject(
+        $this->project,
+        $this->dc,
+        $this->getRoleFQN('File')
+      );
     }
     return $this->uploadManager;
   }
