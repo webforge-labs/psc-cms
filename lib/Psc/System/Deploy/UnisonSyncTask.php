@@ -33,7 +33,7 @@ class UnisonSyncTask extends \Psc\SimpleObject implements Task {
     $this->profile = NULL;
     
     $this->unisonBinary = '"D:\www\configuration\bin\unison\Unison-2.32.52 Text.exe"';
-    $this->unisonBinary = '"D:\www\configuration\bin\unison\Unison-2.40.102 Text.exe"';
+    $this->unisonBinary = '"D:\www\configuration\bin\unison\Unison-2.40.63 Text.exe"';
   }
   
   public function run() {
@@ -112,7 +112,7 @@ class UnisonSyncTask extends \Psc\SimpleObject implements Task {
     print "\n";
 
     if ($ret !== 0) {
-      throw new RuntimeException('Unison failed');
+      throw new RuntimeException("Unison failed: \n".$log);
     }
   }
  
