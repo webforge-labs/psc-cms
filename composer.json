@@ -35,6 +35,7 @@
   },
   "require-dev": {
     "webforge/testdata-repository": "dev-master",
+    "pscheit/psc-cms-image": "1.2.*",
     "webforge/testplate": "1.2.*@dev",
     "doctrine/data-fixtures": "1.0.*@alpha"
   },
