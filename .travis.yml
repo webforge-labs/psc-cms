@@ -6,6 +6,8 @@ php:
 branches:
   only:
     - master
+    - v1.4
+
 env:
   - PSC_CMS=$HOME/build/pscheit/psc-cms/etc/travis/; COMPOSER_ROOT_VERSION=dev-master 
 
