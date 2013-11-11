@@ -7,11 +7,11 @@ branches:
   only:
     - master
 env:
-  - PSC_CMS=$TRAVIS_BUILD_DIR/etc/travis/; COMPOSER_ROOT_VERSION=dev-master 
+  - PSC_CMS=$TRAVIS_BUILD_DIR/etc/travis/
 
 before_install:
   - composer self-update
-  - composer install --prefer-source --no-interaction --dev
+  - COMPOSER_ROOT_VERSION=dev-master composer install --prefer-source --no-interaction --dev
 
 before_script:
   - vendor/bin/webforge register-package .
