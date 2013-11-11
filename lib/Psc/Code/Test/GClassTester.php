@@ -5,6 +5,7 @@ namespace Psc\Code\Test;
 use Psc\Code\Generate\GClass;
 use Psc\Code\Generate\GProperty;
 use Psc\Code\Generate\GMethod;
+use Webforge\Common\ArrayUtil as A;
 
 class GClassTester extends \Psc\SimpleObject {
   
