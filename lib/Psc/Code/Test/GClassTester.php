@@ -18,8 +18,14 @@ class GClassTester extends \Psc\SimpleObject {
   }
   
   public function hasMethod($name, array $parameters = NULL) {
-    $this->test->assertTrue($this->gClass->hasMethod($name),$this->msg("hasMethod '%s'", $name));
-    $method = $this->gClass->getMethod($name);    
+    $this->test->assertTrue(
+      $this->gClass->hasMethod($name),
+      $this->msg("hasMethod '%s'. Methods avaible: [%s]", 
+        $name, implode(", ", A::pluck($this->gClass->getMethods(), 'name'))
+      )
+    );
+
+    $method = $this->gClass->getMethod($name);
     
     if (isset($parameters)) {
       $this->assertMethodParameters($method, $parameters);
@@ -131,4 +137,3 @@ class GClassTester extends \Psc\SimpleObject {
     return vsprintf($msg, $args);
   }
 }
-?>

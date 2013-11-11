@@ -8,6 +8,7 @@ use Reflector;
 use Webforge\Common\ArrayUtil AS A;
 use Webforge\Common\String as S;
 use Psc\Code\Code;
+use Webforge\Common\ClassInterface;
 
 /**
  * Jede Klasse hat eine Funktion elevate() die modifizierbare parameter einer ReflectionClass auf die G* Klassen anhebt
@@ -846,7 +847,7 @@ class GClass extends GObject implements \Webforge\Common\ClassInterface {
   /**
    * @return bool
    */
-  public function equals(GClass $otherClass) {
+  public function equals(ClassInterface $otherClass) {
     return $this->getFQN() === $otherClass->getFQN();
   }
   

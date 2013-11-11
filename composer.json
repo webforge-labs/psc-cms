@@ -38,7 +38,7 @@
     "webforge/testdata-repository": "@alpha",
     "doctrine/data-fixtures": "1.0.*@alpha",
     "pscheit/psc-cms-image": "1.2.*",
-    "webforge/testplate": "1.4.*",
+    "webforge/testplate": "1.*",
     "liip/rmt": "0.9.*",
     "mockery/mockery": "dev-master",
     "seld/jsonlint": "1.1.*"
