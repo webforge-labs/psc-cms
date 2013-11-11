@@ -29,7 +29,7 @@
     "CodePlex/PHPExcel": "1.7.8@stable",
     "webforge/webforge": "1.7.*@dev",
     "webforge/doctrine": "1.1.*@stable",
-    "webforge/translation": "1.0.*@stable",
+    "webforge/translation": "1.0.*@dev",
     "webforge/fatal-error-handler": "1.*@stable",
     "webforge/dom": "1.*@dev"
   },
