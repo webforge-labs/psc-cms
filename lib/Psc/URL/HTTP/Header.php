@@ -128,7 +128,14 @@ class Header extends \Psc\Object {
       try {
         if (Preg::match($field, '/([^:]+): (.+)/m', $match)) {
           list($NULL, $name, $value) = $match;
-          $name = Preg::replace(mb_strtolower(trim($name)), '/(?<=^|[\x09\x20\x2D])./e', 'mb_strtoupper("\0")');
+          $name = Preg::replace_callback(
+            mb_strtolower(trim($name)),
+            '/(?<=^|[\x09\x20\x2D])./',
+            function($m) {
+              return mb_strtoupper($m[0]);
+            }
+          );
+
           if (isset($this->values[$name])) {
             if (is_array($this->values[$name])) {
               $this->values[$name][] = $value;
