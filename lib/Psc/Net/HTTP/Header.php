@@ -163,7 +163,13 @@ class Header extends \Psc\Object {
     foreach($fields as $field)  {
       if (Preg::match($field, '/([^:]+): (.+)/m', $match)) {
         list($NULL, $name, $value) = $match;
-        $name = Preg::replace(mb_strtolower(trim($name)), '/(?<=^|[\x09\x20\x2D])./e', 'mb_strtoupper("\0")');
+        $name = Preg::replace_callback(
+          mb_strtolower(trim($name)),
+          '/(?<=^|[\x09\x20\x2D])./',
+          function($m) {
+            return mb_strtoupper($m[0]);
+          }
+        );
         
         $this->setField($name,$value);
       }
