@@ -17,7 +17,7 @@ class Helper {
    */
   protected static function absolute($relativeURL) {
     $protocol = 'http';
-    $url = $protocol.'://'.rtrim($_SERVER['HTTP_HOST'],'/');
+    $url = $protocol.'://'.rtrim(@$_SERVER['HTTP_HOST'],'/');
     
     $url .= $relativeURL;
     

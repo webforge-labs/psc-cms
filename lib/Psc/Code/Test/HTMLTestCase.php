@@ -4,7 +4,7 @@ namespace Psc\Code\Test;
 
 use Psc\HTML\HTMLInterface;
 
-class HTMLTestCase extends \Psc\Code\Test\Base {
+class HTMLTestCase extends \Psc\Code\Test\Base implements \Webforge\Code\Test\HTMLTesting {
   
   protected $html, $debugContextHTML, $debugContextLabel = 'no-context';
   
@@ -25,9 +25,9 @@ class HTMLTestCase extends \Psc\Code\Test\Base {
   /**
    * Can be called to set the debug context
    */
-  public function setDebugContextHTML($htmlly, $label) {
-    $this->debugContextHTML = $htmlly;
-    $this->debugContextLabel = $label;
+  public function setDebugContextHTML(\Webforge\Code\Test\CSSTester $css, $html, $selectorInfo) {
+    $this->debugContextHTML = $html;
+    $this->debugContextLabel = 'selector: '.$selectorInfo;
     return $this;
   }
   

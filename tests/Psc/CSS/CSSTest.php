@@ -19,4 +19,3 @@ class CSSTest extends \Psc\Code\Test\HTMLTestCase {
     $this->assertInstanceOf('Psc\CSS\Manager', $manager);    
   }
 }
-?>
