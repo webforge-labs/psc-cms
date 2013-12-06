@@ -60,38 +60,25 @@ class Validator extends \Psc\Object {
     if ($this->hasField($field)) {
       
       try {
-        /* outer fängt alles und wandelt in ValidatorException um */
-        
-        try {
-          /* inner fängt nur EmptyDataException,
-             wenn das Feld nicht optional ist, schmeisst dies an outer eine Exception weiter
-          */
           
-          foreach ($this->rules[$key] as $rule) {
-            $data = $rule->validate($data); // wenn wir hier data zurückgeben, können wir die rules chainen
-          }
-        
-        } catch (EmptyDataException $e) {
-          if (($flags & self::OPTIONAL) == self::OPTIONAL || $this->isOptional($field)) {
-            return $e->getDefaultValue();
-          } else {
-            if ($e->getMessage() == NULL) {
-              $e->setMessage(sprintf($this->standardEmptyMessage,$this->getKey($field)));
-            }
-            
-            throw $e;
-          }
+        foreach ($this->rules[$key] as $rule) {
+          $data = $rule->validate($data); // wenn wir hier data zurückgeben, können wir die rules chainen
         }
         
+      } catch (EmptyDataException $e) {
+        if (($flags & self::OPTIONAL) == self::OPTIONAL || $this->isOptional($field)) {
+          return $e->getDefaultValue();
+
+        } else {
+          if ($e->getMessage() == NULL) {
+            $e->setMessage(sprintf($this->standardEmptyMessage,$this->getKey($field)));
+          }
+
+          throw $this->convertToValidatorException($e, $field);
+        }
+
       } catch (\Exception $e) {
-        $fex = new ValidatorException(sprintf($this->standardMessage,
-                                              $this->getLabel($field), $e->getMessage(), $e->getCode()),
-                                      (int) $e->getCode(),
-                                      $e
-                                     );
-          $fex->field = $field;
-          $fex->data = $data;
-          throw $fex;
+        throw $this->convertToValidatorException($e, $field);
       }
       
     } else {
@@ -99,6 +86,20 @@ class Validator extends \Psc\Object {
     }
     
     return $data;
+  }
+
+  protected function convertToValidatorException($e, $field) {
+    $fex = new ValidatorException(
+      sprintf(
+        $this->standardMessage,
+        $this->getLabel($field), $e->getMessage(), $e->getCode()
+      ), 
+      (int) $e->getCode(),
+      $e
+    );
+    $fex->field = $field;
+    $fex->data = $data;
+    return $fex;
   }
   
   /**
