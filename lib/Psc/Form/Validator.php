@@ -74,11 +74,11 @@ class Validator extends \Psc\Object {
             $e->setMessage(sprintf($this->standardEmptyMessage,$this->getKey($field)));
           }
 
-          throw $this->convertToValidatorException($e, $field);
+          throw $this->convertToValidatorException($e, $field, $data);
         }
 
       } catch (\Exception $e) {
-        throw $this->convertToValidatorException($e, $field);
+        throw $this->convertToValidatorException($e, $field, $data);
       }
       
     } else {
@@ -88,7 +88,7 @@ class Validator extends \Psc\Object {
     return $data;
   }
 
-  protected function convertToValidatorException($e, $field) {
+  protected function convertToValidatorException($e, $field, $data) {
     $fex = new ValidatorException(
       sprintf(
         $this->standardMessage,
