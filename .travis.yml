@@ -7,7 +7,7 @@ branches:
   only:
     - master
 env:
-  - PSC_CMS=$TRAVIS_BUILD_DIR/etc/travis/
+  - PSC_CMS=/home/travis/build/webforge-labs/psc-cms/etc/travis/
 
 before_install:
   - composer self-update
