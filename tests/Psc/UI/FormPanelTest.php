@@ -53,5 +53,3 @@ class FormPanelTest extends \Psc\Code\Test\HTMLTestCase {
       ->test('fieldset')->count(0)->end();
   }
 }
-
-?>

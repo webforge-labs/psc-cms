@@ -64,4 +64,3 @@ class FormTest extends \Psc\Code\Test\HTMLTestCase {
     ;
   }
 }
-?>

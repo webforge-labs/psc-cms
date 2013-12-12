@@ -31,6 +31,8 @@ class EntityFormPanel extends \Psc\UI\FormPanel implements \Psc\CMS\ComponentsCr
    * @var Psc\CMS\Labeler
    */
   protected $labeler;
+
+  protected $propertyComponents = array();
   
   public function __construct($label, TranslationContainer $translationContainer, \Psc\CMS\EntityForm $form, ComponentMapper $mapper = NULL, Labeler $labeler = NULL, Manager $manager = NULL) {
     parent::__construct($label, $translationContainer, $form);
@@ -102,13 +104,21 @@ class EntityFormPanel extends \Psc\UI\FormPanel implements \Psc\CMS\ComponentsCr
     $this->form->addComponent($component);
     return $this;
   }
+
+  public function setComponentFor(Component $component, $propertyName) {
+    $this->propertyComponents[$propertyName] = $component;
+  }
   
   /**
    * @return Psc\UI\Component
    */
   public function createComponent($property, Type $propertyType) {
     try {
-      $component = $this->componentMapper->inferComponent($propertyType);
+      if (isset($this->propertyComponents[$property])) {
+        $component = $this->propertyComponents[$property];
+      } else {
+        $component = $this->componentMapper->inferComponent($propertyType);
+      }
       
       $event = $this->getManager()->dispatchEvent(self::EVENT_COMPONENT_CREATED,
                                          array('component'=>$component,
@@ -128,7 +138,7 @@ class EntityFormPanel extends \Psc\UI\FormPanel implements \Psc\CMS\ComponentsCr
       
       $component->init(); // der eventListener kann ruhig init() aufrufen, wir stellen hier sicher, dass es aufgerufen wird
       
-      return $component;   
+      return $component;
     } catch (NoComponentFoundException $e) {
       $e->setMessage($e->getMessage().' property: '.$property);
       // what to do here?

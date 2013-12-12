@@ -67,7 +67,17 @@ class EntityFormPanelTest extends \Psc\Doctrine\DatabaseTestCase {
     $this->assertEquals('21.11.1984',$component->getFormValue()->format('d.m.Y'));
     $this->assertEquals('Birthday',$component->getFormLabel()); // auto-label vom labeler
   }
-  
+
+  public function testCreateComponentCanbeoverridenWithSetComponentFor() {
+    $myComponent = $this->getMock('Psc\CMS\Component');
+
+    $this->panel->setComponentFor($myComponent, 'birthday');
+
+    $component = $this->panel->createComponent('birthday', $this->getType('Birthday'));
+
+    $this->assertSame($component, $myComponent);
+  }
+
   public function testSortComponents() {
     $this->panel->setWhitelistProperties(array('name','firstName','birthday','email'));
     $this->panel->createComponents();

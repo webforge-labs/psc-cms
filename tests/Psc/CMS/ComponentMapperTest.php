@@ -70,7 +70,7 @@ class ComponentMapperTest extends \Psc\Code\Test\Base {
       
     $this->testMapping('null', $type);
   }
-
+  
   public function createComponentMapper() {
     return new ComponentMapper();
   }

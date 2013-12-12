@@ -191,4 +191,3 @@ class EntityViewPackage extends \Psc\SimpleObject {
     return $this->panelButtons;
   }
 }
-?>
