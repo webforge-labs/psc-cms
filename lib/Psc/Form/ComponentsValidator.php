@@ -107,12 +107,14 @@ class ComponentsValidator extends \Psc\Form\Validator {
       );
       
       if ($component instanceof SelfValidatingComponent) {
-        $this->set->set($field, $component->validate(), $component->getType());
+        $component->setFormValue($value = $this->validate($field, NULL));
+        $this->set->set($field, $component->validate($this), $component->getType());
       } else {
         // we compute the validated value
         $this->set->set($field, $value = $this->validate($field, NULL), $component->getType());
+        $component->setFormValue($value);
       }
-      $component->setFormValue($value);
+      
       
       $this->validatedComponents[] = $component; // mark visited
     }
