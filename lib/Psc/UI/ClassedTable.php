@@ -71,5 +71,4 @@ class ClassedTable extends Table {
     if ($this->getOption('css.extendedClasses',FALSE))
       $td->addClass('\Psc\ui-table-column-last');
   }
-  
 }

@@ -17,4 +17,3 @@ class GridTable extends ClassedTable {
     $tr->addClass('ui-widget-header');
   }
 }
-?>

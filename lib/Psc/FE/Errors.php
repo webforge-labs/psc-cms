@@ -119,7 +119,7 @@ class Errors extends \Psc\Object {
     }
     
     $devInfo = NULL;
-    if (PSC::inProduction()) {
+    if (PSC::getProject()->isDevelopment()) {
       $devInfo = \Psc\Exception::getExceptionText($e, 'html');
     }
     
