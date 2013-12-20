@@ -61,7 +61,7 @@ class Container extends \Webforge\Setup\BootContainer {
   }
 
   public function getModule($name) {
-    return $this->modules->get($name);
+    return $this->modules()->get($name);
   }
 
   public function bootstrapModule($name) {

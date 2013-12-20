@@ -4,8 +4,14 @@ namespace Psc\PHPExcel;
 
 class Sheet {
   
+  /**
+   * @var array[]
+   */
   protected $rows;
   
+  /**
+   * @var string
+   */
   protected $name;
   
   public function __construct($name, Array $rows) {
