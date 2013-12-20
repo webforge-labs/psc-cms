@@ -8,6 +8,8 @@ use Webforge\Common\System\Dir;
 use Psc\PSC;
 
 class Container extends \Webforge\Setup\BootContainer {
+
+  protected $modules;
   
   protected $inTests = NULL;
   
@@ -61,7 +63,7 @@ class Container extends \Webforge\Setup\BootContainer {
   }
 
   public function getModule($name) {
-    return $this->modules()->get($name);
+    return $this->getModules()->get($name);
   }
 
   public function bootstrapModule($name) {
