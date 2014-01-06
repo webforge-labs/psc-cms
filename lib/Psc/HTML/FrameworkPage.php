@@ -7,7 +7,9 @@ use Psc\CSS\Helper as css;
 use Webforge\Framework\Project;
 
 class FrameworkPage extends Page {
-  
+
+  protected $cmsCSSPrefix = '/css';
+
   /**
    * @var string ohne - dahinter
    */
@@ -15,13 +17,13 @@ class FrameworkPage extends Page {
 
   public function addCMSDefaultCSS($uiTheme = 'smoothness', $jqUIVersion = '1.8.22') {
     /* Frontend CSS Files */
-    $this->loadCSS('/css/reset.css');
-    $this->loadCSS('/css/colors.css');
-    $this->loadCSS('/css/default.css');
+    $this->loadCSS($this->cmsCSSPrefix.'/reset.css');
+    $this->loadCSS($this->cmsCSSPrefix.'/colors.css');
+    $this->loadCSS($this->cmsCSSPrefix.'/default.css');
     $this->loadCSS('/psc-cms-js/vendor/jqwidgets/styles/jqx.base.css');
     $this->loadCSS('/psc-cms-js/vendor/jqwidgets/styles/jqx.ui-'.$uiTheme.'.css');
     $this->loadCSS('/psc-cms-js/vendor/jquery-ui/css/'.$uiTheme.'/jquery-ui-'.$jqUIVersion.'.custom.css');
-    $this->loadCSS('/css/cms/form.css');
+    $this->loadCSS($this->cmsCSSPrefix.'/cms/form.css');
     $this->loadCSS('/psc-cms-js/css/ui.css');
   }
 
