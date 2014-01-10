@@ -48,7 +48,7 @@ class AssociationList extends \Psc\SimpleObject {
   /**
    * @var Traversable
    */
-  protected $entities = array();
+  protected $entities = NULL;
   
   /**
    * @var string
@@ -195,7 +195,7 @@ class AssociationList extends \Psc\SimpleObject {
   }
   
   public function hasEntities() {
-    return count($this->entities) > 0;
+    return $this->entities !== NULL;
   }
   
   /**
@@ -249,4 +249,3 @@ class AssociationList extends \Psc\SimpleObject {
     return $this->limitMessage;
   }
 }
-?>
