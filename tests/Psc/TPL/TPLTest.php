@@ -22,4 +22,28 @@ class TPLTest extends \Psc\Code\Test\Base {
     
     $this->assertEquals($repl, TPL::miniTemplate($tpl, $vars));
   }
+
+  public static function provideBUIMarkupText() {
+    $tests = array();
+  
+    $test = function($text, $expected) use (&$tests) {
+      $tests[] = array($expected, $text);
+    };
+
+    $test('//italic//', '<em>italic</em>');
+    $test('something //italic//', 'something <em>italic</em>');
+    $test('something **bold**', 'something <strong>bold</strong>');
+
+    $test('//**bold and italic**//', '<em><strong>bold and italic</strong></em>');
+    $test('**//bold and italic//**', '<strong><em>bold and italic</em></strong>');
+  
+    return $tests;
+  }
+
+  /**
+   * @dataProvider provideBUIMarkupText
+   */
+  public function testBUIMarkup($expectedHTML, $text) {
+    $this->assertEquals($expectedHTML, TPL::replaceBUIMarkup($text));
+  }
 }
