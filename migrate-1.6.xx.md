@@ -1,4 +1,4 @@
-Migration to 1.5
+Migration to 1.6
 ====================
 
 ## Major changes
