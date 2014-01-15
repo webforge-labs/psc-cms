@@ -32,7 +32,8 @@ class ProjectConsole extends \Psc\System\Console\Console {
         ->set(new \Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper($em), 'em');
     }
 
-    $bridge = new \Webforge\Doctrine\Console\ConsoleBridge($this->doctrine->getDoctrineContainer());
+    $system = $GLOBALS['env']['container']->getWebforge()->getSystemContainer()->getSystem();
+    $bridge = new \Webforge\Doctrine\Console\ConsoleBridge($this->doctrine->getDoctrineContainer(), $system);
     $bridge->augment($this->cli);
   }
   
