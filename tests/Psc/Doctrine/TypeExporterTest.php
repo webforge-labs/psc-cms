@@ -41,7 +41,7 @@ class TypeExporterTest extends \Psc\Code\Test\Base {
     $test('String','string');
     $test('Integer','integer');
     $test('Boolean','boolean');
-    $test('DateTime','PscDateTime');
+    $test('DateTime','WebforgeDateTime');
     $test('Email','string');
     
     // @TODO Regression: 2 mal DCEnumType darf nicht gecached werden
