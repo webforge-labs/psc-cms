@@ -28,7 +28,7 @@ abstract class CompiledTag extends \Psc\CMS\AbstractEntity {
   
   /**
    * @var Webforge\Common\DateTime\DateTime
-   * @ORM\Column(type="PscDateTime")
+   * @ORM\Column(type="WebforgeDateTime")
    */
   protected $created;
   

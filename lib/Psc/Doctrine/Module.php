@@ -348,9 +348,13 @@ class Module extends \Psc\CMS\Module implements \Psc\Code\Event\Dispatcher {
   protected function registerDefaultTypes() {
     foreach (array('Psc.DateTime'=>'Psc\Doctrine\DateTimeType', // legacy wegen dem .
                    'PscDateTime'=>'Psc\Doctrine\DateTimeType', // das ist das neue "richtige" Format
-                   'PscDate'=>'Psc\Doctrine\DateType'
+                   'PscDate'=>'Psc\Doctrine\DateType',
+                   'WebforgeDateTime'=>'Webforge\Doctrine\Types\DateTimeType', 
+                   'WebforgeDate'=>'Webforge\Doctrine\Types\DateType'
                    ) as $name => $class) {
-      \Doctrine\DBAL\Types\Type::addType($name, $class);
+      if (!\Doctrine\DBAL\Types\Type::hasType($name)) {
+        \Doctrine\DBAL\Types\Type::addType($name, $class);
+      }
     }
     return $this;
   }

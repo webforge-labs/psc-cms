@@ -69,13 +69,13 @@ abstract class CompiledNavigationNode extends \Psc\CMS\Roles\NavigationNodeEntit
   
   /**
    * @var Webforge\Common\DateTime\DateTime
-   * @ORM\Column(type="PscDateTime")
+   * @ORM\Column(type="WebforgeDateTime")
    */
   protected $created;
   
   /**
    * @var Webforge\Common\DateTime\DateTime
-   * @ORM\Column(type="PscDateTime")
+   * @ORM\Column(type="WebforgeDateTime")
    */
   protected $updated;
   

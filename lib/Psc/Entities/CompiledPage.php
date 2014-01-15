@@ -35,13 +35,13 @@ abstract class CompiledPage extends \Psc\CMS\Roles\PageEntity {
   
   /**
    * @var Webforge\Common\DateTime\DateTime
-   * @ORM\Column(type="PscDateTime")
+   * @ORM\Column(type="WebforgeDateTime")
    */
   protected $created;
   
   /**
    * @var Webforge\Common\DateTime\DateTime
-   * @ORM\Column(type="PscDateTime", nullable=true)
+   * @ORM\Column(type="WebforgeDateTime", nullable=true)
    */
   protected $modified;
   
