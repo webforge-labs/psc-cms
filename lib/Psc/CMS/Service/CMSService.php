@@ -120,6 +120,7 @@ class CMSService extends ControllerService {
         // nimmt nur eine file, weil moep
       
         return array($controller, 'insertFile', array(current($request->getFiles()), $request->getBody()));
+
       } elseif($r->isEmpty() && $request->getType() === Service::GET) {
         $params = array();
 
@@ -139,8 +140,16 @@ class CMSService extends ControllerService {
 
         // filename immer am ende und optional
         $filename = NULL;
-        if (\Psc\Preg::match($r->getLastPart(), '/^(.+)\.(.+)$/')) {
-          $filename = $r->pop();
+
+        try {
+          if (\Psc\Preg::match($r->getLastPart(), '/^(.+)\.(.+)$/')) {
+            $filename = $r->pop();
+          }
+        } catch (\Webforge\Common\Exception $e) {
+          if (mb_strpos('.', $r->getLastPart()) !== FALSE) {
+            $filename = \Webforge\Common\System\File::safeName($r->pop());
+            $filename = Preg::replace($filename, '/_+/', '_');
+          }
         }
       
         if ($filename) {

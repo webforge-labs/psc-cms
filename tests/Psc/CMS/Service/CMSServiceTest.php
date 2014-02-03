@@ -33,6 +33,27 @@ class CMSServiceTest extends \Psc\Code\Test\Base {
       $this->service->routeController($this->request('GET', '/cms/uploads')->setQuery(array('orderby'=>array('name'=>'ASC'))))
     );
   }
+
+  public function testFileControllerReturnsSimpleFileWitBadUTF8URLName() {
+    $subject = "fa\xa0ade\xa0\xa0bana.pdf";
+    $transSubject = 'fa_ade_bana.pdf';
+
+    list($controller, $method, $params) = $this->assertFileUploadRouting(
+      'getFile',
+      array($id = '27a6a9051b9ef1a8302c9ef22c187a7e7968c77f', $transSubject),
+      $this->service->routeController($this->request('GET', '/cms/uploads/'.$id.'/'.$transSubject))
+    );
+  }
+
+  public function testFileControllerRemovesFilenameifNonsense() {
+    $subject = "dicarded";
+
+    list($controller, $method, $params) = $this->assertFileUploadRouting(
+      'getFile',
+      array($id = '27a6a9051b9ef1a8302c9ef22c187a7e7968c77f'),
+      $this->service->routeController($this->request('GET', '/cms/uploads/'.$id.'/'.$subject))
+    );
+  }
   
   public function testImageControllerRouting() {
     $hash = 's098sdfl324l3j45lkewj5r';
