@@ -22,11 +22,11 @@ abstract class PageEntity extends \Psc\CMS\AbstractEntity implements Page, Websi
 
   /**
    * add this to the parent class with:
-   * @ORM\PrePersist
-   * @ORM\PreUpdate
+   * (at)ORM\PrePersist
+   * (at)ORM\PreUpdate
    * 
    * add this to class level!
-   * @ORM\HasLifecycleCallbacks
+   * (at)ORM\HasLifecycleCallbacks
    */
   public function onPrePersist() {
     $this->updateTimestamps();

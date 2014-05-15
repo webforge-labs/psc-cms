@@ -46,8 +46,8 @@ class SplitPaneTest extends \Psc\Code\Test\HTMLTestCase {
     
     $this->test
       ->css('div.psc-cms-ui-splitpane')->count(1)
-      ->css('> div.right.new-class')->count(1)->end()
-      ->css('> div.left.new-class')->count(1)->end();
+      ->css('div.right.new-class')->count(1)->end()
+      ->css('div.left.new-class')->count(1)->end();
   }
 }
 ?>

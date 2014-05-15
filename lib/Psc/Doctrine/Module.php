@@ -217,6 +217,8 @@ class Module extends \Psc\CMS\Module implements \Psc\Code\Event\Dispatcher {
       $this->project->dir('vendor')->getFile('doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/DoctrineAnnotations.php')
     );
 
+    \Doctrine\Common\Annotations\AnnotationReader::addGlobalIgnoredName('chainable');
+
     if (!isset($this->driverChain))
       $this->driverChain = new MappingDriverChain();
 

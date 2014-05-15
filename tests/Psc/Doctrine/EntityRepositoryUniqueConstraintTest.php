@@ -80,7 +80,6 @@ class EntityRepositoryUniqueConstraintTest extends \Psc\Doctrine\RepositoryTest 
   
   public function testGetUniqueIndex() {
     // wir checken auch mit reihenfolge (dunno)
-    xdebug_break();
     $this->assertEntityCollectionSame(
       $expectedEntities = $this->createUQDataRows($constraint = $this->createTagUniqueConstraint()),
       
