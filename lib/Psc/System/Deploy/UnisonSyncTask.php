@@ -112,7 +112,7 @@ class UnisonSyncTask extends \Psc\SimpleObject implements Task {
     print "\n";
 
     if ($ret !== 0) {
-      throw new RuntimeException('Unison failed');
+      throw new RuntimeException('Unison failed: '.$log);
     }
   }
  
