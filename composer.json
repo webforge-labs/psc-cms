@@ -23,7 +23,7 @@
     "ext-mbstring": "*",
     "ext-curl": "*",
     
-    "symfony/http-foundation": "2.1.*@stable",
+    "symfony/http-foundation": "2.5.*@stable",
     "swiftmailer/swiftmailer": "4.1.*@stable",
     "CodePlex/PHPExcel": "1.7.8@stable",
     "webforge/webforge": "1.10.*@dev",
