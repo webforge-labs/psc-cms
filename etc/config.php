@@ -14,7 +14,7 @@ $conf['db']['default']['charset'] = 'utf8';
 $conf['db']['tests'] = $conf['db']['default'];
 $conf['db']['tests']['database'] = 'psc-cms_tests';
 
-if (\Psc\PSC::isTravis()) {
+if (getenv('TRAVIS') === 'true') {
   $conf['db']['default']['user'] = $conf['db']['tests']['user'] = 'root';
   $conf['db']['default']['password'] = $conf['db']['tests']['password'] = '';
 }
