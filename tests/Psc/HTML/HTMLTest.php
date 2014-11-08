@@ -32,6 +32,8 @@ class HTMLTest extends \Psc\Code\Test\Base {
     $test('MetaTest','meta-test');
     $test('MetaTestLongEnough','meta-test-long-enough');
     $test('This\Is\A\Class', 'this-is-a-class');
+    $test('This/Is/A/Class', 'this-is-a-class');
+    $test('This/Is/A,/Class', 'this-is-a-class');
     $test('fiddle[things]', 'fiddle-things-');
     $test('The9ThTest', 'the-9-th-test');
     $test('The9thTest', 'the-9th-test');

@@ -46,7 +46,7 @@ class HTML {
       return mb_strtolower($stringValue);
     }
     
-    $specials = preg_quote(implode("", array('.','@','\\',' ','[',']','(',')')), '/');
+    $specials = preg_quote(implode("", array('.', '/', ',', '@','\\',' ','[',']','(',')')), '/');
     
     $stringValue = Preg::replace(// in
                       $stringValue,
@@ -59,6 +59,7 @@ class HTML {
                        '-\\1'
                   );
     $stringValue = mb_strtolower($stringValue);
+    $stringValue = str_replace("--", "-", $stringValue);
     
     return $stringValue;
   }
