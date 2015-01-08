@@ -28,7 +28,7 @@ class Console extends \Psc\Object {
     $this->cli = $application ?: new Application($this->name, $this->version);
     $this->cli->setCatchExceptions(true);
     $this->cli->setHelperSet(new HelperSet(array(
-      'dialog' => new \Symfony\Component\Console\Helper\DialogHelper()
+      'dialog' => new \Symfony\Component\Console\Helper\DialogHelper($warnDeprecation = false)
     )));
     $this->project = $project ?: \Psc\PSC::getProject();
     $this->doctrine = $doctrine ?: $GLOBALS['env']['container']->getModule('Doctrine');
