@@ -43,6 +43,11 @@ class DropBox2 extends \Psc\HTML\JooseBase implements \Psc\JS\JooseSnippetWidget
    * @var string
    */
   protected $connectWith;
+
+  /**
+   * @var boolean
+   */
+  protected $removeEvent = TRUE;
   
   /**
    * @var string
@@ -55,6 +60,7 @@ class DropBox2 extends \Psc\HTML\JooseBase implements \Psc\JS\JooseSnippetWidget
   public function __construct($name, EntityMeta $entityMeta, $valuesCollection = array(), $flags = 0, $label = NULL) {
     $this->assignedValues = $valuesCollection; 
     $this->setEntityMeta($entityMeta);
+    $this->removeEvent = TRUE;
     $this->flags = $flags;
     $this->name = $name;
     
@@ -85,6 +91,7 @@ class DropBox2 extends \Psc\HTML\JooseBase implements \Psc\JS\JooseSnippetWidget
     }
     
     $params['multiple'] = ($this->flags & self::MULTIPLE) == self::MULTIPLE;
+    $params['removeEvent'] = $this->removeEvent;
     $params['widget'] = $this->widgetSelector();
     
     if (is_array($this->buttonSnippets)) {
@@ -230,6 +237,11 @@ class DropBox2 extends \Psc\HTML\JooseBase implements \Psc\JS\JooseSnippetWidget
     return $this;
   }
 
+  public function disableRemoveEvent() {
+    $this->removeEvent = FALSE;
+    return $this;
+  }
+
   public function getMultiple() {
     return $this->flags & self::MULTIPLE === self::MULTIPLE;
   }
@@ -247,4 +259,3 @@ class DropBox2 extends \Psc\HTML\JooseBase implements \Psc\JS\JooseSnippetWidget
     return $this->flags & self::VERTICAL_BUTTONS === self::VERTICAL_BUTTONS;
   }
 }
-?>
