@@ -50,6 +50,7 @@
     "directory-locations": {
       "lib": "lib/",
       "tpl": "resources/tpl/",
+      "cms-tpl": "resources/tpl/",
       "resources": "resources",
       "prototypes": "resources/prototypes/",
       "assets-src": "resources/assets/"
