@@ -101,13 +101,13 @@ class ActionsCollectionSynchronizer extends HydrationCollectionSynchronizer {
   
   // direkt die dispatchers abfangen (performance)
   protected function dispatchInsert($item, $eventData = array()) {
-    return $this->actions['insertObject']($item);
+    return $this->actions['insertObject']($item, $eventData['key']);
     // wollen wir hier noch das ursprüngliche Event dispatchen?
     // hier verletzen wir gerade die ableitung von EventCollectionSynchronizer
   }
 
   protected function dispatchUpdate($item, $eventData = array()) {
-    return $this->actions['updateObject']($eventData['from'], $eventData['to']);
+    return $this->actions['updateObject']($eventData['from'], $eventData['to'], $eventData['key']);
   }
 
   protected function dispatchDelete($item, $eventData = array()) {

@@ -62,12 +62,12 @@ abstract class HydrationCollectionSynchronizer extends EventCollectionSynchroniz
       
       // kein objekt konnte hydriert werden
       if ($fromObject === NULL) {
-        $inserts[] = $this->dispatchInsert($toObject);
+        $inserts[] = $this->dispatchInsert($toObject, array('key'=>$toCollectionKey));
       
         // inserts müssen nicht in den index, da sie nicht im universum gefunden wurden, können sie auch nicht in $fromCollection sein
       } else {
         // objekt hydriert, kann mit korrekter id sein oder matching unique-constraint
-        $updates[] = $this->dispatchUpdate($fromObject, array('from'=>$fromObject,'to'=>$toObject));
+        $updates[] = $this->dispatchUpdate($fromObject, array('from'=>$fromObject, 'to'=>$toObject, 'key'=>$toCollectionKey));
         
         $index[$this->hashObject($fromObject)] = TRUE;
       }
