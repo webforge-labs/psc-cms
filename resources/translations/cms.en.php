@@ -4,7 +4,7 @@
 return Array(
   'welcome.tabTitle'=>'Welcome',
   'welcome.headline'=>'Welcome to Psc - CMS',
-  'welcome.navigate'=>'All managable conentents are shown in the right sidebar. Those contents will be opened and shown in the tabs bar.',
+  'welcome.navigate'=>'All manageable contents are shown in the right sidebar. Those contents will be opened and shown in the tabs bar.',
   'welcome.support'=>'If you experience unexpected problems make a copy of the error message (or better: make a screenshot) and contact the developer (german and english speaking):',
   'welcome.readChangelog'=>'read about the last changes',
 
