@@ -142,6 +142,8 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
    * @var Psc\Session\Session
    */
   public $session; // just a hack for tests
+
+  protected $cookieManager;
   
   public function __construct(WebforgeProject $project = NULL, DCPackage $dc = NULL, RightContent $rightContent = NULL, EntityService $entityService = NULL, $debugLevel = 5, FrontController $frontController = NULL, \Psc\Environment $env = NULL) {
     $this->environment = $env ?: PSC::getEnvironment();
@@ -518,7 +520,7 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
       $this->authController = new \Psc\CMS\Controller\AuthController(
         new Auth(
           $this->session,
-          NULL,
+          $this->cookieManager,
           $this->getUserManager()
         )
       );
@@ -735,5 +737,13 @@ class ProjectMain extends \Psc\Object implements DropContentsListCreater{
   public function setContainer(ContainerRole $container) {
     $this->container = $container;
     return $this;
+  }
+
+  public function setSession($session) {
+    $this->session = $session;
+  }
+
+  public function setCookieManager($manager) {
+    $this->cookieManager = $manager;
   }
 }
