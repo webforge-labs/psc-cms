@@ -16,7 +16,7 @@ class Object extends SimpleObject {
    * Simuliert Setter / Gett für alle Variablen des Objektes
    * 
    */
-  public function __call($method, $args = NULL) {
+  public function __call($method, $args) {
     $prop = mb_strtolower(mb_substr($method,3,1)).mb_substr($method,4); // ucfirst in mb_string
     
     // wir normalisieren ein paar properties, weils nervt
