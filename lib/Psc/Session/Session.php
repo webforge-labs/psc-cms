@@ -24,7 +24,7 @@ class Session extends \Psc\OptionsObject implements \Webforge\Common\Session {
   
   public function __construct() {
     $this->setDefaultOptions(Array(
-      'cookieDomain'=>@$_SERVER['HTTP_HOST'],
+      'cookieDomain'=>isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : NULL,
       'name'=>'SID',
       'cookies'=>TRUE
     ));
