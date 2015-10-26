@@ -3,6 +3,7 @@
 namespace Psc\CMS;
 
 use Psc\Session\Session;
+use Webforge\Common\Session as SessionInterface;
 use Psc\GPC;
 use Psc\Code\Code;
 use Psc\PHP\CookieManager;
@@ -44,7 +45,7 @@ class Auth extends \Psc\Object {
   
   protected $debug = FALSE;
   
-  public function __construct(Session $session = NULL, CookieManager $cookieManager = NULL, UserManager $userManager = NULL) {
+  public function __construct(SessionInterface $session = NULL, CookieManager $cookieManager = NULL, UserManager $userManager = NULL) {
     if ($session == NULL) {
       $session = Session::instance();
     }
