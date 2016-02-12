@@ -1,8 +1,10 @@
-Migration to 1.9
+Migration to 1.10
 ====================
 
-this migration is non BC breaking, if you're not using symfony cli on windows.
+this migration is non BC breaking.
+
+To update just use php 5.6 (upgrade to jessie on debian)
 
 ## Major changes
 
-- uses Webforge 1.10. which uses webforge/process 1.2 which has a symfony bug for escaping arguments for windows cli commands fixed. 
+- removed setting mbstring internal encoding per ini_set in `Psc\CMS\Container`
