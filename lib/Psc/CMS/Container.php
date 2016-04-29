@@ -21,7 +21,9 @@ class Container {
   }
   
   public function init() {
-    ini_set('mbstring.internal_encoding', 'UTF-8');
+    if (version_compare(PHP_VERSION, '5.5.0') <= 0) {
+      ini_set('mbstring.internal_encoding', 'UTF-8');
+    }
     $GLOBALS['env']['root'] = $this->rootDirectory;
     
     $this->initPSCStaticClass();
