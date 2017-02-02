@@ -93,7 +93,7 @@ return Array(
 
 
   'entities.member.email'=>'Courriel',
-  'entities.member.active'=>'active',
+  'entities.member.active'=>'actif',
   'entities.member.telephone1'=>'Téléphone',
   'entities.member.mobile'=>'GSM',
   'entities.member.info'=>'info',
